@@ -4,7 +4,7 @@ import { Mail, MapPin, MessageCircle, Pencil, Phone, ShieldCheck, User } from "l
 import type { FieldErrors, UseFormRegister, Control } from "react-hook-form";
 import { CONTACT_METHODS, type LeadFormValues } from "@/lib/leads/schema";
 import { cn } from "@/lib/utils/cn";
-import { FORM_COPY } from "@/lib/i18n/ui";
+import { getFormOptions } from "@/lib/i18n/form-options";
 import type { Locale } from "@/lib/i18n/config";
 import { OptionTiles } from "./option-tiles";
 
@@ -58,8 +58,8 @@ export function StepContact({
 
       <OptionTiles
         name="contactMethod"
-        legend={FORM_COPY[locale].contactLegend}
-        options={CONTACT_METHODS}
+        legend={getFormOptions(locale).labels.contactMethod}
+        options={getFormOptions(locale).contactMethods}
         icons={CONTACT_ICONS}
         register={register}
         control={control}

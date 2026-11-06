@@ -18,6 +18,7 @@ import {
 } from "@/lib/leads/schema";
 import type { ReturnEstimate } from "@/lib/leads/investment";
 import { FORM_COPY } from "@/lib/i18n/ui";
+import { getFormOptions, labelFor } from "@/lib/i18n/form-options";
 import { cn } from "@/lib/utils/cn";
 import { LeadSuccess } from "./lead-success";
 import { StepConfig } from "./step-config";
@@ -69,6 +70,7 @@ export function MultiStepLeadForm({
   subheading = "Wypełnij 4 krótkie pytania. W ciągu 15 minut prześlemy spersonalizowany zestaw wyselekcjonowanych ofert.",
 }: MultiStepLeadFormProps) {
   const formCopy = FORM_COPY[language];
+  const formOptions = getFormOptions(language);
   const [step, setStep] = useState<0 | 1>(0);
   const [status, setStatus] = useState<Status>("idle");
   const [serverError, setServerError] = useState<string | null>(null);
@@ -96,9 +98,9 @@ export function MultiStepLeadForm({
 
   const summary = useMemo(() => {
     const parts = [
-      labelOf(GOALS, String(values.goal ?? "inwestycja-najem")),
-      labelOf(PROPERTY_TYPES, String(values.propertyType ?? "apartament")),
-      labelOf(HORIZONS, String(values.horizon ?? "1-3-miesiace")),
+      labelFor(language, "goals", String(values.goal ?? "inwestycja-najem")),
+      labelFor(language, "propertyTypes", String(values.propertyType ?? "apartament")),
+      labelFor(language, "horizons", String(values.horizon ?? "1-3-miesiace")),
       budget ? `${budget} €` : null,
       [values.city, values.district].filter(Boolean).join(" / "),
     ].filter(Boolean);
@@ -107,14 +109,14 @@ export function MultiStepLeadForm({
     // gdy użytkownik faktycznie coś zaznaczył.
     const selectedRegions = Array.isArray(values.regions) ? (values.regions as string[]) : [];
     if (selectedRegions.length > 0) {
-      parts.push(selectedRegions.map((value) => labelOf(REGIONS, value)).join(", "));
+      parts.push(selectedRegions.map((value) => labelFor(language, "regions", value)).join(", "));
     }
 
     const selectedRequirements = Array.isArray(values.requirements)
       ? (values.requirements as string[])
       : [];
     if (selectedRequirements.length > 0) {
-      parts.push(selectedRequirements.map((value) => labelOf(REQUIREMENTS, value)).join(", "));
+      parts.push(selectedRequirements.map((value) => labelFor(language, "requirements", value)).join(", "));
     }
 
     return parts.join(" · ");
@@ -163,7 +165,7 @@ export function MultiStepLeadForm({
         if (backToFirstStep) setStep(0);
 
         setServerError(
-          data?.error ?? "Nie udało się wysłać zgłoszenia. Spróbuj ponownie.",
+          data?.error ?? formOptions.labels.errorGeneric,
         );
         setStatus("error");
         return;
@@ -184,7 +186,7 @@ export function MultiStepLeadForm({
         }),
       );
     } catch {
-      setServerError("Brak połączenia. Sprawdź internet i spróbuj ponownie.");
+      setServerError(formOptions.labels.errorNetwork);
       setStatus("error");
     }
   });
@@ -311,7 +313,7 @@ export function MultiStepLeadForm({
               className="inline-flex h-12 items-center justify-center gap-1.5 rounded-xl border border-brand-200 px-4 text-sm font-semibold text-brand-800 transition-colors hover:bg-brand-50 disabled:opacity-60"
             >
               <ArrowLeft aria-hidden className="h-4 w-4" />
-              Wstecz
+              {formOptions.labels.back}
             </button>
           ) : null}
 
@@ -321,7 +323,7 @@ export function MultiStepLeadForm({
               onClick={goNext}
               className="inline-flex h-12 flex-1 items-center justify-center gap-2 rounded-xl bg-accent-500 px-5 text-base font-bold text-white shadow-card transition-colors hover:bg-accent-600"
             >
-              Przejdź do odbioru ofert (Krok 2/2)
+              {formOptions.labels.next}
               <ArrowRight aria-hidden className="h-4 w-4" />
             </button>
           ) : (
@@ -333,11 +335,11 @@ export function MultiStepLeadForm({
               {status === "sending" ? (
                 <>
                   <Loader2 aria-hidden className="h-4 w-4 animate-spin" />
-                  Wysyłanie…
+                  {formOptions.labels.sending}
                 </>
               ) : (
                 <>
-                  Wyślij i odbierz ofertę
+                  {formOptions.labels.submit}
                   <ArrowRight aria-hidden className="h-4 w-4" />
                 </>
               )}

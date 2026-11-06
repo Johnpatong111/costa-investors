@@ -29,7 +29,7 @@ import {
 } from "@/lib/leads/schema";
 import { BUDGET_PRESETS, formatBudgetInput, parseBudget } from "@/lib/leads/investment";
 import { cn } from "@/lib/utils/cn";
-import { FORM_COPY } from "@/lib/i18n/ui";
+import { getFormOptions } from "@/lib/i18n/form-options";
 import type { Locale } from "@/lib/i18n/config";
 import { OptionChecklist, OptionTiles } from "./option-tiles";
 
@@ -73,14 +73,14 @@ export function StepConfig({
   const budgetValue = parseBudget(budget) || BUDGET_DEFAULT;
   const sliderValue = Math.min(BUDGET_MAX, Math.max(BUDGET_MIN, budgetValue));
   const hasBudgetError = Boolean(budgetError || errors.budget);
-  const formCopy = FORM_COPY[locale];
+  const formOptions = getFormOptions(locale);
 
   return (
     <div className="space-y-5">
       <OptionTiles
         name="goal"
-        legend="Cel zakupu"
-        options={GOALS}
+        legend={formOptions.labels.goal}
+        options={formOptions.goals}
         icons={GOAL_ICONS}
         register={register}
         control={control}
@@ -92,8 +92,8 @@ export function StepConfig({
           dostają pełną szerokość i nie nachodzą na ikonę wyboru. */}
       <OptionTiles
         name="propertyType"
-        legend="Typ nieruchomości"
-        options={PROPERTY_TYPES}
+        legend={formOptions.labels.propertyType}
+        options={formOptions.propertyTypes}
         icons={PROPERTY_ICONS}
         register={register}
         control={control}
@@ -103,8 +103,8 @@ export function StepConfig({
 
       <OptionTiles
         name="horizon"
-        legend="Kiedy kupujesz?"
-        options={HORIZONS}
+        legend={formOptions.labels.horizon}
+        options={formOptions.horizons}
         icons={HORIZON_ICONS}
         register={register}
         control={control}
@@ -114,9 +114,9 @@ export function StepConfig({
 
       <OptionChecklist
         name="regions"
-        legend="Lokalizacja / region"
-        hint="Możesz wybrać kilka regionów lub poprosić o doradztwo."
-        options={REGIONS}
+        legend={formOptions.labels.regions}
+        hint={formOptions.labels.regionsHint}
+        options={formOptions.regions}
         icons={REGION_ICONS}
         register={register}
         control={control}
@@ -126,9 +126,9 @@ export function StepConfig({
 
       <OptionChecklist
         name="requirements"
-        legend="Kluczowe wymogi (opcjonalnie)"
-        hint="Zaznacz, co jest dla Ciebie ważne. Zawęzi to listę ofert."
-        options={REQUIREMENTS}
+        legend={formOptions.labels.requirements}
+        hint={formOptions.labels.requirementsHint}
+        options={formOptions.requirements}
         icons={REQUIREMENT_ICONS}
         register={register}
         control={control}
@@ -142,7 +142,7 @@ export function StepConfig({
             htmlFor="budget"
             className="block text-xs font-semibold tracking-wide text-brand-700 uppercase"
           >
-            {formCopy.budget}
+            {formOptions.labels.budget}
           </label>
           <span className="text-xs font-semibold text-brand-500">
             {sliderValue >= BUDGET_MAX ? "1 000 000 € +" : `${formatBudgetInput(sliderValue)} €`}
