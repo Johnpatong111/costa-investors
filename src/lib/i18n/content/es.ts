@@ -148,7 +148,7 @@ export const es = {
       },
       metodologia: {
         heading: "Metodología",
-        p1: "Los datos provienen de precios de oferta y transacciones de los últimos 12 meses en {districtLoc} ({volume} operaciones en el modelo) y se actualizan mensualmente. No son una tasación oficial: para una hipoteca se requiere tasación bancaria.",
+        p1: "Los datos provienen de precios de oferta y transacciones de los últimos 12 meses en {districtLoc} ({volume} operaciones en el modelo) y se actualizan mensualmente. No son una selección de ofertas oficial: para una hipoteca se requiere selección de ofertas bancaria.",
       },
     },
     faq: [
@@ -252,7 +252,7 @@ export const es = {
       ],
     },
     investment: {
-      name: "Propiedades de inversión",
+      name: "Inmuebles de inversión",
       propertyNoun: "inmueble",
       propertyNounGenitive: "inmueble",
       priceAnchor: "rentabilidad 4,6-6,9% bruta",
@@ -285,14 +285,14 @@ export const es = {
       checklist: ["Modelo de ROI con gastos e impuestos", "Nota Simple y cargas"],
     },
     "lead-magnet": {
-      name: "Guía de compra gratuita",
+      name: "Guía y ofertas",
       propertyNoun: "inmueble",
       propertyNounGenitive: "inmueble",
       priceAnchor: "gratis. Sin compromiso",
       highlightLabel: "guía PDF + revisión legal",
       ctaLabel: "Recibir la guía y la valoración",
       h1: [
-        "Guía de compra gratuita en {districtLoc} ({cityLoc}) - {year}",
+        "Guía y ofertas en {districtLoc} ({cityLoc}) - {year}",
         "Valoración y revisión legal en {districtLoc} ({cityLoc})",
       ],
       metaTitle: [

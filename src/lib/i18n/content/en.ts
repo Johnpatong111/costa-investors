@@ -148,7 +148,7 @@ export const en = {
       },
       metodologia: {
         heading: "Methodology",
-        p1: "Figures come from asking prices and transactions over the last 12 months for {districtLoc} ({volume} transactions in the model) and are refreshed monthly. They are not a valuation under Spanish law. A bank tasación is required for any mortgage.",
+        p1: "Figures come from asking prices and transactions over the last 12 months for {districtLoc} ({volume} transactions in the model) and are refreshed monthly. They are not a matched listings under Spanish law. A bank tasación is required for any mortgage.",
       },
     },
     faq: [
@@ -290,23 +290,23 @@ export const en = {
       checklist: ["ROI model with costs and taxes", "Nota Simple and charges"],
     },
     "lead-magnet": {
-      name: "Free buying guide",
+      name: "Guide & listings",
       propertyNoun: "property",
       propertyNounGenitive: "property",
       priceAnchor: "free. No obligation",
       highlightLabel: "PDF guide + legal check",
-      ctaLabel: "Get the guide and valuation",
+      ctaLabel: "Get the guide and listings",
       h1: [
-        "Free buying guide for {districtLoc} ({cityLoc}) - {year}",
-        "Valuation and legal check in {districtLoc} ({cityLoc})",
+        "Guide & listings for {districtLoc} ({cityLoc}) - {year}",
+        "Buying guide and listings in {districtLoc} ({cityLoc})",
       ],
       metaTitle: [
-        "Free buying guide {city} ({region}) {year}",
-        "Valuation and legal check - {district} {city}",
+        "Guide & listings {city} ({region}) {year}",
+        "Buying guide and listings: {district} {city}",
       ],
       metaDescription: [
-        "Download the free guide: purchase costs in {districtLoc}, ITP/IVA, NIE and valuation. Median {price} €/m². No obligation.",
-        "Planning a purchase in {cityLoc}? Get a PDF guide, a cost breakdown and an indicative valuation. Free.",
+        "Download the free guide: purchase costs in {districtLoc}, ITP/IVA, NIE and matched listings. Median {price} €/m². No obligation.",
+        "Planning a purchase in {cityLoc}? Get a PDF guide, a cost breakdown and an matched listings. Free.",
       ],
       benefits: [
         {
