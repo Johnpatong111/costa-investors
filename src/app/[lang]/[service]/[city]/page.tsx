@@ -14,6 +14,8 @@ import { buildCityContent } from "@/lib/content/city-content";
 import { getCities, getCity, getRegion } from "@/lib/data/repository";
 import { PRICE_REPORT, SERVICES } from "@/lib/data/services";
 import { buildLocalizedCityContent } from "@/lib/i18n/content/builders";
+import { getServiceCopy } from "@/lib/i18n/content/builders";
+import { getUiCopy } from "@/lib/i18n/ui";
 import { assertLocale, isLocale, ROUTABLE_LOCALES } from "@/lib/i18n/config";
 import { resolveService } from "@/lib/i18n/resolve";
 import { serviceSlug } from "@/lib/i18n/service-slugs";
@@ -67,6 +69,8 @@ export async function generateMetadata({
   }
 
   const { service, kind } = resolved;
+  const serviceName = getServiceCopy(kind, locale).name;
+  const ui = getUiCopy(locale);
   const content =
     locale === "pl"
       ? buildCityContent(city, region, service)
@@ -96,6 +100,8 @@ export default async function CityServicePage({
   if (!resolved || !city || !region) notFound();
 
   const { service, kind } = resolved;
+  const serviceName = getServiceCopy(kind, locale).name;
+  const ui = getUiCopy(locale);
   const content =
     locale === "pl"
       ? buildCityContent(city, region, service)
@@ -103,8 +109,8 @@ export default async function CityServicePage({
   const path = `/${service.slug}/${city.slug}`;
 
   const crumbs: Crumb[] = [
-    { name: "Strona główna", path: "/" },
-    { name: service.name, path: `/${service.slug}` },
+    { name: ui.home, path: "/" },
+    { name: serviceName, path: `/${service.slug}` },
     { name: city.name, path },
   ];
 
@@ -126,6 +132,7 @@ export default async function CityServicePage({
       >
         <div id="lead-form" className="scroll-mt-24">
           <LeadEngine
+            language={locale}
             cityName={city.name}
             sourceKey={content.key}
             rates={{
@@ -148,6 +155,7 @@ export default async function CityServicePage({
       <ContentBlocks blocks={content.blocks} />
 
       <HowItWorks
+        eyebrow={ui.howItWorks}
         steps={content.processSteps}
         title={`${service.name} w ${city.name}. Etapy zakupu`}
       />
@@ -168,7 +176,7 @@ export default async function CityServicePage({
             title: `Inne usługi w ${city.nameLocative}`,
             links: SERVICES.filter((item) => item.slug !== service.slug).map((item) => ({
               href: `/${item.slug}/${city.slug}`,
-              label: item.name,
+              label: getServiceCopy(item.kind, locale).name,
               meta: item.priceAnchor,
             })),
           },

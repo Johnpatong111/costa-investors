@@ -48,12 +48,12 @@ export function Hero({ eyebrow, h1, lead, chips, children, footnote }: HeroProps
 
           <div className="mt-8 flex flex-wrap items-center gap-4 text-sm text-brand-200">
             <a
-              href={`tel:${SITE.phoneHref}`}
+              href={`mailto:${SITE.email}`}
               className="inline-flex items-center gap-2 rounded-xl border border-white/20 px-4 py-2.5 font-semibold text-white transition-colors hover:bg-white/10"
             >
-              <span aria-hidden>☎</span> {SITE.phone}
+              <span aria-hidden>✉</span> {SITE.email}
             </a>
-            <span>Pon.. Pt. 8:00-20:00, sob. 9:00-14:00</span>
+            <span>Odpowiadamy w ciągu 15 minut, poniedziałek-piątek 8:00-20:00</span>
           </div>
 
           {footnote ? (

@@ -25,8 +25,7 @@ export default function PrivacyPolicyPage() {
       <article className="max-w-3xl space-y-5 text-[15px] leading-relaxed text-brand-800">
         <h1 className="text-3xl font-bold text-brand-950">Polityka prywatności</h1>
         <p className="text-sm text-brand-600">
-          Administrator danych: {SITE.legalName}, {SITE.address.street},{" "}
-          {SITE.address.postalCode} {SITE.address.city}. Kontakt: {SITE.email}.
+          Administratorem danych jest {SITE.legalName}. Kontakt w sprawach danych osobowych: {SITE.email}.
         </p>
 
         <h2 className="pt-4 text-xl font-bold text-brand-950">1. Zakres danych</h2>
@@ -47,6 +46,15 @@ export default function PrivacyPolicyPage() {
         </p>
 
         <h2 className="pt-4 text-xl font-bold text-brand-950">3. Odbiorcy danych</h2>
+        <p>
+          Administratorem danych jest Costa Investors. Dane przesłane formularzem (imię,
+          adres e-mail, budżet, preferencje zakupowe oraz adres podstrony, z której
+          wysłano zgłoszenie) przekazujemy wyłącznie zweryfikowanym partnerom i
+          licencjonowanym agentom nieruchomości działającym w Hiszpanii, i wyłącznie w
+          celu przedstawienia oferty oraz obsługi procesu zakupu. Nie sprzedajemy danych
+          podmiotom trzecim ani nie wykorzystujemy ich do celów niepowiązanych z
+          zapytaniem. Kontakt w sprawach danych osobowych: contact@costainvestors.eu.
+        </p>
         <p>
           Dane mogą być przekazane wyłącznie podmiotom wspierającym obsługę zgłoszeń:
           dostawcy hostingu, dostawcy poczty transakcyjnej, operatorowi SMS oraz

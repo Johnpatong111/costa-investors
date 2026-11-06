@@ -56,12 +56,7 @@ export async function generateMetadata({
       ? { index: true, follow: true }
       : // Wersje bez przetłumaczonej treści nie mogą konkurować z /pl.
         { index: false, follow: true },
-    other: {
-      "geo.region": "PL-MZ",
-      "geo.placename": SITE.address.city,
-      "geo.position": `${SITE.geo.lat};${SITE.geo.lng}`,
-      ICBM: `${SITE.geo.lat}, ${SITE.geo.lng}`,
-    },
+    
   };
 }
 

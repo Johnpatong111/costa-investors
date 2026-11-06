@@ -8,9 +8,11 @@ import { Section, SectionHeading } from "@/components/ui/primitives";
 import { JsonLd } from "@/components/seo/json-ld";
 import { buildPriceReport } from "@/lib/content/report-content";
 import { deriveDistrictStats } from "@/lib/content/market-stats";
+import { COUNTRY_MEDIAN_PRICE_PER_M2 } from "@/lib/content/market-stats";
 import { getAllDistrictEntries, getDistrict } from "@/lib/data/repository";
 import { PRICE_REPORT, SERVICES } from "@/lib/data/services";
 import { buildLocalizedPriceReport } from "@/lib/i18n/content/builders";
+import { getUiCopy } from "@/lib/i18n/ui";
 import { assertLocale } from "@/lib/i18n/config";
 import { buildMetadata } from "@/lib/seo/metadata";
 import { breadcrumbNode, datasetNode, faqNode } from "@/lib/seo/schema-org";
@@ -66,6 +68,7 @@ export default async function PriceReportPage({
 }) {
   const { lang, city, district } = await params;
   const locale = assertLocale(lang);
+  const ui = getUiCopy(locale);
   const entry = getDistrict(city, district);
   if (!entry) notFound();
 
@@ -127,7 +130,7 @@ export default async function PriceReportPage({
           };
 
   const crumbs: Crumb[] = [
-    { name: "Strona główna", path: "/" },
+    { name: ui.home, path: "/" },
     { name: PRICE_REPORT.name, path: `/${PRICE_REPORT.slug}` },
     { name: entry.city.name, path: `/${PRICE_REPORT.slug}` },
     { name: entry.district.name, path },
@@ -217,6 +220,13 @@ export default async function PriceReportPage({
             </tbody>
           </table>
         </div>
+        <p className="mt-4 max-w-3xl text-sm leading-relaxed text-brand-600">
+          {locale === "es"
+            ? `Contexto de mercado: la mediana de ${entry.region.name} es ${formatEur(entry.region.medianPricePerM2)}/m² y la media de España ronda ${formatEur(COUNTRY_MEDIAN_PRICE_PER_M2)}/m². La diferencia refleja la prima de ubicación de la costa.`
+            : locale === "en"
+              ? `Market context: the median for ${entry.region.name} is ${formatEur(entry.region.medianPricePerM2)}/m², while the Spanish average is about ${formatEur(COUNTRY_MEDIAN_PRICE_PER_M2)}/m². The gap reflects the coastal location premium.`
+              : `Kontekst rynkowy: mediana ofertowa w ${entry.region.name} to ${formatEur(entry.region.medianPricePerM2)}/m², a średnia dla Hiszpanii około ${formatEur(COUNTRY_MEDIAN_PRICE_PER_M2)}/m². Różnica pokazuje premię lokalizacyjną wybrzeża.`}
+        </p>
       </Section>
 
       <FaqAccordion items={report.faq} title={`FAQ. Ceny i ROI w ${entry.district.nameLocative}`} />

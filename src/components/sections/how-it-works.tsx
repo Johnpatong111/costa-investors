@@ -3,17 +3,19 @@ import type { ProcessStep } from "@/lib/content/content-utils";
 
 /** Proces sprzedaży. Redukuje niepewność, najczęstszy powód porzucenia formularza. */
 export function HowItWorks({
+  eyebrow,
   steps,
   title,
   subtitle,
 }: {
   steps: ProcessStep[];
+  eyebrow?: string;
   title: string;
   subtitle?: string;
 }) {
   return (
     <Section className="bg-brand-50/60">
-      <SectionHeading eyebrow="Jak to działa">{title}</SectionHeading>
+      <SectionHeading eyebrow={eyebrow}>{title}</SectionHeading>
       {subtitle ? <p className="-mt-4 mb-8 max-w-2xl text-brand-700">{subtitle}</p> : null}
 
       <ol className="grid gap-4 md:grid-cols-2">

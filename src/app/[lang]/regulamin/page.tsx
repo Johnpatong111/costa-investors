@@ -30,6 +30,13 @@ export default function TermsPage() {
 
         <h2 className="pt-4 text-xl font-bold text-brand-950">1. Charakter serwisu</h2>
         <p>
+          Operatorem portalu Costa Investors jest Costa Investors. Zgłoszenia z formularza
+          obsługujemy we współpracy ze zweryfikowanymi partnerami i licencjonowanymi
+          agentami nieruchomości w Hiszpanii, którzy przedstawiają ofertę i prowadzą
+          klienta przez proces zakupu. W sprawach technicznych i prawnych kontakt:
+          contact@costainvestors.eu.
+        </p>
+        <p>
           Serwis ma charakter informacyjny i służy do prezentacji oferty skupu nieruchomości
           oraz danych rynkowych. Publikowane ceny, mediany i wskaźniki są wartościami
           szacunkowymi, opracowanymi na podstawie ofert i transakcji z danego okresu. Nie

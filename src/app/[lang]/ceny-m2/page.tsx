@@ -5,6 +5,8 @@ import { Section, SectionHeading } from "@/components/ui/primitives";
 import { deriveCityStats, MARKET_YEAR } from "@/lib/content/market-stats";
 import { getCities, getRegion, getSubregions } from "@/lib/data/repository";
 import { PRICE_REPORT } from "@/lib/data/services";
+import { assertLocale } from "@/lib/i18n/config";
+import { getUiCopy } from "@/lib/i18n/ui";
 import { buildMetadata } from "@/lib/seo/metadata";
 import { formatEur, formatRate } from "@/lib/utils/format";
 
@@ -18,9 +20,16 @@ export const metadata: Metadata = buildMetadata({
   keywords: ["ceny m2 Costa Blanca", "ceny m2 Costa Cálida", "ROI wynajmu Hiszpania", `ceny nieruchomości ${MARKET_YEAR}`],
 });
 
-export default function PriceReportIndexPage() {
+export default async function PriceReportIndexPage({
+  params,
+}: {
+  params: Promise<{ lang: string }>;
+}) {
+  const locale = assertLocale((await params).lang);
+  const ui = getUiCopy(locale);
+
   const crumbs: Crumb[] = [
-    { name: "Strona główna", path: "/" },
+    { name: ui.home, path: "/" },
     { name: PRICE_REPORT.name, path: `/${PRICE_REPORT.slug}` },
   ];
 

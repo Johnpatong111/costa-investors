@@ -16,6 +16,8 @@ import { createRngFromKey, roundToStep } from "./deterministic";
 export const MARKET_YEAR = 2026;
 /** Mediana regionu. Punkt odniesienia w tabelach (seed 2026). */
 export const REGION_MEDIAN_PRICE_PER_M2 = 2_950;
+/** Mediana ofertowa Hiszpanii (€/m²) dla kontekstu porównawczego. */
+export const COUNTRY_MEDIAN_PRICE_PER_M2 = 2_100;
 /** Koszty transakcyjne: ITP 10% + notariusz, rejestr, prawnik. */
 export const PURCHASE_COSTS_RATE = 0.135;
 /** Koszty utrzymania najmu: zarządzanie, podatki, pustostany (pkt proc.). */

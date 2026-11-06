@@ -25,10 +25,7 @@ export const SITE = {
   tagline: "Nieruchomości w Hiszpanii dla Polaków",
   description:
     "Apartamenty, wille i domy inwestycyjne na Costa Blanca i Costa Cálida. Ceny €/m², analiza ROI, koszty zakupu i kontakt z certyfikowanym polskojęzycznym agentem.",
-  phone: "+48 22 123 45 67",
-  /** Format E.164. Wymagany przez schema.org i klik-to-call. */
-  phoneHref: "+48221234567",
-  email: "kontakt@costainvestors.eu",
+  email: "contact@costainvestors.eu",
   address: {
     street: "ul. Przykładowa 12/4",
     city: "Warszawa",

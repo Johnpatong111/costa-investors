@@ -29,6 +29,8 @@ import {
 } from "@/lib/leads/schema";
 import { BUDGET_PRESETS, formatBudgetInput, parseBudget } from "@/lib/leads/investment";
 import { cn } from "@/lib/utils/cn";
+import { FORM_COPY } from "@/lib/i18n/ui";
+import type { Locale } from "@/lib/i18n/config";
 import { OptionChecklist, OptionTiles } from "./option-tiles";
 
 const GOAL_ICONS = [TrendingUp, Palmtree, House];
@@ -44,6 +46,7 @@ const BUDGET_STEP = 25_000;
 const BUDGET_DEFAULT = 250_000;
 
 export interface StepConfigProps {
+  locale: Locale;
   register: UseFormRegister<LeadFormValues>;
   control: Control<LeadFormValues>;
   errors: FieldErrors<LeadFormValues>;
@@ -59,6 +62,7 @@ export interface StepConfigProps {
  * pisania na telefonie, co utrzymuje wysoki completion rate.
  */
 export function StepConfig({
+  locale,
   register,
   control,
   errors,
@@ -69,6 +73,7 @@ export function StepConfig({
   const budgetValue = parseBudget(budget) || BUDGET_DEFAULT;
   const sliderValue = Math.min(BUDGET_MAX, Math.max(BUDGET_MIN, budgetValue));
   const hasBudgetError = Boolean(budgetError || errors.budget);
+  const formCopy = FORM_COPY[locale];
 
   return (
     <div className="space-y-5">
@@ -137,7 +142,7 @@ export function StepConfig({
             htmlFor="budget"
             className="block text-xs font-semibold tracking-wide text-brand-700 uppercase"
           >
-            Budżet (EUR)
+            {formCopy.budget}
           </label>
           <span className="text-xs font-semibold text-brand-500">
             {sliderValue >= BUDGET_MAX ? "1 000 000 € +" : `${formatBudgetInput(sliderValue)} €`}

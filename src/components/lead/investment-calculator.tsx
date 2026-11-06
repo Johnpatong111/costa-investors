@@ -56,7 +56,7 @@ export function InvestmentCalculator({
           </p>
         </div>
         <span className="hidden shrink-0 rounded-full bg-emerald-50 px-2.5 py-1 text-[11px] font-bold text-emerald-700 ring-1 ring-emerald-100 ring-inset sm:inline">
-          bezpłatnie
+          bez zobowiązań
         </span>
       </div>
 

@@ -17,6 +17,7 @@ import {
   type LeadLanguage,
 } from "@/lib/leads/schema";
 import type { ReturnEstimate } from "@/lib/leads/investment";
+import { FORM_COPY } from "@/lib/i18n/ui";
 import { cn } from "@/lib/utils/cn";
 import { LeadSuccess } from "./lead-success";
 import { StepConfig } from "./step-config";
@@ -67,6 +68,7 @@ export function MultiStepLeadForm({
   heading = "Znajdź nieruchomości i odbierz analizę ROI",
   subheading = "Wypełnij 4 krótkie pytania. W ciągu 15 minut prześlemy spersonalizowany zestaw wyselekcjonowanych ofert.",
 }: MultiStepLeadFormProps) {
+  const formCopy = FORM_COPY[language];
   const [step, setStep] = useState<0 | 1>(0);
   const [status, setStatus] = useState<Status>("idle");
   const [serverError, setServerError] = useState<string | null>(null);
@@ -161,7 +163,7 @@ export function MultiStepLeadForm({
         if (backToFirstStep) setStep(0);
 
         setServerError(
-          data?.error ?? "Nie udało się wysłać zgłoszenia. Spróbuj ponownie lub zadzwoń.",
+          data?.error ?? "Nie udało się wysłać zgłoszenia. Spróbuj ponownie.",
         );
         setStatus("error");
         return;
@@ -198,7 +200,7 @@ export function MultiStepLeadForm({
     return (
       <LeadSuccess
         fullName={submitted.fullName}
-        phone={submitted.phone}
+        locale={language}
         summary={summary}
         budget={Number(budget.replace(/\D/g, "")) || 0}
         annualRent={estimate?.annualRentGross ?? 0}
@@ -223,7 +225,7 @@ export function MultiStepLeadForm({
           <p className="mt-1 text-xs leading-relaxed text-brand-600">{subheading}</p>
         </div>
         <span className="shrink-0 rounded-full bg-accent-50 px-2.5 py-1 text-[11px] font-bold text-accent-700">
-          {`krok ${step + 1}/2`}
+          {formCopy.stepLabel(step + 1)}
         </span>
       </div>
 
@@ -246,7 +248,7 @@ export function MultiStepLeadForm({
             <span className="grid h-4 w-4 place-items-center rounded-full bg-brand-900 text-[9px] text-white">
               {step === 0 ? "1" : <Check aria-hidden className="h-2.5 w-2.5" />}
             </span>
-            Inwestycja
+            {formCopy.stepOne}
           </span>
           <span
             className={cn(
@@ -262,7 +264,7 @@ export function MultiStepLeadForm({
             >
               2
             </span>
-            Kontakt
+            {formCopy.stepTwo}
           </span>
         </div>
       </div>
@@ -270,6 +272,7 @@ export function MultiStepLeadForm({
       <form onSubmit={onSubmit} noValidate className="mt-5" aria-busy={status === "sending"}>
         {step === 0 ? (
           <StepConfig
+            locale={language}
             register={register}
             control={control}
             errors={formState.errors}
@@ -279,6 +282,7 @@ export function MultiStepLeadForm({
           />
         ) : (
           <StepContact
+            locale={language}
             register={register}
             control={control}
             errors={formState.errors}

@@ -59,9 +59,8 @@ export default function AboutPage() {
 
         <h2 className="pt-4 text-xl font-bold text-brand-950">Kontakt</h2>
         <p>
-          Telefon: {SITE.phone} (pon.. Pt. 9:00-20:00, sob. 10:00-14:00). E-mail:{" "}
-          {SITE.email}. Adres: {SITE.address.street}, {SITE.address.postalCode}{" "}
-          {SITE.address.city}.
+          E-mail:{" "}
+          {SITE.email}.
         </p>
       </article>
     </Section>

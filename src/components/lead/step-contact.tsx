@@ -4,6 +4,8 @@ import { Mail, MapPin, MessageCircle, Pencil, Phone, ShieldCheck, User } from "l
 import type { FieldErrors, UseFormRegister, Control } from "react-hook-form";
 import { CONTACT_METHODS, type LeadFormValues } from "@/lib/leads/schema";
 import { cn } from "@/lib/utils/cn";
+import { FORM_COPY } from "@/lib/i18n/ui";
+import type { Locale } from "@/lib/i18n/config";
 import { OptionTiles } from "./option-tiles";
 
 const baseField =
@@ -21,6 +23,7 @@ function fieldClass(hasError: boolean) {
 const CONTACT_ICONS = [Phone, MessageCircle, Mail];
 
 export interface StepContactProps {
+  locale: Locale;
   register: UseFormRegister<LeadFormValues>;
   control: Control<LeadFormValues>;
   errors: FieldErrors<LeadFormValues>;
@@ -31,6 +34,7 @@ export interface StepContactProps {
 
 /** Krok 2. Kontakt. Prosimy tylko o 2 pola obowiązkowe: imię i telefon. */
 export function StepContact({
+  locale,
   register,
   control,
   errors,
@@ -54,7 +58,7 @@ export function StepContact({
 
       <OptionTiles
         name="contactMethod"
-        legend="Preferowana forma kontaktu"
+        legend={FORM_COPY[locale].contactLegend}
         options={CONTACT_METHODS}
         icons={CONTACT_ICONS}
         register={register}

@@ -145,6 +145,7 @@ export default async function ServiceHubPage({
       >
         <div id="lead-form" className="scroll-mt-24">
           <LeadEngine
+            language={locale}
             cityName=""
             sourceKey={kind}
             heading={ui.leadHeading}

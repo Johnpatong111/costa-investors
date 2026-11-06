@@ -76,7 +76,6 @@ export function organizationNode(): JsonLdNode {
     legalName: SITE.legalName,
     url: SITE.url,
     description: SITE.description,
-    telephone: SITE.phoneHref,
     email: SITE.email,
     priceRange: "od 120 000 €",
     currenciesAccepted: "EUR, PLN",
@@ -90,10 +89,6 @@ export function organizationNode(): JsonLdNode {
     ],
     address: {
       "@type": "PostalAddress",
-      streetAddress: SITE.address.street,
-      addressLocality: SITE.address.city,
-      postalCode: SITE.address.postalCode,
-      addressRegion: SITE.address.region,
       addressCountry: SITE.address.country,
     },
     geo: {
@@ -237,12 +232,11 @@ export function localAgentNode(input: {
   return {
     "@type": ["RealEstateAgent", "LocalBusiness"],
     "@id": NODE_IDS.localAgent(input.path),
-    name: `${SITE.brand}: ${input.areaName}`,
+    name: `${SITE.brand}, ${input.areaName}`,
     url: absoluteUrl(input.path),
     parentOrganization: { "@id": NODE_IDS.organization },
-    telephone: SITE.phoneHref,
     email: SITE.email,
-    priceRange: "€120,000: €2,500,000",
+    priceRange: "€120,000 - €2,500,000",
     currenciesAccepted: "EUR",
     paymentAccepted: "Przelew bankowy / Transferencia / Bank transfer",
     areaServed: { "@id": NODE_IDS.place(input.placePath) },

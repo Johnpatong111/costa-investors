@@ -8,6 +8,35 @@ const labelOf = (options: readonly { value: string; label: string }[], value: st
 const labelsOf = (options: readonly { value: string; label: string }[], values: string[]): string =>
   values.length > 0 ? values.map((value) => labelOf(options, value)).join(", ") : "-";
 
+/**
+ * Awaryjny zapis leada, gdy e-mail nie wyszedł (np. niezweryfikowana domena
+ * w Resend na planie testowym). Trafia do logów funkcji (Vercel/CloudWatch),
+ * a lead i tak leci do webhooków, więc żadne zgłoszenie nie ginie.
+ */
+export function logLeadFallback(lead: LeadRecord, reason: string): void {
+  console.error(
+    JSON.stringify({
+      event: "lead_fallback",
+      reason,
+      id: lead.id,
+      receivedAt: lead.receivedAt,
+      fullName: lead.fullName,
+      email: lead.email ?? null,
+      phone: lead.phone,
+      budget: lead.budget,
+      goal: lead.goal,
+      propertyType: lead.propertyType,
+      horizon: lead.horizon,
+      regions: lead.regions,
+      requirements: lead.requirements,
+      city: lead.city,
+      district: lead.district ?? null,
+      source: lead.source ?? null,
+      pageUrl: lead.pageUrl ?? null,
+    }),
+  );
+}
+
 export interface DispatchResult {
   channel: string;
   ok: boolean;
@@ -95,20 +124,31 @@ export function leadEmailHtml(lead: LeadRecord): string {
 
 export async function sendEmail(lead: LeadRecord): Promise<DispatchResult | null> {
   const apiKey = env("RESEND_API_KEY");
-  const to = env("LEAD_NOTIFY_EMAIL");
-  if (!apiKey || !to) return null;
+  const to = env("LEAD_NOTIFY_EMAIL") ?? "contact@costainvestors.eu";
+  if (!apiKey || !to) {
+    logLeadFallback(lead, "resend_not_configured");
+    return null;
+  }
 
   return postJson(
     "email",
     "https://api.resend.com/emails",
     {
-      from: env("LEAD_EMAIL_FROM") ?? "leady@costainvestors.eu",
+      from: env("LEAD_EMAIL_FROM") ?? "contact@costainvestors.eu",
       to: [to],
       subject: `Lead ${lead.score}/100: ${lead.city} Â· ${lead.budget.toLocaleString("pl-PL")} â‚¬`,
       html: leadEmailHtml(lead),
     },
     { authorization: `Bearer ${apiKey}` },
-  );
+  ).then((result) => {
+    // Resend na planie testowym odrzuca wysyłkę z onboarding@resend.dev do
+    // obcego adresu (403). Nie przerywamy procesu: lead zostaje w logach
+    // i webhookach, a użytkownik i tak widzi ekran sukcesu.
+    if (!result.ok) {
+      logLeadFallback(lead, result.error ?? `resend_http_${result.status ?? 0}`);
+    }
+    return result;
+  });
 }
 
 /* -------------------------------- SMS -------------------------------- */

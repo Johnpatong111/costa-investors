@@ -13,6 +13,8 @@ import { StickyCta } from "@/components/sections/sticky-cta";
 import { JsonLd } from "@/components/seo/json-ld";
 import { buildDistrictContent } from "@/lib/content/district-content";
 import { buildLocalizedDistrictContent } from "@/lib/i18n/content/builders";
+import { getServiceCopy } from "@/lib/i18n/content/builders";
+import { getUiCopy } from "@/lib/i18n/ui";
 import { assertLocale, isLocale, ROUTABLE_LOCALES } from "@/lib/i18n/config";
 import { translatePath } from "@/lib/i18n/paths";
 import { resolveService } from "@/lib/i18n/resolve";
@@ -76,6 +78,8 @@ export async function generateMetadata({
   }
 
   const { service, kind } = resolved;
+  const serviceName = getServiceCopy(kind, locale).name;
+  const ui = getUiCopy(locale);
   const content =
     locale === "pl"
       ? buildDistrictContent(entry, service)
@@ -104,6 +108,8 @@ export default async function DistrictServicePage({
   if (!resolved || !entry) notFound();
 
   const { service, kind } = resolved;
+  const serviceName = getServiceCopy(kind, locale).name;
+  const ui = getUiCopy(locale);
   const content =
     locale === "pl"
       ? buildDistrictContent(entry, service)
@@ -113,8 +119,8 @@ export default async function DistrictServicePage({
   const cityName = entry.city.name;
 
   const crumbs: Crumb[] = [
-    { name: "Strona główna", path: "/" },
-    { name: service.name, path: `/${service.slug}` },
+    { name: ui.home, path: "/" },
+    { name: serviceName, path: `/${service.slug}` },
     { name: cityName, path: `/${service.slug}/${entry.city.slug}` },
     { name: districtName, path },
   ];
@@ -140,6 +146,7 @@ export default async function DistrictServicePage({
       >
         <div id="lead-form" className="scroll-mt-24">
           <LeadEngine
+            language={locale}
             cityName={cityName}
             districtName={districtName}
             sourceKey={content.key}
@@ -163,9 +170,10 @@ export default async function DistrictServicePage({
       <ContentBlocks blocks={content.blocks} />
 
       <HowItWorks
+        eyebrow={ui.howItWorks}
         steps={content.processSteps}
-        title={`${service.name} w ${districtName} krok po kroku`}
-        subtitle="Każdy etap potwierdzamy na piśmie, a dokumenty tłumaczymy na polski."
+        title={`${ui.howItWorksTitle(serviceName, districtName)}`}
+        subtitle={ui.howItWorksSubtitle}
       />
 
       <SocialProof
@@ -180,10 +188,10 @@ export default async function DistrictServicePage({
       <InternalLinks
         groups={[
           {
-            title: `Inne usługi w ${districtName}`,
+            title: ui.otherServices(districtName),
             links: otherServices.map((item) => ({
               href: `/${item.slug}/${entry.city.slug}/${entry.district.slug}`,
-              label: item.name,
+              label: getServiceCopy(item.kind, locale).name,
               meta: item.priceAnchor,
             })),
           },
@@ -196,7 +204,7 @@ export default async function DistrictServicePage({
             })),
           },
           {
-            title: "Raport inwestycyjny",
+            title: ui.investmentReport,
             links: [
               {
                 href: `/${PRICE_REPORT.slug}/${entry.city.slug}/${entry.district.slug}`,
