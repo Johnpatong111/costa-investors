@@ -43,6 +43,13 @@ export async function generateMetadata({
     },
     description: dict.meta.defaultDescription,
     applicationName: SITE.brand,
+    icons: {
+      icon: [
+        { url: "/favicon.ico", sizes: "16x16 32x32 48x48", type: "image/x-icon" },
+        { url: "/icon-512.png", sizes: "512x512", type: "image/png" },
+      ],
+      apple: [{ url: "/apple-touch-icon.png", sizes: "180x180" }],
+    },
     authors: [{ name: SITE.legalName, url: SITE.url }],
     alternates: { canonical: home },
     robots: isDefaultLocale

@@ -1,216 +1,153 @@
-# Costa Investors – pSEO lead generation dla polskich inwestorów na Costa Blanca
+# Costa Investors â€” pSEO dla rynku nieruchomoÅ›ci w Hiszpanii
 
-Platforma programmatic SEO w Next.js 16 (App Router) generuj¹ca strony
-„us³uga + miejscowoœæ + dzielnica/urbanizacja” dla rynku hiszpañskiego,
-z kalkulatorem ROI i dwuetapowym formularzem leadowym (high-ticket lead gen).
+TrÃ³jjÄ™zyczna (PL / EN / ES) platforma programmatic SEO w **Next.js 16 (App Router)**,
+generujÄ…ca strony w schemacie `usÅ‚uga + miejscowoÅ›Ä‡ + dzielnica/urbanizacja`
+dla polskich i miÄ™dzynarodowych kupujÄ…cych nieruchomoÅ›ci na Costa Blanca i Costa CÃ¡lida.
 
-**Model biznesowy:** success fee rozliczane z prowizj¹ hiszpañskiej agencji
-(30/70 lub 50/50). Kupuj¹cy nie p³aci nam za analizê.
-
-**Stack:** Next.js 16, React 19, TypeScript (strict), Tailwind v4, Zod 4,
-React Hook Form, lucide-react.
+**Domena produkcyjna:** https://costainvestors.eu
+**Model biznesowy:** success fee z prowizji hiszpaÅ„skiej agencji (kupujÄ…cy nie pÅ‚aci za analizÄ™).
 
 ---
 
-## 1. Szybki start
+## 1. Stack
+
+| Warstwa | Technologia |
+|---|---|
+| Framework | Next.js 16 (App Router, Turbopack, ISR `revalidate = 86400`) |
+| JÄ™zyk | TypeScript (strict, `tsc --noEmit` = 0 bÅ‚Ä™dÃ³w) |
+| Styl | Tailwind CSS 4 (`@theme` w `src/app/globals.css`) |
+| Walidacja danych | Zod 4 (`src/lib/data/schema.ts`) |
+| Formularze | React Hook Form + Zod |
+| Obrazy OG | `next/og` (dynamiczny route `/og`) |
+
+Wymagania: Node 20+.
 
 ```bash
 npm install
-cp .env.example .env.local     # URL + kana³y dystrybucji leadów
-npm run dev                    # http://localhost:3000
-npm run check                  # QA danych + typecheck (CI)
-npm run build && npm start
-```
-
-Wymagane: Node 20.9+ (testowane: 22.19).
-
----
-
-## 2. Warstwa danych (Costa Blanca, EUR)
-
-Hierarchia: `region (Costa Blanca) › miasto › dzielnica/urbanizacja`.
-Seed: **15 miejscowoœci, 70 dzielnic i urbanizacji** (Costa Blanca + Costa Cálida) (`src/lib/data/locations.json`).
-
-```json
-{
-  "slug": "torrevieja", "name": "Torrevieja",
-  "nameGenitive": "Torrevieji", "nameLocative": "Torrevieji",
-  "region": "costa-blanca", "subregion": "Costa Blanca Sur", "province": "Alicante",
-  "pricePerM2": 2380, "rentalYield": 6.2, "priceGrowth": 9.4,
-  "avgDaysOnMarket": 95, "transactions12m": 4200,
-  "foreignBuyerShare": 46, "polishBuyerShare": 9,
-  "districts": [
-    { "slug": "la-mata", "name": "La Mata", "nameLocative": "La Mata",
-      "pricePerM2": 2500, "rentalYield": 6.1, "demandIndex": 8,
-      "characteristics": ["apartamenty przy szerokiej pla¿y", "…"],
-      "landmarks": ["Playa de La Mata", "Parque Natural de las Lagunas"] }
-  ]
-}
-```
-
-Zasady wymuszane przez schemat Zod:
-
-1. **Formy fleksyjne** (`nameGenitive`, `nameLocative`) s¹ wymagane – dla nazw
-   hiszpañskich dopuszczalna jest forma nieodmienna („w Alicante”, „w La Mata”).
-2. **Ka¿da dzielnica ma ?2 cechy i ?1 punkt orientacyjny** – paliwo dla
-   unikalnych bloków treœci.
-3. **ROI i dynamika s¹ danymi pierwszej kategorii**, nie pochodn¹ ceny.
-
-Statystyki liczy `deriveDistrictStats()` (`src/lib/content/market-stats.ts`):
-ROI netto (brutto - 1,9 pkt proc. kosztów), czynsz €/m2/mies., koszty zakupu
-13,5%, udzia³ kupuj¹cych zagranicznych. Wszystko deterministycznie (FNV-1a),
-wiêc cache CDN i ISR nie „migocz¹”.
-
-**Produkcja:** podmieñ `locations.json` + `market-stats.ts` na feed
-(Idealista/Fotocasa, Colegio de Registradores) zachowuj¹c `MarketStats`.
-
----
-
-## 3. Us³ugi (jedna intencja = jeden URL)
-
-| Slug | Nazwa | Wyró¿nik |
-|---|---|---|
-| `apartamenty-na-sprzedaz` | Apartamenty na sprzeda¿ | od 120 000 €, widok/basen |
-| `wille-z-basenem` | Wille z basenem | od 320 000 €, dzia³ka + basen |
-| `domy-inwestycyjne` | Domy inwestycyjne | ROI 4,6–6,6% brutto |
-| `darmowy-przewodnik-wycena` | Darmowy przewodnik i wycena | lead magnet: PDF + analiza prawna |
-
-Synonimy rotuj¹ **w treœci**, nie w routingu (ochrona przed kanibalizacj¹).
-
----
-
-## 4. Routing
-
-| URL | Rola | Indeks |
-|---|---|---|
-| `/` | hub g³ówny | tak |
-| `/{service}` | hub us³ugi | tak |
-| `/{service}/{city}` | hub miasta (porównanie dzielnic) | tak |
-| `/{service}/{city}/{district}` | **money page** | tak |
-| `/ceny-m2` | indeks raportów | tak |
-| `/ceny-m2/{city}/{district}` | raport cen + ROI (`Dataset`) | tak |
-
-SSG przez `generateStaticParams()` (410 stron), `revalidate = 86400`,
-`dynamicParams = true` (nowa urbanizacja dzia³a bez rebuilda).
-
----
-
-## 5. Content matrix i QA
-
-Cztery warstwy unikalnoœci: boilerplate us³ugi (?30% strony) › bloki liczbowe
-(€/m2, ROI, czynsz, zwrot 5-letni) › bloki lokalne (cechy + punkty
-orientacyjne) › FAQ z danych (cena, ROI, NIE, ITP/IVA, zakup przez Polaków).
-
-Rotacja H1/title/description/lead/FAQ jest deterministyczna (`pick()` na
-hashu klucza strony).
-
-Brama jakoœci `assessIndexability()`: ma³o danych, <200 s³ów lub <4 FAQ ›
-`noindex,follow`.
-
-`npm run validate:data` sprawdza: kolizje slugów, klucze obce, thin content,
-spójnoœæ ROI, brakuj¹ce placeholdery, powtórzone H1 i **duplikaty treœci**
-(Jaccard na 5-gramach, normalizacja cyfr).
-
-Stan obecny: **410 stron, 0 b³êdów, max podobieñstwo 0,84** (próg b³êdu 0,88).
-
-## 6. Kalkulator ROI i formularz dwuetapowy
-
-```
-LeadEngine (wspólny stan bud¿etu)
-+¦ InvestmentCalculator – kafelki bud¿etu (do 150k / 150–300k / 300–500k / 500k+),
--  dok³adna kwota, wynik: czynsz roczny, zwrot 5-letni, wartoœæ po 5 latach
-L¦ MultiStepLeadForm
-   +¦ StepConfig  – cel zakupu (3), typ (4), horyzont (3), bud¿et
-   +¦ StepContact – kana³ kontaktu (telefon/WhatsApp/e-mail), imiê, telefon PL/EU, e-mail
-   L¦ LeadSuccess – podsumowanie + „co dalej”
-```
-
-- Bud¿et z kalkulatora trafia do formularza i do payloadu – zero podwójnego wpisywania.
-- Telefon walidowany jako PL (9 cyfr) lub miêdzynarodowy (8–15 cyfr).
-- Honeypot `website`; bot dostaje 201, ale lead nie powstaje.
-- B³êdy 422 z API wracaj¹ na pola (`setError`); przy b³êdzie kroku 1 formularz
-  sam wraca na w³aœciwy etap.
-- Zdarzenie GA4: `lead:submitted` z `{ source, budget, horizon, goal }`.
-
-Payload (`POST /api/leads`):
-
-```json
-{
-  "fullName": "Jan Kowalski",
-  "phone": "+48 600 123 456",
-  "email": "jan@example.com",
-  "goal": "inwestycja-najem",
-  "propertyType": "apartament",
-  "horizon": "1-3-miesiace",
-  "contactMethod": "whatsapp",
-  "city": "Torrevieja",
-  "district": "La Mata",
-  "budget": "350 000",
-  "consent": true,
-  "roiEstimate": 21700,
-  "source": "apartamenty-na-sprzedaz/torrevieja/la-mata"
-}
+cp .env.example .env.local     # ustaw NEXT_PUBLIC_SITE_URL i kanaÅ‚y dystrybucji leadÃ³w
+npm run dev
 ```
 
 ---
 
-## 7. Scoring i dystrybucja
+## 2. Skala serwisu
 
-`scoreLead()` (0–100): baza 35 · bud¿et ?300k € +30 (?150k +15) ·
-horyzont 1–3 mies. +20 · cel inwestycyjny +5 · telefon/WhatsApp +5 ·
-e-mail +2 · wiadomoœæ >40 znaków +3. „Tylko badam rynek” -15.
-
-Regu³a biznesowa: **bud¿et ?300 tys. € + zakup w 1–3 miesi¹ce = 95 pkt**
-› natychmiastowy SMS/WhatsApp do agenta (kana³ SMS odpala siê od 65 pkt).
-
-Kana³y (równolegle, `Promise.allSettled`, timeout 8 s):
-
-| Zmienna | Rola |
+| Metryka | WartoÅ›Ä‡ |
 |---|---|
-| `LEADS_WEBHOOK_URL` + `LEADS_WEBHOOK_SECRET` | CRM agencji; HMAC-SHA256 w `x-lead-signature` |
-| `ZAPIER_HOOK_URL`, `MAKE_HOOK_URL` | no-code |
-| `LEAD_SMS_WEBHOOK_URL` (+`_TOKEN`, `_RECIPIENT`) | SMS/WhatsApp od 65 pkt |
-| `RESEND_API_KEY`, `LEAD_NOTIFY_EMAIL` | e-mail z kart¹ leada |
-| `LEAD_RATE_LIMIT`, `LEAD_RATE_WINDOW_MS` | limit per IP (6 / 10 min) |
+| JÄ™zyki | 3 (pl, en, es) â€” zlokalizowane slugi usÅ‚ug |
+| UsÅ‚ugi | 4 |
+| MiejscowoÅ›ci | 15 |
+| Dzielnice / urbanizacje | 70 |
+| Strony w buildzie | 1263 (`npm run build`) |
+| URL-e w sitemapie | 1257 (419 Ã— 3 jÄ™zyki) |
 
-Weryfikacja podpisu po stronie odbiorcy: HMAC z **surowego body**
-(`express.raw()`), `crypto.timingSafeEqual`, `x-lead-id` jako klucz idempotencji.
+Hierarchia danych: `region â†’ miasto â†’ dzielnica/urbanizacja`.
+Seed: `src/lib/data/locations.json` (15 miast, 70 dzielnic), walidowany schemÄ… Zod.
 
----
-
-## 8. SEO
-
-- `generateMetadata()`: title ?62, description ?165, canonical absolutny,
-  OG/Twitter, `max-image-preview:large`, `max-snippet:-1`.
-- JSON-LD `@graph`: `RealEstateAgent` + `WebSite` (layout),
-  `BreadcrumbList` + `Service` + `FAQPage` / `Dataset` (strona).
-- `sitemap.ts` chunkowany (`generateSitemaps()`, 5 000 URL/chunk; obecnie
-  417 URL), `robots.ts` bierze tê sam¹ listê (blokuje `/api/`, UTM, crawlery trenowania).
-- Linkowanie wewnêtrzne: dzielnice obok (haversine), inne us³ugi w tej samej
-  lokalizacji, raport inwestycyjny.
+Dane rynkowe liczone deterministycznie (FNV-1a) w `src/lib/content/market-stats.ts`,
+wiÄ™c ISR i cache CDN nie powodujÄ… migotania liczb.
 
 ---
 
-## 9. Przed startem produkcji
+## 3. Routing i i18n
 
-- Podmieñ dane firmowe w `src/lib/seo/site.ts` (NAP, telefon, e-mail, geo) –
-  musz¹ byæ identyczne z Wizytówk¹ Google.
-- Pod³¹cz realny feed cen i ROI; obecne wartoœci to seed modelowy.
-- Uzupe³nij `ogImage` (plik w `/public`) i rozwa¿ dynamiczne OG per money page.
-- Rate limit w pamiêci procesu › Redis/Upstash przy skali.
-- Trwa³a kolejka (SQS/Redis) + zapis leada w bazie **przed** rozsy³k¹.
-- Strony prawne: uzupe³nij dane spó³ki i klauzule o przekazywaniu leadów do
-  agencji w Hiszpanii (RODO – wspó³administrowanie).
+```
+/{locale}/{service}                      â†’ hub usÅ‚ugi (money page)
+/{locale}/{service}/{city}               â†’ hub miasta
+/{locale}/{service}/{city}/{district}    â†’ money page dzielnicy
+/{locale}/ceny-m2                        â†’ hub raportÃ³w cenowych
+/{locale}/ceny-m2/{city}/{district}      â†’ raport cenowo-inwestycyjny
+```
+
+TÅ‚umaczone sÄ… **wyÅ‚Ä…cznie slugi usÅ‚ug** (`SERVICE_SLUGS` w `src/lib/i18n/service-slugs.ts`):
+
+| UsÅ‚uga | PL | EN | ES |
+|---|---|---|---|
+| SprzedaÅ¼ mieszkaÅ„ | `apartamenty-na-sprzedaz` | `apartments-for-sale` | `apartamentos-en-venta` |
+| Wille z basenem | `wille-z-basenem` | `villas-with-pool` | `villas-con-piscina` |
+| Domy inwestycyjne | `domy-inwestycyjne` | `investment-properties` | `propiedades-de-inversion` |
+| Przewodnik / wycena | `darmowy-przewodnik-wycena` | `free-buying-guide` | `guia-gratis-compra` |
+
+Miasta, dzielnice i strony statyczne majÄ… jeden, niezmienny slug we wszystkich jÄ™zykach.
+
+**Warstwa przekierowaÅ„ (`src/proxy.ts`, konwencja Next 16):**
+- `/{legacy}` bez prefiksu â†’ **301** na `/pl/...`,
+- slug z niewÅ‚aÅ›ciwego jÄ™zyka, np. `/en/apartamenty-na-sprzedaz` â†’ **308** na `/en/apartments-for-sale`,
+- `/` â†’ **308** na wersjÄ™ wynikajÄ…cÄ… z `NEXT_LOCALE` / `Accept-Language`.
 
 ---
 
-## 10. Komendy
+## 4. SEO
 
-| Komenda | Dzia³anie |
+- **Canonical** samoreferencyjny per jÄ™zyk, zawsze absolutny (`src/lib/seo/metadata.ts`).
+- **hreflang**: pl / en / es / x-default (â†’ PL) na kaÅ¼dej stronie.
+- **TytuÅ‚y i opisy** normalizowane do okna SERP: title 55â€“60 znakÃ³w, description 145â€“155
+  (`fitTitle` / `fitDescription` z pulÄ… zwrotÃ³w per jÄ™zyk).
+- **JSON-LD** (`src/lib/seo/schema-org.ts`): `RealEstateAgent`, `WebSite`, `Service` + `Offer`,
+  `Place` (geo ES), `FAQPage`, `BreadcrumbList`, `Dataset` â€” spÃ³jne `@id` w jednym grafie.
+- **Sitemap**: chunkowana po 5 000 URL (`/sitemaps/{id}.xml`) + indeks serwowany jako
+  `/sitemap.xml`; oba typy dokumentÃ³w majÄ… deklaracjÄ™ `<?xml-stylesheet?>` i czytelny
+  UI z `public/sitemap.xsl`; `robots.txt` generowany z tej samej listy.
+- **Obraz OG**: `https://costainvestors.eu/og` (1200Ã—630, generowany przy buildzie).
+- **Favicon**: `src/app/icon.svg`.
+
+---
+
+## 5. Struktura katalogÃ³w
+
+```
+src/
+  app/[lang]/â€¦             trasy pSEO (PL/EN/ES)
+  app/og/route.tsx         dynamiczny obraz OpenGraph
+  app/sitemap-index.xml/   indeks sitemap (rewrite z /sitemap.xml)
+  app/icon.svg             favicon
+  components/layout/       header, footer, przeÅ‚Ä…cznik jÄ™zyka
+  components/sections/     hero, bloki treÅ›ci, FAQ, linkowanie wewnÄ™trzne
+  components/ui/logo.tsx   sygnet + znak sÅ‚owny (wariant dark/light)
+  lib/content/             generatory treÅ›ci (PL)
+  lib/i18n/content/        zlokalizowane generatory treÅ›ci (EN/ES)
+  lib/i18n/dictionaries/   sÅ‚owniki UI
+  lib/data/                seed, schematy Zod, repozytorium
+  lib/leads/               walidacja, dispatch webhookÃ³w, rate limit
+  lib/seo/                 metadata, JSON-LD, sitemap, konfiguracja witryny
+scripts/                   QA i audyty (patrz niÅ¼ej)
+```
+
+---
+
+## 6. Skrypty
+
+| Skrypt | DziaÅ‚anie |
 |---|---|
 | `npm run dev` | serwer developerski |
-| `npm run build` | build produkcyjny (SSG + ISR) |
-| `npm run typecheck` | TypeScript bez emisji |
-| `npm run validate:data` | QA danych, duplikatów i placeholderów |
-| `npm run check` | `validate:data` + `typecheck` |
+| `npm run build` / `npm run start` | build produkcyjny / serwer produkcyjny |
+| `npm run typecheck` | `tsc --noEmit` (0 bÅ‚Ä™dÃ³w wymagane) |
+| `npm run validate:data` | QA danych i treÅ›ci: Zod, placeholdery, Jaccard 5-gramÃ³w, wideÅ‚ki SERP |
+| `npm run audit:clean` | audyt czystoÅ›ci repo (markery AI, stare domeny, pozostaÅ‚oÅ›ci redakcyjne) |
+| `npm run check` | `audit:clean && validate:data && typecheck` â€” bramka przed commitem |
 
+---
+
+## 7. Lead generation
+
+`POST /api/leads` â†’ walidacja Zod â†’ scoring â†’ rate limit per IP â†’ podpis HMAC-SHA256 â†’
+rÃ³wnolegÅ‚y dispatch do webhookÃ³w (CRM, Zapier, Make, SMS, e-mail transakcyjny).
+Konfiguracja w `.env.example`: `LEADS_WEBHOOK_URL`, `LEADS_WEBHOOK_URL_EN/ES`,
+`LEADS_WEBHOOK_SECRET`, `RESEND_API_KEY`, `LEAD_NOTIFY_EMAIL`.
+
+---
+
+## 8. WdroÅ¼enie
+
+```bash
+npm ci
+npm run check        # audyt + QA danych + typecheck
+npm run build        # 1263 strony
+npm run start        # lub deploy na Vercel / Cloudflare
+```
+
+Wymagane zmienne Å›rodowiskowe: `NEXT_PUBLIC_SITE_URL=https://costainvestors.eu`,
+`I18N_ROUTING_ENABLED=true` (wartoÅ›ci domyÅ›lne w `.env.production`).
+
+Po deployu: zgÅ‚oÅ› `https://costainvestors.eu/sitemap.xml` w Search Console
+i sprawdÅº raport â€žAlternatywna strona z prawidÅ‚owym tagiem canonical" (powinien byÄ‡ pusty).

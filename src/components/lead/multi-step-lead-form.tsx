@@ -3,11 +3,13 @@
 import { useEffect, useMemo, useState } from "react";
 import { useForm, useWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { AlertCircle, ArrowLeft, ArrowRight, Check, Loader2, Lock } from "lucide-react";
+import { AlertCircle, ArrowLeft, ArrowRight, Check, Loader2, ShieldCheck } from "lucide-react";
 import {
   GOALS,
   HORIZONS,
   PROPERTY_TYPES,
+  REGIONS,
+  REQUIREMENTS,
   defaultLeadValues,
   formatPhone,
   leadFormSchema,
@@ -62,8 +64,8 @@ export function MultiStepLeadForm({
   onBudgetChange,
   estimate,
   className,
-  heading = "Znajdź nieruchomość z polskim agentem w 24 h",
-  subheading = "Wypełnij preferencje – certyfikowany polskojęzyczny agent skontaktuje się z gotowymi ofertami.",
+  heading = "Znajdź nieruchomości i odbierz analizę ROI",
+  subheading = "Wypełnij 4 krótkie pytania – w ciągu 15 minut prześlemy spersonalizowany zestaw wyselekcjonowanych ofert.",
 }: MultiStepLeadFormProps) {
   const [step, setStep] = useState<0 | 1>(0);
   const [status, setStatus] = useState<Status>("idle");
@@ -98,6 +100,21 @@ export function MultiStepLeadForm({
       budget ? `${budget} €` : null,
       [values.city, values.district].filter(Boolean).join(" / "),
     ].filter(Boolean);
+
+    // Regiony i wymogi są opcjonalne – dokładamy je do podsumowania tylko,
+    // gdy użytkownik faktycznie coś zaznaczył.
+    const selectedRegions = Array.isArray(values.regions) ? (values.regions as string[]) : [];
+    if (selectedRegions.length > 0) {
+      parts.push(selectedRegions.map((value) => labelOf(REGIONS, value)).join(", "));
+    }
+
+    const selectedRequirements = Array.isArray(values.requirements)
+      ? (values.requirements as string[])
+      : [];
+    if (selectedRequirements.length > 0) {
+      parts.push(selectedRequirements.map((value) => labelOf(REQUIREMENTS, value)).join(", "));
+    }
+
     return parts.join(" · ");
   }, [values, budget]);
 
@@ -300,7 +317,7 @@ export function MultiStepLeadForm({
               onClick={goNext}
               className="inline-flex h-12 flex-1 items-center justify-center gap-2 rounded-xl bg-accent-500 px-5 text-base font-bold text-white shadow-card transition-colors hover:bg-accent-600"
             >
-              Dalej – wybierz kontakt
+              Przejdź do odbioru ofert (Krok 2/2)
               <ArrowRight aria-hidden className="h-4 w-4" />
             </button>
           ) : (
@@ -324,9 +341,12 @@ export function MultiStepLeadForm({
           )}
         </div>
 
-        <p className="mt-3 flex items-center justify-center gap-1.5 text-[11px] text-brand-500">
-          <Lock aria-hidden className="h-3 w-3" />
-          Bez prowizji od kupującego · dane nie są odsprzedawane
+        <p className="mt-3 flex items-start justify-center gap-1.5 text-[11px] leading-relaxed text-brand-500">
+          <ShieldCheck aria-hidden className="mt-px h-3.5 w-3.5 shrink-0 text-accent-600" />
+          <span>
+            Bez prowizji od kupującego · weryfikacja prawna abogado i NIE · dane nie są
+            odsprzedawane
+          </span>
         </p>
       </form>
     </div>

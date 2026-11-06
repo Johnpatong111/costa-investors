@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Container } from "@/components/ui/primitives";
+import { Logo } from "@/components/ui/logo";
 import { LanguageSwitcher } from "@/components/layout/language-switcher";
 import { SERVICES } from "@/lib/data/services";
 import { localePath, type Locale } from "@/lib/i18n/config";
@@ -9,19 +10,7 @@ export function SiteHeader({ lang }: { lang: Locale }) {
   return (
     <header className="sticky top-0 z-40 border-b border-brand-100 bg-white/95 backdrop-blur">
       <Container className="flex h-16 items-center justify-between gap-3">
-        <Link href={localePath(lang, "/")} className="flex items-center gap-2 font-bold text-brand-950">
-          <span
-            aria-hidden
-            className="grid h-9 w-9 place-items-center rounded-lg bg-brand-900 text-sm text-white"
-          >
-            SK
-          </span>
-          <span className="text-lg leading-none">
-            {SITE.brand}
-            <span className="block text-[11px] font-medium text-brand-500">
-            </span>
-          </span>
-        </Link>
+        <Logo locale={lang} size="sm" />
 
         <nav aria-label="Usługi" className="hidden lg:block">
           <ul className="flex items-center gap-6 text-sm font-medium text-brand-700">
@@ -52,5 +41,3 @@ export function SiteHeader({ lang }: { lang: Locale }) {
     </header>
   );
 }
-
-              {SITE.tagline}

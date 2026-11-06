@@ -1,5 +1,12 @@
 import { env } from "../env";
-import type { LeadRecord } from "./schema";
+import { HORIZONS, REGIONS, REQUIREMENTS, type LeadRecord } from "./schema";
+
+/** Etykiety czytelne dla agenta (zamiast surowych wartości enum). */
+const labelOf = (options: readonly { value: string; label: string }[], value: string): string =>
+  options.find((option) => option.value === value)?.label ?? value;
+
+const labelsOf = (options: readonly { value: string; label: string }[], values: string[]): string =>
+  values.length > 0 ? values.map((value) => labelOf(options, value)).join(", ") : "—";
 
 export interface DispatchResult {
   channel: string;
@@ -68,7 +75,9 @@ export function leadEmailHtml(lead: LeadRecord): string {
       ${row("Budżet", `${lead.budget.toLocaleString("pl-PL")} €`)}
       ${row("Cel zakupu", lead.goal)}
       ${row("Typ nieruchomości", lead.propertyType)}
-      ${row("Horyzont", lead.horizon)}
+      ${row("Horyzont", labelOf(HORIZONS, lead.horizon))}
+      ${row("Region", labelsOf(REGIONS, lead.regions))}
+      ${row("Wymogi", labelsOf(REQUIREMENTS, lead.requirements))}
       ${row("Lokalizacja", [lead.district, lead.city].filter(Boolean).join(", "))}
       ${row("Dochód z najmu (kalkulator)", lead.roiEstimate ? `${lead.roiEstimate.toLocaleString("pl-PL")} €/rok` : "—")}
       ${row("Źródło", lead.source ?? "—")}
@@ -116,7 +125,7 @@ export async function sendSms(lead: LeadRecord): Promise<DispatchResult | null> 
     url,
     {
       to: env("LEAD_SMS_RECIPIENT"),
-      message: `HOT LEAD ${lead.score}/100: ${lead.city} ${lead.district ?? ""}, budżet ${lead.budget.toLocaleString("pl-PL")} €, ${lead.horizon}, ${lead.goal}. ${lead.whatsapp ? "WhatsApp" : "Tel"}: ${lead.phone}`,
+      message: `HOT LEAD ${lead.score}/100: ${lead.city} ${lead.district ?? ""}, budżet ${lead.budget.toLocaleString("pl-PL")} €, ${labelOf(HORIZONS, lead.horizon)}, ${lead.goal}${lead.regions.length > 0 ? `, ${labelsOf(REGIONS, lead.regions)}` : ""}. ${lead.whatsapp ? "WhatsApp" : "Tel"}: ${lead.phone}`,
       leadId: lead.id,
       whatsapp: lead.whatsapp,
     },

@@ -28,7 +28,8 @@ export const PROPERTY_TYPES = [
 
 export const HORIZONS = [
   { value: "1-3-miesiace", label: "Kupuję w 1–3 mies.", description: "Gotowy do transakcji" },
-  { value: "planuje-2026", label: "Planuję w 2026", description: "Rok bieżący" },
+  { value: "3-6-miesiecy", label: "W ciągu 3–6 mies.", description: "Aktywnie szukam" },
+  { value: "powyzej-6-miesiecy", label: "Powyżej 6 mies.", description: "Planuję spokojnie" },
   { value: "tylko-badamy", label: "Tylko badam rynek", description: "Zbieram informacje" },
 ] as const;
 
@@ -38,6 +39,33 @@ export const CONTACT_METHODS = [
   { value: "email", label: "E-mail", description: "Oferty i analizy PDF" },
 ] as const;
 
+/**
+ * Region inwestycji – pierwszy filtr geograficzny jeszcze przed miastem.
+ * „Szukam doradztwa" zdejmuje presję wyboru i ratuje leady niezdecydowane.
+ */
+export const REGIONS = [
+  {
+    value: "costa-blanca-poludnie",
+    label: "Costa Blanca Południe",
+    description: "Torrevieja, Orihuela Costa",
+  },
+  {
+    value: "costa-blanca-polnoc",
+    label: "Costa Blanca Północ",
+    description: "Alicante, Calpe, Jávea",
+  },
+  { value: "costa-calida", label: "Costa Cálida", description: "Murcia, Mazarrón, Águilas" },
+  { value: "doradztwo", label: "Szukam doradztwa", description: "Pomóżcie wybrać region" },
+] as const;
+
+/** Opcjonalne tagi wymogów – podnoszą jakość dopasowania ofert. */
+export const REQUIREMENTS = [
+  { value: "blisko-plazy", label: "Blisko plaży" },
+  { value: "widok-na-morze", label: "Widok na morze" },
+  { value: "licencja-turystyczna", label: "Licencja turystyczna" },
+  { value: "rynek-pierwotny", label: "Rynek pierwotny" },
+] as const;
+
 const values = <T extends readonly { value: string }[]>(items: T) =>
   items.map((item) => item.value) as unknown as [T[number]["value"], ...T[number]["value"][]];
 
@@ -45,6 +73,8 @@ export const goalEnum = z.enum(values(GOALS));
 export const propertyTypeEnum = z.enum(values(PROPERTY_TYPES));
 export const horizonEnum = z.enum(values(HORIZONS));
 export const contactMethodEnum = z.enum(values(CONTACT_METHODS));
+export const regionEnum = z.enum(values(REGIONS));
+export const requirementEnum = z.enum(values(REQUIREMENTS));
 
 /**
  * Język, w którym użytkownik przeglądał stronę (i chce rozmawiać).
@@ -102,6 +132,10 @@ export const leadFormSchema = z.object({
   propertyType: propertyTypeEnum,
   horizon: horizonEnum,
   contactMethod: contactMethodEnum,
+  /** Multi-select regionów – opcjonalny, ale podnosi jakość dopasowania ofert. */
+  regions: z.array(regionEnum).max(REGIONS.length),
+  /** Opcjonalne tagi wymogów (checkboxy). */
+  requirements: z.array(requirementEnum).max(REQUIREMENTS.length),
   city: z.string().trim().min(2, "Podaj miejscowość").max(80),
   district: z.string().trim().max(80),
   budget: z
@@ -128,6 +162,8 @@ export const defaultLeadValues: LeadFormValues = {
   propertyType: "apartament",
   horizon: "1-3-miesiace",
   contactMethod: "telefon",
+  regions: [],
+  requirements: [],
   city: "",
   district: "",
   budget: "",
@@ -176,6 +212,10 @@ export const leadPayloadSchema = z.object({
   propertyType: propertyTypeEnum,
   horizon: horizonEnum,
   contactMethod: contactMethodEnum,
+  /** Multi-select regionów (opcjonalny) – zawęża bazę ofert przed kontaktem. */
+  regions: z.array(regionEnum).max(REGIONS.length).default([]),
+  /** Opcjonalne tagi wymogów z KROKU 1. */
+  requirements: z.array(requirementEnum).max(REQUIREMENTS.length).default([]),
   city: z.string().trim().min(2, "Podaj miejscowość").max(80),
   district: z.string().trim().max(80).optional(),
   budget: numeric(10_000, 20_000_000, "Budżet w EUR: 10 tys. – 20 mln"),
@@ -221,8 +261,12 @@ export function scoreLead(payload: LeadPayload): number {
   else if (payload.budget >= 150_000) score += 15;
 
   if (payload.horizon === "1-3-miesiace") score += 20;
-  else if (payload.horizon === "planuje-2026") score += 8;
+  else if (payload.horizon === "3-6-miesiecy") score += 12;
+  else if (payload.horizon === "powyzej-6-miesiecy") score += 4;
   else score -= 15;
+
+  // Konkretne wymagania (widok, plaża, licencja) = dojrzalszy lead.
+  if (payload.requirements.length >= 2) score += 3;
 
   if (payload.goal === "inwestycja-najem") score += 5;
   if (payload.contactMethod === "whatsapp" || payload.contactMethod === "telefon") score += 5;

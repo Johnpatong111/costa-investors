@@ -38,6 +38,14 @@ export const TILE_FIELDS = [
 
 export type TileField = (typeof TILE_FIELDS)[number];
 
+/**
+ * Pola wielokrotnego wyboru (checkboxy) – osobna lista, bo `OptionTiles`
+ * operuje na skalarach, a te trzymają tablice wartości.
+ */
+export const LIST_FIELDS = ["regions", "requirements"] as const satisfies readonly (keyof LeadFormValues)[];
+
+export type ListField = (typeof LIST_FIELDS)[number];
+
 export function TileCard({
   icon: Icon,
   label,
@@ -56,7 +64,7 @@ export function TileCard({
   return (
     <span
       className={cn(
-        "flex w-full items-start gap-2.5 rounded-xl border bg-white text-left transition-all duration-150",
+        "relative flex w-full items-start gap-2.5 rounded-xl border bg-white pr-8 text-left transition-all duration-150",
         size === "sm" ? "px-3 py-2.5" : "px-3.5 py-3",
         selected
           ? "border-brand-600 bg-brand-50 shadow-sm"
@@ -78,23 +86,25 @@ export function TileCard({
       <span className="min-w-0 flex-1">
         <span
           className={cn(
-            "block font-semibold text-brand-900",
+            "block font-semibold break-words text-brand-900",
             size === "sm" ? "text-[13px] leading-tight" : "text-sm",
           )}
         >
           {label}
         </span>
         {description && size !== "sm" ? (
-          <span className="mt-0.5 block text-[11px] leading-snug text-brand-500">
+          <span className="mt-0.5 block text-[11px] leading-snug break-words text-brand-500">
             {description}
           </span>
         ) : null}
       </span>
 
+      {/* Ikona wyboru jest absolutna – nie zabiera miejsca etykiecie i nie nachodzi
+          na długie nazwy (np. „Penthouse" w wąskim kafelku). */}
       <Check
         aria-hidden
         className={cn(
-          "mt-0.5 h-4 w-4 shrink-0 text-brand-600 transition-opacity",
+          "absolute top-2.5 right-2.5 h-4 w-4 shrink-0 text-brand-600 transition-opacity",
           selected ? "opacity-100" : "opacity-0",
         )}
       />
@@ -157,6 +167,71 @@ export function OptionTiles({
               description={option.description}
               size={size}
               selected={current === option.value}
+            />
+          </label>
+        ))}
+      </div>
+    </fieldset>
+  );
+}
+
+export interface OptionChecklistProps {
+  name: ListField;
+  options: readonly TileOption[];
+  register: UseFormRegister<LeadFormValues>;
+  control: Control<LeadFormValues>;
+  /** Ikony w kolejności zgodnej z listą opcji. */
+  icons?: LucideIcon[];
+  columns?: 2 | 3 | 4;
+  size?: "sm" | "md";
+  legend: string;
+  hint?: string;
+  className?: string;
+}
+
+/**
+ * Kafelki wielokrotnego wyboru (checkboxy).
+ *
+ * Używane dla regionów i tagów wymogów: użytkownik może zaznaczyć kilka
+ * opcji albo żadnej – pola są opcjonalne, więc nigdy nie blokują CTA.
+ */
+export function OptionChecklist({
+  name,
+  options,
+  register,
+  control,
+  icons = [],
+  columns = 2,
+  size = "sm",
+  legend,
+  hint,
+  className,
+}: OptionChecklistProps) {
+  const watched = useWatch({ control, name });
+  const current: string[] = Array.isArray(watched) ? (watched as string[]) : [];
+  const columnClass =
+    columns === 4 ? "sm:grid-cols-4" : columns === 3 ? "sm:grid-cols-3" : "sm:grid-cols-2";
+
+  return (
+    <fieldset className={cn("min-w-0", className)}>
+      <legend className="mb-2 text-xs font-semibold tracking-wide text-brand-700 uppercase">
+        {legend}
+      </legend>
+      {hint ? <p className="mb-2 text-xs text-brand-500">{hint}</p> : null}
+
+      <div className={cn("grid grid-cols-1 gap-2", columnClass)}>
+        {options.map((option: TileOption, index: number) => (
+          <label
+            key={option.value}
+            className="group relative cursor-pointer rounded-xl has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-brand-500"
+          >
+            <input type="checkbox" value={option.value} className="sr-only" {...register(name)} />
+            <TileCard
+              icon={icons[index]}
+              label={option.label}
+              description={option.description}
+              size={size}
+              selected={current.includes(option.value)}
             />
           </label>
         ))}

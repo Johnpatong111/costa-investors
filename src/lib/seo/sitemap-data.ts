@@ -155,5 +155,5 @@ export function getSitemapChunk(id: number): SitemapEntry[] {
 }
 
 export function getSitemapUrls(): string[] {
-  return getSitemapIds().map((id) => `${SITE.url}/sitemap/${id}.xml`);
+  return getSitemapIds().map((id) => `${SITE.url}/sitemaps/${id}.xml`);
 }

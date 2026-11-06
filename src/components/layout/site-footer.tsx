@@ -1,5 +1,6 @@
 ﻿import Link from "next/link";
 import { Container } from "@/components/ui/primitives";
+import { Logo } from "@/components/ui/logo";
 import { SERVICES, PRICE_REPORT } from "@/lib/data/services";
 import { getCitiesByTier } from "@/lib/data/repository";
 import { localePath, type Locale } from "@/lib/i18n/config";
@@ -13,8 +14,8 @@ export function SiteFooter({ lang }: { lang: Locale }) {
     <footer className="mt-8 border-t border-brand-100 bg-brand-950 text-brand-100">
       <Container className="grid gap-10 py-14 md:grid-cols-4">
         <div className="md:col-span-1">
-          <p className="text-lg font-bold text-white">{SITE.brand}</p>
-          <p className="mt-3 text-sm leading-relaxed text-brand-200">{SITE.tagline}.</p>
+          <Logo locale={lang} size="md" tone="light" />
+          <p className="mt-4 text-sm leading-relaxed text-brand-200">{SITE.tagline}.</p>
           <address className="mt-4 space-y-1 text-sm not-italic text-brand-200">
             <p>{SITE.legalName}</p>
             <p>

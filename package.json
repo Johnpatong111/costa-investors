@@ -10,6 +10,7 @@
     "typecheck": "tsc --noEmit",
     "validate:data": "tsx scripts/validate-data.ts",
     "audit:clean": "node scripts/audit-clean.mjs",
+    "icons": "node scripts/generate-icons.mjs",
     "check": "npm run audit:clean && npm run validate:data && npm run typecheck"
   },
   "dependencies": {

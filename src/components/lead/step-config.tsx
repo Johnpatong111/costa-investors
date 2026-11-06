@@ -1,25 +1,47 @@
 "use client";
 
 import {
+  BadgeCheck,
   Building2,
   CalendarClock,
+  Clock,
   Crown,
+  Eye,
   Hotel,
   House,
+  MapPin,
+  MessageCircle,
   Palmtree,
   Search,
   TrendingUp,
+  Umbrella,
+  Waves,
   Zap,
 } from "lucide-react";
 import type { Control, FieldErrors, UseFormRegister } from "react-hook-form";
-import { GOALS, HORIZONS, PROPERTY_TYPES, type LeadFormValues } from "@/lib/leads/schema";
-import { BUDGET_PRESETS, formatBudgetInput } from "@/lib/leads/investment";
+import {
+  GOALS,
+  HORIZONS,
+  PROPERTY_TYPES,
+  REGIONS,
+  REQUIREMENTS,
+  type LeadFormValues,
+} from "@/lib/leads/schema";
+import { BUDGET_PRESETS, formatBudgetInput, parseBudget } from "@/lib/leads/investment";
 import { cn } from "@/lib/utils/cn";
-import { OptionTiles } from "./option-tiles";
+import { OptionChecklist, OptionTiles } from "./option-tiles";
 
 const GOAL_ICONS = [TrendingUp, Palmtree, House];
 const PROPERTY_ICONS = [Building2, House, Hotel, Crown];
-const HORIZON_ICONS = [Zap, CalendarClock, Search];
+const HORIZON_ICONS = [Zap, CalendarClock, Clock, Search];
+const REGION_ICONS = [Palmtree, MapPin, Waves, MessageCircle];
+const REQUIREMENT_ICONS = [Umbrella, Eye, BadgeCheck, Building2];
+
+/** Widełki suwaka budżetu (EUR). Górna wartość = „1 mln € i więcej". */
+const BUDGET_MIN = 100_000;
+const BUDGET_MAX = 1_000_000;
+const BUDGET_STEP = 25_000;
+const BUDGET_DEFAULT = 250_000;
 
 export interface StepConfigProps {
   register: UseFormRegister<LeadFormValues>;
@@ -32,8 +54,9 @@ export interface StepConfigProps {
 }
 
 /**
- * Krok 1 – decyzje inwestycyjne (cel, typ, horyzont, budżet).
- * Cztery szybkie wybory, zero pól tekstowych poza kwotą.
+ * Krok 1 – decyzje inwestycyjne: cel, typ, horyzont, region, wymagania, budżet.
+ * Wyłącznie szybkie wybory i jeden suwak – zero pól tekstowych wymagających
+ * pisania na telefonie, co utrzymuje wysoki completion rate.
  */
 export function StepConfig({
   register,
@@ -43,6 +66,10 @@ export function StepConfig({
   onBudgetChange,
   budgetError,
 }: StepConfigProps) {
+  const budgetValue = parseBudget(budget) || BUDGET_DEFAULT;
+  const sliderValue = Math.min(BUDGET_MAX, Math.max(BUDGET_MIN, budgetValue));
+  const hasBudgetError = Boolean(budgetError || errors.budget);
+
   return (
     <div className="space-y-5">
       <OptionTiles
@@ -56,6 +83,8 @@ export function StepConfig({
         size="sm"
       />
 
+      {/* Typ nieruchomości: 2 kolumny zamiast 4 – dłuższe etykiety („Penthouse")
+          dostają pełną szerokość i nie nachodzą na ikonę wyboru. */}
       <OptionTiles
         name="propertyType"
         legend="Typ nieruchomości"
@@ -63,7 +92,7 @@ export function StepConfig({
         icons={PROPERTY_ICONS}
         register={register}
         control={control}
-        columns={4}
+        columns={2}
         size="sm"
       />
 
@@ -74,17 +103,47 @@ export function StepConfig({
         icons={HORIZON_ICONS}
         register={register}
         control={control}
-        columns={3}
+        columns={2}
+        size="sm"
+      />
+
+      <OptionChecklist
+        name="regions"
+        legend="Lokalizacja / region"
+        hint="Możesz wybrać kilka regionów lub poprosić o doradztwo."
+        options={REGIONS}
+        icons={REGION_ICONS}
+        register={register}
+        control={control}
+        columns={2}
+        size="sm"
+      />
+
+      <OptionChecklist
+        name="requirements"
+        legend="Kluczowe wymogi (opcjonalnie)"
+        hint="Zaznacz, co jest dla Ciebie ważne – zawęzi to listę ofert."
+        options={REQUIREMENTS}
+        icons={REQUIREMENT_ICONS}
+        register={register}
+        control={control}
+        columns={2}
         size="sm"
       />
 
       <div>
-        <label
-          htmlFor="budget"
-          className="mb-2 block text-xs font-semibold uppercase tracking-wide text-brand-700"
-        >
-          Budżet (EUR)
-        </label>
+        <div className="mb-2 flex items-baseline justify-between gap-2">
+          <label
+            htmlFor="budget"
+            className="block text-xs font-semibold tracking-wide text-brand-700 uppercase"
+          >
+            Budżet (EUR)
+          </label>
+          <span className="text-xs font-semibold text-brand-500">
+            {sliderValue >= BUDGET_MAX ? "1 000 000 € +" : `${formatBudgetInput(sliderValue)} €`}
+          </span>
+        </div>
+
         <div className="relative">
           <input
             id="budget"
@@ -93,28 +152,53 @@ export function StepConfig({
             value={budget}
             onChange={(event) => onBudgetChange(event.target.value)}
             placeholder="250 000"
-            aria-invalid={Boolean(budgetError || errors.budget)}
-            aria-describedby={budgetError ? "budget-error" : undefined}
+            aria-invalid={hasBudgetError}
+            aria-describedby={hasBudgetError ? "budget-error" : undefined}
             className={cn(
               "h-11 w-full rounded-lg border bg-white px-3 pr-10 text-center text-base font-semibold text-brand-950 outline-none transition-colors",
-              budgetError || errors.budget
+              hasBudgetError
                 ? "border-red-400 focus:border-red-500 focus:ring-2 focus:ring-red-100"
                 : "border-brand-200 focus:border-brand-500 focus:ring-2 focus:ring-brand-100",
             )}
           />
-          <span className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-sm font-bold text-brand-500">
+          <span className="pointer-events-none absolute top-1/2 right-3 -translate-y-1/2 text-sm font-bold text-brand-500">
             €
           </span>
         </div>
-        {budgetError || errors.budget ? (
+        {hasBudgetError ? (
           <p id="budget-error" className="mt-1 text-xs font-medium text-red-600">
             {budgetError ?? errors.budget?.message}
           </p>
         ) : null}
 
+        {/* Suwak zsynchronizowany z polem tekstowym – po kliknięciu presetu użytkownik
+            widzi natychmiast, gdzie w widełkach 100 tys. – 1 mln € wylądował. */}
+        <div className="mt-3">
+          <input
+            id="budget-range"
+            type="range"
+            min={BUDGET_MIN}
+            max={BUDGET_MAX}
+            step={BUDGET_STEP}
+            value={sliderValue}
+            onChange={(event) => onBudgetChange(formatBudgetInput(Number(event.target.value)))}
+            aria-label="Budżet w EUR – suwak"
+            aria-valuetext={
+              sliderValue >= BUDGET_MAX
+                ? "1 000 000 euro i więcej"
+                : `${formatBudgetInput(sliderValue)} euro`
+            }
+            className="h-2 w-full cursor-pointer appearance-none rounded-full bg-brand-100 accent-brand-700"
+          />
+          <div className="mt-1 flex justify-between text-[10px] font-medium text-brand-500">
+            <span>100 tys. €</span>
+            <span>1 mln € +</span>
+          </div>
+        </div>
+
         <div className="mt-2 flex flex-wrap gap-1.5">
           {BUDGET_PRESETS.map((preset: (typeof BUDGET_PRESETS)[number]) => {
-            const selected = budget === formatBudgetInput(preset.value);
+            const selected = sliderValue === preset.value;
             return (
               <button
                 key={preset.value}
