@@ -9,21 +9,21 @@ export const domyInwestycyjne: ServiceDefinition = {
   propertyNounGenitive: "domu",
   intent: "transactional",
   ctaLabel: "Policz ROI dla tej lokalizacji",
-  priceAnchor: "ROI 4,6–6,6% brutto",
+  priceAnchor: "ROI 4,6-6,6% brutto",
   highlightLabel: "dochód z najmu i wzrost wartości",
   h1: [
-    "Domy inwestycyjne {districtLoc} ({cityLoc}) – ROI {yield}",
+    "Domy inwestycyjne {districtLoc} ({cityLoc}) - ROI {yield}",
     "Nieruchomości pod wynajem w {districtLoc} ({cityLoc})",
-    "Inwestycja w dom w {districtLoc}, {cityLoc} – ceny i zwrot",
+    "Inwestycja w dom w {districtLoc}, {cityLoc}. Ceny i zwrot",
   ],
   metaTitle: [
     "Domy inwestycyjne {city} ({region}) | ROI {yield}",
-    "Inwestycja w {district} {city} – ROI i ceny {year}",
-    "Nieruchomości pod wynajem {city} – policz zwrot",
+    "Inwestycja w {district} {city} - ROI i ceny {year}",
+    "Nieruchomości pod wynajem {city}. Policz zwrot",
   ],
   metaDescription: [
     "Domy inwestycyjne w {districtLoc}: cena {price} €/m², czynsz {rent} €/m², ROI {yield}% brutto. Policz zwrot dla swojego budżetu w 2026.",
-    "Inwestycja w nieruchomość w {cityLoc} – wzrost {growth}% r/r i ROI {yield}%. Zobacz koszty zakupu, podatki i realne stawki najmu.",
+    "Inwestycja w nieruchomość w {cityLoc}. Wzrost {growth}% r/r i ROI {yield}%. Zobacz koszty zakupu, podatki i realne stawki najmu.",
     "Szukasz domu pod wynajem w Hiszpanii? Sprawdź ROI w {cityLoc}, koszty utrzymania i potencjał wzrostu wartości.",
   ],
   synonyms: [
@@ -37,7 +37,7 @@ export const domyInwestycyjne: ServiceDefinition = {
     {
       title: "ROI liczone na realnych stawkach",
       description:
-        "Podstawa to mediana czynszu {rent} €/m²/mies. w {districtLoc}, obłożenie i koszty – nie „potencjał” z ogłoszenia.",
+        "Podstawa to mediana czynszu {rent} €/m²/mies. W {districtLoc}, obłożenie i koszty. Nie „potencjał” z ogłoszenia.",
     },
     {
       title: "Podatki i koszty po polsku",
@@ -52,7 +52,7 @@ export const domyInwestycyjne: ServiceDefinition = {
     {
       title: "Wybór lokalizacji pod zwrot, nie pod widok",
       description:
-        "Porównujemy dzielnice pod kątem ROI: {districtLoc} ma {yield}% brutto przy cenie {price} €/m² – pokazujemy alternatywy z lepszym stosunkiem.",
+        "Porównujemy dzielnice pod kątem ROI: {districtLoc} ma {yield}% brutto przy cenie {price} €/m². Pokazujemy alternatywy z lepszym stosunkiem.",
     },
   ],
   process: [
@@ -66,25 +66,25 @@ export const domyInwestycyjne: ServiceDefinition = {
       title: "Model zwrotu",
       description:
         "Liczby dla {districtLoc}: cena {price} €/m², czynsz {rent} €/m², koszty, podatki i pustostany. Otrzymujesz arkusz, nie slajd.",
-      duration: "2–3 dni",
+      duration: "2-3 dni",
     },
     {
       title: "Weryfikacja nieruchomości",
       description:
         "Stan techniczny, legalność, perspektywa najmu i płynność wyjścia. Odrzucamy oferty, których nie sprzedasz w 90 dni.",
-      duration: "1–2 tygodnie",
+      duration: "1-2 tygodnie",
     },
     {
       title: "Zakup i uruchomienie najmu",
       description:
         "Notariusz, NIE, konto, ubezpieczenie, umowa z agencją zarządzającą i pierwszy najemca.",
-      duration: "4–8 tygodni",
+      duration: "4-8 tygodni",
     },
   ],
   faq: [
     {
       q: "Jakie ROI daje najem w {districtLoc}?",
-      a: "Model dla {districtLoc}: {yield}% brutto rocznie przy medianie {price} €/m² i czynszu {rent} €/m²/mies. Po kosztach zarządzania, podatku i pustostanach realny zwrot netto jest zwykle o 1,5–2,5 pkt proc. niższy.",
+      a: "Model dla {districtLoc}: {yield}% brutto rocznie przy medianie {price} €/m² i czynszu {rent} €/m²/mies. Po kosztach zarządzania, podatku i pustostanach realny zwrot netto jest zwykle o 1,5-2,5 pkt proc. Niższy.",
     },
     {
       q: "Czy najem krótkoterminowy jest bardziej opłacalny?",
@@ -92,11 +92,11 @@ export const domyInwestycyjne: ServiceDefinition = {
     },
     {
       q: "Jak Polak rozlicza najem w Hiszpanii?",
-      a: "Nierezydent rozlicza się z hiszpańskiego podatku dochodowego (IRPF) od najmu – zwykle raz na kwartał i w deklaracji rocznej. W Polsce stosujesz metodę unikania podwójnego opodatkowania.",
+      a: "Nierezydent rozlicza się z hiszpańskiego podatku dochodowego (IRPF) od najmu. Zwykle raz na kwartał i w deklaracji rocznej. W Polsce stosujesz metodę unikania podwójnego opodatkowania.",
     },
     {
       q: "Ile wynoszą koszty zakupu inwestycyjnego?",
-      a: "Około 13–14% ceny nieruchomości: ITP 10% (rynek wtórny) lub IVA 10% + AJD (nowe), notariusz, rejestr, obsługa prawna i ewentualne tłumaczenia.",
+      a: "Około 13-14% ceny nieruchomości: ITP 10% (rynek wtórny) lub IVA 10% + AJD (nowe), notariusz, rejestr, obsługa prawna i ewentualne tłumaczenia.",
     },
   ],
   checklist: [

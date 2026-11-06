@@ -3,7 +3,7 @@
  *
  * Ograniczenia: w środowisku serverless każda instancja ma własny licznik,
  * więc to ochrona przed pojedynczym botem, a nie przed botnetem.
- * Dla produkcji podmień `store` na Redis (Upstash) – interfejs pozostaje ten sam.
+ * Dla produkcji podmień `store` na Redis (Upstash). Interfejs pozostaje ten sam.
  */
 
 interface Bucket {
@@ -39,7 +39,7 @@ export function checkRateLimit(
 
   bucket.hits.push(now);
 
-  // Prosty mechanizm GC – bez wycieku pamięci przy długim uptime.
+  // Prosty mechanizm GC. Bez wycieku pamięci przy długim uptime.
   if (store.size > MAX_KEYS) {
     for (const [storedKey, storedBucket] of store) {
       if (storedBucket.hits.every((timestamp) => now - timestamp > windowMs)) {
@@ -57,7 +57,7 @@ export function checkRateLimit(
   };
 }
 
-/** SHA-256 z solą – RODO: nie przechowujemy surowych adresów IP. */
+/** SHA-256 z solą - RODO: nie przechowujemy surowych adresów IP. */
 export async function hashIdentifier(value: string, salt: string): Promise<string> {
   const data = new TextEncoder().encode(`${salt}:${value}`);
   const digest = await crypto.subtle.digest("SHA-256", data);

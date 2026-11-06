@@ -75,5 +75,5 @@ export function toSitemapUrlsetXml(entries: SitemapEntry[]): string {
   ].join("\n");
 }
 
-/** Absolutny adres indeksu – używany w robots.txt. */
+/** Absolutny adres indeksu. Używany w robots.txt. */
 export const sitemapIndexUrl = `${SITE.url}/sitemap.xml`;

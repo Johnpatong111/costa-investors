@@ -14,10 +14,10 @@ export function buildDistrictBlocks(
   return [
     {
       id: "rynek",
-      heading: `Rynek ${vars.propertyGen} w ${vars.districtLoc} – ${vars.year}`,
+      heading: `Rynek ${vars.propertyGen} w ${vars.districtLoc}: ${vars.year}`,
       paragraphs: [
         t(
-          "W {districtLoc} dominują {characteristic}. Kupujący z Polski zwracają uwagę przede wszystkim na {landmark} oraz {landmark2}, a dopiero potem na metraż – dlatego oferty z widokiem lub bliskością plaży utrzymują wyższą cenę.",
+          "W {districtLoc} dominują {characteristic}. Kupujący z Polski zwracają uwagę przede wszystkim na {landmark} oraz {landmark2}, a dopiero potem na metraż. Dlatego oferty z widokiem lub bliskością plaży utrzymują wyższą cenę.",
         ),
         t(
           "Mediana ofertowa wynosi tu {price} €/m², czyli {pricePosition}. W ujęciu rocznym {growthSentence}. Dla lokalu 70 m² daje to wartość około {budget70} przed uwzględnieniem kosztów transakcyjnych.",
@@ -32,7 +32,7 @@ export function buildDistrictBlocks(
           "Mediana czynszu to {rent} €/m²/mies., co przy cenie {price} €/m² daje {yieldSentence}. Dla mieszkania 70 m² oznacza to około {rent70} € przychodu rocznie brutto i {rentNet70} € po kosztach zarządzania, podatku i pustostanach.",
         ),
         t(
-          "Sumując czynsz i wzrost wartości, inwestycja 250 000 € w {districtLoc} generuje w 5-letnim horyzoncie około {return5y} € łącznego zwrotu, czyli {returnPercent}% budżetu. To model, nie gwarancja – przed zakupem weryfikujemy konkretną nieruchomość.",
+          "Sumując czynsz i wzrost wartości, inwestycja 250 000 € w {districtLoc} generuje w 5-letnim horyzoncie około {return5y} € łącznego zwrotu, czyli {returnPercent}% budżetu. To model, nie gwarancja. Przed zakupem weryfikujemy konkretną nieruchomość.",
         ),
       ],
       bullets: [
@@ -58,7 +58,7 @@ export function buildDistrictBlocks(
       heading: `Kto kupuje ${vars.property} w ${vars.districtLoc}`,
       paragraphs: [
         t(
-          "W {cityLoc} {foreign} kupujących to obcokrajowcy, w tym {polish} z Polski. Przewaga kupujących zagranicznych oznacza płynny rynek wyjścia, ale też konkurencję o najlepsze lokale – dlatego oferty w {districtLoc} znikają średnio w {days} dni.",
+          "W {cityLoc} {foreign} kupujących to obcokrajowcy, w tym {polish} z Polski. Przewaga kupujących zagranicznych oznacza płynny rynek wyjścia, ale też konkurencję o najlepsze lokale. Dlatego oferty w {districtLoc} znikają średnio w {days} dni.",
         ),
         t(
           "W {districtLoc} liczy się przede wszystkim {characteristic2}, a w drugiej kolejności {landmark2}. Ta {districtType} leży w części {subregion}, więc najem sezonowy uzupełnia się tu z najmem długoterminowym, co stabilizuje obłożenie poza wakacjami.",

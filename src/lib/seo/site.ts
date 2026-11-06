@@ -3,7 +3,7 @@
  * KONFIGURACJA WITRYNY (jedno źródło prawdy dla SEO i schematów)
  * ===========================================================================
  * Wszystkie dane firmowe trafiają do JSON-LD (RealEstateAgent) i stopki.
- * UZUPEŁNIJ REALNYMI DANYMI przed produkcją – Google weryfikuje NAP
+ * UZUPEŁNIJ REALNYMI DANYMI przed produkcją - Google weryfikuje NAP
  * (Name, Address, Phone) z Wizytówką Google i innymi katalogami.
  */
 
@@ -20,13 +20,13 @@ export const SITE = {
   url: normalizeUrl(process.env.NEXT_PUBLIC_SITE_URL),
   locale: "pl_PL",
   lang: "pl",
-  /** Rok publikacji – używany w title/description. Podnoś raz w roku. */
+  /** Rok publikacji. Używany w title/description. Podnoś raz w roku. */
   year: 2026,
   tagline: "Nieruchomości w Hiszpanii dla Polaków",
   description:
     "Apartamenty, wille i domy inwestycyjne na Costa Blanca i Costa Cálida. Ceny €/m², analiza ROI, koszty zakupu i kontakt z certyfikowanym polskojęzycznym agentem.",
   phone: "+48 22 123 45 67",
-  /** Format E.164 – wymagany przez schema.org i klik-to-call. */
+  /** Format E.164. Wymagany przez schema.org i klik-to-call. */
   phoneHref: "+48221234567",
   email: "kontakt@costainvestors.eu",
   address: {
@@ -53,7 +53,7 @@ export const SITE = {
 
 export type SiteConfig = typeof SITE;
 
-/** Absolutny URL – używany w canonical, sitemapie i JSON-LD `@id`. */
+/** Absolutny URL. Używany w canonical, sitemapie i JSON-LD `@id`. */
 export function absoluteUrl(path = "/"): string {
   if (/^https?:\/\//.test(path)) return path;
   const normalized = path.startsWith("/") ? path : `/${path}`;

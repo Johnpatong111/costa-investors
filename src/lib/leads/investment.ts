@@ -1,5 +1,5 @@
 /**
- * Kalkulacja ROI po stronie klienta – czysta funkcja, zero I/O.
+ * Kalkulacja ROI po stronie klienta. Czysta funkcja, zero I/O.
  * Wejście: dane rynku przekazane z serwera (ROI, wzrost) + budżet użytkownika.
  */
 
@@ -36,7 +36,7 @@ export function parseBudget(raw: string | number): number {
   return Number.isFinite(value) ? value : 0;
 }
 
-/** 250000 → "250 000" (bez waluty – walutę dodaje warstwa prezentacji). */
+/** 250000 → "250 000" (bez waluty. Walutę dodaje warstwa prezentacji). */
 export function formatBudgetInput(value: number): string {
   return Math.round(value)
     .toString()
@@ -65,10 +65,10 @@ export function estimateReturns(rates: MarketRates, budget: number): ReturnEstim
   };
 }
 
-/** Progi budżetu – kafelki w kalkulatorze (mikro-zobowiązania). */
+/** Progi budżetu. Kafelki w kalkulatorze (mikro-zobowiązania). */
 export const BUDGET_PRESETS = [
   { value: 150_000, label: "do 150 tys. €", hint: "kawalerka lub mały apartament" },
-  { value: 300_000, label: "150–300 tys. €", hint: "apartament 2 pokoje blisko plaży" },
-  { value: 500_000, label: "300–500 tys. €", hint: "apartament premium lub bungalow" },
+  { value: 300_000, label: "150-300 tys. €", hint: "apartament 2 pokoje blisko plaży" },
+  { value: 500_000, label: "300-500 tys. €", hint: "apartament premium lub bungalow" },
   { value: 750_000, label: "500 tys. € +", hint: "villa z basenem" },
 ] as const;

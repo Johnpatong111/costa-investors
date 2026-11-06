@@ -4,7 +4,7 @@ import { formatPrice } from "@/lib/utils/format";
 /**
  * Social proof oparty na FAKTACH operacyjnych (nie na wymyślonych opiniach).
  *
- * Opinie klientów dodajesz dopiero, gdy są prawdziwe i weryfikowalne –
+ * Opinie klientów dodajesz dopiero, gdy są prawdziwe i weryfikowalne -
  * fikcyjne recenzje to naruszenie wytycznych Google i polskiego prawa
  * (nieuczciwe praktyki rynkowe). Dlatego `testimonials` domyślnie jest puste.
  */
@@ -30,7 +30,7 @@ export function SocialProof({
     {
       value: "24 h",
       label: "Lista ofert z ROI",
-      detail: "3–5 nieruchomości z ceną €/m² na tle mediany",
+      detail: "3-5 nieruchomości z ceną €/m² na tle mediany",
     },
     {
       value: "13,5%",
@@ -92,7 +92,7 @@ export function SocialProof({
             Sekcja opinii nieaktywna
           </Badge>
           Publikujemy wyłącznie zweryfikowane opinie klientów. Do momentu zebrania
-          pierwszych realizacji ta sekcja pozostaje ukryta – nie generujemy fikcyjnych
+          pierwszych realizacji ta sekcja pozostaje ukryta. Nie generujemy fikcyjnych
           recenzji.
         </div>
       )}

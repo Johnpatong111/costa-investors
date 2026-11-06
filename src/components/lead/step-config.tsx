@@ -54,8 +54,8 @@ export interface StepConfigProps {
 }
 
 /**
- * Krok 1 – decyzje inwestycyjne: cel, typ, horyzont, region, wymagania, budżet.
- * Wyłącznie szybkie wybory i jeden suwak – zero pól tekstowych wymagających
+ * Krok 1. Decyzje inwestycyjne: cel, typ, horyzont, region, wymagania, budżet.
+ * Wyłącznie szybkie wybory i jeden suwak. Zero pól tekstowych wymagających
  * pisania na telefonie, co utrzymuje wysoki completion rate.
  */
 export function StepConfig({
@@ -83,7 +83,7 @@ export function StepConfig({
         size="sm"
       />
 
-      {/* Typ nieruchomości: 2 kolumny zamiast 4 – dłuższe etykiety („Penthouse")
+      {/* Typ nieruchomości: 2 kolumny zamiast 4. Dłuższe etykiety („Penthouse")
           dostają pełną szerokość i nie nachodzą na ikonę wyboru. */}
       <OptionTiles
         name="propertyType"
@@ -122,7 +122,7 @@ export function StepConfig({
       <OptionChecklist
         name="requirements"
         legend="Kluczowe wymogi (opcjonalnie)"
-        hint="Zaznacz, co jest dla Ciebie ważne – zawęzi to listę ofert."
+        hint="Zaznacz, co jest dla Ciebie ważne. Zawęzi to listę ofert."
         options={REQUIREMENTS}
         icons={REQUIREMENT_ICONS}
         register={register}
@@ -171,8 +171,8 @@ export function StepConfig({
           </p>
         ) : null}
 
-        {/* Suwak zsynchronizowany z polem tekstowym – po kliknięciu presetu użytkownik
-            widzi natychmiast, gdzie w widełkach 100 tys. – 1 mln € wylądował. */}
+        {/* Suwak zsynchronizowany z polem tekstowym. Po kliknięciu presetu użytkownik
+            widzi natychmiast, gdzie w widełkach 100 tys.: 1 mln € wylądował. */}
         <div className="mt-3">
           <input
             id="budget-range"
@@ -182,7 +182,7 @@ export function StepConfig({
             step={BUDGET_STEP}
             value={sliderValue}
             onChange={(event) => onBudgetChange(formatBudgetInput(Number(event.target.value)))}
-            aria-label="Budżet w EUR – suwak"
+            aria-label="Budżet w EUR. Suwak"
             aria-valuetext={
               sliderValue >= BUDGET_MAX
                 ? "1 000 000 euro i więcej"

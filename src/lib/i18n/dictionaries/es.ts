@@ -22,7 +22,7 @@ export const es = {
     stepProperty: "Propiedad",
     stepContact: "Contacto",
     stepLabel: "paso {step}/2",
-    next: "Siguiente – datos de contacto",
+    next: "Siguiente. Datos de contacto",
     back: "Atrás",
     submit: "Enviar y recibir ofertas",
     sending: "Enviando…",
@@ -38,7 +38,7 @@ export const es = {
       budget: "Presupuesto (EUR)",
       name: "Nombre y apellidos",
       phone: "Teléfono / WhatsApp",
-      email: "Correo electrónico (opcional – enviamos un PDF)",
+      email: "Correo electrónico (opcional. Enviamos un PDF)",
       city: "Localidad",
       district: "Zona / urbanización",
       contactMethod: "Forma de contacto preferida",
@@ -46,9 +46,9 @@ export const es = {
     },
     errors: {
       required: "Este campo es obligatorio",
-      phone: "Introduce un número válido (8–15 dígitos, prefijo internacional permitido)",
+      phone: "Introduce un número válido (8-15 dígitos, prefijo internacional permitido)",
       email: "Introduce un correo electrónico válido",
-      budget: "Introduce tu presupuesto en EUR (p. ej. 250 000)",
+      budget: "Introduce tu presupuesto en EUR (p. Ej. 250 000)",
       generic: "No hemos podido enviar tu solicitud. Inténtalo de nuevo o llámanos.",
       network: "Sin conexión. Comprueba tu internet e inténtalo de nuevo.",
     },
@@ -85,7 +85,7 @@ export const es = {
       },
       {
         q: "Contacto del agente en 24 h",
-        a: "El agente te llama o escribe por WhatsApp con 3–5 ofertas ajustadas.",
+        a: "El agente te llama o escribe por WhatsApp con 3-5 ofertas ajustadas.",
       },
       {
         q: "Visitas y revisión legal",
@@ -100,7 +100,7 @@ export const es = {
     },
     itp: {
       q: "¿Qué impuestos se pagan al comprar?",
-      a: "En vivienda de segunda mano, ITP del 10% (Comunidad Valenciana y Murcia). En obra nueva, IVA del 10% más AJD. Con notaría y abogado, calcula un 13–14% del precio. Además: IBI anual e IRPF sobre el alquiler.",
+      a: "En vivienda de segunda mano, ITP del 10% (Comunidad Valenciana y Murcia). En obra nueva, IVA del 10% más AJD. Con notaría y abogado, calcula un 13-14% del precio. Además: IBI anual e IRPF sobre el alquiler.",
     },
     residency: {
       q: "¿Comprar una propiedad da derecho de residencia?",

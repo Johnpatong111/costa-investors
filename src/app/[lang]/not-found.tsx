@@ -13,13 +13,13 @@ export default function NotFound() {
         Nie znaleźliśmy tej strony
       </h1>
       <p className="mx-auto mt-3 max-w-xl text-brand-700">
-        Adres mógł się zmienić (np. nazwa dzielnicy) albo lokalizacja nie jest jeszcze
-        objęta naszą bazą. Sprawdź dostępne miasta lub wyślij zgłoszenie – wycenimy
+        Adres mógł się zmienić (np. Nazwa dzielnicy) albo lokalizacja nie jest jeszcze
+        objęta naszą bazą. Sprawdź dostępne miasta lub wyślij zgłoszenie. Wycenimy
         nieruchomość w dowolnej lokalizacji w Polsce.
       </p>
       <div className="mt-8 flex flex-wrap justify-center gap-3">
         <ButtonLink href={`/${PRIMARY_SERVICE.slug}`}>
-          {PRIMARY_SERVICE.name} – cała Polska
+          {PRIMARY_SERVICE.name}. Cała Polska
         </ButtonLink>
         <ButtonLink href="/" variant="ghost">
           Strona główna

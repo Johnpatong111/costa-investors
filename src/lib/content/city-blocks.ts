@@ -4,7 +4,7 @@ import type { MarketStats } from "./market-stats";
 import { formatEur, formatRate } from "../utils/format";
 import type { ContentBlock, FaqItem } from "./content-utils";
 
-/** Bloki strony miejskiej – porównanie lokalizacji i danych inwestycyjnych. */
+/** Bloki strony miejskiej. Porównanie lokalizacji i danych inwestycyjnych. */
 export function buildCityBlocks(
   city: CitySeed,
   service: ServiceDefinition,
@@ -16,13 +16,13 @@ export function buildCityBlocks(
     .sort((a, b) => b.pricePerM2 - a.pricePerM2)
     .map(
       (district) =>
-        `${district.name} – ${formatEur(district.pricePerM2)}/m² · ROI ${formatRate(district.rentalYield)}`,
+        `${district.name}: ${formatEur(district.pricePerM2)}/m² · ROI ${formatRate(district.rentalYield)}`,
     );
 
   return [
     {
       id: "rynek",
-      heading: `Rynek nieruchomości w ${city.nameLocative} – ${vars.year}`,
+      heading: `Rynek nieruchomości w ${city.nameLocative}: ${vars.year}`,
       paragraphs: [
         t(
           "Mediana ofertowa w {cityLoc} to {cityPrice} €/m², czyli {growth} r/r. Na tle regionu {region} ({regionPrice} €/m²) miasto wypada {pricePosition}. Średni czas ekspozycji oferty to {days} dni, a rocznie zawieranych jest około {volume} transakcji.",
@@ -44,7 +44,7 @@ export function buildCityBlocks(
       heading: `Ceny i ROI w dzielnicach ${city.nameGenitive}`,
       paragraphs: [
         t(
-          "Ceny w {cityLoc} różnią się w zależności od odległości od plaży, roku budowy i standardu osiedla. Poniżej mediana €/m² i rentowność najmu w poszczególnych dzielnicach i urbanizacjach – kliknij nazwę, aby zobaczyć pełny raport.",
+          "Ceny w {cityLoc} różnią się w zależności od odległości od plaży, roku budowy i standardu osiedla. Poniżej mediana €/m² i rentowność najmu w poszczególnych dzielnicach i urbanizacjach. Kliknij nazwę, aby zobaczyć pełny raport.",
         ),
       ],
       bullets:
@@ -61,7 +61,7 @@ export function buildCityBlocks(
         ),
       ],
       bullets: service.process.map(
-        (step) => `${step.title} (${step.duration}) – ${t(step.description)}`,
+        (step) => `${step.title} (${step.duration}): ${t(step.description)}`,
       ),
     },
     {
@@ -95,11 +95,11 @@ export function buildCityFaq(
     },
     {
       question: `Gdzie w ${city.nameGenitive} jest najtaniej, a gdzie najlepsze ROI?`,
-      answer: `Najniższa mediana cen jest w ${cheapest?.name ?? city.name} (${formatEur(cheapest?.pricePerM2 ?? city.pricePerM2)}/m²), a najwyższa rentowność najmu w ${bestRoi?.name ?? city.name} (${formatRate(bestRoi?.rentalYield ?? city.rentalYield)} brutto). Rzadko pokrywają się one z najdroższymi lokalizacjami – i to jest sedno decyzji inwestycyjnej.`,
+      answer: `Najniższa mediana cen jest w ${cheapest?.name ?? city.name} (${formatEur(cheapest?.pricePerM2 ?? city.pricePerM2)}/m²), a najwyższa rentowność najmu w ${bestRoi?.name ?? city.name} (${formatRate(bestRoi?.rentalYield ?? city.rentalYield)} brutto). Rzadko pokrywają się one z najdroższymi lokalizacjami. I to jest sedno decyzji inwestycyjnej.`,
     },
     {
       question: `Czy Polacy kupują nieruchomości w ${city.nameLocative}?`,
-      answer: `Tak – kupujący z Polski stanowią około ${formatRate(city.polishBuyerShare, 0)} nabywców w ${city.nameLocative}. Oznacza to dostęp do polskojęzycznych usług (prawnik, tłumacz, zarządzanie najmem) bez konieczności znajomości hiszpańskiego.`,
+      answer: `Tak. Kupujący z Polski stanowią około ${formatRate(city.polishBuyerShare, 0)} nabywców w ${city.nameLocative}. Oznacza to dostęp do polskojęzycznych usług (prawnik, tłumacz, zarządzanie najmem) bez konieczności znajomości hiszpańskiego.`,
     },
   ];
 }

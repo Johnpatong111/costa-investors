@@ -3,7 +3,7 @@
  * KONFIGURACJA i18n (PL / EN / ES)
  * ===========================================================================
  * Jeden język = jeden prefiks URL. Każda wersja jest osobnym adresem
- * (bez negocjacji treści po nagłówku Accept-Language po pierwszym wejściu) –
+ * (bez negocjacji treści po nagłówku Accept-Language po pierwszym wejściu) -
  * to warunek poprawnego indeksowania i hreflang.
  *
  * PL jest językiem domyślnym i JEDYNYM, który ma historyczne URL-e bez
@@ -19,7 +19,7 @@ export const DEFAULT_LOCALE: Locale = "pl";
 /**
  * Języki, które mają FAKTYCZNIE wdrożone trasy `app/[lang]/...`.
  * Etap migracji: dopóki trasa EN/ES nie istnieje, nie wolno emitować
- * hreflang ani przekierowań – Google dostałby 404.
+ * hreflang ani przekierowań - Google dostałby 404.
  * Po przeniesieniu routingu zmień na `[...LOCALES]`.
  */
 export const ROUTABLE_LOCALES: Locale[] = ["pl", "en", "es"];
@@ -84,7 +84,7 @@ export function languageAlternates(
   return alternates;
 }
 
-/** Wszystkie warianty językowe danego zasobu – do sitemapy (xhtml:link). */
+/** Wszystkie warianty językowe danego zasobu. Do sitemapy (xhtml:link). */
 export function localeVariants(buildPath: (locale: Locale) => string): {
   locale: Locale;
   url: string;

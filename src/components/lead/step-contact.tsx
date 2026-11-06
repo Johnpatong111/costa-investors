@@ -29,7 +29,7 @@ export interface StepContactProps {
   cityLocked: boolean;
 }
 
-/** Krok 2 – kontakt. Prosimy tylko o 2 pola obowiązkowe: imię i telefon. */
+/** Krok 2. Kontakt. Prosimy tylko o 2 pola obowiązkowe: imię i telefon. */
 export function StepContact({
   register,
   control,
@@ -110,7 +110,7 @@ export function StepContact({
           <p className="mt-1 text-xs font-medium text-red-600">{errors.phone.message}</p>
         ) : (
           <p className="mt-1 text-[11px] text-brand-500">
-            Numer PL lub międzynarodowy (8–15 cyfr). Dzwoni agent mówiący po polsku.
+            Numer PL lub międzynarodowy (8-15 cyfr). Dzwoni agent mówiący po polsku.
           </p>
         )}
       </div>
@@ -118,7 +118,7 @@ export function StepContact({
       <div>
         <label htmlFor="email" className="mb-1 block text-xs font-semibold text-brand-700">
           E-mail{" "}
-          <span className="font-normal text-brand-500">(opcjonalnie – wyślemy analizę PDF)</span>
+          <span className="font-normal text-brand-500">(opcjonalnie. Wyślemy analizę PDF)</span>
         </label>
         <div className="relative">
           <Mail
@@ -217,7 +217,7 @@ export function StepContact({
         <span>Chcę dostawać nowe oferty i analizy rynku w Hiszpanii (opcjonalnie).</span>
       </label>
 
-      {/* Honeypot – boty wypełniają ukryte pole, ludzie go nie widzą. */}
+      {/* Honeypot. Boty wypełniają ukryte pole, ludzie go nie widzą. */}
       <div className="absolute -left-[9999px] h-0 w-0 overflow-hidden" aria-hidden>
         <label htmlFor="website">Strona internetowa</label>
         <input id="website" tabIndex={-1} autoComplete="off" {...register("website")} />

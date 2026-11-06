@@ -5,7 +5,7 @@ import { formatEur, formatPrice, formatRate } from "@/lib/utils/format";
 
 /**
  * Pasek statystyk + tabela porównawcza (Costa Blanca, EUR).
- * Te same liczby zasilają JSON-LD i meta description – spójność danych
+ * Te same liczby zasilają JSON-LD i meta description. Spójność danych
  * w obrębie strony jest sygnałem jakości dla Google i użytkownika.
  */
 export function MarketStatsSection({
@@ -37,7 +37,7 @@ export function MarketStatsSection({
   return (
     <Section className="bg-white pt-10">
       <SectionHeading eyebrow={`Dane: ${stats.dataAsOf}`}>
-        Ceny i rentowność – {locationName}
+        Ceny i rentowność - {locationName}
       </SectionHeading>
 
       <dl className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
@@ -87,7 +87,7 @@ export function MarketStatsSection({
                     </th>
                     <td className="px-4 py-3 text-right tabular-nums">{formatEur(row.price)}</td>
                     <td className="px-4 py-3 text-right tabular-nums">
-                      {row.highlight ? "—" : formatRate(diff * 100, 0)}
+                      {row.highlight ? "-" : formatRate(diff * 100, 0)}
                     </td>
                   </tr>
                 );
@@ -121,7 +121,7 @@ export function MarketStatsSection({
             <Badge tone={stats.reliable ? "positive" : "warning"}>
               {stats.reliable
                 ? "Dane wystarczające do samodzielnej analizy"
-                : "Mała próba – wymagana weryfikacja"}
+                : "Mała próba. Wymagana weryfikacja"}
             </Badge>
           </div>
         </div>

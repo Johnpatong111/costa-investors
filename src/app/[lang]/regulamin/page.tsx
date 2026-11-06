@@ -48,7 +48,7 @@ export default function TermsPage() {
         <p>
           Operator dokłada starań, aby dane były aktualne, ale nie odpowiada za decyzje
           podjęte wyłącznie na ich podstawie. Linki do serwisów zewnętrznych prowadzą do
-          treści osób trzecich – operator nie kontroluje ich zawartości.
+          treści osób trzecich. Operator nie kontroluje ich zawartości.
         </p>
 
         <h2 className="pt-4 text-xl font-bold text-brand-950">4. Reklamacje</h2>

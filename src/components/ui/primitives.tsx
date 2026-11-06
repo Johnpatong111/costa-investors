@@ -3,7 +3,7 @@ import type { ComponentPropsWithoutRef, ReactNode } from "react";
 import { cn } from "@/lib/utils/cn";
 
 /* ------------------------------------------------------------------ *
- * Primitive'y UI – jeden zestaw tokenów dla całej witryny pSEO.
+ * Primitive'y UI. Jeden zestaw tokenów dla całej witryny pSEO.
  * Zmiana wyglądu CTA w jednym miejscu = zmiana na 500 stronach.
  * ------------------------------------------------------------------ */
 

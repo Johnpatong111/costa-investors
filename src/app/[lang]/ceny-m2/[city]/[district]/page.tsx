@@ -219,7 +219,7 @@ export default async function PriceReportPage({
         </div>
       </Section>
 
-      <FaqAccordion items={report.faq} title={`FAQ – ceny i ROI w ${entry.district.nameLocative}`} />
+      <FaqAccordion items={report.faq} title={`FAQ. Ceny i ROI w ${entry.district.nameLocative}`} />
 
       <Section className="bg-brand-50/60">
         <div className="grid gap-6 lg:grid-cols-[1fr_420px]">
@@ -228,7 +228,7 @@ export default async function PriceReportPage({
               Chcesz kupić w {entry.district.nameLocative}?
             </SectionHeading>
             <p className="max-w-xl text-sm leading-relaxed text-brand-700">
-              Znasz już ceny i ROI. Wyślij zgłoszenie z budżetem – przygotujemy 3–5 ofert z
+              Znasz już ceny i ROI. Wyślij zgłoszenie z budżetem. Przygotujemy 3-5 ofert z
               wyliczonym zwrotem i pełnymi kosztami zakupu.
             </p>
             <ul className="mt-4 space-y-2 text-sm text-brand-700">
@@ -238,7 +238,7 @@ export default async function PriceReportPage({
                     href={`/${service.slug}/${entry.city.slug}/${entry.district.slug}`}
                     className="font-medium text-brand-900 underline decoration-brand-300 underline-offset-2 hover:decoration-brand-700"
                   >
-                    {service.name} – {entry.district.name}
+                    {service.name} - {entry.district.name}
                   </a>
                 </li>
               ))}

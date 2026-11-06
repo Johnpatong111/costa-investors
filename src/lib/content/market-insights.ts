@@ -54,7 +54,7 @@ export function estimateInvestment(stats: MarketStats, budget: number): Investme
   };
 }
 
-/** "wzrost 9,4% r/r" – jeden wariant zdania na stronę. */
+/** "wzrost 9,4% r/r". Jeden wariant zdania na stronę. */
 export function describeGrowth(stats: MarketStats): string {
   if (stats.priceGrowth >= 9) {
     return `rynek w fazie dynamicznego wzrostu: ${formatRate(stats.priceGrowth)} r/r`;
@@ -65,7 +65,7 @@ export function describeGrowth(stats: MarketStats): string {
   if (stats.priceGrowth > 0) {
     return `umiarkowany wzrost ${formatRate(stats.priceGrowth)} r/r`;
   }
-  return `korekta cen ${formatRate(stats.priceGrowth)} r/r – większe pole do negocjacji`;
+  return `korekta cen ${formatRate(stats.priceGrowth)} r/r. Większe pole do negocjacji`;
 }
 
 export function describeYield(stats: MarketStats): string {
@@ -75,7 +75,7 @@ export function describeYield(stats: MarketStats): string {
   if (stats.rentalYield >= 5) {
     return `rentowność brutto ${formatRate(stats.rentalYield)} (netto ok. ${formatRate(stats.netYield)})`;
   }
-  return `niższa rentowność brutto ${formatRate(stats.rentalYield)} – lokalizacja broni się wzrostem wartości`;
+  return `niższa rentowność brutto ${formatRate(stats.rentalYield)}. Lokalizacja broni się wzrostem wartości`;
 }
 
 export function describeDemand(index: number): string {
@@ -98,7 +98,7 @@ export function describePricePosition(stats: MarketStats): string {
     : `cena €/m² jest o ${formatRate(Math.abs(diff) * 100, 0)} niższa od mediany miasta`;
 }
 
-/** Ile mieszkań/domów kupisz za budżet – konkret zamiast ogólników. */
+/** Ile mieszkań/domów kupisz za budżet. Konkret zamiast ogólników. */
 export function describeBudgetFit(stats: MarketStats, budget: number, areaM2 = 70): string {
   const units = Math.max(1, Math.floor(budget / (stats.pricePerM2 * areaM2)));
   return units === 1

@@ -10,7 +10,7 @@ import { getDictionary } from "@/lib/i18n";
 
 /**
  * ROOT LAYOUT dla wszystkich wersji językowych.
- * Segment `[lang]` jest jedynym root layoutem aplikacji – dzięki temu
+ * Segment `[lang]` jest jedynym root layoutem aplikacji. Dzięki temu
  * `<html lang>` jest zawsze zgodny z URL-em, a nie zaszyty na "pl".
  *
  * Etap migracji: treść body jest na razie tylko po polsku, więc wersje

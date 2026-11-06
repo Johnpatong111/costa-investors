@@ -14,7 +14,7 @@ import { translatePath } from "../i18n/paths";
  *  - limit protokołu to 50 000 URL / 50 MB, więc dzielimy na chunki po 5 000,
  *  - do sitemapy trafiają TYLKO strony indeksowalne (`stats.reliable`),
  *  - `alternates.languages` (hreflang) emitowane są wyłącznie dla języków,
- *    które mają wdrożone trasy (ROUTABLE_LOCALES) – brak 404 dla robotów.
+ *    które mają wdrożone trasy (ROUTABLE_LOCALES). Brak 404 dla robotów.
  */
 
 export interface SitemapEntry {
@@ -22,13 +22,13 @@ export interface SitemapEntry {
   lastModified: string;
   changeFrequency: "daily" | "weekly" | "monthly" | "yearly";
   priority: number;
-  /** Warianty językowe (hreflang) – obecne dopiero po migracji tras. */
+  /** Warianty językowe (hreflang). Obecne dopiero po migracji tras. */
   alternates?: Record<string, string>;
 }
 
 export const SITEMAP_CHUNK_SIZE = 5_000;
 
-/** Adres z prefiksem języka – sitemapa musi wskazywać finalne URL-e (bez redirectów). */
+/** Adres z prefiksem języka. Sitemapa musi wskazywać finalne URL-e (bez redirectów). */
 interface LogicalEntry {
   path: string;
   lastModified: string;
@@ -36,7 +36,7 @@ interface LogicalEntry {
   priority: number;
 }
 
-/** Wpis logiczny (polski slug usługi) – rozwijany na języki w getAllSitemapEntries. */
+/** Wpis logiczny (polski slug usługi). Rozwijany na języki w getAllSitemapEntries. */
 const logical = (
   path: string,
   options: { changeFrequency: SitemapEntry["changeFrequency"]; priority: number },
@@ -100,7 +100,7 @@ function staticPaths(): LogicalEntry[] {
   return [
     logical("/", { changeFrequency: "daily", priority: 1 }),
     logical("/o-nas", { changeFrequency: "monthly", priority: 0.5 }),
-    // Hub raportów cenowych – wejście do 70 raportów dzielnicowych.
+    // Hub raportów cenowych. Wejście do 70 raportów dzielnicowych.
     logical(`/${PRICE_REPORT.slug}`, { changeFrequency: "monthly", priority: 0.7 }),
     logical("/polityka-prywatnosci", { changeFrequency: "yearly", priority: 0.2 }),
     logical("/regulamin", { changeFrequency: "yearly", priority: 0.2 }),
@@ -131,7 +131,7 @@ function expandAndLocalize(entries: LogicalEntry[]): SitemapEntry[] {
   });
 }
 
-/** Pełna lista URL – używana przez QA i robots.ts do policzenia chunków. */
+/** Pełna lista URL. Używana przez QA i robots.ts do policzenia chunków. */
 export function getAllSitemapEntries(): SitemapEntry[] {
   return expandAndLocalize([
     ...staticPaths(),

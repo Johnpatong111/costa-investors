@@ -1,7 +1,7 @@
 /**
  * Interpolacja szablonów `{placeholder}`.
  *
- * Rejestruje brakujące placeholdery zamiast rzucać wyjątkiem w runtime –
+ * Rejestruje brakujące placeholdery zamiast rzucać wyjątkiem w runtime -
  * dzięki temu pojedynczy błąd w szablonie nie wywala całego builda 10k stron,
  * ale `npm run validate:data` i tak go zgłosi (assertNoMissingPlaceholders).
  */

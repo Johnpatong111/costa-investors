@@ -7,7 +7,7 @@ export interface HeroProps {
   h1: string;
   lead: string;
   chips: string[];
-  /** Formularz / kalkulator – wstrzykiwany z serwera jako slot. */
+  /** Formularz / kalkulator. Wstrzykiwany z serwera jako slot. */
   children: ReactNode;
   footnote?: string;
 }
@@ -53,7 +53,7 @@ export function Hero({ eyebrow, h1, lead, chips, children, footnote }: HeroProps
             >
               <span aria-hidden>☎</span> {SITE.phone}
             </a>
-            <span>Pon.–pt. 8:00–20:00, sob. 9:00–14:00</span>
+            <span>Pon.. Pt. 8:00-20:00, sob. 9:00-14:00</span>
           </div>
 
           {footnote ? (

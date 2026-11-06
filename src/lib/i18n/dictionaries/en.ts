@@ -18,11 +18,11 @@ export const en = {
   form: {
     heading: "Find your property with an English-speaking agent in 24h",
     subheading:
-      "Tell us your preferences – a certified agent will come back with matched listings.",
+      "Tell us your preferences. A certified agent will come back with matched listings.",
     stepProperty: "Property",
     stepContact: "Contact",
     stepLabel: "step {step}/2",
-    next: "Next – contact details",
+    next: "Next. Contact details",
     back: "Back",
     submit: "Send and get my offers",
     sending: "Sending…",
@@ -38,7 +38,7 @@ export const en = {
       budget: "Budget (EUR)",
       name: "Full name",
       phone: "Phone / WhatsApp",
-      email: "Email (optional – we'll send a PDF analysis)",
+      email: "Email (optional. We'll send a PDF analysis)",
       city: "Location",
       district: "Area / urbanisation",
       contactMethod: "Preferred contact method",
@@ -46,7 +46,7 @@ export const en = {
     },
     errors: {
       required: "This field is required",
-      phone: "Enter a valid number (8–15 digits, international prefix allowed)",
+      phone: "Enter a valid number (8-15 digits, international prefix allowed)",
       email: "Enter a valid email address",
       budget: "Enter your budget in EUR (e.g. 250 000)",
       generic: "We couldn't send your enquiry. Please try again or call us.",
@@ -85,7 +85,7 @@ export const en = {
       },
       {
         q: "Agent contact within 24h",
-        a: "An English-speaking agent calls or messages you on WhatsApp with 3–5 matched listings.",
+        a: "An English-speaking agent calls or messages you on WhatsApp with 3-5 matched listings.",
       },
       {
         q: "Viewings and legal check",
@@ -96,11 +96,11 @@ export const en = {
   legal: {
     nie: {
       q: "Do I need an NIE number to buy property in Spain?",
-      a: "Yes. The NIE (Número de Identificación de Extranjero) is required at the notary and for tax purposes. You apply in person in Spain or through a power of attorney – usually 1–3 weeks.",
+      a: "Yes. The NIE (Número de Identificación de Extranjero) is required at the notary and for tax purposes. You apply in person in Spain or through a power of attorney. Usually 1-3 weeks.",
     },
     itp: {
       q: "What taxes apply when buying?",
-      a: "Resale properties: ITP 10% (Comunidad Valenciana and Murcia). New builds: 10% VAT plus AJD duty. Including notary and legal fees, budget around 13–14% of the price. Annual costs: IBI property tax and rental income tax.",
+      a: "Resale properties: ITP 10% (Comunidad Valenciana and Murcia). New builds: 10% VAT plus AJD duty. Including notary and legal fees, budget around 13-14% of the price. Annual costs: IBI property tax and rental income tax.",
     },
     residency: {
       q: "Does buying property give me residency?",

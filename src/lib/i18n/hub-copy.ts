@@ -33,17 +33,17 @@ export const HUB_COPY: Record<Locale, HubCopy> = {
     home: "Strona główna",
     h1: (name, region) => `${name} na ${region}`,
     lead: (name, anchor, highlight) =>
-      `${name}: ${anchor}, ${highlight}. Pokazujemy ceny €/m², realne ROI i pełne koszty zakupu (ITP/IVA, notariusz, prawnik) – a Twoje zgłoszenie trafia do certyfikowanego polskojęzycznego agenta z konkretnymi ofertami.`,
+      `${name}: ${anchor}, ${highlight}. Pokazujemy ceny €/m², realne ROI i pełne koszty zakupu (ITP/IVA, notariusz, prawnik). A Twoje zgłoszenie trafia do certyfikowanego polskojęzycznego agenta z konkretnymi ofertami.`,
     chips: {
       median: "mediana",
       cities: (count) => `${count} miejscowości`,
       agent: "agent mówiący po polsku",
     },
     footnote: (subregions) =>
-      `Obsługujemy ${subregions} subregionów Hiszpanii. Zgłoszenie przekazujemy do partnerskiej agencji – bez zobowiązania do zakupu.`,
+      `Obsługujemy ${subregions} subregionów Hiszpanii. Zgłoszenie przekazujemy do partnerskiej agencji. Bez zobowiązania do zakupu.`,
     leadHeading: "Połącz się z ekspertem na Costa Blanca i Costa Cálida",
     leadSubheading:
-      "Wypełnij preferencje – certyfikowany polskojęzyczny agent skontaktuje się z gotowymi ofertami.",
+      "Wypełnij preferencje. Certyfikowany polskojęzyczny agent skontaktuje się z gotowymi ofertami.",
     coverageEyebrow: "Zasięg",
     coverageTitle: "Miejscowości na Costa Blanca i Costa Cálida",
     conditionsEyebrow: "Warunki",
@@ -60,17 +60,17 @@ export const HUB_COPY: Record<Locale, HubCopy> = {
     home: "Home",
     h1: (name, region) => `${name} in ${region}`,
     lead: (name, anchor, highlight) =>
-      `${name}: ${anchor}, ${highlight}. We show €/m² prices, real rental yields and the full cost of buying (ITP/IVA, notary, abogado) – your enquiry goes straight to a certified English-speaking agent with matched listings.`,
+      `${name}: ${anchor}, ${highlight}. We show €/m² prices, real rental yields and the full cost of buying (ITP/IVA, notary, abogado). Your enquiry goes straight to a certified English-speaking agent with matched listings.`,
     chips: {
       median: "median",
       cities: (count) => `${count} locations`,
       agent: "English-speaking agent",
     },
     footnote: (subregions) =>
-      `We cover ${subregions} subregions of Spain. Enquiries are passed to a partner agency – with no obligation to buy.`,
+      `We cover ${subregions} subregions of Spain. Enquiries are passed to a partner agency. With no obligation to buy.`,
     leadHeading: "Talk to an expert on Costa Blanca and Costa Cálida",
     leadSubheading:
-      "Share your preferences – a certified agent will come back with matched listings.",
+      "Share your preferences. A certified agent will come back with matched listings.",
     coverageEyebrow: "Coverage",
     coverageTitle: "Locations on Costa Blanca and Costa Cálida",
     conditionsEyebrow: "What you get",
@@ -87,17 +87,17 @@ export const HUB_COPY: Record<Locale, HubCopy> = {
     home: "Inicio",
     h1: (name, region) => `${name} en ${region}`,
     lead: (name, anchor, highlight) =>
-      `${name}: ${anchor}, ${highlight}. Mostramos precios €/m², rentabilidad real y todos los gastos de compra (ITP/IVA, notaría, abogado) – tu solicitud llega a un agente certificado con ofertas concretas.`,
+      `${name}: ${anchor}, ${highlight}. Mostramos precios €/m², rentabilidad real y todos los gastos de compra (ITP/IVA, notaría, abogado). Tu solicitud llega a un agente certificado con ofertas concretas.`,
     chips: {
       median: "mediana",
       cities: (count) => `${count} localidades`,
       agent: "agente en español",
     },
     footnote: (subregions) =>
-      `Cubrimos ${subregions} subregiones de España. La solicitud se remite a una agencia asociada – sin obligación de compra.`,
+      `Cubrimos ${subregions} subregiones de España. La solicitud se remite a una agencia asociada. Sin obligación de compra.`,
     leadHeading: "Habla con un experto en Costa Blanca y Costa Cálida",
     leadSubheading:
-      "Comparte tus preferencias – un agente certificado te enviará ofertas ajustadas.",
+      "Comparte tus preferencias. Un agente certificado te enviará ofertas ajustadas.",
     coverageEyebrow: "Cobertura",
     coverageTitle: "Localidades en Costa Blanca y Costa Cálida",
     conditionsEyebrow: "Qué incluye",

@@ -10,14 +10,14 @@ import { formatEur, formatPrice, formatRate } from "../utils/format";
  * Szablony usług zawierają placeholdery ({districtLoc}, {rent}, {price}…),
  * które mają sens tylko w kontekście konkretnej miejscowości. Na stronach
  * zbiorczych NIE MAMY dzielnicy, więc podstawiamy bezpieczne, uśrednione
- * wartości regionalne — zamiast wypuszczać surowe `{districtLoc}` do UI.
+ * wartości regionalne. Zamiast wypuszczać surowe `{districtLoc}` do UI.
  *
  * Każdy tekst przechodzi przez `interpolate`, a QA (`validate:data`) dodatkowo
  * skanuje wynik pod kątem pozostałych nawiasów klamrowych.
  */
 
 export interface ServiceCopyInput {
-  /** Nazwa regionu lub "Hiszpania" – używana w miejscownikach. */
+  /** Nazwa regionu lub "Hiszpania". Używana w miejscownikach. */
   areaName: string;
   /** Mediana €/m² dla obszaru (region lub cała Hiszpania). */
   medianPricePerM2: number;
@@ -93,7 +93,7 @@ export function buildServiceFallbackVars(input: ServiceCopyInput): Record<string
   };
 }
 
-/** Opisy korzyści z podstawionymi zmiennymi – zawsze gotowe do renderu. */
+/** Opisy korzyści z podstawionymi zmiennymi. Zawsze gotowe do renderu. */
 export function interpolateBenefits(
   service: ServiceDefinition,
   vars: Record<string, string>,
@@ -105,7 +105,7 @@ export function interpolateBenefits(
   }));
 }
 
-/** Lista kontrolna / dokumenty – także bez surowych placeholderów. */
+/** Lista kontrolna / dokumenty. Także bez surowych placeholderów. */
 export function interpolateChecklist(
   service: ServiceDefinition,
   vars: Record<string, string>,

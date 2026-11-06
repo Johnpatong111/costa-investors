@@ -7,7 +7,7 @@
  *  - a Google widzi inną stronę przy każdym pobraniu.
  */
 
-/** FNV-1a 32-bit – szybki, stabilny hash ciągu znaków. */
+/** FNV-1a 32-bit. Szybki, stabilny hash ciągu znaków. */
 export function hashString(input: string): number {
   let hash = 0x811c9dc5;
   for (let i = 0; i < input.length; i++) {
@@ -17,7 +17,7 @@ export function hashString(input: string): number {
   return hash >>> 0;
 }
 
-/** Mulberry32 – tani PRNG o dobrych właściwościach rozkładu. */
+/** Mulberry32. Tani PRNG o dobrych właściwościach rozkładu. */
 export function createRng(seed: number): () => number {
   let state = seed >>> 0;
   return () => {

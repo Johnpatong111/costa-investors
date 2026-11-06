@@ -8,7 +8,7 @@ import {
 
 /**
  * Loader danych + indeksy O(1) dla Costa Blanca.
- * Walidacja Zod przy imporcie – błąd schematu zatrzymuje build z czytelnym
+ * Walidacja Zod przy imporcie. Błąd schematu zatrzymuje build z czytelnym
  * komunikatem. Migracja na feed (Idealista/Fotocasa) = podmiana tego pliku.
  */
 

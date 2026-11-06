@@ -13,7 +13,7 @@ import { distanceKm } from "../utils/format";
 
 /**
  * READ API repozytorium lokalizacji (Costa Blanca).
- * Wyłącznie funkcje synchroniczne – dane w pamięci, więc generateStaticParams
+ * Wyłącznie funkcje synchroniczne. Dane w pamięci, więc generateStaticParams
  * i generateMetadata nie robią I/O na każdą stronę.
  */
 
@@ -64,12 +64,12 @@ export function getDistrict(citySlug: string, districtSlug: string): DistrictEnt
   return districtByPath.get(key) ?? districtByAlias.get(key);
 }
 
-/** Wszystkie kombinacje miasto/dzielnica – fundament `generateStaticParams`. */
+/** Wszystkie kombinacje miasto/dzielnica. Fundament `generateStaticParams`. */
 export function getAllDistrictEntries(): DistrictEntry[] {
   return [...districtByPath.values()];
 }
 
-/** Dzielnice najbliższe geograficznie – internal linking. */
+/** Dzielnice najbliższe geograficznie. Internal linking. */
 export function getNearbyDistricts(entry: DistrictEntry, limit = 4): DistrictEntry[] {
   const result: DistrictEntry[] = [];
   const taken = new Set<string>();
@@ -103,7 +103,7 @@ export function getNearbyDistricts(entry: DistrictEntry, limit = 4): DistrictEnt
   return result;
 }
 
-/** Sąsiednie miejscowości – linkowanie „blisko siebie”. */
+/** Sąsiednie miejscowości. Linkowanie „blisko siebie”. */
 export function getNearbyCities(city: CitySeed, limit = 4): CitySeed[] {
   return LOCATIONS.cities
     .filter((other) => other.slug !== city.slug)

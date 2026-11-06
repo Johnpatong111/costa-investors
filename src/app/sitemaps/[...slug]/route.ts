@@ -3,7 +3,7 @@ import { toSitemapUrlsetXml, XML_HEADERS } from "@/lib/seo/sitemap-xml";
 
 /**
  * ===========================================================================
- * /sitemaps/{id}.xml – CHUNKI MAPY (5 000 URL-i na plik)
+ * /sitemaps/{id}.xml - CHUNKI MAPY (5 000 URL-i na plik)
  * ===========================================================================
  * Catch-all segment obsługuje nazwę z rozszerzeniem (`0.xml`), czego nie da
  * się zrobić zwykłym segmentem dynamicznym. Dzięki własnemu handlerowi każdy

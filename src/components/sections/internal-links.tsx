@@ -9,7 +9,7 @@ export interface LinkGroup {
 /**
  * Internal linking money page → money page.
  * Google potrzebuje ścieżek dojścia do każdej strony pSEO (max 3 kliknięcia),
- * a użytkownik – alternatyw w pobliżu, zanim opuści witrynę.
+ * a użytkownik. Alternatyw w pobliżu, zanim opuści witrynę.
  */
 export function InternalLinks({
   groups,

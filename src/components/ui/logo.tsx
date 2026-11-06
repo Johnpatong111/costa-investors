@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils/cn";
 
 /**
  * ===========================================================================
- * IDENTYFIKACJA WIZUALNA – SYGNET + ZNAK SŁOWNY
+ * IDENTYFIKACJA WIZUALNA - SYGNET + ZNAK SŁOWNY
  * ===========================================================================
  * Sygnet: geometryczny dach (architektura) + wschodzące słońce nad horyzontem
  * (lokalizacja Costa Blanca / Cálida, nowy początek inwestycji).
@@ -43,7 +43,7 @@ const SIZES = {
   },
 } as const;
 
-/** Sam sygnet – używany też w faviconie (patrz `src/app/icon.svg`). */
+/** Sam sygnet. Używany też w faviconie (patrz `src/app/icon.svg`). */
 export function LogoMark({
   size = "sm",
   tone = "dark",
@@ -73,9 +73,9 @@ export function LogoMark({
         strokeLinecap="round"
         strokeLinejoin="round"
       >
-        {/* Dach – geometryczna bryła budynku. */}
+        {/* Dach. Geometryczna bryła budynku. */}
         <path d="M6 13.8 16 6l10 7.8" strokeWidth="2.6" />
-        {/* Horyzont – linia ziemi/morza. */}
+        {/* Horyzont. Linia ziemi/morza. */}
         <path d="M7.5 20.6h17" strokeWidth="2.2" opacity="0.45" />
         {/* Wschodzące słońce nad horyzontem. */}
         <path d="M11 20.6a5 5 0 0 1 10 0" strokeWidth="2.6" />

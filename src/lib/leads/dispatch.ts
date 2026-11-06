@@ -1,25 +1,25 @@
-/* eslint-disable no-console */
+﻿/* eslint-disable no-console */
 import { env } from "../env";
 import type { LeadRecord } from "./schema";
 import { hmacSha256, postJson, sendEmail, sendSms, type DispatchResult } from "./notify";
 
 /**
  * ===========================================================================
- * DYSTRYBUCJA LEADÓW (orkiestracja)
+ * DYSTRYBUCJA LEADĂ“W (orkiestracja)
  * ===========================================================================
- * Zasada: użytkownik NIGDY nie czeka na CRM. Rozsyłamy równolegle do wszystkich
- * skonfigurowanych kanałów, a awaria jednego nie blokuje pozostałych ani
+ * Zasada: uĹĽytkownik NIGDY nie czeka na CRM. RozsyĹ‚amy rĂłwnolegle do wszystkich
+ * skonfigurowanych kanaĹ‚Ăłw, a awaria jednego nie blokuje pozostaĹ‚ych ani
  * odpowiedzi HTTP.
  *
- * Kanały: webhook CRM (HMAC) → e-mail → SMS → Zapier → Make.
+ * KanaĹ‚y: webhook CRM (HMAC) â†’ e-mail â†’ SMS â†’ Zapier â†’ Make.
  */
 
 export type { DispatchResult } from "./notify";
 
-/** Webhook z podpisem HMAC – partner może zweryfikować źródło leada. */
+/** Webhook z podpisem HMAC. Partner moĹĽe zweryfikowaÄ‡ ĹşrĂłdĹ‚o leada. */
 async function postSigned(lead: LeadRecord): Promise<DispatchResult | null> {
-  // Routing per język: dedykowany endpoint dla EN/ES (agent mówiący tym językiem),
-  // z fallbackiem do wspólnego CRM.
+  // Routing per jÄ™zyk: dedykowany endpoint dla EN/ES (agent mĂłwiÄ…cy tym jÄ™zykiem),
+  // z fallbackiem do wspĂłlnego CRM.
   const locale = lead.language.toUpperCase();
   const url =
     env(`LEADS_WEBHOOK_URL_${locale}`) ??
@@ -50,7 +50,7 @@ async function postSigned(lead: LeadRecord): Promise<DispatchResult | null> {
     return {
       channel: "crm-webhook",
       ok: false,
-      error: error instanceof Error ? error.message : "nieznany błąd sieci",
+      error: error instanceof Error ? error.message : "nieznany bĹ‚Ä…d sieci",
     };
   }
 }
@@ -78,8 +78,8 @@ export async function dispatchLead(lead: LeadRecord): Promise<DispatchResult[]> 
     )
     .filter((result): result is DispatchResult => result !== null);
 
-  // Log strukturalny – trafia do Vercel/CloudWatch i służy jako backup
-  // w sytuacji, gdy wszystkie webhooki padną.
+  // Log strukturalny. Trafia do Vercel/CloudWatch i sĹ‚uĹĽy jako backup
+  // w sytuacji, gdy wszystkie webhooki padnÄ….
   console.info(
     JSON.stringify({
       event: "lead.dispatched",

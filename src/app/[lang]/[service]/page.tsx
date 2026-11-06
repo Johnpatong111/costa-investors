@@ -26,7 +26,7 @@ interface RouteParams {
   service: string;
 }
 
-/** Hub usługi: /{service} – wejście dla fraz bez lokalizacji. */
+/** Hub usługi: /{service}. Wejście dla fraz bez lokalizacji. */
 export const revalidate = 86_400;
 export const dynamicParams = false;
 
@@ -37,7 +37,7 @@ export function generateStaticParams({
 } = {}): Omit<RouteParams, "lang">[] {
   // Next wywołuje tę funkcję dla każdego prefiksu języka i przekazuje `lang`
   // z segmentu rodzica. Emitujemy wyłącznie slug NATYWNY dla języka, więc
-  // w prerenderze nie ma aliasów (`/pl/apartments-for-sale`) – te nadal
+  // w prerenderze nie ma aliasów (`/pl/apartments-for-sale`). Te nadal
   // działają, ale middleware odsyła z nich 308 na wersję kanoniczną.
   const lang = params?.lang;
   if (lang && isLocale(lang)) {
@@ -99,7 +99,7 @@ export default async function ServiceHubPage({
   const regions = getRegions();
   const subregions = [...new Set(cities.map((city) => city.subregion))];
 
-  // Strony zbiorcze nie mają jednej dzielnicy – podstawiamy medianę rynku,
+  // Strony zbiorcze nie mają jednej dzielnicy. Podstawiamy medianę rynku,
   // żeby opisy korzyści nie zawierały surowych placeholderów.
   const avgMedian = Math.round(
     cities.reduce((sum, city) => sum + city.pricePerM2, 0) / Math.max(cities.length, 1),

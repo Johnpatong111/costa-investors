@@ -1,8 +1,8 @@
-@import "tailwindcss";
+﻿@import "tailwindcss";
 
 /* ------------------------------------------------------------------
-   Design tokens (Tailwind v4 – konfiguracja w CSS, bez tailwind.config)
-   Paleta: "trust navy" + "action amber" – wysoki kontrast CTA.
+   Design tokens (Tailwind v4 â€“ konfiguracja w CSS, bez tailwind.config)
+   Paleta: "trust navy" + "action amber" â€“ wysoki kontrast CTA.
 ------------------------------------------------------------------- */
 @theme {
   --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
@@ -45,7 +45,7 @@
     text-rendering: optimizeLegibility;
   }
 
-  /* Lepsza czytelność długich treści pSEO */
+  /* Lepsza czytelnoĹ›Ä‡ dĹ‚ugich treĹ›ci pSEO */
   p,
   li {
     text-wrap: pretty;

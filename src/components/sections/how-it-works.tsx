@@ -1,7 +1,7 @@
 import { Section, SectionHeading } from "@/components/ui/primitives";
 import type { ProcessStep } from "@/lib/content/content-utils";
 
-/** Proces sprzedaży – redukuje niepewność, najczęstszy powód porzucenia formularza. */
+/** Proces sprzedaży. Redukuje niepewność, najczęstszy powód porzucenia formularza. */
 export function HowItWorks({
   steps,
   title,

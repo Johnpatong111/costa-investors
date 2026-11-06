@@ -9,7 +9,7 @@ import type { FaqItem } from "./content-utils";
 
 /**
  * FAQ generowane z danych + blok prawny (NIE, ITP/IVA, zakup przez Polaków).
- * Odpowiedzi zawsze zawierają liczby dla konkretnej lokalizacji – to główna
+ * Odpowiedzi zawsze zawierają liczby dla konkretnej lokalizacji. To główna
  * obrona przed duplicate content przy 200+ stronach.
  */
 export function buildDistrictFaq(
@@ -47,15 +47,15 @@ export function buildDistrictFaq(
     },
     {
       question: `Czy Polak może kupić nieruchomość w ${district.nameLocative}?`,
-      answer: `Tak, bez ograniczeń – obywatele UE mają w Hiszpanii takie same prawa jak Hiszpanie. Potrzebujesz numeru NIE (do aktu notarialnego i rozliczeń podatkowych) oraz konta w hiszpańskim banku lub potwierdzenia przelewu z Polski.`,
+      answer: `Tak, bez ograniczeń. Obywatele UE mają w Hiszpanii takie same prawa jak Hiszpanie. Potrzebujesz numeru NIE (do aktu notarialnego i rozliczeń podatkowych) oraz konta w hiszpańskim banku lub potwierdzenia przelewu z Polski.`,
     },
     {
       question: `Jakie podatki zapłacę przy zakupie w ${district.nameLocative}?`,
-      answer: `Na rynku wtórnym ITP 10% (Comunidad Valenciana), przy nowym lokalu IVA 10% + AJD. Razem z notariuszem, rejestrem i obsługą prawną to około 13–14% ceny. Do tego dochodzą podatki roczne: IBI (gmina) i podatek od najmu rozliczany w IRPF.`,
+      answer: `Na rynku wtórnym ITP 10% (Comunidad Valenciana), przy nowym lokalu IVA 10% + AJD. Razem z notariuszem, rejestrem i obsługą prawną to około 13-14% ceny. Do tego dochodzą podatki roczne: IBI (gmina) i podatek od najmu rozliczany w IRPF.`,
     },
   ];
 
-  // Rotacja układu FAQ – dodatkowy czynnik różnicujący układ strony.
+  // Rotacja układu FAQ. Dodatkowy czynnik różnicujący układ strony.
   return pick([true, false], key, "faqorder")
     ? [...localFaq, ...serviceFaq]
     : [...serviceFaq, ...localFaq];

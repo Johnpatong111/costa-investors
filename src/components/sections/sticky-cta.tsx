@@ -1,7 +1,7 @@
 import { SITE } from "@/lib/seo/site";
 
 /**
- * Sticky CTA na mobile – stale widoczny pasek z telefonem i skrótem do wyceny.
+ * Sticky CTA na mobile. Stale widoczny pasek z telefonem i skrótem do wyceny.
  * Czysty CSS (bez JS), więc nie wpływa na LCP ani INP.
  */
 export function StickyCta({ targetId = "lead-form" }: { targetId?: string }) {

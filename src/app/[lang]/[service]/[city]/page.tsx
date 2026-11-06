@@ -27,7 +27,7 @@ interface RouteParams {
   city: string;
 }
 
-/** Hub miasta: /{service}/{city} – porównanie dzielnic i ROI. */
+/** Hub miasta: /{service}/{city}. Porównanie dzielnic i ROI. */
 export const revalidate = 86_400;
 export const dynamicParams = true;
 
@@ -149,10 +149,10 @@ export default async function CityServicePage({
 
       <HowItWorks
         steps={content.processSteps}
-        title={`${service.name} w ${city.name} – etapy zakupu`}
+        title={`${service.name} w ${city.name}. Etapy zakupu`}
       />
 
-      <FaqAccordion items={content.faq} title={`${service.name} w ${city.name} – FAQ`} />
+      <FaqAccordion items={content.faq} title={`${service.name} w ${city.name} - FAQ`} />
 
       <InternalLinks
         groups={[

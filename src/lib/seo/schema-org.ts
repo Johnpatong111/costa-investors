@@ -7,7 +7,7 @@ import type { Locale } from "../i18n/config";
  * ===========================================================================
  * DANE STRUKTURALNE (schema.org / JSON-LD)
  * ===========================================================================
- * Emitujemy jeden graf `@graph` na stronę – mniej powtórzeń, spójne `@id`,
+ * Emitujemy jeden graf `@graph` na stronę. Mniej powtórzeń, spójne `@id`,
  * a Google łączy encje (RealEstateAgent ↔ Service ↔ FAQPage).
  *
  * WAŻNE: dane muszą być zgodne z widoczną treścią (FAQPage = widoczne FAQ,
@@ -237,12 +237,12 @@ export function localAgentNode(input: {
   return {
     "@type": ["RealEstateAgent", "LocalBusiness"],
     "@id": NODE_IDS.localAgent(input.path),
-    name: `${SITE.brand} – ${input.areaName}`,
+    name: `${SITE.brand}: ${input.areaName}`,
     url: absoluteUrl(input.path),
     parentOrganization: { "@id": NODE_IDS.organization },
     telephone: SITE.phoneHref,
     email: SITE.email,
-    priceRange: "€120,000 – €2,500,000",
+    priceRange: "€120,000: €2,500,000",
     currenciesAccepted: "EUR",
     paymentAccepted: "Przelew bankowy / Transferencia / Bank transfer",
     areaServed: { "@id": NODE_IDS.place(input.placePath) },
@@ -263,7 +263,7 @@ export function localAgentNode(input: {
   };
 }
 
-/** Raport cenowy – encja Dataset (Google traktuje ją jako dane, nie artykuł). */
+/** Raport cenowy. Encja Dataset (Google traktuje ją jako dane, nie artykuł). */
 export function datasetNode(input: {
   name: string;
   description: string;

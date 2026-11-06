@@ -1,6 +1,6 @@
 import type { LocalizedContent } from "./types";
 
-/** TREŚĆ STRON – HISZPAŃSKI (rynek lokalny: notaría, registro, ITP/IVA). */
+/** TREŚĆ STRON - HISZPAŃSKI (rynek lokalny: notaría, registro, ITP/IVA). */
 export const es = {
   district: {
     leads: [
@@ -10,7 +10,7 @@ export const es = {
     ],
     blocks: {
       rynek: {
-        heading: "Mercado inmobiliario en {districtLoc} – {year}",
+        heading: "Mercado inmobiliario en {districtLoc} - {year}",
         p1: "Predomina {characteristic}; el comprador valora {landmark} y {landmark2} antes que los metros. Las viviendas junto a la playa o con piscina se sitúan por encima de la media.",
         p2: "La mediana es {price} €/m², {pricePosition}. Interanualmente el mercado {growthSentence}. Un piso de 70 m² vale unos {budget70} antes de gastos.",
       },
@@ -45,7 +45,7 @@ export const es = {
     faq: [
       {
         q: "¿Cuánto cuesta el metro cuadrado en {districtLoc}?",
-        a: "La mediana es {price} €/m² (datos: {dataAsOf}), {pricePosition}. La mediana de {cityGen} es {cityPrice} €/m². Añade un 13–14% de gastos de compra.",
+        a: "La mediana es {price} €/m² (datos: {dataAsOf}), {pricePosition}. La mediana de {cityGen} es {cityPrice} €/m². Añade un 13-14% de gastos de compra.",
       },
       {
         q: "¿Qué rentabilidad puedo esperar en {districtLoc}?",
@@ -57,7 +57,7 @@ export const es = {
       },
       {
         q: "¿Qué impuestos se pagan al comprar en {districtLoc}?",
-        a: "Segunda mano: ITP 10% (Comunidad Valenciana y Murcia). Obra nueva: IVA 10% más AJD. Con notaría, registro y abogado, calcula un 13–14% del precio. Además IBI anual e IRPF sobre el alquiler.",
+        a: "Segunda mano: ITP 10% (Comunidad Valenciana y Murcia). Obra nueva: IVA 10% más AJD. Con notaría, registro y abogado, calcula un 13-14% del precio. Además IBI anual e IRPF sobre el alquiler.",
       },
       {
         q: "¿Comprar una vivienda da permiso de residencia?",
@@ -77,7 +77,7 @@ export const es = {
     ],
     blocks: {
       rynek: {
-        heading: "Mercado inmobiliario en {cityLoc} – {year}",
+        heading: "Mercado inmobiliario en {cityLoc} - {year}",
         p1: "La mediana en {cityLoc} es {cityPrice} €/m², {growth} interanual. Frente a la mediana de {region} ({regionPrice} €/m²) la ciudad {pricePosition}. El tiempo medio de venta es {days} días con unas {volume} operaciones al año.",
         p2: "El {foreign} de los compradores es extranjero, incluido un {polish} de Polonia: reventa líquida, pero también competencia por las mejores viviendas.",
       },
@@ -118,8 +118,8 @@ export const es = {
 
   report: {
     h1: [
-      "Precios y rentabilidad en {district} ({city}) – informe {year}",
-      "Precio por m² en {districtLoc} ({city}) – análisis de inversión",
+      "Precios y rentabilidad en {district} ({city}). Informe {year}",
+      "Precio por m² en {districtLoc} ({city}). Análisis de inversión",
     ],
     metaTitle: "Precios y ROI {district} ({city}) {year}",
     metaDescription:
@@ -127,7 +127,7 @@ export const es = {
     lead: "La mediana en {districtLoc} es {price} €/m² (datos: {dataAsOf}), {pricePosition}. La rentabilidad bruta es {yield} y unos {netYield} netos, con precios {growth} interanual. Abajo: alquileres, gastos de compra y comparativa con otras zonas de {cityGen}.",
     blocks: {
       ceny: {
-        heading: "Precios en {districtLoc} – {year}",
+        heading: "Precios en {districtLoc} - {year}",
         p1: "El precio depende de la distancia a la playa, el año de construcción y la calidad de la promoción. Con una mediana de {price} €/m², un piso de 70 m² cuesta unos {budget70}; con gastos ({purchaseCosts}) el presupuesto se acerca a {budget70plus}.",
         bullets: [
           "Mediana: {price} €/m²",
@@ -166,7 +166,7 @@ export const es = {
       },
       {
         q: "¿Qué gastos se suman al precio?",
-        a: "Un {purchaseCosts}: ITP/IVA, notaría, registro y honorarios, más unos 300–800 € anuales de costes fijos (IBI, comunidad).",
+        a: "Un {purchaseCosts}: ITP/IVA, notaría, registro y honorarios, más unos 300-800 € anuales de costes fijos (IBI, comunidad).",
       },
     ],
   },
@@ -180,12 +180,12 @@ export const es = {
       highlightLabel: "vistas al mar o piscina",
       ctaLabel: "Ver ofertas y calcular rentabilidad",
       h1: [
-        "Apartamentos en venta en {districtLoc} ({cityLoc}) – {region} {year}",
+        "Apartamentos en venta en {districtLoc} ({cityLoc}) - {region} {year}",
         "Apartamentos en {districtLoc} ({cityLoc}) desde {price} €/m²",
       ],
       metaTitle: [
         "Apartamentos en venta {city} ({region}) | desde 120 mil €",
-        "Apartamento {district} {city} – precios y ROI {year}",
+        "Apartamento {district} {city}. Precios y ROI {year}",
       ],
       metaDescription: [
         "¿Buscas apartamento en {districtLoc}? Mediana {price} €/m², rentabilidad {yield}, subida {growth} interanual. Ofertas, gastos y agente.",
@@ -222,12 +222,12 @@ export const es = {
       highlightLabel: "piscina privada y parcela",
       ctaLabel: "Solicitar selección de villas",
       h1: [
-        "Villas con piscina en {districtLoc} ({cityLoc}) – {region} {year}",
+        "Villas con piscina en {districtLoc} ({cityLoc}) - {region} {year}",
         "Villas de lujo en {districtLoc} ({cityLoc})",
       ],
       metaTitle: [
         "Villas con piscina {city} ({region}) | desde 320 mil €",
-        "Villa de lujo {district} {city} – ofertas {year}",
+        "Villa de lujo {district} {city}. Ofertas {year}",
       ],
       metaDescription: [
         "Villas con piscina en {districtLoc} ({cityLoc}) desde 320.000 €. Precios {price} €/m², subida {growth} interanual. Selección y ROI.",
@@ -255,16 +255,16 @@ export const es = {
       name: "Propiedades de inversión",
       propertyNoun: "inmueble",
       propertyNounGenitive: "inmueble",
-      priceAnchor: "rentabilidad 4,6–6,9% bruta",
+      priceAnchor: "rentabilidad 4,6-6,9% bruta",
       highlightLabel: "rentas y revalorización",
       ctaLabel: "Calcular la rentabilidad de la zona",
       h1: [
-        "Inversión inmobiliaria en {districtLoc} ({cityLoc}) – ROI {yield}",
+        "Inversión inmobiliaria en {districtLoc} ({cityLoc}) - ROI {yield}",
         "Comprar para alquilar en {districtLoc} ({cityLoc})",
       ],
       metaTitle: [
         "Inversión inmobiliaria {city} ({region}) | ROI {yield}",
-        "Comprar para alquilar {district} {city} – ROI {year}",
+        "Comprar para alquilar {district} {city} - ROI {year}",
       ],
       metaDescription: [
         "Inversión en {districtLoc}: {price} €/m², alquiler {rent} €/m², rentabilidad bruta {yield}. Calcula tu retorno para {year}.",
@@ -288,16 +288,16 @@ export const es = {
       name: "Guía de compra gratuita",
       propertyNoun: "inmueble",
       propertyNounGenitive: "inmueble",
-      priceAnchor: "gratis – sin compromiso",
+      priceAnchor: "gratis. Sin compromiso",
       highlightLabel: "guía PDF + revisión legal",
       ctaLabel: "Recibir la guía y la valoración",
       h1: [
-        "Guía de compra gratuita en {districtLoc} ({cityLoc}) – {year}",
+        "Guía de compra gratuita en {districtLoc} ({cityLoc}) - {year}",
         "Valoración y revisión legal en {districtLoc} ({cityLoc})",
       ],
       metaTitle: [
         "Guía de compra gratis {city} ({region}) {year}",
-        "Valoración y revisión legal – {district} {city}",
+        "Valoración y revisión legal - {district} {city}",
       ],
       metaDescription: [
         "Descarga la guía gratuita: gastos de compra en {districtLoc}, ITP/IVA, NIE y valoración. Mediana {price} €/m². Sin compromiso.",
@@ -332,20 +332,20 @@ export const es = {
     {
       title: "Selección y visitas",
       description:
-        "3–5 inmuebles con €/m² frente a la mediana local; visitas presenciales o por vídeo con el agente.",
-      duration: "3–10 días",
+        "3-5 inmuebles con €/m² frente a la mediana local; visitas presenciales o por vídeo con el agente.",
+      duration: "3-10 días",
     },
     {
       title: "Revisión legal y NIE",
       description:
         "El abogado verifica la Nota Simple y las cargas; obtienes el NIE necesario para firmar.",
-      duration: "1–2 semanas",
+      duration: "1-2 semanas",
     },
     {
       title: "Notaría y llaves",
       description:
         "Escritura en la notaría, inscripción en el registro de la propiedad y entrega de llaves.",
-      duration: "1 día + 2–6 semanas",
+      duration: "1 día + 2-6 semanas",
     },
   ],
 } satisfies LocalizedContent;

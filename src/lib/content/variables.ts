@@ -5,7 +5,7 @@ import { MARKET_YEAR } from "./market-stats";
 import { formatEur, formatPrice, formatRate } from "../utils/format";
 import { pick } from "./deterministic";
 
-/** Kontekst renderowania strony (meta, H1, treść) – jeden obiekt dla spójności. */
+/** Kontekst renderowania strony (meta, H1, treść). Jeden obiekt dla spójności. */
 export interface PageContext {
   city: CitySeed;
   region: RegionSeed;

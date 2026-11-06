@@ -7,7 +7,7 @@ import { translatePath } from "../i18n/paths";
  * ===========================================================================
  * LIMITY SERP (Google, desktop 2026)
  * ===========================================================================
- * Title: 55–60 znaków (≈ 580 px), Description: 145–155 znaków (≈ 920 px).
+ * Title: 55-60 znaków (≈ 580 px), Description: 145-155 znaków (≈ 920 px).
  * Trzymanie się widełek zapobiega obcinaniu „…” w snippecie.
  */
 export const SERP_LIMITS = {
@@ -19,7 +19,7 @@ export const SERP_LIMITS = {
 
 interface SerpCopy {
   brand: string;
-  /** Dopiski do title, gdy jest za krótki – power words + konkret (ROI, abogado, NIE). */
+  /** Dopiski do title, gdy jest za krótki. Power words + konkret (ROI, abogado, NIE). */
   suffixes: readonly string[];
   /** CTA do opisu, gdy jest za krótki. */
   ctas: readonly string[];
@@ -33,10 +33,10 @@ const SERP_COPY: Record<Locale, SerpCopy> = {
   pl: {
     brand: "Costa Investors",
     suffixes: [
-      "– ceny €/m² i ROI",
+      ". Ceny €/m² i ROI",
       "| weryfikacja prawna",
       "| agent PL w Hiszpanii",
-      "– bez ukrytych kosztów",
+      ". Bez ukrytych kosztów",
       "| dane 2026",
       "| ROI",
       "| abogado",
@@ -56,10 +56,10 @@ const SERP_COPY: Record<Locale, SerpCopy> = {
   en: {
     brand: "Costa Investors",
     suffixes: [
-      "– €/m² prices & ROI",
+      ": €/m² prices & ROI",
       "| legal check included",
       "| trusted agent in Spain",
-      "– no hidden costs",
+      ". No hidden costs",
       "| 2026 market data",
       "| ROI",
       "| abogado",
@@ -79,10 +79,10 @@ const SERP_COPY: Record<Locale, SerpCopy> = {
   es: {
     brand: "Costa Investors",
     suffixes: [
-      "– precios €/m² y ROI",
+      ". Precios €/m² y ROI",
       "| revisión legal incluida",
       "| agente de confianza",
-      "– sin costes ocultos",
+      ". Sin costes ocultos",
       "| datos de mercado 2026",
       "| ROI",
       "| abogado",
@@ -101,12 +101,15 @@ const SERP_COPY: Record<Locale, SerpCopy> = {
   },
 };
 
-/** BCP-47 – używane w JSON-LD `inLanguage` i atrybucie `<html lang>`. */
+/** BCP-47. Używane w JSON-LD `inLanguage` i atrybucie `<html lang>`. */
 export function htmlLang(locale: Locale): string {
   return (SERP_COPY[locale] ?? SERP_COPY[DEFAULT_LOCALE]).htmlLang;
 }
 
 const tidy = (value: string): string => value.replace(/\s+/g, " ").trim();
+
+/** Usuwa końcową interpunkcję (kropki, przecinki, dwukropki, nawiasy otwarte). */
+const TRAILING_PUNCTUATION = /[\s\p{P}]+$/u;
 
 /** Tnie tekst na granicy słowa, bez urwania litery. */
 function truncateAtWord(text: string, max: number): string {
@@ -115,25 +118,25 @@ function truncateAtWord(text: string, max: number): string {
   const window = value.slice(0, max + 1);
   const lastSpace = window.lastIndexOf(" ");
   const cut = lastSpace > max * 0.6 ? window.slice(0, lastSpace) : value.slice(0, max);
-  return cut.replace(/[\s,;:|–—-]+$/u, "").trim();
+  return cut.replace(TRAILING_PUNCTUATION, "").trim();
 }
 
 
 /**
- * Doprowadza title do 55–60 znaków:
+ * Doprowadza title do 55-60 znaków:
  *  - za długi → cięcie na granicy słowa,
  *  - za krótki → dolepia power suffix (ROI / abogado / NIE), a potem markę.
  */
 export function fitTitle(title: string, locale: Locale = DEFAULT_LOCALE): string {
   const copy = SERP_COPY[locale] ?? SERP_COPY[DEFAULT_LOCALE];
-  // Matryca treści ucina długie tytuły wielokropkiem – usuwamy go, żeby nie
+  // Matryca treści ucina długie tytuły wielokropkiem. Usuwamy go, żeby nie
   // zostawał przed doklejonym suffixem („… | ROI”).
   let value = tidy(title).replace(/[…\s]+$/u, "");
 
   if (value.length > SERP_LIMITS.titleMax) {
-    // Preferujemy cięcie na naturalnym separatorze („|”, „–”, „(”, „:”),
+    // Preferujemy cięcie na naturalnym separatorze („|”, „-”, „(”, „:”),
     // żeby nie zostawić urwanego nawiasu; fallback: granica słowa.
-    const delimiters = [" | ", " – ", " (", ": "];
+    const delimiters = [" | ", " - ", " (", ": "];
     let cut = 0;
     for (const delimiter of delimiters) {
       const index = value.lastIndexOf(delimiter, SERP_LIMITS.titleMax);
@@ -143,11 +146,11 @@ export function fitTitle(title: string, locale: Locale = DEFAULT_LOCALE): string
       cut >= SERP_LIMITS.titleMin - 15
         ? value.slice(0, cut)
         : truncateAtWord(value, SERP_LIMITS.titleMax);
-    value = value.replace(/[\s,;:|–—\-(]+$/u, "").trim();
+    value = value.replace(TRAILING_PUNCTUATION, "").trim();
   }
 
   // Greedy: budujemy kandydatów (power suffix, marka, suffix+suffix) i wybieramy
-  // ten, który trafia w 55–60 znaków; jeśli żaden – najdłuższy mieszczący się.
+  // ten, który trafia w 55-60 znaków; jeśli żaden. Najdłuższy mieszczący się.
   const withBrand = `${value} | ${copy.brand}`;
   const candidates: string[] = [value, withBrand];
 
@@ -173,7 +176,7 @@ export function fitTitle(title: string, locale: Locale = DEFAULT_LOCALE): string
 }
 
 /**
- * Doprowadza description do 145–155 znaków:
+ * Doprowadza description do 145-155 znaków:
  *  - za długi → najpierw cięcie na końcu zdania, potem na granicy słowa,
  *  - za krótki → dolepia CTA („Sprawdź koszty zakupu i ROI →”).
  */
@@ -229,7 +232,7 @@ export function fitDescription(
     : value;
 }
 
-/** Weryfikacja limitów – używana przez `npm run validate:data` i testy QA. */
+/** Weryfikacja limitów. Używana przez `npm run validate:data` i testy QA. */
 export function serpCompliance(
   text: string,
   kind: "title" | "description",
@@ -245,14 +248,14 @@ export interface PageMetadataInput {
   /** Ścieżka kanoniczna, np. "/apartamenty-na-sprzedaz/torrevieja/la-mata". */
   path: string;
   keywords?: string[];
-  /** Strony „cienkie” dostają noindex,follow – linkują dalej, ale nie wchodzą do indeksu. */
+  /** Strony „cienkie” dostają noindex,follow. Linkują dalej, ale nie wchodzą do indeksu. */
   noindex?: boolean;
   noindexReason?: string;
-  /** Strona w wersji językowej – steruje canonical i hreflang. */
+  /** Strona w wersji językowej. Steruje canonical i hreflang. */
   locale?: Locale;
   /** Data ostatniej modyfikacji treści (ISR / sitemap). */
   modifiedAt?: string;
-  /** Wyłącza optymalizator SERP (np. strony prawne o ustalonym brzmieniu). */
+  /** Wyłącza optymalizator SERP (np. Strony prawne o ustalonym brzmieniu). */
   rawSerp?: boolean;
 }
 
@@ -279,7 +282,7 @@ export function buildMetadata(input: PageMetadataInput): Metadata {
   const activeLocale: Locale = locale ?? DEFAULT_LOCALE;
   const copy = SERP_COPY[activeLocale] ?? SERP_COPY[DEFAULT_LOCALE];
 
-  // Optymalizator SERP: twarde widełki 55–60 / 145–155 znaków.
+  // Optymalizator SERP: twarde widełki 55-60 / 145-155 znaków.
   const serpTitle = rawSerp ? tidy(title) : fitTitle(title, activeLocale);
   const serpDescription = rawSerp
     ? tidy(description)
@@ -322,8 +325,8 @@ export function buildMetadata(input: PageMetadataInput): Metadata {
   }
 
   return {
-    // `absolute` omija szablon `title.template` z layoutu – długość title jest
-    // wtedy w 100% kontrolowana przez fitTitle (55–60 znaków).
+    // `absolute` omija szablon `title.template` z layoutu. Długość title jest
+    // wtedy w 100% kontrolowana przez fitTitle (55-60 znaków).
     title: { absolute: serpTitle },
     description: serpDescription,
     keywords: keywords ? [...new Set(keywords)] : undefined,

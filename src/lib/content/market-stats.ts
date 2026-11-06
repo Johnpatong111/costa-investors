@@ -14,7 +14,7 @@ import { createRngFromKey, roundToStep } from "./deterministic";
  */
 
 export const MARKET_YEAR = 2026;
-/** Mediana regionu – punkt odniesienia w tabelach (seed 2026). */
+/** Mediana regionu. Punkt odniesienia w tabelach (seed 2026). */
 export const REGION_MEDIAN_PRICE_PER_M2 = 2_950;
 /** Koszty transakcyjne: ITP 10% + notariusz, rejestr, prawnik. */
 export const PURCHASE_COSTS_RATE = 0.135;
@@ -49,7 +49,7 @@ const clamp = (value: number, min: number, max: number) =>
 
 const round1 = (value: number) => Math.round(value * 10) / 10;
 
-/** Udział dzielnicy w transakcjach miasta – ważony popytem. */
+/** Udział dzielnicy w transakcjach miasta. Ważony popytem. */
 function transactionShare(districts: DistrictSeed[], district: DistrictSeed): number {
   const weight = (item: DistrictSeed) => Math.pow(item.demandIndex, 1.6);
   const total = districts.reduce((sum, item) => sum + weight(item), 0);

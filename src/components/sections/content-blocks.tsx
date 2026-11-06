@@ -4,7 +4,7 @@ import type { ContentBlock } from "@/lib/content/content-utils";
 /**
  * Renderuje bloki treści z content matrix.
  * Semantyka: sekcja + H2 + akapity + lista. To czytelny szkielet dla Google
- * i dla czytnika ekranu – bez „divów-udawaczy” nagłówków.
+ * i dla czytnika ekranu. Bez „divów-udawaczy” nagłówków.
  */
 export function ContentBlocks({ blocks }: { blocks: ContentBlock[] }) {
   return (

@@ -77,8 +77,8 @@ export function buildPriceReport(entry: DistrictEntry): PriceReport {
 
   const h1 = pick(
     [
-      `Ceny i ROI w ${district.name} (${city.name}) – raport ${MARKET_YEAR}`,
-      `Ceny m² ${district.nameLocative} (${city.name}) – analiza inwestycyjna`,
+      `Ceny i ROI w ${district.name} (${city.name}). Raport ${MARKET_YEAR}`,
+      `Ceny m² ${district.nameLocative} (${city.name}). Analiza inwestycyjna`,
     ],
     key,
     "h1",
@@ -110,12 +110,12 @@ export function buildPriceReport(entry: DistrictEntry): PriceReport {
   const blocks: ContentBlock[] = [
     {
       id: "ceny",
-      heading: `Ceny nieruchomości w ${district.nameLocative} – ${MARKET_YEAR}`,
+      heading: `Ceny nieruchomości w ${district.nameLocative}: ${MARKET_YEAR}`,
       paragraphs: [
         t(
           "Cena zależy od odległości od plaży, roku budowy i standardu osiedla. Przy medianie {price} €/m² lokal 70 m² kosztuje około {budget70}, a po doliczeniu kosztów zakupu ({purchaseCosts}) budżet zamyka się bliżej {budget70plus}.",
         ),
-        `Charakterystyka ${district.nameLocative}: ${district.characteristics[0]} oraz ${district.characteristics[1] ?? district.characteristics[0]}. W rankingu cen miasta ${city.nameGenitive} to ${position}. miejsce (${formatEur(stats.pricePerM2)}/m²) – najdrożej jest w ${priciest?.name ?? city.name} (${formatEur(priciest?.price ?? 0)}/m²), a najtaniej w ${cheapest?.name ?? city.name} (${formatEur(cheapest?.price ?? 0)}/m²).`,
+        `Charakterystyka ${district.nameLocative}: ${district.characteristics[0]} oraz ${district.characteristics[1] ?? district.characteristics[0]}. W rankingu cen miasta ${city.nameGenitive} to ${position}. Miejsce (${formatEur(stats.pricePerM2)}/m²). Najdrożej jest w ${priciest?.name ?? city.name} (${formatEur(priciest?.price ?? 0)}/m²), a najtaniej w ${cheapest?.name ?? city.name} (${formatEur(cheapest?.price ?? 0)}/m²).`,
       ],
       bullets: [
         t("Mediana ofertowa: {price} €/m²"),
@@ -144,7 +144,7 @@ export function buildPriceReport(entry: DistrictEntry): PriceReport {
           "Zakup w {districtLoc} oznacza około {purchaseCosts} kosztów transakcyjnych: ITP 10% (rynek wtórny) lub IVA 10% i AJD (nowe), notariusz, wpis do rejestru i obsługa prawna. Dochodzą koszty roczne (IBI, comunidad, ubezpieczenie) oraz podatek od najmu rozliczany w IRPF.",
         ),
         t(
-          "Jako nierezydent rozliczasz najem w Hiszpanii, a w Polsce korzystasz z metody unikania podwójnego opodatkowania. Numer NIE jest obowiązkowy – bez niego nie kupisz nieruchomości ani nie rozliczysz dochodów.",
+          "Jako nierezydent rozliczasz najem w Hiszpanii, a w Polsce korzystasz z metody unikania podwójnego opodatkowania. Numer NIE jest obowiązkowy. Bez niego nie kupisz nieruchomości ani nie rozliczysz dochodów.",
         ),
       ],
     },
@@ -153,7 +153,7 @@ export function buildPriceReport(entry: DistrictEntry): PriceReport {
       heading: "Metodologia raportu",
       paragraphs: [
         t(
-          "Dane pochodzą z median ofertowych i transakcji z ostatnich 12 miesięcy dla {districtLoc} ({volume} transakcji w modelu) i są aktualizowane miesięcznie. Nie stanowią wyceny w rozumieniu hiszpańskich przepisów – do celów kredytowych wymagana jest tasación bankowa.",
+          "Dane pochodzą z median ofertowych i transakcji z ostatnich 12 miesięcy dla {districtLoc} ({volume} transakcji w modelu) i są aktualizowane miesięcznie. Nie stanowią wyceny w rozumieniu hiszpańskich przepisów. Do celów kredytowych wymagana jest tasación bankowa.",
         ),
       ],
     },
@@ -174,7 +174,7 @@ export function buildPriceReport(entry: DistrictEntry): PriceReport {
     },
     {
       question: "Jakie koszty poza ceną zapłacę przy zakupie?",
-      answer: `Około ${formatRate(stats.purchaseCostsRate * 100)} ceny: ITP/IVA, notariusz, rejestr i obsługa prawna. Dodatkowo ok. 300–800 € rocznie kosztów stałych (IBI, comunidad).`,
+      answer: `Około ${formatRate(stats.purchaseCostsRate * 100)} ceny: ITP/IVA, notariusz, rejestr i obsługa prawna. Dodatkowo ok. 300-800 € rocznie kosztów stałych (IBI, comunidad).`,
     },
   ];
 

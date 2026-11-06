@@ -8,7 +8,7 @@ export interface Crumb {
 
 /**
  * Widoczny breadcrumb (niezbędny dla zgodności z JSON-LD BreadcrumbList).
- * Ostatni element nie jest linkiem – to bieżąca strona.
+ * Ostatni element nie jest linkiem. To bieżąca strona.
  */
 export function Breadcrumbs({ items }: { items: Crumb[] }) {
   return (

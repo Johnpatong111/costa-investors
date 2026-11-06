@@ -5,14 +5,14 @@ import { allServiceSlugs, serviceKindFromSlug, serviceSlug } from "@/lib/i18n/se
 
 /**
  * Bezpiecznik: middleware można wyłączyć `I18N_ROUTING_ENABLED=false`
- * (np. w środowisku, gdzie trasy `[lang]` nie są jeszcze wdrożone).
- * Domyślnie AKTYWNE – trasy istnieją.
+ * (np. W środowisku, gdzie trasy `[lang]` nie są jeszcze wdrożone).
+ * Domyślnie AKTYWNE. Trasy istnieją.
  */
 
 const ENABLED = process.env.I18N_ROUTING_ENABLED !== "false";
 
 /**
- * Ścieżki historyczne (bez prefiksu), które muszą dostać **301** – czyta je
+ * Ścieżki historyczne (bez prefiksu), które muszą dostać **301**. Czyta je
  * Google jako trwałe przeniesienie i przekazuje całe link equity.
  * Dla pozostałych adresów bez prefiksu stosujemy 308 (zachowanie metody).
  */
@@ -61,7 +61,7 @@ export function proxy(request: NextRequest) {
 
     // Alias sluga: polski slug pod /en/ lub /es/ (i odwrotnie). Zamiast
     // serwować 200 z treścią pod złym adresem, robimy trwałe 308 na wersję
-    // kanoniczną – Google konsoliduje sygnały na jednym URL-u.
+    // kanoniczną - Google konsoliduje sygnały na jednym URL-u.
     if (serviceSegment) {
       const kind = serviceKindFromSlug(serviceSegment);
       const canonicalServiceSlug = kind ? serviceSlug(kind, locale) : undefined;
@@ -90,7 +90,7 @@ export function proxy(request: NextRequest) {
 
   const locale = detectLocale(request);
   const url = request.nextUrl.clone();
-  // Od razu trafiamy w zlokalizowany slug usługi – bez podwójnego przeskoku.
+  // Od razu trafiamy w zlokalizowany slug usługi. Bez podwójnego przeskoku.
   url.pathname = translatePath(pathname, locale);
 
   // Historyczne adresy PL → 301 (trwałe przeniesienie, pełne link equity).

@@ -1,6 +1,6 @@
 /**
  * Odczyt zmiennych środowiskowych z normalizacją.
- * Puste stringi traktujemy jak brak wartości – dzięki temu `.env.example`
+ * Puste stringi traktujemy jak brak wartości. Dzięki temu `.env.example`
  * można skopiować bez ryzyka wysłania requestu na pusty URL.
  */
 export function env(name: string): string | undefined {

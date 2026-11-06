@@ -1,6 +1,6 @@
 const NBSP = "\u00A0";
 
-/** 17850 -> "17 850" (twarda spacja – poprawna polska typografia). */
+/** 17850 -> "17 850" (twarda spacja. Poprawna polska typografia). */
 export function formatPrice(value: number): string {
   return Math.round(value)
     .toString()
@@ -12,7 +12,7 @@ export function formatPricePln(value: number): string {
   return `${formatPrice(value)}${NBSP}zł`;
 }
 
-/** 17850 -> "17,9 tys. zł" – do zwięzłych nagłówków i kart. */
+/** 17850 -> "17,9 tys. Zł". Do zwięzłych nagłówków i kart. */
 export function formatPriceShort(value: number): string {
   if (Math.abs(value) >= 1_000_000) {
     return `${(value / 1_000_000).toFixed(1).replace(".", ",")}${NBSP}mln${NBSP}zł`;
@@ -32,12 +32,12 @@ export function formatPercent(ratio: number, digits = 1): string {
   return `${sign}${value}%`;
 }
 
-/** 2380 -> "2 380 €" (twarda spacja, symbol po liczbie – konwencja PL). */
+/** 2380 -> "2 380 €" (twarda spacja, symbol po liczbie. Konwencja PL). */
 export function formatEur(value: number): string {
   return `${formatPrice(value)}${NBSP}€`;
 }
 
-/** 245000 -> "245 tys. €" – do nagłówków i kart ofertowych. */
+/** 245000 -> "245 tys. €". Do nagłówków i kart ofertowych. */
 export function formatEurShort(value: number): string {
   if (Math.abs(value) >= 1_000_000) {
     return `${(value / 1_000_000).toFixed(2).replace(".", ",")}${NBSP}mln${NBSP}€`;
@@ -48,7 +48,7 @@ export function formatEurShort(value: number): string {
   return formatEur(value);
 }
 
-/** 5.9 -> "5,9%" (bez znaku – ROI i dynamika zawsze dodatnie w opisie). */
+/** 5.9 -> "5,9%" (bez znaku - ROI i dynamika zawsze dodatnie w opisie). */
 export function formatRate(percent: number, digits = 1): string {
   return `${percent.toFixed(digits).replace(".", ",")}%`;
 }
@@ -61,7 +61,7 @@ export function formatPopulation(value: number): string {
   return `${Math.round(value / 1000)}${NBSP}tys.`;
 }
 
-/** Odległość w km (haversine) – do sekcji „dzielnice obok”. */
+/** Odległość w km (haversine). Do sekcji „dzielnice obok”. */
 export function distanceKm(
   a: { lat: number; lng: number },
   b: { lat: number; lng: number },

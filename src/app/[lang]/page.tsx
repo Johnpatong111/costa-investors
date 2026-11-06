@@ -11,7 +11,7 @@ import { assertLocale } from "@/lib/i18n/config";
 import { buildMetadata } from "@/lib/seo/metadata";
 import { formatEur, formatRate } from "@/lib/utils/format";
 
-/** Strona główna – hub dla 4 usług i 15 miejscowości (Costa Blanca + Cálida). */
+/** Strona główna. Hub dla 4 usług i 15 miejscowości (Costa Blanca + Cálida). */
 export const revalidate = 86_400;
 
 export async function generateMetadata({
@@ -62,8 +62,8 @@ export default function HomePage() {
     <>
       <Hero
         eyebrow="Costa Blanca i Costa Cálida · Hiszpania"
-        h1="Kup nieruchomość w Hiszpanii z polskim agentem – z analizą ROI"
-        lead={`Apartamenty, wille z basenem i domy inwestycyjne w ${allCities.length} miejscowościach na dwóch wybrzeżach. Pokazujemy realne ceny €/m², zwrot z najmu i pełne koszty zakupu – a Twoje zgłoszenie przekazujemy certyfikowanemu agentowi z gotowymi ofertami.`}
+        h1="Kup nieruchomość w Hiszpanii z polskim agentem. Z analizą ROI"
+        lead={`Apartamenty, wille z basenem i domy inwestycyjne w ${allCities.length} miejscowościach na dwóch wybrzeżach. Pokazujemy realne ceny €/m², zwrot z najmu i pełne koszty zakupu. A Twoje zgłoszenie przekazujemy certyfikowanemu agentowi z gotowymi ofertami.`}
         chips={[
           `ceny od ${formatEur(120_000)}`,
           `ROI do ${formatRate(6.9)}`,
@@ -77,7 +77,7 @@ export default function HomePage() {
             cityName=""
             sourceKey="home"
             heading="Znajdź nieruchomość z polskim agentem w 24 h"
-            subheading="Wypełnij preferencje – certyfikowany polskojęzyczny agent skontaktuje się z gotowymi ofertami."
+            subheading="Wypełnij preferencje. Certyfikowany polskojęzyczny agent skontaktuje się z gotowymi ofertami."
           />
         </div>
       </Hero>

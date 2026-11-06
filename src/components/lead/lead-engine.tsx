@@ -10,7 +10,7 @@ export interface LeadEngineProps {
   districtName?: string;
   /** Klucz strony pSEO, np. "apartamenty-na-sprzedaz/torrevieja/la-mata". */
   sourceKey: string;
-  /** Język wersji strony (domyślnie PL) – trafia do leada i routingu agenta. */
+  /** Język wersji strony (domyślnie PL). Trafia do leada i routingu agenta. */
   language?: "pl" | "en" | "es";
   /**
    * Dane rynku do kalkulatora ROI. Brak = kalkulator ukryty
@@ -26,7 +26,7 @@ export interface LeadEngineProps {
 
 /**
  * ===========================================================================
- * LEAD ENGINE – jeden stan budżetu, dwa komponenty
+ * LEAD ENGINE. Jeden stan budżetu, dwa komponenty
  * ===========================================================================
  * Budżet wybrany w kalkulatorze ROI trafia do formularza (krok 1) i do
  * payloadu leada. Dzięki temu agent od razu wie, o jakiej transakcji rozmawia,

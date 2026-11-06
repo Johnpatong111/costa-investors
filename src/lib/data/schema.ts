@@ -2,7 +2,7 @@ import { z } from "zod";
 
 /**
  * ===========================================================================
- * SCHEMAT DANYCH – LEAD GENERATION HISZPANIA (Costa Blanca)
+ * SCHEMAT DANYCH - LEAD GENERATION HISZPANIA (Costa Blanca)
  * ===========================================================================
  * Hierarchia: region → miasto → dzielnica/urbanizacja.
  * Rynek hiszpański = ceny w EUR, ROI z najmu i dynamika r/r są danymi
@@ -30,11 +30,11 @@ export const districtSchema = z.object({
   type: z.enum(["dzielnica", "urbanizacja", "plaza", "osiedle"]).default("urbanizacja"),
   lat: z.number().min(36.5).max(40.5),
   lng: z.number().min(-2.5).max(1.5),
-  /** Mediana ceny ofertowej €/m² (seed – do podmiany na feed). */
+  /** Mediana ceny ofertowej €/m² (seed. Do podmiany na feed). */
   pricePerM2: z.number().int().min(800).max(12000),
   /** Rentowność brutto najmu w % rocznie. */
   rentalYield: z.number().min(2).max(12),
-  /** Presja popytu 1–10 (rotacja ofert, zapytania z zagranicy). */
+  /** Presja popytu 1-10 (rotacja ofert, zapytania z zagranicy). */
   demandIndex: z.number().min(1).max(10),
   characteristics: z.array(textSchema).min(2).max(5),
   landmarks: z.array(textSchema).min(1).max(4),
@@ -46,7 +46,7 @@ export const citySchema = z.object({
   name: textSchema,
   nameGenitive: textSchema,
   nameLocative: textSchema,
-  /** Slug regionu (klucz obcy) – np. "costa-blanca". */
+  /** Slug regionu (klucz obcy). Np. "costa-blanca". */
   region: slugSchema,
   /** Costa Blanca Sur / Norte / Centro. */
   subregion: textSchema,
@@ -75,7 +75,7 @@ export const regionSchema = z.object({
   nameLocative: textSchema,
   country: textSchema,
   currency: z.literal("EUR"),
-  /** Mediana ofertowa regionu €/m² – punkt odniesienia w tabelach porównawczych. */
+  /** Mediana ofertowa regionu €/m². Punkt odniesienia w tabelach porównawczych. */
   medianPricePerM2: z.number().int().min(800).max(6000),
 });
 
@@ -92,7 +92,7 @@ export type CitySeed = z.infer<typeof citySchema>;
 export type RegionSeed = z.infer<typeof regionSchema>;
 export type LocationsDataset = z.infer<typeof locationsDatasetSchema>;
 
-/** Dzielnica z kontekstem miasta i regionu – trafia na stronę. */
+/** Dzielnica z kontekstem miasta i regionu. Trafia na stronę. */
 export interface LocationContext {
   region: RegionSeed;
   city: CitySeed;

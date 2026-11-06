@@ -7,16 +7,16 @@ import { leadPayloadSchema, scoreLead, isWhatsApp, type LeadRecord } from "@/lib
 
 /**
  * ===========================================================================
- * POST /api/leads – przyjęcie i dystrybucja leada
+ * POST /api/leads. Przyjęcie i dystrybucja leada
  * ===========================================================================
  * Kolejność zabezpieczeń (od najtańszego):
- *  1. limit rozmiaru body,
- *  2. rate limit per IP,
- *  3. walidacja Zod,
- *  4. honeypot,
- *  5. scoring i rozsyłka równoległa.
+ *  1. Limit rozmiaru body,
+ *  2. Rate limit per IP,
+ *  3. Walidacja Zod,
+ *  4. Honeypot,
+ *  5. Scoring i rozsyłka równoległa.
  *
- * Odpowiedź 201 zawiera tylko `leadId` – nie ujawniamy danych ani błędów
+ * Odpowiedź 201 zawiera tylko `leadId`. Nie ujawniamy danych ani błędów
  * wewnętrznych kanałów (to informacja dla atakującego).
  */
 

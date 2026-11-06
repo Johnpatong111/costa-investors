@@ -18,11 +18,11 @@ export const pl = {
   form: {
     heading: "Znajdź nieruchomość z polskim agentem w 24 h",
     subheading:
-      "Wypełnij preferencje – certyfikowany polskojęzyczny agent skontaktuje się z gotowymi ofertami.",
+      "Wypełnij preferencje. Certyfikowany polskojęzyczny agent skontaktuje się z gotowymi ofertami.",
     stepProperty: "Nieruchomość",
     stepContact: "Kontakt",
     stepLabel: "krok {step}/2",
-    next: "Dalej – wybierz kontakt",
+    next: "Dalej. Wybierz kontakt",
     back: "Wstecz",
     submit: "Wyślij i odbierz ofertę",
     sending: "Wysyłanie…",
@@ -38,7 +38,7 @@ export const pl = {
       budget: "Budżet (EUR)",
       name: "Imię i nazwisko",
       phone: "Telefon / WhatsApp",
-      email: "E-mail (opcjonalnie – wyślemy analizę PDF)",
+      email: "E-mail (opcjonalnie. Wyślemy analizę PDF)",
       city: "Miejscowość",
       district: "Dzielnica / urbanizacja",
       contactMethod: "Preferowana forma kontaktu",
@@ -85,7 +85,7 @@ export const pl = {
       },
       {
         q: "Kontakt agenta w 24 h",
-        a: "Polskojęzyczny agent dzwoni lub pisze na WhatsApp z 3–5 dopasowanymi ofertami.",
+        a: "Polskojęzyczny agent dzwoni lub pisze na WhatsApp z 3-5 dopasowanymi ofertami.",
       },
       {
         q: "Oględziny i analiza prawna",
@@ -96,11 +96,11 @@ export const pl = {
   legal: {
     nie: {
       q: "Czy Polak potrzebuje numeru NIE, żeby kupić nieruchomość?",
-      a: "Tak. NIE (Número de Identificación de Extranjero) jest wymagany przy akcie notarialnym i przy rozliczeniach podatkowych. Wniosek składa się osobiście w Hiszpanii lub przez pełnomocnika – zwykle 1–3 tygodnie.",
+      a: "Tak. NIE (Número de Identificación de Extranjero) jest wymagany przy akcie notarialnym i przy rozliczeniach podatkowych. Wniosek składa się osobiście w Hiszpanii lub przez pełnomocnika. Zwykle 1-3 tygodnie.",
     },
     itp: {
       q: "Jakie podatki zapłacę przy zakupie?",
-      a: "Na rynku wtórnym ITP 10% (Comunidad Valenciana i Murcia), przy nowym lokalu IVA 10% + AJD. Razem z notariuszem i obsługą prawną to około 13–14% ceny. Dochodzą podatki roczne: IBI i podatek od najmu w IRPF.",
+      a: "Na rynku wtórnym ITP 10% (Comunidad Valenciana i Murcia), przy nowym lokalu IVA 10% + AJD. Razem z notariuszem i obsługą prawną to około 13-14% ceny. Dochodzą podatki roczne: IBI i podatek od najmu w IRPF.",
     },
     residency: {
       q: "Czy zakup nieruchomości daje prawo pobytu?",

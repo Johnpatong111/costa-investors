@@ -13,6 +13,7 @@ import {
 import { buildTemplateVars, type PageContext } from "../../content/variables";
 import { interpolate } from "../../content/interpolate";
 import { pick } from "../../content/deterministic";
+import { cityAccessBlock } from "../../content/access";
 import { formatEur } from "../../utils/format";
 import {
   MAX_DESCRIPTION_LENGTH,
@@ -29,7 +30,7 @@ import type { LocalizedContent, LocalizedServiceCopy } from "./types";
 
 /**
  * ZLOKALIZOWANE BUILDERY TREŚCI (EN / ES).
- * PL pozostaje na dotychczasowych generatorach – zero regresji.
+ * PL pozostaje na dotychczasowych generatorach. Zero regresji.
  * Moduł nie jest jeszcze podpięty do routingu.
  */
 
@@ -72,7 +73,7 @@ type Vars = Record<string, string>;
 
 /**
  * Usuwa sąsiadujące duplikaty słów („Torrevieja Torrevieja”) i podwójne spacje.
- * W kontekście miasta szablony usług używają i `{city}`, i `{district}` –
+ * W kontekście miasta szablony usług używają i `{city}`, i `{district}` -
  * podstawienie obu tą samą nazwą dawałoby powtórzenie w title/H1.
  */
 function dedupeWords(text: string): string {
@@ -177,7 +178,7 @@ export function buildLocalizedDistrictContent(
     },
     { id: "kupujacy", heading: t(b.kupujacy.heading), paragraphs: [t(b.kupujacy.p1), t(b.kupujacy.p2)] },
     {
-      // Blok usługi – różnicuje strony tej samej lokalizacji dla różnych usług
+      // Blok usługi. Różnicuje strony tej samej lokalizacji dla różnych usług
       // (bez niego buy/villa/investment były w 99% identyczne).
       id: "usluga",
       heading: service.name,
@@ -238,7 +239,7 @@ export function buildLocalizedCityContent(
   const districtBullets = city.districts
     .slice()
     .sort((a, z) => z.pricePerM2 - a.pricePerM2)
-    .map((item) => `${item.name} – ${formatEur(item.pricePerM2)}/m² · ${item.rentalYield}%`);
+    .map((item) => `${item.name}: ${formatEur(item.pricePerM2)}/m² · ${item.rentalYield}%`);
 
   const blocks: ContentBlock[] = [
     { id: "rynek", heading: t(b.rynek.heading), paragraphs: [t(b.rynek.p1), t(b.rynek.p2)] },
@@ -247,7 +248,7 @@ export function buildLocalizedCityContent(
       id: "proces",
       heading: t(b.proces.heading),
       paragraphs: [t(b.proces.p1)],
-      bullets: dict.process.map((step) => `${step.title} (${step.duration}) – ${t(step.description)}`),
+      bullets: dict.process.map((step) => `${step.title} (${step.duration}): ${t(step.description)}`),
     },
     {
       id: "koszty",
@@ -256,7 +257,7 @@ export function buildLocalizedCityContent(
       bullets: b.koszty.bullets.map((bullet) => t(bullet)),
     },
     {
-      // Blok usługi – różnicuje miasta dla różnych usług (buy vs villa vs investment).
+      // Blok usługi. Różnicuje miasta dla różnych usług (buy vs villa vs investment).
       id: "usluga",
       heading: service.name,
       paragraphs: service.benefits.map((benefit) => `${t(benefit.title)}: ${t(benefit.description)}`),
@@ -265,6 +266,12 @@ export function buildLocalizedCityContent(
   ];
 
   const faq = dict.city.faq.map((item) => ({ question: t(item.q), answer: t(item.a) }));
+
+  // Konkret infrastrukturalny: lotnisko z kodem IATA i dostęp do AP-7.
+  const access = cityAccessBlock(city.slug, locale);
+  if (access) {
+    blocks.push({ id: "dojazd", heading: access.heading, paragraphs: access.paragraphs });
+  }
 
   return finish(
     {
@@ -314,9 +321,9 @@ export function buildLocalizedPriceReport(
       paragraphs: [t(b.ceny.p1)],
       bullets: [
         ...b.ceny.bullets.map((bullet) => t(bullet)),
-        // Lista dzielnic miasta – dane różnicujące raporty o tej samej nazwie.
+        // Lista dzielnic miasta. Dane różnicujące raporty o tej samej nazwie.
         ...city.districts.map(
-          (item) => `${item.name} – ${formatEur(item.pricePerM2)}/m² · ${item.rentalYield}%`,
+          (item) => `${item.name}: ${formatEur(item.pricePerM2)}/m² · ${item.rentalYield}%`,
         ),
       ],
     },
@@ -324,7 +331,7 @@ export function buildLocalizedPriceReport(
     { id: "podatki", heading: t(b.podatki.heading), paragraphs: [t(b.podatki.p1), t(b.podatki.p2)] },
     { id: "metodologia", heading: t(b.metodologia.heading), paragraphs: [t(b.metodologia.p1)] },
     {
-      // Kontekst lokalny (cechy + punkt orientacyjny) – różnicuje raporty
+      // Kontekst lokalny (cechy + punkt orientacyjny). Różnicuje raporty
       // dzielnic o tej samej nazwie w różnych miastach.
       id: "okolica",
       heading: t(dict.district.blocks.rynek.heading),

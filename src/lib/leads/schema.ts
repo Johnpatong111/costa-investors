@@ -2,12 +2,12 @@ import { z } from "zod";
 
 /**
  * ===========================================================================
- * KONTRAKT LEADOWY – POLACY KUPUJĄCY W HISZPANII
+ * KONTRAKT LEADOWY - POLACY KUPUJĄCY W HISZPANII
  * ===========================================================================
- * `leadFormSchema`  – wartości z formularza (stringi, UX-friendly),
- * `leadPayloadSchema` – wartości po walidacji serwera (liczby, E.164).
+ * `leadFormSchema`. Wartości z formularza (stringi, UX-friendly),
+ * `leadPayloadSchema`. Wartości po walidacji serwera (liczby, E.164).
  *
- * Lead jest wyceniany scoringiem: budżet ≥300 tys. € + zakup w 1–3 miesiące
+ * Lead jest wyceniany scoringiem: budżet ≥300 tys. € + zakup w 1-3 miesiące
  * = 95/100 → natychmiastowa notyfikacja agenta (SMS/WhatsApp).
  */
 
@@ -27,8 +27,8 @@ export const PROPERTY_TYPES = [
 ] as const;
 
 export const HORIZONS = [
-  { value: "1-3-miesiace", label: "Kupuję w 1–3 mies.", description: "Gotowy do transakcji" },
-  { value: "3-6-miesiecy", label: "W ciągu 3–6 mies.", description: "Aktywnie szukam" },
+  { value: "1-3-miesiace", label: "Kupuję w 1-3 mies.", description: "Gotowy do transakcji" },
+  { value: "3-6-miesiecy", label: "W ciągu 3-6 mies.", description: "Aktywnie szukam" },
   { value: "powyzej-6-miesiecy", label: "Powyżej 6 mies.", description: "Planuję spokojnie" },
   { value: "tylko-badamy", label: "Tylko badam rynek", description: "Zbieram informacje" },
 ] as const;
@@ -40,7 +40,7 @@ export const CONTACT_METHODS = [
 ] as const;
 
 /**
- * Region inwestycji – pierwszy filtr geograficzny jeszcze przed miastem.
+ * Region inwestycji. Pierwszy filtr geograficzny jeszcze przed miastem.
  * „Szukam doradztwa" zdejmuje presję wyboru i ratuje leady niezdecydowane.
  */
 export const REGIONS = [
@@ -58,7 +58,7 @@ export const REGIONS = [
   { value: "doradztwo", label: "Szukam doradztwa", description: "Pomóżcie wybrać region" },
 ] as const;
 
-/** Opcjonalne tagi wymogów – podnoszą jakość dopasowania ofert. */
+/** Opcjonalne tagi wymogów. Podnoszą jakość dopasowania ofert. */
 export const REQUIREMENTS = [
   { value: "blisko-plazy", label: "Blisko plaży" },
   { value: "widok-na-morze", label: "Widok na morze" },
@@ -85,7 +85,7 @@ export type LeadLanguage = z.infer<typeof languageEnum>;
 
 /* --------------------------- walidacja telefonu -------------------------- */
 
-/** Akceptuje PL (9 cyfr) i UE (8–15 cyfr, opcjonalnie +CC). */
+/** Akceptuje PL (9 cyfr) i UE (8-15 cyfr, opcjonalnie +CC). */
 export function normalizePhoneDigits(raw: string): string {
   return raw.replace(/\D/g, "");
 }
@@ -132,7 +132,7 @@ export const leadFormSchema = z.object({
   propertyType: propertyTypeEnum,
   horizon: horizonEnum,
   contactMethod: contactMethodEnum,
-  /** Multi-select regionów – opcjonalny, ale podnosi jakość dopasowania ofert. */
+  /** Multi-select regionów. Opcjonalny, ale podnosi jakość dopasowania ofert. */
   regions: z.array(regionEnum).max(REGIONS.length),
   /** Opcjonalne tagi wymogów (checkboxy). */
   requirements: z.array(requirementEnum).max(REQUIREMENTS.length),
@@ -148,7 +148,7 @@ export const leadFormSchema = z.object({
     .boolean()
     .refine((value) => value === true, { message: "Zgoda jest wymagana" }),
   marketingConsent: z.boolean(),
-  /** Honeypot – musi pozostać puste. */
+  /** Honeypot. Musi pozostać puste. */
   website: z.string().max(0).optional().or(z.literal("")),
 });
 
@@ -198,7 +198,7 @@ export const leadPayloadSchema = z.object({
     .string()
     .trim()
     .regex(phonePattern, "Nieprawidłowy numer telefonu")
-    .refine(isValidPhone, "Numer musi mieć 8–15 cyfr (PL lub z prefiksem +)")
+    .refine(isValidPhone, "Numer musi mieć 8-15 cyfr (PL lub z prefiksem +)")
     .transform((value) => {
       const digits = normalizePhoneDigits(value);
       if (digits.length === 9 && /^[1-9]\d{8}$/.test(digits)) return `+48${digits}`;
@@ -212,13 +212,13 @@ export const leadPayloadSchema = z.object({
   propertyType: propertyTypeEnum,
   horizon: horizonEnum,
   contactMethod: contactMethodEnum,
-  /** Multi-select regionów (opcjonalny) – zawęża bazę ofert przed kontaktem. */
+  /** Multi-select regionów (opcjonalny). Zawęża bazę ofert przed kontaktem. */
   regions: z.array(regionEnum).max(REGIONS.length).default([]),
   /** Opcjonalne tagi wymogów z KROKU 1. */
   requirements: z.array(requirementEnum).max(REQUIREMENTS.length).default([]),
   city: z.string().trim().min(2, "Podaj miejscowość").max(80),
   district: z.string().trim().max(80).optional(),
-  budget: numeric(10_000, 20_000_000, "Budżet w EUR: 10 tys. – 20 mln"),
+  budget: numeric(10_000, 20_000_000, "Budżet w EUR: 10 tys.: 20 mln"),
   message: z.string().trim().max(1000).optional(),
   consent: z.literal(true),
   marketingConsent: z.boolean().default(false),
@@ -242,16 +242,16 @@ export interface LeadRecord extends LeadPayload {
   ipHash: string;
   userAgent: string;
   referer: string;
-  /** Ocena jakości 0–100 – kolejność w kolejce telefonicznej agenta. */
+  /** Ocena jakości 0-100. Kolejność w kolejce telefonicznej agenta. */
   score: number;
   /** Preferowany kanał: WhatsApp wymaga innego SLA niż e-mail. */
   whatsapp: boolean;
 }
 
 /**
- * Scoring leada – reguły biznesowe, tłumaczalne dla handlowca.
+ * Scoring leada. Reguły biznesowe, tłumaczalne dla handlowca.
  *
- * Kalibracja: budżet ≥300 tys. € + zakup w 1–3 miesiące + cel inwestycyjny
+ * Kalibracja: budżet ≥300 tys. € + zakup w 1-3 miesiące + cel inwestycyjny
  * + kontakt telefoniczny/WhatsApp = 95/100 → natychmiastowa notyfikacja.
  */
 export function scoreLead(payload: LeadPayload): number {

@@ -5,7 +5,7 @@ import type { Locale } from "./config";
  * (wymuszone przez `satisfies Dictionary`), więc brak tłumaczenia jest
  * błędem kompilacji, a nie angielskim tekstem w hiszpańskiej wersji.
  *
- * Zasada: żadnych funkcji w słownikach – obiekty muszą być serializowalne,
+ * Zasada: żadnych funkcji w słownikach. Obiekty muszą być serializowalne,
  * bo część copy trafia do komponentów klienckich (formularz, kalkulator).
  */
 
@@ -104,7 +104,7 @@ export interface Dictionary {
 
 export type DictionaryMap = Record<Locale, Dictionary>;
 
-/** Proste podstawianie "{name}" – wspólne dla klienta i serwera. */
+/** Proste podstawianie "{name}". Wspólne dla klienta i serwera. */
 export function fill(template: string, vars: Record<string, string>): string {
   return template.replace(/\{(\w+)\}/g, (_match, key: string) => vars[key] ?? "");
 }

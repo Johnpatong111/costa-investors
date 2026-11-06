@@ -9,21 +9,21 @@ export const darmowyPrzewodnikWycena: ServiceDefinition = {
   propertyNounGenitive: "nieruchomości",
   intent: "commercial",
   ctaLabel: "Pobierz przewodnik i wycenę",
-  priceAnchor: "0 € – bez zobowiązań",
+  priceAnchor: "0 €. Bez zobowiązań",
   highlightLabel: "przewodnik PDF + analiza prawna",
   h1: [
-    "Darmowy przewodnik zakupu w {districtLoc} ({cityLoc}) – {year}",
+    "Darmowy przewodnik zakupu w {districtLoc} ({cityLoc}) - {year}",
     "Wycena nieruchomości w {districtLoc} ({cityLoc}) + analiza prawna",
     "Ile kosztuje zakup w {districtLoc}, {cityLoc}? Przewodnik i koszty",
   ],
   metaTitle: [
     "Darmowy przewodnik zakupu {city} ({region}) {year}",
-    "Wycena i analiza prawna – {district} {city}",
+    "Wycena i analiza prawna - {district} {city}",
     "Zakup nieruchomości w {cityLoc}: przewodnik PDF",
   ],
   metaDescription: [
     "Pobierz bezpłatny przewodnik: koszty zakupu w {districtLoc}, podatki ITP/IVA, NIE i wycena. Średnia cena: {price} €/m². Bez zobowiązań.",
-    "Planujesz zakup w {cityLoc}? Otrzymasz przewodnik PDF, kalkulację kosztów i wstępną wycenę nieruchomości – bezpłatnie w 2026.",
+    "Planujesz zakup w {cityLoc}? Otrzymasz przewodnik PDF, kalkulację kosztów i wstępną wycenę nieruchomości. Bezpłatnie w 2026.",
     "Przewodnik dla Polaków kupujących w Hiszpanii: NIE, notariusz, podatki, ROI {yield}% w {cityLoc}. Pobierz PDF i umów kontakt z agentem.",
   ],
   synonyms: [
@@ -37,7 +37,7 @@ export const darmowyPrzewodnikWycena: ServiceDefinition = {
     {
       title: "Pełna lista kosztów zakupu",
       description:
-        "ITP/IVA, notariusz, rejestr, prawnik, tłumaczenia, konto i NIE – z kwotami dla nieruchomości w {districtLoc} ({price} €/m²).",
+        "ITP/IVA, notariusz, rejestr, prawnik, tłumaczenia, konto i NIE. Z kwotami dla nieruchomości w {districtLoc} ({price} €/m²).",
     },
     {
       title: "Analiza prawna bez prawniczego żargonu",
@@ -58,7 +58,7 @@ export const darmowyPrzewodnikWycena: ServiceDefinition = {
   process: [
     {
       title: "Wypełnij formularz",
-      description: "Podaj budżet i cel zakupu – 3 decyzje, bez danych wrażliwych.",
+      description: "Podaj budżet i cel zakupu: 3 decyzje, bez danych wrażliwych.",
       duration: "2 minuty",
     },
     {
@@ -71,7 +71,7 @@ export const darmowyPrzewodnikWycena: ServiceDefinition = {
       title: "Wstępna wycena",
       description:
         "Jeśli masz konkretną nieruchomość, porównujemy jej cenę z medianą {price} €/m² i transakcjami w okolicy.",
-      duration: "24–48 h",
+      duration: "24-48 h",
     },
     {
       title: "Konsultacja (opcjonalnie)",
@@ -87,7 +87,7 @@ export const darmowyPrzewodnikWycena: ServiceDefinition = {
     },
     {
       q: "Jakie koszty poza ceną muszę doliczyć w {districtLoc}?",
-      a: "Około 13–14% ceny: ITP 10% (rynek wtórny) lub IVA 10% + AJD (nowe), notariusz, rejestr, obsługa prawna. Do tego koszty utrzymania i podatki roczne.",
+      a: "Około 13-14% ceny: ITP 10% (rynek wtórny) lub IVA 10% + AJD (nowe), notariusz, rejestr, obsługa prawna. Do tego koszty utrzymania i podatki roczne.",
     },
     {
       q: "Czy potrzebuję numeru NIE do wyceny?",
@@ -95,7 +95,7 @@ export const darmowyPrzewodnikWycena: ServiceDefinition = {
     },
     {
       q: "Ile trwa zakup nieruchomości w Hiszpanii?",
-      a: "Od rezerwacji do aktu notarialnego zwykle 3–6 tygodni, przy kredycie hiszpańskim 6–10 tygodni. W {cityLoc} notariusze są dostępni szybko, więc kluczowe jest due diligence.",
+      a: "Od rezerwacji do aktu notarialnego zwykle 3-6 tygodni, przy kredycie hiszpańskim 6-10 tygodni. W {cityLoc} notariusze są dostępni szybko, więc kluczowe jest due diligence.",
     },
   ],
   checklist: [

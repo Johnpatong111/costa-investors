@@ -95,7 +95,7 @@ export function SiteFooter({ lang }: { lang: Locale }) {
           <p>
             © {SITE.year} {SITE.legalName}. Wszystkie prawa zastrzeżone.
           </p>
-          {/* Rzetelność danych jest elementem E-E-A-T – dlatego jawnie podajemy źródło i datę. */}
+          {/* Rzetelność danych jest elementem E-E-A-T. Dlatego jawnie podajemy źródło i datę. */}
           <p>
             Dane rynkowe: mediana ofert i transakcji, aktualizacja {LOCATIONS.updatedAt}.{" "}
             {LOCATIONS.source}

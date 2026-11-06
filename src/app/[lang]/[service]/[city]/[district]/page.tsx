@@ -174,7 +174,7 @@ export default async function DistrictServicePage({
 
       <FaqAccordion
         items={content.faq}
-        title={`${service.name} w ${districtName} – pytania i odpowiedzi`}
+        title={`${service.name} w ${districtName}. Pytania i odpowiedzi`}
       />
 
       <InternalLinks
@@ -188,7 +188,7 @@ export default async function DistrictServicePage({
             })),
           },
           {
-            title: `Inne dzielnice – ${service.name}`,
+            title: `Inne dzielnice: ${service.name}`,
             links: nearby.map((item) => ({
               href: `/${service.slug}/${item.city.slug}/${item.district.slug}`,
               label: `${item.district.name} (${item.city.name})`,
@@ -200,7 +200,7 @@ export default async function DistrictServicePage({
             links: [
               {
                 href: `/${PRICE_REPORT.slug}/${entry.city.slug}/${entry.district.slug}`,
-                label: `Ceny i ROI w ${districtName} – raport ${content.stats.dataAsOf}`,
+                label: `Ceny i ROI w ${districtName}. Raport ${content.stats.dataAsOf}`,
                 meta: `ROI ${formatRate(content.stats.rentalYield)}`,
               },
             ],

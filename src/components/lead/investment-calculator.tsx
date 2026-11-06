@@ -15,7 +15,7 @@ export interface InvestmentCalculatorProps {
   rates: MarketRates;
   cityName: string;
   districtName?: string;
-  /** Budżet jako string (spacje tysięczne) – wspólny stan z formularzem. */
+  /** Budżet jako string (spacje tysięczne). Wspólny stan z formularzem. */
   budget: string;
   onBudgetChange: (value: string) => void;
   onRequestOffer: () => void;
@@ -129,10 +129,10 @@ export function InvestmentCalculator({
             Czynsz rocznie
           </p>
           <p className="mt-1 text-2xl font-bold leading-none tabular-nums">
-            {parsed > 0 ? formatEur(result.annualRentGross) : "—"}
+            {parsed > 0 ? formatEur(result.annualRentGross) : "-"}
           </p>
           <p className="mt-1 text-[11px] text-brand-200">
-            netto ok. {parsed > 0 ? formatEur(result.annualRentNet) : "—"}
+            netto ok. {parsed > 0 ? formatEur(result.annualRentNet) : "-"}
           </p>
         </div>
         <div className="rounded-xl bg-gradient-to-br from-accent-600 to-accent-500 p-4 text-white">
@@ -141,7 +141,7 @@ export function InvestmentCalculator({
             Zwrot 5 lat
           </p>
           <p className="mt-1 text-2xl font-bold leading-none tabular-nums">
-            {parsed > 0 ? formatEur(result.totalReturn5y) : "—"}
+            {parsed > 0 ? formatEur(result.totalReturn5y) : "-"}
           </p>
           <p className="mt-1 text-[11px] text-white/80">
             {parsed > 0 ? `${result.totalReturnPercent}% budżetu` : "podaj budżet"}

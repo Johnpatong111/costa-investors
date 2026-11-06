@@ -74,14 +74,14 @@ export function validateDataset(): ValidationReport {
       const deviation = Math.abs(district.pricePerM2 - city.pricePerM2) / city.pricePerM2;
       if (deviation > 0.6) {
         warnings.push(
-          `Dzielnica "${city.slug}/${district.slug}": cena odbiega o ${Math.round(deviation * 100)}% od mediany miasta – sprawdź dane.`,
+          `Dzielnica "${city.slug}/${district.slug}": cena odbiega o ${Math.round(deviation * 100)}% od mediany miasta. Sprawdź dane.`,
         );
       }
 
       // Sanity check inwestora: ROI musi być spójne z ceną (droższe = niższe).
       if (district.rentalYield < 3 || district.rentalYield > 9) {
         warnings.push(
-          `Dzielnica "${city.slug}/${district.slug}": ROI ${district.rentalYield}% poza typowym przedziałem 3–9%.`,
+          `Dzielnica "${city.slug}/${district.slug}": ROI ${district.rentalYield}% poza typowym przedziałem 3-9%.`,
         );
       }
     }
@@ -90,7 +90,7 @@ export function validateDataset(): ValidationReport {
   for (const city of LOCATIONS.cities) {
     if (city.priceGrowth < 0 && city.rentalYield > 7) {
       warnings.push(
-        `Miasto "${city.slug}": spadek cen przy wysokim ROI – upewnij się, że to nie błąd danych.`,
+        `Miasto "${city.slug}": spadek cen przy wysokim ROI. Upewnij się, że to nie błąd danych.`,
       );
     }
   }
@@ -100,7 +100,7 @@ export function validateDataset(): ValidationReport {
       errors.push(`Usługa "${service.slug}" koliduje ze slugiem zarezerwowanym.`);
     }
     if (service.h1.length < 2) {
-      warnings.push(`Usługa "${service.slug}" ma < 2 wariantów H1 – rotacja będzie uboga.`);
+      warnings.push(`Usługa "${service.slug}" ma < 2 wariantów H1. Rotacja będzie uboga.`);
     }
     if (service.metaDescription.some((description) => description.length > 180)) {
       warnings.push(`Usługa "${service.slug}" ma meta description > 180 znaków przed interpolacją.`);
@@ -108,7 +108,7 @@ export function validateDataset(): ValidationReport {
   }
 
   if (citiesWithoutDistricts > 0) {
-    warnings.push(`${citiesWithoutDistricts} miast bez dzielnic – powstaną tylko strony miejskie.`);
+    warnings.push(`${citiesWithoutDistricts} miast bez dzielnic. Powstaną tylko strony miejskie.`);
   }
 
   return {

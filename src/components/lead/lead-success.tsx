@@ -26,7 +26,7 @@ const NEXT_STEPS = [
     icon: FileText,
     title: "Kontakt agenta w 24 h",
     description:
-      "Polskojęzyczny agent dzwoni lub pisze na WhatsApp z 3–5 dopasowanymi ofertami.",
+      "Polskojęzyczny agent dzwoni lub pisze na WhatsApp z 3-5 dopasowanymi ofertami.",
   },
   {
     icon: CalendarCheck,
@@ -35,7 +35,7 @@ const NEXT_STEPS = [
   },
 ];
 
-/** Thank You Screen – potwierdzenie + status przekazania leada do agencji. */
+/** Thank You Screen. Potwierdzenie + status przekazania leada do agencji. */
 export function LeadSuccess({
   fullName,
   phone,
@@ -65,7 +65,7 @@ export function LeadSuccess({
             Zgłoszenie przekazaliśmy do partnerskiej agencji nieruchomości w Hiszpanii.
             Certyfikowany agent skontaktuje się z Tobą na{" "}
             <strong className="whitespace-nowrap">{phone}</strong> w ciągu 24 godzin
-            (9:00–20:00 CET).
+            (9:00-20:00 CET).
           </p>
         </div>
       </div>

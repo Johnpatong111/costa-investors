@@ -19,6 +19,7 @@ import {
   type PageContent,
 } from "./content-utils";
 import { buildCityBlocks, buildCityFaq } from "./city-blocks";
+import { cityAccessBlock } from "./access";
 
 /**
  * Hub miasta: /{service}/{city}. Intencja: porównanie lokalizacji na Costa Blanca,
@@ -45,9 +46,9 @@ export function buildCityContent(
   const h1 = t(
     pick(
       [
-        `${service.name} ${city.name} – ${region.name} ${MARKET_YEAR}`,
-        `${service.name} w ${city.nameLocative} – ceny i ROI`,
-        `${service.name} ${city.nameLocative} – oferty i inwestycja`,
+        `${service.name} ${city.name}: ${region.name} ${MARKET_YEAR}`,
+        `${service.name} w ${city.nameLocative}. Ceny i ROI`,
+        `${service.name} ${city.nameLocative}. Oferty i inwestycja`,
       ],
       key,
       "h1",
@@ -59,8 +60,8 @@ export function buildCityContent(
       pick(
         [
           `${service.name} ${city.name} (${region.name}) | od 120k €`,
-          `${service.name} ${city.nameLocative} – ceny i ROI`,
-          `Inwestycja w ${city.nameLocative} – ${service.name}`,
+          `${service.name} ${city.nameLocative}. Ceny i ROI`,
+          `Inwestycja w ${city.nameLocative}: ${service.name}`,
         ],
         key,
         "title",
@@ -96,6 +97,12 @@ export function buildCityContent(
   );
 
   const blocks = buildCityBlocks(city, service, t, vars);
+
+// Blok infrastrukturalny: lotnisko (IATA) i AP-7, twarde dane zamiast ogólników.
+const access = cityAccessBlock(city.slug, "pl");
+if (access) {
+  blocks.push({ id: "dojazd", heading: access.heading, paragraphs: access.paragraphs });
+}
   const faq = buildCityFaq(city, service, t, vars, stats);
   const processSteps = service.process.map((step) => ({
     title: step.title,

@@ -33,12 +33,12 @@ export interface MultiStepLeadFormProps {
   cityName: string;
   districtName?: string;
   sourceKey: string;
-  /** Język wersji strony – trafia do leada i decyduje o agencie. */
+  /** Język wersji strony. Trafia do leada i decyduje o agencie. */
   language?: LeadLanguage;
   /** Budżet współdzielony z kalkulatorem ROI. */
   budget: string;
   onBudgetChange: (value: string) => void;
-  /** Wynik kalkulatora – trafia do leada jako prognoza dochodu. */
+  /** Wynik kalkulatora. Trafia do leada jako prognoza dochodu. */
   estimate?: ReturnEstimate | null;
   className?: string;
   heading?: string;
@@ -47,12 +47,12 @@ export interface MultiStepLeadFormProps {
 
 /**
  * ===========================================================================
- * DWUETAPOWY FORMULARZ – POLSKI INWESTOR NA COSTA BLANCA
+ * DWUETAPOWY FORMULARZ - POLSKI INWESTOR NA COSTA BLANCA
  * ===========================================================================
  * Krok 1: cel zakupu, typ nieruchomości, horyzont, budżet (decyzje).
  * Krok 2: imię, telefon PL/EU, e-mail, preferowany kanał kontaktu.
  *
- * Numer telefonu pojawia się dopiero po „zainwestowaniu” decyzji –
+ * Numer telefonu pojawia się dopiero po „zainwestowaniu” decyzji -
  * standardowy mechanizm mikro-zobowiązań w high-ticket lead gen.
  */
 export function MultiStepLeadForm({
@@ -65,7 +65,7 @@ export function MultiStepLeadForm({
   estimate,
   className,
   heading = "Znajdź nieruchomości i odbierz analizę ROI",
-  subheading = "Wypełnij 4 krótkie pytania – w ciągu 15 minut prześlemy spersonalizowany zestaw wyselekcjonowanych ofert.",
+  subheading = "Wypełnij 4 krótkie pytania. W ciągu 15 minut prześlemy spersonalizowany zestaw wyselekcjonowanych ofert.",
 }: MultiStepLeadFormProps) {
   const [step, setStep] = useState<0 | 1>(0);
   const [status, setStatus] = useState<Status>("idle");
@@ -101,7 +101,7 @@ export function MultiStepLeadForm({
       [values.city, values.district].filter(Boolean).join(" / "),
     ].filter(Boolean);
 
-    // Regiony i wymogi są opcjonalne – dokładamy je do podsumowania tylko,
+    // Regiony i wymogi są opcjonalne. Dokładamy je do podsumowania tylko,
     // gdy użytkownik faktycznie coś zaznaczył.
     const selectedRegions = Array.isArray(values.regions) ? (values.regions as string[]) : [];
     if (selectedRegions.length > 0) {

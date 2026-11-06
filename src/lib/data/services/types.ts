@@ -1,5 +1,5 @@
 /**
- * Kontrakt usługi – jedna usługa = jedna intencja zakupowa.
+ * Kontrakt usługi. Jedna usługa = jedna intencja zakupowa.
  * Synonimy rotują w treści, nie w routingu (ochrona przed kanibalizacją).
  *
  * Placeholdery: {city} {cityLoc} {cityGen} {district} {districtLoc}
@@ -24,7 +24,7 @@ export interface ServiceDefinition {
   propertyNounGenitive: string;
   intent: "transactional" | "commercial";
   ctaLabel: string;
-  /** Widełki cenowe w EUR – budują oczekiwania i filtrują leady. */
+  /** Widełki cenowe w EUR. Budują oczekiwania i filtrują leady. */
   priceAnchor: string;
   /** Drugi wyróżnik oferty (ROI, doradztwo, analiza prawna). */
   highlightLabel: string;
@@ -35,7 +35,7 @@ export interface ServiceDefinition {
   benefits: { title: string; description: string }[];
   process: { title: string; description: string; duration: string }[];
   faq: ServiceFaqSeed[];
-  /** Lista kontrolna / dokumenty – zależy od typu usługi. */
+  /** Lista kontrolna / dokumenty. Zależy od typu usługi. */
   checklist: string[];
   linkLabel: string;
 }

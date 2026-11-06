@@ -34,15 +34,15 @@ export default function PrivacyPolicyPage() {
           W formularzu zbieramy: imię i nazwisko, numer telefonu, opcjonalnie e-mail,
           informacje o nieruchomości (typ, metraż, lokalizacja, stan prawny, termin
           sprzedaży) oraz treść wiadomości. Technicznie zapisujemy również hash adresu IP,
-          nagłówek przeglądarki i adres strony źródłowej – wyłącznie w celu
+          nagłówek przeglądarki i adres strony źródłowej. Wyłącznie w celu
           zabezpieczenia formularza przed spamem i nadużyciami.
         </p>
 
         <h2 className="pt-4 text-xl font-bold text-brand-950">2. Cel i podstawa prawna</h2>
         <p>
-          Dane przetwarzamy na podstawie art. 6 ust. 1 lit. a RODO (zgoda) w celu kontaktu
-          i przygotowania oferty zakupu nieruchomości, a w przypadku zawarcia umowy – na
-          podstawie art. 6 ust. 1 lit. b RODO (wykonanie umowy). Zgoda marketingowa jest
+          Dane przetwarzamy na podstawie art. 6 ust. 1 lit. A RODO (zgoda) w celu kontaktu
+          i przygotowania oferty zakupu nieruchomości, a w przypadku zawarcia umowy. Na
+          podstawie art. 6 ust. 1 lit. B RODO (wykonanie umowy). Zgoda marketingowa jest
           dobrowolna i niezależna od zgody na kontakt w sprawie wyceny.
         </p>
 
@@ -73,7 +73,7 @@ export default function PrivacyPolicyPage() {
         <h2 className="pt-4 text-xl font-bold text-brand-950">6. Pliki cookies</h2>
         <p>
           Serwis nie używa plików cookies marketingowych bez zgody. Stosujemy wyłącznie
-          niezbędne mechanizmy techniczne oraz – po wyrażeniu zgody – narzędzia
+          niezbędne mechanizmy techniczne oraz. Po wyrażeniu zgody. Narzędzia
           analityczne mierzące skuteczność stron (bez profilowania reklamowego).
         </p>
       </article>

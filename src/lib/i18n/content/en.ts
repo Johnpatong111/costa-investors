@@ -1,6 +1,6 @@
 import type { LocalizedContent } from "./types";
 
-/** TREŚĆ STRON – ANGIELSKI (body, FAQ prawne, copy usług). */
+/** TREŚĆ STRON - ANGIELSKI (body, FAQ prawne, copy usług). */
 export const en = {
   district: {
     leads: [
@@ -10,14 +10,14 @@ export const en = {
     ],
     blocks: {
       rynek: {
-        heading: "Property market in {districtLoc} – {year}",
+        heading: "Property market in {districtLoc} - {year}",
         p1: "The area is dominated by {characteristic}; buyers focus on {landmark} and {landmark2} before floor area. Listings near the beach or with a pool sit above the local average.",
         p2: "Median asking price is {price} €/m², {pricePosition}. Year on year the market is {growthSentence}. A 70 m² apartment is worth around {budget70} before purchase costs.",
       },
       roi: {
         heading: "Rental income and ROI in {districtLoc}",
         p1: "Median rent is {rent} €/m² per month, giving a {yieldSentence}. A 70 m² unit earns about {rent70} € gross a year and {rentNet70} € net of management, tax and vacancy.",
-        p2: "With capital growth, a 250 000 € investment returns roughly {return5y} € over five years ({returnPercent}% of budget). A model, not a guarantee – every property is verified first.",
+        p2: "With capital growth, a 250 000 € investment returns roughly {return5y} € over five years ({returnPercent}% of budget). A model, not a guarantee. Every property is verified first.",
       },
       koszty: {
         heading: "Purchase costs and taxes in Spain",
@@ -45,7 +45,7 @@ export const en = {
     faq: [
       {
         q: "How much does a square metre cost in {districtLoc}?",
-        a: "Median asking price is {price} €/m² (data: {dataAsOf}) – {pricePosition}. The median for {cityGen} is {cityPrice} €/m². Add roughly 13–14% for purchase costs.",
+        a: "Median asking price is {price} €/m² (data: {dataAsOf}) - {pricePosition}. The median for {cityGen} is {cityPrice} €/m². Add roughly 13-14% for purchase costs.",
       },
       {
         q: "What yield can I expect in {districtLoc}?",
@@ -57,7 +57,7 @@ export const en = {
       },
       {
         q: "What taxes apply when I buy in {districtLoc}?",
-        a: "Resale: ITP 10% (Comunidad Valenciana, Murcia). New build: IVA 10% plus AJD. With notary, registry and abogado, budget 13–14% of the price. Ongoing: IBI and tax on rental income.",
+        a: "Resale: ITP 10% (Comunidad Valenciana, Murcia). New build: IVA 10% plus AJD. With notary, registry and abogado, budget 13-14% of the price. Ongoing: IBI and tax on rental income.",
       },
       {
         q: "Does buying property grant residency in Spain?",
@@ -77,13 +77,13 @@ export const en = {
     ],
     blocks: {
       rynek: {
-        heading: "Property market in {cityLoc} – {year}",
+        heading: "Property market in {cityLoc} - {year}",
         p1: "Median asking price in {cityLoc} is {cityPrice} €/m², {growth} year on year. Against the {region} median of {regionPrice} €/m² the city is {pricePosition}. Average time on market is {days} days with about {volume} sales a year.",
-        p2: "Foreign buyers are {foreign} of the market, including {polish} from Poland – liquid resales, but competition for the best units.",
+        p2: "Foreign buyers are {foreign} of the market, including {polish} from Poland. Liquid resales, but competition for the best units.",
       },
       dzielnice: {
         heading: "Prices and yields by area in {cityGen}",
-        p1: "Prices vary with distance to the beach, year built and the standard of the development. Below: median €/m² and gross yield per area – open one for the full report.",
+        p1: "Prices vary with distance to the beach, year built and the standard of the development. Below: median €/m² and gross yield per area. Open one for the full report.",
       },
       proces: {
         heading: "How to buy property in {cityLoc}",
@@ -107,7 +107,7 @@ export const en = {
       },
       {
         q: "Where in {cityLoc} is cheapest and where is the best yield?",
-        a: "The lowest median prices sit inland or in secondary areas, while the best gross yields tend to be in cheaper coastal districts. They rarely overlap with the most expensive postcodes – that is the core investment decision.",
+        a: "The lowest median prices sit inland or in secondary areas, while the best gross yields tend to be in cheaper coastal districts. They rarely overlap with the most expensive postcodes. That is the core investment decision.",
       },
       {
         q: "Can foreign buyers purchase in {cityLoc}?",
@@ -118,8 +118,8 @@ export const en = {
 
   report: {
     h1: [
-      "Prices and ROI in {district} ({city}) – {year} report",
-      "Price per m² in {districtLoc} ({city}) – investment analysis",
+      "Prices and ROI in {district} ({city}) - {year} report",
+      "Price per m² in {districtLoc} ({city}). Investment analysis",
     ],
     metaTitle: "Prices and ROI {district} ({city}) {year}",
     metaDescription:
@@ -127,7 +127,7 @@ export const en = {
     lead: "Median asking price in {districtLoc} is {price} €/m² (data: {dataAsOf}), {pricePosition}. Gross yield is {yield} and roughly {netYield} net, with prices up {growth} y/y. Below: rents, purchase costs and a comparison with other areas of {cityGen}.",
     blocks: {
       ceny: {
-        heading: "Property prices in {districtLoc} – {year}",
+        heading: "Property prices in {districtLoc} - {year}",
         p1: "Price depends on distance to the beach, year built and the standard of the development. At a median of {price} €/m² a 70 m² unit costs about {budget70}; with purchase costs ({purchaseCosts}) the budget lands near {budget70plus}.",
         bullets: [
           "Median asking price: {price} €/m²",
@@ -144,11 +144,11 @@ export const en = {
       podatki: {
         heading: "Taxes and purchase costs in Spain",
         p1: "Buying in {districtLoc} means around {purchaseCosts}: ITP 10% on resale or IVA 10% plus AJD on new builds, notary, registro de la propiedad and legal fees. Add annual IBI and comunidad plus tax on rental income (IRPF).",
-        p2: "As a non-resident you file Spanish rental income tax and apply the double-taxation treaty at home. An NIE number is mandatory – without it you cannot sign the deed or file taxes.",
+        p2: "As a non-resident you file Spanish rental income tax and apply the double-taxation treaty at home. An NIE number is mandatory. Without it you cannot sign the deed or file taxes.",
       },
       metodologia: {
         heading: "Methodology",
-        p1: "Figures come from asking prices and transactions over the last 12 months for {districtLoc} ({volume} transactions in the model) and are refreshed monthly. They are not a valuation under Spanish law – a bank tasación is required for any mortgage.",
+        p1: "Figures come from asking prices and transactions over the last 12 months for {districtLoc} ({volume} transactions in the model) and are refreshed monthly. They are not a valuation under Spanish law. A bank tasación is required for any mortgage.",
       },
     },
     faq: [
@@ -166,7 +166,7 @@ export const en = {
       },
       {
         q: "What costs come on top of the price?",
-        a: "About {purchaseCosts}: ITP/IVA, notary, registry and legal fees, plus roughly 300–800 € a year of fixed costs (IBI, comunidad).",
+        a: "About {purchaseCosts}: ITP/IVA, notary, registry and legal fees, plus roughly 300-800 € a year of fixed costs (IBI, comunidad).",
       },
     ],
   },
@@ -180,12 +180,12 @@ export const en = {
       highlightLabel: "sea view or pool",
       ctaLabel: "See listings and run the numbers",
       h1: [
-        "Apartments for sale in {districtLoc} ({cityLoc}) – {region} {year}",
+        "Apartments for sale in {districtLoc} ({cityLoc}) - {region} {year}",
         "Apartments in {districtLoc} ({cityLoc}) from {price} €/m²",
       ],
       metaTitle: [
         "Apartments for sale {city} ({region}) | from 120k €",
-        "Apartment {district} {city} – prices and ROI {year}",
+        "Apartment {district} {city}. Prices and ROI {year}",
       ],
       metaDescription: [
         "Looking for an apartment in {districtLoc}? Median {price} €/m², {yield} yield, {growth} growth y/y. Listings, costs and an English-speaking agent.",
@@ -200,7 +200,7 @@ export const en = {
         {
           title: "Purchase costs calculated upfront",
           description:
-            "ITP 10% or IVA plus AJD, notary, registry, abogado and the Spanish bank account – a full budget before you sign.",
+            "ITP 10% or IVA plus AJD, notary, registry, abogado and the Spanish bank account. A full budget before you sign.",
         },
         {
           title: "Title and planning verified",
@@ -222,12 +222,12 @@ export const en = {
       highlightLabel: "private pool and plot",
       ctaLabel: "Request the villa shortlist",
       h1: [
-        "Villas with pool in {districtLoc} ({cityLoc}) – {region} {year}",
+        "Villas with pool in {districtLoc} ({cityLoc}) - {region} {year}",
         "Luxury villas in {districtLoc} ({cityLoc})",
       ],
       metaTitle: [
         "Villas with pool {city} ({region}) | from 320k €",
-        "Luxury villa {district} {city} – listings {year}",
+        "Luxury villa {district} {city}. Listings {year}",
       ],
       metaDescription: [
         "Villas with pool in {districtLoc} ({cityLoc}) from €320,000. Prices {price} €/m², {growth} growth y/y. Selected listings and ROI.",
@@ -237,7 +237,7 @@ export const en = {
         {
           title: "Plot and pool checked",
           description:
-            "Land classification, pool and extension legality and Catastro records verified – the most common problem with villas.",
+            "Land classification, pool and extension legality and Catastro records verified. The most common problem with villas.",
         },
         {
           title: "Sea views that stay",
@@ -247,7 +247,7 @@ export const en = {
         {
           title: "Running costs on the table",
           description:
-            "IBI, comunidad, pool, gardener and insurance – annual cost shown before you offer.",
+            "IBI, comunidad, pool, gardener and insurance. Annual cost shown before you offer.",
         },
       ],
       checklist: [
@@ -260,16 +260,16 @@ export const en = {
       name: "Investment properties",
       propertyNoun: "property",
       propertyNounGenitive: "property",
-      priceAnchor: "4.6–6.9% gross yield",
+      priceAnchor: "4.6-6.9% gross yield",
       highlightLabel: "rental income and capital growth",
       ctaLabel: "Model the ROI for this area",
       h1: [
-        "Investment properties in {districtLoc} ({cityLoc}) – {yield} ROI",
-        "Buy-to-let in {districtLoc} ({cityLoc}) – prices and yield",
+        "Investment properties in {districtLoc} ({cityLoc}) - {yield} ROI",
+        "Buy-to-let in {districtLoc} ({cityLoc}). Prices and yield",
       ],
       metaTitle: [
         "Investment property {city} ({region}) | ROI {yield}",
-        "Buy-to-let {district} {city} – ROI {year}",
+        "Buy-to-let {district} {city} - ROI {year}",
       ],
       metaDescription: [
         "Investment property in {districtLoc}: {price} €/m², rent {rent} €/m², {yield} gross yield. Model your return for {year}.",
@@ -293,26 +293,26 @@ export const en = {
       name: "Free buying guide",
       propertyNoun: "property",
       propertyNounGenitive: "property",
-      priceAnchor: "free – no obligation",
+      priceAnchor: "free. No obligation",
       highlightLabel: "PDF guide + legal check",
       ctaLabel: "Get the guide and valuation",
       h1: [
-        "Free buying guide for {districtLoc} ({cityLoc}) – {year}",
+        "Free buying guide for {districtLoc} ({cityLoc}) - {year}",
         "Valuation and legal check in {districtLoc} ({cityLoc})",
       ],
       metaTitle: [
         "Free buying guide {city} ({region}) {year}",
-        "Valuation and legal check – {district} {city}",
+        "Valuation and legal check - {district} {city}",
       ],
       metaDescription: [
         "Download the free guide: purchase costs in {districtLoc}, ITP/IVA, NIE and valuation. Median {price} €/m². No obligation.",
-        "Planning a purchase in {cityLoc}? Get a PDF guide, a cost breakdown and an indicative valuation – free.",
+        "Planning a purchase in {cityLoc}? Get a PDF guide, a cost breakdown and an indicative valuation. Free.",
       ],
       benefits: [
         {
           title: "Full cost breakdown",
           description:
-            "ITP/IVA, notary, registry, lawyer, translations and NIE – with numbers for {districtLoc} at {price} €/m².",
+            "ITP/IVA, notary, registry, lawyer, translations and NIE. With numbers for {districtLoc} at {price} €/m².",
         },
         {
           title: "Legal check without jargon",
@@ -333,20 +333,20 @@ export const en = {
     {
       title: "Shortlist and viewings",
       description:
-        "3–5 listings with €/m² against the local median; on-site or video viewings with the agent.",
-      duration: "3–10 days",
+        "3-5 listings with €/m² against the local median; on-site or video viewings with the agent.",
+      duration: "3-10 days",
     },
     {
       title: "Legal check and NIE",
       description:
         "An abogado verifies Nota Simple and charges; you obtain the NIE required to complete.",
-      duration: "1–2 weeks",
+      duration: "1-2 weeks",
     },
     {
       title: "Notary and keys",
       description:
         "Escritura at the notary, registro de la propiedad filing and handover of the keys.",
-      duration: "1 day + 2–6 weeks",
+      duration: "1 day + 2-6 weeks",
     },
   ],
 } satisfies LocalizedContent;

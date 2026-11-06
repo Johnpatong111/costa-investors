@@ -2,7 +2,7 @@ import { Section, SectionHeading } from "@/components/ui/primitives";
 import type { FaqItem } from "@/lib/content/content-utils";
 
 /**
- * FAQ na natywnych `<details>` – zero JavaScriptu, działa bez hydratacji,
+ * FAQ na natywnych `<details>`. Zero JavaScriptu, działa bez hydratacji,
  * a treść jest widoczna w HTML (Google indeksuje ukryte answers).
  * Ten sam zestaw pytań trafia do JSON-LD FAQPage.
  */

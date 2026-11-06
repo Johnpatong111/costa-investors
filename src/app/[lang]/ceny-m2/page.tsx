@@ -8,11 +8,11 @@ import { PRICE_REPORT } from "@/lib/data/services";
 import { buildMetadata } from "@/lib/seo/metadata";
 import { formatEur, formatRate } from "@/lib/utils/format";
 
-/** Indeks raportów: /ceny-m2 – hub dla fraz „ceny m2 <miejscowość> Costa Blanca”. */
+/** Indeks raportów: /ceny-m2. Hub dla fraz „ceny m2 <miejscowość> Costa Blanca”. */
 export const revalidate = 86_400;
 
 export const metadata: Metadata = buildMetadata({
-  title: `Ceny m² i ROI w Hiszpanii ${MARKET_YEAR} – raporty`,
+  title: `Ceny m² i ROI w Hiszpanii ${MARKET_YEAR}. Raporty`,
   description: `Mediany cen, rentowność najmu i dynamika r/r w ${getCities().length} miejscowościach Costa Blanca i Costa Cálida. Raporty dla każdej dzielnicy i urbanizacji.`,
   path: `/${PRICE_REPORT.slug}`,
   keywords: ["ceny m2 Costa Blanca", "ceny m2 Costa Cálida", "ROI wynajmu Hiszpania", `ceny nieruchomości ${MARKET_YEAR}`],
@@ -67,7 +67,7 @@ export default function PriceReportIndexPage() {
         <div className="overflow-x-auto rounded-xl border border-brand-100">
           <table className="w-full min-w-[640px] text-sm">
             <caption className="sr-only">
-              Mediany cen, ROI i dynamika w miejscowościach Costa Blanca – {MARKET_YEAR}
+              Mediany cen, ROI i dynamika w miejscowościach Costa Blanca - {MARKET_YEAR}
             </caption>
             <thead className="bg-brand-50 text-left text-xs uppercase tracking-wide text-brand-600">
               <tr>
@@ -133,7 +133,7 @@ export default function PriceReportIndexPage() {
                         href={`/${PRICE_REPORT.slug}/${city.slug}/${city.districts[0]?.slug ?? ""}`}
                         className="hover:text-brand-950 hover:underline"
                       >
-                        Ceny i ROI – {city.name}
+                        Ceny i ROI - {city.name}
                       </Link>
                     </li>
                   ))}

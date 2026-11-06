@@ -26,7 +26,7 @@ export interface TileOption {
  *
  * `satisfies readonly (keyof LeadFormValues)[]` sprawia, że zmiana nazwy pola
  * w schemacie (albo powrót do pola usuniętego podczas pivotu na rynek
- * hiszpański) natychmiast wywala kompilację z czytelnym błędem — zamiast
+ * hiszpański) natychmiast wywala kompilację z czytelnym błędem. Zamiast
  * cichego rozjechania typów w komponentach.
  */
 export const TILE_FIELDS = [
@@ -39,7 +39,7 @@ export const TILE_FIELDS = [
 export type TileField = (typeof TILE_FIELDS)[number];
 
 /**
- * Pola wielokrotnego wyboru (checkboxy) – osobna lista, bo `OptionTiles`
+ * Pola wielokrotnego wyboru (checkboxy). Osobna lista, bo `OptionTiles`
  * operuje na skalarach, a te trzymają tablice wartości.
  */
 export const LIST_FIELDS = ["regions", "requirements"] as const satisfies readonly (keyof LeadFormValues)[];
@@ -99,7 +99,7 @@ export function TileCard({
         ) : null}
       </span>
 
-      {/* Ikona wyboru jest absolutna – nie zabiera miejsca etykiecie i nie nachodzi
+      {/* Ikona wyboru jest absolutna. Nie zabiera miejsca etykiecie i nie nachodzi
           na długie nazwy (np. „Penthouse" w wąskim kafelku). */}
       <Check
         aria-hidden
@@ -193,7 +193,7 @@ export interface OptionChecklistProps {
  * Kafelki wielokrotnego wyboru (checkboxy).
  *
  * Używane dla regionów i tagów wymogów: użytkownik może zaznaczyć kilka
- * opcji albo żadnej – pola są opcjonalne, więc nigdy nie blokują CTA.
+ * opcji albo żadnej. Pola są opcjonalne, więc nigdy nie blokują CTA.
  */
 export function OptionChecklist({
   name,

@@ -10,9 +10,9 @@ import type { MarketStats } from "./market-stats";
  * punktów orientacyjnych i wniosków z nich płynących.
  *
  * Warstwy treści na stronie:
- *  1. boilerplate usługi (wspólny, krótki) – max ~30% objętości strony,
- *  2. bloki parametryzowane liczbami (prawie zawsze unikalne),
- *  3. bloki lokalne z cech dzielnicy (unikalne per lokalizacja),
+ *  1. Boilerplate usługi (wspólny, krótki). Max ~30% objętości strony,
+ *  2. Bloki parametryzowane liczbami (prawie zawsze unikalne),
+ *  3. Bloki lokalne z cech dzielnicy (unikalne per lokalizacja),
  *  4. FAQ generowane z danych (unikalne pytania + odpowiedzi).
  */
 
@@ -43,11 +43,11 @@ export interface PageContent {
   keywords: string[];
   blocks: ContentBlock[];
   faq: FaqItem[];
-  /** Etapy procesu po interpolacji – wspólne dla wszystkich stron usługi. */
+  /** Etapy procesu po interpolacji. Wspólne dla wszystkich stron usługi. */
   processSteps: ProcessStep[];
   stats: MarketStats;
   wordCount: number;
-  /** Brama jakości – strony poniżej progu dostają `noindex`. */
+  /** Brama jakości. Strony poniżej progu dostają `noindex`. */
   isIndexable: boolean;
   noindexReason?: string;
 }
@@ -74,7 +74,7 @@ export function countWords(text: string): number {
 }
 
 /**
- * Sygnatura treści – cyfry normalizowane do „#”, żeby dwa teksty różniące się
+ * Sygnatura treści. Cyfry normalizowane do „#”, żeby dwa teksty różniące się
  * tylko liczbami zostały wykryte jako duplikat (to najczęstszy grzech pSEO).
  */
 export function contentFingerprint(content: PageContent): string {
@@ -83,7 +83,7 @@ export function contentFingerprint(content: PageContent): string {
   );
 }
 
-/** Twarde limity SERP – bez urwanego wielokropka w środku słowa. */
+/** Twarde limity SERP. Bez urwanego wielokropka w środku słowa. */
 export function clip(text: string, max: number): string {
   if (text.length <= max) return text;
   const cut = text.slice(0, max - 1);
@@ -91,7 +91,7 @@ export function clip(text: string, max: number): string {
   return `${(space > max * 0.55 ? cut.slice(0, space) : cut).trimEnd()}…`;
 }
 
-/** Ocena jakości strony – decyduje o indeksowaniu. */
+/** Ocena jakości strony. Decyduje o indeksowaniu. */
 export function assessIndexability(content: PageContent): {
   isIndexable: boolean;
   reason?: string;
