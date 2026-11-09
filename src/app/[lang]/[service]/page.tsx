@@ -133,6 +133,7 @@ export default async function ServiceHubPage({
       <Breadcrumbs items={crumbs} />
 
       <Hero
+        locale={locale}
         eyebrow={`${copy.name} · ${regionLabel}`}
         h1={ui.h1(copy.name, regionLabel)}
         lead={ui.lead(copy.name, copy.priceAnchor, copy.highlightLabel)}

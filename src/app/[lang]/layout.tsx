@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { SKIP_TO_CONTENT } from "@/lib/i18n/micro-copy";
 import "../globals.css";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
@@ -84,7 +85,7 @@ export default async function RootLayout({
           href="#main"
           className="sr-only focus:not-sr-only focus:absolute focus:left-2 focus:top-2 focus:z-50 focus:rounded-lg focus:bg-brand-900 focus:px-4 focus:py-2 focus:text-white"
         >
-          Przejdź do treści
+          {SKIP_TO_CONTENT[locale]}
         </a>
         <SiteHeader lang={locale} />
         <main id="main" className="flex-1 pb-20 lg:pb-0">

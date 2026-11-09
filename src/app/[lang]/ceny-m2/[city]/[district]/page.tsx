@@ -9,6 +9,7 @@ import { JsonLd } from "@/components/seo/json-ld";
 import { PriceHistorySection } from "@/components/sections/price-history";
 import { getPriceHistory } from "@/lib/i18n/price-history";
 import { PRICE_HISTORY_KEYWORD } from "@/lib/i18n/seo-copy";
+import { PRICE_HUB_COPY } from "@/lib/i18n/price-hub-copy";
 import { buildPriceReport } from "@/lib/content/report-content";
 import { deriveDistrictStats } from "@/lib/content/market-stats";
 import { COUNTRY_MEDIAN_PRICE_PER_M2 } from "@/lib/content/market-stats";
@@ -52,6 +53,7 @@ export async function generateMetadata({
     return { title: "Nie znaleziono raportu", robots: { index: false, follow: false } };
   }
 
+  const copy = PRICE_HUB_COPY[locale];
   const report =
     locale === "pl" ? buildPriceReport(entry) : buildLocalizedPriceReport(entry, locale)!;
 
@@ -72,6 +74,7 @@ export default async function PriceReportPage({
 }) {
   const { lang, city, district } = await params;
   const locale = assertLocale(lang);
+  const copy = PRICE_HUB_COPY[locale];
   const ui = getUiCopy(locale);
   const entry = getDistrict(city, district);
   if (!entry) notFound();
@@ -156,10 +159,10 @@ export default async function PriceReportPage({
 
           <dl className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-4">
             {[
-              { label: "Mediana", value: `${formatPrice(report.stats.pricePerM2)} €/m²` },
-              { label: "ROI brutto", value: formatRate(report.stats.rentalYield) },
-              { label: "Wzrost r/r", value: formatRate(report.stats.priceGrowth) },
-              { label: "Czas sprzedaży", value: `${report.stats.avgDaysOnMarket} dni` },
+              { label: copy.colMedian, value: `${formatPrice(report.stats.pricePerM2)} €/m²` },
+              { label: locale === "es" ? "Rentabilidad bruta" : locale === "en" ? "Gross yield" : "ROI brutto", value: formatRate(report.stats.rentalYield) },
+              { label: locale === "es" ? "Crecimiento interanual" : locale === "en" ? "Growth YoY" : "Wzrost r/r", value: formatRate(report.stats.priceGrowth) },
+              { label: locale === "es" ? "Tiempo de venta" : locale === "en" ? "Time to sell" : "Czas sprzedaży", value: `${report.stats.avgDaysOnMarket} ${locale === "es" ? "días" : locale === "en" ? "days" : "dni"}` },
             ].map((item) => (
               <div
                 key={item.label}
@@ -182,8 +185,11 @@ export default async function PriceReportPage({
         <div className="overflow-x-auto rounded-xl border border-brand-100">
           <table className="w-full min-w-[560px] text-sm">
             <caption className="sr-only">
-              Mediana ceny za metr kwadratowy, rentowność najmu i dynamika cen w dzielnicach
-              miasta {entry.city.name}
+              {locale === "es"
+                ? `Mediana del precio por metro, rentabilidad del alquiler y evolución en las zonas de ${entry.city.name}`
+                : locale === "en"
+                  ? `Median price per square metre, rental yield and price growth across areas of ${entry.city.name}`
+                  : `Mediana ceny za metr kwadratowy, rentowność najmu i dynamika cen w dzielnicach miasta ${entry.city.name}`}
             </caption>
             <thead className="bg-brand-50 text-left text-xs uppercase tracking-wide text-brand-600">
               <tr>
@@ -238,12 +244,15 @@ export default async function PriceReportPage({
       <Section className="bg-brand-50/60">
         <div className="grid gap-6 lg:grid-cols-[1fr_420px]">
           <div>
-            <SectionHeading eyebrow="Oferty">
-              Chcesz kupić w {entry.district.nameLocative}?
+            <SectionHeading eyebrow={locale === "es" ? "Ofertas" : locale === "en" ? "Listings" : "Oferty"}>
+              {locale === "es" ? `¿Quieres comprar en ${entry.district.nameLocative}?` : locale === "en" ? `Want to buy in ${entry.district.nameLocative}?` : `Chcesz kupić w ${entry.district.nameLocative}?`}
             </SectionHeading>
             <p className="max-w-xl text-sm leading-relaxed text-brand-700">
-              Znasz już ceny i ROI. Wyślij zgłoszenie z budżetem. Przygotujemy 3-5 ofert z
-              wyliczonym zwrotem i pełnymi kosztami zakupu.
+              {locale === "es"
+              ? "Ya conoces los precios y la rentabilidad. Envía tu presupuesto: preparamos de 3 a 5 ofertas con retorno calculado y todos los gastos de compra."
+              : locale === "en"
+                ? "You know the prices and yields. Send your budget: we shortlist 3-5 properties with the return modelled and the full cost of buying."
+                : "Znasz już ceny i ROI. Wyślij zgłoszenie z budżetem. Przygotujemy 3-5 ofert z wyliczonym zwrotem i pełnymi kosztami zakupu."}
             </p>
             <ul className="mt-4 space-y-2 text-sm text-brand-700">
               {SERVICES.map((service) => (

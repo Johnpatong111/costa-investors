@@ -8,7 +8,7 @@ import type { FaqItem } from "@/lib/content/content-utils";
  */
 export function FaqAccordion({
   items,
-  title = "Najczęstsze pytania",
+  title = "FAQ",
   subtitle,
 }: {
   items: FaqItem[];

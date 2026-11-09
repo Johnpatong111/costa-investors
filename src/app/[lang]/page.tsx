@@ -67,6 +67,7 @@ export default async function HomePage({
   return (
     <>
       <Hero
+        locale={locale}
         eyebrow={home.heroEyebrow}
         h1={home.heroH1}
         lead={home.heroLead(allCities.length)}

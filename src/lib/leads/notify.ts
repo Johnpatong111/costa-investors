@@ -65,12 +65,12 @@ export async function postJson(
     return {
       channel,
       ok: false,
-      error: error instanceof Error ? error.message : "nieznany bĹ‚Ä…d sieci",
+      error: error instanceof Error ? error.message : "nieznany błąd sieci",
     };
   }
 }
 
-/** HMAC-SHA256. Partner CRM moĹĽe zweryfikowaÄ‡, ĹĽe lead pochodzi od nas. */
+/** HMAC-SHA256. Partner CRM może zweryfikowaÄ‡, że lead pochodzi od nas. */
 export async function hmacSha256(secret: string, body: string): Promise<string> {
   const encoder = new TextEncoder();
   const key = await crypto.subtle.importKey(
@@ -95,21 +95,23 @@ function row(label: string, value: string): string {
 export function leadEmailHtml(lead: LeadRecord): string {
   return `<div style="font-family:system-ui,sans-serif;max-width:560px">
     <h2 style="margin:0 0 4px">Nowy lead #${lead.id.slice(0, 8)}</h2>
-    <p style="margin:0 0 16px;color:#5b6b7f">Score: <strong>${lead.score}/100</strong> Â· ${lead.receivedAt}</p>
+    <p style="margin:0 0 16px;color:#5b6b7f">Score: <strong>${lead.score}/100</strong> · ${lead.receivedAt}</p>
     <table style="border-collapse:collapse;width:100%">
-      ${row("ImiÄ™ i nazwisko", lead.fullName)}
+      ${row("Imię i nazwisko", lead.fullName)}
       ${row("Telefon", `<a href="tel:${lead.phone}">${lead.phone}</a>`)}
-      ${row("KanaĹ‚ kontaktu", lead.contactMethod)}
+      ${row("Kanał kontaktu", lead.contactMethod)}
       ${row("E-mail", lead.email ?? "-")}
-      ${row("BudĹĽet", `${lead.budget.toLocaleString("pl-PL")} â‚¬`)}
+      ${row("Budżet", `${lead.budget.toLocaleString("pl-PL")} €`)}
       ${row("Cel zakupu", lead.goal)}
       ${row("Typ nieruchomoĹ›ci", lead.propertyType)}
       ${row("Horyzont", labelOf(HORIZONS, lead.horizon))}
       ${row("Region", labelsOf(REGIONS, lead.regions))}
       ${row("Wymogi", labelsOf(REQUIREMENTS, lead.requirements))}
       ${row("Lokalizacja", [lead.district, lead.city].filter(Boolean).join(", "))}
-      ${row("DochĂłd z najmu (kalkulator)", lead.roiEstimate ? `${lead.roiEstimate.toLocaleString("pl-PL")} â‚¬/rok` : "-")}
-      ${row("ĹąrĂłdĹ‚o", lead.source ?? "-")}
+      ${row("Dochód z najmu (kalkulator)", lead.roiEstimate ? `${lead.roiEstimate.toLocaleString("pl-PL")} €/rok` : "-")}
+      ${row("Źródło", lead.source ?? "-")}
+      ${row("Język strony", lead.language)}
+      ${row("Strona zgłoszenia", lead.pageUrl ?? "-")}
     </table>
     ${
       lead.message
@@ -118,7 +120,7 @@ export function leadEmailHtml(lead: LeadRecord): string {
     }
     <p style="margin:16px 0 0;font-size:12px;color:#5b6b7f">Zgoda marketingowa: ${
       lead.marketingConsent ? "tak" : "nie"
-    }${lead.whatsapp ? " Â· preferuje WhatsApp" : ""}</p>
+    }${lead.whatsapp ? " · preferuje WhatsApp" : ""}</p>
   </div>`;
 }
 
@@ -142,7 +144,7 @@ export async function sendEmail(lead: LeadRecord): Promise<DispatchResult | null
     {
       from: env("LEAD_EMAIL_FROM") ?? "Costa Investors <onboarding@resend.dev>",
       to: [to],
-      subject: `Lead ${lead.score}/100: ${lead.city} Â· ${lead.budget.toLocaleString("pl-PL")} â‚¬`,
+      subject: `Lead ${lead.score}/100: ${lead.city} · ${lead.budget.toLocaleString("pl-PL")} €`,
       html: leadEmailHtml(lead),
     },
     { authorization: `Bearer ${apiKey}` },
@@ -162,7 +164,7 @@ export async function sendEmail(lead: LeadRecord): Promise<DispatchResult | null
 export async function sendSms(lead: LeadRecord): Promise<DispatchResult | null> {
   const url = env("LEAD_SMS_WEBHOOK_URL");
   if (!url) return null;
-  // SMS tylko dla leadĂłw â€žgorÄ…cychâ€ť. Koszt kanaĹ‚u musi siÄ™ zwracaÄ‡.
+  // SMS tylko dla leadów â€žgorącychâ€ť. Koszt kanału musi się zwracaÄ‡.
   if (lead.score < 65) return { channel: "sms", ok: true, status: 0 };
 
   const token = env("LEAD_SMS_WEBHOOK_TOKEN");
@@ -171,7 +173,7 @@ export async function sendSms(lead: LeadRecord): Promise<DispatchResult | null> 
     url,
     {
       to: env("LEAD_SMS_RECIPIENT"),
-      message: `HOT LEAD ${lead.score}/100: ${lead.city} ${lead.district ?? ""}, budĹĽet ${lead.budget.toLocaleString("pl-PL")} â‚¬, ${labelOf(HORIZONS, lead.horizon)}, ${lead.goal}${lead.regions.length > 0 ? `, ${labelsOf(REGIONS, lead.regions)}` : ""}. ${lead.whatsapp ? "WhatsApp" : "Tel"}: ${lead.phone}`,
+      message: `HOT LEAD ${lead.score}/100: ${lead.city} ${lead.district ?? ""}, budżet ${lead.budget.toLocaleString("pl-PL")} €, ${labelOf(HORIZONS, lead.horizon)}, ${lead.goal}${lead.regions.length > 0 ? `, ${labelsOf(REGIONS, lead.regions)}` : ""}. ${lead.whatsapp ? "WhatsApp" : "Tel"}: ${lead.phone}`,
       leadId: lead.id,
       whatsapp: lead.whatsapp,
     },

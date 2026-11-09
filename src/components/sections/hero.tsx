@@ -1,8 +1,11 @@
 import type { ReactNode } from "react";
 import { Badge, Container } from "@/components/ui/primitives";
 import { SITE } from "@/lib/seo/site";
+import { RESPONSE_TIME } from "@/lib/i18n/micro-copy";
+import type { Locale } from "@/lib/i18n/config";
 
 export interface HeroProps {
+  locale: Locale;
   eyebrow: string;
   h1: string;
   lead: string;
@@ -16,7 +19,7 @@ export interface HeroProps {
  * Hero money page: nagłówek z intencją + dowód (chips) + formularz powyżej
  * zgięcia. Na mobile formularz ląduje bezpośrednio pod nagłówkiem.
  */
-export function Hero({ eyebrow, h1, lead, chips, children, footnote }: HeroProps) {
+export function Hero({ locale, eyebrow, h1, lead, chips, children, footnote }: HeroProps) {
   return (
     <section className="relative overflow-hidden bg-gradient-to-b from-brand-950 via-brand-900 to-brand-800 text-white">
       <div
@@ -53,7 +56,7 @@ export function Hero({ eyebrow, h1, lead, chips, children, footnote }: HeroProps
             >
               <span aria-hidden>✉</span> {SITE.email}
             </a>
-            <span>Odpowiadamy w ciągu 15 minut, poniedziałek-piątek 8:00-20:00</span>
+            <span>{RESPONSE_TIME[locale]}</span>
           </div>
 
           {footnote ? (

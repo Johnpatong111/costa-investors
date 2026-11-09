@@ -133,6 +133,7 @@ export default async function CityServicePage({
       <Breadcrumbs items={crumbs} />
 
       <Hero
+        locale={locale}
         eyebrow={`${serviceName} · ${city.name} (${region.name})`}
         h1={content.h1}
         lead={content.lead}

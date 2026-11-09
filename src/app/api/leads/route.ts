@@ -4,6 +4,8 @@ import { env, envNumber } from "@/lib/env";
 import { dispatchLead } from "@/lib/leads/dispatch";
 import { checkRateLimit, hashIdentifier } from "@/lib/leads/rate-limit";
 import { leadPayloadSchema, scoreLead, isWhatsApp, type LeadRecord } from "@/lib/leads/schema";
+import { API_MESSAGES, resolveApiLanguage } from "@/lib/leads/api-messages";
+import { translateFieldError } from "@/lib/i18n/form-copy";
 
 /**
  * ===========================================================================
@@ -36,9 +38,11 @@ function errorResponse(message: string, status: number, details?: unknown) {
 }
 
 export async function POST(request: Request) {
+  const lang = resolveApiLanguage(request);
+  const messages = API_MESSAGES[lang];
   const contentLength = Number(request.headers.get("content-length") ?? 0);
   if (contentLength > MAX_BODY_BYTES) {
-    return errorResponse("Payload zbyt duży", 413);
+    return errorResponse(messages.tooLarge, 413);
   }
 
   const ip = clientIp(request);
@@ -48,7 +52,7 @@ export async function POST(request: Request) {
 
   if (!rate.allowed) {
     return NextResponse.json(
-      { ok: false, error: "Zbyt wiele zgłoszeń. Spróbuj ponownie później." },
+      { ok: false, error: messages.rateLimited },
       { status: 429, headers: { "retry-after": String(rate.retryAfterSeconds) } },
     );
   }
@@ -57,16 +61,16 @@ export async function POST(request: Request) {
   try {
     payload = await request.json();
   } catch {
-    return errorResponse("Nieprawidłowy JSON", 400);
+    return errorResponse(messages.invalidJson, 400);
   }
 
   const parsed = leadPayloadSchema.safeParse(payload);
   if (!parsed.success) {
     const details = parsed.error.issues.map((issue) => ({
       field: issue.path.join("."),
-      message: issue.message,
+      message: translateFieldError(issue.message, lang),
     }));
-    return errorResponse("Formularz zawiera błędy", 422, details);
+    return errorResponse(API_MESSAGES[lang].invalidForm, 422, details);
   }
 
   // Honeypot: bot wypełnił ukryte pole. Udajemy sukces, żeby nie uczyć bota.

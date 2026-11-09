@@ -10,6 +10,7 @@ import { getUiCopy } from "@/lib/i18n/ui";
 import { translatePath } from "@/lib/i18n/paths";
 import { buildMetadata } from "@/lib/seo/metadata";
 import { formatEur, formatRate } from "@/lib/utils/format";
+import { PRICE_HUB_COPY, PRICE_HUB_META } from "@/lib/i18n/price-hub-copy";
 
 /** Indeks raportów: /ceny-m2. Hub dla fraz „ceny m2 <miejscowość> Costa Blanca”. */
 export const revalidate = 86_400;
@@ -21,44 +22,11 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const locale = assertLocale((await params).lang);
   const cities = getCities().length;
-  const copy: Record<"pl" | "en" | "es", { title: string; description: string; keywords: string[] }> = {
-    pl: {
-      title: `Ceny m² i ROI w Hiszpanii ${MARKET_YEAR}. Raporty`,
-      description: `Mediany cen, rentowność najmu i dynamika r/r w ${cities} miejscowościach Costa Blanca i Costa Cálida. Historia cen 2016–2026 w każdej dzielnicy.`,
-      keywords: [
-        "ceny m2 Costa Blanca",
-        "ceny m2 Costa Cálida",
-        "historia cen nieruchomości 2016–2026",
-        `ceny nieruchomości ${MARKET_YEAR}`,
-      ],
-    },
-    en: {
-      title: `Spanish property prices & yields ${MARKET_YEAR} | Reports`,
-      description: `Median €/m², rental yields and annual growth across ${cities} locations on Costa Blanca and Costa Cálida. Price history 2016–2026 for every district.`,
-      keywords: [
-        "property prices Costa Blanca",
-        "price per m2 Costa Cálida",
-        "Spanish property price history 2016-2026",
-        "rental yield Spain 2026",
-      ],
-    },
-    es: {
-      title: `Precios y rentabilidad inmobiliaria ${MARKET_YEAR} | Informes`,
-      description: `Mediana €/m², rentabilidad de alquiler y crecimiento anual en ${cities} localidades de Costa Blanca y Costa Cálida. Evolución de precios 2016–2026 por zona.`,
-      keywords: [
-        "precio m2 Costa Blanca",
-        "precio m2 Costa Cálida",
-        "evolución de precios 2016-2026",
-        "rentabilidad alquiler España 2026",
-      ],
-    },
-  };
-
   return buildMetadata({
-    title: copy[locale].title,
-    description: copy[locale].description,
+    title: PRICE_HUB_META[locale].title,
+    description: PRICE_HUB_META[locale].description,
     path: `/${PRICE_REPORT.slug}`,
-    keywords: copy[locale].keywords,
+    keywords: PRICE_HUB_META[locale].keywords,
     locale,
   });
 }
@@ -70,6 +38,7 @@ export default async function PriceReportIndexPage({
 }) {
   const locale = assertLocale((await params).lang);
   const ui = getUiCopy(locale);
+  const copy = PRICE_HUB_COPY[locale];
 
   const crumbs: Crumb[] = [
     { name: ui.home, path: "/" },
@@ -101,45 +70,43 @@ export default async function PriceReportIndexPage({
       <section className="border-b border-brand-100 bg-brand-50/60">
         <div className="container-page py-10 lg:py-14">
           <p className="text-sm font-semibold uppercase tracking-wide text-brand-600">
-            Dane rynkowe · {MARKET_YEAR}
+            {copy.eyebrow} · {MARKET_YEAR}
           </p>
           <h1 className="mt-2 text-3xl font-bold text-brand-950 sm:text-4xl">
-            Ceny m² i ROI w Hiszpanii
+            {copy.h1}
           </h1>
           <p className="mt-4 max-w-3xl text-base leading-relaxed text-brand-700">
-            Zestawienie median cen ofertowych, rentowności najmu, dynamiki rocznej i czasu
-            sprzedaży. Każdy raport zawiera porównanie dzielnic i wyliczenie zwrotu dla budżetu
-            inwestora.
+            {copy.lead}
           </p>
         </div>
       </section>
 
       <Section>
-        <SectionHeading eyebrow="Miejscowości">Wybierz lokalizację</SectionHeading>
+        <SectionHeading eyebrow={copy.citiesEyebrow}>{copy.chooseLocation}</SectionHeading>
         <div className="overflow-x-auto rounded-xl border border-brand-100">
           <table className="w-full min-w-[640px] text-sm">
             <caption className="sr-only">
-              Mediany cen, ROI i dynamika w miejscowościach Costa Blanca - {MARKET_YEAR}
+              {copy.caption(MARKET_YEAR)}
             </caption>
             <thead className="bg-brand-50 text-left text-xs uppercase tracking-wide text-brand-600">
               <tr>
                 <th scope="col" className="px-4 py-3">
-                  Miejscowość
+                  {copy.colCity}
                 </th>
                 <th scope="col" className="px-4 py-3">
-                  Region
+                  {copy.colRegion}
                 </th>
                 <th scope="col" className="px-4 py-3 text-right">
-                  Mediana €/m²
+                  {copy.colMedian}
                 </th>
                 <th scope="col" className="px-4 py-3 text-right">
                   ROI
                 </th>
                 <th scope="col" className="px-4 py-3 text-right">
-                  r/r
+                  {copy.colGrowth}
                 </th>
                 <th scope="col" className="px-4 py-3 text-right">
-                  Dzielnice
+                  {copy.colDistricts}
                 </th>
               </tr>
             </thead>
@@ -171,7 +138,7 @@ export default async function PriceReportIndexPage({
       </Section>
 
       <Section className="bg-brand-50/60">
-        <SectionHeading eyebrow="Regiony">Przeglądaj po regionie</SectionHeading>
+        <SectionHeading eyebrow={copy.regionsEyebrow}>{copy.browseRegion}</SectionHeading>
         <div className="grid gap-6 sm:grid-cols-3">
           {getSubregions().map((subregion) => (
             <div key={subregion}>
