@@ -185,6 +185,20 @@ export function buildLocalizedDistrictContent(
       paragraphs: service.benefits.map((benefit) => `${t(benefit.title)}: ${t(benefit.description)}`),
       bullets: service.checklist.map((item) => t(item)),
     },
+    {
+      // Blok liczbowy per dzielnica (cena vs miasto vs region, ROI, ekspozycja).
+      // Bez niego strony tego samego szablonu w różnych miastach były zbyt podobne.
+      id: "dane",
+      heading:
+        locale === "es"
+          ? `Cifras de ${district.name} de un vistazo`
+          : `Key figures for ${district.name} at a glance`,
+      paragraphs: [
+        locale === "es"
+          ? `Precio ${stats.pricePerM2} €/m² frente a ${stats.cityPricePerM2} €/m² de ${city.name} y ${stats.regionPricePerM2} €/m² de la región; alquiler ${stats.monthlyRentPerM2} €/m²/mes; ROI bruto ${stats.rentalYield}% y neto ${stats.netYield}%; revalorización ${stats.priceGrowth}% anual; tiempo medio de venta ${stats.avgDaysOnMarket} días; gastos de compra ${Math.round(stats.purchaseCostsRate * 100)}%.`
+          : `Price ${stats.pricePerM2} €/m² against ${stats.cityPricePerM2} €/m² in ${city.name} and ${stats.regionPricePerM2} €/m² region-wide; rent ${stats.monthlyRentPerM2} €/m² per month; gross yield ${stats.rentalYield}% and net ${stats.netYield}%; capital growth ${stats.priceGrowth}% a year; average time to sell ${stats.avgDaysOnMarket} days; purchase costs ${Math.round(stats.purchaseCostsRate * 100)}%.`,
+      ],
+    },
   ];
 
   const faq = dict.district.faq.map((item) => ({ question: t(item.q), answer: t(item.a) }));

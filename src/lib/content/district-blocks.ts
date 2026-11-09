@@ -65,5 +65,16 @@ export function buildDistrictBlocks(
         ),
       ],
     },
+    {
+      // Blok liczbowy: wartości są różne dla każdej dzielnicy, więc wnosi nowe
+      // tokeny do treści i realnie obniża podobieństwo między stronami.
+      id: "dane",
+      heading: `Wskaźniki ${vars.districtLoc} w liczbach`,
+      paragraphs: [
+        t(
+          "Cena {price} €/m², czynsz {rent} €/m²/mies., ROI brutto {yield} i netto {netYield}, wzrost {growth} r/r, ekspozycja oferty {days} dni, koszty wejścia {purchaseCosts}, budżet 70 m² {budget70}.",
+        ),
+      ],
+    },
   ];
 }
