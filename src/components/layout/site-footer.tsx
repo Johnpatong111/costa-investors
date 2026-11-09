@@ -81,7 +81,7 @@ export function SiteFooter({ lang }: { lang: Locale }) {
             {reportCities.map((city) => (
               <li key={city.slug}>
                 <Link
-                  href={translatePath(`/${PRICE_REPORT.slug}/${city.slug}`, lang)}
+                  href={translatePath(`/${PRICE_REPORT.slug}/${city.slug}/${city.districts[0]?.slug ?? ""}`, lang)}
                   className="hover:text-white hover:underline"
                 >
                   {city.name}

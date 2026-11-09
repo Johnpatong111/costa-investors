@@ -15,8 +15,9 @@
     "icons": "node scripts/generate-icons.mjs",
     "sitemap": "tsx scripts/generate-sitemap.ts",
     "prebuild": "npm run sitemap",
-    "check": "npm run audit:clean && npm run audit:dashes && npm run audit:locale && npm run validate:data && npm run typecheck",
-    "audit:locale": "tsx scripts/audit-locale-leaks.ts"
+    "check": "npm run audit:clean && npm run audit:dashes && npm run audit:links && npm run audit:locale && npm run validate:data && npm run typecheck",
+    "audit:locale": "tsx scripts/audit-locale-leaks.ts",
+    "audit:links": "tsx scripts/audit-footer-links.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.0.0",
