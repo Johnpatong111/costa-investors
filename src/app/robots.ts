@@ -22,6 +22,8 @@ export default function robots(): MetadataRoute.Robots {
           "/api/",
           "/panel/",
           "/dziekujemy",
+          // Cloudflare Email Obfuscation generuje te adresy (404 w crawlach).
+          "/cdn-cgi/",
           "/*?utm_",
           "/*?fbclid=",
           "/*?gclid=",
