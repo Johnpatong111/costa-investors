@@ -112,7 +112,7 @@ export function assessIndexability(content: PageContent): {
   if (content.wordCount < minWords) {
     return { isIndexable: false, reason: `treść < ${minWords} słów` };
   }
-  if (content.faq.length < 4) {
+  if (content.faq.length < (isLocalized ? 3 : 4)) {
     return { isIndexable: false, reason: "za mało FAQ (brak wartości dodanej)" };
   }
   return { isIndexable: true };
