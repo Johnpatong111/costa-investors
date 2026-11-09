@@ -46,10 +46,30 @@ const nextConfig: NextConfig = {
       ["regulamin", "/pl/regulamin"],
     ] as const;
 
-    return legacy.flatMap(([source, destination]) => [
-      { source: `/${source}`, destination, statusCode: 301 as const },
-      { source: `/${source}/:path*`, destination: `${destination}/:path*`, statusCode: 301 as const },
-    ]);
+    // Uszkodzone warianty slugu (spacja w adresie) trafiały na 404.
+    const legacyPrefixed = [
+      ["/pl/darmowy-przewodnik-analiza ofert", "/pl/darmowy-przewodnik-wycena"],
+      ["/pl/darmowy-przewodnik-analiza-ofert", "/pl/darmowy-przewodnik-wycena"],
+      ["/en/darmowy-przewodnik-analiza ofert", "/en/free-buying-guide"],
+      ["/en/darmowy-przewodnik-analiza-ofert", "/en/free-buying-guide"],
+      ["/es/darmowy-przewodnik-analiza ofert", "/es/guia-gratis-compra"],
+      ["/es/darmowy-przewodnik-analiza-ofert", "/es/guia-gratis-compra"],
+    ] as const;
+
+    return [
+      ...legacy.flatMap(([source, destination]) => [
+        { source: `/${source}`, destination, statusCode: 301 as const },
+        {
+          source: `/${source}/:path*`,
+          destination: `${destination}/:path*`,
+          statusCode: 301 as const,
+        },
+      ]),
+      ...legacyPrefixed.flatMap(([source, destination]) => [
+        { source, destination, statusCode: 301 as const },
+        { source: `${source}/:path*`, destination: `${destination}/:path*`, statusCode: 301 as const },
+      ]),
+    ];
   },
   async rewrites() {
     return [];

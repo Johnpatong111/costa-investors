@@ -1,7 +1,7 @@
 import type { ServiceDefinition } from "./types";
 
 export const darmowyPrzewodnikWycena: ServiceDefinition = {
-  slug: "darmowy-przewodnik-analiza ofert",
+  slug: "darmowy-przewodnik-wycena",
   kind: "lead-magnet",
   name: "Przewodnik i oferty",
   nameGenitive: "przewodnika i ofert",

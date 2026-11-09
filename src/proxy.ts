@@ -51,6 +51,28 @@ export function proxy(request: NextRequest) {
 
   // Zasoby techniczne bez prefiksu języka (obraz OG). Bez tego proxy
   // przekierowałoby /og → /pl/og i social media dostałyby 404.
+  // Uszkodzony slug lead magnetu ze spacją ("analiza%20ofert") trafiał na 404.
+  // Normalizujemy go w proxy, bo reguły `redirects` nie dopasowują %20.
+  const decoded = (() => {
+    try {
+      return decodeURIComponent(pathname);
+    } catch {
+      return pathname;
+    }
+  })();
+
+  if (/darmowy-przewodnik-analiza[\s-]*ofert/i.test(decoded)) {
+    const target: Record<string, string> = {
+      pl: "darmowy-przewodnik-wycena",
+      en: "free-buying-guide",
+      es: "guia-gratis-compra",
+    };
+    const locale = firstSegment && isLocale(firstSegment) ? firstSegment : DEFAULT_LOCALE;
+    const redirectUrl = request.nextUrl.clone();
+    redirectUrl.pathname = `/${locale}/${target[locale]}`;
+    return NextResponse.redirect(redirectUrl, 301);
+  }
+
   if (firstSegment === "og" || firstSegment === "sitemap-index.xml") {
     return NextResponse.next();
   }
