@@ -90,12 +90,27 @@ export function describeLiquidity(stats: MarketStats): string {
   return `mediana czasu ekspozycji oferty to ${stats.avgDaysOnMarket} dni przy popycie ${describeDemand(stats.demandIndex)}`;
 }
 
-export function describePricePosition(stats: MarketStats): string {
+export function describePricePosition(
+  stats: MarketStats,
+  locale: "pl" | "en" | "es" = "pl",
+): string {
   const diff = (stats.pricePerM2 - stats.cityPricePerM2) / stats.cityPricePerM2;
+  const pct = formatRate(Math.abs(diff) * 100, 0);
+
+  if (locale === "en") {
+    if (Math.abs(diff) < 0.02) return "in line with the city median";
+    return diff > 0 ? `${pct} above the city median` : `${pct} below the city median`;
+  }
+  if (locale === "es") {
+    if (Math.abs(diff) < 0.02) return "en línea con la mediana del municipio";
+    return diff > 0
+      ? `${pct} por encima de la mediana del municipio`
+      : `${pct} por debajo de la mediana del municipio`;
+  }
   if (Math.abs(diff) < 0.02) return "cena €/m² jest zbliżona do mediany całego miasta";
   return diff > 0
-    ? `cena €/m² jest o ${formatRate(diff * 100, 0)} wyższa od mediany miasta`
-    : `cena €/m² jest o ${formatRate(Math.abs(diff) * 100, 0)} niższa od mediany miasta`;
+    ? `cena €/m² jest o ${pct} wyższa od mediany miasta`
+    : `cena €/m² jest o ${pct} niższa od mediany miasta`;
 }
 
 /** Ile mieszkań/domów kupisz za budżet. Konkret zamiast ogólników. */

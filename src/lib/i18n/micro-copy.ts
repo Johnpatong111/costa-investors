@@ -13,3 +13,10 @@ export const SKIP_TO_CONTENT: Record<Locale, string> = {
   en: "Skip to content",
   es: "Ir al contenido",
 };
+
+/** Opis źródła danych (stopka + dane strukturalne). Wcześniej tylko po polsku. */
+export const DATA_SOURCE: Record<Locale, string> = {
+  pl: "Mediana ofertowa €/m², ROI najmu i dynamika r/r dla Costa Blanca (model wewnętrzny). Produkcja: feed Idealista/Fotocasa + Colegio de Registradores.",
+  en: "Median asking €/m², rental yield and year-on-year growth for Costa Blanca (internal model). Production: Idealista/Fotocasa feed plus Colegio de Registradores.",
+  es: "Mediana de oferta €/m², rentabilidad del alquiler y variación interanual para Costa Blanca (modelo interno). Producción: feed Idealista/Fotocasa y Colegio de Registradores.",
+};

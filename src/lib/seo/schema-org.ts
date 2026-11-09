@@ -68,20 +68,54 @@ function openingHoursNodes(specs: readonly string[]): JsonLdNode[] {
   });
 }
 
-export function organizationNode(): JsonLdNode {
+/**
+ * Opis organizacji w JSON-LD musi być w języku strony. Wcześniej wszystkie
+ * wersje /en/ i /es/ dziedziczyły polski `SITE.description`, przez co każda
+ * strona EN zawierała polskie zdanie w danych strukturalnych.
+ */
+const ORG_COPY: Record<"pl" | "en" | "es", {
+  description: string;
+  priceRange: string;
+  paymentAccepted: string;
+  country: string;
+}> = {
+  pl: {
+    description: SITE.description,
+    priceRange: "od 120 000 €",
+    paymentAccepted: "Przelew bankowy",
+    country: "Hiszpania",
+  },
+  en: {
+    description:
+      "Costa Investors helps investors from Poland and Europe buy property on Costa Blanca and Costa Cálida, with €/m² market data, rental yields and a licensed local buyer's agent.",
+    priceRange: "from €120,000",
+    paymentAccepted: "Bank transfer",
+    country: "Spain",
+  },
+  es: {
+    description:
+      "Costa Investors ayuda a inversores de Polonia y Europa a comprar vivienda en Costa Blanca y Costa Cálida, con datos de €/m², rentabilidad de alquiler y agente comprador local.",
+    priceRange: "desde 120.000 €",
+    paymentAccepted: "Transferencia bancaria",
+    country: "España",
+  },
+};
+
+export function organizationNode(locale: "pl" | "en" | "es" = "pl"): JsonLdNode {
+  const org = ORG_COPY[locale];
   return {
     "@type": "RealEstateAgent",
     "@id": NODE_IDS.organization,
     name: SITE.brand,
     legalName: SITE.legalName,
     url: SITE.url,
-    description: SITE.description,
+    description: org.description,
     email: SITE.email,
-    priceRange: "od 120 000 €",
+    priceRange: org.priceRange,
     currenciesAccepted: "EUR, PLN",
-    paymentAccepted: "Przelew bankowy",
+    paymentAccepted: org.paymentAccepted,
     areaServed: [
-      { "@type": "Country", name: "Hiszpania" },
+      { "@type": "Country", name: org.country },
       { "@type": "AdministrativeArea", name: "Costa Blanca" },
       { "@type": "AdministrativeArea", name: "Costa Cálida" },
       { "@type": "AdministrativeArea", name: "Costa del Sol" },
@@ -102,7 +136,7 @@ export function organizationNode(): JsonLdNode {
   };
 }
 
-export function websiteNode(): JsonLdNode {
+export function websiteNode(locale: "pl" | "en" | "es" = "pl"): JsonLdNode {
   return {
     "@type": "WebSite",
     "@id": NODE_IDS.website,

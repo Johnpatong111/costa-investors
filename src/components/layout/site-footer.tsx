@@ -10,6 +10,7 @@ import { FOOTER_NAV } from "@/lib/i18n/footer-nav";
 import { FOOTER_COPY, getUiCopy } from "@/lib/i18n/ui";
 import { SITE } from "@/lib/seo/site";
 import { LOCATIONS } from "@/lib/data/load";
+import { DATA_SOURCE } from "@/lib/i18n/micro-copy";
 
 /**
  * Stopka informacyjna. Świadomie bez adresu stacjonarnego i telefonu:
@@ -146,7 +147,7 @@ export function SiteFooter({ lang }: { lang: Locale }) {
           </p>
           {/* Rzetelność danych jest elementem E-E-A-T, dlatego jawnie podajemy źródło i datę. */}
           <p>
-            {ui.marketDataLabel}: {LOCATIONS.updatedAt}. {LOCATIONS.source}
+            {ui.marketDataLabel}: {LOCATIONS.updatedAt}. {DATA_SOURCE[lang]}
           </p>
         </Container>
       </div>

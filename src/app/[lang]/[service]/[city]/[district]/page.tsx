@@ -154,12 +154,12 @@ export default async function DistrictServicePage({
         h1={content.h1}
         lead={content.lead}
         chips={[
-          service.priceAnchor,
+          getServiceCopy(service.kind, locale).priceAnchor,
           `ROI ${formatRate(content.stats.rentalYield)}`,
-          `Wzrost ${formatRate(content.stats.priceGrowth)} r/r`,
-          `Mediana ${formatEur(content.stats.pricePerM2)}/m²`,
+          locale === "es" ? `Crecimiento ${formatRate(content.stats.priceGrowth)} interanual` : locale === "en" ? `Growth ${formatRate(content.stats.priceGrowth)} YoY` : `Wzrost ${formatRate(content.stats.priceGrowth)} r/r`,
+          locale === "es" ? `Mediana ${formatEur(content.stats.pricePerM2)}/m²` : locale === "en" ? `Median ${formatEur(content.stats.pricePerM2)}/m²` : `Mediana ${formatEur(content.stats.pricePerM2)}/m²`,
         ]}
-        footnote={`Dane rynkowe: ${content.stats.dataAsOf}. Mediany ofertowe dla ${districtName}; wartości szacunkowe, nie stanowią oferty inwestycyjnej ani tasación.`}
+        footnote={locale === "es" ? `Datos de mercado: ${content.stats.dataAsOf}. Medianas de oferta para ${districtName}; valores estimados, no una oferta de inversión ni una tasación.` : locale === "en" ? `Market data: ${content.stats.dataAsOf}. Asking medians for ${districtName}; estimates only, not an investment offer or a valuation.` : `Dane rynkowe: ${content.stats.dataAsOf}. Mediany ofertowe dla ${districtName}; wartości szacunkowe, nie stanowią oferty inwestycyjnej ani tasación.`}
       >
         <div id="lead-form" className="scroll-mt-24">
           <LeadEngine
@@ -264,7 +264,7 @@ export default async function DistrictServicePage({
               { name: cityName, type: "City" },
               { name: entry.region.name, type: "AdministrativeArea" },
             ],
-            priceRangeLabel: service.priceAnchor,
+            priceRangeLabel: getServiceCopy(service.kind, locale).priceAnchor,
             locale,
           }),
           faqNode(content.faq, path, locale),

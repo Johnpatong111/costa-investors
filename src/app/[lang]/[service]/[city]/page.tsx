@@ -138,12 +138,12 @@ export default async function CityServicePage({
         h1={content.h1}
         lead={content.lead}
         chips={[
-          service.priceAnchor,
+          getServiceCopy(service.kind, locale).priceAnchor,
           `ROI ${formatRate(content.stats.rentalYield)}`,
-          `Wzrost ${formatRate(content.stats.priceGrowth)} r/r`,
-          `${city.districts.length} dzielnic w bazie`,
+          locale === "es" ? `Crecimiento ${formatRate(content.stats.priceGrowth)} interanual` : locale === "en" ? `Growth ${formatRate(content.stats.priceGrowth)} YoY` : `Wzrost ${formatRate(content.stats.priceGrowth)} r/r`,
+          locale === "es" ? `${city.districts.length} zonas en la base` : locale === "en" ? `${city.districts.length} areas in the dataset` : `${city.districts.length} dzielnic w bazie`,
         ]}
-        footnote={`Dane rynkowe: ${content.stats.dataAsOf}. Wartości szacunkowe dla ${city.name}; nie stanowią oferty inwestycyjnej.`}
+        footnote={locale === "es" ? `Datos de mercado: ${content.stats.dataAsOf}. Valores estimados para ${city.name}; no constituyen una oferta de inversión.` : locale === "en" ? `Market data: ${content.stats.dataAsOf}. Estimates for ${city.name}; not an investment offer.` : `Dane rynkowe: ${content.stats.dataAsOf}. Wartości szacunkowe dla ${city.name}; nie stanowią oferty inwestycyjnej.`}
       >
         <div id="lead-form" className="scroll-mt-24">
           <LeadEngine
@@ -188,7 +188,7 @@ export default async function CityServicePage({
             })),
           },
           {
-            title: `Inne usługi w ${city.nameLocative}`,
+            title: locale === "es" ? `Otros servicios en ${city.nameLocative}` : locale === "en" ? `Other services in ${city.nameLocative}` : `Inne usługi w ${city.nameLocative}`,
             links: SERVICES.filter((item) => item.slug !== service.slug).map((item) => ({
               href: translatePath(`/${item.slug}/${city.slug}`, locale),
               label: getServiceCopy(item.kind, locale).name,
@@ -221,7 +221,7 @@ export default async function CityServicePage({
               { name: city.name, type: "City" },
               { name: region.name, type: "AdministrativeArea" },
             ],
-            priceRangeLabel: service.priceAnchor,
+            priceRangeLabel: getServiceCopy(service.kind, locale).priceAnchor,
           }),
           faqNode(content.faq, path, locale),
         ]}

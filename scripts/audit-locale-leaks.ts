@@ -64,7 +64,12 @@ for (const file of [...walk("src/components"), ...walk("src/app")]) {
   const normalized = file.split("\\").join("/");
   if (ALLOWED_PATHS.some((allowed) => normalized.includes(allowed))) continue;
   const code = stripComments(readFileSync(file, "utf8"));
+  // Bloki `pl: { … }` to poprawny polski (słowniki per język).
+  let plDepth = 0;
   code.split(/\r?\n/).forEach((line, index) => {
+    if (/^\s*pl:\s*\{/.test(line)) plDepth += 1;
+    else if (plDepth > 0 && /^\s*\},?\s*$/.test(line)) plDepth -= 1;
+    if (plDepth > 0) return;
     if (POLISH.test(line) && !PL_SLOT.test(line)) {
       problems.push(`${file}:${index + 1} polskie znaki w kodzie → ${line.trim().slice(0, 100)}`);
     }

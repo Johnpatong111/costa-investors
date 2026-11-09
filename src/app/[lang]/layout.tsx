@@ -80,7 +80,7 @@ export default async function RootLayout({
   return (
     <html lang={locale}>
       <body className="flex min-h-screen flex-col">
-        <JsonLd nodes={[organizationNode(), websiteNode()]} />
+        <JsonLd nodes={[organizationNode(locale), websiteNode()]} />
         <a
           href="#main"
           className="sr-only focus:not-sr-only focus:absolute focus:left-2 focus:top-2 focus:z-50 focus:rounded-lg focus:bg-brand-900 focus:px-4 focus:py-2 focus:text-white"

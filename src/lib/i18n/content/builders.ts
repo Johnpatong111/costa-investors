@@ -91,7 +91,7 @@ function extendVars(ctx: PageContext): Vars {
 
   return {
     ...buildTemplateVars(ctx),
-    pricePosition: describePricePosition(stats),
+    pricePosition: describePricePosition(stats, ctx.key.endsWith("/en") ? "en" : ctx.key.endsWith("/es") ? "es" : "pl"),
     growthSentence: describeGrowth(stats),
     yieldSentence: describeYield(stats),
     budget70: formatEur(stats.pricePerM2 * 70),
@@ -251,12 +251,12 @@ export function buildLocalizedCityContent(
   const cityOpeners =
     locale === "es"
       ? [
-          `La mediana de oferta en ${city.name} es de ${formatEur(stats.pricePerM2)}/m² (datos: ${stats.dataAsOf}) con un crecimiento del ${formatRate(stats.priceGrowth)} interanual. Frente a la región ${region.name} (${formatEur(stats.regionPricePerM2)}/m²) el municipio se sitúa ${describePricePosition(stats)}. La exposición media es de ${stats.avgDaysOnMarket} días.`,
+          `La mediana de oferta en ${city.name} es de ${formatEur(stats.pricePerM2)}/m² (datos: ${stats.dataAsOf}) con un crecimiento del ${formatRate(stats.priceGrowth)} interanual. Frente a la región ${region.name} (${formatEur(stats.regionPricePerM2)}/m²) el municipio se sitúa ${describePricePosition(stats, locale)}. La exposición media es de ${stats.avgDaysOnMarket} días.`,
           `En ${city.nameLocative} el metro cuesta unos ${formatEur(stats.pricePerM2)} (datos: ${stats.dataAsOf}). Con ${formatRate(stats.priceGrowth)} de subida anual y ${stats.avgDaysOnMarket} días de exposición, el mercado trabaja a ritmo normal: hay tiempo para analizar, pero no para semanas de negociación.`,
           `${city.name} concentra ${stats.transactions12m} operaciones al año en nuestro modelo, con una mediana de ${formatEur(stats.pricePerM2)}/m² frente a ${formatEur(stats.regionPricePerM2)}/m² de ${region.name}. La demanda se sostiene en ${stats.demandIndex}/10 y el alquiler rinde ${formatRate(stats.rentalYield)} bruto.`,
         ]
       : [
-          `The asking median in ${city.name} is ${formatEur(stats.pricePerM2)}/m² (data: ${stats.dataAsOf}) with ${formatRate(stats.priceGrowth)} year-on-year growth. Against the ${region.name} median of ${formatEur(stats.regionPricePerM2)}/m², the town sits ${describePricePosition(stats)}. Average time on market is ${stats.avgDaysOnMarket} days.`,
+          `The asking median in ${city.name} is ${formatEur(stats.pricePerM2)}/m² (data: ${stats.dataAsOf}) with ${formatRate(stats.priceGrowth)} year-on-year growth. Against the ${region.name} median of ${formatEur(stats.regionPricePerM2)}/m², the town sits ${describePricePosition(stats, locale)}. Average time on market is ${stats.avgDaysOnMarket} days.`,
           `A square metre in ${city.nameLocative} costs around ${formatEur(stats.pricePerM2)} (data: ${stats.dataAsOf}). With ${formatRate(stats.priceGrowth)} annual growth and ${stats.avgDaysOnMarket} days on market, the market moves at a normal pace: time to analyse, but not weeks to negotiate.`,
           `${city.name} accounts for ${stats.transactions12m} transactions a year in our model, at a median of ${formatEur(stats.pricePerM2)}/m² against ${formatEur(stats.regionPricePerM2)}/m² across ${region.name}. Demand holds at ${stats.demandIndex}/10 and rental yield stands at ${formatRate(stats.rentalYield)} gross.`,
         ];
@@ -463,8 +463,8 @@ export function buildLocalizedPriceReport(
         ),
         city.districts.length > 1
           ? locale === "es"
-            ? `Dentro de ${city.name} las medianas van de ${formatEur(Math.min(...city.districts.map((item) => item.pricePerM2)))} €/m² a ${formatEur(Math.max(...city.districts.map((item) => item.pricePerM2)))} €/m². ${district.name} se sitúa ${describePricePosition(stats)}.`
-            : `Within ${city.name} medians range from ${formatEur(Math.min(...city.districts.map((item) => item.pricePerM2)))} €/m² to ${formatEur(Math.max(...city.districts.map((item) => item.pricePerM2)))} €/m². ${district.name} sits ${describePricePosition(stats)}.`
+            ? `Dentro de ${city.name} las medianas van de ${formatEur(Math.min(...city.districts.map((item) => item.pricePerM2)))} €/m² a ${formatEur(Math.max(...city.districts.map((item) => item.pricePerM2)))} €/m². ${district.name} se sitúa ${describePricePosition(stats, locale)}.`
+            : `Within ${city.name} medians range from ${formatEur(Math.min(...city.districts.map((item) => item.pricePerM2)))} €/m² to ${formatEur(Math.max(...city.districts.map((item) => item.pricePerM2)))} €/m². ${district.name} sits ${describePricePosition(stats, locale)}.`
           : locale === "es"
             ? `El modelo de datos no incluye otras zonas de ${city.name}, así que la referencia es la mediana municipal.`
             : `The dataset contains no other areas in ${city.name}, so the municipal median is the reference.`,
