@@ -28,7 +28,7 @@ import {
 } from "../../content/content-utils";
 import { en } from "./en";
 import { es } from "./es";
-import { buildLocalizedDistrictBlocks, buildLocalizedDistrictFaq } from "./district-blocks";
+import { buildLocalizedDistrictBlocks, buildLocalizedDistrictFaq, TYPE_LABELS } from "./district-blocks";
 import type { LocalizedContent, LocalizedServiceCopy } from "./types";
 
 /**
@@ -451,12 +451,12 @@ export function buildLocalizedPriceReport(
         pick(
           locale === "es"
             ? [
-                `En ${district.nameLocative} predominan ${district.characteristics[0] ?? "inmuebles variados"}. El conjunto lo completan ${district.characteristics.slice(1).join(", ") || "urbanizaciones consolidadas"}, y los puntos de referencia de los anuncios son ${district.landmarks.join(", ")}. Para la valoración esto significa que dos viviendas con los mismos metros pueden diferir varios puntos porcentuales: manda el tipo (${district.type}) y la distancia a ${district.landmarks[0] ?? city.name}.`,
-                `El informe cubre una ${district.type} de ${city.subregion}. Rasgos de mercado: ${district.characteristics.join(", ")}. En el entorno inmediato cuentan ${district.landmarks.join(", ")}, y el inquilino mira sobre todo ${district.characteristics[1] ?? district.characteristics[0] ?? "la calidad de acabados"}.`,
+                `Tipo de ubicación: ${TYPE_LABELS.es[district.type] ?? "residencial"}. Puntos de referencia de los anuncios: ${district.landmarks.join(", ")}. Para la valoración esto significa que dos viviendas con los mismos metros pueden diferir varios puntos porcentuales: manda la distancia a ${district.landmarks[0] ?? city.name} y la línea de edificación.`,
+                `El informe cubre una ${TYPE_LABELS.es[district.type] ?? "zona residencial"} de ${city.subregion}. En el entorno inmediato cuentan ${district.landmarks.join(", ")}, y el inquilino mira primero la distancia a ${district.landmarks[0] ?? city.name}.`,
               ]
             : [
-                `In ${district.nameLocative} the stock is mainly ${district.characteristics[0] ?? "mixed"}. It is rounded out by ${district.characteristics.slice(1).join(", ") || "established developments"}, and the landmarks quoted in listings are ${district.landmarks.join(", ")}. For valuation this means two units of identical floor area can differ by several per cent: the type (${district.type}) and distance to ${district.landmarks[0] ?? city.name} decide it.`,
-                `This report covers a ${district.type} within ${city.subregion}. Market traits: ${district.characteristics.join(", ")}. Nearby, ${district.landmarks.join(", ")} matter most, and tenants look first at ${district.characteristics[1] ?? district.characteristics[0] ?? "finish quality"}.`,
+                `Location type: ${TYPE_LABELS.en[district.type] ?? "residential"}. Landmarks quoted in listings: ${district.landmarks.join(", ")}. For valuation this means two units of identical floor area can differ by several per cent: distance to ${district.landmarks[0] ?? city.name} and the building line decide it.`,
+                `This report covers a ${TYPE_LABELS.en[district.type] ?? "residential area"} within ${city.subregion}. Nearby, ${district.landmarks.join(", ")} matter most, and tenants look first at the distance to ${district.landmarks[0] ?? city.name}.`,
               ],
           key,
           "rep-okolica",

@@ -46,6 +46,7 @@ export function buildPriceReport(entry: DistrictEntry): PriceReport {
     city: city.name,
     cityLoc: city.nameLocative,
     cityGen: city.nameGenitive,
+    subregion: city.subregion,
     region: region.name,
     price: formatPrice(stats.pricePerM2),
     cityPrice: formatPrice(stats.cityPricePerM2),

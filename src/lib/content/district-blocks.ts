@@ -192,7 +192,7 @@ export function buildDistrictBlocks(ctx: DistrictBlockContext): ContentBlock[] {
       `W ${district.name} liczy się ${plList(characteristics)}. Do tego dochodzą ${plList(landmarks)} — miejsca, które najemcy sprawdzają w pierwszej kolejności. Administracyjnie i komunikacyjnie obszar obsługuje ${city.name} w części ${city.subregion}.`,
     ),
     t(
-      `Opis w dwóch zdaniach: ${plList(characteristics)} oraz bezpośredni dostęp do ${plList(landmarks)}. Taka kombinacja oznacza ${district.type} o profilu ${city.subregion}, gdzie najem sezonowy i długoterminowy wzajemnie się uzupełniają.`,
+      `Opis w dwóch zdaniach: ${plList(characteristics)} oraz bezpośredni dostęp do ${plList(landmarks)}. Taki profil — ${district.type} w części ${city.subregion} — sprawia, że najem sezonowy i długoterminowy wzajemnie się uzupełniają.`,
     ),
   ];
 

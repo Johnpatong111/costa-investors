@@ -77,19 +77,19 @@ const EN: DistrictCopy = {
   kupujacy: "Who buys in {districtLoc}",
   dane: "Key figures at a glance",
   openers: [
-    "{districtLoc} is best described by {characteristic}, with {landmark} as the reference point buyers ask about first. It is a {districtType} within {subregion}, and {characteristic2} is what drives the price per square metre here.",
-    "Ask about {districtLoc} and locals mention {landmark} before anything else. The housing stock is {characteristic} and {characteristic2}, which narrows the buyer pool to people looking for one specific standard rather than square metres alone.",
-    "Before comparing prices in {districtLoc}, note the defining trait: {characteristic}. Proximity to {landmark} and {landmark2} supports rental demand, but it also lifts community fees, and those often decide the real return.",
+    "{districtLoc} is a {districtType} within {subregion}; {landmark} is the reference point buyers ask about first, and it is what separates this micro-market from the rest of {city}.",
+    "Ask about {districtLoc} and locals mention {landmark} before anything else. The stock here is mostly a {districtType} built around that landmark, which narrows the buyer pool to people looking for one specific standard rather than square metres alone.",
+    "Before comparing prices in {districtLoc}, note the defining trait: a {districtType} within {subregion}. Proximity to {landmark} and {landmark2} supports rental demand, but it also lifts community fees, and those often decide the real return.",
   ],
   okolicaParagraphs: [
-    "Housing stock: {characteristic}, {characteristic2}. Location type: {districtType}. Landmarks quoted in listings: {landmark}, {landmark2}. In practice these are what separate two properties with identical floor area in {district}.",
-    "In {district} what matters is {characteristic} and {characteristic2}, supported by {landmark} and {landmark2} — the places tenants check first. Administratively and logistically the area is served by {city}, in the {subregion} part of the coast.",
-    "Two lines are enough: {characteristic} plus direct access to {landmark}. That combination makes this a {districtType} with a {subregion} profile, where seasonal and long-term lets complement each other.",
+    "Location type: {districtType}. Landmarks quoted in listings: {landmark}, {landmark2}. In practice these are what separate two properties with identical floor area in {district}: distance to {landmark}, the building line and the year of completion.",
+    "In {district} the frame of reference is {landmark} and {landmark2} — the places tenants check first. Administratively and logistically the area is served by {city}, in the {subregion} part of the coast, which matters for both lettings and resale.",
+    "Two lines are enough: a {districtType} with direct access to {landmark}. That combination gives the area a {subregion} profile, where seasonal and long-term lets complement each other instead of competing.",
   ],
   priceByTier: [
     "The asking median of {price} €/m² sits clearly below the city average of {cityPrice} €/m². You get more square metres for the same budget, usually at the cost of a longer walk to the beach or an older building.",
     "The median of {price} €/m² runs level with the city median of {cityPrice} €/m², so the choice comes down to build quality and year of construction rather than location.",
-    "At {price} €/m² the asking median is above the city median of {cityPrice} €/m². You are paying for a specific spot: {landmark} and {characteristic}.",
+    "At {price} €/m² the asking median is above the city median of {cityPrice} €/m². You are paying for a specific spot: proximity to {landmark} and the standard of the development.",
     "A median of {price} €/m² puts this address in the top tier of {region} ({regionPrice} €/m² for the region). Here views, the building line and completion year drive the price, not floor area.",
   ],
   growthByTier: [
@@ -102,7 +102,7 @@ const EN: DistrictCopy = {
     "A gross yield of {yield} is not spectacular, but the location defends itself through capital growth. With rent at {rent} €/m² per month, the net figure lands near {netYield}.",
     "A gross yield of {yield} on rent of {rent} €/m² per month translates into roughly {netYield} net after costs.",
     "{yield} gross and {netYield} net on a median rent of {rent} €/m² per month — in this part of {city} the rent covers most of the holding costs.",
-    "At {yield} gross ({netYield} net) this is one of the strongest results in the region. Rent of {rent} €/m² per month holds up because the area offers {characteristic}.",
+    "At {yield} gross ({netYield} net) this is one of the strongest results in the region. Rent of {rent} €/m² per month holds up because demand around {landmark} runs all year, not only in summer.",
   ],
   costVariants: [
     "Add {purchaseCosts} in transaction costs. Transfer tax in {authority} is {itp}% on resale, plus notary, Land Registry and legal fees.",
@@ -113,7 +113,7 @@ const EN: DistrictCopy = {
     "Foreign buyers account for {foreign} of purchases in {cityLoc}, so the market stays largely local and prices are less exposed to fashion.",
     "International buyers make up {foreign} of transactions in {cityLoc}, and Polish buyers represent {polish} of that group — enough for a liquid resale market.",
     "In {cityLoc} {foreign} of buyers come from abroad, with Polish buyers at {polish}. That mix means your exit does not depend on a single market.",
-    "Foreign demand is strong here: {foreign} of purchases, {polish} of them Polish. Buyers come for {characteristic} near {landmark}, which is why listings move faster than average.",
+    "Foreign demand is strong here: {foreign} of purchases, {polish} of them Polish. Buyers come for the location around {landmark}, which is why listings move faster than average.",
   ],
   demandByTier: [
     "Demand reads as moderate (index {demand}/10), so there is room to negotiate.",
@@ -157,19 +157,19 @@ const ES: DistrictCopy = {
   kupujacy: "Quién compra en {districtLoc}",
   dane: "Cifras clave de un vistazo",
   openers: [
-    "En {districtLoc} predominan {characteristic}, y los compradores preguntan primero por {landmark}. Es una {districtType} dentro de {subregion}, donde {characteristic2} explica directamente el precio del metro.",
-    "Si preguntas por {districtLoc}, lo primero que aparece es {landmark}. El parque residencial combina {characteristic} y {characteristic2}, lo que reduce el comprador tipo a quien busca un estándar concreto y no solo metros.",
-    "Antes de comparar precios en {districtLoc} conviene saber esto: {characteristic}. La cercanía de {landmark} y {landmark2} sostiene la demanda de alquiler, pero también eleva la comunidad de propietarios, y ese gasto decide la rentabilidad real.",
+    "En {districtLoc} estamos ante una {districtType} de {subregion}; {landmark} es el punto de referencia que los compradores preguntan primero y lo que separa este micromercado del resto de {city}.",
+    "Si preguntas por {districtLoc}, lo primero que aparece es {landmark}. El parque residencial se organiza como {districtType} en torno a ese punto, lo que reduce el comprador tipo a quien busca un estándar concreto y no solo metros.",
+    "Antes de comparar precios en {districtLoc} conviene saber esto: es una {districtType} de {subregion}. La cercanía de {landmark} y {landmark2} sostiene la demanda de alquiler, pero también eleva la comunidad de propietarios, y ese gasto decide la rentabilidad real.",
   ],
   okolicaParagraphs: [
-    "Parque residencial: {characteristic}, {characteristic2}. Tipo de ubicación: {districtType}. Puntos de referencia que aparecen en los anuncios: {landmark}, {landmark2}. En la práctica son los que marcan la diferencia entre dos viviendas con los mismos metros en {district}.",
-    "En {district} importan {characteristic} y {characteristic2}, apoyadas por {landmark} y {landmark2} — los lugares que el inquilino comprueba primero. Administrativa y logísticamente la zona depende de {city}, en la parte de {subregion}.",
-    "Dos líneas bastan: {characteristic} y acceso directo a {landmark}. Esa combinación define una {districtType} con perfil de {subregion}, donde el alquiler vacacional y el de larga temporada se complementan.",
+    "Tipo de ubicación: {districtType}. Puntos de referencia que aparecen en los anuncios: {landmark}, {landmark2}. En la práctica son los que marcan la diferencia entre dos viviendas con los mismos metros en {district}: distancia a {landmark}, línea de edificación y año de entrega.",
+    "En {district} la referencia es {landmark} y {landmark2} — los lugares que el inquilino comprueba primero. Administrativa y logísticamente la zona depende de {city}, en la parte de {subregion}, y eso pesa tanto en el alquiler como en la reventa.",
+    "Dos líneas bastan: una {districtType} con acceso directo a {landmark}. Esa combinación da a la zona un perfil de {subregion}, donde el alquiler vacacional y el de larga temporada se complementan.",
   ],
   priceByTier: [
     "La mediana de oferta de {price} €/m² está claramente por debajo de la media de la ciudad ({cityPrice} €/m²). Compras más metros con el mismo presupuesto, normalmente a cambio de más distancia a la playa o de un edificio más antiguo.",
     "La mediana de {price} €/m² va en línea con la del municipio ({cityPrice} €/m²), así que la decisión depende de la calidad y del año de construcción, no de la ubicación.",
-    "Los {price} €/m² superan la mediana del municipio ({cityPrice} €/m²). Esa prima se paga por un punto concreto: {landmark} y {characteristic}.",
+    "Los {price} €/m² superan la mediana del municipio ({cityPrice} €/m²). Esa prima se paga por un punto concreto: la cercanía de {landmark} y el estándar de la urbanización.",
     "Una mediana de {price} €/m² sitúa la zona en la gama alta de {region} ({regionPrice} €/m² en la región). Aquí el precio lo marcan las vistas, la línea de edificación y el año de entrega, no los metros.",
   ],
   growthByTier: [
@@ -182,7 +182,7 @@ const ES: DistrictCopy = {
     "Una rentabilidad bruta de {yield} no es espectacular, pero la ubicación se defiende con revalorización. Con un alquiler de {rent} €/m² al mes, el neto baja a {netYield}.",
     "Una rentabilidad bruta de {yield} con alquiler de {rent} €/m² al mes equivale a un {netYield} neto después de gastos.",
     "{yield} bruto y {netYield} neto con alquiler mediano de {rent} €/m² al mes: en esta parte de {city} el alquiler cubre buena parte de los gastos de mantenimiento.",
-    "Con {yield} bruto ({netYield} neto) el resultado está entre los mejores de la región. El alquiler de {rent} €/m² al mes se sostiene porque la zona ofrece {characteristic}.",
+    "Con {yield} bruto ({netYield} neto) el resultado está entre los mejores de la región. El alquiler de {rent} €/m² al mes se sostiene porque la demanda en torno a {landmark} no es solo de temporada.",
   ],
   costVariants: [
     "Añade un {purchaseCosts} en gastos de compra. El ITP en {authority} es del {itp}% en segunda mano, más notaría, Registro de la Propiedad y abogado.",
@@ -193,7 +193,7 @@ const ES: DistrictCopy = {
     "Los compradores extranjeros representan el {foreign} de las compras en {cityLoc}, así que el mercado sigue siendo local y los precios dependen menos de las modas.",
     "Los compradores internacionales suponen el {foreign} de las operaciones en {cityLoc}, y los polacos son el {polish} de ese grupo: suficiente para un mercado secundario líquido.",
     "En {cityLoc} el {foreign} de los compradores viene del extranjero y el {polish} son polacos. Esa mezcla hace que tu salida no dependa de un solo mercado.",
-    "La demanda extranjera es fuerte: el {foreign} de las compras, de las cuales el {polish} son polacas. Buscan {characteristic} cerca de {landmark}, y por eso los anuncios se mueven más rápido que la media.",
+    "La demanda extranjera es fuerte: el {foreign} de las compras, de las cuales el {polish} son polacas. Buscan la zona de {landmark}, y por eso los anuncios se mueven más rápido que la media.",
   ],
   demandByTier: [
     "La demanda es moderada (índice {demand}/10), así que hay margen para negociar.",
@@ -231,11 +231,32 @@ const ES: DistrictCopy = {
 
 const COPY: Record<"en" | "es", DistrictCopy> = { en: EN, es: ES };
 
+/**
+ * Typ lokalizacji w słowach danego języka. W danych `district.type` jest po
+ * polsku (dzielnica/urbanizacja/plaza/osiedle) — bez mapowania angielska
+ * strona mówiłaby „a urbanizacja”, a hiszpańska mieszałaby języki.
+ */
+export const TYPE_LABELS: Record<"en" | "es", Record<string, string>> = {
+  en: {
+    dzielnica: "city district",
+    urbanizacja: "residential development",
+    plaza: "beach area",
+    osiedle: "residential estate",
+  },
+  es: {
+    dzielnica: "zona urbana",
+    urbanizacja: "urbanización residencial",
+    plaza: "zona de playa",
+    osiedle: "residencial",
+  },
+};
+
 export function buildLocalizedDistrictBlocks(input: LocalizedDistrictInput): ContentBlock[] {
   const { locale, service, stats, city, district, region, key, vars } = input;
   const copy = COPY[locale];
   const tax = regionTax(region.slug);
   const step = formatEur(Math.round(stats.pricePerM2 * 10));
+  const typeLabel = TYPE_LABELS[locale][district.type] ?? district.type;
 
   const localT = (template: string, extra: Record<string, string> = {}) =>
     interpolate(template, {
@@ -243,6 +264,7 @@ export function buildLocalizedDistrictBlocks(input: LocalizedDistrictInput): Con
       itp: String(tax.itp),
       authority: tax.authority,
       step,
+      districtType: typeLabel,
       ...extra,
     });
 
@@ -323,11 +345,11 @@ export function buildLocalizedDistrictBlocks(input: LocalizedDistrictInput): Con
       ? `Después de la compra llegan los gastos fijos: IBI, comunidad de propietarios y seguro. En ${district.name} la comunidad depende del estándar de la urbanización y de los servicios comunes, una partida que los anuncios suelen omitir.`
       : `After completion come the fixed costs: IBI, community fees and insurance. In ${district.name} the community charge depends on the standard of the development and its shared facilities — an item listings tend to omit.`;
 
-  const tenantProfile = district.characteristics[1] ?? district.characteristics[0] ?? "";
+  const tenantProfile = typeLabel;
   const tenant =
     locale === "es"
-      ? `El inquilino en {districtLoc} sale de dos grupos: quien trabaja en {cityLoc} y familias que buscan ${tenantProfile}. Dos perfiles con distinta tolerancia al estándar y al tamaño, y distinta sensibilidad al precio.`
-      : `Tenants in {districtLoc} come from two groups: people working in {cityLoc} and families looking for ${tenantProfile}. Two profiles with different tolerance for specification and floor area, and different price sensitivity.`;
+      ? `El inquilino en {districtLoc} sale de dos grupos: quien trabaja en {cityLoc} y familias que buscan una ${tenantProfile} cerca de ${district.landmarks[0] ?? city.name}. Dos perfiles con distinta tolerancia al estándar y al tamaño, y distinta sensibilidad al precio.`
+      : `Tenants in {districtLoc} come from two groups: people working in {cityLoc} and families looking for a ${tenantProfile} near ${district.landmarks[0] ?? city.name}. Two profiles with different tolerance for specification and floor area, and different price sensitivity.`;
 
   return [
     {
@@ -419,12 +441,12 @@ export function buildLocalizedDistrictFaq(
     locale === "es"
       ? [
           `La rentabilidad bruta es del ${formatRate(stats.rentalYield)} (neta en torno al ${formatRate(stats.netYield)}). Con un alquiler mediano de ${stats.monthlyRentPerM2} €/m² al mes, una vivienda de 70 m² genera unos ${formatEur(Math.round((stats.pricePerM2 * 70 * stats.rentalYield) / 100))} € brutos al año: en este segmento el retorno lo aporta más la revalorización que la renta.`,
-          `Con ${formatRate(stats.rentalYield)} bruto y ${formatRate(stats.netYield)} neto tras gastos de gestión, impuestos y vacíos, el alquiler de ${stats.monthlyRentPerM2} €/m² al mes cubre el mantenimiento y deja margen. Es un nivel habitual en zonas con ${district.characteristics[0] ?? "parque residencial mixto"}.`,
+          `Con ${formatRate(stats.rentalYield)} bruto y ${formatRate(stats.netYield)} neto tras gastos de gestión, impuestos y vacíos, el alquiler de ${stats.monthlyRentPerM2} €/m² al mes cubre el mantenimiento y deja margen. Es un nivel habitual en ${TYPE_LABELS[locale][district.type] ?? "la zona"}.`,
           `El resultado está entre los mejores de la región: ${formatRate(stats.rentalYield)} bruto y ${formatRate(stats.netYield)} neto sobre ${stats.monthlyRentPerM2} €/m² al mes, sostenido por una demanda de ${stats.demandIndex}/10 y una rotación de ${stats.avgDaysOnMarket} días.`,
         ]
       : [
           `Gross yield is ${formatRate(stats.rentalYield)} (net around ${formatRate(stats.netYield)}). On a median rent of ${stats.monthlyRentPerM2} €/m² per month, a 70 m² unit produces about ${formatEur(Math.round((stats.pricePerM2 * 70 * stats.rentalYield) / 100))} € a year gross: in this segment appreciation, not rent, does most of the work.`,
-          `At ${formatRate(stats.rentalYield)} gross and ${formatRate(stats.netYield)} net after management, tax and voids, rent of ${stats.monthlyRentPerM2} €/m² per month covers costs and leaves a margin. That is a normal level for areas with ${district.characteristics[0] ?? "mixed housing stock"}.`,
+          `At ${formatRate(stats.rentalYield)} gross and ${formatRate(stats.netYield)} net after management, tax and voids, rent of ${stats.monthlyRentPerM2} €/m² per month covers costs and leaves a margin. That is a normal level for a ${TYPE_LABELS[locale][district.type] ?? "residential area"}.`,
           `This is one of the strongest results in the region: ${formatRate(stats.rentalYield)} gross and ${formatRate(stats.netYield)} net on ${stats.monthlyRentPerM2} €/m² per month, supported by demand of ${stats.demandIndex}/10 and ${stats.avgDaysOnMarket} days on market.`,
         ];
 
@@ -476,14 +498,14 @@ export function buildLocalizedDistrictFaq(
   const notes =
     locale === "es"
       ? [
-          `En ${district.nameLocative} predominan ${district.characteristics[0] ?? "inmuebles variados"}, lo que define el perfil del inquilino y la renta mensual.`,
+          `En ${district.nameLocative} el producto dominante es ${TYPE_LABELS.es[district.type] ?? "vivienda residencial"}, lo que define el perfil del inquilino y la renta mensual.`,
           `La cercanía de ${district.landmarks[0] ?? city.name} sostiene la demanda de alquiler en temporada, pero también eleva la comunidad de propietarios.`,
-          `El tipo de ubicación (${district.type}) limita la oferta de obra nueva, de modo que la rotación de anuncios es más lenta que en el centro de ${city.name}.`,
+          `El tipo de ubicación limita la oferta de obra nueva, de modo que la rotación de anuncios es más lenta que en el centro de ${city.name}.`,
         ]
       : [
-          `In ${district.nameLocative} the housing stock is mainly ${district.characteristics[0] ?? "mixed"}, which shapes the tenant profile and the monthly rent.`,
+          `In ${district.nameLocative} the dominant product is a ${TYPE_LABELS.en[district.type] ?? "residential property"}, which shapes the tenant profile and the monthly rent.`,
           `Closeness to ${district.landmarks[0] ?? city.name} supports seasonal rental demand but also pushes up community fees.`,
-          `The location type (${district.type}) limits new-build supply, so listings turn over more slowly than in central ${city.name}.`,
+          `The location type limits new-build supply, so listings turn over more slowly than in central ${city.name}.`,
         ];
 
   const localizedServiceFaq: FaqItem[] = serviceFaq.map((item, index) => {

@@ -30,6 +30,8 @@ export function buildDistrictFaq(
   const { district, city, region } = entry;
   const tax = regionTax(region.slug);
   const rent = stats.monthlyRentPerM2.toFixed(1).replace(".", ",");
+  const pricePosition = describePricePosition(stats);
+  const pricePositionSentence = `${pricePosition.charAt(0).toUpperCase()}${pricePosition.slice(1)}`;
 
   const localNotes = [
     `W ${district.nameLocative} dominują ${district.characteristics[0] ?? "zróżnicowane nieruchomości"}, co przekłada się na profil najemcy i stawkę czynszu.`,
@@ -52,8 +54,8 @@ export function buildDistrictFaq(
   const priceAnswers = [
     `Mediana ofertowa w ${district.nameLocative} to ${formatEur(stats.pricePerM2)} (dane: ${stats.dataAsOf}). To ${describePricePosition(stats)}; dla całego miasta ${city.nameGenitive} mediana wynosi ${formatEur(stats.cityPricePerM2)}, a dla regionu ${region.name} ${formatEur(stats.regionPricePerM2)}. Niższa stawka zwykle oznacza starsze budownictwo albo większą odległość od plaży.`,
     `Za metr w ${district.nameLocative} płaci się około ${formatEur(stats.pricePerM2)} (dane: ${stats.dataAsOf}), czyli ${describePricePosition(stats)}. Mediana ${city.nameGenitive} to ${formatEur(stats.cityPricePerM2)}, więc różnica jest czytelna w budżecie: lokal 70 m² kosztuje tu około ${formatEur(stats.pricePerM2 * 70)}.`,
-    `Mediana w ${district.nameLocative} wynosi ${formatEur(stats.pricePerM2)} za metr (dane: ${stats.dataAsOf}), co daje ${describePricePosition(stats)}. Stawki rozciągają się od lokali do remontu po nowe osiedla, dlatego mediana miasta (${formatEur(stats.cityPricePerM2)}) jest tu wyłącznie punktem odniesienia.`,
-    `Tu metr kosztuje około ${formatEur(stats.pricePerM2)} (dane: ${stats.dataAsOf}) — ${describePricePosition(stats)}. Przy medianie regionu ${formatEur(stats.regionPricePerM2)} mówimy o segmencie premium, w którym o cenie decyduje widok, linia zabudowy i standard osiedla, a nie sam metraż.`,
+    `Mediana w ${district.nameLocative} wynosi ${formatEur(stats.pricePerM2)} za metr (dane: ${stats.dataAsOf}), czyli ${describePricePosition(stats)}. Stawki rozciągają się od lokali do remontu po nowe osiedla, dlatego mediana miasta (${formatEur(stats.cityPricePerM2)}) jest tu wyłącznie punktem odniesienia.`,
+    `Tu metr kosztuje około ${formatEur(stats.pricePerM2)} (dane: ${stats.dataAsOf}). ${pricePositionSentence}. Przy medianie regionu ${formatEur(stats.regionPricePerM2)} mówimy o segmencie premium, w którym o cenie decyduje widok, linia zabudowy i standard osiedla, a nie sam metraż.`,
   ];
 
   const yieldAnswers = [
