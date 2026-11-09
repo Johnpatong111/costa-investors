@@ -70,7 +70,7 @@ export function buildDistrictContent(
     ),
   );
 
-  const blocks = buildDistrictBlocks(service, t, vars);
+  const blocks = buildDistrictBlocks({ service, stats, city, district, region, key, vars, t });
   const faq = buildDistrictFaq(service, vars, key, stats, entry);
   const processSteps = service.process.map((step) => ({
     title: step.title,

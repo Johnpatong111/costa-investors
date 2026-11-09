@@ -96,7 +96,7 @@ export function buildCityContent(
     ),
   );
 
-  const blocks = buildCityBlocks(city, service, t, vars);
+  const blocks = buildCityBlocks(city, service, t, vars, key, stats);
 
 // Blok infrastrukturalny: lotnisko (IATA) i AP-7, twarde dane zamiast ogólników.
 const access = cityAccessBlock(city.slug, "pl");

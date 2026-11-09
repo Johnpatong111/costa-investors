@@ -157,6 +157,41 @@ export function buildPriceReport(entry: DistrictEntry): PriceReport {
         ),
       ],
     },
+    {
+      // Blok lokalny raportu: cechy, punkty orientacyjne i porównanie z resztą
+      // gminy. Bez niego raporty dzielnic różniły się wyłącznie liczbami, które
+      // walidator normalizuje do „#” (stąd Jaccard ~0,9).
+      id: "okolica",
+      heading: t(`Okolica i zabudowa: {district}`),
+      paragraphs: [
+        pick(
+          [
+            t(
+              `W {districtLoc} dominują {characteristic}. Zabudowę uzupełniają ${district.characteristics
+                .slice(1)
+                .join(", ") || "starsze osiedla"}, a punktami orientacyjnymi w ogłoszeniach są ${district.landmarks.join(", ")}. Dla wyceny oznacza to, że dwie nieruchomości o tym samym metrażu mogą różnić się ceną o kilka procent — decyduje ${district.type} i odległość od ${district.landmarks[0] ?? city.name}.`,
+            ),
+            t(
+              `Raport dotyczy ${district.type} w części {subregion}. Cechy rynkowe tej lokalizacji: {characteristic}. W najbliższym sąsiedztwie liczą się ${district.landmarks.join(", ")}, a najemcy zwracają uwagę przede wszystkim na ${district.characteristics[1] ?? district.characteristics[0] ?? "standard wykończenia"}.`,
+            ),
+          ],
+          key,
+          "rep-okolica",
+        ),
+        city.districts.length > 1
+          ? `W obrębie ${city.nameGenitive} mediany rozkładają się od ${formatEur(
+              Math.min(...city.districts.map((item) => item.pricePerM2)),
+            )} €/m² do ${formatEur(Math.max(...city.districts.map((item) => item.pricePerM2)))} €/m². ${district.name} wypada ${describePricePosition(stats)}.`
+          : `W modelu danych ${city.name} nie ma innych dzielnic, więc punktem odniesienia pozostaje mediana miasta.`,
+      ],
+      bullets: city.districts
+        .slice()
+        .sort((a, b) => b.pricePerM2 - a.pricePerM2)
+        .map(
+          (item) =>
+            `${item.name}: ${formatEur(item.pricePerM2)}/m² · ROI ${formatRate(item.rentalYield)}`,
+        ),
+    },
   ];
 
   const faq: FaqItem[] = [

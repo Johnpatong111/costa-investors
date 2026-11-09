@@ -3,7 +3,9 @@ import { SERVICES } from "../../data/services";
 import type { Locale } from "../config";
 import type { CitySeed, RegionSeed } from "../../data/schema";
 import type { DistrictEntry } from "../../data/repository";
-import { deriveCityStats, deriveDistrictStats } from "../../content/market-stats";
+import { getNearbyCities } from "../../data/repository";
+import { deriveCityStats, deriveDistrictStats, MARKET_YEAR } from "../../content/market-stats";
+import { regionTax } from "../../content/region-facts";
 import {
   describeGrowth,
   describePricePosition,
@@ -14,7 +16,7 @@ import { buildTemplateVars, type PageContext } from "../../content/variables";
 import { interpolate } from "../../content/interpolate";
 import { pick } from "../../content/deterministic";
 import { cityAccessBlock } from "../../content/access";
-import { formatEur } from "../../utils/format";
+import { formatEur, formatRate } from "../../utils/format";
 import {
   MAX_DESCRIPTION_LENGTH,
   MAX_TITLE_LENGTH,
@@ -26,6 +28,7 @@ import {
 } from "../../content/content-utils";
 import { en } from "./en";
 import { es } from "./es";
+import { buildLocalizedDistrictBlocks, buildLocalizedDistrictFaq } from "./district-blocks";
 import type { LocalizedContent, LocalizedServiceCopy } from "./types";
 
 /**
@@ -161,47 +164,22 @@ export function buildLocalizedDistrictContent(
   const metaDescription = clip(t(pick(service.metaDescription, key, "desc")), MAX_DESCRIPTION_LENGTH);
   const lead = t(pick(dict.district.leads, key, "lead"));
 
-  const b = dict.district.blocks;
-  const blocks: ContentBlock[] = [
-    { id: "rynek", heading: t(b.rynek.heading), paragraphs: [t(b.rynek.p1), t(b.rynek.p2)] },
-    {
-      id: "roi",
-      heading: t(b.roi.heading),
-      paragraphs: [t(b.roi.p1), t(b.roi.p2)],
-      bullets: dict.district.bullets.map((bullet) => t(bullet)),
-    },
-    {
-      id: "koszty",
-      heading: t(b.koszty.heading),
-      paragraphs: [t(b.koszty.p1)],
-      bullets: b.koszty.bullets.map((bullet) => t(bullet)),
-    },
-    { id: "kupujacy", heading: t(b.kupujacy.heading), paragraphs: [t(b.kupujacy.p1), t(b.kupujacy.p2)] },
-    {
-      // Blok usługi. Różnicuje strony tej samej lokalizacji dla różnych usług
-      // (bez niego buy/villa/investment były w 99% identyczne).
-      id: "usluga",
-      heading: service.name,
-      paragraphs: service.benefits.map((benefit) => `${t(benefit.title)}: ${t(benefit.description)}`),
-      bullets: service.checklist.map((item) => t(item)),
-    },
-    {
-      // Blok liczbowy per dzielnica (cena vs miasto vs region, ROI, ekspozycja).
-      // Bez niego strony tego samego szablonu w różnych miastach były zbyt podobne.
-      id: "dane",
-      heading:
-        locale === "es"
-          ? `Cifras de ${district.name} de un vistazo`
-          : `Key figures for ${district.name} at a glance`,
-      paragraphs: [
-        locale === "es"
-          ? `Precio ${stats.pricePerM2} €/m² frente a ${stats.cityPricePerM2} €/m² de ${city.name} y ${stats.regionPricePerM2} €/m² de la región; alquiler ${stats.monthlyRentPerM2} €/m²/mes; ROI bruto ${stats.rentalYield}% y neto ${stats.netYield}%; revalorización ${stats.priceGrowth}% anual; tiempo medio de venta ${stats.avgDaysOnMarket} días; gastos de compra ${Math.round(stats.purchaseCostsRate * 100)}%.`
-          : `Price ${stats.pricePerM2} €/m² against ${stats.cityPricePerM2} €/m² in ${city.name} and ${stats.regionPricePerM2} €/m² region-wide; rent ${stats.monthlyRentPerM2} €/m² per month; gross yield ${stats.rentalYield}% and net ${stats.netYield}%; capital growth ${stats.priceGrowth}% a year; average time to sell ${stats.avgDaysOnMarket} days; purchase costs ${Math.round(stats.purchaseCostsRate * 100)}%.`,
-      ],
-    },
-  ];
+  const blocks: ContentBlock[] = buildLocalizedDistrictBlocks({
+    locale: locale as "en" | "es",
+    service,
+    stats,
+    city,
+    district,
+    region,
+    key,
+    vars,
+    t,
+  });
 
-  const faq = dict.district.faq.map((item) => ({ question: t(item.q), answer: t(item.a) }));
+  const faq = buildLocalizedDistrictFaq(
+    { locale: locale as "en" | "es", service, stats, city, district, region, key, vars, t },
+    dict.district.faq,
+  );
 
   return finish(
     {
@@ -256,33 +234,143 @@ export function buildLocalizedCityContent(
   );
   const lead = dedupeWords(t(pick(dict.city.leads, key, "lead")));
 
-  const b = dict.city.blocks;
   const districtBullets = city.districts
     .slice()
     .sort((a, z) => z.pricePerM2 - a.pricePerM2)
     .map((item) => `${item.name}: ${formatEur(item.pricePerM2)}/m² · ${item.rentalYield}%`);
 
+  const neighbours = getNearbyCities(city, 3);
+  const cheaper = neighbours.filter((item) => item.pricePerM2 < city.pricePerM2);
+  const pricier = neighbours.filter((item) => item.pricePerM2 > city.pricePerM2);
+  const spread =
+    city.districts.length > 1
+      ? Math.max(...city.districts.map((item) => item.pricePerM2)) -
+        Math.min(...city.districts.map((item) => item.pricePerM2))
+      : 0;
+
+  const cityOpeners =
+    locale === "es"
+      ? [
+          `La mediana de oferta en ${city.name} es de ${formatEur(stats.pricePerM2)}/m² (datos: ${stats.dataAsOf}) con un crecimiento del ${formatRate(stats.priceGrowth)} interanual. Frente a la región ${region.name} (${formatEur(stats.regionPricePerM2)}/m²) el municipio se sitúa ${describePricePosition(stats)}. La exposición media es de ${stats.avgDaysOnMarket} días.`,
+          `En ${city.nameLocative} el metro cuesta unos ${formatEur(stats.pricePerM2)} (datos: ${stats.dataAsOf}). Con ${formatRate(stats.priceGrowth)} de subida anual y ${stats.avgDaysOnMarket} días de exposición, el mercado trabaja a ritmo normal: hay tiempo para analizar, pero no para semanas de negociación.`,
+          `${city.name} concentra ${stats.transactions12m} operaciones al año en nuestro modelo, con una mediana de ${formatEur(stats.pricePerM2)}/m² frente a ${formatEur(stats.regionPricePerM2)}/m² de ${region.name}. La demanda se sostiene en ${stats.demandIndex}/10 y el alquiler rinde ${formatRate(stats.rentalYield)} bruto.`,
+        ]
+      : [
+          `The asking median in ${city.name} is ${formatEur(stats.pricePerM2)}/m² (data: ${stats.dataAsOf}) with ${formatRate(stats.priceGrowth)} year-on-year growth. Against the ${region.name} median of ${formatEur(stats.regionPricePerM2)}/m², the town sits ${describePricePosition(stats)}. Average time on market is ${stats.avgDaysOnMarket} days.`,
+          `A square metre in ${city.nameLocative} costs around ${formatEur(stats.pricePerM2)} (data: ${stats.dataAsOf}). With ${formatRate(stats.priceGrowth)} annual growth and ${stats.avgDaysOnMarket} days on market, the market moves at a normal pace: time to analyse, but not weeks to negotiate.`,
+          `${city.name} accounts for ${stats.transactions12m} transactions a year in our model, at a median of ${formatEur(stats.pricePerM2)}/m² against ${formatEur(stats.regionPricePerM2)}/m² across ${region.name}. Demand holds at ${stats.demandIndex}/10 and rental yield stands at ${formatRate(stats.rentalYield)} gross.`,
+        ];
+
+  const buyerLine =
+    locale === "es"
+      ? `El ${formatRate(stats.foreignBuyerShare, 0)} de los compradores en ${city.nameLocative} viene del extranjero, y el ${formatRate(stats.polishBuyerShare, 0)} son polacos. Esa base garantiza un mercado secundario líquido y precios menos dependientes de una sola nacionalidad.`
+      : `${formatRate(stats.foreignBuyerShare, 0)} of buyers in ${city.nameLocative} come from abroad, ${formatRate(stats.polishBuyerShare, 0)} of them Polish. That base keeps the resale market liquid and prices less dependent on a single nationality.`;
+
+  const comparisonText =
+    locale === "es"
+      ? [
+          cheaper.length > 0
+            ? `Más barato: ${cheaper.map((item) => `${item.name} (${formatEur(item.pricePerM2)} €/m²)`).join(" y ")}.`
+            : "",
+          pricier.length > 0
+            ? `Más caro: ${pricier.map((item) => `${item.name} (${formatEur(item.pricePerM2)} €/m²)`).join(" y ")}.`
+            : "",
+          spread > 0
+            ? `Dentro del municipio la diferencia entre la zona más cara y la más barata alcanza ${formatEur(spread)} €/m².`
+            : `El modelo de datos no divide este municipio en zonas.`,
+        ]
+          .filter(Boolean)
+          .join(" ")
+      : [
+          cheaper.length > 0
+            ? `Cheaper nearby: ${cheaper.map((item) => `${item.name} (${formatEur(item.pricePerM2)} €/m²)`).join(" and ")}.`
+            : "",
+          pricier.length > 0
+            ? `Pricier nearby: ${pricier.map((item) => `${item.name} (${formatEur(item.pricePerM2)} €/m²)`).join(" and ")}.`
+            : "",
+          spread > 0
+            ? `Inside the municipality the gap between the most and least expensive area reaches ${formatEur(spread)} €/m².`
+            : `The dataset does not split this municipality into areas.`,
+        ]
+          .filter(Boolean)
+          .join(" ");
+
+  const tax = regionTax(region.slug);
+  const costText =
+    locale === "es"
+      ? `Añade un ${formatRate(stats.purchaseCostsRate * 100)} de gastos: ITP del ${tax.itp}% en ${tax.authority} para segunda mano, o IVA del 10% y AJD en obra nueva, más notaría, registro y abogado. Cada año se suman IBI, comunidad y seguro.`
+      : `Add ${formatRate(stats.purchaseCostsRate * 100)} in costs: ${tax.itp}% transfer tax in ${tax.authority} for resale, or 10% VAT plus stamp duty on new-build, plus notary, registry and lawyer. Every year you also pay IBI, community fees and insurance.`;
+
+  // Argumentacja pod intencję usługi — różnicuje huby tej samej miejscowości.
+  const cityAngle =
+    locale === "es"
+      ? ({
+          buy: `Para comprar y usar: con ${formatEur(stats.pricePerM2)}/m² una vivienda de 70 m² ronda ${formatEur(stats.pricePerM2 * 70)} antes de gastos, e incluye ${city.districts.length} zonas con precios distintos.`,
+          villa: `Para chalet con piscina: en ${city.name} la parcela pesa tanto como la vivienda; conviene revisar ${city.districts[0]?.name ?? city.name} y comparar el precio del metro con el coste de construir.`,
+          investment: `Para inversión: ${formatRate(stats.rentalYield)} bruto y ${formatRate(stats.netYield)} neto con ${stats.avgDaysOnMarket} días de salida; el reparto por zonas de ${city.name} decide el retorno final.`,
+          "lead-magnet": `Para valorar: empieza por la mediana municipal (${formatEur(stats.pricePerM2)}/m²), los gastos de entrada (${formatRate(stats.purchaseCostsRate * 100)}) y el desglose por zonas antes de pedir el análisis.`,
+        } as Record<string, string>)[service.kind] ?? ""
+      : ({
+          buy: `For owner-occupiers: at ${formatEur(stats.pricePerM2)}/m² a 70 m² unit costs around ${formatEur(stats.pricePerM2 * 70)} before costs, and ${city.name} spans ${city.districts.length} areas at different price points.`,
+          villa: `For villa buyers: in ${city.name} the plot weighs as much as the house, so compare ${city.districts[0]?.name ?? city.name} against the cost of building new.`,
+          investment: `For investors: ${formatRate(stats.rentalYield)} gross and ${formatRate(stats.netYield)} net with ${stats.avgDaysOnMarket} days to sell; how the ${city.name} areas are priced decides the final return.`,
+          "lead-magnet": `For valuations: start with the municipal median (${formatEur(stats.pricePerM2)}/m²), entry costs (${formatRate(stats.purchaseCostsRate * 100)}) and the area breakdown before ordering an analysis.`,
+        } as Record<string, string>)[service.kind] ?? "";
+
   const blocks: ContentBlock[] = [
-    { id: "rynek", heading: t(b.rynek.heading), paragraphs: [t(b.rynek.p1), t(b.rynek.p2)] },
-    { id: "dzielnice", heading: t(b.dzielnice.heading), paragraphs: [t(b.dzielnice.p1)], bullets: districtBullets },
     {
-      id: "proces",
-      heading: t(b.proces.heading),
-      paragraphs: [t(b.proces.p1)],
-      bullets: dict.process.map((step) => `${step.title} (${step.duration}): ${t(step.description)}`),
+      id: "rynek",
+      heading:
+        locale === "es"
+          ? `Mercado inmobiliario en ${city.nameLocative}: ${MARKET_YEAR}`
+          : `Property market in ${city.nameLocative}: ${MARKET_YEAR}`,
+      paragraphs: [pick(cityOpeners, key, "city-open"), buyerLine, cityAngle],
+      bullets: [
+        `${locale === "es" ? "Mediana" : "Median"}: ${formatEur(stats.pricePerM2)}/m²`,
+        `${locale === "es" ? "Crecimiento" : "Growth"}: ${formatRate(stats.priceGrowth)}`,
+        `ROI: ${formatRate(stats.rentalYield)} (${locale === "es" ? "neto" : "net"} ${formatRate(stats.netYield)})`,
+        `${locale === "es" ? "Alquiler" : "Rent"}: ${stats.monthlyRentPerM2} €/m²`,
+        `${locale === "es" ? "Compradores extranjeros" : "Foreign buyers"}: ${formatRate(stats.foreignBuyerShare, 0)}`,
+      ],
+    },
+    {
+      id: "dzielnice",
+      heading:
+        locale === "es"
+          ? `Precios y rentabilidad por zona de ${city.name}`
+          : `Prices and yields across ${city.name} areas`,
+      paragraphs: [
+        locale === "es"
+          ? "Los precios varían según la distancia a la playa, el año de construcción y el estándar de la urbanización. Abajo tienes la mediana €/m² y la rentabilidad de cada zona; pulsa el nombre para ver el informe completo."
+          : "Prices vary with distance to the beach, year of construction and the standard of the development. Below are the €/m² median and rental yield for each area; open a name for the full report.",
+        comparisonText,
+      ],
+      bullets: districtBullets,
     },
     {
       id: "koszty",
-      heading: t(b.koszty.heading),
-      paragraphs: [t(b.koszty.p1)],
-      bullets: b.koszty.bullets.map((bullet) => t(bullet)),
+      heading: locale === "es" ? "Gastos de compra e impuestos" : "Purchase costs and taxes",
+      paragraphs: [costText],
+      bullets: service.checklist.map((item) => t(item)),
     },
     {
-      // Blok usługi. Różnicuje miasta dla różnych usług (buy vs villa vs investment).
       id: "usluga",
       heading: service.name,
       paragraphs: service.benefits.map((benefit) => `${t(benefit.title)}: ${t(benefit.description)}`),
       bullets: service.checklist.map((item) => t(item)),
+    },
+    {
+      id: "proces",
+      heading:
+        locale === "es"
+          ? `Cómo comprar en ${city.nameLocative} paso a paso`
+          : `How to buy in ${city.nameLocative}, step by step`,
+      paragraphs: [
+        locale === "es"
+          ? "La compra en España exige NIE, cuenta bancaria española y traductor jurado en la notaría. Estos son los pasos que gestionamos por ti."
+          : "Buying in Spain requires an NIE, a Spanish bank account and a sworn translator at the notary. These are the steps we handle for you.",
+      ],
+      bullets: dict.process.map((step) => `${step.title} (${step.duration}): ${t(step.description)}`),
     },
   ];
 
@@ -352,11 +440,42 @@ export function buildLocalizedPriceReport(
     { id: "podatki", heading: t(b.podatki.heading), paragraphs: [t(b.podatki.p1), t(b.podatki.p2)] },
     { id: "metodologia", heading: t(b.metodologia.heading), paragraphs: [t(b.metodologia.p1)] },
     {
-      // Kontekst lokalny (cechy + punkt orientacyjny). Różnicuje raporty
-      // dzielnic o tej samej nazwie w różnych miastach.
+      // Kontekst lokalny (cechy, punkty orientacyjne, porównanie w gminie).
+      // Statyczny słownik dawał identyczne raporty na 70 dzielnicach.
       id: "okolica",
-      heading: t(dict.district.blocks.rynek.heading),
-      paragraphs: dict.district.notes.map((note) => t(note)),
+      heading:
+        locale === "es"
+          ? `Entorno y parque residencial: ${district.name}`
+          : `Area and housing stock: ${district.name}`,
+      paragraphs: [
+        pick(
+          locale === "es"
+            ? [
+                `En ${district.nameLocative} predominan ${district.characteristics[0] ?? "inmuebles variados"}. El conjunto lo completan ${district.characteristics.slice(1).join(", ") || "urbanizaciones consolidadas"}, y los puntos de referencia de los anuncios son ${district.landmarks.join(", ")}. Para la valoración esto significa que dos viviendas con los mismos metros pueden diferir varios puntos porcentuales: manda el tipo (${district.type}) y la distancia a ${district.landmarks[0] ?? city.name}.`,
+                `El informe cubre una ${district.type} de ${city.subregion}. Rasgos de mercado: ${district.characteristics.join(", ")}. En el entorno inmediato cuentan ${district.landmarks.join(", ")}, y el inquilino mira sobre todo ${district.characteristics[1] ?? district.characteristics[0] ?? "la calidad de acabados"}.`,
+              ]
+            : [
+                `In ${district.nameLocative} the stock is mainly ${district.characteristics[0] ?? "mixed"}. It is rounded out by ${district.characteristics.slice(1).join(", ") || "established developments"}, and the landmarks quoted in listings are ${district.landmarks.join(", ")}. For valuation this means two units of identical floor area can differ by several per cent: the type (${district.type}) and distance to ${district.landmarks[0] ?? city.name} decide it.`,
+                `This report covers a ${district.type} within ${city.subregion}. Market traits: ${district.characteristics.join(", ")}. Nearby, ${district.landmarks.join(", ")} matter most, and tenants look first at ${district.characteristics[1] ?? district.characteristics[0] ?? "finish quality"}.`,
+              ],
+          key,
+          "rep-okolica",
+        ),
+        city.districts.length > 1
+          ? locale === "es"
+            ? `Dentro de ${city.name} las medianas van de ${formatEur(Math.min(...city.districts.map((item) => item.pricePerM2)))} €/m² a ${formatEur(Math.max(...city.districts.map((item) => item.pricePerM2)))} €/m². ${district.name} se sitúa ${describePricePosition(stats)}.`
+            : `Within ${city.name} medians range from ${formatEur(Math.min(...city.districts.map((item) => item.pricePerM2)))} €/m² to ${formatEur(Math.max(...city.districts.map((item) => item.pricePerM2)))} €/m². ${district.name} sits ${describePricePosition(stats)}.`
+          : locale === "es"
+            ? `El modelo de datos no incluye otras zonas de ${city.name}, así que la referencia es la mediana municipal.`
+            : `The dataset contains no other areas in ${city.name}, so the municipal median is the reference.`,
+      ],
+      bullets: city.districts
+        .slice()
+        .sort((a, b) => b.pricePerM2 - a.pricePerM2)
+        .map(
+          (item) =>
+            `${item.name}: ${formatEur(item.pricePerM2)}/m² · ${locale === "es" ? "ROI" : "yield"} ${formatRate(item.rentalYield)}`,
+        ),
     },
   ];
 
