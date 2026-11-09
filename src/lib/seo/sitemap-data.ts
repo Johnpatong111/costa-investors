@@ -99,11 +99,8 @@ function districtPaths(): LogicalEntry[] {
 function staticPaths(): LogicalEntry[] {
   return [
     logical("/", { changeFrequency: "daily", priority: 1 }),
-    logical("/o-nas", { changeFrequency: "monthly", priority: 0.5 }),
     // Hub raportów cenowych. Wejście do 70 raportów dzielnicowych.
     logical(`/${PRICE_REPORT.slug}`, { changeFrequency: "monthly", priority: 0.7 }),
-    logical("/polityka-prywatnosci", { changeFrequency: "yearly", priority: 0.2 }),
-    logical("/regulamin", { changeFrequency: "yearly", priority: 0.2 }),
   ];
 }
 

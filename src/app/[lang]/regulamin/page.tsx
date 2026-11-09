@@ -19,6 +19,7 @@ export async function generateMetadata({
     description: doc.intro,
     path: "/regulamin",
     locale,
+    noindex: true,
   });
 }
 

@@ -15,6 +15,8 @@ const xml = toSitemapUrlsetXml(entries);
 
 mkdirSync("public", { recursive: true });
 writeFileSync(OUTPUT, xml, "utf8");
+// Kopia pod inną ścieżką: pozwala obejść reguły CDN blokujące /sitemap.xml.
+writeFileSync("public/sitemap-main.xml", xml, "utf8");
 
 const lines = xml.split("\n").length;
 console.log(`✓ ${OUTPUT}: ${entries.length} adresów, ${lines} linii, ${xml.length} bajtów`);

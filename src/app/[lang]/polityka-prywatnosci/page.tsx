@@ -19,6 +19,7 @@ export async function generateMetadata({
     description: doc.intro,
     path: "/polityka-prywatnosci",
     locale,
+    noindex: true,
   });
 }
 

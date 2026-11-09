@@ -31,36 +31,6 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://costainvestors.eu/pl"/>
   </url>
   <url>
-    <loc>https://costainvestors.eu/pl/o-nas</loc>
-    <lastmod>2026-01-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-    <xhtml:link rel="alternate" hreflang="pl" href="https://costainvestors.eu/pl/o-nas"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://costainvestors.eu/en/o-nas"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://costainvestors.eu/es/o-nas"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://costainvestors.eu/pl/o-nas"/>
-  </url>
-  <url>
-    <loc>https://costainvestors.eu/en/o-nas</loc>
-    <lastmod>2026-01-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-    <xhtml:link rel="alternate" hreflang="pl" href="https://costainvestors.eu/pl/o-nas"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://costainvestors.eu/en/o-nas"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://costainvestors.eu/es/o-nas"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://costainvestors.eu/pl/o-nas"/>
-  </url>
-  <url>
-    <loc>https://costainvestors.eu/es/o-nas</loc>
-    <lastmod>2026-01-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-    <xhtml:link rel="alternate" hreflang="pl" href="https://costainvestors.eu/pl/o-nas"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://costainvestors.eu/en/o-nas"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://costainvestors.eu/es/o-nas"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://costainvestors.eu/pl/o-nas"/>
-  </url>
-  <url>
     <loc>https://costainvestors.eu/pl/ceny-m2</loc>
     <lastmod>2026-01-15</lastmod>
     <changefreq>monthly</changefreq>
@@ -89,66 +59,6 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://costainvestors.eu/en/ceny-m2"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://costainvestors.eu/es/ceny-m2"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://costainvestors.eu/pl/ceny-m2"/>
-  </url>
-  <url>
-    <loc>https://costainvestors.eu/pl/polityka-prywatnosci</loc>
-    <lastmod>2026-01-15</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.2</priority>
-    <xhtml:link rel="alternate" hreflang="pl" href="https://costainvestors.eu/pl/polityka-prywatnosci"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://costainvestors.eu/en/polityka-prywatnosci"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://costainvestors.eu/es/polityka-prywatnosci"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://costainvestors.eu/pl/polityka-prywatnosci"/>
-  </url>
-  <url>
-    <loc>https://costainvestors.eu/en/polityka-prywatnosci</loc>
-    <lastmod>2026-01-15</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.2</priority>
-    <xhtml:link rel="alternate" hreflang="pl" href="https://costainvestors.eu/pl/polityka-prywatnosci"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://costainvestors.eu/en/polityka-prywatnosci"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://costainvestors.eu/es/polityka-prywatnosci"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://costainvestors.eu/pl/polityka-prywatnosci"/>
-  </url>
-  <url>
-    <loc>https://costainvestors.eu/es/polityka-prywatnosci</loc>
-    <lastmod>2026-01-15</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.2</priority>
-    <xhtml:link rel="alternate" hreflang="pl" href="https://costainvestors.eu/pl/polityka-prywatnosci"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://costainvestors.eu/en/polityka-prywatnosci"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://costainvestors.eu/es/polityka-prywatnosci"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://costainvestors.eu/pl/polityka-prywatnosci"/>
-  </url>
-  <url>
-    <loc>https://costainvestors.eu/pl/regulamin</loc>
-    <lastmod>2026-01-15</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.2</priority>
-    <xhtml:link rel="alternate" hreflang="pl" href="https://costainvestors.eu/pl/regulamin"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://costainvestors.eu/en/regulamin"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://costainvestors.eu/es/regulamin"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://costainvestors.eu/pl/regulamin"/>
-  </url>
-  <url>
-    <loc>https://costainvestors.eu/en/regulamin</loc>
-    <lastmod>2026-01-15</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.2</priority>
-    <xhtml:link rel="alternate" hreflang="pl" href="https://costainvestors.eu/pl/regulamin"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://costainvestors.eu/en/regulamin"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://costainvestors.eu/es/regulamin"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://costainvestors.eu/pl/regulamin"/>
-  </url>
-  <url>
-    <loc>https://costainvestors.eu/es/regulamin</loc>
-    <lastmod>2026-01-15</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.2</priority>
-    <xhtml:link rel="alternate" hreflang="pl" href="https://costainvestors.eu/pl/regulamin"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://costainvestors.eu/en/regulamin"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://costainvestors.eu/es/regulamin"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://costainvestors.eu/pl/regulamin"/>
   </url>
   <url>
     <loc>https://costainvestors.eu/pl/apartamenty-na-sprzedaz</loc>

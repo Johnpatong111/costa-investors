@@ -98,6 +98,7 @@ export async function generateMetadata({
     description: copy.intro,
     path: "/o-nas",
     locale,
+    noindex: true,
   });
 }
 
