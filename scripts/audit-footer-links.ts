@@ -51,7 +51,7 @@ function footerLinks(locale: Locale): FooterLink[] {
   for (const city of reportCities) {
     links.push({
       label: `raport miasta:${city.slug}`,
-      href: translatePath(`/${PRICE_REPORT.slug}/${city.slug}/${city.districts[0]?.slug ?? ""}`, locale),
+      href: translatePath(`/${PRICE_REPORT.slug}/${city.slug}`, locale),
     });
   }
   if (sampleCity && sampleDistrict) {

@@ -70,6 +70,26 @@ function cityPaths(): LogicalEntry[] {
   return entries;
 }
 
+/**
+ * Raporty miast: /ceny-m2/{miasto}. Hub zbiera frazy „ceny m2 <miasto>” i
+ * linkuje do raportów dzielnic, więc należy do sitemapy jak reszta pSEO.
+ */
+function reportCityPaths(): LogicalEntry[] {
+  const entries: LogicalEntry[] = [];
+  for (const city of getCities()) {
+    const region = LOCATIONS.regions.find((item) => item.slug === city.region);
+    if (!region) continue;
+    const stats = deriveCityStats(city, region);
+    entries.push(
+      logical(`/${PRICE_REPORT.slug}/${city.slug}`, {
+        changeFrequency: stats.reliable ? "weekly" : "monthly",
+        priority: city.tier === 1 ? 0.8 : 0.7,
+      }),
+    );
+  }
+  return entries;
+}
+
 function districtPaths(): LogicalEntry[] {
   const entries: LogicalEntry[] = [];
   for (const entry of getAllDistrictEntries()) {
@@ -134,6 +154,7 @@ export function getAllSitemapEntries(): SitemapEntry[] {
     ...staticPaths(),
     ...servicePaths(),
     ...cityPaths(),
+    ...reportCityPaths(),
     ...districtPaths(),
   ]);
 }
