@@ -115,9 +115,8 @@ export function proxy(request: NextRequest) {
   // Od razu trafiamy w zlokalizowany slug usługi. Bez podwójnego przeskoku.
   url.pathname = translatePath(pathname, locale);
 
-  // Historyczne adresy PL → 301 (trwałe przeniesienie, pełne link equity).
-  const isLegacy = firstSegment ? LEGACY_PREFIXES.has(firstSegment) : false;
-  const response = NextResponse.redirect(url, isLegacy ? 301 : 308);
+  // Wszystkie bezprefiksowe adresy → 301 na wersję językową (pełne link equity).
+  const response = NextResponse.redirect(url, 301);
   response.cookies.set("NEXT_LOCALE", locale, {
     path: "/",
     maxAge: 60 * 60 * 24 * 365,
