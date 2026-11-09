@@ -54,6 +54,15 @@ const nextConfig: NextConfig = {
         ],
       },
       {
+        // Google i przeglądarki muszą dostać czysty XML, nigdy text/plain.
+        source: "/sitemap.xml",
+        headers: [
+          { key: "Content-Type", value: "application/xml; charset=utf-8" },
+          { key: "X-Content-Type-Options", value: "nosniff" },
+          { key: "Cache-Control", value: "public, max-age=3600, s-maxage=3600" },
+        ],
+      },
+      {
         // Strony pSEO są statyczne/ISR – długi cache na CDN.
         source: "/:service/:city/:district",
         headers: [
