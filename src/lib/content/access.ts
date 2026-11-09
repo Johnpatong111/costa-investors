@@ -34,6 +34,12 @@ const ACCESS: Record<string, CityAccess> = {
   "los-alcazares": { airport: "RMU", minutes: 20, ap7: true },
   mazarron: { airport: "RMU", minutes: 45, ap7: true },
   aguilas: { airport: "RMU", minutes: 60, ap7: true },
+  villajoyosa: { airport: "ALC", minutes: 40, ap7: true },
+  "el-campello": { airport: "ALC", minutes: 25, ap7: true },
+  finestrat: { airport: "ALC", minutes: 50, ap7: true },
+  "l-albir": { airport: "ALC", minutes: 60, ap7: true },
+  quesada: { airport: "ALC", minutes: 35, ap7: true },
+  "san-miguel-de-salinas": { airport: "ALC", minutes: 40, ap7: true },
 };
 
 const AIRPORTS: Record<CityAccess["airport"], Record<Locale, string>> = {

@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import { existsSync } from "node:fs";
 import { SERVICES, PRICE_REPORT } from "../src/lib/data/services";
-import { getCitiesByTier } from "../src/lib/data/repository";
+import { getCities } from "../src/lib/data/repository";
 import { translatePath } from "../src/lib/i18n/paths";
 import { LOCALES, localePath, type Locale } from "../src/lib/i18n/config";
 
@@ -29,9 +29,11 @@ function builtFile(path: string): string | null {
 }
 
 const guideService = SERVICES.find((service) => service.kind === "lead-magnet") ?? SERVICES[0];
-const cities = getCitiesByTier(1);
-const reportCities = cities.slice(0, 4);
-const sampleCity = cities[0];
+const allCities = getCities();
+const reportCities = ["torrevieja", "alicante", "benidorm", "calpe", "cartagena", "denia"]
+  .map((slug) => allCities.find((city) => city.slug === slug))
+  .filter((city): city is (typeof allCities)[number] => Boolean(city));
+const sampleCity = reportCities[0];
 const sampleDistrict = sampleCity?.districts[0];
 
 interface FooterLink {

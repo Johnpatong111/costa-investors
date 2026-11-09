@@ -1050,6 +1050,28 @@
             "Lomas de Cabo Roig",
             "Playa de la Zenia"
           ]
+        },
+        {
+          "slug": "mil-palmeras",
+          "name": "Mil Palmeras",
+          "nameGenitive": "Mil Palmeras",
+          "nameLocative": "Mil Palmeras",
+          "type": "plaza",
+          "lat": 37.94,
+          "lng": -0.734,
+          "pricePerM2": 2800,
+          "rentalYield": 6.2,
+          "demandIndex": 8.5,
+          "characteristics": [
+            "apartamenty przy szerokiej plaży Mil Palmeras",
+            "nowe osiedla z basenami",
+            "blisko Punta Prima i Torrevieja"
+          ],
+          "landmarks": [
+            "Playa de Mil Palmeras",
+            "Punta Prima"
+          ],
+          "aliases": []
         }
       ]
     },
@@ -1845,6 +1867,552 @@
             "Playa del Hornillo",
             "Paseo Marítimo"
           ]
+        }
+      ]
+    },
+    {
+      "slug": "villajoyosa",
+      "name": "Villajoyosa",
+      "nameGenitive": "Villajoyosy",
+      "nameLocative": "Villajoyosie",
+      "region": "costa-blanca",
+      "subregion": "Costa Blanca Norte",
+      "province": "Alicante",
+      "lat": 38.5075,
+      "lng": -0.2333,
+      "population": 34000,
+      "tier": 2,
+      "pricePerM2": 2450,
+      "rentalYield": 6.1,
+      "priceGrowth": 8.5,
+      "avgDaysOnMarket": 115,
+      "transactions12m": 900,
+      "foreignBuyerShare": 45,
+      "polishBuyerShare": 6,
+      "aliases": [
+        "la-vila-joiosa"
+      ],
+      "districts": [
+        {
+          "slug": "centro",
+          "name": "Centro",
+          "nameGenitive": "Centro",
+          "nameLocative": "Centro",
+          "type": "dzielnica",
+          "lat": 38.5075,
+          "lng": -0.2333,
+          "pricePerM2": 2350,
+          "rentalYield": 6,
+          "demandIndex": 7.5,
+          "characteristics": [
+            "kolorowe domy starego miasta",
+            "bliskość portu i plaży",
+            "mieszkania w kamienicach po remoncie"
+          ],
+          "landmarks": [
+            "Casco Antiguo",
+            "Puerto de Villajoyosa"
+          ],
+          "aliases": []
+        },
+        {
+          "slug": "playa-torre",
+          "name": "Playa Torre",
+          "nameGenitive": "Playa Torre",
+          "nameLocative": "Playa Torre",
+          "type": "plaza",
+          "lat": 38.503,
+          "lng": -0.222,
+          "pricePerM2": 2650,
+          "rentalYield": 6.3,
+          "demandIndex": 8.5,
+          "characteristics": [
+            "apartamenty w pierwszej linii plaży",
+            "nowe osiedla z basenami",
+            "wysoki popyt na najem w sezonie"
+          ],
+          "landmarks": [
+            "Playa del Torres",
+            "Paseo del Mar"
+          ],
+          "aliases": []
+        },
+        {
+          "slug": "plans",
+          "name": "Plans",
+          "nameGenitive": "Plans",
+          "nameLocative": "Plans",
+          "type": "osiedle",
+          "lat": 38.515,
+          "lng": -0.245,
+          "pricePerM2": 2200,
+          "rentalYield": 5.8,
+          "demandIndex": 6.5,
+          "characteristics": [
+            "spokojna zabudowa willowa",
+            "większe działki poza centrum",
+            "niższa cena m² przy dużych metrażach"
+          ],
+          "landmarks": [
+            "Sierra de Ponotx",
+            "Camping El Torres"
+          ],
+          "aliases": []
+        }
+      ]
+    },
+    {
+      "slug": "el-campello",
+      "name": "El Campello",
+      "nameGenitive": "El Campello",
+      "nameLocative": "El Campello",
+      "region": "costa-blanca",
+      "subregion": "Costa Blanca Centro",
+      "province": "Alicante",
+      "lat": 38.4289,
+      "lng": -0.3978,
+      "population": 29000,
+      "tier": 2,
+      "pricePerM2": 2700,
+      "rentalYield": 5.9,
+      "priceGrowth": 8.2,
+      "avgDaysOnMarket": 110,
+      "transactions12m": 1100,
+      "foreignBuyerShare": 42,
+      "polishBuyerShare": 5,
+      "aliases": [
+        "campello"
+      ],
+      "districts": [
+        {
+          "slug": "centro",
+          "name": "Centro",
+          "nameGenitive": "Centro",
+          "nameLocative": "Centro",
+          "type": "dzielnica",
+          "lat": 38.4289,
+          "lng": -0.3978,
+          "pricePerM2": 2600,
+          "rentalYield": 5.8,
+          "demandIndex": 7.5,
+          "characteristics": [
+            "mieszkania blisko plaży i portu",
+            "linia tramwajowa do Alicante",
+            "całoroczna infrastruktura"
+          ],
+          "landmarks": [
+            "Playa de Muchavista",
+            "Tram El Campello"
+          ],
+          "aliases": []
+        },
+        {
+          "slug": "muchavista",
+          "name": "Muchavista",
+          "nameGenitive": "Muchavista",
+          "nameLocative": "Muchavista",
+          "type": "plaza",
+          "lat": 38.418,
+          "lng": -0.396,
+          "pricePerM2": 2900,
+          "rentalYield": 6,
+          "demandIndex": 8.5,
+          "characteristics": [
+            "szeroka piaszczysta plaża",
+            "apartamenty z widokiem na morze",
+            "popularna wśród kupujących z Polski"
+          ],
+          "landmarks": [
+            "Playa de Muchavista",
+            "Cala de la Merced"
+          ],
+          "aliases": []
+        },
+        {
+          "slug": "coveta-fumada",
+          "name": "Coveta Fumada",
+          "nameGenitive": "Coveta Fumada",
+          "nameLocative": "Coveta Fumada",
+          "type": "urbanizacja",
+          "lat": 38.44,
+          "lng": -0.383,
+          "pricePerM2": 2550,
+          "rentalYield": 5.7,
+          "demandIndex": 6.8,
+          "characteristics": [
+            "zabudowa willowa na klifie",
+            "kameralne osiedla z basenami",
+            "mniejszy ruch niż w centrum"
+          ],
+          "landmarks": [
+            "Cala Coveta Fumada",
+            "Sierra del Mar"
+          ],
+          "aliases": []
+        }
+      ]
+    },
+    {
+      "slug": "finestrat",
+      "name": "Finestrat",
+      "nameGenitive": "Finestrat",
+      "nameLocative": "Finestrat",
+      "region": "costa-blanca",
+      "subregion": "Costa Blanca Norte",
+      "province": "Alicante",
+      "lat": 38.5683,
+      "lng": -0.2125,
+      "population": 7500,
+      "tier": 3,
+      "pricePerM2": 2850,
+      "rentalYield": 5.6,
+      "priceGrowth": 9.4,
+      "avgDaysOnMarket": 125,
+      "transactions12m": 700,
+      "foreignBuyerShare": 50,
+      "polishBuyerShare": 6,
+      "aliases": [],
+      "districts": [
+        {
+          "slug": "centro",
+          "name": "Centro",
+          "nameGenitive": "Centro",
+          "nameLocative": "Centro",
+          "type": "dzielnica",
+          "lat": 38.5683,
+          "lng": -0.2125,
+          "pricePerM2": 2400,
+          "rentalYield": 5.4,
+          "demandIndex": 6.5,
+          "characteristics": [
+            "tradycyjna zabudowa wsi pod Benidormem",
+            "widok na Puig Campana",
+            "niższa cena m² niż nad morzem"
+          ],
+          "landmarks": [
+            "Puig Campana",
+            "Casco Antiguo de Finestrat"
+          ],
+          "aliases": []
+        },
+        {
+          "slug": "balcon-de-finestrat",
+          "name": "Balcón de Finestrat",
+          "nameGenitive": "Balcón de Finestrat",
+          "nameLocative": "Balcón de Finestrat",
+          "type": "urbanizacja",
+          "lat": 38.545,
+          "lng": -0.196,
+          "pricePerM2": 3100,
+          "rentalYield": 5.7,
+          "demandIndex": 8.5,
+          "characteristics": [
+            "nowe osiedla z widokiem na morze",
+            "wille z basenem i ochroną",
+            "bliskość Benidorm i plaż"
+          ],
+          "landmarks": [
+            "Balcón de Finestrat",
+            "Terra Mítica"
+          ],
+          "aliases": []
+        },
+        {
+          "slug": "golf",
+          "name": "Golf",
+          "nameGenitive": "Golf",
+          "nameLocative": "Golf",
+          "type": "osiedle",
+          "lat": 38.552,
+          "lng": -0.205,
+          "pricePerM2": 2950,
+          "rentalYield": 5.5,
+          "demandIndex": 7.5,
+          "characteristics": [
+            "zabudowa wokół pola golfowego",
+            "apartamenty z basenami i spa",
+            "rynek drugiego domu"
+          ],
+          "landmarks": [
+            "Finestrat Golf",
+            "Sierra Cortina"
+          ],
+          "aliases": []
+        }
+      ]
+    },
+    {
+      "slug": "l-albir",
+      "name": "L'Albir",
+      "nameGenitive": "L'Albir",
+      "nameLocative": "L'Albir",
+      "region": "costa-blanca",
+      "subregion": "Costa Blanca Norte",
+      "province": "Alicante",
+      "lat": 38.5736,
+      "lng": -0.0676,
+      "population": 6500,
+      "tier": 3,
+      "pricePerM2": 3100,
+      "rentalYield": 5.4,
+      "priceGrowth": 8,
+      "avgDaysOnMarket": 130,
+      "transactions12m": 600,
+      "foreignBuyerShare": 55,
+      "polishBuyerShare": 5,
+      "aliases": [
+        "albir",
+        "lalfas-del-pi"
+      ],
+      "districts": [
+        {
+          "slug": "centro",
+          "name": "Centro",
+          "nameGenitive": "Centro",
+          "nameLocative": "Centro",
+          "type": "dzielnica",
+          "lat": 38.5736,
+          "lng": -0.0676,
+          "pricePerM2": 3000,
+          "rentalYield": 5.3,
+          "demandIndex": 7.5,
+          "characteristics": [
+            "nadmorska promenada i restauracje",
+            "apartamenty blisko plaży",
+            "międzynarodowe sąsiedztwo"
+          ],
+          "landmarks": [
+            "Playa de Racó de l'Albir",
+            "Paseo de las Estrellas"
+          ],
+          "aliases": []
+        },
+        {
+          "slug": "playa-del-albir",
+          "name": "Playa del Albir",
+          "nameGenitive": "Playa del Albir",
+          "nameLocative": "Playa del Albir",
+          "type": "plaza",
+          "lat": 38.567,
+          "lng": -0.062,
+          "pricePerM2": 3300,
+          "rentalYield": 5.6,
+          "demandIndex": 8.5,
+          "characteristics": [
+            "szeroka żwirowa plaża z widokiem na Serra Gelada",
+            "nowe osiedla z basenami",
+            "wysoki popyt na najem sezonowy"
+          ],
+          "landmarks": [
+            "Playa de Racó de l'Albir",
+            "Serra Gelada"
+          ],
+          "aliases": []
+        },
+        {
+          "slug": "sierra-albir",
+          "name": "Sierra Albir",
+          "nameGenitive": "Sierra Albir",
+          "nameLocative": "Sierra Albir",
+          "type": "osiedle",
+          "lat": 38.583,
+          "lng": -0.075,
+          "pricePerM2": 2900,
+          "rentalYield": 5.2,
+          "demandIndex": 6.5,
+          "characteristics": [
+            "wille na zboczu z widokiem na morze",
+            "spokojna okolica poza centrum",
+            "duże działki i prywatność"
+          ],
+          "landmarks": [
+            "Serra Gelada",
+            "Parque Natural de Serra Gelada"
+          ],
+          "aliases": []
+        }
+      ]
+    },
+    {
+      "slug": "quesada",
+      "name": "Ciudad Quesada",
+      "nameGenitive": "Ciudad Quesada",
+      "nameLocative": "Ciudad Quesada",
+      "region": "costa-blanca",
+      "subregion": "Costa Blanca Sur",
+      "province": "Alicante",
+      "lat": 38.0603,
+      "lng": -0.7395,
+      "population": 17000,
+      "tier": 3,
+      "pricePerM2": 2600,
+      "rentalYield": 6.3,
+      "priceGrowth": 7.5,
+      "avgDaysOnMarket": 105,
+      "transactions12m": 800,
+      "foreignBuyerShare": 48,
+      "polishBuyerShare": 7,
+      "aliases": [
+        "ciudad-quesada",
+        "rojales-quesada"
+      ],
+      "districts": [
+        {
+          "slug": "centro",
+          "name": "Centro",
+          "nameGenitive": "Centro",
+          "nameLocative": "Centro",
+          "type": "dzielnica",
+          "lat": 38.0603,
+          "lng": -0.7395,
+          "pricePerM2": 2550,
+          "rentalYield": 6.2,
+          "demandIndex": 7.5,
+          "characteristics": [
+            "usługi i restauracje w zasięgu spaceru",
+            "zabudowa niska z ogrodami",
+            "duża społeczność obcokrajowców"
+          ],
+          "landmarks": [
+            "Ciudad Quesada",
+            "Rojales"
+          ],
+          "aliases": []
+        },
+        {
+          "slug": "la-marquesa",
+          "name": "La Marquesa",
+          "nameGenitive": "La Marquesa",
+          "nameLocative": "La Marquesa",
+          "type": "osiedle",
+          "lat": 38.052,
+          "lng": -0.735,
+          "pricePerM2": 2750,
+          "rentalYield": 6.4,
+          "demandIndex": 8,
+          "characteristics": [
+            "zabudowa wokół pola golfowego",
+            "wille i apartamenty z basenami",
+            "najem długoterminowy od zaraz"
+          ],
+          "landmarks": [
+            "La Marquesa Golf",
+            "Parque de la Marquesa"
+          ],
+          "aliases": []
+        },
+        {
+          "slug": "dona-pepa",
+          "name": "Doña Pepa",
+          "nameGenitive": "Doña Pepa",
+          "nameLocative": "Doña Pepa",
+          "type": "urbanizacja",
+          "lat": 38.05,
+          "lng": -0.75,
+          "pricePerM2": 2450,
+          "rentalYield": 6.1,
+          "demandIndex": 6.8,
+          "characteristics": [
+            "spokojne osiedle willowe",
+            "blisko szkół i sklepów",
+            "niższa cena m² niż w centrum"
+          ],
+          "landmarks": [
+            "Doña Pepa",
+            "Sierra de Callosa"
+          ],
+          "aliases": []
+        }
+      ]
+    },
+    {
+      "slug": "san-miguel-de-salinas",
+      "name": "San Miguel de Salinas",
+      "nameGenitive": "San Miguel de Salinas",
+      "nameLocative": "San Miguel de Salinas",
+      "region": "costa-blanca",
+      "subregion": "Costa Blanca Sur",
+      "province": "Alicante",
+      "lat": 37.9861,
+      "lng": -0.7881,
+      "population": 8000,
+      "tier": 3,
+      "pricePerM2": 1950,
+      "rentalYield": 6.5,
+      "priceGrowth": 7,
+      "avgDaysOnMarket": 120,
+      "transactions12m": 350,
+      "foreignBuyerShare": 38,
+      "polishBuyerShare": 8,
+      "aliases": [
+        "san-miguel-salinas"
+      ],
+      "districts": [
+        {
+          "slug": "centro",
+          "name": "Centro",
+          "nameGenitive": "Centro",
+          "nameLocative": "Centro",
+          "type": "dzielnica",
+          "lat": 37.9861,
+          "lng": -0.7881,
+          "pricePerM2": 1900,
+          "rentalYield": 6.4,
+          "demandIndex": 6.5,
+          "characteristics": [
+            "wioska w głębi lądu z widokiem na laguny",
+            "niższe ceny niż nad morzem",
+            "dojazd do plaży w 15 minut"
+          ],
+          "landmarks": [
+            "Lagunas de La Mata",
+            "Iglesia de San Miguel"
+          ],
+          "aliases": []
+        },
+        {
+          "slug": "el-chaparral",
+          "name": "El Chaparral",
+          "nameGenitive": "El Chaparral",
+          "nameLocative": "El Chaparral",
+          "type": "urbanizacja",
+          "lat": 37.995,
+          "lng": -0.776,
+          "pricePerM2": 1850,
+          "rentalYield": 6.6,
+          "demandIndex": 6,
+          "characteristics": [
+            "osiedla willowe z basenami",
+            "duże działki i spokój",
+            "popularne wśród inwestorów z Polski"
+          ],
+          "landmarks": [
+            "El Chaparral Golf",
+            "Embalse de la Pedrera"
+          ],
+          "aliases": []
+        },
+        {
+          "slug": "la-pedrera",
+          "name": "La Pedrera",
+          "nameGenitive": "La Pedrera",
+          "nameLocative": "La Pedrera",
+          "type": "osiedle",
+          "lat": 37.972,
+          "lng": -0.8,
+          "pricePerM2": 1800,
+          "rentalYield": 6.3,
+          "demandIndex": 5.8,
+          "characteristics": [
+            "zabudowa wiejska i fincas",
+            "najniższe ceny w gminie",
+            "potencjał pod remont"
+          ],
+          "landmarks": [
+            "Embalse de la Pedrera",
+            "Sierra de Orihuela"
+          ],
+          "aliases": []
         }
       ]
     }

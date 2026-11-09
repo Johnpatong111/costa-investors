@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Container } from "@/components/ui/primitives";
 import { Logo } from "@/components/ui/logo";
 import { SERVICES, PRICE_REPORT } from "@/lib/data/services";
-import { getCitiesByTier } from "@/lib/data/repository";
+import { getCities } from "@/lib/data/repository";
 import { getServiceCopy } from "@/lib/i18n/content/builders";
 import { localePath, type Locale } from "@/lib/i18n/config";
 import { translatePath } from "@/lib/i18n/paths";
@@ -18,7 +18,6 @@ import { DATA_SOURCE } from "@/lib/i18n/micro-copy";
  * kanałem kontaktu pozostaje e-mail oraz formularz leadowy.
  */
 export function SiteFooter({ lang }: { lang: Locale }) {
-  const cities = getCitiesByTier(1);
   const ui = getUiCopy(lang);
   const footer = FOOTER_COPY[lang];
   const nav = FOOTER_NAV[lang];
@@ -26,8 +25,12 @@ export function SiteFooter({ lang }: { lang: Locale }) {
   // Linkowanie o różnej intencji: dane (ceny m² per miasto, historia cen)
   // obok usług i poradników. Bez tego stopka linkowała wyłącznie do ofert.
   const guideService = SERVICES.find((service) => service.kind === "lead-magnet") ?? SERVICES[0];
-  const reportCities = cities.slice(0, 4);
-  const sampleCity = cities[0];
+  // Kuratorowana lista rynków: największe miasta + Calpe i Cartagena.
+  const allCities = getCities();
+  const reportCities = ["torrevieja", "alicante", "benidorm", "calpe", "cartagena", "denia"]
+    .map((slug) => allCities.find((city) => city.slug === slug))
+    .filter((city): city is (typeof allCities)[number] => Boolean(city));
+  const sampleCity = reportCities[0];
   const sampleDistrict = sampleCity?.districts[0];
   const historyHref =
     sampleCity && sampleDistrict
