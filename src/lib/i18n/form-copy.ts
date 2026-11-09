@@ -34,6 +34,8 @@ export interface FormFieldCopy {
   budgetAria: string;
   budgetPlaceholder: string;
   budgetMax: string;
+  extraToggle: string;
+  extraHint: string;
   trustLine: string;
   defaultHeading: string;
   defaultSubheading: string;
@@ -64,6 +66,8 @@ export const FORM_FIELD_COPY: Record<Locale, FormFieldCopy> = {
     budgetAria: "Budżet w EUR. Suwak",
     budgetPlaceholder: "250 000",
     budgetMax: "1 000 000 euro i więcej",
+    extraToggle: "+ Dodatkowe preferencje (opcjonalnie)",
+    extraHint: "Zawęź wybór: blisko plaży, widok na morze, licencja turystyczna, rynek pierwotny.",
     trustLine:
       "Bez prowizji od kupującego · weryfikacja prawna abogado i NIE · dane nie są odsprzedawane",
     defaultHeading: "Znajdź nieruchomości i odbierz analizę ROI",
@@ -94,6 +98,8 @@ export const FORM_FIELD_COPY: Record<Locale, FormFieldCopy> = {
     budgetAria: "Budget in EUR. Slider",
     budgetPlaceholder: "250,000",
     budgetMax: "€1,000,000 or more",
+    extraToggle: "+ Extra preferences (optional)",
+    extraHint: "Narrow it down: near the beach, sea view, tourist licence, new build.",
     trustLine: "No buyer commission · abogado legal check and NIE · data never resold",
     defaultHeading: "Find properties and get an ROI analysis",
     defaultSubheading:
@@ -123,6 +129,8 @@ export const FORM_FIELD_COPY: Record<Locale, FormFieldCopy> = {
     budgetAria: "Presupuesto en EUR. Control deslizante",
     budgetPlaceholder: "250.000",
     budgetMax: "1.000.000 € o más",
+    extraToggle: "+ Preferencias adicionales (opcional)",
+    extraHint: "Concreta: cerca de la playa, vistas al mar, licencia turística, obra nueva.",
     trustLine:
       "Sin comisión al comprador · revisión legal con abogado y NIE · datos nunca revendidos",
     defaultHeading: "Encuentra viviendas y recibe un análisis de rentabilidad",

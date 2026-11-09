@@ -306,7 +306,7 @@ export function MultiStepLeadForm({
           </p>
         ) : null}
 
-        <div className="mt-5 flex items-center gap-2">
+        <div className="sticky bottom-0 z-20 -mx-1 mt-5 flex items-center gap-2 border-t border-brand-100 bg-white/95 px-1 py-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] backdrop-blur sm:static sm:border-0 sm:bg-transparent sm:p-0 sm:backdrop-blur-none">
           {step === 1 ? (
             <button
               type="button"

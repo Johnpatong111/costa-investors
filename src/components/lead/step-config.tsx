@@ -126,17 +126,30 @@ export function StepConfig({
         size="sm"
       />
 
-      <OptionChecklist
-        name="requirements"
-        legend={formOptions.labels.requirements}
-        hint={formOptions.labels.requirementsHint}
-        options={formOptions.requirements}
-        icons={REQUIREMENT_ICONS}
-        register={register}
-        control={control}
-        columns={2}
-        size="sm"
-      />
+      {/* Wymogi są opcjonalne, więc domyślnie schowane — na mobile skracają
+          formularz o całą sekcję. Stan pól pozostaje w react-hook-form. */}
+      <details className="group rounded-xl border border-brand-100 bg-brand-50/50 px-3.5 py-2.5">
+        <summary className="flex cursor-pointer list-none items-center justify-between gap-2 text-xs font-semibold text-brand-800">
+          <span>{copy.extraToggle}</span>
+          <span aria-hidden className="text-brand-500 transition-transform group-open:rotate-180">
+            ▾
+          </span>
+        </summary>
+        <p className="mt-1 text-[11px] text-brand-500">{copy.extraHint}</p>
+        <div className="mt-3">
+          <OptionChecklist
+            name="requirements"
+            legend={formOptions.labels.requirements}
+            hint={formOptions.labels.requirementsHint}
+            options={formOptions.requirements}
+            icons={REQUIREMENT_ICONS}
+            register={register}
+            control={control}
+            columns={2}
+            size="sm"
+          />
+        </div>
+      </details>
 
       <div>
         <div className="mb-2 flex items-baseline justify-between gap-2">
