@@ -1,36 +1,44 @@
+"use client";
+
 import Link from "next/link";
-import { Container } from "@/components/ui/primitives";
-import { ButtonLink } from "@/components/ui/primitives";
-import { PRIMARY_SERVICE } from "@/lib/data/services";
+import { usePathname } from "next/navigation";
+import { DEFAULT_LOCALE, isLocale, localePath, type Locale } from "@/lib/i18n/config";
+
+const COPY: Record<Locale, { title: string; text: string; cta: string }> = {
+  pl: {
+    title: "Nie znaleźliśmy tej strony",
+    text: "Adres mógł się zmienić. Wróć na stronę główną i wybierz usługę lub miejscowość.",
+    cta: "Strona główna",
+  },
+  en: {
+    title: "We could not find this page",
+    text: "The address may have changed. Go back to the homepage and pick a service or location.",
+    cta: "Home",
+  },
+  es: {
+    title: "No encontramos esta página",
+    text: "La dirección puede haber cambiado. Vuelve al inicio y elige un servicio o una localidad.",
+    cta: "Inicio",
+  },
+};
 
 export default function NotFound() {
+  const pathname = usePathname() ?? "/";
+  const segment = pathname.split("/").filter(Boolean)[0] ?? "";
+  const locale: Locale = isLocale(segment) ? segment : DEFAULT_LOCALE;
+  const copy = COPY[locale];
+
   return (
-    <Container className="py-20 text-center">
-      <p className="text-sm font-semibold uppercase tracking-wide text-brand-500">
-        Błąd 404
-      </p>
-      <h1 className="mt-2 text-3xl font-bold text-brand-950 sm:text-4xl">
-        Nie znaleźliśmy tej strony
-      </h1>
-      <p className="mx-auto mt-3 max-w-xl text-brand-700">
-        Adres mógł się zmienić (np. Nazwa dzielnicy) albo lokalizacja nie jest jeszcze
-        objęta naszą bazą. Sprawdź dostępne miasta lub wyślij zgłoszenie. Wycenimy
-        nieruchomość w dowolnej lokalizacji w Polsce.
-      </p>
-      <div className="mt-8 flex flex-wrap justify-center gap-3">
-        <ButtonLink href={`/${PRIMARY_SERVICE.slug}`}>
-          {PRIMARY_SERVICE.name}. Cała Polska
-        </ButtonLink>
-        <ButtonLink href="/" variant="ghost">
-          Strona główna
-        </ButtonLink>
-      </div>
-      <p className="mt-6 text-sm text-brand-600">
-        Szukasz raportu cenowego?{" "}
-        <Link href="/ceny-m2" className="font-semibold underline underline-offset-2">
-          Zobacz indeks cen m²
-        </Link>
-      </p>
-    </Container>
+    <main className="mx-auto flex min-h-[60vh] max-w-2xl flex-col items-start justify-center gap-3 px-6 py-20">
+      <p className="text-sm font-bold tracking-widest text-accent-600 uppercase">404</p>
+      <h1 className="text-3xl font-bold text-brand-950">{copy.title}</h1>
+      <p className="text-[15px] leading-relaxed text-brand-700">{copy.text}</p>
+      <Link
+        href={localePath(locale, "/")}
+        className="mt-2 inline-flex items-center rounded-xl bg-accent-500 px-5 py-3 text-sm font-bold text-white transition-colors hover:bg-accent-600"
+      >
+        {copy.cta}
+      </Link>
+    </main>
   );
 }
