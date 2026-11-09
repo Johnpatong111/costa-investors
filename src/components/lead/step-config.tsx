@@ -19,6 +19,7 @@ import {
   Zap,
 } from "lucide-react";
 import type { Control, FieldErrors, UseFormRegister } from "react-hook-form";
+import { FORM_FIELD_COPY, translateFieldError } from "@/lib/i18n/form-copy";
 import {
   GOALS,
   HORIZONS,
@@ -70,6 +71,7 @@ export function StepConfig({
   onBudgetChange,
   budgetError,
 }: StepConfigProps) {
+  const copy = FORM_FIELD_COPY[locale];
   const budgetValue = parseBudget(budget) || BUDGET_DEFAULT;
   const sliderValue = Math.min(BUDGET_MAX, Math.max(BUDGET_MIN, budgetValue));
   const hasBudgetError = Boolean(budgetError || errors.budget);
@@ -156,7 +158,7 @@ export function StepConfig({
             inputMode="numeric"
             value={budget}
             onChange={(event) => onBudgetChange(event.target.value)}
-            placeholder="250 000"
+            placeholder={copy.budgetPlaceholder}
             aria-invalid={hasBudgetError}
             aria-describedby={hasBudgetError ? "budget-error" : undefined}
             className={cn(
@@ -172,7 +174,7 @@ export function StepConfig({
         </div>
         {hasBudgetError ? (
           <p id="budget-error" className="mt-1 text-xs font-medium text-red-600">
-            {budgetError ?? errors.budget?.message}
+            {translateFieldError(budgetError ?? errors.budget?.message, locale)}
           </p>
         ) : null}
 
@@ -187,10 +189,10 @@ export function StepConfig({
             step={BUDGET_STEP}
             value={sliderValue}
             onChange={(event) => onBudgetChange(formatBudgetInput(Number(event.target.value)))}
-            aria-label="Budżet w EUR. Suwak"
+            aria-label={copy.budgetAria}
             aria-valuetext={
               sliderValue >= BUDGET_MAX
-                ? "1 000 000 euro i więcej"
+                ? copy.budgetMax
                 : `${formatBudgetInput(sliderValue)} euro`
             }
             className="h-2 w-full cursor-pointer appearance-none rounded-full bg-brand-100 accent-brand-700"

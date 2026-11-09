@@ -475,6 +475,16 @@ export function buildLocalizedDistrictFaq(
         ];
 
   const localFaq: FaqItem[] = [
+    {
+      question:
+        locale === "es"
+          ? `¿Qué hace un agente comprador en ${district.nameLocative} y cuánto cuesta?`
+          : `What does a buyer's agent do in ${district.nameLocative} and what does it cost?`,
+      answer:
+        locale === "es"
+          ? `El agente comprador representa solo al comprador: contrasta el precio con la mediana (${formatEur(stats.pricePerM2)} €/m²), revisa la situación registral y las cargas, negocia y acompaña la compra hasta la notaría. Los honorarios se acuerdan por adelantado y no los paga el vendedor, así que no hay incentivo para inflar el precio. En ${district.nameLocative} además abre acceso a ofertas que no llegan a los portales.`
+          : `A buyer's agent represents you alone: it benchmarks the price against the median (${formatEur(stats.pricePerM2)} €/m²), checks title and charges at the Land Registry, negotiates and sees the purchase through to the notary. The fee is agreed upfront and is not paid by the seller, so there is no incentive to inflate the price. In ${district.nameLocative} it also opens access to stock that never reaches the portals.`,
+    },
     { question: localT(copy.faqPrice), answer: pickByTier(priceAnswers, priceTier(stats)) },
     { question: localT(copy.faqRoi), answer: pickByTier(yieldAnswers, yieldTier(stats)) },
     { question: localT(copy.faqBuyers), answer: pickByTier(buyerAnswers, foreignTier(stats)) },

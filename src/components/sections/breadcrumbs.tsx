@@ -12,7 +12,7 @@ export interface Crumb {
  */
 export function Breadcrumbs({ items }: { items: Crumb[] }) {
   return (
-    <nav aria-label="Ścieżka nawigacji" className="border-b border-brand-100 bg-brand-50/60">
+    <nav aria-label="Breadcrumb" className="border-b border-brand-100 bg-brand-50/60">
       <Container>
         <ol className="flex flex-wrap items-center gap-x-2 gap-y-1 py-3 text-xs text-brand-600">
           {items.map((item, index) => {

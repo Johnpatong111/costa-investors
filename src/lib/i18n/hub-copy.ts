@@ -31,7 +31,7 @@ export interface HubCopy {
 export const HUB_COPY: Record<Locale, HubCopy> = {
   pl: {
     home: "Strona główna",
-    h1: (name, region) => `${name} na ${region}`,
+    h1: (name, region) => `${name} na ${region}. Ceny, ROI i agencja kupującego`,
     lead: (name, anchor, highlight) =>
       `${name}: ${anchor}, ${highlight}. Pokazujemy ceny €/m², realne ROI i pełne koszty zakupu (ITP/IVA, notariusz, prawnik). A Twoje zgłoszenie trafia do certyfikowanego polskojęzycznego agenta z konkretnymi ofertami.`,
     chips: {
@@ -58,7 +58,7 @@ export const HUB_COPY: Record<Locale, HubCopy> = {
   },
   en: {
     home: "Home",
-    h1: (name, region) => `${name} in ${region}`,
+    h1: (name, region) => `${name} in ${region}. Prices, ROI and buyer's agent`,
     lead: (name, anchor, highlight) =>
       `${name}: ${anchor}, ${highlight}. We show €/m² prices, real rental yields and the full cost of buying (ITP/IVA, notary, abogado). Your enquiry goes straight to a certified English-speaking agent with matched listings.`,
     chips: {
@@ -85,7 +85,7 @@ export const HUB_COPY: Record<Locale, HubCopy> = {
   },
   es: {
     home: "Inicio",
-    h1: (name, region) => `${name} en ${region}`,
+    h1: (name, region) => `${name} en ${region}. Precios, ROI y agente comprador`,
     lead: (name, anchor, highlight) =>
       `${name}: ${anchor}, ${highlight}. Mostramos precios €/m², rentabilidad real y todos los gastos de compra (ITP/IVA, notaría, abogado). Tu solicitud llega a un agente certificado con ofertas concretas.`,
     chips: {

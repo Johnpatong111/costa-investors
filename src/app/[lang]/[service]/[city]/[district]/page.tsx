@@ -22,6 +22,7 @@ import { serviceSlug } from "@/lib/i18n/service-slugs";
 import { getAllDistrictEntries, getDistrict, getNearbyDistricts } from "@/lib/data/repository";
 import { PRICE_REPORT, SERVICES } from "@/lib/data/services";
 import { buildMetadata } from "@/lib/seo/metadata";
+import { PRICE_HISTORY_KEYWORD } from "@/lib/i18n/seo-copy";
 import { SITE } from "@/lib/seo/site";
 import {
   breadcrumbNode,
@@ -104,7 +105,7 @@ export async function generateMetadata({
           ? `${getServiceCopy(kind, locale).name} in ${entry.district.name} (${entry.city.name}): median ${formatEur(content.stats.pricePerM2)}/m², ${formatRate(content.stats.rentalYield)} yield, ${formatRate(content.stats.priceGrowth)} YoY. See listings and purchase costs.`
           : `${getServiceCopy(kind, locale).name} ${entry.district.name} (${entry.city.name}): mediana ${formatEur(content.stats.pricePerM2)}/m², ROI ${formatRate(content.stats.rentalYield)}, wzrost ${formatRate(content.stats.priceGrowth)} r/r. Sprawdź oferty i koszty zakupu.`,
     path: `/${service.slug}/${entry.city.slug}/${entry.district.slug}`,
-    keywords: content.keywords,
+    keywords: [...content.keywords, PRICE_HISTORY_KEYWORD[locale]],
     noindex: !content.isIndexable,
     locale,
   });

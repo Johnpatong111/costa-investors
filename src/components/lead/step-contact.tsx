@@ -1,8 +1,9 @@
-﻿"use client";
+"use client";
 
 import { Mail, MapPin, MessageCircle, Pencil, Phone, ShieldCheck, User } from "lucide-react";
 import type { FieldErrors, UseFormRegister, Control } from "react-hook-form";
 import { CONTACT_METHODS, type LeadFormValues } from "@/lib/leads/schema";
+import { FORM_FIELD_COPY, translateFieldError } from "@/lib/i18n/form-copy";
 import { cn } from "@/lib/utils/cn";
 import { getFormOptions } from "@/lib/i18n/form-options";
 import type { Locale } from "@/lib/i18n/config";
@@ -32,7 +33,7 @@ export interface StepContactProps {
   cityLocked: boolean;
 }
 
-/** Krok 2. Kontakt. Prosimy tylko o 2 pola obowiązkowe: imię i telefon. */
+/** Step 2: contact. Only two required fields: name and phone. */
 export function StepContact({
   locale,
   register,
@@ -42,6 +43,7 @@ export function StepContact({
   onEdit,
   cityLocked,
 }: StepContactProps) {
+  const copy = FORM_FIELD_COPY[locale];
   return (
     <div className="space-y-4">
       <div className="flex items-start justify-between gap-3 rounded-xl border border-brand-100 bg-brand-50/70 px-3.5 py-2.5">
@@ -52,7 +54,7 @@ export function StepContact({
           className="inline-flex shrink-0 items-center gap-1 text-xs font-semibold text-brand-700 underline decoration-brand-300 underline-offset-2 hover:text-brand-950"
         >
           <Pencil aria-hidden className="h-3 w-3" />
-          Zmień
+          {copy.edit}
         </button>
       </div>
 
@@ -69,7 +71,7 @@ export function StepContact({
 
       <div>
         <label htmlFor="fullName" className="mb-1 block text-xs font-semibold text-brand-700">
-          Imię i nazwisko *
+          {copy.fullName} *
         </label>
         <div className="relative">
           <User
@@ -79,20 +81,20 @@ export function StepContact({
           <input
             id="fullName"
             autoComplete="name"
-            placeholder="Jan Kowalski"
+            placeholder={copy.fullNamePlaceholder}
             className={fieldClass(Boolean(errors.fullName))}
             aria-invalid={Boolean(errors.fullName)}
             {...register("fullName")}
           />
         </div>
         {errors.fullName ? (
-          <p className="mt-1 text-xs font-medium text-red-600">{errors.fullName.message}</p>
+          <p className="mt-1 text-xs font-medium text-red-600">{translateFieldError(errors.fullName.message, locale)}</p>
         ) : null}
       </div>
 
       <div>
         <label htmlFor="phone" className="mb-1 block text-xs font-semibold text-brand-700">
-          Telefon / WhatsApp *
+          {copy.phone} *
         </label>
         <div className="relative">
           <Phone
@@ -104,25 +106,25 @@ export function StepContact({
             type="tel"
             inputMode="tel"
             autoComplete="tel"
-            placeholder="+48 600 123 456"
+            placeholder={copy.phonePlaceholder}
             className={fieldClass(Boolean(errors.phone))}
             aria-invalid={Boolean(errors.phone)}
             {...register("phone")}
           />
         </div>
         {errors.phone ? (
-          <p className="mt-1 text-xs font-medium text-red-600">{errors.phone.message}</p>
+          <p className="mt-1 text-xs font-medium text-red-600">{translateFieldError(errors.phone.message, locale)}</p>
         ) : (
           <p className="mt-1 text-[11px] text-brand-500">
-            Numer PL lub międzynarodowy (8-15 cyfr). Dzwoni agent mówiący po polsku.
+            {copy.phoneHint}
           </p>
         )}
       </div>
 
       <div>
         <label htmlFor="email" className="mb-1 block text-xs font-semibold text-brand-700">
-          E-mail{" "}
-          <span className="font-normal text-brand-500">(opcjonalnie. Wyślemy analizę PDF)</span>
+          {copy.email}{" "}
+          <span className="font-normal text-brand-500">{copy.emailOptional}</span>
         </label>
         <div className="relative">
           <Mail
@@ -133,21 +135,21 @@ export function StepContact({
             id="email"
             type="email"
             autoComplete="email"
-            placeholder="jan@example.com"
+            placeholder={copy.emailPlaceholder}
             className={fieldClass(Boolean(errors.email))}
             aria-invalid={Boolean(errors.email)}
             {...register("email")}
           />
         </div>
         {errors.email ? (
-          <p className="mt-1 text-xs font-medium text-red-600">{errors.email.message}</p>
+          <p className="mt-1 text-xs font-medium text-red-600">{translateFieldError(errors.email.message, locale)}</p>
         ) : null}
       </div>
 
       <div className="grid gap-3 sm:grid-cols-2">
         <div>
           <label htmlFor="city" className="mb-1 block text-xs font-semibold text-brand-700">
-            Miejscowość *
+            {copy.city} *
           </label>
           <div className="relative">
             <MapPin
@@ -163,13 +165,13 @@ export function StepContact({
             />
           </div>
           {errors.city ? (
-            <p className="mt-1 text-xs font-medium text-red-600">{errors.city.message}</p>
+            <p className="mt-1 text-xs font-medium text-red-600">{translateFieldError(errors.city.message, locale)}</p>
           ) : null}
         </div>
 
         <div>
           <label htmlFor="district" className="mb-1 block text-xs font-semibold text-brand-700">
-            Dzielnica / urbanizacja
+            {copy.district}
           </label>
           <input
             id="district"
@@ -185,13 +187,13 @@ export function StepContact({
 
       <details className="rounded-lg border border-brand-100 bg-brand-50/40 px-3.5 py-2.5">
         <summary className="cursor-pointer text-xs font-semibold text-brand-700">
-          Dodaj szczegóły (opcjonalnie)
+          {copy.detailsToggle}
         </summary>
         <textarea
           rows={3}
-          placeholder="Widok na morze, liczba sypialni, finansowanie, termin…"
+          placeholder={copy.messagePlaceholder}
           className="mt-2 w-full rounded-lg border border-brand-200 bg-white px-3 py-2 text-sm outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-100"
-          aria-label="Dodatkowe informacje"
+          aria-label={copy.messageAria}
           {...register("message")}
         />
       </details>
@@ -202,14 +204,10 @@ export function StepContact({
           className="mt-0.5 h-4 w-4 shrink-0 rounded border-brand-300 accent-brand-700"
           {...register("consent")}
         />
-        <span>
-          Wyrażam zgodę na kontakt telefoniczny, WhatsApp lub e-mail oraz na przekazanie moich
-          danych partnerskiej agencji nieruchomości w Hiszpanii w celu przygotowania oferty
-          zakupu. Administratorem danych jest operator serwisu. *
-        </span>
+        <span>{copy.consent} *</span>
       </label>
       {errors.consent ? (
-        <p className="text-xs font-medium text-red-600">{errors.consent.message}</p>
+        <p className="text-xs font-medium text-red-600">{translateFieldError(errors.consent.message, locale)}</p>
       ) : null}
 
       <label className="flex items-start gap-2 text-[11px] leading-relaxed text-brand-500">
@@ -218,18 +216,18 @@ export function StepContact({
           className="mt-0.5 h-4 w-4 shrink-0 rounded border-brand-300 accent-brand-700"
           {...register("marketingConsent")}
         />
-        <span>Chcę dostawać nowe oferty i analizy rynku w Hiszpanii (opcjonalnie).</span>
+        <span>{copy.marketing}</span>
       </label>
 
-      {/* Honeypot. Boty wypełniają ukryte pole, ludzie go nie widzą. */}
+      {/* Honeypot: bots fill the hidden field, humans never see it. */}
       <div className="absolute -left-[9999px] h-0 w-0 overflow-hidden" aria-hidden>
-        <label htmlFor="website">Strona internetowa</label>
+        <label htmlFor="website">{copy.honeypotLabel}</label>
         <input id="website" tabIndex={-1} autoComplete="off" {...register("website")} />
       </div>
 
       <p className="flex items-center justify-center gap-1.5 text-[11px] text-brand-500">
         <ShieldCheck aria-hidden className="h-3.5 w-3.5 text-emerald-600" />
-        Dane szyfrowane, nieodsprzedawane. Kontakt wyłącznie w sprawie zakupu.
+        {copy.privacyNote}
       </p>
     </div>
   );

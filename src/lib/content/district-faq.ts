@@ -93,6 +93,10 @@ export function buildDistrictFaq(
 
   const localFaq: FaqItem[] = [
     {
+      question: `Czym zajmuje się agencja kupującego w ${district.nameLocative} i ile to kosztuje?`,
+      answer: `Agencja kupującego (buyer's agent) reprezentuje wyłącznie Ciebie: weryfikuje cenę wobec mediany (${formatEur(stats.pricePerM2)} €/m²), sprawdza stan prawny i obciążenia w Registro de la Propiedad, negocjuje i prowadzi zakup do notariusza. Wynagrodzenie ustalamy z góry i nie pochodzi od sprzedającego, więc doradca nie ma interesu w zawyżonej cenie. W ${district.nameLocative} oznacza to też dostęp do ofert, które nie trafiają na portale.`,
+    },
+    {
       question: `Ile kosztuje metr kwadratowy w ${district.nameLocative} w ${vars.year} roku?`,
       answer: pickByTier(priceAnswers, priceTier(stats)),
     },

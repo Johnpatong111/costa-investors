@@ -18,17 +18,17 @@ import { fitDescription, fitTitle, serpCompliance } from "../src/lib/seo/metadat
 
 /**
  * ===========================================================================
- * QA DANYCH I TREŚCI (CI: `npm run validate:data`)
+ * QA DANYCH I TREÅCI (CI: `npm run validate:data`)
  * ===========================================================================
- * Sprawdza: integralność danych, brakujące placeholdery, duplikaty treści
- * (Jaccard na 5-gramach słów), limity title/description i powtórzone H1.
+ * Sprawdza: integralnoÅÄ danych, brakujÄce placeholdery, duplikaty treÅci
+ * (Jaccard na 5-gramach sÅÃ³w), limity title/description i powtÃ³rzone H1.
  */
 
-/** Zbiór 5-gramów słów; cyfry normalizowane, żeby liczby nie maskowały duplikatu. */
+/** ZbiÃ³r 5-gramÃ³w sÅÃ³w; cyfry normalizowane, Å¼eby liczby nie maskowaÅy duplikatu. */
 function shingles(text: string, size = 5): Set<string> {
   const words = text
     .toLowerCase()
-    .replace(/[^a-ząćęłńóśźż0-9\s]/g, " ")
+    .replace(/[^a-zÄÄÄÅÅÃ³ÅÅºÅ¼0-9\s]/g, " ")
     .replace(/\d+/g, "#")
     .split(/\s+/)
     .filter(Boolean);
@@ -85,34 +85,34 @@ function main() {
   const signatures: { key: string; shingles: Set<string> }[] = [];
 
   for (const missing of getMissingPlaceholders()) {
-    issues.push(`Brak placeholdera "{${missing}}" w szablonach treści.`);
+    issues.push(`Brak placeholdera "{${missing}}" w szablonach treÅci.`);
   }
 
   for (const page of pages) {
     const { key, content } = page;
 
     if (content.metaTitle.length > 62) {
-      warnings.push(`${key}: title ${content.metaTitle.length} znaków (>62).`);
+      warnings.push(`${key}: title ${content.metaTitle.length} znakÃ³w (>62).`);
     }
     if (content.metaDescription.length > 165) {
-      warnings.push(`${key}: description ${content.metaDescription.length} znaków (>165).`);
+      warnings.push(`${key}: description ${content.metaDescription.length} znakÃ³w (>165).`);
     }
     if (!content.isIndexable) {
-      warnings.push(`${key}: noindex – ${content.noindexReason ?? "brak powodu"}.`);
+      warnings.push(`${key}: noindex â ${content.noindexReason ?? "brak powodu"}.`);
     }
 
     h1Index.set(content.h1, [...(h1Index.get(content.h1) ?? []), key]);
     signatures.push({ key, shingles: shingles(contentToPlainText(content)) });
   }
 
-  // Brama: �aden wygenerowany tekst nie mo�e zawiera� surowego {placeholder}.
-  // Ten b��d pojawi� si� realnie na hubie us�ugi (opisy korzy�ci bez interpolacji).
+  // Brama: ¿aden wygenerowany tekst nie mo¿e zawieraæ surowego {placeholder}.
+  // Ten b³¹d pojawi³ siê realnie na hubie us³ugi (opisy korzyci bez interpolacji).
   const PLACEHOLDER = /\{[a-zA-Z][a-zA-Z0-9]*\}/g;
   const scanForPlaceholders = (key: string, text: string) => {
     const found = text.match(PLACEHOLDER);
     if (found && found.length > 0) {
       const unique = [...new Set(found)].join(", ");
-      issues.push(`${key}: niepodmienione placeholdery � ${unique}`);
+      issues.push(`${key}: niepodmienione placeholdery  ${unique}`);
     }
   };
 
@@ -120,7 +120,7 @@ function main() {
     scanForPlaceholders(page.key, contentToPlainText(page.content));
   }
 
-  // Copy us�ug na stronach zbiorczych (hub us�ugi, strona g��wna).
+  // Copy us³ug na stronach zbiorczych (hub us³ugi, strona g³ówna).
   const fallbackVars = buildServiceFallbackVars({
     areaName: "Hiszpania",
     medianPricePerM2: 2400,
@@ -141,7 +141,7 @@ function main() {
   }
 
   // ---------------------------------------------------------------------
-  // EN / ES: ta sama brama jako�ci dla zlokalizowanych builder�w.
+  // EN / ES: ta sama brama jakoci dla zlokalizowanych builderów.
   // ---------------------------------------------------------------------
   const localized = new Map<"en" | "es", { key: string; text: string }[]>();
 
@@ -186,16 +186,16 @@ function main() {
         }
       }
     }
-    console.log(`${locale.toUpperCase()}: stron ${items.length}, max podobie�stwo ${worst.toFixed(2)} (${pair || "�"})`);
+    console.log(`${locale.toUpperCase()}: stron ${items.length}, max podobieñstwo ${worst.toFixed(2)} (${pair || ""})`);
     if (worst >= 0.88) {
-      issues.push(`${locale}: para stron >= 0.88 � ${pair}`);
+      issues.push(`${locale}: para stron >= 0.88  ${pair}`);
     }
   }
 
   for (const [h1, keys] of h1Index) {
     if (keys.length > 1) {
       warnings.push(
-        `Powtórzony H1 (${keys.length}×): "${h1.slice(0, 60)}…" → ${keys.slice(0, 3).join(", ")}`,
+        `PowtÃ³rzony H1 (${keys.length}Ã): "${h1.slice(0, 60)}â¦" â ${keys.slice(0, 3).join(", ")}`,
       );
     }
   }
@@ -219,11 +219,11 @@ const ERROR_THRESHOLD = 0.8;
   const severe = duplicates.filter((duplicate) => duplicate.score >= ERROR_THRESHOLD);
   if (severe.length > 0) {
     issues.push(
-      `${severe.length} par stron przekracza próg podobieństwa ${ERROR_THRESHOLD} (ryzyko duplicate content).`,
+      `${severe.length} par stron przekracza prÃ³g podobieÅstwa ${ERROR_THRESHOLD} (ryzyko duplicate content).`,
     );
   }
 
-  // === SERP: title 55�60 znak�w, description 145�155 znak�w ===
+  // === SERP: title 5560 znaków, description 145155 znaków ===
   const serpFailures: string[] = [];
   const serpLocales: Locale[] = ["pl", "en", "es"];
 
@@ -242,19 +242,19 @@ const ERROR_THRESHOLD = 0.8;
           fitDescription(localized.metaDescription, locale),
           "description",
         );
-        if (!title.ok) serpFailures.push(`${locale.toUpperCase()} title ${title.length} � ${key}`);
+        if (!title.ok) serpFailures.push(`${locale.toUpperCase()} title ${title.length}  ${key}`);
         if (!description.ok) {
-          serpFailures.push(`${locale.toUpperCase()} description ${description.length} � ${key}`);
+          serpFailures.push(`${locale.toUpperCase()} description ${description.length}  ${key}`);
         }
       }
     }
   }
 
   if (serpFailures.length > 0) {
-    console.log(`\n=== SERP POZA WIDE�KAMI (${serpFailures.length}) ===`);
-    serpFailures.slice(0, 20).forEach((item) => console.log(`� ${item}`));
+    console.log(`\n=== SERP POZA WIDE£KAMI (${serpFailures.length}) ===`);
+    serpFailures.slice(0, 20).forEach((item) => console.log(` ${item}`));
     issues.push(
-      `${serpFailures.length} meta tag�w poza wide�kami SERP (title 55�60, description 145�155).`,
+      `${serpFailures.length} meta tagów poza wide³kami SERP (title 5560, description 145155).`,
     );
   }
 
@@ -262,8 +262,8 @@ const ERROR_THRESHOLD = 0.8;
   console.log(`Regiony:     ${datasetReport.stats.regions}`);
   console.log(`Miasta:      ${datasetReport.stats.cities}`);
   console.log(`Dzielnice:   ${datasetReport.stats.districts}`);
-  console.log(`Strony usług (miasto):    ${datasetReport.stats.serviceCityPages}`);
-  console.log(`Strony usług (dzielnica): ${datasetReport.stats.serviceDistrictPages}`);
+  console.log(`Strony usÅug (miasto):    ${datasetReport.stats.serviceCityPages}`);
+  console.log(`Strony usÅug (dzielnica): ${datasetReport.stats.serviceDistrictPages}`);
   console.log(`Raporty cenowe:           ${datasetReport.stats.reportPages}`);
   console.log(`Wygenerowanych stron:     ${pages.length}`);
   console.log(
@@ -271,33 +271,33 @@ const ERROR_THRESHOLD = 0.8;
   );
 
   if (datasetReport.warnings.length > 0) {
-    console.log("\n=== OSTRZEŻENIA DANYCH ===");
-    datasetReport.warnings.forEach((warning) => console.log(`• ${warning}`));
+    console.log("\n=== OSTRZEÅ»ENIA DANYCH ===");
+    datasetReport.warnings.forEach((warning) => console.log(`â¢ ${warning}`));
   }
 
   if (duplicates.length > 0) {
-    console.log(`\n=== DUPLIKATY TREŚCI (próg 0.62, ${duplicates.length} par) ===`);
+    console.log(`\n=== DUPLIKATY TREÅCI (prÃ³g 0.62, ${duplicates.length} par) ===`);
     duplicates.slice(0, 10).forEach((duplicate) => {
-      console.log(`• ${duplicate.score.toFixed(2)}  ${duplicate.a}  ⟷  ${duplicate.b}`);
+      console.log(`â¢ ${duplicate.score.toFixed(2)}  ${duplicate.a}  â·  ${duplicate.b}`);
     });
   } else {
-    console.log("\nBrak par stron o podobieństwie >= 0.62.");
+    console.log("\nBrak par stron o podobieÅstwie >= 0.62.");
   }
 
   if (warnings.length > 0) {
-    console.log(`\n=== OSTRZEŻENIA TREŚCI (${warnings.length}) ===`);
-    warnings.slice(0, 15).forEach((warning) => console.log(`• ${warning}`));
-    if (warnings.length > 15) console.log(`… i ${warnings.length - 15} więcej.`);
+    console.log(`\n=== OSTRZEÅ»ENIA TREÅCI (${warnings.length}) ===`);
+    warnings.slice(0, 15).forEach((warning) => console.log(`â¢ ${warning}`));
+    if (warnings.length > 15) console.log(`â¦ i ${warnings.length - 15} wiÄcej.`);
   }
 
   if (datasetReport.errors.length > 0 || issues.length > 0) {
-    console.error("\n=== BŁĘDY ===");
-    [...datasetReport.errors, ...issues].forEach((error) => console.error(`✖ ${error}`));
+    console.error("\n=== BÅÄDY ===");
+    [...datasetReport.errors, ...issues].forEach((error) => console.error(`â ${error}`));
     process.exitCode = 1;
     return;
   }
 
-  console.log("\n✔ Walidacja zakończona bez błędów krytycznych.");
+  console.log("\nâ Walidacja zakoÅczona bez bÅÄdÃ³w krytycznych.");
 }
 
 main();

@@ -19,6 +19,7 @@ import {
 import type { ReturnEstimate } from "@/lib/leads/investment";
 import { FORM_COPY } from "@/lib/i18n/ui";
 import { getFormOptions, labelFor } from "@/lib/i18n/form-options";
+import { FORM_FIELD_COPY } from "@/lib/i18n/form-copy";
 import { cn } from "@/lib/utils/cn";
 import { LeadSuccess } from "./lead-success";
 import { StepConfig } from "./step-config";
@@ -66,9 +67,10 @@ export function MultiStepLeadForm({
   onBudgetChange,
   estimate,
   className,
-  heading = "Znajdź nieruchomości i odbierz analizę ROI",
-  subheading = "Wypełnij 4 krótkie pytania. W ciągu 15 minut prześlemy spersonalizowany zestaw wyselekcjonowanych ofert.",
+  heading,
+  subheading,
 }: MultiStepLeadFormProps) {
+  const copy = FORM_FIELD_COPY[language ?? "pl"];
   const formCopy = FORM_COPY[language];
   const formOptions = getFormOptions(language);
   const [step, setStep] = useState<0 | 1>(0);
@@ -223,8 +225,8 @@ export function MultiStepLeadForm({
     >
       <div className="flex items-start justify-between gap-3">
         <div>
-          <h2 className="text-lg font-bold text-brand-950">{heading}</h2>
-          <p className="mt-1 text-xs leading-relaxed text-brand-600">{subheading}</p>
+          <h2 className="text-lg font-bold text-brand-950">{heading ?? copy.defaultHeading}</h2>
+          <p className="mt-1 text-xs leading-relaxed text-brand-600">{subheading ?? copy.defaultSubheading}</p>
         </div>
         <span className="shrink-0 rounded-full bg-accent-50 px-2.5 py-1 text-[11px] font-bold text-accent-700">
           {formCopy.stepLabel(step + 1)}
@@ -238,7 +240,7 @@ export function MultiStepLeadForm({
           aria-valuenow={progress}
           aria-valuemin={0}
           aria-valuemax={100}
-          aria-label="Postęp formularza"
+          aria-label={FORM_FIELD_COPY[language ?? "pl"].progressAria}
         >
           <div
             className="h-full rounded-full bg-accent-500 transition-all duration-300"
@@ -349,10 +351,7 @@ export function MultiStepLeadForm({
 
         <p className="mt-3 flex items-start justify-center gap-1.5 text-[11px] leading-relaxed text-brand-500">
           <ShieldCheck aria-hidden className="mt-px h-3.5 w-3.5 shrink-0 text-accent-600" />
-          <span>
-            Bez prowizji od kupującego · weryfikacja prawna abogado i NIE · dane nie są
-            odsprzedawane
-          </span>
+          <span>{copy.trustLine}</span>
         </p>
       </form>
     </div>
