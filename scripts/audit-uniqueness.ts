@@ -73,10 +73,27 @@ for (const city of getCities()) {
   if (!region) continue;
   for (const service of SERVICES) {
     const pl = buildCityContent(city, region, service);
-    add("pl", `/${service.slug}/${city.slug}`, pl.metaTitle, pl.metaDescription);
+    const price = pl.stats.pricePerM2;
+    const yieldPct = pl.stats.rentalYield;
+    const growth = pl.stats.priceGrowth;
+    add(
+      "pl",
+      `/${service.slug}/${city.slug}`,
+      `Inwestycje i zakup: ${service.name} w ${city.name} | Ceny i ROI 2026`,
+      `${service.name} w ${city.name}: mediana ${price} €/m², ROI ${yieldPct}%, wzrost ${growth}% r/r. Selekcja ofert i koszty zakupu.`,
+    );
     for (const locale of ["en", "es"] as const) {
       const localized = buildLocalizedCityContent(city, region, service.kind, locale);
-      if (localized) add(locale, `/${service.slug}/${city.slug}`, localized.metaTitle, localized.metaDescription);
+      if (!localized) continue;
+      const title =
+        locale === "es"
+          ? `Inversión y compra: ${service.name} en ${city.name} | Precios y rentabilidad`
+          : `Buy ${service.name} in ${city.name} | Investment & ROI 2026 | Costa Investors`;
+      const description =
+        locale === "es"
+          ? `${service.name} en ${city.name}: mediana ${price} €/m², ROI ${yieldPct}%, ${growth}% interanual. Selección de ofertas y gastos de compra.`
+          : `${service.name} in ${city.name}: median ${price} €/m², ${yieldPct}% yield, ${growth}% YoY. Shortlist and purchase costs.`;
+      add(locale, `/${service.slug}/${city.slug}`, title, description);
     }
   }
 }
