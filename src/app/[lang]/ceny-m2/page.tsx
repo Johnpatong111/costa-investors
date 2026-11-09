@@ -14,12 +14,54 @@ import { formatEur, formatRate } from "@/lib/utils/format";
 /** Indeks raportów: /ceny-m2. Hub dla fraz „ceny m2 <miejscowość> Costa Blanca”. */
 export const revalidate = 86_400;
 
-export const metadata: Metadata = buildMetadata({
-  title: `Ceny m² i ROI w Hiszpanii ${MARKET_YEAR}. Raporty`,
-  description: `Mediany cen, rentowność najmu i dynamika r/r w ${getCities().length} miejscowościach Costa Blanca i Costa Cálida. Raporty dla każdej dzielnicy i urbanizacji.`,
-  path: `/${PRICE_REPORT.slug}`,
-  keywords: ["ceny m2 Costa Blanca", "ceny m2 Costa Cálida", "ROI wynajmu Hiszpania", `ceny nieruchomości ${MARKET_YEAR}`],
-});
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ lang: string }>;
+}): Promise<Metadata> {
+  const locale = assertLocale((await params).lang);
+  const cities = getCities().length;
+  const copy: Record<"pl" | "en" | "es", { title: string; description: string; keywords: string[] }> = {
+    pl: {
+      title: `Ceny m² i ROI w Hiszpanii ${MARKET_YEAR}. Raporty`,
+      description: `Mediany cen, rentowność najmu i dynamika r/r w ${cities} miejscowościach Costa Blanca i Costa Cálida. Historia cen 2016–2026 w każdej dzielnicy.`,
+      keywords: [
+        "ceny m2 Costa Blanca",
+        "ceny m2 Costa Cálida",
+        "historia cen nieruchomości 2016–2026",
+        `ceny nieruchomości ${MARKET_YEAR}`,
+      ],
+    },
+    en: {
+      title: `Spanish property prices & yields ${MARKET_YEAR} | Reports`,
+      description: `Median €/m², rental yields and annual growth across ${cities} locations on Costa Blanca and Costa Cálida. Price history 2016–2026 for every district.`,
+      keywords: [
+        "property prices Costa Blanca",
+        "price per m2 Costa Cálida",
+        "Spanish property price history 2016-2026",
+        "rental yield Spain 2026",
+      ],
+    },
+    es: {
+      title: `Precios y rentabilidad inmobiliaria ${MARKET_YEAR} | Informes`,
+      description: `Mediana €/m², rentabilidad de alquiler y crecimiento anual en ${cities} localidades de Costa Blanca y Costa Cálida. Evolución de precios 2016–2026 por zona.`,
+      keywords: [
+        "precio m2 Costa Blanca",
+        "precio m2 Costa Cálida",
+        "evolución de precios 2016-2026",
+        "rentabilidad alquiler España 2026",
+      ],
+    },
+  };
+
+  return buildMetadata({
+    title: copy[locale].title,
+    description: copy[locale].description,
+    path: `/${PRICE_REPORT.slug}`,
+    keywords: copy[locale].keywords,
+    locale,
+  });
+}
 
 export default async function PriceReportIndexPage({
   params,

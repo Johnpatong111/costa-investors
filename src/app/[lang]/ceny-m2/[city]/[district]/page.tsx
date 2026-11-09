@@ -8,6 +8,7 @@ import { Section, SectionHeading } from "@/components/ui/primitives";
 import { JsonLd } from "@/components/seo/json-ld";
 import { PriceHistorySection } from "@/components/sections/price-history";
 import { getPriceHistory } from "@/lib/i18n/price-history";
+import { PRICE_HISTORY_KEYWORD } from "@/lib/i18n/seo-copy";
 import { buildPriceReport } from "@/lib/content/report-content";
 import { deriveDistrictStats } from "@/lib/content/market-stats";
 import { COUNTRY_MEDIAN_PRICE_PER_M2 } from "@/lib/content/market-stats";
@@ -58,7 +59,7 @@ export async function generateMetadata({
     title: report.metaTitle,
     description: report.metaDescription,
     path: `/${PRICE_REPORT.slug}/${entry.city.slug}/${entry.district.slug}`,
-    keywords: report.keywords,
+    keywords: [...report.keywords, PRICE_HISTORY_KEYWORD[locale]],
     noindex: !report.isIndexable,
     locale,
   });

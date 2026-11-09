@@ -12,6 +12,7 @@ import { localePath } from "@/lib/i18n/config";
 import { translatePath } from "@/lib/i18n/paths";
 import { getHomeCopy } from "@/lib/i18n/ui";
 import { getServiceCopy } from "@/lib/i18n/content/builders";
+import { HOME_SEO } from "@/lib/i18n/seo-copy";
 import { buildMetadata } from "@/lib/seo/metadata";
 import { formatEur, formatRate } from "@/lib/utils/format";
 
@@ -24,17 +25,12 @@ export async function generateMetadata({
   params: Promise<{ lang: string }>;
 }): Promise<Metadata> {
   const locale = assertLocale((await params).lang);
+  const seo = HOME_SEO[locale];
   return buildMetadata({
-  title: "Nieruchomości na Costa Blanca i Cálida dla Polaków | 2026",
-  description: `Apartamenty, wille i domy inwestycyjne w Hiszpanii. Ceny od ${formatEur(120_000)}, ROI do ${formatRate(6.9)}. Zgłoszenie trafia do certyfikowanego polskojęzycznego agenta.`,
-  path: "/",
-  keywords: [
-    "nieruchomości Costa Blanca",
-    "nieruchomości Costa Cálida",
-    "mieszkanie w Hiszpanii dla Polaka",
-    "inwestycja w nieruchomości Hiszpania",
-    "apartament Torrevieja",
-  ],
+    title: seo.title,
+    description: seo.description,
+    path: "/",
+    keywords: seo.keywords,
     locale,
   });
 }

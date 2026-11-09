@@ -13,6 +13,7 @@ import { interpolate } from "@/lib/content/interpolate";
 import { assertLocale, isLocale, ROUTABLE_LOCALES, type Locale } from "@/lib/i18n/config";
 import { getServiceCopy } from "@/lib/i18n/content/builders";
 import { HUB_COPY } from "@/lib/i18n/hub-copy";
+import { ADVISORY_KEYWORDS } from "@/lib/i18n/seo-copy";
 import { translatePath } from "@/lib/i18n/paths";
 import { resolveService } from "@/lib/i18n/resolve";
 import { serviceSlug } from "@/lib/i18n/service-slugs";
@@ -71,7 +72,7 @@ export async function generateMetadata({
     title: ui.h1(copy.name, regions),
     description: ui.metaDescription(copy.name, copy.priceAnchor),
     path: `/${service.slug}`,
-    keywords: [copy.name, `${copy.name} Costa Blanca`, `${copy.name} Costa Cálida`],
+    keywords: [copy.name, `${copy.name} Costa Blanca`, `${copy.name} Costa Cálida`, ...ADVISORY_KEYWORDS[locale]],
     locale,
   });
 }

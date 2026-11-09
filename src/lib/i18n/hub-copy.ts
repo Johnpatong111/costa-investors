@@ -54,7 +54,7 @@ export const HUB_COPY: Record<Locale, HubCopy> = {
     reportLabel: "Ceny m² i ROI w Hiszpanii",
     notFound: "Nie znaleziono usługi",
     metaDescription: (name, anchor) =>
-      `${name} na Costa Blanca i Costa Cálida: ${anchor}. Ceny €/m², ROI, koszty zakupu i kontakt z certyfikowanym polskojęzycznym agentem.`,
+      `${name} na Costa Blanca i Costa Cálida: ${anchor}. Ceny €/m², ROI, koszty zakupu i kontakt z agencją kupującego (buyer's agent) mówiącą po polsku.`,
   },
   en: {
     home: "Home",
@@ -81,7 +81,7 @@ export const HUB_COPY: Record<Locale, HubCopy> = {
     reportLabel: "€/m² prices and ROI in Spain",
     notFound: "Service not found",
     metaDescription: (name, anchor) =>
-      `${name} on Costa Blanca and Costa Cálida: ${anchor}. €/m² prices, ROI, purchase costs and a certified English-speaking agent.`,
+      `${name} on Costa Blanca and Costa Cálida: ${anchor}. €/m² prices, ROI, purchase costs and an independent buyer's agent who speaks English.`,
   },
   es: {
     home: "Inicio",
@@ -108,6 +108,6 @@ export const HUB_COPY: Record<Locale, HubCopy> = {
     reportLabel: "Precios €/m² y ROI en España",
     notFound: "Servicio no encontrado",
     metaDescription: (name, anchor) =>
-      `${name} en Costa Blanca y Costa Cálida: ${anchor}. Precios €/m², ROI, gastos de compra y agente certificado.`,
+      `${name} en Costa Blanca y Costa Cálida: ${anchor}. Precios €/m², ROI, gastos de compra y agente comprador (buyer's agent) independiente.`,
   },
 };
