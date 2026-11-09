@@ -226,13 +226,20 @@ export function buildLocalizedCityContent(
   const vars = extendVars(ctx);
   const t = (template: string) => interpolate(template, vars);
 
-  const h1 = dedupeWords(t(pick(service.h1, key, "h1")));
+  const h1 = dedupeWords(t(pick(service.h1, key, "h1"))).replace(
+    /\b([\p{L}][\p{L}' -]*?) \(\1\)/giu,
+    "$1",
+  );
   // Kontekst miasta nie ma dzielnicy: `{district}` = nazwa miasta dublowałaby
   // `{city}` w tagu title, dlatego w szablonach SERP zostawiamy je puste.
   const serpVars: Vars = { ...vars, district: "", districtLoc: "", districtGen: "", districtType: "" };
   const serp = (template: string) => dedupeWords(interpolate(template, serpVars));
   const metaTitle = clip(serp(pick(service.metaTitle, key, "title")), MAX_TITLE_LENGTH);
-  const metaDescription = clip(serp(pick(service.metaDescription, key, "desc")), MAX_DESCRIPTION_LENGTH);
+  // Opis używa PEŁNYCH zmiennych: {districtLoc} musi wskazywać miasto.
+  const metaDescription = clip(
+    dedupeWords(interpolate(pick(service.metaDescription, key, "desc"), vars)),
+    MAX_DESCRIPTION_LENGTH,
+  );
   const lead = dedupeWords(t(pick(dict.city.leads, key, "lead")));
 
   const b = dict.city.blocks;

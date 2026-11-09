@@ -52,10 +52,9 @@ export async function generateMetadata({
     },
     authors: [{ name: SITE.legalName, url: SITE.url }],
     alternates: { canonical: home },
-    robots: isDefaultLocale
-      ? { index: true, follow: true }
-      : // Wersje bez przetłumaczonej treści nie mogą konkurować z /pl.
-        { index: false, follow: true },
+    // Indeksowalność ustalają pojedyncze strony przez buildMetadata
+    // (isIndexable per treść), layout nie może blokować całych języków.
+    robots: { index: true, follow: true },
     
   };
 }

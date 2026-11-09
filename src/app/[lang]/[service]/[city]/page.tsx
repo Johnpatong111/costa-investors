@@ -21,6 +21,7 @@ import { assertLocale, isLocale, ROUTABLE_LOCALES } from "@/lib/i18n/config";
 import { resolveService } from "@/lib/i18n/resolve";
 import { serviceSlug } from "@/lib/i18n/service-slugs";
 import { buildMetadata } from "@/lib/seo/metadata";
+import { SITE } from "@/lib/seo/site";
 import { breadcrumbNode, faqNode, serviceNode } from "@/lib/seo/schema-org";
 import { formatEur, formatRate } from "@/lib/utils/format";
 
@@ -78,7 +79,12 @@ export async function generateMetadata({
       : buildLocalizedCityContent(city, region, kind, locale)!;
 
   return buildMetadata({
-    title: content.metaTitle,
+    title:
+      locale === "es"
+        ? `Inversión y compra: ${getServiceCopy(kind, locale).name} en ${city.name} | Precios y rentabilidad`
+        : locale === "en"
+          ? `Buy ${getServiceCopy(kind, locale).name} in ${city.name} | Investment & ROI ${SITE.year} | Costa Investors`
+          : `Inwestycje i zakup: ${getServiceCopy(kind, locale).name} w ${city.name} | Ceny i ROI ${SITE.year}`,
     description: content.metaDescription,
     path: `/${service.slug}/${city.slug}`,
     keywords: content.keywords,
@@ -120,7 +126,7 @@ export default async function CityServicePage({
       <Breadcrumbs items={crumbs} />
 
       <Hero
-        eyebrow={`${service.name} · ${city.name} (${region.name})`}
+        eyebrow={`${serviceName} · ${city.name} (${region.name})`}
         h1={content.h1}
         lead={content.lead}
         chips={[
