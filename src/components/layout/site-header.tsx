@@ -5,6 +5,7 @@ import { LanguageSwitcher } from "@/components/layout/language-switcher";
 import { SERVICES } from "@/lib/data/services";
 import { getServiceCopy } from "@/lib/i18n/content/builders";
 import { localePath, type Locale } from "@/lib/i18n/config";
+import { translatePath } from "@/lib/i18n/paths";
 import { getUiCopy } from "@/lib/i18n/ui";
 
 export function SiteHeader({ lang }: { lang: Locale }) {
@@ -20,7 +21,7 @@ export function SiteHeader({ lang }: { lang: Locale }) {
             {SERVICES.map((service) => (
               <li key={service.slug}>
                 <Link
-                  href={localePath(lang, `/${service.slug}`)}
+                  href={translatePath(`/${service.slug}`, lang)}
                   className="transition-colors hover:text-brand-950"
                 >
                   {getServiceCopy(service.kind, lang).name}

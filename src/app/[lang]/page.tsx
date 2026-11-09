@@ -9,6 +9,7 @@ import { PRICE_REPORT, PRIMARY_SERVICE, SERVICES } from "@/lib/data/services";
 import { buildServiceFallbackVars, interpolateBenefits } from "@/lib/content/service-copy";
 import { assertLocale } from "@/lib/i18n/config";
 import { localePath } from "@/lib/i18n/config";
+import { translatePath } from "@/lib/i18n/paths";
 import { getHomeCopy } from "@/lib/i18n/ui";
 import { getServiceCopy } from "@/lib/i18n/content/builders";
 import { buildMetadata } from "@/lib/seo/metadata";
@@ -93,7 +94,7 @@ export default async function HomePage({
           {serviceCards.map(({ service, benefit }) => (
             <Link
               key={service.slug}
-              href={localePath(locale, `/${service.slug}`)}
+              href={translatePath(`/${service.slug}`, locale)}
               className="group rounded-2xl border border-brand-100 bg-white p-5 shadow-card transition-colors hover:border-brand-300"
             >
               <p className="text-base font-bold text-brand-950 group-hover:underline">
@@ -116,7 +117,7 @@ export default async function HomePage({
           {topCities.map((city) => (
             <Link
               key={city.slug}
-              href={localePath(locale, `/${PRIMARY_SERVICE.slug}/${city.slug}`)}
+              href={translatePath(`/${PRIMARY_SERVICE.slug}/${city.slug}`, locale)}
               className="rounded-xl border border-brand-100 bg-white px-4 py-3 transition-colors hover:border-brand-300"
             >
               <p className="font-semibold text-brand-950">{city.name}</p>
@@ -130,7 +131,7 @@ export default async function HomePage({
         <p className="mt-6 text-sm text-brand-700">
           {home.reportsLine}{" "}
           <Link
-            href={localePath(locale, `/${PRICE_REPORT.slug}`)}
+            href={translatePath(`/${PRICE_REPORT.slug}`, locale)}
             className="font-semibold text-brand-900 underline underline-offset-2"
           >
             {locale === "pl"

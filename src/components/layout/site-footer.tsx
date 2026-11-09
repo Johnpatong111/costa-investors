@@ -5,6 +5,7 @@ import { SERVICES, PRICE_REPORT } from "@/lib/data/services";
 import { getCitiesByTier } from "@/lib/data/repository";
 import { getServiceCopy } from "@/lib/i18n/content/builders";
 import { localePath, type Locale } from "@/lib/i18n/config";
+import { translatePath } from "@/lib/i18n/paths";
 import { FOOTER_COPY, getUiCopy } from "@/lib/i18n/ui";
 import { SITE } from "@/lib/seo/site";
 import { LOCATIONS } from "@/lib/data/load";
@@ -40,13 +41,13 @@ export function SiteFooter({ lang }: { lang: Locale }) {
           <ul className="space-y-2">
             {SERVICES.map((service) => (
               <li key={service.slug}>
-                <Link href={localePath(lang, `/${service.slug}`)} className="hover:text-white hover:underline">
+                <Link href={translatePath(`/${service.slug}`, lang)} className="hover:text-white hover:underline">
                   {getServiceCopy(service.kind, lang).name}
                 </Link>
               </li>
             ))}
             <li>
-              <Link href={localePath(lang, `/${PRICE_REPORT.slug}`)} className="hover:text-white hover:underline">
+              <Link href={translatePath(`/${PRICE_REPORT.slug}`, lang)} className="hover:text-white hover:underline">
                 {ui.reportsNav}
               </Link>
             </li>
@@ -59,7 +60,7 @@ export function SiteFooter({ lang }: { lang: Locale }) {
             {cities.map((city) => (
               <li key={city.slug}>
                 <Link
-                  href={localePath(lang, `/${SERVICES[0]?.slug ?? ""}/${city.slug}`)}
+                  href={translatePath(`/${SERVICES[0]?.slug ?? ""}/${city.slug}`, lang)}
                   className="hover:text-white hover:underline"
                 >
                   {city.name}
