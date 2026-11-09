@@ -5,6 +5,7 @@ import { Badge, Section, SectionHeading } from "@/components/ui/primitives";
 import type { MarketStats } from "@/lib/content/market-stats";
 import { DEFAULT_LOCALE, isLocale, type Locale } from "@/lib/i18n/config";
 import { getStatsCopy } from "@/lib/i18n/analytics-copy-2";
+import { getExtraIndicators } from "@/lib/i18n/analytics-extra";
 import { formatEur, formatPrice, formatRate } from "@/lib/utils/format";
 
 /**
@@ -42,6 +43,20 @@ export function MarketStatsSection({
     { name: copy.regionRow(regionName), price: stats.regionPricePerM2, highlight: false },
   ];
 
+  const extra = getExtraIndicators(locale, {
+    pricePerM2: stats.pricePerM2,
+    cityPricePerM2: stats.cityPricePerM2,
+    regionPricePerM2: stats.regionPricePerM2,
+    monthlyRentPerM2: stats.monthlyRentPerM2,
+    rentalYield: stats.rentalYield,
+    netYield: stats.netYield,
+    avgDaysOnMarket: stats.avgDaysOnMarket,
+    demandIndex: stats.demandIndex,
+    purchaseCostsRate: stats.purchaseCostsRate,
+    foreignBuyerShare: stats.foreignBuyerShare,
+    transactions12m: stats.transactions12m,
+  });
+
   return (
     <Section className="bg-white pt-10">
       <SectionHeading eyebrow={copy.eyebrow(stats.dataAsOf)}>
@@ -58,6 +73,23 @@ export function MarketStatsSection({
           </div>
         ))}
       </dl>
+
+      <div className="mt-6 rounded-xl border border-brand-100 bg-brand-50/40 p-4">
+        <p className="text-xs font-semibold tracking-wide text-brand-700 uppercase">
+          {copy.insightTitle}
+        </p>
+        <dl className="mt-3 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          {extra.map((item) => (
+            <div key={item.label} className="rounded-lg bg-white px-3 py-2.5">
+              <dt className="text-[11px] font-semibold text-brand-500">{item.label}</dt>
+              <dd className="mt-0.5 text-base font-bold tabular-nums text-brand-950">{item.value}</dd>
+              {item.hint ? (
+                <dd className="mt-0.5 text-[10px] leading-snug text-brand-500">{item.hint}</dd>
+              ) : null}
+            </div>
+          ))}
+        </dl>
+      </div>
 
       <div className="mt-8 grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
         <div className="overflow-hidden rounded-xl border border-brand-100">
