@@ -100,7 +100,7 @@ export default async function HomePage({
                 {getServiceCopy(service.kind, locale).name}
               </p>
               <p className="mt-2 text-sm leading-relaxed text-brand-700">
-                {benefit?.description ?? service.priceAnchor}
+                {getServiceCopy(service.kind, locale).benefits[0]?.description ?? getServiceCopy(service.kind, locale).priceAnchor}
               </p>
               <p className="mt-3 text-xs font-semibold text-accent-600">
                 {getServiceCopy(service.kind, locale).priceAnchor} → {home.cardCta}
@@ -133,7 +133,11 @@ export default async function HomePage({
             href={localePath(locale, `/${PRICE_REPORT.slug}`)}
             className="font-semibold text-brand-900 underline underline-offset-2"
           >
-            {PRICE_REPORT.name}
+            {locale === "pl"
+              ? PRICE_REPORT.name
+              : locale === "es"
+                ? "Precios m² y ROI en España"
+                : "Prices m² and ROI in Spain"}
           </Link>
         </p>
       </Section>

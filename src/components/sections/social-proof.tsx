@@ -1,12 +1,14 @@
+"use client";
+
+import { usePathname } from "next/navigation";
 import { Badge, Section, SectionHeading } from "@/components/ui/primitives";
-import { formatPrice } from "@/lib/utils/format";
+import { DEFAULT_LOCALE, isLocale, type Locale } from "@/lib/i18n/config";
+import { getSocialCopy } from "@/lib/i18n/ui";
 
 /**
  * Social proof oparty na FAKTACH operacyjnych (nie na wymyślonych opiniach).
- *
- * Opinie klientów dodajesz dopiero, gdy są prawdziwe i weryfikowalne -
- * fikcyjne recenzje to naruszenie wytycznych Google i polskiego prawa
- * (nieuczciwe praktyki rynkowe). Dlatego `testimonials` domyślnie jest puste.
+ * Język wynika z prefiksu ścieżki, więc sekcja jest spójna na /pl, /en i /es.
+ * Fikcyjne recenzje są wyłączone: `testimonials` domyślnie puste.
  */
 export interface Testimonial {
   author: string;
@@ -24,34 +26,17 @@ export function SocialProof({
   coverage: { districts: number; cities: number; transactions: number };
   testimonials?: Testimonial[];
 }) {
-  const verified = testimonials.filter((item) => item.verified);
+  const pathname = usePathname() ?? "/";
+  const segment = pathname.split("/").filter(Boolean)[0] ?? "";
+  const locale: Locale = isLocale(segment) ? segment : DEFAULT_LOCALE;
+  const copy = getSocialCopy(locale);
 
-  const tiles = [
-    {
-      value: "24 h",
-      label: "Lista ofert z ROI",
-      detail: "3-5 nieruchomości z ceną €/m² na tle mediany",
-    },
-    {
-      value: "13,5%",
-      label: "Koszty zakupu policzone z góry",
-      detail: "ITP/IVA, notariusz, rejestr i obsługa prawna",
-    },
-    {
-      value: "0 €",
-      label: "Prowizji od kupującego",
-      detail: "wynagrodzenie rozliczamy z agencją po transakcji",
-    },
-    {
-      value: `${coverage.districts}`,
-      label: "Dzielnic i urbanizacji w bazie",
-      detail: `${coverage.cities} miejscowości, ${formatPrice(coverage.transactions)} transakcji w modelu`,
-    },
-  ];
+  const verified = testimonials.filter((item) => item.verified);
+  const tiles = copy.tiles(coverage);
 
   return (
     <Section className="bg-white">
-      <SectionHeading eyebrow="Jak pracujemy">Konkretne liczby zamiast obietnic</SectionHeading>
+      <SectionHeading eyebrow={copy.eyebrow}>{copy.title}</SectionHeading>
 
       <dl className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {tiles.map((tile) => (
@@ -69,16 +54,15 @@ export function SocialProof({
       {verified.length > 0 ? (
         <div className="mt-10 grid gap-4 md:grid-cols-3">
           {verified.map((item) => (
-            <figure
-              key={`${item.author}-${item.city}`}
-              className="rounded-2xl border border-brand-100 p-5"
-            >
-              <div className="flex items-center gap-1 text-accent-500" aria-label={`Ocena ${item.rating} na 5`}>
+            <figure key={`${item.author}-${item.city}`} className="rounded-2xl border border-brand-100 p-5">
+              <div className="flex items-center gap-1 text-accent-500" aria-label={copy.rating(item.rating)}>
                 {"★".repeat(item.rating)}
-                <span className="sr-only">{item.rating} z 5</span>
+                <span className="sr-only">{copy.rating(item.rating)}</span>
               </div>
               <blockquote className="mt-2 text-sm leading-relaxed text-brand-800">
-                „{item.quote}”
+                {'"'}
+                {item.quote}
+                {'"'}
               </blockquote>
               <figcaption className="mt-3 text-xs font-semibold text-brand-600">
                 {item.author}, {item.city}
@@ -89,11 +73,9 @@ export function SocialProof({
       ) : (
         <div className="mt-8 max-w-3xl rounded-xl border border-brand-100 bg-brand-50/60 p-4 text-xs leading-relaxed text-brand-600">
           <Badge tone="warning" className="mb-2">
-            Sekcja opinii nieaktywna
+            {copy.noteBadge}
           </Badge>
-          Publikujemy wyłącznie zweryfikowane opinie klientów. Do momentu zebrania
-          pierwszych realizacji ta sekcja pozostaje ukryta. Nie generujemy fikcyjnych
-          recenzji.
+          {copy.note}
         </div>
       )}
     </Section>

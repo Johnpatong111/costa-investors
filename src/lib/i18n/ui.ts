@@ -197,6 +197,79 @@ export function getHomeCopy(locale: Locale) {
   return HOME_COPY[locale] ?? HOME_COPY.pl;
 }
 
+/** Sekcja „jak pracujemy": kafelki faktów i notka o opiniach. */
+export const SOCIAL_COPY: Record<
+  Locale,
+  {
+    eyebrow: string;
+    title: string;
+    tiles: (coverage: { districts: number; cities: number; transactions: number }) => {
+      value: string;
+      label: string;
+      detail: string;
+    }[];
+    noteBadge: string;
+    note: string;
+    rating: (rating: number) => string;
+  }
+> = {
+  pl: {
+    eyebrow: "Jak pracujemy",
+    title: "Konkretne liczby zamiast obietnic",
+    tiles: (coverage) => [
+      { value: "24 h", label: "Lista ofert z ROI", detail: "3-5 nieruchomości z ceną €/m² na tle mediany" },
+      { value: "13,5%", label: "Koszty zakupu policzone z góry", detail: "ITP/IVA, notariusz, rejestr i obsługa prawna" },
+      { value: "0 €", label: "Prowizji od kupującego", detail: "wynagrodzenie rozliczamy z agencją po transakcji" },
+      {
+        value: `${coverage.districts}`,
+        label: "Dzielnic i urbanizacji w bazie",
+        detail: `${coverage.cities} miejscowości, transakcje w modelu`,
+      },
+    ],
+    noteBadge: "Sekcja opinii nieaktywna",
+    note: "Publikujemy wyłącznie zweryfikowane opinie klientów. Do momentu zebrania pierwszych realizacji ta sekcja pozostaje ukryta. Nie generujemy fikcyjnych recenzji.",
+    rating: (rating) => `Ocena ${rating} na 5`,
+  },
+  en: {
+    eyebrow: "How we work",
+    title: "Hard numbers instead of promises",
+    tiles: (coverage) => [
+      { value: "24 h", label: "Shortlist with ROI", detail: "3-5 properties with €/m² priced against the local median" },
+      { value: "13.5%", label: "Purchase costs known upfront", detail: "ITP/IVA, notary, land registry and legal support" },
+      { value: "0 €", label: "Buyer commission", detail: "we are paid by the agency after completion" },
+      {
+        value: `${coverage.districts}`,
+        label: "Districts and urbanisations covered",
+        detail: `${coverage.cities} locations, deals in the model`,
+      },
+    ],
+    noteBadge: "Reviews section inactive",
+    note: "We publish verified client reviews only. Until the first completed transactions this section stays hidden. We never generate fake reviews.",
+    rating: (rating) => `Rated ${rating} out of 5`,
+  },
+  es: {
+    eyebrow: "Cómo trabajamos",
+    title: "Cifras concretas en lugar de promesas",
+    tiles: (coverage) => [
+      { value: "24 h", label: "Selección con ROI", detail: "3-5 inmuebles con precio €/m² frente a la mediana" },
+      { value: "13,5%", label: "Gastos de compra calculados antes", detail: "ITP/IVA, notaría, registro y soporte legal" },
+      { value: "0 €", label: "Comisión del comprador", detail: "cobra la agencia tras la operación" },
+      {
+        value: `${coverage.districts}`,
+        label: "Barrios y urbanizaciones en la base",
+        detail: `${coverage.cities} localidades, operaciones en el modelo`,
+      },
+    ],
+    noteBadge: "Sección de opiniones inactiva",
+    note: "Publicamos únicamente opiniones verificadas. Hasta reunir las primeras operaciones esta sección permanece oculta. No generamos reseñas falsas.",
+    rating: (rating) => `Valoración ${rating} de 5`,
+  },
+};
+
+export function getSocialCopy(locale: Locale) {
+  return SOCIAL_COPY[locale] ?? SOCIAL_COPY.pl;
+}
+
 export const FORM_COPY: Record<
   Locale,
   {

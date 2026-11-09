@@ -125,6 +125,12 @@ export function leadEmailHtml(lead: LeadRecord): string {
 export async function sendEmail(lead: LeadRecord): Promise<DispatchResult | null> {
   const apiKey = env("RESEND_API_KEY");
   const to = env("LEAD_NOTIFY_EMAIL") ?? "contact@costainvestors.eu";
+  const configuredFrom = env("LEAD_EMAIL_FROM");
+  if (!configuredFrom) {
+    console.warn(
+      "[resend] Brak LEAD_EMAIL_FROM: używam onboarding@resend.dev. Ten nadawca dostarcza wiadomości wyłącznie na adres właściciela konta Resend. Aby wysyłać na contact@costainvestors.eu, zweryfikuj domenę costainvestors.eu i ustaw LEAD_EMAIL_FROM=Costa Investors <contact@costainvestors.eu>.",
+    );
+  }
   if (!apiKey || !to) {
     logLeadFallback(lead, "resend_not_configured");
     return null;
