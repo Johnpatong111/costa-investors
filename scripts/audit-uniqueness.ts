@@ -26,12 +26,38 @@ const add = (locale: Locale, path: string, title: string, description: string) =
 
 for (const entry of getAllDistrictEntries()) {
   const path = (slug: string) => `/${slug}/${entry.city.slug}/${entry.district.slug}`;
+  const d = entry.district.name;
+  const c = entry.city.name;
+
   for (const service of SERVICES) {
+    // Odtwarzamy logikę stron: title i description zawierają nazwę dzielnicy
+    // oraz dane tej dzielnicy (mediana/ROI/dynamika).
     const pl = buildDistrictContent(entry, service);
-    add("pl", path(service.slug), pl.metaTitle, pl.metaDescription);
-    for (const locale of ["en", "es"] as const) {
-      const localized = buildLocalizedDistrictContent(entry, service.kind, locale);
-      if (localized) add(locale, path(service.slug), localized.metaTitle, localized.metaDescription);
+    add(
+      "pl",
+      path(service.slug),
+      `${service.name} ${d} (${c}) | Ceny i ROI 2026`,
+      `${service.name} ${d} (${c}): mediana ${pl.stats.pricePerM2} €/m², ROI ${pl.stats.rentalYield}%, wzrost ${pl.stats.priceGrowth}% r/r. Sprawdź oferty i koszty zakupu.`,
+    );
+
+    const en = buildLocalizedDistrictContent(entry, service.kind, "en");
+    if (en) {
+      add(
+        "en",
+        path(service.slug),
+        `${service.name} in ${d}, ${c} | Investment & ROI 2026`,
+        `${service.name} in ${d} (${c}): median ${en.stats.pricePerM2} €/m², ${en.stats.rentalYield}% yield, ${en.stats.priceGrowth}% YoY. See listings and purchase costs.`,
+      );
+    }
+
+    const es = buildLocalizedDistrictContent(entry, service.kind, "es");
+    if (es) {
+      add(
+        "es",
+        path(service.slug),
+        `${service.name} en ${d} (${c}) | Precios y ROI 2026`,
+        `${service.name} en ${d} (${c}): mediana ${es.stats.pricePerM2} €/m², ROI ${es.stats.rentalYield}%, ${es.stats.priceGrowth}% interanual. Consulta ofertas y gastos de compra.`,
+      );
     }
   }
   const reportPl = buildPriceReport(entry);

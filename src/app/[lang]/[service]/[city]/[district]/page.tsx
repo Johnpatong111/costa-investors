@@ -95,7 +95,14 @@ export async function generateMetadata({
         : locale === "en"
           ? `${getServiceCopy(kind, locale).name} in ${entry.district.name}, ${entry.city.name} | Investment & ROI ${SITE.year}`
           : `${getServiceCopy(kind, locale).name} ${entry.district.name} (${entry.city.name}) | Ceny i ROI ${SITE.year}`,
-    description: content.metaDescription,
+    // Opis z danymi WYŁĄCZNIE tej dzielnicy (mediana, ROI, dynamika), więc
+    // każdy meta description jest unikalny w obrębie miasta i języka.
+    description:
+      locale === "es"
+        ? `${getServiceCopy(kind, locale).name} en ${entry.district.name} (${entry.city.name}): mediana ${formatEur(content.stats.pricePerM2)}/m², ROI ${formatRate(content.stats.rentalYield)}, ${formatRate(content.stats.priceGrowth)} interanual. Consulta ofertas y gastos de compra.`
+        : locale === "en"
+          ? `${getServiceCopy(kind, locale).name} in ${entry.district.name} (${entry.city.name}): median ${formatEur(content.stats.pricePerM2)}/m², ${formatRate(content.stats.rentalYield)} yield, ${formatRate(content.stats.priceGrowth)} YoY. See listings and purchase costs.`
+          : `${getServiceCopy(kind, locale).name} ${entry.district.name} (${entry.city.name}): mediana ${formatEur(content.stats.pricePerM2)}/m², ROI ${formatRate(content.stats.rentalYield)}, wzrost ${formatRate(content.stats.priceGrowth)} r/r. Sprawdź oferty i koszty zakupu.`,
     path: `/${service.slug}/${entry.city.slug}/${entry.district.slug}`,
     keywords: content.keywords,
     noindex: !content.isIndexable,
