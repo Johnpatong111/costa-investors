@@ -6,6 +6,8 @@ import { ContentBlocks } from "@/components/sections/content-blocks";
 import { FaqAccordion } from "@/components/sections/faq-accordion";
 import { Section, SectionHeading } from "@/components/ui/primitives";
 import { JsonLd } from "@/components/seo/json-ld";
+import { PriceHistorySection } from "@/components/sections/price-history";
+import { getPriceHistory } from "@/lib/i18n/price-history";
 import { buildPriceReport } from "@/lib/content/report-content";
 import { deriveDistrictStats } from "@/lib/content/market-stats";
 import { COUNTRY_MEDIAN_PRICE_PER_M2 } from "@/lib/content/market-stats";
@@ -271,6 +273,14 @@ export default async function PriceReportPage({
           </div>
         </div>
       </Section>
+
+      <PriceHistorySection
+        history={getPriceHistory(locale, {
+          current: report.stats.pricePerM2,
+          growth: report.stats.priceGrowth,
+          seed: `${entry.city.slug}/${entry.district.slug}`,
+        })}
+      />
 
       <JsonLd
         nodes={[
