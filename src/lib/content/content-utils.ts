@@ -55,6 +55,12 @@ export interface PageContent {
 export const MAX_TITLE_LENGTH = 62;
 export const MAX_DESCRIPTION_LENGTH = 165;
 export const MIN_INDEXABLE_WORDS = 200;
+/**
+ * Tłumaczenia EN/ES są naturalnie krótsze niż polski oryginał, więc próg
+ * długości skalujemy per język (klucz treści kończy się na /en lub /es).
+ * Bez tego cała wersja angielska i hiszpańska wpadała w noindex.
+ */
+export const MIN_INDEXABLE_WORDS_LOCALIZED = 150;
 
 export function contentToPlainText(content: PageContent): string {
   return [
@@ -99,8 +105,12 @@ export function assessIndexability(content: PageContent): {
   if (!content.stats.reliable) {
     return { isIndexable: false, reason: "zbyt mało danych transakcyjnych" };
   }
-  if (content.wordCount < MIN_INDEXABLE_WORDS) {
-    return { isIndexable: false, reason: `treść < ${MIN_INDEXABLE_WORDS} słów` };
+  // EN/ES: krótsze tłumaczenia dostają niższy próg (150 zamiast 200 słów).
+  const isLocalized = /\/(en|es)$/.test(content.key);
+  const minWords = isLocalized ? MIN_INDEXABLE_WORDS_LOCALIZED : MIN_INDEXABLE_WORDS;
+
+  if (content.wordCount < minWords) {
+    return { isIndexable: false, reason: `treść < ${minWords} słów` };
   }
   if (content.faq.length < 4) {
     return { isIndexable: false, reason: "za mało FAQ (brak wartości dodanej)" };
