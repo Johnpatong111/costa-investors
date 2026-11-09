@@ -69,16 +69,15 @@ export function SiteFooter({ lang }: { lang: Locale }) {
         </nav>
 
         <nav aria-label={nav.dataNav} className="text-sm">
-          <p className="mb-3 font-semibold text-white">{nav.dataNav}</p>
+          {/* Nagłówek kolumny jest jednocześnie odnośnikiem do huba raportów:
+              /pl/ceny-m2, /en/ceny-m2, /es/ceny-m2 (bez tłumaczenia sluga). */}
+          <Link
+            href={localePath(lang, `/${PRICE_REPORT.slug}`)}
+            className="mb-3 block font-semibold text-white hover:underline"
+          >
+            {nav.dataNav}
+          </Link>
           <ul className="space-y-2">
-            <li>
-              <Link
-                href={translatePath(`/${PRICE_REPORT.slug}`, lang)}
-                className="font-medium hover:text-white hover:underline"
-              >
-                {nav.dataHubLabel}
-              </Link>
-            </li>
             {reportCities.map((city) => (
               <li key={city.slug}>
                 <Link
