@@ -11,6 +11,7 @@
     "validate:data": "tsx scripts/validate-data.ts",
     "audit:clean": "node scripts/audit-clean.mjs",
     "audit:dashes": "node scripts/audit-dashes.mjs",
+    "audit:release": "node scripts/audit-release.mjs",
     "icons": "node scripts/generate-icons.mjs",
     "sitemap": "tsx scripts/generate-sitemap.ts",
     "prebuild": "npm run sitemap",
