@@ -34,8 +34,8 @@ export default function robots(): MetadataRoute.Robots {
         disallow: "/",
       },
     ],
-    // Indeks sitemap. Jeden adres dla Search Console, spina wszystkie chunki.
-    sitemap: [`${SITE.url}/sitemap.xml`, ...getSitemapUrls()],
+    // Jedna, płaska sitemapa – standardowy plik XML bez indeksów i XSL.
+    sitemap: getSitemapUrls(),
     host: SITE.url,
   };
 }

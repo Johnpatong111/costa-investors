@@ -37,11 +37,7 @@ const nextConfig: NextConfig = {
     ]);
   },
   async rewrites() {
-    // /sitemap.xml to adres zgłaszany w robots.txt i Search Console.
-    // Next rezerwuje tę ścieżkę dla własnego metadata route (który przy
-    // chunkowaniu generuje tylko /sitemap/{id}.xml), więc serwujemy pod nią
-    // nasz indeks. Bez tego /sitemap.xml wpadał w trasę [lang] i zwracał 500.
-    return [{ source: "/sitemap.xml", destination: "/sitemap-index.xml" }];
+    return [];
   },
   async headers() {
     return [
