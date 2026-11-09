@@ -30,12 +30,6 @@ export function SiteFooter({ lang }: { lang: Locale }) {
   const reportCities = ["torrevieja", "alicante", "benidorm", "calpe", "cartagena", "denia"]
     .map((slug) => allCities.find((city) => city.slug === slug))
     .filter((city): city is (typeof allCities)[number] => Boolean(city));
-  const sampleCity = reportCities[0];
-  const sampleDistrict = sampleCity?.districts[0];
-  const historyHref =
-    sampleCity && sampleDistrict
-      ? translatePath(`/${PRICE_REPORT.slug}/${sampleCity.slug}/${sampleDistrict.slug}`, lang)
-      : translatePath(`/${PRICE_REPORT.slug}`, lang);
 
   return (
     <footer className="mt-8 border-t border-brand-100 bg-brand-950 text-brand-100">
@@ -91,11 +85,6 @@ export function SiteFooter({ lang }: { lang: Locale }) {
                 </Link>
               </li>
             ))}
-            <li>
-              <Link href={historyHref} className="hover:text-white hover:underline">
-                {nav.historyLabel}
-              </Link>
-            </li>
           </ul>
         </nav>
 

@@ -33,8 +33,6 @@ const allCities = getCities();
 const reportCities = ["torrevieja", "alicante", "benidorm", "calpe", "cartagena", "denia"]
   .map((slug) => allCities.find((city) => city.slug === slug))
   .filter((city): city is (typeof allCities)[number] => Boolean(city));
-const sampleCity = reportCities[0];
-const sampleDistrict = sampleCity?.districts[0];
 
 interface FooterLink {
   label: string;
@@ -54,12 +52,6 @@ function footerLinks(locale: Locale): FooterLink[] {
     links.push({
       label: `raport miasta:${city.slug}`,
       href: translatePath(`/${PRICE_REPORT.slug}/${city.slug}`, locale),
-    });
-  }
-  if (sampleCity && sampleDistrict) {
-    links.push({
-      label: "historia cen",
-      href: translatePath(`/${PRICE_REPORT.slug}/${sampleCity.slug}/${sampleDistrict.slug}`, locale),
     });
   }
 

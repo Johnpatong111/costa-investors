@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { LeadEngine } from "@/components/lead/lead-engine";
+import { PriceHistorySection } from "@/components/sections/price-history";
 import { Breadcrumbs, type Crumb } from "@/components/sections/breadcrumbs";
 import { JsonLd } from "@/components/seo/json-ld";
 import { Section, SectionHeading } from "@/components/ui/primitives";
@@ -9,6 +10,7 @@ import { deriveCityStats, deriveDistrictStats, MARKET_YEAR } from "@/lib/content
 import { getCities, getCitiesBySubregion, getCity, getRegion } from "@/lib/data/repository";
 import { PRICE_REPORT } from "@/lib/data/services";
 import { assertLocale, type Locale } from "@/lib/i18n/config";
+import { getPriceHistory } from "@/lib/i18n/price-history";
 import { translatePath } from "@/lib/i18n/paths";
 import { PRICE_HISTORY_KEYWORD } from "@/lib/i18n/seo-copy";
 import { getUiCopy } from "@/lib/i18n/ui";
@@ -308,6 +310,15 @@ export default async function PriceCityPage({ params }: { params: Promise<RouteP
           </p>
         ) : null}
       </Section>
+
+      {/* Historia cen 2016–2026 dla TEGO miasta — każdy URL /ceny-m2/... ją ma. */}
+      <PriceHistorySection
+        history={getPriceHistory(locale, {
+          current: stats.pricePerM2,
+          growth: stats.priceGrowth,
+          seed: city.slug,
+        })}
+      />
 
       <Section className="bg-brand-50/60">
         <div className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
