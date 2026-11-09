@@ -22,6 +22,7 @@ import { serviceSlug } from "@/lib/i18n/service-slugs";
 import { getAllDistrictEntries, getDistrict, getNearbyDistricts } from "@/lib/data/repository";
 import { PRICE_REPORT, SERVICES } from "@/lib/data/services";
 import { buildMetadata } from "@/lib/seo/metadata";
+import { SITE } from "@/lib/seo/site";
 import {
   breadcrumbNode,
   faqNode,
@@ -86,7 +87,14 @@ export async function generateMetadata({
       : buildLocalizedDistrictContent(entry, kind, locale)!;
 
   return buildMetadata({
-    title: content.metaTitle,
+    // Tytuł MUSI zawierać nazwę dzielnicy, inaczej wszystkie dzielnice
+    // jednego miasta mają identyczny title (duplikat w Google).
+    title:
+      locale === "es"
+        ? `${getServiceCopy(kind, locale).name} en ${entry.district.name} (${entry.city.name}) | Precios y ROI ${SITE.year}`
+        : locale === "en"
+          ? `${getServiceCopy(kind, locale).name} in ${entry.district.name}, ${entry.city.name} | Investment & ROI ${SITE.year}`
+          : `${getServiceCopy(kind, locale).name} ${entry.district.name} (${entry.city.name}) | Ceny i ROI ${SITE.year}`,
     description: content.metaDescription,
     path: `/${service.slug}/${entry.city.slug}/${entry.district.slug}`,
     keywords: content.keywords,
