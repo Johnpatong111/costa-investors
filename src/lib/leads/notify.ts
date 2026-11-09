@@ -134,7 +134,7 @@ export async function sendEmail(lead: LeadRecord): Promise<DispatchResult | null
     "email",
     "https://api.resend.com/emails",
     {
-      from: env("LEAD_EMAIL_FROM") ?? "contact@costainvestors.eu",
+      from: env("LEAD_EMAIL_FROM") ?? "Costa Investors <onboarding@resend.dev>",
       to: [to],
       subject: `Lead ${lead.score}/100: ${lead.city} Â· ${lead.budget.toLocaleString("pl-PL")} â‚¬`,
       html: leadEmailHtml(lead),

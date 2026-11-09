@@ -100,7 +100,103 @@ export function getUiCopy(locale: Locale): UiCopy {
   return UI_COPY[locale] ?? UI_COPY.pl;
 }
 
-/** Etykiety formularza leadowego (chrome: postęp, legendy, budżet, CTA). */
+/** Treści strony głównej (hero, sekcje, karty). */
+export const HOME_COPY: Record<
+  Locale,
+  {
+    heroEyebrow: string;
+    heroH1: string;
+    heroLead: (cities: number) => string;
+    heroChips: (from: string, roi: string, cities: number) => string[];
+    heroFootnote: string;
+    leadHeading: string;
+    leadSubheading: string;
+    servicesEyebrow: string;
+    servicesTitle: string;
+    cardCta: string;
+    marketsEyebrow: string;
+    marketsTitle: string;
+    districts: (count: number) => string;
+    reportsLine: string;
+  }
+> = {
+  pl: {
+    heroEyebrow: "Costa Blanca i Costa Cálida · Hiszpania",
+    heroH1: "Kup nieruchomość w Hiszpanii z agentem mówiącym Twoim językiem. Z analizą ROI",
+    heroLead: (cities) =>
+      `Apartamenty, wille z basenem i domy inwestycyjne w ${cities} miejscowościach na dwóch wybrzeżach. Pokazujemy realne ceny €/m², zwrot z najmu i pełne koszty zakupu. Zgłoszenie przekazujemy certyfikowanemu agentowi z gotowymi ofertami.`,
+    heroChips: (from, roi, cities) => [
+      `ceny od ${from}`,
+      `ROI do ${roi}`,
+      `${cities} miejscowości`,
+      "agent w Twoim języku",
+    ],
+    heroFootnote:
+      "Wartości szacunkowe na podstawie median ofertowych. Nie stanowią oferty inwestycyjnej ani gwarancji zwrotu.",
+    leadHeading: "Znajdź nieruchomość i odbierz analizę ROI",
+    leadSubheading:
+      "Wypełnij 4 krótkie pytania. W 15 minut prześlemy spersonalizowany zestaw ofert.",
+    servicesEyebrow: "Usługi",
+    servicesTitle: "Wybierz, czego szukasz",
+    cardCta: "sprawdź szczegóły",
+    marketsEyebrow: "Lokalizacje",
+    marketsTitle: "Największe rynki Hiszpanii",
+    districts: (count) => `${count} dzielnic`,
+    reportsLine: "Wszystkie raporty cenowe i ROI:",
+  },
+  en: {
+    heroEyebrow: "Costa Blanca and Costa Cálida · Spain",
+    heroH1: "Buy property in Spain with an agent who speaks your language. With ROI analysis",
+    heroLead: (cities) =>
+      `Apartments, villas with pools and investment homes across ${cities} locations on two coastlines. We show real €/m² prices, rental yields and the full cost of buying. Your enquiry goes to a certified agent with matched listings.`,
+    heroChips: (from, roi, cities) => [
+      `prices from ${from}`,
+      `ROI up to ${roi}`,
+      `${cities} locations`,
+      "agent in your language",
+    ],
+    heroFootnote:
+      "Estimates based on asking-price medians. Not an investment offer or a guarantee of returns.",
+    leadHeading: "Find properties and get an ROI analysis",
+    leadSubheading: "Four quick questions. Within 15 minutes we send a personalised shortlist.",
+    servicesEyebrow: "Services",
+    servicesTitle: "Choose what you are looking for",
+    cardCta: "see details",
+    marketsEyebrow: "Locations",
+    marketsTitle: "Main Spanish markets",
+    districts: (count) => `${count} districts`,
+    reportsLine: "All price and ROI reports:",
+  },
+  es: {
+    heroEyebrow: "Costa Blanca y Costa Cálida · España",
+    heroH1: "Compra una vivienda en España con un agente que habla tu idioma. Con análisis de ROI",
+    heroLead: (cities) =>
+      `Apartamentos, villas con piscina y viviendas de inversión en ${cities} localidades de dos costas. Mostramos precios reales €/m², rentabilidad del alquiler y todos los gastos de compra. Tu solicitud llega a un agente certificado con ofertas concretas.`,
+    heroChips: (from, roi, cities) => [
+      `precios desde ${from}`,
+      `ROI hasta ${roi}`,
+      `${cities} localidades`,
+      "agente en tu idioma",
+    ],
+    heroFootnote:
+      "Valores estimados a partir de medianas de oferta. No constituyen oferta de inversión ni garantía de rentabilidad.",
+    leadHeading: "Encuentra inmuebles y recibe un análisis de ROI",
+    leadSubheading:
+      "Cuatro preguntas rápidas. En 15 minutos enviamos una selección personalizada.",
+    servicesEyebrow: "Servicios",
+    servicesTitle: "Elige qué estás buscando",
+    cardCta: "ver detalles",
+    marketsEyebrow: "Ubicaciones",
+    marketsTitle: "Principales mercados de España",
+    districts: (count) => `${count} barrios`,
+    reportsLine: "Todos los informes de precios y ROI:",
+  },
+};
+
+export function getHomeCopy(locale: Locale) {
+  return HOME_COPY[locale] ?? HOME_COPY.pl;
+}
+
 export const FORM_COPY: Record<
   Locale,
   {

@@ -34,7 +34,7 @@ export function SiteHeader({ lang }: { lang: Locale }) {
           <LanguageSwitcher currentLocale={lang} />
           <Link
             href={`${localePath(lang, "/")}#lead-form`}
-            className="inline-flex items-center gap-2 rounded-xl bg-accent-500 px-4 py-2.5 text-sm font-bold text-white shadow-card transition-colors hover:bg-accent-600"
+            className="hidden items-center gap-2 rounded-xl bg-accent-500 px-3 py-2.5 text-sm font-bold text-white shadow-card transition-colors hover:bg-accent-600 sm:inline-flex sm:px-4"
           >
             {ui.ctaOffers}
           </Link>
