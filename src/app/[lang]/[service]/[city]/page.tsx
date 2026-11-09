@@ -157,7 +157,7 @@ export default async function CityServicePage({
       <HowItWorks
         eyebrow={ui.howItWorks}
         steps={content.processSteps}
-        title={`${service.name} w ${city.name}. Etapy zakupu`}
+        title={ui.howItWorksTitle(serviceName, city.name)}
       />
 
       <FaqAccordion items={content.faq} title={`${service.name} w ${city.name} - FAQ`} />
@@ -181,7 +181,7 @@ export default async function CityServicePage({
             })),
           },
           {
-            title: "Raport inwestycyjny",
+            title: ui.investmentReport,
             links: [
               {
                 href: `/${PRICE_REPORT.slug}`,

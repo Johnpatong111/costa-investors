@@ -1,46 +1,66 @@
-import Link from "next/link";
-import { Section, SectionHeading } from "@/components/ui/primitives";
+"use client";
 
-export interface LinkGroup {
-  title: string;
-  links: { href: string; label: string; meta?: string }[];
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { Section, SectionHeading } from "@/components/ui/primitives";
+import { DEFAULT_LOCALE, isLocale, type Locale } from "@/lib/i18n/config";
+
+export interface InternalLink {
+  href: string;
+  label: string;
+  meta?: string;
 }
 
+export interface InternalLinkGroup {
+  title: string;
+  links: InternalLink[];
+}
+
+const DEFAULT_TITLE: Record<Locale, string> = {
+  pl: "Sprawdź też w okolicy",
+  en: "Also worth checking nearby",
+  es: "También cerca de aquí",
+};
+
+const EYEBROW: Record<Locale, string> = {
+  pl: "Powiązane lokalizacje",
+  en: "Related locations",
+  es: "Ubicaciones relacionadas",
+};
+
 /**
- * Internal linking money page → money page.
- * Google potrzebuje ścieżek dojścia do każdej strony pSEO (max 3 kliknięcia),
- * a użytkownik. Alternatyw w pobliżu, zanim opuści witrynę.
+ * Linkowanie wewnętrzne. Nagłówek sekcji i domyślny tytuł pobierają język
+ * z prefiksu ścieżki, więc na /en i /es nie ma polskich etykiet.
  */
 export function InternalLinks({
+  title,
   groups,
-  title = "Sprawdź też w okolicy",
+  className,
 }: {
-  groups: LinkGroup[];
   title?: string;
+  groups: InternalLinkGroup[];
+  className?: string;
 }) {
+  const pathname = usePathname() ?? "/";
+  const segment = pathname.split("/").filter(Boolean)[0] ?? "";
+  const locale: Locale = isLocale(segment) ? segment : DEFAULT_LOCALE;
+
   return (
-    <Section className="bg-brand-50/60">
-      <SectionHeading eyebrow="Powiązane lokalizacje">{title}</SectionHeading>
-      <div className="grid gap-6 md:grid-cols-2">
+    <Section className={className}>
+      <SectionHeading eyebrow={EYEBROW[locale]}>{title ?? DEFAULT_TITLE[locale]}</SectionHeading>
+      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {groups.map((group) => (
-          <div key={group.title} className="rounded-2xl border border-brand-100 bg-white p-5">
-            <p className="text-sm font-bold text-brand-950">{group.title}</p>
-            <ul className="mt-3 space-y-2 text-sm">
+          <div key={group.title}>
+            <p className="text-sm font-semibold text-brand-950">{group.title}</p>
+            <ul className="mt-2 space-y-1 text-sm text-brand-700">
               {group.links.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="group flex items-baseline justify-between gap-3 rounded-lg px-2 py-1.5 transition-colors hover:bg-brand-50"
-                  >
-                    <span className="font-medium text-brand-800 group-hover:text-brand-950 group-hover:underline">
-                      {link.label}
-                    </span>
-                    {link.meta ? (
-                      <span className="shrink-0 tabular-nums text-xs text-brand-500">
-                        {link.meta}
-                      </span>
-                    ) : null}
+                <li key={link.href} className="flex items-baseline justify-between gap-2">
+                  <Link href={link.href} className="hover:text-brand-950 hover:underline">
+                    {link.label}
                   </Link>
+                  {link.meta ? (
+                    <span className="shrink-0 text-xs tabular-nums text-brand-500">{link.meta}</span>
+                  ) : null}
                 </li>
               ))}
             </ul>
