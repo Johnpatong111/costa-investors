@@ -7,6 +7,7 @@ import { getCities, getRegion, getSubregions } from "@/lib/data/repository";
 import { PRICE_REPORT } from "@/lib/data/services";
 import { assertLocale } from "@/lib/i18n/config";
 import { getUiCopy } from "@/lib/i18n/ui";
+import { translatePath } from "@/lib/i18n/paths";
 import { buildMetadata } from "@/lib/seo/metadata";
 import { formatEur, formatRate } from "@/lib/utils/format";
 
@@ -105,7 +106,7 @@ export default async function PriceReportIndexPage({
                 <tr key={city.slug} className="odd:bg-white even:bg-brand-50/40">
                   <th scope="row" className="px-4 py-3 text-left font-medium">
                     <Link
-                      href={`/${PRICE_REPORT.slug}/${city.slug}/${city.districts[0]?.slug ?? ""}`}
+                      href={translatePath(`/${PRICE_REPORT.slug}/${city.slug}/${city.districts[0]?.slug ?? ""}`, locale)}
                       className="text-brand-900 underline decoration-brand-300 underline-offset-2 hover:decoration-brand-700"
                     >
                       {city.name}
@@ -139,7 +140,7 @@ export default async function PriceReportIndexPage({
                   .map((city) => (
                     <li key={city.slug}>
                       <Link
-                        href={`/${PRICE_REPORT.slug}/${city.slug}/${city.districts[0]?.slug ?? ""}`}
+                        href={translatePath(`/${PRICE_REPORT.slug}/${city.slug}/${city.districts[0]?.slug ?? ""}`, locale)}
                         className="hover:text-brand-950 hover:underline"
                       >
                         Ceny i ROI - {city.name}

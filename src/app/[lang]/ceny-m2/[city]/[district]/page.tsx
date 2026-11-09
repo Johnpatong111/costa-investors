@@ -13,6 +13,7 @@ import { getAllDistrictEntries, getDistrict } from "@/lib/data/repository";
 import { PRICE_REPORT, SERVICES } from "@/lib/data/services";
 import { buildLocalizedPriceReport } from "@/lib/i18n/content/builders";
 import { getUiCopy } from "@/lib/i18n/ui";
+import { translatePath } from "@/lib/i18n/paths";
 import { assertLocale } from "@/lib/i18n/config";
 import { buildMetadata } from "@/lib/seo/metadata";
 import { breadcrumbNode, datasetNode, faqNode } from "@/lib/seo/schema-org";
@@ -245,7 +246,7 @@ export default async function PriceReportPage({
               {SERVICES.map((service) => (
                 <li key={service.slug}>
                   <a
-                    href={`/${service.slug}/${entry.city.slug}/${entry.district.slug}`}
+                    href={translatePath(`/${service.slug}/${entry.city.slug}/${entry.district.slug}`, locale)}
                     className="font-medium text-brand-900 underline decoration-brand-300 underline-offset-2 hover:decoration-brand-700"
                   >
                     {service.name} - {entry.district.name}
