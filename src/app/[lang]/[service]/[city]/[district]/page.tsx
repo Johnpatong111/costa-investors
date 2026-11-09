@@ -190,7 +190,7 @@ export default async function DistrictServicePage({
           {
             title: ui.otherServices(districtName),
             links: otherServices.map((item) => ({
-              href: `/${item.slug}/${entry.city.slug}/${entry.district.slug}`,
+              href: translatePath(`/${item.slug}/${entry.city.slug}/${entry.district.slug}`, locale),
               label: getServiceCopy(item.kind, locale).name,
               meta: item.priceAnchor,
             })),
@@ -198,7 +198,7 @@ export default async function DistrictServicePage({
           {
             title: `Inne dzielnice: ${service.name}`,
             links: nearby.map((item) => ({
-              href: `/${service.slug}/${item.city.slug}/${item.district.slug}`,
+              href: translatePath(`/${service.slug}/${item.city.slug}/${item.district.slug}`, locale),
               label: `${item.district.name} (${item.city.name})`,
               meta: `${formatEur(item.district.pricePerM2)}/m²`,
             })),
@@ -207,7 +207,7 @@ export default async function DistrictServicePage({
             title: ui.investmentReport,
             links: [
               {
-                href: `/${PRICE_REPORT.slug}/${entry.city.slug}/${entry.district.slug}`,
+                href: translatePath(`/${PRICE_REPORT.slug}/${entry.city.slug}/${entry.district.slug}`, locale),
                 label: `Ceny i ROI w ${districtName}. Raport ${content.stats.dataAsOf}`,
                 meta: `ROI ${formatRate(content.stats.rentalYield)}`,
               },

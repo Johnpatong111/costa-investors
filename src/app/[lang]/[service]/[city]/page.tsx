@@ -16,6 +16,7 @@ import { PRICE_REPORT, SERVICES } from "@/lib/data/services";
 import { buildLocalizedCityContent } from "@/lib/i18n/content/builders";
 import { getServiceCopy } from "@/lib/i18n/content/builders";
 import { getUiCopy } from "@/lib/i18n/ui";
+import { translatePath } from "@/lib/i18n/paths";
 import { assertLocale, isLocale, ROUTABLE_LOCALES } from "@/lib/i18n/config";
 import { resolveService } from "@/lib/i18n/resolve";
 import { serviceSlug } from "@/lib/i18n/service-slugs";
@@ -160,14 +161,14 @@ export default async function CityServicePage({
         title={ui.howItWorksTitle(serviceName, city.name)}
       />
 
-      <FaqAccordion items={content.faq} title={`${service.name} w ${city.name} - FAQ`} />
+      <FaqAccordion items={content.faq} title={ui.faqTitle(serviceName, city.name)} />
 
       <InternalLinks
         groups={[
           {
-            title: `Dzielnice ${city.nameGenitive}`,
+            title: ui.otherDistricts(serviceName),
             links: city.districts.map((district) => ({
-              href: `/${service.slug}/${city.slug}/${district.slug}`,
+              href: translatePath(`/${service.slug}/${city.slug}/${district.slug}`, locale),
               label: district.name,
               meta: `${formatEur(district.pricePerM2)}/m² · ROI ${formatRate(district.rentalYield)}`,
             })),
@@ -175,7 +176,7 @@ export default async function CityServicePage({
           {
             title: `Inne usługi w ${city.nameLocative}`,
             links: SERVICES.filter((item) => item.slug !== service.slug).map((item) => ({
-              href: `/${item.slug}/${city.slug}`,
+              href: translatePath(`/${item.slug}/${city.slug}`, locale),
               label: getServiceCopy(item.kind, locale).name,
               meta: item.priceAnchor,
             })),
@@ -184,7 +185,7 @@ export default async function CityServicePage({
             title: ui.investmentReport,
             links: [
               {
-                href: `/${PRICE_REPORT.slug}`,
+                href: translatePath(`/${PRICE_REPORT.slug}`, locale),
                 label: `Ceny m² i ROI w ${city.nameLocative}`,
                 meta: `${formatEur(city.pricePerM2)}/m²`,
               },
