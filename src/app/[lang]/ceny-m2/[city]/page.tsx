@@ -57,6 +57,7 @@ const COPY: Record<
     ctaText: string;
     metaTitle: (city: string) => string;
     metaDescription: (city: string, median: string, yieldValue: string) => string;
+    keywords: (city: string) => string[];
   }
 > = {
   pl: {
@@ -79,6 +80,12 @@ const COPY: Record<
     metaTitle: (city) => `Ceny m² ${city} ${MARKET_YEAR} | ROI i dzielnice`,
     metaDescription: (city, median, yieldValue) =>
       `Ceny w ${city}: mediana ${median} €/m², ROI najmu ${yieldValue} brutto. Zobacz ceny i zwrot w każdej dzielnicy oraz historię cen 2016-2026.`,
+    keywords: (city) => [
+      `ceny m2 ${city}`,
+      `ceny nieruchomości ${city} ${MARKET_YEAR}`,
+      `ROI najmu ${city}`,
+      PRICE_HISTORY_KEYWORD.pl,
+    ],
   },
   en: {
     eyebrow: "Market data",
@@ -100,6 +107,12 @@ const COPY: Record<
     metaTitle: (city) => `Property prices ${city} ${MARKET_YEAR} | Yields by area`,
     metaDescription: (city, median, yieldValue) =>
       `Prices in ${city}: median ${median} €/m² and ${yieldValue} gross yield. See every area, its return and the 2016-2026 price history.`,
+    keywords: (city) => [
+      `property prices ${city}`,
+      `price per m2 ${city} ${MARKET_YEAR}`,
+      `rental yield ${city}`,
+      PRICE_HISTORY_KEYWORD.en,
+    ],
   },
   es: {
     eyebrow: "Datos de mercado",
@@ -121,6 +134,12 @@ const COPY: Record<
     metaTitle: (city) => `Precio m² ${city} ${MARKET_YEAR} | Rentabilidad por zona`,
     metaDescription: (city, median, yieldValue) =>
       `Precios en ${city}: mediana ${median} €/m² y rentabilidad bruta ${yieldValue}. Consulta cada zona, su retorno y la evolución de precios 2016-2026.`,
+    keywords: (city) => [
+      `precio m2 ${city}`,
+      `precios vivienda ${city} ${MARKET_YEAR}`,
+      `rentabilidad alquiler ${city}`,
+      PRICE_HISTORY_KEYWORD.es,
+    ],
   },
 };
 
@@ -142,27 +161,7 @@ export async function generateMetadata({
   const stats = deriveCityStats(city, region);
   const copy = COPY[locale];
 
-  const keywords =
-    locale === "es"
-      ? [
-          `precio m2 ${city.name}`,
-          `precios vivienda ${city.name} ${MARKET_YEAR}`,
-          `rentabilidad alquiler ${city.name}`,
-          PRICE_HISTORY_KEYWORD[locale],
-        ]
-      : locale === "en"
-        ? [
-            `property prices ${city.name}`,
-            `price per m2 ${city.name} ${MARKET_YEAR}`,
-            `rental yield ${city.name}`,
-            PRICE_HISTORY_KEYWORD[locale],
-          ]
-        : [
-            `ceny m2 ${city.name}`,
-            `ceny nieruchomości ${city.name} ${MARKET_YEAR}`,
-            `ROI najmu ${city.name}`,
-            PRICE_HISTORY_KEYWORD[locale],
-          ];
+  const keywords = copy.keywords(city.name);
 
   return buildMetadata({
     title: copy.metaTitle(city.name),
