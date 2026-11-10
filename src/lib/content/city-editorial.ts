@@ -855,6 +855,174 @@ const COPY: Record<string, Partial<Record<Locale, EditorialSection[]>>> = {
       },
     ],
   },
+  "el-campello": {
+    pl: [
+      {
+        title: "Wprowadzenie rynkowe",
+        body: "El Campello to rynek podmiejski Alicante: 29 tys. mieszkańców, 1 100 transakcji rocznie i mediana 2 880 €/m², czyli 180 €/m² powyżej średniej Costa Blanca, przy dynamice 8,2% r/r i ekspozycji 110 dni. Jego przewagą nie jest plaża, a kolejka: linia tramwajowa TRAM łączy miasto z Alicante w kilkanaście minut, więc część kupujących to osoby pracujące w stolicy prowincji.",
+      },
+      {
+        title: "Rozstrzał w dzielnicach",
+        body: "Między Muchavista (3 100 €/m²) a Coveta Fumada (2 720 €/m²) leży 380 €/m². Pomiędzy nimi jest Centro (2 780) z mieszkaniami blisko portu i przystanku tramwajowego. Muchavista wygrywa szeroką piaszczystą plażą i apartamentami z widokiem na morze, a Coveta Fumada to willowa zabudowa na klifie z kameralnymi osiedlami i mniejszym ruchem - najtańsza, ale też najbardziej uzależniona od samochodu.",
+      },
+      {
+        title: "Czynniki mikrolokalne",
+        body: "Tu o cenie decyduje odległość od przystanku TRAM i szerokość plaży, nie sam widok: apartament przy Playa de Muchavista jest wart więcej niż identyczny w Coveta Fumada, bo dojazd do Alicante zajmuje 15 minut bez samochodu. 42% kupujących to obcokrajowcy, Polacy 5% - widać ich szczególnie w Muchavista. Bliskość Cala de la Merced i stanowiska Illeta dels Banyets daje najem krótki, ale poza sezonem rynek pracuje na dojeżdżających do pracy.",
+      },
+      {
+        title: "Wnioski dla inwestora",
+        body: "ROI 5,9% brutto przy 2 880 €/m² to wynik średni, ale z najlepszą w okolicy płynnością najmu całorocznego. Za 250 tys. € kupisz około 87 m². Pod stabilny dochód wybierz Centro przy tramwaju, pod sezon i widok Muchavista, pod spokój i działkę Coveta Fumada. Sprawdź, czy budynek nie stoi w pierwszej linii hałasu linii tramwajowej - w Muchavista i Centro to realny minus, który obniża cenę i komfort najmu.",
+      },
+    ],
+    en: [
+      {
+        title: "Market introduction",
+        body: "El Campello is Alicante's suburban market: 29,000 residents, 1,100 transactions a year and a 2,880 €/m² median, 180 €/m² above the Costa Blanca average, with 8.2% growth and 110 days on market. Its edge is not the beach but the railway: the TRAM line links the town to Alicante in about fifteen minutes, so part of the buyer pool works in the provincial capital.",
+      },
+      {
+        title: "Spread across districts",
+        body: "Between Muchavista (3,100 €/m²) and Coveta Fumada (2,720 €/m²) sits 380 €/m². In the middle is Centro (2,780) with flats near the port and the tram stop. Muchavista wins on its wide sandy beach and sea-view flats, while Coveta Fumada offers clifftop villas in small gated estates with less traffic: cheapest, but the most car-dependent.",
+      },
+      {
+        title: "Micro-local factors",
+        body: "Price follows distance to the TRAM stop and beach width rather than the view alone: a flat by Playa de Muchavista beats an identical one in Coveta Fumada because Alicante is fifteen minutes away without a car. Foreign buyers make up 42%, Polish buyers 5%, visible especially in Muchavista. Proximity to Cala de la Merced and the Illeta dels Banyets site drives short lets, but off season the market runs on commuters.",
+      },
+      {
+        title: "Investor takeaway",
+        body: "A 5.9% gross yield at 2,880 €/m² is average, but with the best year-round letting liquidity around. 250,000 € buys about 87 m². For steady income pick Centro by the tram, for season and views Muchavista, for quiet and a plot Coveta Fumada. Check whether the building sits on the tram noise line: in Centro and Muchavista it is a genuine discount factor and hurts tenant comfort.",
+      },
+    ],
+    es: [
+      {
+        title: "Introducción de mercado",
+        body: "El Campello es el mercado suburbano de Alicante: 29.000 habitantes, 1.100 operaciones al año y una mediana de 2.880 €/m², 180 €/m² sobre la media de Costa Blanca, con un crecimiento del 8,2% y 110 días de exposición. Su ventaja no es la playa sino el tren: la línea TRAM conecta el pueblo con Alicante en unos quince minutos, así que parte de los compradores trabaja en la capital.",
+      },
+      {
+        title: "Diferencial entre barrios",
+        body: "Entre Muchavista (3.100 €/m²) y Coveta Fumada (2.720 €/m²) hay 380 €/m². En medio está Centro (2.780) con pisos junto al puerto y la parada de tranvía. Muchavista gana por su playa amplia de arena y pisos con vistas al mar, mientras Coveta Fumada ofrece chalets en acantilado con urbanizaciones pequeñas y menos tráfico: el más barato y el más dependiente del coche.",
+      },
+      {
+        title: "Factores microlocales",
+        body: "El precio sigue la distancia a la parada del TRAM y la anchura de la playa, no solo las vistas: un piso en Playa de Muchavista vale más que otro idéntico en Coveta Fumada porque Alicante queda a quince minutos sin coche. El 42% de los compradores es extranjero y los polacos el 5%, visibles sobre todo en Muchavista. La cercanía a Cala de la Merced y al yacimiento de Illeta dels Banyets alimenta el alquiler corto, pero fuera de temporada manda el residente que va a trabajar.",
+      },
+      {
+        title: "Conclusión para el inversor",
+        body: "Un 5,9% bruto con 2.880 €/m² es un resultado medio, pero con la mejor liquidez de alquiler anual del entorno. Con 250.000 € compras unos 87 m². Para renta estable elige Centro junto al tranvía; para temporada y vistas, Muchavista; para calma y parcela, Coveta Fumada. Comprueba si el edificio está en la línea de ruido del tranvía: en Centro y Muchavista es un descuento real y afecta al confort del inquilino.",
+      },
+    ],
+  },
+  villajoyosa: {
+    pl: [
+      {
+        title: "Wprowadzenie rynkowe",
+        body: "Villajoyosa to jedyny rynek w bazie, gdzie mediana (2 620 €/m²) leży poniżej średniej Costa Blanca o 80 €/m², a jednocześnie ROI 6,1% i dynamika 8,5% r/r są wyraźnie powyżej przeciętnej. 34 tys. mieszkańców, 900 transakcji i 115 dni ekspozycji: to miasto, które nie sprzedaje się wizerunkiem kurortu, tylko pracą portu, fabryką czekolady i kolorowymi kamienicami starego miasta.",
+      },
+      {
+        title: "Rozstrzał w dzielnicach",
+        body: "Między Playa Torre (2 840 €/m²) a Plans (2 350 €/m²) leży 490 €/m². Pośrodku jest Centro (2 520) z kamienicami po remoncie w Casco Antiguo, blisko Puerto de Villajoyosa. Playa Torre ma apartamenty w pierwszej linii przy Playa del Torres i nowe osiedla z basenami, a Plans to spokojna zabudowa willowa na większych działkach przy Sierra de Ponotx - najtańsza, bo bez dostępu do wody.",
+      },
+      {
+        title: "Czynniki mikrolokalne",
+        body: "Tu cena zależy od tego, czy widzisz morze z okna, czy tylko z dachu: apartament w Playa Torre jest wart o kilkaset euro za metr więcej niż identyczny w Centro. 45% kupujących to obcokrajowcy, Polacy 6%. Centro żyje z gastronomii i turystyki jednodniowej, Playa Torre z najmu sezonowego, Plans z mieszkańców. Tramwaj do Benidorm i Alicante działa cały rok, więc najem długoterminowy ma tu realną bazę.",
+      },
+      {
+        title: "Wnioski dla inwestora",
+        body: "ROI 6,1% brutto przy cenie poniżej średniej regionu to jedna z niewielu okazji na Costa Blanca, gdzie nie płaci się premii za markę. Za 250 tys. € kupisz około 95 m². Pod najem sezonowy wybierz Playa Torre, pod całoroczny Centro, pod remont i duży metraż Plans. Sprawdź wysokość comunidad w blokach przy plaży oraz czy nieruchomość nie leży w strefie hałasu zakładów przy porcie - fabryki pracują także poza sezonem.",
+      },
+    ],
+    en: [
+      {
+        title: "Market introduction",
+        body: "Villajoyosa is the only market in our dataset where the median (2,620 €/m²) sits 80 €/m² below the Costa Blanca average while a 6.1% yield and 8.5% growth run clearly above it. 34,000 residents, 900 transactions and 115 days on market: a town selling port work, a chocolate factory and the painted houses of its old town rather than a resort image.",
+      },
+      {
+        title: "Spread across districts",
+        body: "Between Playa Torre (2,840 €/m²) and Plans (2,350 €/m²) sits 490 €/m². In the middle is Centro (2,520) with renovated townhouses in the Casco Antiguo, close to Puerto de Villajoyosa. Playa Torre offers front-line flats by Playa del Torres and new pool estates, while Plans is quiet villa housing on larger plots by Sierra de Ponotx: cheapest, with no water access.",
+      },
+      {
+        title: "Micro-local factors",
+        body: "Price depends on whether you see the sea from the window or just from the roof: a Playa Torre flat is worth several hundred euros per square metre more than an identical one in Centro. Foreign buyers make up 45%, Polish buyers 6%. Centro lives off restaurants and day tourism, Playa Torre off seasonal letting, Plans off residents. The tram to Benidorm and Alicante runs all year, so long lets here rest on a real base.",
+      },
+      {
+        title: "Investor takeaway",
+        body: "A 6.1% gross yield at a price below the regional average is one of the few chances on the Costa Blanca to avoid paying a brand premium. 250,000 € buys about 95 m². For seasonal letting pick Playa Torre, for year-round Centro, for renovation and space Plans. Check community fees in seafront blocks and whether the unit sits in the noise zone near the port plants, which run outside the season too.",
+      },
+    ],
+    es: [
+      {
+        title: "Introducción de mercado",
+        body: "Villajoyosa es el único mercado de la base donde la mediana (2.620 €/m²) queda 80 €/m² por debajo de la media de Costa Blanca mientras un 6,1% de rentabilidad y un 8,5% de crecimiento están por encima. 34.000 habitantes, 900 operaciones y 115 días: un pueblo que vende trabajo portuario, fábrica de chocolate y las casas pintadas del casco antiguo, no una imagen de resort.",
+      },
+      {
+        title: "Diferencial entre barrios",
+        body: "Entre Playa Torre (2.840 €/m²) y Plans (2.350 €/m²) hay 490 €/m². En medio está Centro (2.520) con casas rehabilitadas en el Casco Antiguo, junto al Puerto de Villajoyosa. Playa Torre ofrece pisos en primera línea de Playa del Torres y urbanizaciones nuevas con piscina, y Plans es vivienda de chalets en parcelas grandes junto a Sierra de Ponotx: el más barato, sin acceso al agua.",
+      },
+      {
+        title: "Factores microlocales",
+        body: "El precio depende de si ves el mar desde la ventana o solo desde el tejado: un piso en Playa Torre vale varios cientos de euros por metro más que otro idéntico en Centro. El 45% de los compradores es extranjero y los polacos el 6%. Centro vive de restauración y turismo de día, Playa Torre de alquiler de temporada y Plans de residentes. El tranvía a Benidorm y Alicante funciona todo el año, así que el alquiler largo tiene base real.",
+      },
+      {
+        title: "Conclusión para el inversor",
+        body: "Un 6,1% bruto con precio por debajo de la media regional es una de las pocas ocasiones en Costa Blanca de no pagar prima de marca. Con 250.000 € compras unos 95 m². Para temporada, Playa Torre; para todo el año, Centro; para reforma y metros, Plans. Revisa la comunidad en bloques de primera línea y si la vivienda está en la zona de ruido de las fábricas del puerto, que trabajan también fuera de temporada.",
+      },
+    ],
+  },
+  finestrat: {
+    pl: [
+      {
+        title: "Wprowadzenie rynkowe",
+        body: "Finestrat to wieś pod Benidormem, która stała się rynkiem premium: 7,5 tys. mieszkańców, zaledwie 700 transakcji rocznie i mediana 3 070 €/m², czyli 370 €/m² powyżej średniej Costa Blanca, przy dynamice 9,4% r/r. Ekspozycja 125 dni i tak niski wolumen oznaczają, że mówimy o rynku wąskim, gdzie cena zależy od konkretnej nieruchomości, a nie od średniej gminy.",
+      },
+      {
+        title: "Rozstrzał w dzielnicach",
+        body: "Między Balcón de Finestrat (3 340 €/m²) a Centro (2 590 €/m²) leży 750 €/m² - jedna z największych rozpiętości w regionie. Pomiędzy nimi jest Golf (3 180) z apartamentami i spa wokół Finestrat Golf i Sierra Cortina. Balcón to nowe osiedla z widokiem na morze i wille z basenem i ochroną, blisko Benidormu i Terra Mítica, a Centro to tradycyjna wiejska zabudowa z widokiem na Puig Campana, bez dostępu do plaży.",
+      },
+      {
+        title: "Czynniki mikrolokalne",
+        body: "Tu o cenie decyduje wysokość, na której stoi dom: z Balcón de Finestrat widać morze i zatokę, z Centro tylko górę. 50% kupujących to obcokrajowcy, Polacy 6% - najwyższy odsetek klientów zagranicznych w tej części wybrzeża. Golf pracuje na rynku drugiego domu z basenami i spa, Centro na mieszkańcach i pracownikach Benidormu. Bliskość Puig Campana daje walor turystyczny, ale też ogranicza zabudowę i chroni widoki.",
+      },
+      {
+        title: "Wnioski dla inwestora",
+        body: "ROI 5,6% brutto przy 3 070 €/m² to wynik umiarkowany, a 700 transakcji rocznie to najniższa płynność w regionie - wyjście może potrwać. Za 250 tys. € kupisz około 81 m², w Centro więcej, w Balcón mniej. Pod najem sezonowy i widoki wybierz Balcón de Finestrat, pod długoterminowy Centro, pod drugi dom Golf. Sprawdź koszty wspólnoty w osiedlach z ochroną i basenem - przy najmie długoterminowym potrafią obniżyć realny zwrot o dwa punkty procentowe.",
+      },
+    ],
+    en: [
+      {
+        title: "Market introduction",
+        body: "Finestrat is a village under Benidorm that turned into a premium market: 7,500 residents, only 700 transactions a year and a 3,070 €/m² median, 370 €/m² above the Costa Blanca average with 9.4% growth. 125 days on market and that low volume mean a narrow market where price follows the specific property, not the municipal average.",
+      },
+      {
+        title: "Spread across districts",
+        body: "Between Balcón de Finestrat (3,340 €/m²) and Centro (2,590 €/m²) sits 750 €/m², one of the widest ranges in the region. In between is Golf (3,180) with spa flats around Finestrat Golf and Sierra Cortina. Balcón offers new sea-view estates and gated villas with pools close to Benidorm and Terra Mítica, while Centro is traditional village housing facing Puig Campana with no beach access.",
+      },
+      {
+        title: "Micro-local factors",
+        body: "Price depends on the elevation the house stands at: from Balcón de Finestrat you see the sea and the bay, from Centro only the mountain. Foreign buyers make up 50%, Polish buyers 6%, the highest international share on this stretch of coast. Golf runs on the second-home market with pools and spas, Centro on residents and Benidorm commuters. Puig Campana adds tourist appeal but also caps building and protects views.",
+      },
+      {
+        title: "Investor takeaway",
+        body: "A 5.6% gross yield at 3,070 €/m² is moderate, and 700 transactions a year is the lowest liquidity in the region, so an exit can take time. 250,000 € buys about 81 m², more in Centro and less in Balcón. For seasonal letting and views pick Balcón de Finestrat, for long lets Centro, for a second home Golf. Check community costs in gated pool estates: on long lets they can knock two points off the real return.",
+      },
+    ],
+    es: [
+      {
+        title: "Introducción de mercado",
+        body: "Finestrat es un pueblo bajo Benidorm convertido en mercado premium: 7.500 habitantes, solo 700 operaciones al año y una mediana de 3.070 €/m², 370 €/m² sobre la media de Costa Blanca con un crecimiento del 9,4%. Los 125 días de exposición y ese volumen tan bajo indican un mercado estrecho, donde el precio depende de la vivienda concreta y no de la media municipal.",
+      },
+      {
+        title: "Diferencial entre barrios",
+        body: "Entre Balcón de Finestrat (3.340 €/m²) y Centro (2.590 €/m²) hay 750 €/m², una de las mayores horquillas de la región. Entre medias está Golf (3.180) con pisos y spa en torno a Finestrat Golf y Sierra Cortina. Balcón ofrece urbanizaciones nuevas con vistas al mar y chalets con piscina y seguridad cerca de Benidorm y Terra Mítica, mientras Centro es vivienda tradicional de pueblo frente al Puig Campana, sin playa.",
+      },
+      {
+        title: "Factores microlocales",
+        body: "El precio depende de la altura a la que está la casa: desde Balcón de Finestrat se ven el mar y la bahía, desde Centro solo la montaña. El 50% de los compradores es extranjero y los polacos el 6%, el mayor peso internacional de este tramo. Golf funciona con el mercado de segunda residencia con piscina y spa, Centro con residentes y trabajadores de Benidorm. El Puig Campana aporta atractivo turístico y a la vez limita la edificación y protege las vistas.",
+      },
+      {
+        title: "Conclusión para el inversor",
+        body: "Un 5,6% bruto con 3.070 €/m² es moderado, y 700 operaciones al año suponen la liquidez más baja de la región: la salida puede tardar. Con 250.000 € compras unos 81 m², más en Centro y menos en Balcón. Para temporada y vistas elige Balcón de Finestrat; para largo, Centro; para segunda residencia, Golf. Revisa la comunidad en urbanizaciones con seguridad y piscina: en alquiler largo puede restar dos puntos de retorno real.",
+      },
+    ],
+  },
 };
 
 /** Sekcje redakcyjne dla miasta (null = brak autorskiego tekstu). */
