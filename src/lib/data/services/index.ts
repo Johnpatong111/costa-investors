@@ -1,7 +1,6 @@
 ﻿import type { ServiceDefinition } from "./types";
 import { apartamentyNaSprzedaz } from "./apartamenty-na-sprzedaz";
 import { domyInwestycyjne } from "./domy-inwestycyjne";
-import { darmowyPrzewodnikWycena } from "./darmowy-przewodnik-wycena";
 
 export type { ServiceDefinition, ServiceKind, ServiceFaqSeed } from "./types";
 
@@ -9,7 +8,6 @@ export type { ServiceDefinition, ServiceKind, ServiceFaqSeed } from "./types";
 export const SERVICES: readonly ServiceDefinition[] = [
   apartamentyNaSprzedaz,
   domyInwestycyjne,
-  darmowyPrzewodnikWycena,
 ] as const;
 
 /** Slug-i zarezerwowane dla segmentów statycznych (kolizja = 404 / nadpisanie route). */

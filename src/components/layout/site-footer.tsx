@@ -24,8 +24,6 @@ export function SiteFooter({ lang }: { lang: Locale }) {
 
   // Linkowanie o różnej intencji: dane (ceny m² per miasto, historia cen)
   // obok usług i poradników. Bez tego stopka linkowała wyłącznie do ofert.
-  const guideService = SERVICES.find((service) => service.kind === "lead-magnet") ?? SERVICES[0];
-  // Kuratorowana lista rynków: największe miasta + Calpe i Cartagena.
   const allCities = getCities();
   const reportCities = ["torrevieja", "alicante", "benidorm", "calpe", "cartagena", "denia"]
     .map((slug) => allCities.find((city) => city.slug === slug))
@@ -91,16 +89,6 @@ export function SiteFooter({ lang }: { lang: Locale }) {
         <nav aria-label={nav.guidesNav} className="text-sm">
           <p className="mb-3 font-semibold text-white">{nav.guidesNav}</p>
           <ul className="space-y-2">
-            {guideService ? (
-              <li>
-                <Link
-                  href={translatePath(`/${guideService.slug}`, lang)}
-                  className="font-medium hover:text-white hover:underline"
-                >
-                  {nav.guideLabel}
-                </Link>
-              </li>
-            ) : null}
             <li>
               <Link
                 href={`${localePath(lang, "/")}#lead-form`}

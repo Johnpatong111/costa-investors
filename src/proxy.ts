@@ -19,7 +19,6 @@ const ENABLED = process.env.I18N_ROUTING_ENABLED !== "false";
 const LEGACY_PREFIXES = new Set([
   "apartamenty-na-sprzedaz",
   "domy-inwestycyjne",
-  "darmowy-przewodnik-wycena",
   "ceny-m2",
   "o-nas",
   "polityka-prywatnosci",
@@ -60,17 +59,6 @@ export function proxy(request: NextRequest) {
     }
   })();
 
-  if (/darmowy-przewodnik-analiza[\s-]*ofert/i.test(decoded)) {
-    const target: Record<string, string> = {
-      pl: "darmowy-przewodnik-wycena",
-      en: "free-buying-guide",
-      es: "guia-gratis-compra",
-    };
-    const locale = firstSegment && isLocale(firstSegment) ? firstSegment : DEFAULT_LOCALE;
-    const redirectUrl = request.nextUrl.clone();
-    redirectUrl.pathname = `/${locale}/${target[locale]}`;
-    return NextResponse.redirect(redirectUrl, 301);
-  }
 
   if (firstSegment === "og" || firstSegment === "sitemap-index.xml") {
     return NextResponse.next();
