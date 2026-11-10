@@ -4,15 +4,17 @@ import { notFound } from "next/navigation";
 import { LeadEngine } from "@/components/lead/lead-engine";
 import { PriceHistorySection } from "@/components/sections/price-history";
 import { Breadcrumbs, type Crumb } from "@/components/sections/breadcrumbs";
+import { InternalLinks } from "@/components/sections/internal-links";
 import { JsonLd } from "@/components/seo/json-ld";
 import { Section, SectionHeading } from "@/components/ui/primitives";
 import { deriveCityStats, deriveDistrictStats, MARKET_YEAR } from "@/lib/content/market-stats";
 import { getCities, getCitiesBySubregion, getCity, getRegion } from "@/lib/data/repository";
-import { PRICE_REPORT } from "@/lib/data/services";
+import { PRICE_REPORT, SERVICES } from "@/lib/data/services";
 import { assertLocale, type Locale } from "@/lib/i18n/config";
 import { getPriceHistory } from "@/lib/i18n/price-history";
 import { translatePath } from "@/lib/i18n/paths";
 import { PRICE_HISTORY_KEYWORD } from "@/lib/i18n/seo-copy";
+import { getServiceCopy } from "@/lib/i18n/content/builders";
 import { getUiCopy } from "@/lib/i18n/ui";
 import { buildMetadata } from "@/lib/seo/metadata";
 import { breadcrumbNode, datasetNode } from "@/lib/seo/schema-org";
@@ -318,6 +320,47 @@ export default async function PriceCityPage({ params }: { params: Promise<RouteP
           growth: stats.priceGrowth,
           seed: city.slug,
         })}
+      />
+
+      <InternalLinks
+        groups={[
+          {
+            title:
+              locale === "es"
+                ? `Servicios en ${city.name}`
+                : locale === "en"
+                  ? `Services in ${city.name}`
+                  : `Usługi w ${city.nameLocative}`,
+            links: SERVICES.map((item) => ({
+              href: translatePath(`/${item.slug}/${city.slug}`, locale),
+              label: getServiceCopy(item.kind, locale).name,
+            })),
+          },
+          {
+            title:
+              locale === "es"
+                ? "Informes de otras localidades"
+                : locale === "en"
+                  ? "Reports for other towns"
+                  : "Raporty innych miast",
+            links: neighbours.slice(0, 6).map((item) => ({
+              href: translatePath(`/${PRICE_REPORT.slug}/${item.slug}`, locale),
+              label: item.name,
+            })),
+          },
+          {
+            title:
+              locale === "es"
+                ? "Zonas de la localidad"
+                : locale === "en"
+                  ? "Areas in this town"
+                  : "Dzielnice w tym mieście",
+            links: rows.slice(0, 5).map((row) => ({
+              href: translatePath(`/${PRICE_REPORT.slug}/${city.slug}/${row.slug}`, locale),
+              label: row.name,
+            })),
+          },
+        ]}
       />
 
       <Section className="bg-brand-50/60">

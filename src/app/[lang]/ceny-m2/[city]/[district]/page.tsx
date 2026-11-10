@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { LeadEngine } from "@/components/lead/lead-engine";
 import { Breadcrumbs, type Crumb } from "@/components/sections/breadcrumbs";
@@ -7,6 +8,7 @@ import { FaqAccordion } from "@/components/sections/faq-accordion";
 import { Section, SectionHeading } from "@/components/ui/primitives";
 import { JsonLd } from "@/components/seo/json-ld";
 import { PriceHistorySection } from "@/components/sections/price-history";
+import { InternalLinks } from "@/components/sections/internal-links";
 import { getPriceHistory } from "@/lib/i18n/price-history";
 import { PRICE_HISTORY_KEYWORD } from "@/lib/i18n/seo-copy";
 import { PRICE_HUB_COPY } from "@/lib/i18n/price-hub-copy";
@@ -15,7 +17,7 @@ import { deriveDistrictStats } from "@/lib/content/market-stats";
 import { COUNTRY_MEDIAN_PRICE_PER_M2 } from "@/lib/content/market-stats";
 import { getAllDistrictEntries, getDistrict } from "@/lib/data/repository";
 import { PRICE_REPORT, SERVICES } from "@/lib/data/services";
-import { buildLocalizedPriceReport } from "@/lib/i18n/content/builders";
+import { buildLocalizedPriceReport, getServiceCopy } from "@/lib/i18n/content/builders";
 import { getUiCopy } from "@/lib/i18n/ui";
 import { translatePath } from "@/lib/i18n/paths";
 import { assertLocale } from "@/lib/i18n/config";
@@ -136,6 +138,9 @@ export default async function PriceReportPage({
             current: " (ta dzielnica)",
           };
 
+  // Nazwa dzielnicy w tabeli → link do jej raportu (mapowanie po nazwie).
+  const slugByName = new Map(entry.city.districts.map((item) => [item.name, item.slug]));
+
   const crumbs: Crumb[] = [
     { name: ui.home, path: "/" },
     { name: PRICE_REPORT.name, path: `/${PRICE_REPORT.slug}` },
@@ -216,7 +221,17 @@ export default async function PriceReportPage({
                   }
                 >
                   <th scope="row" className="px-4 py-3 text-left font-medium">
-                    {row.isCurrent ? `${row.name}${tableUi.current}` : row.name}
+                    {slugByName.get(row.name) ? (
+                      <Link
+                        href={translatePath(`/${PRICE_REPORT.slug}/${entry.city.slug}/${slugByName.get(row.name)}`, locale)}
+                        className="text-brand-900 underline decoration-brand-300 underline-offset-2 hover:decoration-brand-700"
+                      >
+                        {row.name}
+                      </Link>
+                    ) : (
+                      row.name
+                    )}
+                    {row.isCurrent ? tableUi.current : null}
                   </th>
                   <td className="px-4 py-3 text-right tabular-nums">{formatEur(row.pricePerM2)}</td>
                   <td className="px-4 py-3 text-right tabular-nums">
@@ -283,6 +298,52 @@ export default async function PriceReportPage({
           </div>
         </div>
       </Section>
+
+      <InternalLinks
+        groups={[
+          {
+            title:
+              locale === "es"
+                ? `Otras zonas de ${entry.city.name}`
+                : locale === "en"
+                  ? `Other areas of ${entry.city.name}`
+                  : `Inne dzielnice ${entry.city.nameGenitive}`,
+            links: entry.city.districts
+              .filter((item) => item.slug !== entry.district.slug)
+              .map((item) => ({
+                href: translatePath(`/${PRICE_REPORT.slug}/${entry.city.slug}/${item.slug}`, locale),
+                label: item.name,
+              })),
+          },
+          {
+            title:
+              locale === "es"
+                ? `Servicios en ${entry.city.name}`
+                : locale === "en"
+                  ? `Services in ${entry.city.name}`
+                  : `Usługi w ${entry.city.nameLocative}`,
+            links: SERVICES.map((item) => ({
+              href: translatePath(`/${item.slug}/${entry.city.slug}`, locale),
+              label: getServiceCopy(item.kind, locale).name,
+            })),
+          },
+          {
+            title: locale === "es" ? "Informes" : locale === "en" ? "Reports" : "Raporty",
+            links: [
+              {
+                href: translatePath(`/${PRICE_REPORT.slug}/${entry.city.slug}`, locale),
+                label:
+                  locale === "es"
+                    ? `Precios en ${entry.city.name}`
+                    : locale === "en"
+                      ? `Prices in ${entry.city.name}`
+                      : `Ceny w ${entry.city.nameLocative}`,
+              },
+              { href: translatePath(`/${PRICE_REPORT.slug}`, locale), label: PRICE_REPORT.name },
+            ],
+          },
+        ]}
+      />
 
       <PriceHistorySection
         history={getPriceHistory(locale, {

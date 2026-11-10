@@ -84,6 +84,27 @@ export default async function HomePage({
           />
         </div>
       </Hero>
+      <Section className="bg-brand-50/60">
+        <SectionHeading eyebrow={home.marketsEyebrow}>
+          {locale === "es"
+            ? `Precios y rentabilidad en ${allCities.length} localidades`
+            : locale === "en"
+              ? `Prices and yields in ${allCities.length} locations`
+              : `Ceny m² i ROI w ${allCities.length} miejscowościach`}
+        </SectionHeading>
+        <ul className="grid grid-cols-2 gap-2 text-sm sm:grid-cols-3 lg:grid-cols-4">
+          {allCities.map((city) => (
+            <li key={city.slug}>
+              <Link
+                href={translatePath(`/${PRICE_REPORT.slug}/${city.slug}`, locale)}
+                className="block rounded-lg border border-brand-100 bg-white px-3 py-2 text-brand-800 hover:border-brand-300 hover:text-brand-950"
+              >
+                {city.name}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </Section>
 
       <Section>
         <SectionHeading eyebrow={home.servicesEyebrow}>{home.servicesTitle}</SectionHeading>
