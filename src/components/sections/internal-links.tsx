@@ -41,6 +41,11 @@ export function InternalLinks({
   groups: InternalLinkGroup[];
   className?: string;
 }) {
+  // Przy jednej usłudze część grup wychodzi pusta; nie renderujemy wtedy
+  // nagłówka z pustą listą.
+  const visibleGroups = groups.filter((group) => group.links.length > 0);
+  if (visibleGroups.length === 0) return null;
+
   const pathname = usePathname() ?? "/";
   const segment = pathname.split("/").filter(Boolean)[0] ?? "";
   const locale: Locale = isLocale(segment) ? segment : DEFAULT_LOCALE;
@@ -49,7 +54,7 @@ export function InternalLinks({
     <Section className={className}>
       <SectionHeading eyebrow={EYEBROW[locale]}>{title ?? DEFAULT_TITLE[locale]}</SectionHeading>
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {groups.map((group) => (
+        {visibleGroups.map((group) => (
           <div key={group.title}>
             <p className="text-sm font-semibold text-brand-950">{group.title}</p>
             <ul className="mt-2 space-y-1 text-sm text-brand-700">

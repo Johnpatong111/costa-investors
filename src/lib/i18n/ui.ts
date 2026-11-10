@@ -124,7 +124,7 @@ export const HOME_COPY: Record<
     heroEyebrow: "Costa Blanca i Costa Cálida · Hiszpania",
     heroH1: "Kup nieruchomość w Hiszpanii z agentem mówiącym Twoim językiem. Z analizą ROI",
     heroLead: (cities) =>
-      `Apartamenty, wille z basenem i domy inwestycyjne w ${cities} miejscowościach na dwóch wybrzeżach. Pokazujemy realne ceny €/m², zwrot z najmu i pełne koszty zakupu. Zgłoszenie przekazujemy certyfikowanemu agentowi z gotowymi ofertami.`,
+      `Apartamenty na sprzedaż w ${cities} miejscowościach na dwóch wybrzeżach. Pokazujemy realne ceny €/m², zwrot z najmu i pełne koszty zakupu. Zgłoszenie przekazujemy certyfikowanemu agentowi z gotowymi ofertami.`,
     heroChips: (from, roi, cities) => [
       `ceny od ${from}`,
       `ROI do ${roi}`,
@@ -148,7 +148,7 @@ export const HOME_COPY: Record<
     heroEyebrow: "Costa Blanca and Costa Cálida · Spain",
     heroH1: "Buy property in Spain with an agent who speaks your language. With ROI analysis",
     heroLead: (cities) =>
-      `Apartments, villas with pools and investment homes across ${cities} locations on two coastlines. We show real €/m² prices, rental yields and the full cost of buying. Your enquiry goes to a certified agent with matched listings.`,
+      `Apartments for sale across ${cities} locations on two coastlines. We show real €/m² prices, rental yields and the full cost of buying. Your enquiry goes to a certified agent with matched listings.`,
     heroChips: (from, roi, cities) => [
       `prices from ${from}`,
       `ROI up to ${roi}`,
@@ -171,7 +171,7 @@ export const HOME_COPY: Record<
     heroEyebrow: "Costa Blanca y Costa Cálida · España",
     heroH1: "Compra una vivienda en España con un agente que habla tu idioma. Con análisis de ROI",
     heroLead: (cities) =>
-      `Apartamentos, villas con piscina y viviendas de inversión en ${cities} localidades de dos costas. Mostramos precios reales €/m², rentabilidad del alquiler y todos los gastos de compra. Tu solicitud llega a un agente certificado con ofertas concretas.`,
+      `Apartamentos en venta en ${cities} localidades de dos costas. Mostramos precios reales €/m², rentabilidad del alquiler y todos los gastos de compra. Tu solicitud llega a un agente certificado con ofertas concretas.`,
     heroChips: (from, roi, cities) => [
       `precios desde ${from}`,
       `ROI hasta ${roi}`,
