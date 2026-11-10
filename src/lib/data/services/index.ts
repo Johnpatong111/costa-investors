@@ -1,6 +1,5 @@
 ﻿import type { ServiceDefinition } from "./types";
 import { apartamentyNaSprzedaz } from "./apartamenty-na-sprzedaz";
-import { willeZBasenem } from "./wille-z-basenem";
 import { domyInwestycyjne } from "./domy-inwestycyjne";
 import { darmowyPrzewodnikWycena } from "./darmowy-przewodnik-wycena";
 
@@ -9,7 +8,6 @@ export type { ServiceDefinition, ServiceKind, ServiceFaqSeed } from "./types";
 /** Pierwsza usługa jest flagowa (nawigacja + główne CTA). */
 export const SERVICES: readonly ServiceDefinition[] = [
   apartamentyNaSprzedaz,
-  willeZBasenem,
   domyInwestycyjne,
   darmowyPrzewodnikWycena,
 ] as const;
