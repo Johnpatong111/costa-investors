@@ -14,6 +14,7 @@ import { assertLocale, type Locale } from "@/lib/i18n/config";
 import { getPriceHistory } from "@/lib/i18n/price-history";
 import { translatePath } from "@/lib/i18n/paths";
 import { PRICE_HISTORY_KEYWORD } from "@/lib/i18n/seo-copy";
+import { getCityEditorial } from "@/lib/content/city-editorial";
 import { getServiceCopy } from "@/lib/i18n/content/builders";
 import { getUiCopy } from "@/lib/i18n/ui";
 import { buildMetadata } from "@/lib/seo/metadata";
@@ -185,6 +186,7 @@ export default async function PriceCityPage({ params }: { params: Promise<RouteP
 
   const ui = getUiCopy(locale);
   const copy = COPY[locale];
+  const editorial = getCityEditorial(city.slug, locale);
   const stats = deriveCityStats(city, region);
 
   const rows = city.districts
@@ -245,6 +247,27 @@ export default async function PriceCityPage({ params }: { params: Promise<RouteP
           </dl>
         </div>
       </section>
+
+      {editorial ? (
+        <Section>
+          <SectionHeading eyebrow={copy.eyebrow}>
+            {locale === "es"
+              ? `Análisis de ${city.name}`
+              : locale === "en"
+                ? `${city.name} market analysis`
+                : `Analiza rynku: ${city.name}`}
+          </SectionHeading>
+          <div className="max-w-3xl space-y-4">
+            {editorial.map((section) => (
+              <div key={section.title}>
+                <h3 className="text-base font-semibold text-brand-950">{section.title}</h3>
+                <p className="mt-1 text-sm leading-relaxed text-brand-800">{section.body}</p>
+              </div>
+            ))}
+          </div>
+        </Section>
+      ) : null}
+
 
       <Section>
         <SectionHeading eyebrow={copy.tableEyebrow}>{copy.tableTitle(city.name)}</SectionHeading>
