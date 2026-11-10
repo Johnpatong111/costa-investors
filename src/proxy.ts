@@ -18,7 +18,6 @@ const ENABLED = process.env.I18N_ROUTING_ENABLED !== "false";
  */
 const LEGACY_PREFIXES = new Set([
   "apartamenty-na-sprzedaz",
-  "domy-inwestycyjne",
   "ceny-m2",
   "o-nas",
   "polityka-prywatnosci",

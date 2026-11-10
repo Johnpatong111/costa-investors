@@ -1,13 +1,11 @@
 ﻿import type { ServiceDefinition } from "./types";
 import { apartamentyNaSprzedaz } from "./apartamenty-na-sprzedaz";
-import { domyInwestycyjne } from "./domy-inwestycyjne";
 
 export type { ServiceDefinition, ServiceKind, ServiceFaqSeed } from "./types";
 
 /** Pierwsza usługa jest flagowa (nawigacja + główne CTA). */
 export const SERVICES: readonly ServiceDefinition[] = [
   apartamentyNaSprzedaz,
-  domyInwestycyjne,
 ] as const;
 
 /** Slug-i zarezerwowane dla segmentów statycznych (kolizja = 404 / nadpisanie route). */
