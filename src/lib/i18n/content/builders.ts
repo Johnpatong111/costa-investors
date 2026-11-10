@@ -424,12 +424,9 @@ export function buildLocalizedCityContent(
         locale === "es"
           ? `Precios y rentabilidad por zona de ${city.name}`
           : `Prices and yields across ${city.name} areas`,
-      paragraphs: [
-        locale === "es"
-          ? "Los precios varían según la distancia a la playa, el año de construcción y el estándar de la urbanización. Abajo tienes la mediana €/m² y la rentabilidad de cada zona; pulsa el nombre para ver el informe completo."
-          : "Prices vary with distance to the beach, year of construction and the standard of the development. Below are the €/m² median and rental yield for each area; open a name for the full report.",
-        comparisonText,
-      ],
+      // Wstęp był identyczny na wszystkich miastach; zostaje porównanie
+      // dzielnic (nazwy i ceny) oraz lista stref.
+      paragraphs: [comparisonText],
       bullets: districtBullets,
     },
     {
@@ -450,22 +447,9 @@ export function buildLocalizedCityContent(
       id: "usluga",
       heading: service.name,
       paragraphs: service.benefits
-        .slice(0, 2)
+        .slice(0, 1)
         .map((benefit) => `${t(benefit.title)}: ${t(benefit.description)}`),
-      bullets: service.checklist.slice(0, 3).map((item) => t(item)),
-    },
-    {
-      id: "proces",
-      heading:
-        locale === "es"
-          ? `Cómo comprar en ${city.nameLocative} paso a paso`
-          : `How to buy in ${city.nameLocative}, step by step`,
-      paragraphs: [
-        locale === "es"
-          ? "La compra en España exige NIE, cuenta bancaria española y traductor jurado en la notaría. Estos son los pasos que gestionamos por ti."
-          : "Buying in Spain requires an NIE, a Spanish bank account and a sworn translator at the notary. These are the steps we handle for you.",
-      ],
-      bullets: dict.process.map((step) => `${step.title} (${step.duration}): ${t(step.description)}`),
+      bullets: service.checklist.slice(0, 2).map((item) => t(item)),
     },
   ];
 
@@ -553,17 +537,46 @@ export function buildLocalizedPriceReport(
     {
       id: "ceny",
       heading: t(b.ceny.heading),
-      paragraphs: [t(b.ceny.p1), priceNote ?? ""],
+      // Wstęp ze słownika był identyczny na wszystkich raportach; zostaje nota
+      // cenowa zależna od dzielnicy plus lista dzielnic w bulletach.
+      paragraphs: [priceNote ?? ""],
       bullets: [
         ...b.ceny.bullets.map((bullet) => t(bullet)),
-        // Lista dzielnic miasta. Dane różnicujące raporty o tej samej nazwie.
-        ...city.districts.map(
-          (item) => `${item.name}: ${formatEur(item.pricePerM2)}/m² · ${item.rentalYield}%`,
+        // Lista dzielnic rotowana: pełna lista była identyczna w obrębie gminy
+        // i dominowała w parach „dwie dzielnice tego samego miasta”.
+        ...rotateItems(
+          city.districts.map(
+            (item) => `${item.name}: ${formatEur(item.pricePerM2)}/m² · ${item.rentalYield}%`,
+          ),
+          key,
+          "district-list",
+          3,
         ),
       ],
     },
-    { id: "roi", heading: t(b.roi.heading), paragraphs: [t(b.roi.p1), t(b.roi.p2)] },
-    { id: "podatki", heading: t(b.podatki.heading), paragraphs: [t(b.podatki.p1)] },
+    {
+      id: "roi",
+      heading: t(b.roi.heading),
+      paragraphs: rotateItems([t(b.roi.p1), t(b.roi.p2)], key, "roi", 1),
+    },
+    {
+      id: "podatki",
+      heading: t(b.podatki.heading),
+      // Stawki są identyczne w całym kraju, więc akapit był duplikatem na
+      // wszystkich raportach. Zostaje krótka lista kontrolna zamiast prozy.
+      paragraphs: [],
+      bullets: rotateItems(
+        [
+          locale === "es" ? "ITP 10% en vivienda usada, IVA 10% + AJD en obra nueva." : "ITP 10% on resale, IVA 10% plus AJD on new build.",
+          locale === "es" ? "Notaría, registro y gestoría: 1-2% del precio." : "Notary, registry and conveyancing: 1-2% of the price.",
+          locale === "es" ? "IBI anual y comunidad: revisa el recibo antes de ofertar." : "Annual IBI and community fees: check the receipt before offering.",
+          locale === "es" ? "NIE y cuenta bancaria española necesarios antes de la escritura." : "NIE and a Spanish bank account are needed before the deed.",
+        ],
+        key,
+        "tax",
+        3,
+      ),
+    },
     {
       // Kontekst lokalny (cechy, punkty orientacyjne, porównanie w gminie).
       // Statyczny słownik dawał identyczne raporty na 70 dzielnicach.
@@ -572,6 +585,9 @@ export function buildLocalizedPriceReport(
         locale === "es"
           ? `Entorno y parque residencial: ${district.name}`
           : `Area and housing stock: ${district.name}`,
+      // Zostaje akapit z landmarkami (unikalny per dzielnica). Akapit
+      // porównujący mediany w gminie był identyczny dla dzielnic tego samego
+      // miasta, więc został usunięty.
       paragraphs: [
         pick(
           locale === "es"
@@ -586,13 +602,6 @@ export function buildLocalizedPriceReport(
           key,
           "rep-okolica",
         ),
-        city.districts.length > 1
-          ? locale === "es"
-            ? `Dentro de ${city.name} las medianas van de ${formatEur(Math.min(...city.districts.map((item) => item.pricePerM2)))} €/m² a ${formatEur(Math.max(...city.districts.map((item) => item.pricePerM2)))} €/m². ${district.name} se sitúa ${describePricePosition(stats, locale)}.`
-            : `Within ${city.name} medians range from ${formatEur(Math.min(...city.districts.map((item) => item.pricePerM2)))} €/m² to ${formatEur(Math.max(...city.districts.map((item) => item.pricePerM2)))} €/m². ${district.name} sits ${describePricePosition(stats, locale)}.`
-          : locale === "es"
-            ? `El modelo de datos no incluye otras zonas de ${city.name}, así que la referencia es la mediana municipal.`
-            : `The dataset contains no other areas in ${city.name}, so the municipal median is the reference.`,
       ],
       bullets: city.districts
         .slice()
@@ -674,25 +683,9 @@ export function buildLocalizedPriceReport(
           .join("; ")}. These are the closest price neighbours within ${entry.city.name}, so they set the realistic negotiating range in ${district.name}.`
     : "";
 
-  blocks.push({
-    id: "profil",
-    heading: locale === "es" ? `Perfil de ${district.name}` : `Profile: ${district.name}`,
-    paragraphs: [profileYield, profileMarket, profilePlace, profileNeighbours],
-  });
-
-  const analysis = marketAnalysis({ city: entry.city, district, region: entry.region, stats, locale });
-  blocks.push({
-    id: "analiza",
-    heading: analysis.heading,
-    // 3 z 4 akapitów analizy: pełny zestaw był identyczny w obrębie gminy
-    // i odpowiadał za większość podobieństwa par „dwie dzielnice tego miasta”.
-    paragraphs: rotateItems(
-      [analysis.intro, analysis.zones, analysis.factors, analysis.conclusions],
-      key,
-      "analysis",
-      3,
-    ),
-  });
+  // Sekcje „profil” i „analiza” usunięte z raportów: ich treść była w 70-75%
+  // identyczna między dzielnicami tej samej gminy (wspólne szablony zdań).
+  // Zastępuje je nota redakcyjna i deep dive generowany z danych dzielnicy.
 
   // Nota per dzielnica: unikalny akapit (patrz district-market-notes.ts).
   const addressNote = districtMarketNote(entry.city.slug, district.slug, locale);

@@ -14,6 +14,7 @@ import {
 } from "./content-tiers";
 import { regionTax } from "./region-facts";
 import { formatEur, formatRate } from "../utils/format";
+import { rotateItems } from "./district-deep-dive";
 
 /**
  * ===========================================================================
@@ -223,13 +224,8 @@ export function buildDistrictBlocks(ctx: DistrictBlockContext): ContentBlock[] {
           pickByTier(priceSentences, priceTier(stats)),
           pickByTier(growthSentences, growthTier(stats)),
         ].join(" "),
-        t(
-          `Lokal 70 m² to około {budget70} przed kosztami transakcyjnymi. Przy medianie {price} €/m² każde 10 m² różnicy w metrażu zmienia budżet o około ${formatEur(
-            Math.round(stats.pricePerM2 * 10),
-          )}.`,
-        ),
         serviceAngle[service.kind] ?? "",
-      ],
+      ].filter(Boolean),
       bullets: [
         t("Mediana ofertowa: {price} €/m²"),
         t("Mediana miasta: {cityPrice} €/m² · regionu: {regionPrice} €/m²"),
@@ -247,18 +243,23 @@ export function buildDistrictBlocks(ctx: DistrictBlockContext): ContentBlock[] {
     {
       id: "roi",
       heading: `Ile zarobisz na najmie w ${district.name}`,
-      paragraphs: [
-        pickByTier(yieldSentences, yieldTier(stats)),
-        t(
-          `Realny scenariusz: 70 m² w {districtLoc} generuje około {rent70} € czynszu rocznie brutto i {rentNet70} € netto po kosztach zarządzania, podatku i pustostanach.`,
-        ),
-        t(
-          `Inwestycja 250 000 € daje w horyzoncie pięciu lat około {return5y} € łącznego zwrotu (czynsz netto plus wzrost wartości), czyli {returnPercent}% budżetu. To model na medianach, nie gwarancja - konkretną nieruchomość wyceniamy osobno.`,
-        ),
-        t(
-          `Najem krótkoterminowy w {districtLoc} podnosi przychód w sezonie, ale wymaga licencji turystycznej i zwiększa koszty operacyjne. Części inwestorów bardziej opłaca się najem długoterminowy z niższym ryzykiem pustostanu.`,
-        ),
-      ],
+      paragraphs: rotateItems(
+        [
+          pickByTier(yieldSentences, yieldTier(stats)),
+          t(
+            `Realny scenariusz: 70 m² w {districtLoc} generuje około {rent70} € czynszu rocznie brutto i {rentNet70} € netto po kosztach zarządzania, podatku i pustostanach.`,
+          ),
+          t(
+            `Inwestycja 250 000 € daje w horyzoncie pięciu lat około {return5y} € łącznego zwrotu (czynsz netto plus wzrost wartości), czyli {returnPercent}% budżetu. To model na medianach, nie gwarancja - konkretną nieruchomość wyceniamy osobno.`,
+          ),
+          t(
+            `Najem krótkoterminowy w {districtLoc} podnosi przychód w sezonie, ale wymaga licencji turystycznej i zwiększa koszty operacyjne. Części inwestorów bardziej opłaca się najem długoterminowy z niższym ryzykiem pustostanu.`,
+          ),
+        ],
+        key,
+        "roi",
+        2,
+      ),
       bullets: [
         t("Czynsz: {rent} €/m²/mies."),
         t("ROI brutto: {yield}"),
@@ -270,26 +271,36 @@ export function buildDistrictBlocks(ctx: DistrictBlockContext): ContentBlock[] {
     {
       id: "koszty",
       heading: "Koszty zakupu, podatki i formalności",
-      paragraphs: [
-        pick(costVariants, key, "cost"),
-        t(
-          `Po zakupie dochodzą koszty stałe: IBI (podatek gminny), comunidad (koszty wspólnoty) i ubezpieczenie. W ${district.name} wysokość comunidad zależy od standardu osiedla i infrastruktury wspólnej - przy zabudowie typu ${district.type} bywa to pozycja pomijana w ogłoszeniach.`,
-        ),
-      ],
+      paragraphs: rotateItems(
+        [
+          pick(costVariants, key, "cost"),
+          t(
+            `Po zakupie dochodzą koszty stałe: IBI (podatek gminny), comunidad (koszty wspólnoty) i ubezpieczenie. W ${district.name} wysokość comunidad zależy od standardu osiedla i infrastruktury wspólnej - przy zabudowie typu ${district.type} bywa to pozycja pomijana w ogłoszeniach.`,
+          ),
+        ],
+        key,
+        "koszty",
+        1,
+      ),
       bullets: service.checklist.map((item) => t(item)),
     },
     {
       id: "kupujacy",
       heading: t(`Kto kupuje ${vars.property} w ${vars.districtLoc}`),
-      paragraphs: [
-        `${pickByTier(buyerSentences, foreignTier(stats))} ${pickByTier(demandSentences, demandTier(stats))}`,
-        `${pickByTier(liquiditySentences, liquidityTier(stats))} ${t(
-          `Dla kupującego z Polski oznacza to jedno: finansowanie warto mieć potwierdzone przed przyjazdem, bo przy popycie {demand}/10 dobre lokale nie czekają na decyzję.`,
-        )}`,
-        t(
-          `Najemcę w {districtLoc} znajdziesz wśród osób pracujących w {cityLoc} oraz rodzin szukających ${district.characteristics[1] ?? district.characteristics[0] ?? ""}. To dwie różne grupy o różnej tolerancji na standard i metraż - i różnej wrażliwości cenowej.`,
-        ),
-      ],
+      paragraphs: rotateItems(
+        [
+          `${pickByTier(buyerSentences, foreignTier(stats))} ${pickByTier(demandSentences, demandTier(stats))}`,
+          `${pickByTier(liquiditySentences, liquidityTier(stats))} ${t(
+            `Dla kupującego z Polski oznacza to jedno: finansowanie warto mieć potwierdzone przed przyjazdem, bo przy popycie {demand}/10 dobre lokale nie czekają na decyzję.`,
+          )}`,
+          t(
+            `Najemcę w {districtLoc} znajdziesz wśród osób pracujących w {cityLoc} oraz rodzin szukających ${district.characteristics[1] ?? district.characteristics[0] ?? ""}. To dwie różne grupy o różnej tolerancji na standard i metraż - i różnej wrażliwości cenowej.`,
+          ),
+        ],
+        key,
+        "kupujacy",
+        2,
+      ),
     },
     {
       // Blok usługi: różnicuje strony tej samej dzielnicy dla różnych usług.
@@ -305,14 +316,19 @@ export function buildDistrictBlocks(ctx: DistrictBlockContext): ContentBlock[] {
     {
       id: "dane",
       heading: `Wskaźniki ${district.name} w liczbach`,
-      paragraphs: [
-        t(
-          "Cena {price} €/m², czynsz {rent} €/m²/mies., ROI brutto {yield} i netto {netYield}, wzrost {growth} r/r, ekspozycja oferty {days} dni, koszty wejścia {purchaseCosts}, budżet 70 m² {budget70}, transakcje w 12 miesięcy: {volume}.",
-        ),
-        t(
-          `Punkt odniesienia: {cityPrice} €/m² w ${city.name} i {regionPrice} €/m² w regionie {region}. Popyt {demand}/10, kupujący zagraniczni {foreign}, Polacy {polish}. Dane: ${stats.dataAsOf} (model ofertowy do podmiany na feed Idealista/Fotocasa).`,
-        ),
-      ],
+      paragraphs: rotateItems(
+        [
+          t(
+            "Cena {price} €/m², czynsz {rent} €/m²/mies., ROI brutto {yield} i netto {netYield}, wzrost {growth} r/r, ekspozycja oferty {days} dni, koszty wejścia {purchaseCosts}, budżet 70 m² {budget70}, transakcje w 12 miesięcy: {volume}.",
+          ),
+          t(
+            `Punkt odniesienia: {cityPrice} €/m² w ${city.name} i {regionPrice} €/m² w regionie {region}. Popyt {demand}/10, kupujący zagraniczni {foreign}, Polacy {polish}.`,
+          ),
+        ],
+        key,
+        "dane",
+        1,
+      ),
     },
   ];
 }

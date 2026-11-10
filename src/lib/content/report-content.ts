@@ -185,17 +185,9 @@ export function buildPriceReport(entry: DistrictEntry): PriceReport {
     },
   ];
 
-  const analysis = marketAnalysis({ city, district, region, stats: deriveDistrictStats(city, district, region), locale: "pl" });
-  blocks.push({
-    id: "analiza",
-    heading: analysis.heading,
-    paragraphs: rotateItems(
-      [analysis.intro, analysis.zones, analysis.factors, analysis.conclusions],
-      key,
-      "analysis",
-      3,
-    ),
-  });
+  // Sekcja „analiza” usunięta: 75% treści było wspólne dla dzielnic tej samej
+  // gminy. Zastępuje ją nota redakcyjna i deep dive z danych dzielnicy.
+
   // Nota per dzielnica: unikalny akapit zamiast szkieletu powtarzanego w miastach.
   const addressNote = districtMarketNote(city.slug, district.slug, "pl");
   if (addressNote) {

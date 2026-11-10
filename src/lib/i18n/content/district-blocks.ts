@@ -22,6 +22,7 @@ import {
 import { regionTax } from "../../content/region-facts";
 import { interpolate } from "../../content/interpolate";
 import { formatEur, formatRate } from "../../utils/format";
+import { rotateItems } from "../../content/district-deep-dive";
 import type { ServiceCopyView } from "./builders";
 
 /**
@@ -368,7 +369,6 @@ export function buildLocalizedDistrictBlocks(input: LocalizedDistrictInput): Con
         `${localT(pickByTier(copy.priceByTier, priceTier(stats)))} ${localT(
           pickByTier(copy.growthByTier, growthTier(stats)),
         )}`,
-        localT(copy.monthlyNote),
         localT(angle),
       ],
     },
@@ -381,12 +381,22 @@ export function buildLocalizedDistrictBlocks(input: LocalizedDistrictInput): Con
     {
       id: "roi",
       heading: localT(copy.roi),
-      paragraphs: [localT(pickByTier(copy.yieldByTier, yieldTier(stats))), localT(scenario), shortLet],
+      paragraphs: rotateItems(
+        [localT(pickByTier(copy.yieldByTier, yieldTier(stats))), localT(scenario), shortLet],
+        key,
+        "roi",
+        2,
+      ),
     },
     {
       id: "koszty",
       heading: localT(copy.koszty),
-      paragraphs: [localT(pick(copy.costVariants, key, "cost")), localT(holding)],
+      paragraphs: rotateItems(
+        [localT(pick(copy.costVariants, key, "cost")), localT(holding)],
+        key,
+        "koszty",
+        1,
+      ),
       bullets: service.checklist.map((item) => localT(item)),
     },
     {
@@ -414,7 +424,7 @@ export function buildLocalizedDistrictBlocks(input: LocalizedDistrictInput): Con
     {
       id: "dane",
       heading: localT(copy.dane),
-      paragraphs: [scorecard, comparison],
+      paragraphs: rotateItems([scorecard, comparison], key, "dane", 1),
     },
   ];
 }
