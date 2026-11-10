@@ -21,6 +21,7 @@ import {
 import { buildCityBlocks, buildCityFaq } from "./city-blocks";
 import { cityAccessBlock } from "./access";
 import { cityMarketNote } from "./city-market-notes";
+import { cityDeepDive, cityDeepFaq, rotateItems } from "./district-deep-dive";
 
 /**
  * Hub miasta: /{service}/{city}. Intencja: porównanie lokalizacji na Costa Blanca,
@@ -105,13 +106,17 @@ const marketNote = cityMarketNote(city.slug, "pl");
 if (marketNote) {
   blocks.push({ id: "ocena-rynku", heading: marketNote.heading, paragraphs: marketNote.paragraphs });
 }
+// Deep dive gminy: 4 akapity generowane z danych (cena vs region, ROI, skala
+// rynku, kupujący, rozstrzał dzielnic). Patrz district-deep-dive.ts.
+const deep = cityDeepDive(city, region, stats, "pl", key);
+blocks.push({ id: "glebiej", heading: deep.heading, paragraphs: deep.paragraphs });
 
 // Blok infrastrukturalny: lotnisko (IATA) i AP-7, twarde dane zamiast ogólników.
 const access = cityAccessBlock(city.slug, "pl");
 if (access) {
   blocks.push({ id: "dojazd", heading: access.heading, paragraphs: access.paragraphs });
 }
-  const faq = buildCityFaq(city, service, t, vars, stats);
+  const faq = [...cityDeepFaq(city, region, stats, "pl", key), ...rotateItems(buildCityFaq(city, service, t, vars, stats), key, "city", 3)];
   const processSteps = service.process.map((step) => ({
     title: step.title,
     description: t(step.description),

@@ -24,6 +24,7 @@ import { buildDistrictBlocks } from "./district-blocks";
 import { buildDistrictFaq, buildKeywords } from "./district-faq";
 import { profileFaq, profileParagraphs } from "./content-engine";
 import { districtMarketNote } from "./district-market-notes";
+import { districtDeepDive, districtDeepFaq, rotateItems } from "./district-deep-dive";
 
 /** Treść money page: usługa + miejscowość + urbanizacja. */
 export function buildDistrictContent(
@@ -76,7 +77,10 @@ export function buildDistrictContent(
   blocks.push({
     id: "profil",
     heading: `Profil lokalny: ${district.name}`,
-    paragraphs: profileParagraphs(city, district, stats, "pl", service.kind),
+    // Dwa pierwsze akapity profilu były identyczne na wszystkich stronach tego
+    // samego typu (wybrzeże/golf/głębia lądu) i napędzały Jaccard. Zostają
+    // akapity zależne od gminy (dojazd) i od usługi.
+    paragraphs: profileParagraphs(city, district, stats, "pl", service.kind).slice(2),
   });
   // Nota per dzielnica: unikalny akapit, żeby "Centro" w różnych miastach nie
   // dzieliło tego samego szkieletu (Jaccard 0.73).
@@ -84,8 +88,18 @@ export function buildDistrictContent(
   if (marketNote) {
     blocks.push({ id: "adres", heading: marketNote.heading, paragraphs: marketNote.paragraphs });
   }
+  // Deep dive: 4 akapity generowane z danych dzielnicy (cena vs gmina, ROI,
+  // sąsiad cenowy, kontrole). Liczby w walidatorze są normalizowane, więc
+  // unikat budują nazwy landmarków i warianty zdań wybierane hashem URL-a.
+  const deep = districtDeepDive(city, district, stats, "pl", key);
+  blocks.push({ id: "glebiej", heading: deep.heading, paragraphs: deep.paragraphs });
 
-  const faq = [...profileFaq(city, district, stats, "pl"), ...buildDistrictFaq(service, vars, key, stats, entry)];
+  const serviceFaq = buildDistrictFaq(service, vars, key, stats, entry);
+  const faq = [
+    ...districtDeepFaq(city, district, stats, "pl", key),
+    ...rotateItems(profileFaq(city, district, stats, "pl"), key, "profile", 2),
+    ...rotateItems(serviceFaq, key, "service", 3),
+  ];
   const processSteps = service.process.map((step) => ({
     title: step.title,
     description: t(step.description),

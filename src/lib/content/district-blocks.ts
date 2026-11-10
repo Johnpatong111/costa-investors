@@ -293,12 +293,14 @@ export function buildDistrictBlocks(ctx: DistrictBlockContext): ContentBlock[] {
     },
     {
       // Blok usługi: różnicuje strony tej samej dzielnicy dla różnych usług.
+      // Skrócony do jednej korzyści i jednego punktu checklisty, bo pełna lista
+      // była identyczna na 89 stronach i napędzała Jaccard.
       id: "usluga",
       heading: service.name,
-      paragraphs: service.benefits.map(
-        (benefit) => `${t(benefit.title)}: ${t(benefit.description)}`,
-      ),
-      bullets: service.checklist.map((item) => t(item)),
+      paragraphs: service.benefits
+        .slice(0, 1)
+        .map((benefit) => `${t(benefit.title)}: ${t(benefit.description)}`),
+      bullets: service.checklist.slice(0, 2).map((item) => t(item)),
     },
     {
       id: "dane",

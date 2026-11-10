@@ -2,6 +2,7 @@
 import { deriveDistrictStats, MARKET_YEAR } from "./market-stats";
 import { marketAnalysis } from "./market-analysis";
 import { districtMarketNote } from "./district-market-notes";
+import { districtDeepDive, districtDeepFaq, rotateItems } from "./district-deep-dive";
 import {
   describeDemand,
   describeGrowth,
@@ -188,7 +189,12 @@ export function buildPriceReport(entry: DistrictEntry): PriceReport {
   blocks.push({
     id: "analiza",
     heading: analysis.heading,
-    paragraphs: [analysis.intro, analysis.zones, analysis.factors, analysis.conclusions],
+    paragraphs: rotateItems(
+      [analysis.intro, analysis.zones, analysis.factors, analysis.conclusions],
+      key,
+      "analysis",
+      3,
+    ),
   });
   // Nota per dzielnica: unikalny akapit zamiast szkieletu powtarzanego w miastach.
   const addressNote = districtMarketNote(city.slug, district.slug, "pl");
@@ -198,7 +204,11 @@ export function buildPriceReport(entry: DistrictEntry): PriceReport {
 
 
 
-  const faq: FaqItem[] = [
+  // Deep dive: akapity generowane z danych dzielnicy.
+  const deep = districtDeepDive(city, district, deriveDistrictStats(city, district, region), "pl", key);
+  blocks.push({ id: "glebiej", heading: deep.heading, paragraphs: deep.paragraphs });
+
+  const genericFaq: FaqItem[] = [
     {
       question: `Ile kosztuje metr kwadratowy w ${district.nameLocative} w ${MARKET_YEAR}?`,
       answer: `Mediana ofertowa wynosi ${formatEur(stats.pricePerM2)} (dane: ${stats.dataAsOf}), przy medianie miasta ${city.nameGenitive} ${formatEur(stats.cityPricePerM2)}.`,
@@ -215,6 +225,10 @@ export function buildPriceReport(entry: DistrictEntry): PriceReport {
       question: "Jakie koszty poza ceną zapłacę przy zakupie?",
       answer: `Około ${formatRate(stats.purchaseCostsRate * 100)} ceny: ITP/IVA, notariusz, rejestr i obsługa prawna. Dodatkowo ok. 300-800 € rocznie kosztów stałych (IBI, comunidad).`,
     },
+  ];
+  const faq: FaqItem[] = [
+    ...districtDeepFaq(city, district, deriveDistrictStats(city, district, region), "pl", key),
+    ...rotateItems(genericFaq, key, "report-generic", 3),
   ];
 
   return {

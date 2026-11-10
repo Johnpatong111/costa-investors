@@ -32,6 +32,13 @@ import {
 import { cityAccessBlock } from "../../content/access";
 import { cityMarketNote } from "../../content/city-market-notes";
 import { districtMarketNote } from "../../content/district-market-notes";
+import {
+  districtDeepDive,
+  districtDeepFaq,
+  cityDeepDive,
+  cityDeepFaq,
+  rotateItems,
+} from "../../content/district-deep-dive";
 import { formatEur, formatRate } from "../../utils/format";
 import {
   MAX_DESCRIPTION_LENGTH,
@@ -199,7 +206,7 @@ export function buildLocalizedDistrictContent(
       locale === "es"
         ? `Perfil local: ${district.name}`
         : `Local profile: ${district.name}`,
-    paragraphs: profileParagraphs(city, district, stats, locale as "en" | "es", service.kind),
+    paragraphs: profileParagraphs(city, district, stats, locale as "en" | "es", service.kind).slice(2),
   });
 
   // Nota per dzielnica: unikalny akapit (patrz district-market-notes.ts).
@@ -207,13 +214,24 @@ export function buildLocalizedDistrictContent(
   if (addressNote) {
     blocks.push({ id: "adres", heading: addressNote.heading, paragraphs: addressNote.paragraphs });
   }
+  // Deep dive: 4 akapity z danych dzielnicy (patrz district-deep-dive.ts).
+  const deep = districtDeepDive(city, district, stats, locale, key);
+  blocks.push({ id: "glebiej", heading: deep.heading, paragraphs: deep.paragraphs });
 
 
-
-  const faq = [...profileFaq(city, district, stats, locale as "en" | "es"), ...buildLocalizedDistrictFaq(
-    { locale: locale as "en" | "es", service, stats, city, district, region, key, vars, t },
-    dict.district.faq,
-  )];
+  const faq = [
+    ...districtDeepFaq(city, district, stats, locale, key),
+    ...rotateItems(profileFaq(city, district, stats, locale as "en" | "es"), key, "profile", 2),
+    ...rotateItems(
+      buildLocalizedDistrictFaq(
+        { locale: locale as "en" | "es", service, stats, city, district, region, key, vars, t },
+        dict.district.faq,
+      ),
+      key,
+      "service",
+      3,
+    ),
+  ];
 
   return finish(
     {
@@ -456,8 +474,14 @@ export function buildLocalizedCityContent(
   if (marketNote) {
     blocks.push({ id: "ocena-rynku", heading: marketNote.heading, paragraphs: marketNote.paragraphs });
   }
+  // Deep dive gminy: 4 akapity z danych (patrz district-deep-dive.ts).
+  const cityDeep = cityDeepDive(city, region, stats, locale, key);
+  blocks.push({ id: "glebiej", heading: cityDeep.heading, paragraphs: cityDeep.paragraphs });
 
-  const faq = dict.city.faq.map((item) => ({ question: t(item.q), answer: t(item.a) }));
+  const faq = [
+    ...cityDeepFaq(city, region, stats, locale, key),
+    ...rotateItems(dict.city.faq.map((item) => ({ question: t(item.q), answer: t(item.a) })), key, "city", 3),
+  ];
 
   // Konkret infrastrukturalny: lotnisko z kodem IATA i dostęp do AP-7.
   const access = cityAccessBlock(city.slug, locale);
@@ -660,7 +684,14 @@ export function buildLocalizedPriceReport(
   blocks.push({
     id: "analiza",
     heading: analysis.heading,
-    paragraphs: [analysis.intro, analysis.zones, analysis.factors, analysis.conclusions],
+    // 3 z 4 akapitów analizy: pełny zestaw był identyczny w obrębie gminy
+    // i odpowiadał za większość podobieństwa par „dwie dzielnice tego miasta”.
+    paragraphs: rotateItems(
+      [analysis.intro, analysis.zones, analysis.factors, analysis.conclusions],
+      key,
+      "analysis",
+      3,
+    ),
   });
 
   // Nota per dzielnica: unikalny akapit (patrz district-market-notes.ts).
@@ -668,9 +699,19 @@ export function buildLocalizedPriceReport(
   if (addressNote) {
     blocks.push({ id: "adres", heading: addressNote.heading, paragraphs: addressNote.paragraphs });
   }
+  // Deep dive: 4 akapity z danych dzielnicy (patrz district-deep-dive.ts).
+  const deep = districtDeepDive(entry.city, district, stats, locale, key);
+  blocks.push({ id: "glebiej", heading: deep.heading, paragraphs: deep.paragraphs });
 
-
-  const faq = r.faq.map((item) => ({ question: t(item.q), answer: t(item.a) }));
+  const faq = [
+    ...districtDeepFaq(entry.city, district, stats, locale, key),
+    ...rotateItems(
+      r.faq.map((item) => ({ question: t(item.q), answer: t(item.a) })),
+      key,
+      "report-generic",
+      3,
+    ),
+  ];
 
   return finish(
     {

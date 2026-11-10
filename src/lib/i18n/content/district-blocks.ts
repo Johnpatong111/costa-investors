@@ -407,9 +407,9 @@ export function buildLocalizedDistrictBlocks(input: LocalizedDistrictInput): Con
       id: "usluga",
       heading: service.name,
       paragraphs: service.benefits
-        .slice(0, 2)
+        .slice(0, 1)
         .map((benefit) => `${localT(benefit.title)}: ${localT(benefit.description)}`),
-      bullets: service.checklist.slice(0, 3).map((item) => localT(item)),
+      bullets: service.checklist.slice(0, 2).map((item) => localT(item)),
     },
     {
       id: "dane",
