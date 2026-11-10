@@ -115,12 +115,17 @@ export function buildPriceReport(entry: DistrictEntry): PriceReport {
     {
       id: "ceny",
       heading: `Ceny nieruchomości w ${district.nameLocative}: ${MARKET_YEAR}`,
-      paragraphs: [
-        t(
-          "Cena zależy od odległości od plaży, roku budowy i standardu osiedla. Przy medianie {price} €/m² lokal 70 m² kosztuje około {budget70}, a po doliczeniu kosztów zakupu ({purchaseCosts}) budżet zamyka się bliżej {budget70plus}.",
-        ),
-        `Charakterystyka ${district.nameLocative}: ${district.characteristics[0]} oraz ${district.characteristics[1] ?? district.characteristics[0]}. W rankingu cen miasta ${city.nameGenitive} to ${position}. Miejsce (${formatEur(stats.pricePerM2)}/m²). Najdrożej jest w ${priciest?.name ?? city.name} (${formatEur(priciest?.price ?? 0)}/m²), a najtaniej w ${cheapest?.name ?? city.name} (${formatEur(cheapest?.price ?? 0)}/m²).`,
-      ],
+      paragraphs: rotateItems(
+        [
+          t(
+            "Cena zależy od odległości od plaży, roku budowy i standardu osiedla. Przy medianie {price} €/m² lokal 70 m² kosztuje około {budget70}, a po doliczeniu kosztów zakupu ({purchaseCosts}) budżet zamyka się bliżej {budget70plus}.",
+          ),
+          `Charakterystyka ${district.nameLocative}: ${district.characteristics[0]} oraz ${district.characteristics[1] ?? district.characteristics[0]}. W rankingu cen miasta ${city.nameGenitive} to ${position}. miejsce (${formatEur(stats.pricePerM2)}/m²). Najdrożej jest w ${priciest?.name ?? city.name} (${formatEur(priciest?.price ?? 0)}/m²), a najtaniej w ${cheapest?.name ?? city.name} (${formatEur(cheapest?.price ?? 0)}/m²).`,
+        ],
+        key,
+        "ceny",
+        1,
+      ),
       bullets: [
         t("Mediana ofertowa: {price} €/m²"),
         t("Dynamika r/r: {growth}"),
@@ -131,22 +136,30 @@ export function buildPriceReport(entry: DistrictEntry): PriceReport {
     {
       id: "roi",
       heading: `ROI i dochód z najmu w ${district.nameLocative}`,
-      paragraphs: [
-        t(
-          "Mediana czynszu to {rent} €/m²/mies., co daje {yield} brutto. Przy budżecie 250 000 € oznacza to około {rent250} € przychodu rocznie i {rentNet250} € po kosztach zarządzania, podatku i pustostanach.",
-        ),
-        t(
-          "Łącząc czynsz ze wzrostem wartości ({growth} r/r) inwestycja w {districtLoc} generuje w 5 lat około {return5y} € zwrotu, czyli {returnPercent}% budżetu. Prognozowana wartość nieruchomości po 5 latach: {value5y} €.",
-        ),
-      ],
+      paragraphs: rotateItems(
+        [
+          t(
+            "Mediana czynszu to {rent} €/m²/mies., co daje {yield} brutto. Przy budżecie 250 000 € oznacza to około {rent250} € przychodu rocznie i {rentNet250} € po kosztach zarządzania, podatku i pustostanach.",
+          ),
+          t(
+            "Łącząc czynsz ze wzrostem wartości ({growth} r/r) inwestycja w {districtLoc} generuje w 5 lat około {return5y} € zwrotu, czyli {returnPercent}% budżetu. Prognozowana wartość po 5 latach: {value5y} €.",
+          ),
+        ],
+        key,
+        "roi",
+        1,
+      ),
     },
     {
       id: "podatki",
       heading: "Podatki i koszty zakupu w Hiszpanii",
-      paragraphs: [
-        t(
-          "Zakup w {districtLoc} oznacza około {purchaseCosts} kosztów transakcyjnych: ITP 10% (rynek wtórny) lub IVA 10% i AJD (nowe), notariusz, wpis do rejestru i obsługa prawna. Dochodzą koszty roczne (IBI, comunidad, ubezpieczenie) oraz podatek od najmu rozliczany w IRPF.",
-        ),      ],
+      paragraphs: [],
+      bullets: [
+        "ITP 10% przy rynku wtórnym, IVA 10% + AJD przy nowym.",
+        "Notariusz, rejestr i obsługa prawna: 1-2% ceny.",
+        "IBI, comunidad i ubezpieczenie: sprawdź przed ofertą.",
+        "Najem rozliczasz w IRPF, więc potrzebne NIE i konto w Hiszpanii.",
+      ].slice(0, 2),
     },
     {
       // Blok lokalny raportu: cechy, punkty orientacyjne i porównanie z resztą
@@ -154,27 +167,32 @@ export function buildPriceReport(entry: DistrictEntry): PriceReport {
       // walidator normalizuje do „#” (stąd Jaccard ~0,9).
       id: "okolica",
       heading: t(`Okolica i zabudowa: {district}`),
-      paragraphs: [
-        pick(
-          [
-            t(
-              `W {districtLoc} dominują {characteristic}. Zabudowę uzupełniają ${district.characteristics
-                .slice(1)
-                .join(", ") || "starsze osiedla"}, a punktami orientacyjnymi w ogłoszeniach są ${district.landmarks.join(", ")}. Dla wyceny oznacza to, że dwie nieruchomości o tym samym metrażu mogą różnić się ceną o kilka procent - decyduje ${district.type} i odległość od ${district.landmarks[0] ?? city.name}.`,
-            ),
-            t(
-              `Raport dotyczy ${district.type} w części {subregion}. Cechy rynkowe tej lokalizacji: {characteristic}. W najbliższym sąsiedztwie liczą się ${district.landmarks.join(", ")}, a najemcy zwracają uwagę przede wszystkim na ${district.characteristics[1] ?? district.characteristics[0] ?? "standard wykończenia"}.`,
-            ),
-          ],
-          key,
-          "rep-okolica",
-        ),
-        city.districts.length > 1
-          ? `W obrębie ${city.nameGenitive} mediany rozkładają się od ${formatEur(
-              Math.min(...city.districts.map((item) => item.pricePerM2)),
-            )} €/m² do ${formatEur(Math.max(...city.districts.map((item) => item.pricePerM2)))} €/m². ${district.name} wypada ${describePricePosition(stats)}.`
-          : `W modelu danych ${city.name} nie ma innych dzielnic, więc punktem odniesienia pozostaje mediana miasta.`,
-      ],
+      paragraphs: rotateItems(
+        [
+          pick(
+            [
+              t(
+                `W {districtLoc} dominują {characteristic}. Zabudowę uzupełniają ${district.characteristics
+                  .slice(1)
+                  .join(", ") || "starsze osiedla"}, a punktami orientacyjnymi w ogłoszeniach są ${district.landmarks.join(", ")}. Dla wyceny oznacza to, że dwie nieruchomości o tym samym metrażu mogą różnić się ceną o kilka procent - decyduje ${district.type} i odległość od ${district.landmarks[0] ?? city.name}.`,
+              ),
+              t(
+                `Raport dotyczy ${district.type} w części {subregion}. Cechy rynkowe tej lokalizacji: {characteristic}. W najbliższym sąsiedztwie liczą się ${district.landmarks.join(", ")}, a najemcy zwracają uwagę przede wszystkim na ${district.characteristics[1] ?? district.characteristics[0] ?? "standard wykończenia"}.`,
+              ),
+            ],
+            key,
+            "rep-okolica",
+          ),
+          city.districts.length > 1
+            ? `W obrębie ${city.nameGenitive} mediany rozkładają się od ${formatEur(
+                Math.min(...city.districts.map((item) => item.pricePerM2)),
+              )} €/m² do ${formatEur(Math.max(...city.districts.map((item) => item.pricePerM2)))} €/m².`
+            : `W modelu danych ${city.name} nie ma innych dzielnic, więc punktem odniesienia pozostaje mediana miasta.`,
+        ],
+        key,
+        "okolica",
+        1,
+      ),
       bullets: city.districts
         .slice()
         .sort((a, b) => b.pricePerM2 - a.pricePerM2)
@@ -220,7 +238,7 @@ export function buildPriceReport(entry: DistrictEntry): PriceReport {
   ];
   const faq: FaqItem[] = [
     ...districtDeepFaq(city, district, deriveDistrictStats(city, district, region), "pl", key),
-    ...rotateItems(genericFaq, key, "report-generic", 3),
+    ...rotateItems(genericFaq, key, "report-generic", 2),
   ];
 
   return {

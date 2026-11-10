@@ -761,12 +761,27 @@ function rankSentence(city: CitySeed, district: DistrictSeed, locale: Locale): s
   const yieldText = yieldRankPhrase(yieldRank, total, locale);
   if (!priceText || !yieldText) return "";
   if (locale === "pl") {
-    return `W rankingu gminnym ten adres jest ${priceText} pod względem ceny i ${yieldText} pod względem zwrotu - dwie różne osie decyzji.`;
+    const frames = [
+      `W rankingu gminnym ten adres jest ${priceText} pod względem ceny i ${yieldText} pod względem zwrotu - dwie różne osie decyzji.`,
+      `Cenowo to ${priceText}, a pod kątem zwrotu ${yieldText}; dlatego warto patrzeć na obie osie osobno.`,
+      `Na tle gminy wypada ${priceText}, za to ${yieldText}.`,
+    ];
+    return frames[hashString(`${district.slug}::rank`) % frames.length]!;
   }
   if (locale === "es") {
-    return `En el ranking municipal esta dirección es ${priceText} por precio y ${yieldText} por retorno: dos ejes distintos de decisión.`;
+    const frames = [
+      `En el ranking municipal esta dirección es ${priceText} por precio y ${yieldText} por retorno: dos ejes distintos de decisión.`,
+      `Por precio es ${priceText}; por retorno, ${yieldText}, así que conviene mirar ambos ejes.`,
+      `Frente al municipio queda ${priceText}, mientras que es ${yieldText}.`,
+    ];
+    return frames[hashString(`${district.slug}::rank`) % frames.length]!;
   }
-  return `In the municipal ranking this address is ${priceText} on price and ${yieldText} on return, two different decision axes.`;
+  const frames = [
+    `In the municipal ranking this address is ${priceText} on price and ${yieldText} on return, two different decision axes.`,
+    `On price it is ${priceText}; on return, ${yieldText}, so read both axes separately.`,
+    `Against the town it sits ${priceText}, while it is ${yieldText}.`,
+  ];
+  return frames[hashString(`${district.slug}::rank`) % frames.length]!;
 }
 
 export function districtDeepDive(
@@ -793,11 +808,11 @@ export function districtDeepDive(
     rankSentence(city, district, locale),
   ].filter((text) => text.length > 0);
 
-  // Jedna z warstw wypada rotacyjnie: strony różnią się nie tylko doborem zdań,
-  // ale i tym, którą warstwę pokazują. Reszta zostaje, więc treść się nie kurczy
-  // poniżej progu indeksacji.
-  if (paragraphs.length > 4) {
-    paragraphs.splice(hashString(`${key}::dd-drop`) % paragraphs.length, 1);
+  // Dwie z warstw wypadają rotacyjnie: strony różnią się nie tylko doborem zdań,
+  // ale i tym, które warstwy pokazują.
+  const dropCount = paragraphs.length > 5 ? 2 : paragraphs.length > 4 ? 1 : 0;
+  for (let index = 0; index < dropCount; index += 1) {
+    paragraphs.splice(hashString(`${key}::dd-drop-${index}`) % paragraphs.length, 1);
   }
 
   return {
@@ -1250,4 +1265,517 @@ const ES_TIMING: string[] = [
   "Con un {growth} anual no tiene sentido esperar una bajada: se compra ubicación, no momento.",
   "Un {growth} de subida apunta a un mercado maduro: menos gangas y también menos riesgo de corrección brusca.",
 ];
+
+
+// ---------------------------------------------------------------------------
+// Rozszerzenie pul wariantów (3 → 6 na slot). Cel: kolizje między dwiema
+// stronami tego samego typu spadają z 1/3 do 1/6, co bezpośrednio obniża
+// Jaccard na 5-gramach. Zdania są krótsze i celowo różnią się składnią.
+// ---------------------------------------------------------------------------
+
+PL_PRICE.deep.push(
+  "Tu metr jest najtańszy w całej gminie: {price} € wobec {cityPrice} € w {cityLoc}.",
+  "Za {price} €/m² kupujesz w {loc} metr, na który w {cityLoc} trzeba dołożyć do {cityPrice} €.",
+  "{n} to dolna półka cenowa {gen}: {price} €/m² przy {cityPrice} €/m² mediany.",
+);
+PL_PRICE.below.push(
+  "{price} €/m² w {loc} to mniej niż {cityPrice} €/m² w {cityLoc} - różnica wynika z odległości od wody.",
+  "Kupujący w {loc} płaci {price} € za metr, czyli pod średnią gminną ({cityPrice} €).",
+  "{n} nie dobija do mediany {gen}: {price} €/m² wobec {cityPrice} €/m².",
+);
+PL_PRICE.inline.push(
+  "Metr w {loc} kosztuje {price} €, czyli tyle, ile wynosi mediana {gen} ({cityPrice} €).",
+  "Cena {price} €/m² w {loc} pokrywa się ze średnią {cityLoc}, więc o wyborze decyduje ulica, nie statystyka.",
+  "{n} wyceniany jest na {price} €/m², równo z medianą gminną {cityPrice} €/m².",
+);
+PL_PRICE.above.push(
+  "{price} €/m² w {loc} to ponad {cityPrice} €/m² średniej {gen}.",
+  "W {loc} płaci się {price} € za metr, drożej niż wynosi mediana {cityLoc} ({cityPrice} €).",
+  "{n} trzyma cenę {price} €/m², czyli ponad gminną medianą {cityPrice} €/m².",
+);
+PL_PRICE.top.push(
+  "{price} €/m² to najwyższa półka w {cityLoc}, przy medianie {cityPrice} €/m².",
+  "W {loc} metr wyceniany jest na {price} € - to czub tabeli gminnej ({cityPrice} €/m² mediany).",
+  "{n} wiedzie prym cenowy: {price} €/m² wobec {cityPrice} €/m² średniej.",
+);
+PL_YIELD.low.push(
+  "Rentowność {yieldRate} brutto ({netRate} netto) jest tu niska, bo płacisz za adres, nie za strumień czynszu.",
+  "Na {yieldRate} brutto nie zbudujesz szybkiego zwrotu, ale najemcy w tym segmencie są stabilni.",
+  "Przy {yieldRate} brutto i {netRate} netto dochód jest dodatkiem, nie celem samym w sobie.",
+);
+PL_YIELD.mid.push(
+  "{yieldRate} brutto ({netRate} netto) to przeciętna tego rynku, bez niespodzianek w obie strony.",
+  "Zwrot {yieldRate} brutto mieści się w normie {gen}, a {netRate} netto zostaje po kosztach.",
+  "{yieldRate} brutto w {loc} nie wyróżnia, ale też nie rozczarowuje.",
+);
+PL_YIELD.high.push(
+  "Na tle {gen} {yieldRate} brutto ({netRate} netto) wygląda dobrze.",
+  "Zwrot {yieldRate} brutto to jedna z lepszych ofert w {cityLoc}; netto zostaje {netRate}.",
+  "{yieldRate} brutto w {loc} bije średnią gminną, a {netRate} netto wciąż się kalkuluje.",
+);
+PL_YIELD.top.push(
+  "Najwyższy zwrot w {gen}: {yieldRate} brutto i {netRate} netto.",
+  "{yieldRate} brutto w {loc} to czołówka gminy, a {netRate} netto po podatku i obsłudze.",
+  "Lepszego ROI w {cityLoc} nie ma: {yieldRate} brutto, {netRate} netto.",
+);
+
+
+PL_DEMAND.soft.push(
+  "Popyt {demand}/10 to spokojna woda: wybór jest, ale trzeba go dobrze uzasadnić ceną.",
+  "Przy {demand}/10 kupujący ma czas porównać kilka ofert w promieniu kilometra.",
+  "{demand}/10 w naszej skali oznacza, że to sprzedający dostosowuje się do kupca.",
+);
+PL_DEMAND.normal.push(
+  "{demand}/10 to rynek, na którym sprzedaż idzie normalnie, bez gorączki.",
+  "Popyt {demand}/10 wystarcza, żeby ceny się trzymały, ale nie żeby rosły skokowo.",
+  "Przy {demand}/10 podaż i popyt są w równowadze, więc negocjacje mają sens.",
+);
+PL_DEMAND.hot.push(
+  "{demand}/10 to wysoki popyt: ogłoszenie w dobrej cenie znika w ciągu dni.",
+  "Przy {demand}/10 o dobre lokale konkurują kupujący, nie sprzedający.",
+  "{demand}/10 w naszej skali to rynek, na którym trzeba mieć decyzję przed przyjazdem.",
+);
+PL_DAYS.fast.push(
+  "Średnio {days} dni do sprzedaży: rynek nie daje czasu na drugie myślenie.",
+  "Ekspozycja {days} dni to krótko jak na ten rejon, więc cena musi być ostra.",
+);
+PL_DAYS.normal.push(
+  "{days} dni na rynku to standard, który pozwala obejrzeć kilka nieruchomości.",
+  "Sprzedaż w {days} dni to typowy rytm tego wybrzeża.",
+);
+PL_DAYS.slow.push(
+  "{days} dni ekspozycji oznacza, że wycena musi być realna od pierwszego ogłoszenia.",
+  "Na sprzedaż trzeba liczyć {days} dni, a to sygnał, że kupujący ma wybór.",
+);
+PL_ANCHOR.push(
+  "Dzielnicę rozpoznaje się po {lm0}, a po drugiej stronie ma {lm1}.",
+  "Adres wart jest tyle, ile odległość do {lm0}, i to ona pada w pierwszym zdaniu ogłoszenia.",
+  "W praktyce mieszkasz między {lm0} a {lm1}.",
+);
+PL_NEIGHBOURS.push(
+  "Cenowo najbliżej jest {sibPrice} ({sibPriceVal} €/m²) - i to z nim porówna twoją ofertę każdy kupujący.",
+  "Referencją negocjacyjną będzie {sibPrice} i jego {sibPriceVal} €/m².",
+  "Zanim podasz cenę, zobacz {sibPrice} za {sibPriceVal} €/m²: to najbliższy punkt odniesienia.",
+);
+PL_NEIGHBOURS_YIELD.push(
+  "Dla porównania {sibYieldName} daje {sibYieldVal} brutto, co pokazuje, ile kosztuje ten adres.",
+  "Wyższy zwrot znajdziesz w {sibYieldName} ({sibYieldVal}) - reszta to koszt lokalizacji.",
+  "{sibYieldName} z wynikiem {sibYieldVal} wyznacza górną granicę gminy pod względem ROI.",
+);
+PL_CHECKS.push(
+  "Poproś o historię wspólnoty: nagłe składki na dach albo windę zmieniają rachunek na lata.",
+  "Sprawdź, czy okna wychodzą na ruchliwą ulicę, a nie tylko na podwórko.",
+  "Ustal, kiedy ostatnio malowano elewację i kto zapłaci za to kolejny raz.",
+  "Zapytaj o plan zagospodarowania: niezabudowana działka obok potrafi zmienić widok na zawsze.",
+);
+PL_RENT.push(
+  "Czynsz {rent} €/m² daje {yieldRate} brutto i {netRate} netto - to punkt wyjścia do rozmowy o zarządzaniu.",
+  "Rynek wynajmu w tej strefie to {rent} €/m² miesięcznie, czyli {yieldRate} brutto i {netRate} netto.",
+  "Za metr najmu dostajesz {rent} €, co przekłada się na {yieldRate} brutto.",
+);
+PL_TIMING.push(
+  "Dynamika {growth} r/r wskazuje na rynek, który dojrzewa: więcej transakcji, mniej pośpiechu.",
+  "Ceny rosną o {growth} rocznie, więc nie czekaj na spadek, tylko negocjuj.",
+  "{growth} dynamiki wystarcza, żeby nie odkładać decyzji na kolejny rok.",
+);
+
+
+EN_PRICE.deep.push(
+  "This is the cheapest band in {cityLoc}: {price} per m² versus {cityPrice}.",
+  "{price} per m² in {loc} buys what costs {cityPrice} in {cityLoc}.",
+  "{n} sits at the bottom of the {cityLoc} price table at {price} per m².",
+);
+EN_PRICE.below.push(
+  "At {price} per m², {loc} undercuts the {cityPrice} median of {cityLoc}.",
+  "Buyers in {loc} pay {price} per square metre, below the town average of {cityPrice}.",
+  "{n} stays under the median: {price} per m² against {cityPrice}.",
+);
+EN_PRICE.inline.push(
+  "{price} per m² in {loc} matches the {cityLoc} median of {cityPrice}.",
+  "The {loc} price of {price} tracks the town average, so the street decides, not the statistic.",
+  "{n} is valued at {price} per m², level with the {cityPrice} median.",
+);
+EN_PRICE.above.push(
+  "{price} per m² in {loc} runs above the {cityPrice} town median.",
+  "A square metre in {loc} costs {price}, more than the {cityLoc} average of {cityPrice}.",
+  "{n} holds at {price} per m², above the town median of {cityPrice}.",
+);
+EN_PRICE.top.push(
+  "{price} per m² is the top of the {cityLoc} range, against a {cityPrice} median.",
+  "In {loc} the square metre reaches {price}, the peak of the town table at {cityPrice}.",
+  "{n} leads the price chart: {price} per m² versus {cityPrice}.",
+);
+EN_YIELD.low.push(
+  "A {yieldRate} gross yield ({netRate} net) is low here: you pay for the address, not the cash flow.",
+  "{yieldRate} gross will not build a fast payback, but tenants in this segment stay put.",
+  "At {yieldRate} gross and {netRate} net, income is a bonus rather than the goal.",
+);
+EN_YIELD.mid.push(
+  "{yieldRate} gross ({netRate} net) is the average for this market, with no surprises either way.",
+  "A {yieldRate} gross return sits inside the {cityLoc} range, leaving {netRate} net after costs.",
+  "{yieldRate} gross does not stand out in {loc}, and does not disappoint either.",
+);
+EN_YIELD.high.push(
+  "Against {cityLoc}, a {yieldRate} gross yield ({netRate} net) looks strong.",
+  "At {yieldRate} gross this is one of the better offers in town, with {netRate} net left.",
+  "{yieldRate} gross beats the town average, and {netRate} net still stacks up.",
+);
+EN_YIELD.top.push(
+  "The best yield in {cityLoc}: {yieldRate} gross and {netRate} net.",
+  "{yieldRate} gross in {loc} leads the municipality, with {netRate} net after tax and management.",
+  "No better ROI in {cityLoc}: {yieldRate} gross, {netRate} net.",
+);
+
+
+EN_DEMAND.soft.push(
+  "Demand of {demand} of 10 means calm water: choice exists, but price has to justify it.",
+  "At {demand} of 10 a buyer can compare several listings within a kilometre.",
+  "A score of {demand} of 10 means the seller adapts to the buyer.",
+);
+EN_DEMAND.normal.push(
+  "Demand of {demand} of 10 keeps sales moving without a frenzy.",
+  "At {demand} of 10 prices hold but do not jump.",
+  "With demand at {demand} of 10, supply and buyers balance, so negotiating works.",
+);
+EN_DEMAND.hot.push(
+  "Demand of {demand} of 10 means a well-priced listing disappears within days.",
+  "At {demand} of 10 buyers compete for good units, not the other way round.",
+  "A score of {demand} of 10 means you decide before you travel.",
+);
+EN_DAYS.fast.push(
+  "{days} days to sell on average: the market leaves no room for second thoughts.",
+  "Time on market of {days} days is short for this area, so pricing must be sharp.",
+);
+EN_DAYS.normal.push(
+  "{days} days on market is the norm, enough to view several properties.",
+  "A sale in {days} days is the usual rhythm on this coast.",
+);
+EN_DAYS.slow.push(
+  "{days} days on market means the asking price has to be realistic from day one.",
+  "Expect {days} days to sell, a signal that buyers have choice.",
+);
+EN_ANCHOR.push(
+  "The district is recognised by {lm0}, with {lm1} at the other end.",
+  "The address is worth what the walk to {lm0} is worth, and that line opens most listings.",
+  "In practice you live between {lm0} and {lm1}.",
+);
+EN_NEIGHBOURS.push(
+  "The nearest reference is {sibPrice} at {sibPriceVal} per m², and every buyer will compare you with it.",
+  "Your negotiating benchmark will be {sibPrice} and its {sibPriceVal} per m².",
+  "Before quoting, look at {sibPrice} at {sibPriceVal} per m²: the closest anchor.",
+);
+EN_NEIGHBOURS_YIELD.push(
+  "By contrast {sibYieldName} returns {sibYieldVal}, which shows what this address costs.",
+  "Higher returns sit in {sibYieldName} at {sibYieldVal}; the rest is the price of location.",
+  "{sibYieldName} at {sibYieldVal} marks the top of the municipal yield range.",
+);
+EN_CHECKS.push(
+  "Ask for the community history: a sudden roof or lift levy changes the maths for years.",
+  "Check whether the windows face a busy road rather than a courtyard.",
+  "Find out when the facade was last painted and who pays next time.",
+  "Read the town plan: an empty plot next door can change the view for good.",
+);
+EN_RENT.push(
+  "Rent of {rent} per m² gives {yieldRate} gross and {netRate} net, the starting point for a management conversation.",
+  "The letting market here pays {rent} per m² monthly, so {yieldRate} gross and {netRate} net.",
+  "Each square metre of rent brings {rent}, which converts to {yieldRate} gross.",
+);
+EN_TIMING.push(
+  "Growth of {growth} points to a maturing market: more transactions, less urgency.",
+  "Prices are up {growth} a year, so negotiate rather than wait for a fall.",
+  "At {growth} there is no reason to postpone the decision another year.",
+);
+
+
+ES_PRICE.deep.push(
+  "Es la banda más baja de {cityLoc}: {price} por m² frente a {cityPrice}.",
+  "{price} por m² en {loc} compra lo que en {cityLoc} cuesta {cityPrice}.",
+  "{n} está al fondo de la tabla de {cityLoc}, con {price} por m².",
+);
+ES_PRICE.below.push(
+  "Con {price} por m², {loc} queda por debajo de la mediana de {cityLoc} ({cityPrice}).",
+  "En {loc} se paga {price} por metro, bajo la media del pueblo ({cityPrice}).",
+  "{n} no alcanza la mediana: {price} por m² frente a {cityPrice}.",
+);
+ES_PRICE.inline.push(
+  "{price} por m² en {loc} coincide con la mediana de {cityLoc} ({cityPrice}).",
+  "El precio de {loc} ({price}) sigue la media del municipio, así que decide la calle y no la estadística.",
+  "{n} cotiza a {price} por m², al nivel de la mediana de {cityPrice}.",
+);
+ES_PRICE.above.push(
+  "{price} por m² en {loc} supera la mediana de {cityLoc} ({cityPrice}).",
+  "El metro en {loc} cuesta {price}, más que la media de {cityLoc} ({cityPrice}).",
+  "{n} aguanta en {price} por m², por encima de la mediana municipal.",
+);
+ES_PRICE.top.push(
+  "{price} por m² es la gama alta de {cityLoc}, frente a {cityPrice} de mediana.",
+  "En {loc} el metro llega a {price}, la cima de la tabla municipal ({cityPrice}).",
+  "{n} lidera el precio: {price} por m² frente a {cityPrice}.",
+);
+ES_YIELD.low.push(
+  "Un {yieldRate} bruto ({netRate} neto) es bajo aquí: se paga la dirección y no el flujo.",
+  "Con {yieldRate} bruto no habrá retorno rápido, pero el inquilino de este segmento se queda.",
+  "Con {yieldRate} bruto y {netRate} neto, la renta es un extra y no el objetivo.",
+);
+ES_YIELD.mid.push(
+  "{yieldRate} bruto ({netRate} neto) es la media del mercado, sin sorpresas.",
+  "Un {yieldRate} bruto queda dentro del rango de {cityLoc}, con {netRate} neto tras gastos.",
+  "{yieldRate} bruto no destaca en {loc} y tampoco decepciona.",
+);
+ES_YIELD.high.push(
+  "Frente a {cityLoc}, un {yieldRate} bruto ({netRate} neto) se ve fuerte.",
+  "Con {yieldRate} bruto es de las mejores ofertas del pueblo, y quedan {netRate} netos.",
+  "El {yieldRate} bruto supera la media municipal y el {netRate} neto aún compensa.",
+);
+ES_YIELD.top.push(
+  "La mejor rentabilidad de {cityLoc}: {yieldRate} bruto y {netRate} neto.",
+  "El {yieldRate} bruto de {loc} lidera el municipio, con {netRate} neto tras impuestos.",
+  "No hay mejor ROI en {cityLoc}: {yieldRate} bruto, {netRate} neto.",
+);
+
+
+ES_DEMAND.soft.push(
+  "Una demanda de {demand} sobre 10 es agua tranquila: hay donde elegir, pero el precio debe justificarlo.",
+  "Con {demand} sobre 10 el comprador compara varias ofertas en un kilómetro.",
+  "Un {demand} sobre 10 significa que el vendedor se adapta al comprador.",
+);
+ES_DEMAND.normal.push(
+  "Una demanda de {demand} sobre 10 mueve ventas sin fiebre.",
+  "Con {demand} sobre 10 los precios aguantan pero no saltan.",
+  "Con demanda de {demand} sobre 10, oferta y compradores se equilibran y negociar tiene sentido.",
+);
+ES_DEMAND.hot.push(
+  "Una demanda de {demand} sobre 10 hace que un anuncio bien puesto desaparezca en días.",
+  "Con {demand} sobre 10 los compradores compiten por las buenas viviendas.",
+  "Un {demand} sobre 10 obliga a decidir antes de viajar.",
+);
+ES_DAYS.fast.push(
+  "{days} días de media para vender: el mercado no deja pensar dos veces.",
+  "Una exposición de {days} días es corta para esta zona, así que el precio debe ser fino.",
+);
+ES_DAYS.normal.push(
+  "{days} días en el mercado es lo normal, tiempo para ver varias viviendas.",
+  "Vender en {days} días es el ritmo habitual de esta costa.",
+);
+ES_DAYS.slow.push(
+  "{days} días de exposición exigen un precio realista desde el primer anuncio.",
+  "Cuenta {days} días para vender: señal de que el comprador tiene donde elegir.",
+);
+ES_ANCHOR.push(
+  "El barrio se reconoce por {lm0}, con {lm1} al otro lado.",
+  "La dirección vale lo que vale el paseo hasta {lm0}, y esa línea abre la mayoría de anuncios.",
+  "En la práctica se vive entre {lm0} y {lm1}.",
+);
+ES_NEIGHBOURS.push(
+  "La referencia más cercana es {sibPrice} con {sibPriceVal} por m², y todo comprador te comparará con ella.",
+  "Tu punto de negociación será {sibPrice} y sus {sibPriceVal} por m².",
+  "Antes de pedir precio, mira {sibPrice} a {sibPriceVal} por m²: es el ancla más próxima.",
+);
+ES_NEIGHBOURS_YIELD.push(
+  "En cambio {sibYieldName} rinde {sibYieldVal}, que muestra lo que cuesta esta dirección.",
+  "Más rentabilidad hay en {sibYieldName} con {sibYieldVal}; el resto es el precio de la ubicación.",
+  "{sibYieldName} con {sibYieldVal} marca el techo de rentabilidad del municipio.",
+);
+ES_CHECKS.push(
+  "Pide el historial de la comunidad: una derrama por tejado o ascensor cambia las cuentas durante años.",
+  "Comprueba si las ventanas dan a una calle con tráfico y no a un patio.",
+  "Averigua cuándo se pintó la fachada y quién paga la próxima vez.",
+  "Lee el planeamiento: una parcela vacía al lado puede cambiar las vistas para siempre.",
+);
+ES_RENT.push(
+  "Un alquiler de {rent} por m² da {yieldRate} bruto y {netRate} neto, el punto de partida para hablar de gestión.",
+  "El mercado de alquiler de la zona paga {rent} por m² al mes: {yieldRate} bruto y {netRate} neto.",
+  "Cada metro de alquiler aporta {rent}, que se traduce en {yieldRate} bruto.",
+);
+ES_TIMING.push(
+  "Un crecimiento del {growth} apunta a un mercado que madura: más operaciones y menos prisa.",
+  "Los precios suben un {growth} al año, así que negocia en lugar de esperar una bajada.",
+  "Con {growth} no hay motivo para aplazar la decisión otro año.",
+);
+
+
+PL_CITY_PRICE.deep.push(
+  "{price} €/m² w {city} to dolna strefa {region}, gdzie mediana wynosi {regionPrice} €/m².",
+  "W {city} kupuje się dziś po {price} € za metr, czyli poniżej {regionPrice} €/m² w regionie.",
+);
+PL_CITY_PRICE.below.push(
+  "Cena {price} €/m² w {city} zostaje pod {regionPrice} €/m², czyli pod średnią {region}.",
+  "{city} nie dobija do mediany {region}: {price} €/m² wobec {regionPrice} €/m².",
+);
+PL_CITY_PRICE.inline.push(
+  "{city} wyceniane jest jak {region}: {price} €/m² przy {regionPrice} €/m².",
+  "Metr w {city} kosztuje {price} €, tyle ile mediana {region} ({regionPrice} €/m²).",
+);
+PL_CITY_PRICE.above.push(
+  "{city} jest powyżej średniej {region}: {price} €/m² wobec {regionPrice} €/m².",
+  "W {city} płaci się {price} € za metr, ponad {regionPrice} €/m² w regionie.",
+);
+PL_CITY_PRICE.top.push(
+  "{price} €/m² to czub {region}, przy medianie {regionPrice} €/m².",
+  "{city} należy do najdroższych gmin {region}: {price} €/m² przy {regionPrice} €/m².",
+);
+PL_CITY_YIELD.low.push(
+  "Zwrot {yieldRate} brutto ({netRate} netto) jest niski jak na {region}: płacisz za adres.",
+  "Na {yieldRate} brutto w {city} nie zbudujesz szybkiego zwrotu, ale najem jest stabilny.",
+);
+PL_CITY_YIELD.mid.push(
+  "{yieldRate} brutto ({netRate} netto) to średnia {region}.",
+  "W {city} zwrot {yieldRate} brutto mieści się w normie regionu, netto {netRate}.",
+);
+PL_CITY_YIELD.high.push(
+  "{yieldRate} brutto ({netRate} netto) bije średnią {region}.",
+  "Zwrot {yieldRate} brutto wyróżnia {city} w {region}, a {netRate} netto zostaje.",
+);
+PL_CITY_YIELD.top.push(
+  "{yieldRate} brutto ({netRate} netto) to czołówka {region}.",
+  "{city} daje najlepszy zwrot w okolicy: {yieldRate} brutto i {netRate} netto.",
+);
+PL_CITY_SCALE.soft.push(
+  "{volume} transakcji w roku i {days} dni ekspozycji: rynek spokojny, czas na analizę.",
+  "Obrót {volume} transakcji rocznie oznacza, że sprzedaż trwa {days} dni i nikt nie goni.",
+);
+PL_CITY_SCALE.normal.push(
+  "{volume} transakcji rocznie i {days} dni na sprzedaż to typowy rytm {region}.",
+  "Przy {volume} transakcjach w roku sprzedaż zajmuje {days} dni.",
+);
+PL_CITY_SCALE.hot.push(
+  "{volume} transakcji i tylko {days} dni ekspozycji: jeden z płynniejszych rynków {region}.",
+  "Rynek {gen} pracuje szybko: {volume} transakcji rocznie, {days} dni na sprzedaż.",
+);
+PL_CITY_BUYERS.push(
+  "{foreign} kupujących przyjeżdża z zagranicy, {polish} z Polski - dlatego polskie usługi są tu dostępne.",
+  "Polacy to {polish} nabywców, obcokrajowcy {foreign}; reszta to rynek lokalny.",
+);
+PL_CITY_DISTRICTS.push(
+  "Wybierając adres w {city}, pamiętaj o {spread} €/m² różnicy między {cheap} a {dear}.",
+  "Najtańsza część {gen} to {cheap} ({cheapPrice} €/m²), najdroższa {dear} ({dearPrice} €/m²).",
+);
+CITY_CLOSING.pl.push(
+  "W {cityLoc} trzy liczby wystarczą do decyzji: mediana {price} €/m², ROI i ekspozycja oferty.",
+  "Zanim wybierzesz {city}, sprawdź, jak wypada na tle {districtA} i {districtB}.",
+);
+
+
+EN_CITY_PRICE.deep.push(
+  "{price} per m² in {city} sits in the low band of {region}, where the median is {regionPrice}.",
+  "{city} trades at {price} per square metre, under the {regionPrice} regional figure.",
+);
+EN_CITY_PRICE.below.push(
+  "{city} at {price} per m² stays under the {regionPrice} median of {region}.",
+  "{city} does not reach the {region} median: {price} against {regionPrice}.",
+);
+EN_CITY_PRICE.inline.push(
+  "{city} is priced like {region}: {price} per m² against {regionPrice}.",
+  "A square metre in {city} costs {price}, level with the {region} median of {regionPrice}.",
+);
+EN_CITY_PRICE.above.push(
+  "{city} runs above the {region} average: {price} per m² versus {regionPrice}.",
+  "In {city} a square metre costs {price}, over the {regionPrice} regional figure.",
+);
+EN_CITY_PRICE.top.push(
+  "{price} per m² is the top of {region}, against a {regionPrice} median.",
+  "{city} ranks among the dearest towns in {region}: {price} per m² versus {regionPrice}.",
+);
+EN_CITY_YIELD.low.push(
+  "A {yieldRate} gross yield ({netRate} net) is low for {region}: you pay for the address.",
+  "At {yieldRate} gross in {city} there is no fast payback, but letting stays stable.",
+);
+EN_CITY_YIELD.mid.push(
+  "{yieldRate} gross ({netRate} net) is the {region} average.",
+  "In {city} a {yieldRate} gross return sits inside the regional range, {netRate} net.",
+);
+EN_CITY_YIELD.high.push(
+  "{yieldRate} gross ({netRate} net) beats the {region} average.",
+  "The {yieldRate} gross return sets {city} apart in {region}, with {netRate} net left.",
+);
+EN_CITY_YIELD.top.push(
+  "{yieldRate} gross ({netRate} net) leads {region}.",
+  "{city} offers the best return around: {yieldRate} gross and {netRate} net.",
+);
+EN_CITY_SCALE.soft.push(
+  "{volume} sales a year and {days} days on market: a calm market with time to analyse.",
+  "Turnover of {volume} sales means selling takes {days} days and nobody is chasing.",
+);
+EN_CITY_SCALE.normal.push(
+  "{volume} sales a year and {days} days to sell is the {region} rhythm.",
+  "With {volume} sales a year, selling takes {days} days.",
+);
+EN_CITY_SCALE.hot.push(
+  "{volume} sales and only {days} days on market: one of the more liquid markets in {region}.",
+  "{city} works fast: {volume} sales a year, {days} days to sell.",
+);
+EN_CITY_BUYERS.push(
+  "{foreign} of buyers come from abroad and {polish} from Poland, which is why Polish services exist here.",
+  "Polish buyers make up {polish}, all foreign buyers {foreign}; the rest is local.",
+);
+EN_CITY_DISTRICTS.push(
+  "When choosing an address in {city}, keep the {spread} per m² gap between {cheap} and {dear} in mind.",
+  "The cheapest part of {city} is {cheap} ({cheapPrice} per m²), the dearest {dear} ({dearPrice}).",
+);
+CITY_CLOSING.en.push(
+  "In {cityLoc} three numbers decide: the {price} median, the yield and time on market.",
+  "Before choosing {city}, see how it sits against {districtA} and {districtB}.",
+);
+
+
+ES_CITY_PRICE.deep.push(
+  "{price} por m² en {city} está en la banda baja de {region}, con mediana de {regionPrice}.",
+  "{city} cotiza a {price} por metro, por debajo de los {regionPrice} de la región.",
+);
+ES_CITY_PRICE.below.push(
+  "{city} con {price} por m² queda bajo la mediana de {region} ({regionPrice}).",
+  "{city} no alcanza la mediana de {region}: {price} frente a {regionPrice}.",
+);
+ES_CITY_PRICE.inline.push(
+  "{city} cotiza como {region}: {price} por m² frente a {regionPrice}.",
+  "El metro en {city} cuesta {price}, al nivel de la mediana regional de {regionPrice}.",
+);
+ES_CITY_PRICE.above.push(
+  "{city} va por encima de la media de {region}: {price} por m² frente a {regionPrice}.",
+  "En {city} el metro cuesta {price}, sobre los {regionPrice} de la región.",
+);
+ES_CITY_PRICE.top.push(
+  "{price} por m² es lo más alto de {region}, frente a {regionPrice}.",
+  "{city} está entre los municipios más caros de {region}: {price} frente a {regionPrice}.",
+);
+ES_CITY_YIELD.low.push(
+  "Un {yieldRate} bruto ({netRate} neto) es bajo para {region}: se paga la dirección.",
+  "Con {yieldRate} bruto en {city} no hay retorno rápido, aunque el alquiler es estable.",
+);
+ES_CITY_YIELD.mid.push(
+  "{yieldRate} bruto ({netRate} neto) es la media de {region}.",
+  "En {city} un {yieldRate} bruto queda dentro del rango regional, con {netRate} neto.",
+);
+ES_CITY_YIELD.high.push(
+  "{yieldRate} bruto ({netRate} neto) supera la media de {region}.",
+  "El {yieldRate} bruto distingue a {city} en {region}, con {netRate} neto restante.",
+);
+ES_CITY_YIELD.top.push(
+  "{yieldRate} bruto ({netRate} neto) lidera {region}.",
+  "{city} ofrece el mejor retorno del entorno: {yieldRate} bruto y {netRate} neto.",
+);
+ES_CITY_SCALE.soft.push(
+  "{volume} operaciones al año y {days} días de exposición: mercado tranquilo con tiempo para analizar.",
+  "Un volumen de {volume} operaciones implica {days} días para vender y nadie con prisa.",
+);
+ES_CITY_SCALE.normal.push(
+  "{volume} operaciones al año y {days} días para vender es el ritmo de {region}.",
+  "Con {volume} operaciones anuales, vender lleva {days} días.",
+);
+ES_CITY_SCALE.hot.push(
+  "{volume} operaciones y solo {days} días de exposición: uno de los mercados líquidos de {region}.",
+  "{city} funciona rápido: {volume} operaciones al año y {days} días para vender.",
+);
+ES_CITY_BUYERS.push(
+  "El {foreign} de los compradores viene de fuera y el {polish} de Polonia, por eso hay servicios en polaco.",
+  "Los polacos son el {polish} y los extranjeros el {foreign}; el resto es mercado local.",
+);
+ES_CITY_DISTRICTS.push(
+  "Al elegir dirección en {city} ten en cuenta los {spread} por m² entre {cheap} y {dear}.",
+  "La parte más barata de {city} es {cheap} ({cheapPrice} por m²) y la más cara {dear} ({dearPrice}).",
+);
+CITY_CLOSING.es.push(
+  "En {cityLoc} tres cifras deciden: la mediana de {price}, la rentabilidad y los días de exposición.",
+  "Antes de elegir {city}, mira cómo queda frente a {districtA} y {districtB}.",
+);
 

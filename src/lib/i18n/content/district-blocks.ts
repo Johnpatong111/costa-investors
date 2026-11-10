@@ -361,17 +361,8 @@ export function buildLocalizedDistrictBlocks(input: LocalizedDistrictInput): Con
       : `Tenants in {districtLoc} come from two groups: people working in {cityLoc} and families looking for a ${tenantProfile} near ${district.landmarks[0] ?? city.name}. Two profiles with different tolerance for specification and floor area, and different price sensitivity.`;
 
   return [
-    {
-      id: "rynek",
-      heading: localT(copy.rynek),
-      paragraphs: [
-        localT(pick(copy.openers, key, "open")),
-        `${localT(pickByTier(copy.priceByTier, priceTier(stats)))} ${localT(
-          pickByTier(copy.growthByTier, growthTier(stats)),
-        )}`,
-        localT(angle),
-      ],
-    },
+    // Blok „rynek” usunięty: te same zdania powtarzały się na wszystkich
+    // stronach tej usługi. Zastępuje go blok „glebiej” z danych dzielnicy.
     {
       id: "okolica",
       heading: localT(copy.okolica),
@@ -385,7 +376,7 @@ export function buildLocalizedDistrictBlocks(input: LocalizedDistrictInput): Con
         [localT(pickByTier(copy.yieldByTier, yieldTier(stats))), localT(scenario), shortLet],
         key,
         "roi",
-        2,
+        1,
       ),
     },
     {
@@ -416,9 +407,7 @@ export function buildLocalizedDistrictBlocks(input: LocalizedDistrictInput): Con
       // dzielnica, inna usługa” wypadały najwyżej w audycie podobieństwa.
       id: "usluga",
       heading: service.name,
-      paragraphs: service.benefits
-        .slice(0, 1)
-        .map((benefit) => `${localT(benefit.title)}: ${localT(benefit.description)}`),
+      paragraphs: [],
       bullets: service.checklist.slice(0, 2).map((item) => localT(item)),
     },
     {

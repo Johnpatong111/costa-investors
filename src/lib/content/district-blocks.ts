@@ -216,28 +216,17 @@ export function buildDistrictBlocks(ctx: DistrictBlockContext): ContentBlock[] {
 
   return [
     {
-      id: "rynek",
-      heading: t(`Rynek ${vars.propertyGen} w ${vars.districtLoc}: {year}`),
-      paragraphs: [
-        pick(openings, key, "open"),
-        [
-          pickByTier(priceSentences, priceTier(stats)),
-          pickByTier(growthSentences, growthTier(stats)),
-        ].join(" "),
-        serviceAngle[service.kind] ?? "",
-      ].filter(Boolean),
-      bullets: [
-        t("Mediana ofertowa: {price} €/m²"),
-        t("Mediana miasta: {cityPrice} €/m² · regionu: {regionPrice} €/m²"),
-        t("Wzrost cen: {growth} r/r"),
-        t("ROI brutto: {yield} · netto: {netYield}"),
-        t("Czas ekspozycji oferty: {days} dni"),
-      ],
-    },
-    {
+      // Blok „rynek” (wstęp + wycena + angle usługi) usunięty ze stron dzielnic:
+      // te same zdania powtarzały się na wszystkich 89 stronach tej usługi.
+      // Zastępuje go blok „glebiej” generowany z danych dzielnicy.
       id: "okolica",
       heading: `Okolica i zabudowa: ${district.name}`,
-      paragraphs: [pick(okolicaParagraphs, key, "okolica"), siblingSentences.join(" ")],
+      paragraphs: rotateItems(
+        [pick(okolicaParagraphs, key, "okolica"), siblingSentences.join(" ")],
+        key,
+        "okolica",
+        1,
+      ),
       bullets: siblingBullets.length > 0 ? siblingBullets : undefined,
     },
     {
@@ -258,7 +247,7 @@ export function buildDistrictBlocks(ctx: DistrictBlockContext): ContentBlock[] {
         ],
         key,
         "roi",
-        2,
+        1,
       ),
       bullets: [
         t("Czynsz: {rent} €/m²/mies."),
@@ -299,7 +288,7 @@ export function buildDistrictBlocks(ctx: DistrictBlockContext): ContentBlock[] {
         ],
         key,
         "kupujacy",
-        2,
+        1,
       ),
     },
     {
@@ -308,9 +297,9 @@ export function buildDistrictBlocks(ctx: DistrictBlockContext): ContentBlock[] {
       // była identyczna na 89 stronach i napędzała Jaccard.
       id: "usluga",
       heading: service.name,
-      paragraphs: service.benefits
-        .slice(0, 1)
-        .map((benefit) => `${t(benefit.title)}: ${t(benefit.description)}`),
+      // Paragraph usunięty: ta sama korzyść na wszystkich stronach usługi.
+      // Zostają dwa punkty checklisty, które różnią się między usługami.
+      paragraphs: [],
       bullets: service.checklist.slice(0, 2).map((item) => t(item)),
     },
     {

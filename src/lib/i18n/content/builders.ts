@@ -206,7 +206,12 @@ export function buildLocalizedDistrictContent(
       locale === "es"
         ? `Perfil local: ${district.name}`
         : `Local profile: ${district.name}`,
-    paragraphs: profileParagraphs(city, district, stats, locale as "en" | "es", service.kind).slice(2),
+    paragraphs: rotateItems(
+      profileParagraphs(city, district, stats, locale as "en" | "es", service.kind).slice(2),
+      key,
+      "profil",
+      2,
+    ),
   });
 
   // Nota per dzielnica: unikalny akapit (patrz district-market-notes.ts).
@@ -221,7 +226,7 @@ export function buildLocalizedDistrictContent(
 
   const faq = [
     ...districtDeepFaq(city, district, stats, locale, key),
-    ...rotateItems(profileFaq(city, district, stats, locale as "en" | "es"), key, "profile", 2),
+    ...rotateItems(profileFaq(city, district, stats, locale as "en" | "es"), key, "profile", 1),
     ...rotateItems(
       buildLocalizedDistrictFaq(
         { locale: locale as "en" | "es", service, stats, city, district, region, key, vars, t },
@@ -229,7 +234,7 @@ export function buildLocalizedDistrictContent(
       ),
       key,
       "service",
-      3,
+      2,
     ),
   ];
 
@@ -409,7 +414,7 @@ export function buildLocalizedCityContent(
         locale === "es"
           ? `Mercado inmobiliario en ${city.nameLocative}: ${MARKET_YEAR}`
           : `Property market in ${city.nameLocative}: ${MARKET_YEAR}`,
-      paragraphs: [pick(cityOpeners, key, "city-open"), buyerLine, cityAngle],
+      paragraphs: [pick(cityOpeners, key, "city-open"), cityAngle],
       bullets: [
         `${locale === "es" ? "Mediana" : "Median"}: ${formatEur(stats.pricePerM2)}/m²`,
         `${locale === "es" ? "Crecimiento" : "Growth"}: ${formatRate(stats.priceGrowth)}`,
@@ -440,7 +445,8 @@ export function buildLocalizedCityContent(
     {
       id: "koszty",
       heading: locale === "es" ? "Gastos de compra e impuestos" : "Purchase costs and taxes",
-      paragraphs: [costText],
+      // Akapit o stawkach krajowych był identyczny wszędzie; zostaje checklista.
+      paragraphs: [],
       bullets: service.checklist.map((item) => t(item)),
     },
     {
@@ -464,13 +470,15 @@ export function buildLocalizedCityContent(
 
   const faq = [
     ...cityDeepFaq(city, region, stats, locale, key),
-    ...rotateItems(dict.city.faq.map((item) => ({ question: t(item.q), answer: t(item.a) })), key, "city", 3),
+    ...rotateItems(dict.city.faq.map((item) => ({ question: t(item.q), answer: t(item.a) })), key, "city", 2),
   ];
 
   // Konkret infrastrukturalny: lotnisko z kodem IATA i dostęp do AP-7.
   const access = cityAccessBlock(city.slug, locale);
   if (access) {
-    blocks.push({ id: "dojazd", heading: access.heading, paragraphs: access.paragraphs });
+    // Zostaje jeden akapit (lotnisko + czas dojazdu); drugi był ten sam dla
+    // wszystkich gmin z dostępem do AP-7.
+    blocks.push({ id: "dojazd", heading: access.heading, paragraphs: access.paragraphs.slice(0, 1) });
   }
 
   return finish(
@@ -541,7 +549,7 @@ export function buildLocalizedPriceReport(
       // cenowa zależna od dzielnicy plus lista dzielnic w bulletach.
       paragraphs: [priceNote ?? ""],
       bullets: [
-        ...b.ceny.bullets.map((bullet) => t(bullet)),
+        ...rotateItems(b.ceny.bullets.map((bullet) => t(bullet)), key, "ceny-bullets", 2),
         // Lista dzielnic rotowana: pełna lista była identyczna w obrębie gminy
         // i dominowała w parach „dwie dzielnice tego samego miasta”.
         ...rotateItems(
@@ -550,7 +558,7 @@ export function buildLocalizedPriceReport(
           ),
           key,
           "district-list",
-          3,
+          2,
         ),
       ],
     },
@@ -574,7 +582,7 @@ export function buildLocalizedPriceReport(
         ],
         key,
         "tax",
-        3,
+        2,
       ),
     },
     {
@@ -702,7 +710,7 @@ export function buildLocalizedPriceReport(
       r.faq.map((item) => ({ question: t(item.q), answer: t(item.a) })),
       key,
       "report-generic",
-      3,
+      2,
     ),
   ];
 

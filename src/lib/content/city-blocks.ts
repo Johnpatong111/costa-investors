@@ -81,16 +81,7 @@ export function buildCityBlocks(
     {
       id: "rynek",
       heading: `Rynek nieruchomości w ${city.nameLocative}: ${vars.year}`,
-      paragraphs: [
-        pick(openers, key, "city-open"),
-        t(
-          "Kupujący zagraniczni stanowią {foreign} rynku, w tym {polish} to Polacy. To istotne przy wyjściu z inwestycji: miasto ma płynny rynek wtórny, bo kupują tu zarówno mieszkańcy Europy Zachodniej, jak i inwestorzy z Polski.",
-        ),
-        t(
-          `Popyt w mieście oceniamy na ${stats.demandIndex}/10, a najem daje {yield} brutto przy czynszu {rent} €/m²/mies. Koszty wejścia (ITP, notariusz, rejestr, prawnik) to około {purchaseCosts} ceny zakupu.`,
-        ),
-        serviceAngle[service.kind] ?? "",
-      ],
+      paragraphs: [pick(openers, key, "city-open"), serviceAngle[service.kind] ?? ""].filter(Boolean),
       bullets: [
         t("Mediana: {cityPrice} €/m²"),
         t("Wzrost cen: {growth} r/r"),
@@ -102,37 +93,17 @@ export function buildCityBlocks(
     {
       id: "dzielnice",
       heading: `Ceny i ROI w dzielnicach ${city.nameGenitive}`,
-      paragraphs: [
-        t(
-          "Ceny w {cityLoc} różnią się w zależności od odległości od plaży, roku budowy i standardu osiedla. Poniżej mediana €/m² i rentowność najmu w poszczególnych dzielnicach i urbanizacjach. Kliknij nazwę, aby zobaczyć pełny raport.",
-        ),
-        comparison,
-      ],
+      paragraphs: [comparison],
       bullets:
         districtBullets.length > 0
           ? districtBullets
           : ["Miasto nie jest podzielone na dzielnice w naszym modelu danych."],
     },
     {
-      id: "proces",
-      heading: `Jak kupić ${vars.property} w ${city.nameLocative}`,
-      paragraphs: [
-        t(
-          "Zakup w Hiszpanii różni się od polskiego: potrzebujesz numeru NIE, konta w hiszpańskim banku, a przy akcie notarialnym obecny jest tłumacz. Poniżej etapy, które prowadzimy za Ciebie.",
-        ),
-      ],
-      bullets: service.process.map(
-        (step) => `${step.title} (${step.duration}): ${t(step.description)}`,
-      ),
-    },
-    {
+      // Blok „proces” usunięty: identyczne kroki na wszystkich 21 stronach.
       id: "koszty",
       heading: "Koszty zakupu i podatki",
-      paragraphs: [
-        t(
-          "Do ceny dolicz około {purchaseCosts}: ITP 10% przy rynku wtórnym lub IVA 10% i AJD przy nowym lokalu, notariusz, rejestr i obsługa prawna. Do tego dochodzą koszty roczne: IBI, comunidad i ubezpieczenie.",
-        ),
-      ],
+      paragraphs: [],
       bullets: service.checklist.map((item) => t(item)),
     },
   ];

@@ -116,7 +116,10 @@ const access = cityAccessBlock(city.slug, "pl");
 if (access) {
   blocks.push({ id: "dojazd", heading: access.heading, paragraphs: access.paragraphs });
 }
-  const faq = [...cityDeepFaq(city, region, stats, "pl", key), ...rotateItems(buildCityFaq(city, service, t, vars, stats), key, "city", 3)];
+  const faq = [
+    ...cityDeepFaq(city, region, stats, "pl", key),
+    ...rotateItems(buildCityFaq(city, service, t, vars, stats), key, "city", 2),
+  ];
   const processSteps = service.process.map((step) => ({
     title: step.title,
     description: t(step.description),
