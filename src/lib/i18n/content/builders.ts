@@ -43,6 +43,7 @@ import {
 import { en } from "./en";
 import { es } from "./es";
 import { buildLocalizedDistrictBlocks, buildLocalizedDistrictFaq, TYPE_LABELS } from "./district-blocks";
+import { profileFaq, profileParagraphs } from "../../content/content-engine";
 import type { LocalizedContent, LocalizedServiceCopy } from "./types";
 
 /**
@@ -189,11 +190,20 @@ export function buildLocalizedDistrictContent(
     vars,
     t,
   });
+  blocks.push({
+    id: "profil",
+    heading:
+      locale === "es"
+        ? `Perfil local: ${district.name}`
+        : `Local profile: ${district.name}`,
+    paragraphs: profileParagraphs(city, district, stats, locale as "en" | "es", service.kind),
+  });
 
-  const faq = buildLocalizedDistrictFaq(
+
+  const faq = [...profileFaq(city, district, stats, locale as "en" | "es"), ...buildLocalizedDistrictFaq(
     { locale: locale as "en" | "es", service, stats, city, district, region, key, vars, t },
     dict.district.faq,
-  );
+  )];
 
   return finish(
     {

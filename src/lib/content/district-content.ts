@@ -22,6 +22,7 @@ import {
 } from "./content-utils";
 import { buildDistrictBlocks } from "./district-blocks";
 import { buildDistrictFaq, buildKeywords } from "./district-faq";
+import { profileFaq, profileParagraphs } from "./content-engine";
 
 /** Treść money page: usługa + miejscowość + urbanizacja. */
 export function buildDistrictContent(
@@ -71,7 +72,12 @@ export function buildDistrictContent(
   );
 
   const blocks = buildDistrictBlocks({ service, stats, city, district, region, key, vars, t });
-  const faq = buildDistrictFaq(service, vars, key, stats, entry);
+  blocks.push({
+    id: "profil",
+    heading: `Profil lokalny: ${district.name}`,
+    paragraphs: profileParagraphs(city, district, stats, "pl", service.kind),
+  });
+  const faq = [...profileFaq(city, district, stats, "pl"), ...buildDistrictFaq(service, vars, key, stats, entry)];
   const processSteps = service.process.map((step) => ({
     title: step.title,
     description: t(step.description),
