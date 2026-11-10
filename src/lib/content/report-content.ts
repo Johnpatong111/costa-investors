@@ -1,5 +1,6 @@
 ﻿import type { DistrictEntry } from "../data/repository";
 import { deriveDistrictStats, MARKET_YEAR } from "./market-stats";
+import { marketAnalysis } from "./market-analysis";
 import {
   describeDemand,
   describeGrowth,
@@ -181,6 +182,13 @@ export function buildPriceReport(entry: DistrictEntry): PriceReport {
         ),
     },
   ];
+
+  const analysis = marketAnalysis({ city, district, region, stats: deriveDistrictStats(city, district, region), locale: "pl" });
+  blocks.push({
+    id: "analiza",
+    heading: analysis.heading,
+    paragraphs: [analysis.intro, analysis.zones, analysis.factors, analysis.conclusions],
+  });
 
   const faq: FaqItem[] = [
     {

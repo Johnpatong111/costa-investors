@@ -44,6 +44,7 @@ import { en } from "./en";
 import { es } from "./es";
 import { buildLocalizedDistrictBlocks, buildLocalizedDistrictFaq, TYPE_LABELS } from "./district-blocks";
 import { profileFaq, profileParagraphs } from "../../content/content-engine";
+import { marketAnalysis } from "../../content/market-analysis";
 import type { LocalizedContent, LocalizedServiceCopy } from "./types";
 
 /**
@@ -638,6 +639,13 @@ export function buildLocalizedPriceReport(
     id: "profil",
     heading: locale === "es" ? `Perfil de ${district.name}` : `Profile: ${district.name}`,
     paragraphs: [profileYield, profileMarket, profilePlace, profileNeighbours],
+  });
+
+  const analysis = marketAnalysis({ city: entry.city, district, region: entry.region, stats, locale });
+  blocks.push({
+    id: "analiza",
+    heading: analysis.heading,
+    paragraphs: [analysis.intro, analysis.zones, analysis.factors, analysis.conclusions],
   });
 
   const faq = r.faq.map((item) => ({ question: t(item.q), answer: t(item.a) }));
