@@ -20,6 +20,7 @@ import {
 } from "./content-utils";
 import { buildCityBlocks, buildCityFaq } from "./city-blocks";
 import { cityAccessBlock } from "./access";
+import { cityMarketNote } from "./city-market-notes";
 
 /**
  * Hub miasta: /{service}/{city}. Intencja: porównanie lokalizacji na Costa Blanca,
@@ -97,6 +98,13 @@ export function buildCityContent(
   );
 
   const blocks = buildCityBlocks(city, service, t, vars, key, stats);
+
+// Nota rynkowa: autorski akapit per miasto, żeby strony tej samej usługi
+// w różnych miastach nie dzieliły identycznego szkieletu (Jaccard 0.76).
+const marketNote = cityMarketNote(city.slug, "pl");
+if (marketNote) {
+  blocks.push({ id: "ocena-rynku", heading: marketNote.heading, paragraphs: marketNote.paragraphs });
+}
 
 // Blok infrastrukturalny: lotnisko (IATA) i AP-7, twarde dane zamiast ogólników.
 const access = cityAccessBlock(city.slug, "pl");

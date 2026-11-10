@@ -30,6 +30,7 @@ import {
   yieldTier,
 } from "../../content/content-tiers";
 import { cityAccessBlock } from "../../content/access";
+import { cityMarketNote } from "../../content/city-market-notes";
 import { formatEur, formatRate } from "../../utils/format";
 import {
   MAX_DESCRIPTION_LENGTH,
@@ -441,6 +442,12 @@ export function buildLocalizedCityContent(
       bullets: dict.process.map((step) => `${step.title} (${step.duration}): ${t(step.description)}`),
     },
   ];
+
+  // Nota rynkowa: autorski akapit per miasto (patrz city-market-notes.ts).
+  const marketNote = cityMarketNote(city.slug, locale);
+  if (marketNote) {
+    blocks.push({ id: "ocena-rynku", heading: marketNote.heading, paragraphs: marketNote.paragraphs });
+  }
 
   const faq = dict.city.faq.map((item) => ({ question: t(item.q), answer: t(item.a) }));
 
