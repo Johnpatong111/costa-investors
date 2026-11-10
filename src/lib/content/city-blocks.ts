@@ -73,7 +73,7 @@ export function buildCityBlocks(
       `Dla inwestora: {yield} brutto i {netYield} netto przy ekspozycji {days} dni. O zwrocie decyduje rozkład cen w dzielnicach ${city.nameGenitive}, a nie sama mediana miasta.`,
     ),
     "lead-magnet": t(
-      `Dla wyceny: zacznij od mediany miasta ({cityPrice} €/m²), kosztów wejścia ({purchaseCosts}) i rozkładu cen po dzielnicach — dopiero potem zamawiaj analizę konkretnego lokalu.`,
+      `Dla wyceny: zacznij od mediany miasta ({cityPrice} €/m²), kosztów wejścia ({purchaseCosts}) i rozkładu cen po dzielnicach - dopiero potem zamawiaj analizę konkretnego lokalu.`,
     ),
   };
 

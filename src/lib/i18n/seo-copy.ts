@@ -9,9 +9,9 @@ import type { Locale } from "./config";
  * i polskie słowa kluczowe (wyciek językowy + zerowe pokrycie fraz EN/ES).
  *
  * Każdy zestaw obsadza trzy filary:
- *  1. inwestycyjny — property investment / inversión inmobiliaria / inwestycja,
- *  2. doradczy — buyer's agent / agente comprador / agencja kupującego,
- *  3. dane — historia cen 2016–2026 / price history / evolución de precios.
+ *  1. inwestycyjny - property investment / inversión inmobiliaria / inwestycja,
+ *  2. doradczy - buyer's agent / agente comprador / agencja kupującego,
+ *  3. dane - historia cen 2016-2026 / price history / evolución de precios.
  */
 
 export interface SeoCopy {
@@ -24,7 +24,7 @@ export const HOME_SEO: Record<Locale, SeoCopy> = {
   pl: {
     title: "Nieruchomości Costa Blanca i Cálida | ROI i ceny 2026",
     description:
-      "Apartamenty, wille i domy inwestycyjne w 15 miejscowościach Hiszpanii. Ceny od 120 000 €, ROI z najmu do 6,9%, historia cen 2016–2026. Agencja kupującego po polsku.",
+      "Apartamenty, wille i domy inwestycyjne w 15 miejscowościach Hiszpanii. Ceny od 120 000 €, ROI z najmu do 6,9%, historia cen 2016-2026. Agencja kupującego po polsku.",
     keywords: [
       "nieruchomości Costa Blanca",
       "inwestycja w nieruchomości Hiszpania",
@@ -32,13 +32,13 @@ export const HOME_SEO: Record<Locale, SeoCopy> = {
       "agencja kupującego Hiszpania",
       "buyer's agent Costa Blanca",
       "ceny m2 Costa Blanca 2026",
-      "historia cen nieruchomości Hiszpania 2016–2026",
+      "historia cen nieruchomości Hiszpania 2016-2026",
     ],
   },
   en: {
     title: "Property investment Costa Blanca & Cálida | Buyer's agent",
     description:
-      "Apartments, villas and investment homes in 15 Spanish locations. Prices from €120,000, gross yields to 6.9%, full 2016–2026 price history. Independent buyer's agent.",
+      "Apartments, villas and investment homes in 15 Spanish locations. Prices from €120,000, gross yields to 6.9%, full 2016-2026 price history. Independent buyer's agent.",
     keywords: [
       "property investment Costa Blanca",
       "buy property in Spain",
@@ -52,7 +52,7 @@ export const HOME_SEO: Record<Locale, SeoCopy> = {
   es: {
     title: "Inversión inmobiliaria Costa Blanca y Cálida | Agente",
     description:
-      "Apartamentos, chalets y viviendas de inversión en 15 localidades. Precios desde 120.000 €, rentabilidad bruta hasta 6,9%, evolución de precios 2016–2026. Agente comprador.",
+      "Apartamentos, chalets y viviendas de inversión en 15 localidades. Precios desde 120.000 €, rentabilidad bruta hasta 6,9%, evolución de precios 2016-2026. Agente comprador.",
     keywords: [
       "inversión inmobiliaria Costa Blanca",
       "comprar vivienda en España",
@@ -67,7 +67,7 @@ export const HOME_SEO: Record<Locale, SeoCopy> = {
 
 /** Fraza „danych” doklejana do raportów cenowych (filar 3). */
 export const PRICE_HISTORY_KEYWORD: Record<Locale, string> = {
-  pl: "historia cen nieruchomości 2016–2026",
+  pl: "historia cen nieruchomości 2016-2026",
   en: "property price history 2016-2026",
   es: "evolución de precios 2016-2026",
 };

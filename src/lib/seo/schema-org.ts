@@ -293,7 +293,7 @@ export function localAgentNode(input: {
 
 /** Raport cenowy. Encja Dataset (Google traktuje ją jako dane, nie artykuł). */
 export function datasetNode(input: {
-  /** Język strony — etykiety pól i inLanguage. */
+  /** Język strony - etykiety pól i inLanguage. */
   locale?: "pl" | "en" | "es";
   name: string;
   description: string;

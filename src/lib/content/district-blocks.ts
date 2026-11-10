@@ -20,7 +20,7 @@ import { formatEur, formatRate } from "../utils/format";
  * BLOKI MONEY PAGE (PL): rynek → okolica → ROI → koszty → kupujący → dane
  * ===========================================================================
  * Dlaczego tyle wariantów: walidator i Google normalizują liczby, więc strony
- * różniące się tylko medianą są duplikatem. Tutaj każde zdanie ma 3–4 warianty
+ * różniące się tylko medianą są duplikatem. Tutaj każde zdanie ma 3-4 warianty
  * wybierane przez kubełek danych (faktograficznie) albo deterministycznie
  * (styl), a lista cech i punktów orientacyjnych wnosi nazwy własne dzielnicy.
  */
@@ -36,7 +36,7 @@ export interface DistrictBlockContext {
   t: (template: string) => string;
 }
 
-/** „A, B i C” — poprawna polska wyliczanka. */
+/** „A, B i C” - poprawna polska wyliczanka. */
 function plList(items: string[]): string {
   const clean = items.map((item) => item.trim()).filter(Boolean);
   if (clean.length === 0) return "";
@@ -78,10 +78,10 @@ export function buildDistrictBlocks(ctx: DistrictBlockContext): ContentBlock[] {
       `Zestawienie dla kupującego na własne potrzeby: porównaj {price} €/m² z kosztami utrzymania i sprawdź, czy budżet na 70 m² ({budget70}) jest w {districtLoc} realny.`,
     ),
     villa: t(
-      `Perspektywa domu z basenem: w {districtLoc} działka i basen podnoszą koszt wejścia, ale też stawkę najmu sezonowego — dlatego ROI liczymy tu od wartości nieruchomości, a nie od metrażu.`,
+      `Perspektywa domu z basenem: w {districtLoc} działka i basen podnoszą koszt wejścia, ale też stawkę najmu sezonowego - dlatego ROI liczymy tu od wartości nieruchomości, a nie od metrażu.`,
     ),
     investment: t(
-      `Perspektywa inwestora: w {districtLoc} liczy się nie tylko {yield} brutto, ale i czas wyjścia — przy ekspozycji {days} dni i popycie {demand}/10 płynność jest ${stats.avgDaysOnMarket <= 100 ? "ponadprzeciętna" : "przeciętna na tle regionu"}.`,
+      `Perspektywa inwestora: w {districtLoc} liczy się nie tylko {yield} brutto, ale i czas wyjścia - przy ekspozycji {days} dni i popycie {demand}/10 płynność jest ${stats.avgDaysOnMarket <= 100 ? "ponadprzeciętna" : "przeciętna na tle regionu"}.`,
     ),
     "lead-magnet": t(
       `Punkt wyjścia do wyceny: zanim zamówisz analizę konkretnego mieszkania w {districtLoc}, sprawdź medianę ({price} €/m²), koszty wejścia ({purchaseCosts}) i widełki najmu ({rent} €/m²/mies.).`,
@@ -96,7 +96,7 @@ export function buildDistrictBlocks(ctx: DistrictBlockContext): ContentBlock[] {
       `{districtLoc} to {districtType} w {subregion}, rozpoznawalna przede wszystkim dzięki {landmark}. Zabudowę opisują {characteristic} oraz {characteristic2}, co zawęża grono kupujących do osób szukających konkretnego standardu.`,
     ),
     t(
-      `Zanim porównasz ceny w {districtLoc}, warto wiedzieć jedno: {characteristic}. Bliskość {landmark} i {landmark2} podnosi atrakcyjność najmu, ale podnosi też koszty wspólnoty — i to one często decydują o realnym zwrocie.`,
+      `Zanim porównasz ceny w {districtLoc}, warto wiedzieć jedno: {characteristic}. Bliskość {landmark} i {landmark2} podnosi atrakcyjność najmu, ale podnosi też koszty wspólnoty - i to one często decydują o realnym zwrocie.`,
     ),
   ];
 
@@ -130,7 +130,7 @@ export function buildDistrictBlocks(ctx: DistrictBlockContext): ContentBlock[] {
       `Rentowność brutto {yield} przy czynszu {rent} €/m²/mies. to poziom, który po kosztach daje {netYield} netto.`,
     ),
     t(
-      `{yield} brutto i {netYield} netto przy medianie czynszu {rent} €/m²/mies. — w tej części {cityGen} najem pokrywa większość kosztów utrzymania.`,
+      `{yield} brutto i {netYield} netto przy medianie czynszu {rent} €/m²/mies. - w tej części {cityGen} najem pokrywa większość kosztów utrzymania.`,
     ),
     t(
       `Wynik {yield} brutto ({netYield} netto) należy do najlepszych w regionie. Czynsz {rent} €/m²/mies. utrzymuje się dzięki temu, że w okolicy dominują {characteristic}.`,
@@ -142,7 +142,7 @@ export function buildDistrictBlocks(ctx: DistrictBlockContext): ContentBlock[] {
       `Do ceny dolicz {purchaseCosts} kosztów transakcyjnych. ${taxNote}, do tego notariusz, Registro de la Propiedad i obsługa prawna.`,
     ),
     t(
-      `${taxNote} — to największa pozycja w kosztach wejścia, razem około {purchaseCosts}. Reszta to notariusz, wpis do rejestru i prawnik.`,
+      `${taxNote} - to największa pozycja w kosztach wejścia, razem około {purchaseCosts}. Reszta to notariusz, wpis do rejestru i prawnik.`,
     ),
     t(
       `Budżet zamyka się dopiero po doliczeniu {purchaseCosts}. ${taxNote}; przy nowym lokalu dochodzi IVA 10% i AJD.`,
@@ -166,7 +166,7 @@ export function buildDistrictBlocks(ctx: DistrictBlockContext): ContentBlock[] {
 
   const demandSentences = [
     t(`Popyt oceniamy jako umiarkowany (wskaźnik {demand}/10), więc jest miejsce na negocjacje.`),
-    t(`Popyt jest stabilny (wskaźnik {demand}/10) — typowy rynek drugiego domu.`),
+    t(`Popyt jest stabilny (wskaźnik {demand}/10) - typowy rynek drugiego domu.`),
     t(`Popyt jest wysoki (wskaźnik {demand}/10), a oferty rozchodzą się szybko.`),
     t(
       `Popyt jest bardzo wysoki (wskaźnik {demand}/10). Dobre lokale znikają z portali w kilka tygodni.`,
@@ -174,13 +174,13 @@ export function buildDistrictBlocks(ctx: DistrictBlockContext): ContentBlock[] {
   ];
 
   const liquiditySentences = [
-    t(`Mediana ekspozycji oferty to {days} dni — jedno z najkrótszych temp w regionie.`),
+    t(`Mediana ekspozycji oferty to {days} dni - jedno z najkrótszych temp w regionie.`),
     t(`Mediana ekspozycji oferty to {days} dni, czyli tempo zbliżone do średniej regionalnej.`),
     t(
       `Oferta leży na rynku średnio {days} dni, co zwykle oznacza, że cena wyjściowa była przeszacowana.`,
     ),
     t(
-      `Mediana ekspozycji to {days} dni — tu liczy się cierpliwość albo realna wycena od pierwszego dnia.`,
+      `Mediana ekspozycji to {days} dni - tu liczy się cierpliwość albo realna wycena od pierwszego dnia.`,
     ),
   ];
 
@@ -189,10 +189,10 @@ export function buildDistrictBlocks(ctx: DistrictBlockContext): ContentBlock[] {
       `Zabudowa: ${plList(characteristics)}. Typ lokalizacji: {districtType}. Punkty orientacyjne, które przewijają się w ogłoszeniach: ${plList(landmarks)}. W praktyce to one decydują o różnicy w cenie pomiędzy dwiema nieruchomościami o tym samym metrażu w ${district.name}.`,
     ),
     t(
-      `W ${district.name} liczy się ${plList(characteristics)}. Do tego dochodzą ${plList(landmarks)} — miejsca, które najemcy sprawdzają w pierwszej kolejności. Administracyjnie i komunikacyjnie obszar obsługuje ${city.name} w części ${city.subregion}.`,
+      `W ${district.name} liczy się ${plList(characteristics)}. Do tego dochodzą ${plList(landmarks)} - miejsca, które najemcy sprawdzają w pierwszej kolejności. Administracyjnie i komunikacyjnie obszar obsługuje ${city.name} w części ${city.subregion}.`,
     ),
     t(
-      `Opis w dwóch zdaniach: ${plList(characteristics)} oraz bezpośredni dostęp do ${plList(landmarks)}. Taki profil — ${district.type} w części ${city.subregion} — sprawia, że najem sezonowy i długoterminowy wzajemnie się uzupełniają.`,
+      `Opis w dwóch zdaniach: ${plList(characteristics)} oraz bezpośredni dostęp do ${plList(landmarks)}. Taki profil - ${district.type} w części ${city.subregion} - sprawia, że najem sezonowy i długoterminowy wzajemnie się uzupełniają.`,
     ),
   ];
 
@@ -253,7 +253,7 @@ export function buildDistrictBlocks(ctx: DistrictBlockContext): ContentBlock[] {
           `Realny scenariusz: 70 m² w {districtLoc} generuje około {rent70} € czynszu rocznie brutto i {rentNet70} € netto po kosztach zarządzania, podatku i pustostanach.`,
         ),
         t(
-          `Inwestycja 250 000 € daje w horyzoncie pięciu lat około {return5y} € łącznego zwrotu (czynsz netto plus wzrost wartości), czyli {returnPercent}% budżetu. To model na medianach, nie gwarancja — konkretną nieruchomość wyceniamy osobno.`,
+          `Inwestycja 250 000 € daje w horyzoncie pięciu lat około {return5y} € łącznego zwrotu (czynsz netto plus wzrost wartości), czyli {returnPercent}% budżetu. To model na medianach, nie gwarancja - konkretną nieruchomość wyceniamy osobno.`,
         ),
         t(
           `Najem krótkoterminowy w {districtLoc} podnosi przychód w sezonie, ale wymaga licencji turystycznej i zwiększa koszty operacyjne. Części inwestorów bardziej opłaca się najem długoterminowy z niższym ryzykiem pustostanu.`,
@@ -273,7 +273,7 @@ export function buildDistrictBlocks(ctx: DistrictBlockContext): ContentBlock[] {
       paragraphs: [
         pick(costVariants, key, "cost"),
         t(
-          `Po zakupie dochodzą koszty stałe: IBI (podatek gminny), comunidad (koszty wspólnoty) i ubezpieczenie. W ${district.name} wysokość comunidad zależy od standardu osiedla i infrastruktury wspólnej — przy zabudowie typu ${district.type} bywa to pozycja pomijana w ogłoszeniach.`,
+          `Po zakupie dochodzą koszty stałe: IBI (podatek gminny), comunidad (koszty wspólnoty) i ubezpieczenie. W ${district.name} wysokość comunidad zależy od standardu osiedla i infrastruktury wspólnej - przy zabudowie typu ${district.type} bywa to pozycja pomijana w ogłoszeniach.`,
         ),
       ],
       bullets: service.checklist.map((item) => t(item)),
@@ -287,7 +287,7 @@ export function buildDistrictBlocks(ctx: DistrictBlockContext): ContentBlock[] {
           `Dla kupującego z Polski oznacza to jedno: finansowanie warto mieć potwierdzone przed przyjazdem, bo przy popycie {demand}/10 dobre lokale nie czekają na decyzję.`,
         )}`,
         t(
-          `Najemcę w {districtLoc} znajdziesz wśród osób pracujących w {cityLoc} oraz rodzin szukających ${district.characteristics[1] ?? district.characteristics[0] ?? ""}. To dwie różne grupy o różnej tolerancji na standard i metraż — i różnej wrażliwości cenowej.`,
+          `Najemcę w {districtLoc} znajdziesz wśród osób pracujących w {cityLoc} oraz rodzin szukających ${district.characteristics[1] ?? district.characteristics[0] ?? ""}. To dwie różne grupy o różnej tolerancji na standard i metraż - i różnej wrażliwości cenowej.`,
         ),
       ],
     },

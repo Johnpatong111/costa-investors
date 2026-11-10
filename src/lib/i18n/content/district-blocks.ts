@@ -22,9 +22,9 @@ import type { ServiceCopyView } from "./builders";
  * ===========================================================================
  * Odpowiednik polskiego `content/district-blocks.ts`. Powód istnienia: słownik
  * EN/ES miał JEDEN zestaw akapitów dla wszystkich dzielnic, więc po normalizacji
- * cyfr strony różniły się tylko nazwą miejscowości (Jaccard 0,85–0,87).
+ * cyfr strony różniły się tylko nazwą miejscowości (Jaccard 0,85-0,87).
  *
- * Tutaj: 3–4 warianty frazy per slot, wybierane przez kubełek danych
+ * Tutaj: 3-4 warianty frazy per slot, wybierane przez kubełek danych
  * (faktograficznie) albo deterministycznie per URL. Nazwy cech, punktów
  * orientacyjnych i dzielnic siostrzanych wnoszą słowa unikalne dla lokalizacji.
  */
@@ -83,7 +83,7 @@ const EN: DistrictCopy = {
   ],
   okolicaParagraphs: [
     "Location type: {districtType}. Landmarks quoted in listings: {landmark}, {landmark2}. In practice these are what separate two properties with identical floor area in {district}: distance to {landmark}, the building line and the year of completion.",
-    "In {district} the frame of reference is {landmark} and {landmark2} — the places tenants check first. Administratively and logistically the area is served by {city}, in the {subregion} part of the coast, which matters for both lettings and resale.",
+    "In {district} the frame of reference is {landmark} and {landmark2} - the places tenants check first. Administratively and logistically the area is served by {city}, in the {subregion} part of the coast, which matters for both lettings and resale.",
     "Two lines are enough: a {districtType} with direct access to {landmark}. That combination gives the area a {subregion} profile, where seasonal and long-term lets complement each other instead of competing.",
   ],
   priceByTier: [
@@ -101,7 +101,7 @@ const EN: DistrictCopy = {
   yieldByTier: [
     "A gross yield of {yield} is not spectacular, but the location defends itself through capital growth. With rent at {rent} €/m² per month, the net figure lands near {netYield}.",
     "A gross yield of {yield} on rent of {rent} €/m² per month translates into roughly {netYield} net after costs.",
-    "{yield} gross and {netYield} net on a median rent of {rent} €/m² per month — in this part of {city} the rent covers most of the holding costs.",
+    "{yield} gross and {netYield} net on a median rent of {rent} €/m² per month - in this part of {city} the rent covers most of the holding costs.",
     "At {yield} gross ({netYield} net) this is one of the strongest results in the region. Rent of {rent} €/m² per month holds up because demand around {landmark} runs all year, not only in summer.",
   ],
   costVariants: [
@@ -111,18 +111,18 @@ const EN: DistrictCopy = {
   ],
   buyerByTier: [
     "Foreign buyers account for {foreign} of purchases in {cityLoc}, so the market stays largely local and prices are less exposed to fashion.",
-    "International buyers make up {foreign} of transactions in {cityLoc}, and Polish buyers represent {polish} of that group — enough for a liquid resale market.",
+    "International buyers make up {foreign} of transactions in {cityLoc}, and Polish buyers represent {polish} of that group - enough for a liquid resale market.",
     "In {cityLoc} {foreign} of buyers come from abroad, with Polish buyers at {polish}. That mix means your exit does not depend on a single market.",
     "Foreign demand is strong here: {foreign} of purchases, {polish} of them Polish. Buyers come for the location around {landmark}, which is why listings move faster than average.",
   ],
   demandByTier: [
     "Demand reads as moderate (index {demand}/10), so there is room to negotiate.",
-    "Demand is steady (index {demand}/10) — a classic second-home market.",
+    "Demand is steady (index {demand}/10) - a classic second-home market.",
     "Demand is high (index {demand}/10) and listings move quickly.",
     "Demand is very high (index {demand}/10); good units leave the portals within weeks.",
   ],
   liquidityByTier: [
-    "The median time on market is {days} days — among the fastest in the region.",
+    "The median time on market is {days} days - among the fastest in the region.",
     "The median time on market is {days} days, in line with the regional average.",
     "Listings sit on the market for {days} days on average, which usually means the asking price started too high.",
     "The median is {days} days, so either patience or realistic pricing from day one is required.",
@@ -163,7 +163,7 @@ const ES: DistrictCopy = {
   ],
   okolicaParagraphs: [
     "Tipo de ubicación: {districtType}. Puntos de referencia que aparecen en los anuncios: {landmark}, {landmark2}. En la práctica son los que marcan la diferencia entre dos viviendas con los mismos metros en {district}: distancia a {landmark}, línea de edificación y año de entrega.",
-    "En {district} la referencia es {landmark} y {landmark2} — los lugares que el inquilino comprueba primero. Administrativa y logísticamente la zona depende de {city}, en la parte de {subregion}, y eso pesa tanto en el alquiler como en la reventa.",
+    "En {district} la referencia es {landmark} y {landmark2} - los lugares que el inquilino comprueba primero. Administrativa y logísticamente la zona depende de {city}, en la parte de {subregion}, y eso pesa tanto en el alquiler como en la reventa.",
     "Dos líneas bastan: una {districtType} con acceso directo a {landmark}. Esa combinación da a la zona un perfil de {subregion}, donde el alquiler vacacional y el de larga temporada se complementan.",
   ],
   priceByTier: [
@@ -233,7 +233,7 @@ const COPY: Record<"en" | "es", DistrictCopy> = { en: EN, es: ES };
 
 /**
  * Typ lokalizacji w słowach danego języka. W danych `district.type` jest po
- * polsku (dzielnica/urbanizacja/plaza/osiedle) — bez mapowania angielska
+ * polsku (dzielnica/urbanizacja/plaza/osiedle) - bez mapowania angielska
  * strona mówiłaby „a urbanizacja”, a hiszpańska mieszałaby języki.
  */
 export const TYPE_LABELS: Record<"en" | "es", Record<string, string>> = {
@@ -307,13 +307,13 @@ export function buildLocalizedDistrictBlocks(input: LocalizedDistrictInput): Con
       ? ({
           buy: `Enfoque para quien compra para uso propio: compara ${formatEur(stats.pricePerM2)}/m² con los gastos de mantenimiento y comprueba si el presupuesto de 70 m² (${formatEur(stats.pricePerM2 * 70)}) es realista en {districtLoc}.`,
           villa: `Enfoque chalet con piscina: en {districtLoc} la parcela y la piscina elevan la entrada, pero también la renta de temporada; por eso el ROI se calcula sobre el valor del inmueble y no sobre el metro.`,
-          investment: `Enfoque inversor: en {districtLoc} importa el ${formatRate(stats.rentalYield)} bruto y también la salida — con ${stats.avgDaysOnMarket} días de exposición y demanda ${stats.demandIndex}/10 la liquidez es ${stats.avgDaysOnMarket <= 100 ? "superior a la media" : "media para la región"}.`,
+          investment: `Enfoque inversor: en {districtLoc} importa el ${formatRate(stats.rentalYield)} bruto y también la salida - con ${stats.avgDaysOnMarket} días de exposición y demanda ${stats.demandIndex}/10 la liquidez es ${stats.avgDaysOnMarket <= 100 ? "superior a la media" : "media para la región"}.`,
           "lead-magnet": `Punto de partida para la valoración: antes de pedir el análisis de una vivienda concreta en {districtLoc}, revisa la mediana (${formatEur(stats.pricePerM2)}/m²), los gastos de entrada (${formatRate(stats.purchaseCostsRate * 100)}) y el rango de alquiler (${stats.monthlyRentPerM2} €/m² al mes).`,
         } as Record<string, string>)[service.kind] ?? ""
       : ({
           buy: `Written for owner-occupiers: compare ${formatEur(stats.pricePerM2)}/m² with holding costs and check whether a 70 m² budget (${formatEur(stats.pricePerM2 * 70)}) is realistic in {districtLoc}.`,
           villa: `Villa-and-pool angle: in {districtLoc} the plot and pool raise entry costs but also seasonal rent, which is why ROI here is calculated on property value rather than floor area.`,
-          investment: `Investor angle: in ${district.name} the ${formatRate(stats.rentalYield)} gross yield matters, but so does the exit — with ${stats.avgDaysOnMarket} days on market and demand at ${stats.demandIndex}/10, liquidity is ${stats.avgDaysOnMarket <= 100 ? "above average" : "average for the region"}.`,
+          investment: `Investor angle: in ${district.name} the ${formatRate(stats.rentalYield)} gross yield matters, but so does the exit - with ${stats.avgDaysOnMarket} days on market and demand at ${stats.demandIndex}/10, liquidity is ${stats.avgDaysOnMarket <= 100 ? "above average" : "average for the region"}.`,
           "lead-magnet": `Starting point for a valuation: before ordering an analysis of a specific unit in {districtLoc}, check the median (${formatEur(stats.pricePerM2)}/m²), entry costs (${formatRate(stats.purchaseCostsRate * 100)}) and rent range (${stats.monthlyRentPerM2} €/m² per month).`,
         } as Record<string, string>)[service.kind] ?? "";
 
@@ -343,7 +343,7 @@ export function buildLocalizedDistrictBlocks(input: LocalizedDistrictInput): Con
   const holding =
     locale === "es"
       ? `Después de la compra llegan los gastos fijos: IBI, comunidad de propietarios y seguro. En ${district.name} la comunidad depende del estándar de la urbanización y de los servicios comunes, una partida que los anuncios suelen omitir.`
-      : `After completion come the fixed costs: IBI, community fees and insurance. In ${district.name} the community charge depends on the standard of the development and its shared facilities — an item listings tend to omit.`;
+      : `After completion come the fixed costs: IBI, community fees and insurance. In ${district.name} the community charge depends on the standard of the development and its shared facilities - an item listings tend to omit.`;
 
   const tenantProfile = typeLabel;
   const tenant =
@@ -458,7 +458,7 @@ export function buildLocalizedDistrictFaq(
           `La venta tarda ${stats.avgDaysOnMarket} días de media. Un plazo más largo suele indicar anuncios sobrevalorados, así que conviene comparar varias viviendas antes de presentar una oferta.`,
         ]
       : [
-          `Properties leave the market in ${stats.avgDaysOnMarket} days on average — one of the fastest rates in the region. Sellers rarely cut the price when the valuation is realistic.`,
+          `Properties leave the market in ${stats.avgDaysOnMarket} days on average - one of the fastest rates in the region. Sellers rarely cut the price when the valuation is realistic.`,
           `The median time on market is ${stats.avgDaysOnMarket} days, in line with the regional average: there is time for due diligence, but not for weeks of negotiation.`,
           `A sale takes ${stats.avgDaysOnMarket} days on average. A longer period usually signals overpriced listings, so compare several properties before making an offer.`,
         ];

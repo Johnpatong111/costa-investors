@@ -18,7 +18,7 @@ export const MARKET_YEAR = 2026;
 /**
  * Data snapshotu danych rynkowych w formacie RRRR-MM. Bierzemy ją z datasetu
  * (`updatedAt`), żeby po każdej aktualizacji cen strony nie deklarowały
- * starego miesiąca — wcześniej była tu zaszyta stała „2026-01”.
+ * starego miesiąca - wcześniej była tu zaszyta stała „2026-01”.
  */
 export const DATA_AS_OF = dataset.updatedAt.slice(0, 7);
 /** Mediana regionu. Punkt odniesienia w tabelach (seed 2026). */

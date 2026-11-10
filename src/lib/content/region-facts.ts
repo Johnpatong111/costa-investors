@@ -7,7 +7,7 @@ import type { Locale } from "../i18n/config";
  * ITP (Impuesto de Transmisiones Patrimoniales) różni się między regionami:
  * Comunidad Valenciana 10%, Región de Murcia 8% (stawka ogólna 2026).
  * Ta różnica jest prawdziwa, wpływa na kalkulację zwrotu i realnie różnicuje
- * treść stron Costa Blanca vs Costa Cálida — nie jest zabiegiem SEO.
+ * treść stron Costa Blanca vs Costa Cálida - nie jest zabiegiem SEO.
  */
 
 export interface RegionTaxFacts {

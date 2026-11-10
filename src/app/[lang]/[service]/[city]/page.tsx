@@ -85,7 +85,7 @@ export async function generateMetadata({
         : locale === "en"
           ? `Buy ${getServiceCopy(kind, locale).name} in ${city.name} | Investment & ROI ${SITE.year} | Costa Investors`
           : `Inwestycje i zakup: ${getServiceCopy(kind, locale).name} w ${city.name} | Ceny i ROI ${SITE.year}`,
-    // Opis łączy nazwę USŁUGI i dane miasta — inaczej wszystkie usługi
+    // Opis łączy nazwę USŁUGI i dane miasta - inaczej wszystkie usługi
     // w tym samym mieście miały identyczny meta description.
     description:
       locale === "es"

@@ -307,7 +307,7 @@ export function buildLocalizedCityContent(
       ? `Añade un ${formatRate(stats.purchaseCostsRate * 100)} de gastos: ITP del ${tax.itp}% en ${tax.authority} para segunda mano, o IVA del 10% y AJD en obra nueva, más notaría, registro y abogado. Cada año se suman IBI, comunidad y seguro.`
       : `Add ${formatRate(stats.purchaseCostsRate * 100)} in costs: ${tax.itp}% transfer tax in ${tax.authority} for resale, or 10% VAT plus stamp duty on new-build, plus notary, registry and lawyer. Every year you also pay IBI, community fees and insurance.`;
 
-  // Argumentacja pod intencję usługi — różnicuje huby tej samej miejscowości.
+  // Argumentacja pod intencję usługi - różnicuje huby tej samej miejscowości.
   const cityAngle =
     locale === "es"
       ? ({
@@ -351,7 +351,7 @@ export function buildLocalizedCityContent(
           bestYield
             ? `The best gross yield sits in ${bestYield.name}: ${formatRate(bestYield.rentalYield)} on a median of ${formatEur(bestYield.pricePerM2)} €/m².`
             : "",
-          `Price spread inside the municipality: ${formatEur(Math.max(...city.districts.map((item) => item.pricePerM2)) - Math.min(...city.districts.map((item) => item.pricePerM2)))} €/m² — which is why two similar homes can cost very differently.`,
+          `Price spread inside the municipality: ${formatEur(Math.max(...city.districts.map((item) => item.pricePerM2)) - Math.min(...city.districts.map((item) => item.pricePerM2)))} €/m² - which is why two similar homes can cost very differently.`,
         ]
           .filter(Boolean)
           .join(" ");
@@ -564,7 +564,7 @@ export function buildLocalizedPriceReport(
       : pickByTier(
           [
             `A ${formatRate(stats.rentalYield)} gross yield is moderate: in ${district.name} capital growth does more work than rent.`,
-            `At ${formatRate(stats.rentalYield)} gross the rent covers costs and leaves a margin — a typical level for a ${TYPE_LABELS.en[district.type] ?? "residential area"}.`,
+            `At ${formatRate(stats.rentalYield)} gross the rent covers costs and leaves a margin - a typical level for a ${TYPE_LABELS.en[district.type] ?? "residential area"}.`,
             `${formatRate(stats.rentalYield)} gross and ${formatRate(stats.netYield)} net: rent of ${stats.monthlyRentPerM2} €/m² per month genuinely moves the total return.`,
             `Strong for the region: ${formatRate(stats.rentalYield)} gross on a median of ${formatEur(stats.pricePerM2)} €/m².`,
           ],
@@ -584,7 +584,7 @@ export function buildLocalizedPriceReport(
         )
       : pickByTier(
           [
-            `Demand is contained (${stats.demandIndex}/10) and listings stay ${stats.avgDaysOnMarket} days — there is room to negotiate.`,
+            `Demand is contained (${stats.demandIndex}/10) and listings stay ${stats.avgDaysOnMarket} days - there is room to negotiate.`,
             `Steady demand (${stats.demandIndex}/10) and ${stats.avgDaysOnMarket} days on market: a second-home market that moves without haste.`,
             `High demand (${stats.demandIndex}/10) with ${stats.avgDaysOnMarket} days on market: correctly priced units sell quickly.`,
             `Very high demand (${stats.demandIndex}/10) and only ${stats.avgDaysOnMarket} days on market: buyers decide at short notice.`,

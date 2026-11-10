@@ -64,9 +64,9 @@ const COPY: Record<
     eyebrow: "Dane rynkowe",
     h1: (city) => `Ceny m² i ROI w ${city}`,
     lead: (city, median, yieldValue, districts) =>
-      `Mediana ofertowa w ${city} to ${median} €/m² przy rentowności najmu ${yieldValue} brutto. Poniżej ceny, zwrot i czas ekspozycji ofert w ${districts} dzielnicach — kliknij nazwę, aby otworzyć pełny raport dzielnicy.`,
+      `Mediana ofertowa w ${city} to ${median} €/m² przy rentowności najmu ${yieldValue} brutto. Poniżej ceny, zwrot i czas ekspozycji ofert w ${districts} dzielnicach - kliknij nazwę, aby otworzyć pełny raport dzielnicy.`,
     tableEyebrow: "Porównanie",
-    tableTitle: (city) => `Ceny i ROI w dzielnicach — ${city}`,
+    tableTitle: (city) => `Ceny i ROI w dzielnicach - ${city}`,
     colDistrict: "Dzielnica",
     colMedian: "Mediana €/m²",
     colRoi: "ROI brutto",
@@ -91,9 +91,9 @@ const COPY: Record<
     eyebrow: "Market data",
     h1: (city) => `Property prices and yields in ${city}`,
     lead: (city, median, yieldValue, districts) =>
-      `The asking median in ${city} is ${median} €/m² with a gross rental yield of ${yieldValue}. Below: prices, returns and time on market across ${districts} areas — open any name for the full district report.`,
+      `The asking median in ${city} is ${median} €/m² with a gross rental yield of ${yieldValue}. Below: prices, returns and time on market across ${districts} areas - open any name for the full district report.`,
     tableEyebrow: "Comparison",
-    tableTitle: (city) => `Prices and yields by area — ${city}`,
+    tableTitle: (city) => `Prices and yields by area - ${city}`,
     colDistrict: "Area",
     colMedian: "Median €/m²",
     colRoi: "Gross yield",
@@ -120,7 +120,7 @@ const COPY: Record<
     lead: (city, median, yieldValue, districts) =>
       `La mediana de oferta en ${city} es de ${median} €/m² con una rentabilidad bruta del ${yieldValue}. Abajo tienes precios, retorno y tiempo de venta en ${districts} zonas: pulsa el nombre para ver el informe completo.`,
     tableEyebrow: "Comparativa",
-    tableTitle: (city) => `Precios y rentabilidad por zona — ${city}`,
+    tableTitle: (city) => `Precios y rentabilidad por zona - ${city}`,
     colDistrict: "Zona",
     colMedian: "Mediana €/m²",
     colRoi: "Rentabilidad bruta",
@@ -312,7 +312,7 @@ export default async function PriceCityPage({ params }: { params: Promise<RouteP
         ) : null}
       </Section>
 
-      {/* Historia cen 2016–2026 dla TEGO miasta — każdy URL /ceny-m2/... ją ma. */}
+      {/* Historia cen 2016-2026 dla TEGO miasta - każdy URL /ceny-m2/... ją ma. */}
       <PriceHistorySection
         history={getPriceHistory(locale, {
           current: stats.pricePerM2,

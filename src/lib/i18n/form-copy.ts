@@ -7,7 +7,7 @@ import type { Locale } from "./config";
  * Powód istnienia: komponenty `step-contact`, `step-config` i
  * `multi-step-lead-form` miały zaszyte polskie napisy („Imię i nazwisko”,
  * „Numer PL lub międzynarodowy…”, aria-label „Postęp formularza”), więc
- * formularz na /en/ i /es/ zawierał polskie elementy — także dla czytników
+ * formularz na /en/ i /es/ zawierał polskie elementy - także dla czytników
  * ekranu. Wszystko, co widzi lub słyszy użytkownik, jest tutaj per język.
  */
 

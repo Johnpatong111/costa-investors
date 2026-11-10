@@ -12,7 +12,7 @@ import type { MarketStats } from "./market-stats";
  * płynność, udział obcokrajowców) mapujemy na 4 kubełki. Kubełek wybiera
  * wariant zdania pasujący FAKTOGRAFICZNIE („tanie, ale starsze budownictwo”
  * tylko tam, gdzie cena jest realnie niższa), a różne kombinacje kubełków
- * dają różne brzmienie strony — bez losowości i bez utraty prawdy.
+ * dają różne brzmienie strony - bez losowości i bez utraty prawdy.
  */
 
 export type Tier = 0 | 1 | 2 | 3;
@@ -49,7 +49,7 @@ export function growthTier(stats: MarketStats): Tier {
   return 3;
 }
 
-/** Presja popytu (1–10). */
+/** Presja popytu (1-10). */
 export function demandTier(stats: MarketStats): Tier {
   if (stats.demandIndex < 6) return 0;
   if (stats.demandIndex < 7.5) return 1;

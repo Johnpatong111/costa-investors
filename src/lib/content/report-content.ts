@@ -170,7 +170,7 @@ export function buildPriceReport(entry: DistrictEntry): PriceReport {
             t(
               `W {districtLoc} dominują {characteristic}. Zabudowę uzupełniają ${district.characteristics
                 .slice(1)
-                .join(", ") || "starsze osiedla"}, a punktami orientacyjnymi w ogłoszeniach są ${district.landmarks.join(", ")}. Dla wyceny oznacza to, że dwie nieruchomości o tym samym metrażu mogą różnić się ceną o kilka procent — decyduje ${district.type} i odległość od ${district.landmarks[0] ?? city.name}.`,
+                .join(", ") || "starsze osiedla"}, a punktami orientacyjnymi w ogłoszeniach są ${district.landmarks.join(", ")}. Dla wyceny oznacza to, że dwie nieruchomości o tym samym metrażu mogą różnić się ceną o kilka procent - decyduje ${district.type} i odległość od ${district.landmarks[0] ?? city.name}.`,
             ),
             t(
               `Raport dotyczy ${district.type} w części {subregion}. Cechy rynkowe tej lokalizacji: {characteristic}. W najbliższym sąsiedztwie liczą się ${district.landmarks.join(", ")}, a najemcy zwracają uwagę przede wszystkim na ${district.characteristics[1] ?? district.characteristics[0] ?? "standard wykończenia"}.`,

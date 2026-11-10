@@ -1,7 +1,7 @@
 import type { Locale } from "./config";
 
 /**
- * Historia cen 2016–2026 liczona deterministycznie z bieżącej mediany
+ * Historia cen 2016-2026 liczona deterministycznie z bieżącej mediany
  * i dynamiki r/r (`MarketStats`). Bez zmian schematu danych i bez zapytań
  * do API: ten sam wkład zawsze daje ten sam szereg.
  */
@@ -46,28 +46,28 @@ const COPY: Record<
   { title: string; subtitle: string; note: string; yearsLabel: string; avgLabel: string; decadeLabel: string }
 > = {
   pl: {
-    title: "Dynamika cen w czasie (2016–2026)",
+    title: "Dynamika cen w czasie (2016-2026)",
     subtitle: "Roczna zmiana mediany ceny za m² oraz skumulowany wzrost wartości.",
     note: "Szereg modelowany na podstawie bieżącej mediany i dynamiki r/r z bazy rynkowej. Wartości szacunkowe, nie stanowią wyceny.",
     yearsLabel: "Rok",
     avgLabel: "Średnia zmiana roczna",
-    decadeLabel: "Wzrost 2016–2026",
+    decadeLabel: "Wzrost 2016-2026",
   },
   en: {
-    title: "Price dynamics over time (2016–2026)",
+    title: "Price dynamics over time (2016-2026)",
     subtitle: "Year-on-year change in the median €/m² and the cumulative value growth.",
     note: "Series modelled from the current median and the year-on-year growth in our market database. Estimates only, not a valuation.",
     yearsLabel: "Year",
     avgLabel: "Average annual change",
-    decadeLabel: "Growth 2016–2026",
+    decadeLabel: "Growth 2016-2026",
   },
   es: {
-    title: "Evolución de precios (2016–2026)",
+    title: "Evolución de precios (2016-2026)",
     subtitle: "Variación interanual de la mediana €/m² y crecimiento acumulado del valor.",
     note: "Serie modelada a partir de la mediana actual y del crecimiento interanual de nuestra base de mercado. Valores estimados, no una tasación.",
     yearsLabel: "Año",
     avgLabel: "Variación media anual",
-    decadeLabel: "Crecimiento 2016–2026",
+    decadeLabel: "Crecimiento 2016-2026",
   },
 };
 

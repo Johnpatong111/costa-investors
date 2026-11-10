@@ -6,9 +6,9 @@ import type { Locale } from "./config";
  * ===========================================================================
  * Cel SEO: stopka linkuje nie tylko do hubów usług (które konkurują o te same
  * frazy „wille do kupienia”), ale też do stron danych (ceny m² per miasto,
- * historia cen 2016–2026) i treści poradnikowych. Dzięki temu każda strona
+ * historia cen 2016-2026) i treści poradnikowych. Dzięki temu każda strona
  * przekazuje link do kategorii o innej intencji: transakcyjnej, informacyjnej
- * i danych — a nie wyłącznie do listy ofert.
+ * i danych - a nie wyłącznie do listy ofert.
  */
 
 export interface FooterNavCopy {
@@ -24,7 +24,7 @@ export const FOOTER_NAV: Record<Locale, FooterNavCopy> = {
   pl: {
     dataNav: "Ceny m² i ROI",
     guidesNav: "Poradniki i narzędzia",
-    historyLabel: "Historia cen 2016–2026",
+    historyLabel: "Historia cen 2016-2026",
     calculatorLabel: "Kalkulator ROI z najmu",
     guideLabel: "Jak kupić krok po kroku",
     dataHubLabel: "Wszystkie raporty cenowe",

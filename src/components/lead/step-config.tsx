@@ -126,7 +126,7 @@ export function StepConfig({
         size="sm"
       />
 
-      {/* Wymogi są opcjonalne, więc domyślnie schowane — na mobile skracają
+      {/* Wymogi są opcjonalne, więc domyślnie schowane - na mobile skracają
           formularz o całą sekcję. Stan pól pozostaje w react-hook-form. */}
       <details className="group rounded-xl border border-brand-100 bg-brand-50/50 px-3.5 py-2.5">
         <summary className="flex cursor-pointer list-none items-center justify-between gap-2 text-xs font-semibold text-brand-800">

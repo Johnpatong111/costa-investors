@@ -36,7 +36,7 @@ export default function robots(): MetadataRoute.Robots {
         disallow: "/",
       },
     ],
-    // Jedna, płaska sitemapa – standardowy plik XML bez indeksów i XSL.
+    // Jedna, płaska sitemapa - standardowy plik XML bez indeksów i XSL.
     sitemap: getSitemapUrls(),
     host: SITE.url,
   };
