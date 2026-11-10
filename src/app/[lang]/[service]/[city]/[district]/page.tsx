@@ -150,7 +150,7 @@ export default async function DistrictServicePage({
 
       <Hero
         locale={locale}
-        eyebrow={`${service.name} · ${districtName}, ${cityName} (${entry.region.name})`}
+        eyebrow={`${getServiceCopy(service.kind, locale).name} · ${districtName}, ${cityName} (${entry.region.name})`}
         h1={content.h1}
         lead={content.lead}
         chips={[
@@ -199,7 +199,7 @@ export default async function DistrictServicePage({
 
       <FaqAccordion
         items={content.faq}
-        title={`${service.name} w ${districtName}. Pytania i odpowiedzi`}
+        title={locale === "es" ? `${getServiceCopy(service.kind, locale).name} en ${districtName}. Preguntas y respuestas` : locale === "en" ? `${getServiceCopy(service.kind, locale).name} in ${districtName}. Questions and answers` : `${service.name} w ${districtName}. Pytania i odpowiedzi`}
       />
 
       <InternalLinks
@@ -209,11 +209,11 @@ export default async function DistrictServicePage({
             links: otherServices.map((item) => ({
               href: translatePath(`/${item.slug}/${entry.city.slug}/${entry.district.slug}`, locale),
               label: getServiceCopy(item.kind, locale).name,
-              meta: item.priceAnchor,
+              meta: getServiceCopy(item.kind, locale).priceAnchor,
             })),
           },
           {
-            title: `Inne dzielnice: ${service.name}`,
+            title: locale === "es" ? `Otras zonas: ${getServiceCopy(service.kind, locale).name}` : locale === "en" ? `Other areas: ${getServiceCopy(service.kind, locale).name}` : `Inne dzielnice: ${service.name}`,
             links: nearby.map((item) => ({
               href: translatePath(`/${service.slug}/${item.city.slug}/${item.district.slug}`, locale),
               label: `${item.district.name} (${item.city.name})`,

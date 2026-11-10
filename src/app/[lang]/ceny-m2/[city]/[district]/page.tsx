@@ -155,7 +155,8 @@ export default async function PriceReportPage({
       <section className="border-b border-brand-100 bg-brand-50/60">
         <div className="container-page py-10 lg:py-14">
           <p className="text-sm font-semibold uppercase tracking-wide text-brand-600">
-            Raport rynkowy · {report.stats.dataAsOf}
+            {locale === "es" ? "Informe de mercado" : locale === "en" ? "Market report" : "Raport rynkowy"} ·{" "}
+            {report.stats.dataAsOf}
           </p>
           <h1 className="mt-2 max-w-3xl text-3xl font-bold text-brand-950 sm:text-4xl">
             {report.h1}
@@ -254,7 +255,16 @@ export default async function PriceReportPage({
         </p>
       </Section>
 
-      <FaqAccordion items={report.faq} title={`FAQ. Ceny i ROI w ${entry.district.nameLocative}`} />
+      <FaqAccordion
+        items={report.faq}
+        title={
+          locale === "es"
+            ? `FAQ. Precios y rentabilidad en ${entry.district.nameLocative}`
+            : locale === "en"
+              ? `FAQ. Prices and yields in ${entry.district.nameLocative}`
+              : `FAQ. Ceny i ROI w ${entry.district.nameLocative}`
+        }
+      />
 
       <Section className="bg-brand-50/60">
         <div className="grid gap-6 lg:grid-cols-[1fr_420px]">
@@ -276,7 +286,7 @@ export default async function PriceReportPage({
                     href={translatePath(`/${service.slug}/${entry.city.slug}/${entry.district.slug}`, locale)}
                     className="font-medium text-brand-900 underline decoration-brand-300 underline-offset-2 hover:decoration-brand-700"
                   >
-                    {service.name} - {entry.district.name}
+                    {getServiceCopy(service.kind, locale).name} - {entry.district.name}
                   </a>
                 </li>
               ))}
@@ -284,6 +294,7 @@ export default async function PriceReportPage({
           </div>
           <div className="scroll-mt-24">
             <LeadEngine
+              language={locale}
               cityName={entry.city.name}
               districtName={entry.district.name}
               sourceKey={report.key}

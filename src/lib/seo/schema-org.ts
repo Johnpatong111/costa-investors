@@ -293,6 +293,8 @@ export function localAgentNode(input: {
 
 /** Raport cenowy. Encja Dataset (Google traktuje ją jako dane, nie artykuł). */
 export function datasetNode(input: {
+  /** Język strony — etykiety pól i inLanguage. */
+  locale?: "pl" | "en" | "es";
   name: string;
   description: string;
   path: string;
@@ -318,16 +320,36 @@ export function datasetNode(input: {
         addressCountry: "ES",
       },
     },
-    variableMeasured: [
-      { "@type": "PropertyValue", name: "Mediana ceny ofertowej (zł/m²)" },
-      { "@type": "PropertyValue", name: "Dynamika cen r/r (%)" },
-      { "@type": "PropertyValue", name: "Mediana czasu sprzedaży (dni)" },
-      { "@type": "PropertyValue", name: "Liczba transakcji (12 mies.)" },
-    ],
+    variableMeasured: (MEASURED_LABELS[input.locale ?? "pl"] ?? MEASURED_LABELS.pl).map((name: string) => ({
+      "@type": "PropertyValue",
+      name,
+    })),
   };
 }
 
 /** Serializacja grafu do skryptu JSON-LD (escape `<` chroni przed XSS). */
+/** Nazwy mierzonych pól datasetu w języku strony (wcześniej tylko PL i „zł”). */
+const MEASURED_LABELS: Record<"pl" | "en" | "es", string[]> = {
+  pl: [
+    "Mediana ceny ofertowej (€/m²)",
+    "Dynamika cen r/r (%)",
+    "Mediana czasu sprzedaży (dni)",
+    "Liczba transakcji (12 mies.)",
+  ],
+  en: [
+    "Median asking price (€/m²)",
+    "Price growth YoY (%)",
+    "Median time on market (days)",
+    "Transactions (12 months)",
+  ],
+  es: [
+    "Mediana del precio de oferta (€/m²)",
+    "Crecimiento de precios interanual (%)",
+    "Mediana del tiempo de venta (días)",
+    "Operaciones (12 meses)",
+  ],
+};
+
 export function serializeGraph(nodes: JsonLdNode[]): string {
   return JSON.stringify({ "@context": "https://schema.org", "@graph": nodes }).replace(
     /</g,
