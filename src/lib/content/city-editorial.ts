@@ -1023,6 +1023,174 @@ const COPY: Record<string, Partial<Record<Locale, EditorialSection[]>>> = {
       },
     ],
   },
+  "l-albir": {
+    pl: [
+      {
+        title: "Wprowadzenie rynkowe",
+        body: "L'Albir to najmniejszy rynek w bazie i zarazem najdroższy na północy: 6,5 tys. mieszkańców, 600 transakcji rocznie i mediana 3 310 €/m², o 610 €/m² powyżej średniej Costa Blanca, przy dynamice 8% r/r. Ekspozycja 130 dni i ROI 5,4% mówią jasno: płacisz za ograniczoną podaż między morzem a parkiem naturalnym, a nie za szybki zwrot.",
+      },
+      {
+        title: "Rozstrzał w dzielnicach",
+        body: "Między Playa del Albir (3 520 €/m²) a Sierra Albir (3 090 €/m²) leży 430 €/m². Pośrodku jest Centro (3 200) z apartamentami przy promenadzie i Paseo de las Estrellas. Playa del Albir to szeroka żwirowa plaża z widokiem na Serra Gelada i nowe osiedla z basenami, a Sierra Albir to wille na zboczu, na dużych działkach, z prywatnością, ale bez zejścia do wody.",
+      },
+      {
+        title: "Czynniki mikrolokalne",
+        body: "Tu rządzi widok na Serra Gelada i odległość od Paseo de las Estrellas: apartament z widokiem na klif jest wart o kilkaset euro za metr więcej niż identyczny tyłem do góry. 55% kupujących to obcokrajowcy - najwyższy odsetek w bazie, Polacy tylko 5%, więc polski klient jest tu w mniejszości i negocjuje z rynkiem zdominowanym przez kupujących z północy Europy. Park naturalny Serra Gelada blokuje nową zabudowę od strony góry.",
+      },
+      {
+        title: "Wnioski dla inwestora",
+        body: "ROI 5,4% brutto to najniższy wynik w bazie, a 600 transakcji rocznie oznacza wąską płynność. Za 250 tys. € kupisz zaledwie około 75 m². To rynek kapitału, nie dochodu: kupujesz widok i limit podaży, liczysz na wzrost wartości, nie na cash flow. Pod najem sezonowy wybierz Playa del Albir, pod spokój i willę Sierra Albir, pod pieszy dostęp do restauracji Centro. Sprawdź, czy osiedle nie leży w strefie ochronnej parku - utrudnia to rozbudowę i podnosi koszty remontu.",
+      },
+    ],
+    en: [
+      {
+        title: "Market introduction",
+        body: "L'Albir is the smallest market in our dataset and the priciest in the north: 6,500 residents, 600 transactions a year and a 3,310 €/m² median, 610 €/m² above the Costa Blanca average with 8% growth. At 130 days on market and a 5.4% yield, the message is clear: you pay for capped supply between the sea and a natural park, not for a fast return.",
+      },
+      {
+        title: "Spread across districts",
+        body: "Between Playa del Albir (3,520 €/m²) and Sierra Albir (3,090 €/m²) sits 430 €/m². In the middle is Centro (3,200) with flats by the promenade and Paseo de las Estrellas. Playa del Albir means a wide pebble beach facing Serra Gelada and new estates with pools, while Sierra Albir is hillside villas on large plots with privacy but no way down to the water.",
+      },
+      {
+        title: "Micro-local factors",
+        body: "The Serra Gelada view and distance to Paseo de las Estrellas set the price: a flat facing the cliff is worth several hundred euros per square metre more than an identical one with its back to it. Foreign buyers make up 55%, the highest share in our dataset, though Polish buyers are only 5%, so here you negotiate in a market dominated by northern European purchasers. The Serra Gelada natural park blocks new building on the mountain side.",
+      },
+      {
+        title: "Investor takeaway",
+        body: "A 5.4% gross yield is the lowest in our dataset and 600 transactions a year means thin liquidity. 250,000 € buys only about 75 m². This is a capital market, not an income one: you buy the view and the supply cap, betting on value growth rather than cash flow. For seasonal letting pick Playa del Albir, for quiet and a villa Sierra Albir, for walkable restaurants Centro. Check whether the estate falls inside the park protection zone, which complicates extensions and raises renovation costs.",
+      },
+    ],
+    es: [
+      {
+        title: "Introducción de mercado",
+        body: "L'Albir es el mercado más pequeño de la base y el más caro del norte: 6.500 habitantes, 600 operaciones al año y una mediana de 3.310 €/m², 610 €/m² sobre la media de Costa Blanca con un 8% de crecimiento. Con 130 días de exposición y un 5,4% de rentabilidad el mensaje es claro: pagas por una oferta limitada entre el mar y un parque natural, no por un retorno rápido.",
+      },
+      {
+        title: "Diferencial entre barrios",
+        body: "Entre Playa del Albir (3.520 €/m²) y Sierra Albir (3.090 €/m²) hay 430 €/m². En medio está Centro (3.200) con pisos junto al paseo y Paseo de las Estrellas. Playa del Albir es una playa amplia de grava frente a Serra Gelada con urbanizaciones nuevas y piscina, y Sierra Albir son chalets en ladera, en parcelas grandes, con privacidad pero sin bajada al agua.",
+      },
+      {
+        title: "Factores microlocales",
+        body: "Mandan las vistas a Serra Gelada y la distancia al Paseo de las Estrellas: un piso frente al acantilado vale varios cientos de euros por metro más que otro idéntico de espaldas. El 55% de los compradores es extranjero, el mayor porcentaje de la base, aunque los polacos son solo el 5%, así que aquí se negocia con un mercado dominado por el norte de Europa. El parque natural de Serra Gelada bloquea nueva edificación por la ladera.",
+      },
+      {
+        title: "Conclusión para el inversor",
+        body: "Un 5,4% bruto es el resultado más bajo de la base y 600 operaciones al año implican poca liquidez. Con 250.000 € compras solo unos 75 m². Es un mercado de capital, no de renta: compras vistas y escasez, apostando por la revalorización y no por el flujo de caja. Para temporada, Playa del Albir; para calma y chalet, Sierra Albir; para restaurantes a pie, Centro. Comprueba si la urbanización cae en la zona protegida del parque: complica ampliaciones y encarece la reforma.",
+      },
+    ],
+  },
+  quesada: {
+    pl: [
+      {
+        title: "Wprowadzenie rynkowe",
+        body: "Ciudad Quesada to wyjątek w bazie: nie jest gminą, a zaplanowaną urbanizacją w gminie Rojales, zbudowaną od zera wokół pola golfowego. 17 tys. mieszkańców, 800 transakcji rocznie, mediana 2 760 €/m² i najlepsze ROI w regionie - 6,3% przy dynamice 7,5% r/r. Ekspozycja 105 dni to najkrótszy czas sprzedaży na całym Costa Blanca Sur.",
+      },
+      {
+        title: "Rozstrzał w dzielnicach",
+        body: "Między La Marquesa (2 920 €/m²) a Doña Pepa (2 600 €/m²) leży 320 €/m², najmniej w regionie - bo cała urbanizacja powstała według jednego planu i różnice wynikają z otoczenia, nie z lokalizacji. Pośrodku jest Centro (2 710) z usługami w zasięgu spaceru. La Marquesa to wille i apartamenty z basenami wokół pola golfowego, Doña Pepa spokojne osiedle willowe przy Sierra de Callosa, tańsze, ale dalej od sklepów.",
+      },
+      {
+        title: "Czynniki mikrolokalne",
+        body: "Tu nie ma plaży, więc o cenie decyduje odległość od Centro i pola golfowego La Marquesa, nie widok. 48% kupujących to obcokrajowcy, a Polacy 7% - najwyższy odsetek w całej bazie, co przekłada się na polskie sklepy i usługi w okolicy. Niska zabudowa z ogrodami dominuje, więc nie konkurujesz z wieżowcami o widok. 10 km do plaży w Guardamar to codzienny dojazd samochodem, nie spacer.",
+      },
+      {
+        title: "Wnioski dla inwestora",
+        body: "ROI 6,3%, 105 dni ekspozycji i 800 transakcji rocznie to najlepsza kombinacja płynności i zwrotu w regionie. Za 250 tys. € kupisz około 90 m² z ogrodem. Pod najem długoterminowy wybierz La Marquesa, pod budżet Doña Pepa, pod pieszy dostęp do usług Centro. Zanim kupisz, sprawdź, czy działka ma odbiór urbanizacji i czy basen jest wpisany do licencji - w starszych osiedlach Quesady zdarzają się rozszerzenia bez pozwolenia, które blokują kredyt i ubezpieczenie.",
+      },
+    ],
+    en: [
+      {
+        title: "Market introduction",
+        body: "Ciudad Quesada is the outlier in our dataset: not a municipality but a planned urbanisation inside Rojales, built from scratch around a golf course. 17,000 residents, 800 transactions a year, a 2,760 €/m² median and the region's best yield at 6.3% with 7.5% growth. At 105 days, it has the shortest selling time on the whole Costa Blanca Sur.",
+      },
+      {
+        title: "Spread across districts",
+        body: "Between La Marquesa (2,920 €/m²) and Doña Pepa (2,600 €/m²) sits 320 €/m², the narrowest spread in the region, because the whole urbanisation was laid out to one plan and differences come from surroundings rather than location. In the middle is Centro (2,710) with services within walking distance. La Marquesa means villas and flats with pools around the golf course; Doña Pepa is a quiet villa estate by Sierra de Callosa, cheaper but further from shops.",
+      },
+      {
+        title: "Micro-local factors",
+        body: "There is no beach here, so price follows distance to Centro and to La Marquesa golf rather than any view. Foreign buyers make up 48% and Polish buyers 7%, the highest share in our entire dataset, which shows up in Polish shops and services nearby. Low housing with gardens dominates, so you are not competing with towers for a sea view. The 10 km to the Guardamar beach is a daily drive, not a walk.",
+      },
+      {
+        title: "Investor takeaway",
+        body: "A 6.3% yield, 105 days on market and 800 transactions a year is the best mix of liquidity and return in the region. 250,000 € buys about 90 m² with a garden. For long lets pick La Marquesa, for budget Doña Pepa, for walkable services Centro. Before buying, confirm the plot has urbanisation sign-off and that any pool is on the licence: older Quesada estates sometimes carry unpermitted extensions that block mortgages and insurance.",
+      },
+    ],
+    es: [
+      {
+        title: "Introducción de mercado",
+        body: "Ciudad Quesada es la excepción de la base: no es un municipio sino una urbanización planificada dentro de Rojales, construida desde cero en torno a un campo de golf. 17.000 habitantes, 800 operaciones al año, una mediana de 2.760 €/m² y la mejor rentabilidad de la región, un 6,3% con un 7,5% de crecimiento. Sus 105 días son el plazo de venta más corto de todo Costa Blanca Sur.",
+      },
+      {
+        title: "Diferencial entre barrios",
+        body: "Entre La Marquesa (2.920 €/m²) y Doña Pepa (2.600 €/m²) hay 320 €/m², la horquilla más estrecha de la región, porque toda la urbanización se trazó con un mismo plan y las diferencias vienen del entorno, no de la ubicación. En medio está Centro (2.710) con servicios a pie. La Marquesa son chalets y pisos con piscina junto al campo de golf; Doña Pepa es una urbanización tranquila de chalets junto a Sierra de Callosa, más barata pero más lejos de las tiendas.",
+      },
+      {
+        title: "Factores microlocales",
+        body: "Aquí no hay playa, así que el precio sigue la distancia a Centro y al golf de La Marquesa, no las vistas. El 48% de los compradores es extranjero y los polacos el 7%, el porcentaje más alto de toda la base, lo que se nota en tiendas y servicios polacos cerca. Predomina la vivienda baja con jardín, así que no compites con torres por las vistas. Los 10 km a la playa de Guardamar son un trayecto diario en coche, no un paseo.",
+      },
+      {
+        title: "Conclusión para el inversor",
+        body: "Un 6,3%, 105 días de exposición y 800 operaciones al año es la mejor combinación de liquidez y retorno de la región. Con 250.000 € compras unos 90 m² con jardín. Para alquiler largo elige La Marquesa; para presupuesto, Doña Pepa; para servicios a pie, Centro. Antes de comprar confirma que la parcela tiene recepción de urbanización y que la piscina está en licencia: en urbanizaciones antiguas de Quesada hay ampliaciones sin permiso que bloquean hipoteca y seguro.",
+      },
+    ],
+  },
+  aguilas: {
+    pl: [
+      {
+        title: "Wprowadzenie rynkowe",
+        body: "Águilas to najtańszy i najbardziej dochodowy rynek w bazie zarazem: mediana 1 850 €/m², ROI 6,7% brutto i dynamika 7% r/r przy 35 tys. mieszkańców i 800 transakcjach. To już Costa Cálida w Regionie Murcji, nie prowincja Alicante - inny system planowania, inne podatki lokalne i 120 dni ekspozycji, które odbijają mniejszą rozpoznawalność wśród kupujących z północy.",
+      },
+      {
+        title: "Rozstrzał w dzielnicach",
+        body: "Między Calarreona (2 120 €/m²) a Centro (1 750 €/m²) leży 370 €/m². Pośrodku są Las Delicias (2 010) przy szerokiej plaży i deptaku oraz El Hornillo (1 800) z apartamentami z tarasem przy morzu. Calarreona to zatoczki ze skałami, wille z widokiem i brak dużych hoteli, Centro to mieszkania nad zatoką przy Ayuntamiento i Castillo de San Juan, z całorocznymi usługami i najwyższym ROI w mieście (6,8%).",
+      },
+      {
+        title: "Czynniki mikrolokalne",
+        body: "Tu o cenie decyduje nie widok, a sezonowość: apartament przy Playa de Las Delicias pracuje trzy miesiące, mieszkanie w Centro przy dworcu wynajmuje się cały rok, dlatego ROI w Centrum jest wyższe mimo niższej ceny metra. Tylko 28% kupujących to obcokrajowcy, Polacy 4% - to rynek hiszpański, z mniejszą konkurencją i słabszą znajomością cen, co daje miejsce na negocjacje. Port rybacki i Castillo de San Juan przyciągają turystów, ale nie podnoszą czynszów poza sezonem.",
+      },
+      {
+        title: "Wnioski dla inwestora",
+        body: "Za 250 tys. € kupisz tu około 135 m² - najwięcej w całej bazie. ROI 6,7% jest realne, ale licz je na najmie całorocznym w Centrum lub El Hornillo, nie na turystycznym. Pod widok i wille wybierz Calarreona, pod plażę i deptak Las Delicias, pod zwrot i usługi Centro. Zanim kupisz, sprawdź stan budynku i plan miejscowy gminy Águilas - w starym centrum zdarzają się kamienice bez ITE, a Region Murcji inaczej rozlicza podatek od nieruchomości niż Walencja.",
+      },
+    ],
+    en: [
+      {
+        title: "Market introduction",
+        body: "Águilas is both the cheapest and the highest-yielding market in our dataset: a 1,850 €/m² median, a 6.7% gross yield and 7% growth across 35,000 residents and 800 transactions. This is already the Costa Cálida in the Region of Murcia, not Alicante province, with different planning rules, different local taxes and 120 days on market reflecting lower awareness among northern buyers.",
+      },
+      {
+        title: "Spread across districts",
+        body: "Between Calarreona (2,120 €/m²) and Centro (1,750 €/m²) sits 370 €/m². In between are Las Delicias (2,010) by the wide beach and promenade, and El Hornillo (1,800) with terraced flats near the sea. Calarreona offers rocky coves, sea-view villas and no large hotels; Centro means flats above the bay by the Ayuntamiento and Castillo de San Juan, with year-round services and the town's best yield at 6.8%.",
+      },
+      {
+        title: "Micro-local factors",
+        body: "Seasonality rather than views drives price here: a flat by Playa de Las Delicias works three months a year, while one in Centro near the station lets all year, which is why Centro yields more despite a lower price per square metre. Only 28% of buyers are foreign and Polish buyers are 4%, so this is a Spanish market with less competition and weaker price transparency, leaving room to negotiate. The fishing port and Castillo de San Juan draw visitors but do not lift rents off season.",
+      },
+      {
+        title: "Investor takeaway",
+        body: "250,000 € buys about 135 m² here, the most in our dataset. A 6.7% yield is realistic, but count it on year-round letting in Centro or El Hornillo rather than on tourist nights. For views and villas pick Calarreona, for beach and promenade Las Delicias, for return and services Centro. Before buying, check the building's condition and the Águilas town plan: old-centre buildings sometimes lack an ITE inspection, and Murcia levies property tax differently from Valencia.",
+      },
+    ],
+    es: [
+      {
+        title: "Introducción de mercado",
+        body: "Águilas es a la vez el mercado más barato y el más rentable de la base: mediana de 1.850 €/m², un 6,7% bruto y un 7% de crecimiento con 35.000 habitantes y 800 operaciones. Ya es Costa Cálida, en la Región de Murcia y no en la provincia de Alicante, con otro planeamiento, otros impuestos locales y 120 días de exposición que reflejan menor conocimiento entre compradores del norte.",
+      },
+      {
+        title: "Diferencial entre barrios",
+        body: "Entre Calarreona (2.120 €/m²) y Centro (1.750 €/m²) hay 370 €/m². En medio están Las Delicias (2.010) junto a la playa amplia y el paseo, y El Hornillo (1.800) con pisos con terraza frente al mar. Calarreona son calas rocosas, chalets con vistas y sin grandes hoteles; Centro son pisos sobre la bahía junto al Ayuntamiento y el Castillo de San Juan, con servicios todo el año y la mejor rentabilidad del municipio (6,8%).",
+      },
+      {
+        title: "Factores microlocales",
+        body: "Aquí manda la estacionalidad más que las vistas: un piso en Playa de Las Delicias trabaja tres meses, mientras uno en Centro junto a la estación se alquila todo el año, y por eso Centro rinde más pese a un precio por metro menor. Solo el 28% de los compradores es extranjero y los polacos el 4%: es un mercado español, con menos competencia y menos transparencia de precios, lo que deja margen para negociar. El puerto pesquero y el Castillo de San Juan atraen visitantes pero no suben las rentas fuera de temporada.",
+      },
+      {
+        title: "Conclusión para el inversor",
+        body: "Con 250.000 € compras aquí unos 135 m², la cifra más alta de la base. El 6,7% es realista, pero calculado sobre alquiler anual en Centro o El Hornillo, no sobre noches turísticas. Para vistas y chalet, Calarreona; para playa y paseo, Las Delicias; para retorno y servicios, Centro. Antes de comprar revisa el estado del edificio y el planeamiento de Águilas: en el casco antiguo hay edificios sin ITE, y Murcia calcula el IBI de forma distinta a Valencia.",
+      },
+    ],
+  },
 };
 
 /** Sekcje redakcyjne dla miasta (null = brak autorskiego tekstu). */
