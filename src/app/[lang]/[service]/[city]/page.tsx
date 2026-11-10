@@ -192,7 +192,7 @@ export default async function CityServicePage({
             links: SERVICES.filter((item) => item.slug !== service.slug).map((item) => ({
               href: translatePath(`/${item.slug}/${city.slug}`, locale),
               label: getServiceCopy(item.kind, locale).name,
-              meta: item.priceAnchor,
+              meta: getServiceCopy(item.kind, locale).priceAnchor,
             })),
           },
           {
@@ -214,7 +214,7 @@ export default async function CityServicePage({
         nodes={[
           breadcrumbNode(crumbs),
           serviceNode({
-            service,
+            service: { ...service, name: getServiceCopy(service.kind, locale).name },
             path,
             description: content.metaDescription,
             areaServed: [

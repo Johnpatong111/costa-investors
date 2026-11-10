@@ -256,7 +256,7 @@ export default async function DistrictServicePage({
             lng: entry.district.lng,
           }),
           serviceNode({
-            service,
+            service: { ...service, name: getServiceCopy(service.kind, locale).name },
             path,
             description: content.metaDescription,
             areaServed: [

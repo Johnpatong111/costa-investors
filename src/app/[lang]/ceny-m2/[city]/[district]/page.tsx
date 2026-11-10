@@ -368,6 +368,7 @@ export default async function PriceReportPage({
         nodes={[
           breadcrumbNode(crumbs),
           datasetNode({
+            locale,
             name: report.h1,
             description: report.metaDescription,
             path,
