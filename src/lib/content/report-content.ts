@@ -1,6 +1,7 @@
 ﻿import type { DistrictEntry } from "../data/repository";
 import { deriveDistrictStats, MARKET_YEAR } from "./market-stats";
 import { marketAnalysis } from "./market-analysis";
+import { districtMarketNote } from "./district-market-notes";
 import {
   describeDemand,
   describeGrowth,
@@ -189,6 +190,13 @@ export function buildPriceReport(entry: DistrictEntry): PriceReport {
     heading: analysis.heading,
     paragraphs: [analysis.intro, analysis.zones, analysis.factors, analysis.conclusions],
   });
+  // Nota per dzielnica: unikalny akapit zamiast szkieletu powtarzanego w miastach.
+  const addressNote = districtMarketNote(city.slug, district.slug, "pl");
+  if (addressNote) {
+    blocks.push({ id: "adres", heading: addressNote.heading, paragraphs: addressNote.paragraphs });
+  }
+
+
 
   const faq: FaqItem[] = [
     {

@@ -23,6 +23,7 @@ import {
 import { buildDistrictBlocks } from "./district-blocks";
 import { buildDistrictFaq, buildKeywords } from "./district-faq";
 import { profileFaq, profileParagraphs } from "./content-engine";
+import { districtMarketNote } from "./district-market-notes";
 
 /** Treść money page: usługa + miejscowość + urbanizacja. */
 export function buildDistrictContent(
@@ -77,6 +78,13 @@ export function buildDistrictContent(
     heading: `Profil lokalny: ${district.name}`,
     paragraphs: profileParagraphs(city, district, stats, "pl", service.kind),
   });
+  // Nota per dzielnica: unikalny akapit, żeby "Centro" w różnych miastach nie
+  // dzieliło tego samego szkieletu (Jaccard 0.73).
+  const marketNote = districtMarketNote(city.slug, district.slug, "pl");
+  if (marketNote) {
+    blocks.push({ id: "adres", heading: marketNote.heading, paragraphs: marketNote.paragraphs });
+  }
+
   const faq = [...profileFaq(city, district, stats, "pl"), ...buildDistrictFaq(service, vars, key, stats, entry)];
   const processSteps = service.process.map((step) => ({
     title: step.title,

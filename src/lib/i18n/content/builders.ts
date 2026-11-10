@@ -31,6 +31,7 @@ import {
 } from "../../content/content-tiers";
 import { cityAccessBlock } from "../../content/access";
 import { cityMarketNote } from "../../content/city-market-notes";
+import { districtMarketNote } from "../../content/district-market-notes";
 import { formatEur, formatRate } from "../../utils/format";
 import {
   MAX_DESCRIPTION_LENGTH,
@@ -200,6 +201,13 @@ export function buildLocalizedDistrictContent(
         : `Local profile: ${district.name}`,
     paragraphs: profileParagraphs(city, district, stats, locale as "en" | "es", service.kind),
   });
+
+  // Nota per dzielnica: unikalny akapit (patrz district-market-notes.ts).
+  const addressNote = districtMarketNote(city.slug, district.slug, locale);
+  if (addressNote) {
+    blocks.push({ id: "adres", heading: addressNote.heading, paragraphs: addressNote.paragraphs });
+  }
+
 
 
   const faq = [...profileFaq(city, district, stats, locale as "en" | "es"), ...buildLocalizedDistrictFaq(
@@ -654,6 +662,13 @@ export function buildLocalizedPriceReport(
     heading: analysis.heading,
     paragraphs: [analysis.intro, analysis.zones, analysis.factors, analysis.conclusions],
   });
+
+  // Nota per dzielnica: unikalny akapit (patrz district-market-notes.ts).
+  const addressNote = districtMarketNote(entry.city.slug, district.slug, locale);
+  if (addressNote) {
+    blocks.push({ id: "adres", heading: addressNote.heading, paragraphs: addressNote.paragraphs });
+  }
+
 
   const faq = r.faq.map((item) => ({ question: t(item.q), answer: t(item.a) }));
 
