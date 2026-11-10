@@ -407,6 +407,230 @@ const COPY: Record<string, Partial<Record<Locale, EditorialSection[]>>> = {
       },
     ],
   },
+  "orihuela-costa": {
+    pl: [
+      {
+        title: "Wprowadzenie rynkowe",
+        body: "Orihuela Costa to najbardziej międzynarodowy rynek Costa Blanca Sur: 30 tys. mieszkańców, 2 800 transakcji rocznie, mediana 2 900 €/m² przy dynamice 9,1% r/r i ekspozycji zaledwie 90 dni - najkrótszej w całej bazie. To nie przypadek: 55% kupujących to obcokrajowcy, a Polacy stanowią 11%, najwięcej w regionie, co tworzy realny, wielojęzyczny popyt przez cały rok.",
+      },
+      {
+        title: "Rozstrzał w dzielnicach",
+        body: "Rozpiętość 590 €/m² biegnie od Cabo Roig (3 390 €/m²) do Lomas de Cabo Roig (2 800 €/m²). Po drodze są La Zenia (3 280) wokół Zenia Boulevard i Cala Capitán, Dehesa de Campoamor (3 170) z szeroką plażą i willami z basenem, Villamartín (3 060) przy polu golfowym oraz Mil Palmeras (3 010) z nowymi osiedlami między Punta Prima a Torrevieja. Lomas jest najtańszy, bo leży najdalej od linii brzegowej.",
+      },
+      {
+        title: "Czynniki mikrolokalne",
+        body: "Cenę tworzy pakiet: plaża plus golf plus handel. Cabo Roig przyciąga kupujących z Irlandii i Polski blisko Cala Caleta, Villamartín pracuje na społeczności golfowej z restauracjami w zasięgu spaceru, a La Zenia żyje z Zenia Boulevard - największego centrum handlowego w regionie. Uwaga na wspólnoty w nowych osiedlach z basenem i ochroną: to stała pozycja w budżecie, która przy najmie długoterminowym zjada kilka punktów ROI.",
+      },
+      {
+        title: "Wnioski dla inwestora",
+        body: "ROI 6,1% brutto przy 2 900 €/m² i wyjściu w 90 dni to najlepsza kombinacja zwrotu i płynności na Costa Blanca Sur. Za 250 tys. € kupisz około 86 m². Pod najem sezonowy najlepsze są Cabo Roig i La Zenia, pod długoterminowy Villamartín i Lomas, pod nowe z basenem Mil Palmeras. Sprawdź, czy osiedle ma licencję turystyczną i ile wynosi comunidad - w tej strefie to często różnica między 6% a 5% netto.",
+      },
+    ],
+    en: [
+      {
+        title: "Market introduction",
+        body: "Orihuela Costa is the most international market on Costa Blanca Sur: 30,000 residents, 2,800 transactions a year, a 2,900 €/m² median, 9.1% annual growth and just 90 days on market - the shortest in our dataset. Not by chance: 55% of buyers are foreign and Polish buyers make up 11%, the highest share in the region, creating genuine multilingual demand all year.",
+      },
+      {
+        title: "Spread across districts",
+        body: "The 590 €/m² range runs from Cabo Roig (3,390 €/m²) to Lomas de Cabo Roig (2,800 €/m²). In between sit La Zenia (3,280) around Zenia Boulevard and Cala Capitán, Dehesa de Campoamor (3,170) with a wide beach and pool villas, Villamartín (3,060) by the golf course, and Mil Palmeras (3,010) with new schemes between Punta Prima and Torrevieja. Lomas is cheapest because it sits furthest from the shoreline.",
+      },
+      {
+        title: "Micro-local factors",
+        body: "Price is the package: beach plus golf plus retail. Cabo Roig draws Irish and Polish buyers near Cala Caleta, Villamartín works on the golf community with restaurants within walking distance, and La Zenia lives off Zenia Boulevard, the region's largest shopping centre. Watch community fees in new gated pool estates: a fixed cost that can shave several points off net yield on long lets.",
+      },
+      {
+        title: "Investor takeaway",
+        body: "A 6.1% gross yield at 2,900 €/m² with a 90-day exit is the best combination of return and liquidity on Costa Blanca Sur. 250,000 € buys about 86 m². For seasonal letting pick Cabo Roig or La Zenia, for long lets Villamartín and Lomas, for new pool schemes Mil Palmeras. Check the tourist licence and the community fee - here that is often the difference between 6% and 5% net.",
+      },
+    ],
+    es: [
+      {
+        title: "Introducción de mercado",
+        body: "Orihuela Costa es el mercado más internacional de Costa Blanca Sur: 30.000 habitantes, 2.800 operaciones al año, mediana de 2.900 €/m², crecimiento del 9,1% y solo 90 días de exposición, la más corta de nuestra base. No es casualidad: el 55% de los compradores es extranjero y los polacos son el 11%, el mayor peso de la región, lo que genera demanda multilingüe todo el año.",
+      },
+      {
+        title: "Diferencial entre barrios",
+        body: "La horquilla de 590 €/m² va de Cabo Roig (3.390 €/m²) a Lomas de Cabo Roig (2.800 €/m²). Entre medias están La Zenia (3.280) en torno a Zenia Boulevard y Cala Capitán, Dehesa de Campoamor (3.170) con playa amplia y chalets con piscina, Villamartín (3.060) junto al campo de golf y Mil Palmeras (3.010) con promociones nuevas entre Punta Prima y Torrevieja. Lomas es el más barato por estar más lejos de la costa.",
+      },
+      {
+        title: "Factores microlocales",
+        body: "El precio es un paquete: playa, golf y comercio. Cabo Roig atrae compradores irlandeses y polacos junto a Cala Caleta, Villamartín funciona con la comunidad de golf y restaurantes a pie, y La Zenia vive de Zenia Boulevard, el mayor centro comercial de la región. Ojo con las comunidades de las urbanizaciones nuevas con piscina y seguridad: es un coste fijo que resta varios puntos de rentabilidad neta.",
+      },
+      {
+        title: "Conclusión para el inversor",
+        body: "Un 6,1% bruto con 2.900 €/m² y salida en 90 días es la mejor combinación de retorno y liquidez de Costa Blanca Sur. Con 250.000 € compras unos 86 m². Para temporada, Cabo Roig y La Zenia; para largo, Villamartín y Lomas; para obra nueva con piscina, Mil Palmeras. Comprueba la licencia turística y la cuota de comunidad: aquí suele ser la diferencia entre un 6% y un 5% neto.",
+      },
+    ],
+  },
+  altea: {
+    pl: [
+      {
+        title: "Wprowadzenie rynkowe",
+        body: "Altea to rynek artystyczny i premium zarazem: 23 tys. mieszkańców, 900 transakcji rocznie, mediana 3 680 €/m² (+980 wobec średniej regionu) i dynamika 9,8% r/r. Ekspozycja 130 dni mówi wszystko: tu nie sprzedaje się metrażu, a konkretny widok na zatokę i kopułę Iglesia del Consuelo, więc kupujący porównuje dłużej niż w Torrevieja.",
+      },
+      {
+        title: "Rozstrzał w dzielnicach",
+        body: "Między Altea Hills (4 430 €/m²) a Cap Blanc (3 730 €/m²) leży 700 €/m². Po drodze są Mascarat (4 220) na klifie nad Playa Mascarat, Casco Antiguo (3 890) z wąskimi uliczkami, galeriami i kamienicami z widokiem na zatokę oraz Playa de la Roda (3 780) przy deptaku i Puerto Deportivo. Cap Blanc wchodzi najtaniej, bo to spokojna strefa willowa z dobrym dojazdem do AP-7, bez bezpośredniej linii plaży.",
+      },
+      {
+        title: "Czynniki mikrolokalne",
+        body: "W Altei cena to widok plus prywatność: w Altea Hills grodzone osiedla z ochroną 24 h i basenami osiągają stawki, jakich nie ma żadne inne miasto w tej części wybrzeża. 44% kupujących to obcokrajowcy, Polacy 6% - dominują klienci z Europy Zachodniej, często artyści i pracujący zdalnie. Casco Antiguo żyje z gastronomii i turystyki dziennej, Mascarat z prestiżu, a Playa de la Roda z rodzin, dla których liczy się deptak i przystań jachtowa.",
+      },
+      {
+        title: "Wnioski dla inwestora",
+        body: "ROI 5,3% brutto przy 3 680 €/m² to wynik umiarkowany, a 130 dni ekspozycji oznacza, że wyjście wymaga cierpliwości. Za 250 tys. € kupisz około 68 m², w Cap Blanc więcej, w Altea Hills znacznie mniej. Pod najem sezonowy najlepsza jest Playa de la Roda i Casco Antiguo, pod długoterminowy Cap Blanc, pod prestiż i odsprzedaż Altea Hills. Sprawdź plan zagospodarowania: w rejonie Mascarat i Cap Blanc część działek ma ograniczenia wynikające z ochrony klifu.",
+      },
+    ],
+    en: [
+      {
+        title: "Market introduction",
+        body: "Altea is an artistic and premium market at once: 23,000 residents, 900 transactions a year, a 3,680 €/m² median (980 above the regional average) and 9.8% annual growth. The 130 days on market say it plainly: buyers here purchase a specific bay view and the dome of Iglesia del Consuelo, not floor area.",
+      },
+      {
+        title: "Spread across districts",
+        body: "Between Altea Hills (4,430 €/m²) and Cap Blanc (3,730 €/m²) sits 700 €/m². In between are Mascarat (4,220) on the cliff above Playa Mascarat, Casco Antiguo (3,890) with narrow lanes, galleries and bay-view townhouses, and Playa de la Roda (3,780) by the promenade and Puerto Deportivo. Cap Blanc enters cheapest: a quiet villa area with quick AP-7 access and no direct beach line.",
+      },
+      {
+        title: "Micro-local factors",
+        body: "In Altea price equals view plus privacy: gated estates in Altea Hills with 24-hour security and pools reach levels no other town on this stretch matches. Foreign buyers make up 44%, Polish buyers 6%, mostly western Europeans, often artists and remote workers. Casco Antiguo runs on restaurants and day tourism, Mascarat on prestige, Playa de la Roda on families who value the promenade and marina.",
+      },
+      {
+        title: "Investor takeaway",
+        body: "A 5.3% gross yield at 3,680 €/m² is moderate, and 130 days on market means the exit needs patience. 250,000 € buys about 68 m², more in Cap Blanc and far less in Altea Hills. For seasonal letting pick Playa de la Roda or Casco Antiguo, for long lets Cap Blanc, for prestige and resale Altea Hills. Check the urban plan: parts of Mascarat and Cap Blanc are constrained by cliff protection rules.",
+      },
+    ],
+    es: [
+      {
+        title: "Introducción de mercado",
+        body: "Altea es a la vez mercado artístico y premium: 23.000 habitantes, 900 operaciones al año, mediana de 3.680 €/m² (980 sobre la media regional) y crecimiento del 9,8%. Los 130 días de exposición lo dicen todo: aquí se compra una vista concreta a la bahía y la cúpula de Iglesia del Consuelo, no metros.",
+      },
+      {
+        title: "Diferencial entre barrios",
+        body: "Entre Altea Hills (4.430 €/m²) y Cap Blanc (3.730 €/m²) hay 700 €/m². Entre medias están Mascarat (4.220) en el acantilado sobre Playa Mascarat, Casco Antiguo (3.890) con calles estrechas, galerías y casas con vistas a la bahía, y Playa de la Roda (3.780) junto al paseo y el Puerto Deportivo. Cap Blanc es el más barato: zona tranquila de chalets con acceso rápido a la AP-7 y sin línea directa de playa.",
+      },
+      {
+        title: "Factores microlocales",
+        body: "En Altea el precio es vista más privacidad: las urbanizaciones cerradas de Altea Hills con seguridad 24 h y piscinas alcanzan niveles que ningún otro pueblo de esta costa iguala. El 44% de los compradores es extranjero y los polacos el 6%, sobre todo europeos occidentales, a menudo artistas y teletrabajadores. Casco Antiguo vive de restauración y turismo de día, Mascarat del prestigio y Playa de la Roda de familias que valoran paseo y marina.",
+      },
+      {
+        title: "Conclusión para el inversor",
+        body: "Un 5,3% bruto con 3.680 €/m² es moderado y 130 días de exposición exigen paciencia en la salida. Con 250.000 € compras unos 68 m², más en Cap Blanc y mucho menos en Altea Hills. Para temporada, Playa de la Roda o Casco Antiguo; para largo, Cap Blanc; para prestigio y reventa, Altea Hills. Revisa el planeamiento: en Mascarat y Cap Blanc parte de las parcelas tienen limitaciones por protección del acantilado.",
+      },
+    ],
+  },
+  "guardamar-del-segura": {
+    pl: [
+      {
+        title: "Wprowadzenie rynkowe",
+        body: "Guardamar del Segura to cichy rynek Costa Blanca Sur: 16 tys. mieszkańców, 700 transakcji rocznie, mediana 2 470 €/m² (-230 wobec regionu) przy dynamice 8,7% r/r i ekspozycji 105 dni. Jego przewaga nie leży w cenie, a w krajobrazie: miasta nie zabetonowano, bo wydmy i las sosnowy są prawnie chronione, więc podaż nad plażą jest skończona.",
+      },
+      {
+        title: "Rozstrzał w dzielnicach",
+        body: "Cała rozpiętość to 430 €/m²: od Guardamar Playa (2 630 €/m²) do El Raso (2 200 €/m²). Między nimi leżą Moncayo (2 570) z szeroką plażą i wydmami, La Marina (2 520) z urbanizacjami willowymi przy ujściu Segury oraz Centro (2 300), gdzie przeważają mieszkania z lat 2000-2015 blisko Mercado Municipal. El Raso jest najtańszy, bo to nowe osiedla z basenami poza centrum, przy Golf La Marquesa.",
+      },
+      {
+        title: "Czynniki mikrolokalne",
+        body: "Tu o wartości decyduje sąsiedztwo parku Alfonso XIII i dostępu do plaży, nie sam metraż. 42% kupujących to obcokrajowcy, Polacy 8% - zauważalnie więcej niż w sąsiedniej Torrevieja. Guardamar Playa przyciąga rodziny szukające spokoju bez masowej turystyki, La Marina klientów z dużymi działkami i basenem, a El Raso osoby pracujące zdalnie, dla których liczy się cena wejścia i bliskość natury, nie gastronomia.",
+      },
+      {
+        title: "Wnioski dla inwestora",
+        body: "ROI 6,3% brutto przy 2 470 €/m² i ograniczonej podaży to solidny profil dochodowy z potencjałem wzrostu. Za 250 tys. € kupisz około 101 m². Pod najem sezonowy najlepsze są Moncayo i Guardamar Playa, pod długoterminowy Centro i El Raso, pod odsprzedaż La Marina z działką. Główne ryzyko to wolumen: 700 transakcji rocznie oznacza, że sprzedaż potrwa dłużej niż w Torrevieja - planuj wyjście z wyprzedzeniem, nie w pośpiechu.",
+      },
+    ],
+    en: [
+      {
+        title: "Market introduction",
+        body: "Guardamar del Segura is a quiet Costa Blanca Sur market: 16,000 residents, 700 transactions a year, a 2,470 €/m² median (230 below the region) with 8.7% annual growth and 105 days on market. Its edge is not price but landscape: the town was never overbuilt because the dunes and pine forest are protected, so supply by the beach is finite.",
+      },
+      {
+        title: "Spread across districts",
+        body: "The whole range is 430 €/m²: from Guardamar Playa (2,630 €/m²) to El Raso (2,200 €/m²). In between sit Moncayo (2,570) with a wide beach and dunes, La Marina (2,520) with villa estates by the Segura mouth, and Centro (2,300), where 2000-2015 flats cluster near Mercado Municipal. El Raso is cheapest because it offers new pool schemes outside the centre, close to Golf La Marquesa.",
+      },
+      {
+        title: "Micro-local factors",
+        body: "Value here follows proximity to Parque Alfonso XIII and beach access rather than floor area. Foreign buyers make up 42% and Polish buyers 8%, clearly above neighbouring Torrevieja. Guardamar Playa attracts families wanting calm without mass tourism, La Marina buyers after large plots with a pool, and El Raso remote workers for whom entry price and nature matter more than restaurants.",
+      },
+      {
+        title: "Investor takeaway",
+        body: "A 6.3% gross yield at 2,470 €/m² with capped supply is a solid income profile with upside. 250,000 € buys about 101 m². For seasonal letting pick Moncayo or Guardamar Playa, for long lets Centro and El Raso, for resale La Marina with a plot. The main risk is volume: 700 transactions a year means a sale takes longer than in Torrevieja, so plan the exit early rather than in a hurry.",
+      },
+    ],
+    es: [
+      {
+        title: "Introducción de mercado",
+        body: "Guardamar del Segura es un mercado tranquilo de Costa Blanca Sur: 16.000 habitantes, 700 operaciones al año, mediana de 2.470 €/m² (-230 frente a la región), crecimiento del 8,7% y 105 días de exposición. Su ventaja no es el precio sino el paisaje: el pueblo no se masificó porque dunas y pinar están protegidos, así que la oferta junto a la playa es finita.",
+      },
+      {
+        title: "Diferencial entre barrios",
+        body: "Toda la horquilla son 430 €/m²: de Guardamar Playa (2.630 €/m²) a El Raso (2.200 €/m²). Entre medias están Moncayo (2.570) con playa amplia y dunas, La Marina (2.520) con urbanizaciones de chalets junto a la desembocadura del Segura y Centro (2.300), con pisos de 2000-2015 cerca del Mercado Municipal. El Raso es el más barato: urbanizaciones nuevas con piscina fuera del centro, junto a Golf La Marquesa.",
+      },
+      {
+        title: "Factores microlocales",
+        body: "El valor sigue la cercanía al Parque Alfonso XIII y el acceso a la playa, no los metros. El 42% de los compradores es extranjero y los polacos el 8%, muy por encima de la vecina Torrevieja. Guardamar Playa atrae familias que buscan calma sin turismo masivo, La Marina compradores de parcelas grandes con piscina y El Raso a teletrabajadores para quienes cuentan el precio de entrada y la naturaleza.",
+      },
+      {
+        title: "Conclusión para el inversor",
+        body: "Un 6,3% bruto con 2.470 €/m² y oferta limitada es un perfil de renta sólido con recorrido. Con 250.000 € compras unos 101 m². Para temporada, Moncayo y Guardamar Playa; para largo, Centro y El Raso; para reventa, La Marina con parcela. El riesgo es el volumen: 700 operaciones al año implican ventas más lentas que en Torrevieja, así que planifica la salida con tiempo.",
+      },
+    ],
+  },
+  "santa-pola": {
+    pl: [
+      {
+        title: "Wprowadzenie rynkowe",
+        body: "Santa Pola to port rybacki, który wycenia się taniej niż sąsiedzi: 35 tys. mieszkańców, 1 200 transakcji rocznie, mediana 2 350 €/m² (-350 wobec regionu) przy dynamice 8,4% i ekspozycji 100 dni. Miasto nie sprzedaje wakacyjnego wizerunku, tylko pracę i morze, dlatego ROI 6,4% brutto jest jednym z najwyższych na Costa Blanca Sur.",
+      },
+      {
+        title: "Rozstrzał w dzielnicach",
+        body: "Cała rozpiętość to 380 €/m²: od Playa de Levante (2 570 €/m²) do Centro (2 190 €/m²). Pomiędzy nimi są Varadero (2 460) za mariną z widokiem na port, Playa Lisa (2 410) z tanim tarasem i dobrym stosunkiem ceny do lokalizacji oraz Gran Alacant (2 300) - duże osiedla z basenami i ochroną, najbliżej lotniska w Alicante. Centro jest najtańsze, bo to portowa tkanka z pełną infrastrukturą, ale bez bezpośredniego dostępu do plaży.",
+      },
+      {
+        title: "Czynniki mikrolokalne",
+        body: "Wartość buduje tu port i rezerwat, nie deptak: flota rybacka daje całoroczny ruch, a Salinas de Santa Pola przyciągają flamingi i turystów poza sezonem. 34% kupujących to obcokrajowcy, Polacy 6% - mniej niż w Torrevieja czy Orihuela Costa, więc rynek jest bardziej lokalny i mniej podatny na modę. Gran Alacant wybierają osoby pracujące w Alicante i często latające, Varadero - ci, którzy chcą mieszkać nad portem, a Playa de Levante rodziny z dziećmi.",
+      },
+      {
+        title: "Wnioski dla inwestora",
+        body: "ROI 6,4% brutto przy 2 350 €/m² i krótkim dojeździe do lotniska to profil pod najem długoterminowy, nie pod turystykę. Za 250 tys. € kupisz około 106 m². Pod stabilny dochód wybierz Centro i Gran Alacant, pod sezon Varadero i Playa de Levante, pod odsprzedaż Playa Lisa. Uwaga na strefę portu: hałas i zapach ryb bywają uciążliwe latem, a mimo to wpływają na cenę - oglądaj nieruchomość wieczorem, nie w południe.",
+      },
+    ],
+    en: [
+      {
+        title: "Market introduction",
+        body: "Santa Pola is a fishing port priced below its neighbours: 35,000 residents, 1,200 transactions a year, a 2,350 €/m² median (350 under the region) with 8.4% growth and 100 days on market. The town does not sell a holiday image but work and sea, which is why a 6.4% gross yield is among the highest on Costa Blanca Sur.",
+      },
+      {
+        title: "Spread across districts",
+        body: "The range is 380 €/m²: from Playa de Levante (2,570 €/m²) to Centro (2,190 €/m²). In between sit Varadero (2,460) behind the marina with port views, Playa Lisa (2,410) with affordable terraces and a good price-to-location ratio, and Gran Alacant (2,300), large gated estates with pools and the shortest drive to Alicante airport. Centro is cheapest: a port fabric with full services but no direct beach.",
+      },
+      {
+        title: "Micro-local factors",
+        body: "Value comes from the port and the reserve, not the promenade: the fishing fleet keeps activity all year and the Salinas de Santa Pola draw flamingos and visitors off season. Foreign buyers make up 34% and Polish buyers 6%, less than in Torrevieja or Orihuela Costa, so the market is more local and less fashion-driven. Gran Alacant suits commuters and frequent flyers, Varadero those wanting to live by the harbour, Playa de Levante families.",
+      },
+      {
+        title: "Investor takeaway",
+        body: "A 6.4% gross yield at 2,350 €/m² with a short airport run fits long-term letting rather than tourism. 250,000 € buys about 106 m². For steady income pick Centro and Gran Alacant, for season Varadero and Playa de Levante, for resale Playa Lisa. Watch the port zone: noise and fish smells can bite in summer yet shape the price, so view the property in the evening, not at noon.",
+      },
+    ],
+    es: [
+      {
+        title: "Introducción de mercado",
+        body: "Santa Pola es un puerto pesquero que cotiza por debajo de sus vecinos: 35.000 habitantes, 1.200 operaciones al año, mediana de 2.350 €/m² (-350 frente a la región), crecimiento del 8,4% y 100 días de exposición. La villa no vende imagen vacacional sino trabajo y mar, por eso un 6,4% bruto está entre las rentabilidades más altas de Costa Blanca Sur.",
+      },
+      {
+        title: "Diferencial entre barrios",
+        body: "La horquilla son 380 €/m²: de Playa de Levante (2.570 €/m²) a Centro (2.190 €/m²). Entre medias están Varadero (2.460) tras la marina con vistas al puerto, Playa Lisa (2.410) con terrazas asequibles y buena relación precio-ubicación, y Gran Alacant (2.300), urbanizaciones grandes con piscina y seguridad y el trayecto más corto al aeropuerto de Alicante. Centro es el más barato: tejido portuario con servicios completos pero sin playa directa.",
+      },
+      {
+        title: "Factores microlocales",
+        body: "El valor lo aportan el puerto y la reserva, no el paseo: la flota pesquera mantiene actividad todo el año y las Salinas de Santa Pola atraen flamencos y visitantes fuera de temporada. El 34% de los compradores es extranjero y los polacos el 6%, menos que en Torrevieja u Orihuela Costa, así que el mercado es más local y menos dependiente de modas. Gran Alacant encaja con quien trabaja en Alicante y viaja a menudo; Varadero, con quien quiere vivir junto al puerto; Playa de Levante, con familias.",
+      },
+      {
+        title: "Conclusión para el inversor",
+        body: "Un 6,4% bruto con 2.350 €/m² y un aeropuerto cerca encaja con alquiler largo, no con turismo. Con 250.000 € compras unos 106 m². Para renta estable elige Centro y Gran Alacant; para temporada, Varadero y Playa de Levante; para reventa, Playa Lisa. Ojo con la zona portuaria: ruido y olor a pescado molestan en verano y aun así condicionan el precio, así que visita la vivienda por la tarde, no al mediodía.",
+      },
+    ],
+  },
 };
 
 /** Sekcje redakcyjne dla miasta (null = brak autorskiego tekstu). */
