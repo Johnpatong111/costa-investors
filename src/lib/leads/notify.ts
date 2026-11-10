@@ -135,17 +135,10 @@ export async function sendEmail(lead: LeadRecord): Promise<DispatchResult | null
     return null;
   }
 
-  // Błąd 403 bierze się z wysyłki z niezweryfikowanej domeny. Dopóki domena
-  // costainvestors.eu nie jest potwierdzona w Resend, nadawcą musi być adres
-  // testowy onboarding@resend.dev. Odpowiedź klienta ustawiamy przez reply_to,
-  // więc odpowiadając na maila, piszesz prosto do osoby z formularza.
-  const from = "onboarding@resend.dev";
-
-  if (env("LEAD_EMAIL_FROM")) {
-    console.warn(
-      "[resend] LEAD_EMAIL_FROM jest ustawiony, ale ignorowany: wysyłka idzie z onboarding@resend.dev do czasu weryfikacji domeny.",
-    );
-  }
+  // Domena costainvestors.eu jest zweryfikowana w Resend, więc wysyłamy z
+  // oficjalnego adresu. Wartość można nadpisać przez LEAD_EMAIL_FROM (np. inny
+  // nadawca na tej samej domenie). Reply_to kieruje odpowiedź do klienta.
+  const from = env("LEAD_EMAIL_FROM") ?? "Costa Investors <contact@costainvestors.eu>";
 
   return postJson(
     "email",
