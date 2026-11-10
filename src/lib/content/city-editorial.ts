@@ -631,6 +631,230 @@ const COPY: Record<string, Partial<Record<Locale, EditorialSection[]>>> = {
       },
     ],
   },
+  cartagena: {
+    pl: [
+      {
+        title: "Wprowadzenie rynkowe",
+        body: "Cartagena to jedyne duże miasto w naszej bazie: 215 tys. mieszkańców, 3 400 transakcji rocznie i mediana 1 960 €/m², czyli tylko 60 €/m² powyżej mediany Costa Cálida przy dynamice 7,2% r/r. Ekspozycja 110 dni wynika z rozmiaru rynku, nie z braku popytu: tu kupują przede wszystkim mieszkańcy i pracownicy portu, a nie klienci z północy Europy.",
+      },
+      {
+        title: "Rozstrzał w dzielnicach",
+        body: "Między La Azohía (2 230 €/m²) a Santa Lucía (1 750 €/m²) leży 480 €/m². Po drodze są Isla Plana (2 120) przy skalistym wybrzeżu i Sierra de la Muela oraz Centro (1 850), gdzie kamienice stoją wokół Puerto de Cartagena i Teatro Romano, blisko dworca i uczelni. Santa Lucía jest najtańsza, bo to budownictwo z lat 80. i 2000 z dobrą komunikacją autobusową, ale bez widoku na morze.",
+      },
+      {
+        title: "Czynniki mikrolokalne",
+        body: "Tu o cenie decyduje praca, nie turystyka: tylko 18% kupujących to obcokrajowcy, a Polacy 3% - najmniej w całej bazie. Port wojenny i handlowy, stocznia oraz uczelnia generują popyt całoroczny, dlatego ROI 6,5% brutto jest trwałe, a nie sezonowe. La Azohía i Isla Plana to jedyne strefy wypoczynkowe, gdzie ceny zachowują się jak nad Costa Blanca, ale podaż nowych inwestycji jest tam bardzo niska.",
+      },
+      {
+        title: "Wnioski dla inwestora",
+        body: "ROI 6,5% brutto przy 1 960 €/m² i realnym popycie lokalnym to profil pod najem długoterminowy, nie pod turystę. Za 250 tys. € kupisz około 127 m². Pod stabilny dochód wybierz Centro i Santa Lucía, pod najem sezonowy La Azohía i Isla Plana. Ryzykiem jest wiek budynków w centrum: sprawdź stan instalacji i koszt wspólnoty, bo w kamienicach z lat 60. i 70. remont elewacji potrafi zjeść roczny czynsz.",
+      },
+    ],
+    en: [
+      {
+        title: "Market introduction",
+        body: "Cartagena is the only large city in our dataset: 215,000 residents, 3,400 transactions a year and a 1,960 €/m² median, just 60 €/m² above the Costa Cálida median with 7.2% annual growth. The 110 days on market reflect the size of the market, not a lack of demand: buyers here are residents and port workers, not northern European second-home owners.",
+      },
+      {
+        title: "Spread across districts",
+        body: "Between La Azohía (2,230 €/m²) and Santa Lucía (1,750 €/m²) sits 480 €/m². In between are Isla Plana (2,120) on the rocky shore by Sierra de la Muela and Centro (1,850), where townhouses surround Puerto de Cartagena and Teatro Romano, close to the station and the university. Santa Lucía is cheapest: 1980s and 2000s housing with good buses but no sea view.",
+      },
+      {
+        title: "Micro-local factors",
+        body: "Price here follows employment, not tourism: only 18% of buyers are foreign and Polish buyers just 3%, the lowest in our dataset. The naval and commercial port, the shipyard and the university generate year-round demand, which is why a 6.5% gross yield is durable rather than seasonal. La Azohía and Isla Plana are the only resort pockets behaving like the Costa Blanca, but new supply there is very thin.",
+      },
+      {
+        title: "Investor takeaway",
+        body: "A 6.5% gross yield at 1,960 €/m² with genuine local demand suits long lets, not tourists. 250,000 € buys about 127 m². For steady income pick Centro and Santa Lucía, for seasonal letting La Azohía and Isla Plana. The risk is building age downtown: check the installations and community fee, because a facade renovation in a 1960s-70s block can swallow a year of rent.",
+      },
+    ],
+    es: [
+      {
+        title: "Introducción de mercado",
+        body: "Cartagena es la única ciudad grande de nuestra base: 215.000 habitantes, 3.400 operaciones al año y una mediana de 1.960 €/m², solo 60 €/m² por encima de la mediana de Costa Cálida, con un crecimiento del 7,2%. Los 110 días de exposición reflejan el tamaño del mercado, no falta de demanda: compran residentes y trabajadores del puerto, no europeos del norte.",
+      },
+      {
+        title: "Diferencial entre barrios",
+        body: "Entre La Azohía (2.230 €/m²) y Santa Lucía (1.750 €/m²) hay 480 €/m². Entre medias están Isla Plana (2.120) en la costa rocosa junto a Sierra de la Muela y Centro (1.850), con casas alrededor del Puerto de Cartagena y el Teatro Romano, cerca de la estación y la universidad. Santa Lucía es el más barato: edificación de los 80 y 2000 con buen bus, pero sin vistas al mar.",
+      },
+      {
+        title: "Factores microlocales",
+        body: "Aquí el precio sigue al empleo, no al turismo: solo el 18% de los compradores es extranjero y los polacos el 3%, el menor peso de la base. El puerto militar y comercial, el astillero y la universidad generan demanda todo el año, por eso un 6,5% bruto es duradero y no estacional. La Azohía e Isla Plana son los únicos núcleos vacacionales que se comportan como la Costa Blanca, pero la oferta nueva allí es muy escasa.",
+      },
+      {
+        title: "Conclusión para el inversor",
+        body: "Un 6,5% bruto con 1.960 €/m² y demanda local real encaja con alquiler largo, no con turismo. Con 250.000 € compras unos 127 m². Para renta estable elige Centro y Santa Lucía; para temporada, La Azohía e Isla Plana. El riesgo es la edad de los edificios del centro: revisa instalaciones y comunidad, porque rehabilitar una fachada de los 60-70 puede costar un año de alquiler.",
+      },
+    ],
+  },
+  "san-pedro-del-pinatar": {
+    pl: [
+      {
+        title: "Wprowadzenie rynkowe",
+        body: "San Pedro del Pinatar to jedyny rynek w bazie, którego marka stoi na zdrowiu, nie na widoku: 26 tys. mieszkańców, 1 100 transakcji rocznie i mediana 2 290 €/m², czyli 390 €/m² powyżej mediany Costa Cálida przy dynamice 8,1% r/r i ekspozycji 100 dni. Bliskość leczniczych bagien Salinas de San Pedro przyciąga klientów, którzy przyjeżdżają po kąpiele błotne, nie po plażę z folderu.",
+      },
+      {
+        title: "Rozstrzał w dzielnicach",
+        body: "Cała rozpiętość to 320 €/m²: od Lo Pagán (2 450 €/m²) do Centro (2 130 €/m²). Pomiędzy nimi są El Mojón (2 400) przy granicy Costa Blanca i Cálida oraz Villananitos (2 350) z szeroką plażą, deptakiem i portem rybackim w zasięgu spaceru. Centro jest najtańsze, bo to zwykła miejska tkanka blisko urzędów, bez dostępu do wody - i właśnie dlatego daje najwyższy ROI w gminie (6,7%).",
+      },
+      {
+        title: "Czynniki mikrolokalne",
+        body: "O wartości decyduje dostęp do Mar Menor przez mola kąpielowe, nie sama odległość od morza: w Lo Pagán apartament przy Playa de Villananitos jest wart więcej niż identyczny 800 m dalej. 38% kupujących to obcokrajowcy, Polacy 6%. Popyt sezonowy jest silny, ale w tym mieście miesza się z popytem sanatoryjnym - klienci balneologiczni przyjeżdżają też wiosną i jesienią, co wydłuża sezon najmu i stabilizuje obłożenie.",
+      },
+      {
+        title: "Wnioski dla inwestora",
+        body: "ROI 6,6% brutto przy 2 290 €/m² to jeden z najlepszych wyników w regionie, a wydłużony sezon zmniejsza ryzyko pustostanu. Za 250 tys. € kupisz około 109 m². Pod najem sezonowy wybierz Lo Pagán i Villananitos, pod całoroczny Centro, pod prestiż i ciszę El Mojón. Sprawdź, czy budynek ma licencję turystyczną i czy wspólnota nie finansuje właśnie remontu elewacji - w nadmorskich blokach z lat 2000 to typowa pozycja.",
+      },
+    ],
+    en: [
+      {
+        title: "Market introduction",
+        body: "San Pedro del Pinatar is the only market in our dataset whose brand rests on health rather than views: 26,000 residents, 1,100 transactions a year and a 2,290 €/m² median, 390 €/m² above the Costa Cálida median with 8.1% growth and 100 days on market. Proximity to the therapeutic Salinas de San Pedro attracts visitors who come for mud baths, not for a brochure beach.",
+      },
+      {
+        title: "Spread across districts",
+        body: "The whole range is 320 €/m²: from Lo Pagán (2,450 €/m²) to Centro (2,130 €/m²). In between are El Mojón (2,400) on the Costa Blanca and Cálida border and Villananitos (2,350) with a wide beach, promenade and the fishing port within walking distance. Centro is cheapest because it is ordinary town fabric near the offices with no water access, which is exactly why it shows the highest yield in the municipality (6.7%).",
+      },
+      {
+        title: "Micro-local factors",
+        body: "Value follows access to the Mar Menor through the bathing jetties, not distance to the sea: a flat by Playa de Villananitos in Lo Pagán beats an identical one 800 m inland. Foreign buyers make up 38%, Polish buyers 6%. Seasonal demand is strong but mixes with spa demand, as balneology guests also arrive in spring and autumn, which lengthens the letting season and steadies occupancy.",
+      },
+      {
+        title: "Investor takeaway",
+        body: "A 6.6% gross yield at 2,290 €/m² is one of the best in the region, and the longer season cuts void risk. 250,000 € buys about 109 m². For seasonal letting choose Lo Pagán and Villananitos, for year-round Centro, for prestige and quiet El Mojón. Check the tourist licence and whether the community is funding a facade renovation, a typical item in 2000s seafront blocks.",
+      },
+    ],
+    es: [
+      {
+        title: "Introducción de mercado",
+        body: "San Pedro del Pinatar es el único mercado de la base cuya marca se apoya en la salud y no en las vistas: 26.000 habitantes, 1.100 operaciones al año y una mediana de 2.290 €/m², 390 €/m² sobre la mediana de Costa Cálida con un crecimiento del 8,1% y 100 días de exposición. La cercanía a los lodos medicinales de las Salinas de San Pedro atrae a quien viene por los baños, no por una playa de folleto.",
+      },
+      {
+        title: "Diferencial entre barrios",
+        body: "Toda la horquilla son 320 €/m²: de Lo Pagán (2.450 €/m²) a Centro (2.130 €/m²). Entre medias están El Mojón (2.400) en el límite entre Costa Blanca y Cálida y Villananitos (2.350) con playa amplia, paseo y puerto pesquero a pie. Centro es el más barato porque es tejido urbano cerca de las oficinas sin acceso al agua, y por eso mismo da la mejor rentabilidad del municipio (6,7%).",
+      },
+      {
+        title: "Factores microlocales",
+        body: "El valor sigue el acceso al Mar Menor por los embarcaderos, no la distancia al mar: un piso junto a Playa de Villananitos en Lo Pagán vale más que otro idéntico 800 m tierra adentro. El 38% de los compradores es extranjero y los polacos el 6%. La demanda de temporada es fuerte pero se mezcla con la balnearia, porque el cliente de balneoterapia también llega en primavera y otoño, alargando la temporada y estabilizando la ocupación.",
+      },
+      {
+        title: "Conclusión para el inversor",
+        body: "Un 6,6% bruto con 2.290 €/m² está entre los mejores de la región y la temporada larga reduce el riesgo de vacante. Con 250.000 € compras unos 109 m². Para temporada, Lo Pagán y Villananitos; para todo el año, Centro; para prestigio y calma, El Mojón. Comprueba licencia turística y si la comunidad financia una rehabilitación de fachada, típica en bloques de los 2000 en primera línea.",
+      },
+    ],
+  },
+  "los-alcazares": {
+    pl: [
+      {
+        title: "Wprowadzenie rynkowe",
+        body: "Los Alcázares to rynek laguny: 17 tys. mieszkańców, 800 transakcji rocznie i mediana 2 190 €/m², czyli 290 €/m² powyżej mediany Costa Cálida. Dynamika 8,4% r/r i ekspozycja zaledwie 95 dni - najkrótsza w regionie - wynikają z jednego czynnika: Mar Menor jest płytki i ciepły, bez fal, więc kąpią się tu dzieci, a nie surfingują dorośli.",
+      },
+      {
+        title: "Rozstrzał w dzielnicach",
+        body: "Rozpiętość 320 €/m²: od Playa (2 350 €/m²) do Punta Brava (2 030 €/m²). Po drodze są Los Narejos (2 250) z nowymi osiedlami z basenami i polem golfowym oraz Centro (2 090) z mieszkaniami blisko usług i Paseo del Mar Menor. Punta Brava jest najtańsza, bo to willowa zabudowa z lat 2000+ przy torze regatowym Centro de Alto Rendimiento - prestiż sportowy bez bezpośredniego dostępu do plaży.",
+      },
+      {
+        title: "Czynniki mikrolokalne",
+        body: "Tu o cenie decyduje nie widok, a bezpieczeństwo kąpieli i głębokość wody: apartament przy Playa de Los Alcázares jest wart więcej niż identyczny 400 m dalej, bo rodziny z dziećmi chcą wejść do wody bez stresu. 40% kupujących to obcokrajowcy, Polacy 7%. Los Narejos pracuje na najmie krótkoterminowym przez cały sezon, Centro na mieszkańcach i pracownikach okolicznych pól golfowych, a Punta Brava na sporcie i spokoju.",
+      },
+      {
+        title: "Wnioski dla inwestora",
+        body: "ROI 6,8% brutto przy 2 190 €/m² i 95 dniach ekspozycji to najlepsza kombinacja płynności i zwrotu w Costa Cálida Norte. Za 250 tys. € kupisz około 114 m². Pod najem krótki wybierz Playa i Los Narejos, pod całoroczny Centro, pod spokój Punta Brava. Sprawdź dwie rzeczy: czy osiedle ma licencję turystyczną oraz czy nieruchomość leży w strefie, w której po ulewach pojawia się ryzyko zalania - w Los Alcázares to realny czynnik wyceny.",
+      },
+    ],
+    en: [
+      {
+        title: "Market introduction",
+        body: "Los Alcázares is a lagoon market: 17,000 residents, 800 transactions a year and a 2,190 €/m² median, 290 €/m² above the Costa Cálida median. Growth of 8.4% and just 95 days on market, the shortest in the region, come down to one factor: the Mar Menor is shallow and warm with no waves, so children swim here and adults do not surf.",
+      },
+      {
+        title: "Spread across districts",
+        body: "The range is 320 €/m²: from Playa (2,350 €/m²) to Punta Brava (2,030 €/m²). In between sit Los Narejos (2,250) with new pool estates and a golf course, and Centro (2,090) with flats near services and Paseo del Mar Menor. Punta Brava is cheapest: 2000s villa stock by the Centro de Alto Rendimiento rowing course, sporting prestige without direct beach access.",
+      },
+      {
+        title: "Micro-local factors",
+        body: "Price follows safe bathing and water depth rather than views: a flat on Playa de Los Alcázares beats an identical one 400 m inland because families want to enter the water without stress. Foreign buyers make up 40%, Polish buyers 7%. Los Narejos runs on short lets through the season, Centro on residents and golf-course staff, and Punta Brava on sport and quiet.",
+      },
+      {
+        title: "Investor takeaway",
+        body: "A 6.8% gross yield at 2,190 €/m² with a 95-day exit is the best mix of liquidity and return in Costa Cálida Norte. 250,000 € buys about 114 m². For short lets choose Playa and Los Narejos, for year-round Centro, for quiet Punta Brava. Check two things: the tourist licence, and whether the property sits in an area prone to flooding after heavy rain, a real pricing factor in Los Alcázares.",
+      },
+    ],
+    es: [
+      {
+        title: "Introducción de mercado",
+        body: "Los Alcázares es un mercado de laguna: 17.000 habitantes, 800 operaciones al año y una mediana de 2.190 €/m², 290 €/m² sobre la mediana de Costa Cálida. El crecimiento del 8,4% y solo 95 días de exposición, los más cortos de la región, se explican por un factor: el Mar Menor es poco profundo y cálido, sin olas, así que aquí se bañan niños y no se hace surf.",
+      },
+      {
+        title: "Diferencial entre barrios",
+        body: "La horquilla son 320 €/m²: de Playa (2.350 €/m²) a Punta Brava (2.030 €/m²). Entre medias están Los Narejos (2.250) con urbanizaciones nuevas con piscina y campo de golf, y Centro (2.090) con pisos cerca de servicios y del Paseo del Mar Menor. Punta Brava es el más barato: chalets de los 2000 junto al canal de remo del Centro de Alto Rendimiento, prestigio deportivo sin acceso directo a playa.",
+      },
+      {
+        title: "Factores microlocales",
+        body: "El precio sigue el baño seguro y la profundidad del agua, no las vistas: un piso en Playa de Los Alcázares vale más que otro idéntico 400 m tierra adentro porque las familias quieren entrar al agua sin estrés. El 40% de los compradores es extranjero y los polacos el 7%. Los Narejos funciona con alquiler corto toda la temporada, Centro con residentes y trabajadores de los campos de golf, y Punta Brava con deporte y calma.",
+      },
+      {
+        title: "Conclusión para el inversor",
+        body: "Un 6,8% bruto con 2.190 €/m² y salida en 95 días es la mejor mezcla de liquidez y retorno de Costa Cálida Norte. Con 250.000 € compras unos 114 m². Para alquiler corto, Playa y Los Narejos; para todo el año, Centro; para calma, Punta Brava. Comprueba dos cosas: la licencia turística y si la vivienda está en zona con riesgo de inundación tras lluvias fuertes, un factor real de precio en Los Alcázares.",
+      },
+    ],
+  },
+  mazarron: {
+    pl: [
+      {
+        title: "Wprowadzenie rynkowe",
+        body: "Mazarrón to najdalej wysunięty na południe rynek Costa Cálida Sur: 33 tys. mieszkańców, 900 transakcji rocznie i mediana 2 020 €/m², czyli 120 €/m² powyżej mediany regionu przy dynamice 7,6% r/r. Ekspozycja 115 dni jest najdłuższa w tej części wybrzeża, bo gmina łączy trzy różne rynki: port, formacje skalne i miasto oddalone od morza o 10 km.",
+      },
+      {
+        title: "Rozstrzał w dzielnicach",
+        body: "Między Puerto de Mazarrón (2 230 €/m²) a Mazarrón Centro (1 700 €/m²) leży 530 €/m² - największa rozpiętość w Costa Cálida. Po drodze są Bolnuevo (2 130) przy plaży i słynnych formacjach Gredas de Bolnuevo oraz El Alamillo (2 070) z nowymi osiedlami z basenem między plażami. Centro jest najtańsze, bo to miasto górnicze w głębi lądu, z własnym rynkiem pracy, ale bez dostępu do wody.",
+      },
+      {
+        title: "Czynniki mikrolokalne",
+        body: "O cenie decyduje tu bezpośredni dostęp do plaży i portu, a nie widok z okna: apartament przy Playa del Puerto jest wart więcej niż identyczny w El Alamillo, choć oba leżą w tej samej gminie. 35% kupujących to obcokrajowcy, Polacy 5%. Puerto żyje z promenady i restauracji, Bolnuevo z unikalnego krajobrazu Gredas, a Centro z lokalnego popytu pracowniczego - dlatego ROI w Centro (6,6%) jest najwyższy, mimo najniższej ceny.",
+      },
+      {
+        title: "Wnioski dla inwestora",
+        body: "ROI 6,4% brutto przy 2 020 €/m² i 115 dniach ekspozycji to profil cierpliwego inwestora: wysoki zwrot, wolniejsze wyjście. Za 250 tys. € kupisz około 124 m². Pod najem letni wybierz Puerto de Mazarrón i Bolnuevo, pod najem długoterminowy Centro i El Alamillo. Sprawdź plan zagospodarowania w rejonie Gredas - ochrona krajobrazu ogranicza tam rozbudowę, co z jednej strony chroni widok, z drugiej blokuje potencjał działki.",
+      },
+    ],
+    en: [
+      {
+        title: "Market introduction",
+        body: "Mazarrón is the southernmost market on Costa Cálida Sur: 33,000 residents, 900 transactions a year and a 2,020 €/m² median, 120 €/m² above the regional median with 7.6% annual growth. The 115 days on market are the longest on this stretch of coast because the municipality combines three different markets: the port, the rock formations and a town 10 km inland.",
+      },
+      {
+        title: "Spread across districts",
+        body: "Between Puerto de Mazarrón (2,230 €/m²) and Mazarrón Centro (1,700 €/m²) sits 530 €/m², the widest range in Costa Cálida. In between are Bolnuevo (2,130) by the beach and the famous Gredas de Bolnuevo formations, and El Alamillo (2,070) with new pool estates between the beaches. Centro is cheapest: a former mining town inland with its own job market but no water access.",
+      },
+      {
+        title: "Micro-local factors",
+        body: "Price follows direct access to beach and port rather than the view: a flat on Playa del Puerto beats an identical one in El Alamillo, both in the same municipality. Foreign buyers make up 35%, Polish buyers 5%. Puerto lives off its promenade and restaurants, Bolnuevo off the unique Gredas landscape, and Centro off local worker demand, which is why Centro shows the highest yield (6.6%) despite the lowest price.",
+      },
+      {
+        title: "Investor takeaway",
+        body: "A 6.4% gross yield at 2,020 €/m² with 115 days on market suits a patient investor: high return, slower exit. 250,000 € buys about 124 m². For summer letting pick Puerto de Mazarrón and Bolnuevo, for long lets Centro and El Alamillo. Check the urban plan around the Gredas: landscape protection limits extension there, which protects the view but caps plot potential.",
+      },
+    ],
+    es: [
+      {
+        title: "Introducción de mercado",
+        body: "Mazarrón es el mercado más meridional de Costa Cálida Sur: 33.000 habitantes, 900 operaciones al año y una mediana de 2.020 €/m², 120 €/m² sobre la mediana regional con un crecimiento del 7,6%. Los 115 días de exposición son los más largos de este tramo porque el municipio mezcla tres mercados: el puerto, las formaciones rocosas y un pueblo a 10 km del mar.",
+      },
+      {
+        title: "Diferencial entre barrios",
+        body: "Entre Puerto de Mazarrón (2.230 €/m²) y Mazarrón Centro (1.700 €/m²) hay 530 €/m², la mayor horquilla de Costa Cálida. Entre medias están Bolnuevo (2.130) junto a la playa y las famosas Gredas de Bolnuevo, y El Alamillo (2.070) con urbanizaciones nuevas con piscina entre playas. Centro es el más barato: un pueblo minero tierra adentro con su propio mercado laboral, pero sin acceso al agua.",
+      },
+      {
+        title: "Factores microlocales",
+        body: "El precio sigue el acceso directo a playa y puerto, no las vistas: un piso en Playa del Puerto vale más que otro idéntico en El Alamillo, ambos en el mismo municipio. El 35% de los compradores es extranjero y los polacos el 5%. Puerto vive del paseo y la restauración, Bolnuevo del paisaje de las Gredas y Centro de la demanda laboral local, por eso Centro da la mejor rentabilidad (6,6%) pese a ser el más barato.",
+      },
+      {
+        title: "Conclusión para el inversor",
+        body: "Un 6,4% bruto con 2.020 €/m² y 115 días de exposición encaja con un inversor paciente: retorno alto, salida más lenta. Con 250.000 € compras unos 124 m². Para alquiler de verano, Puerto de Mazarrón y Bolnuevo; para largo, Centro y El Alamillo. Revisa el planeamiento en el entorno de las Gredas: la protección del paisaje limita ampliaciones, lo que protege la vista pero limita el potencial de la parcela.",
+      },
+    ],
+  },
 };
 
 /** Sekcje redakcyjne dla miasta (null = brak autorskiego tekstu). */
