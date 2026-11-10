@@ -125,34 +125,49 @@ export function leadEmailHtml(lead: LeadRecord): string {
 }
 
 export async function sendEmail(lead: LeadRecord): Promise<DispatchResult | null> {
-  const apiKey = env("RESEND_API_KEY");
+  // Klucz czytany wprost z process.env, bez pośredników: to najkrótsza droga
+  // i najmniej miejsc, w których wartość może zniknąć na produkcji.
+  const apiKey = process.env.RESEND_API_KEY?.trim();
   const to = env("LEAD_NOTIFY_EMAIL") ?? "contact@costainvestors.eu";
-  const configuredFrom = env("LEAD_EMAIL_FROM");
-  if (!configuredFrom) {
-    console.warn(
-      "[resend] Brak LEAD_EMAIL_FROM: używam onboarding@resend.dev. Ten nadawca dostarcza wiadomości wyłącznie na adres właściciela konta Resend. Aby wysyłać na contact@costainvestors.eu, zweryfikuj domenę costainvestors.eu i ustaw LEAD_EMAIL_FROM=Costa Investors <contact@costainvestors.eu>.",
-    );
-  }
+
   if (!apiKey || !to) {
     logLeadFallback(lead, "resend_not_configured");
     return null;
+  }
+
+  // Błąd 403 bierze się z wysyłki z niezweryfikowanej domeny. Dopóki domena
+  // costainvestors.eu nie jest potwierdzona w Resend, nadawcą musi być adres
+  // testowy onboarding@resend.dev. Odpowiedź klienta ustawiamy przez reply_to,
+  // więc odpowiadając na maila, piszesz prosto do osoby z formularza.
+  const from = "onboarding@resend.dev";
+
+  if (env("LEAD_EMAIL_FROM")) {
+    console.warn(
+      "[resend] LEAD_EMAIL_FROM jest ustawiony, ale ignorowany: wysyłka idzie z onboarding@resend.dev do czasu weryfikacji domeny.",
+    );
   }
 
   return postJson(
     "email",
     "https://api.resend.com/emails",
     {
-      from: env("LEAD_EMAIL_FROM") ?? "Costa Investors <onboarding@resend.dev>",
+      from,
       to: [to],
+      // Adres klienta z formularza jako adres odpowiedzi (opcjonalny).
+      ...(lead.email ? { reply_to: [lead.email] } : {}),
       subject: `Lead ${lead.score}/100: ${lead.city} · ${lead.budget.toLocaleString("pl-PL")} €`,
       html: leadEmailHtml(lead),
     },
     { authorization: `Bearer ${apiKey}` },
   ).then((result) => {
-    // Resend na planie testowym odrzuca wysyłkę z onboarding@resend.dev do
-    // obcego adresu (403). Nie przerywamy procesu: lead zostaje w logach
-    // i webhookach, a użytkownik i tak widzi ekran sukcesu.
+    // Nie przerywamy procesu: lead zostaje w logach i webhookach, a użytkownik
+    // i tak widzi ekran sukcesu.
     if (!result.ok) {
+      if (result.status === 403) {
+        console.warn(
+          "[resend] 403: nadawca odrzucony. Sprawdź weryfikację domeny w panelu Resend. Adres onboarding@resend.dev dostarcza wiadomości wyłącznie na skrzynkę właściciela konta.",
+        );
+      }
       logLeadFallback(lead, result.error ?? `resend_http_${result.status ?? 0}`);
     }
     return result;
