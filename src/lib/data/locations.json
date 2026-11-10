@@ -1,6 +1,6 @@
 {
-  "version": "2.0.0",
-  "updatedAt": "2026-01-15",
+  "version": "3.0.0",
+  "updatedAt": "2026-11-10",
   "source": "Seed: mediany ofertowe €/m², ROI najmu i dynamika r/r dla Costa Blanca (model wewnętrzny). Produkcja: feed Idealista/Fotocasa + Colegio de Registradores.",
   "regions": [
     {
@@ -33,7 +33,7 @@
       "lng": -0.4815,
       "population": 340000,
       "tier": 1,
-      "pricePerM2": 2650,
+      "pricePerM2": 2820,
       "rentalYield": 5.4,
       "priceGrowth": 7.8,
       "avgDaysOnMarket": 110,
@@ -50,7 +50,7 @@
           "type": "plaza",
           "lat": 38.372,
           "lng": -0.408,
-          "pricePerM2": 3100,
+          "pricePerM2": 3300,
           "rentalYield": 5.6,
           "demandIndex": 9,
           "characteristics": [
@@ -71,7 +71,7 @@
           "type": "urbanizacja",
           "lat": 38.364,
           "lng": -0.428,
-          "pricePerM2": 3450,
+          "pricePerM2": 3670,
           "rentalYield": 5,
           "demandIndex": 9,
           "characteristics": [
@@ -92,7 +92,7 @@
           "type": "dzielnica",
           "lat": 38.368,
           "lng": -0.452,
-          "pricePerM2": 3200,
+          "pricePerM2": 3410,
           "rentalYield": 5.2,
           "demandIndex": 8,
           "characteristics": [
@@ -113,7 +113,7 @@
           "type": "osiedle",
           "lat": 38.371,
           "lng": -0.42,
-          "pricePerM2": 2850,
+          "pricePerM2": 3030,
           "rentalYield": 5.5,
           "demandIndex": 8,
           "characteristics": [
@@ -134,7 +134,7 @@
           "type": "urbanizacja",
           "lat": 38.352,
           "lng": -0.465,
-          "pricePerM2": 2300,
+          "pricePerM2": 2450,
           "rentalYield": 5.3,
           "demandIndex": 7,
           "characteristics": [
@@ -161,7 +161,7 @@
       "lng": -0.6822,
       "population": 86000,
       "tier": 1,
-      "pricePerM2": 2380,
+      "pricePerM2": 2570,
       "rentalYield": 6.2,
       "priceGrowth": 9.4,
       "avgDaysOnMarket": 95,
@@ -178,7 +178,7 @@
           "type": "plaza",
           "lat": 38.002,
           "lng": -0.665,
-          "pricePerM2": 2500,
+          "pricePerM2": 2690,
           "rentalYield": 6.1,
           "demandIndex": 8,
           "characteristics": [
@@ -199,7 +199,7 @@
           "type": "plaza",
           "lat": 37.984,
           "lng": -0.672,
-          "pricePerM2": 2750,
+          "pricePerM2": 2960,
           "rentalYield": 6,
           "demandIndex": 9,
           "characteristics": [
@@ -220,7 +220,7 @@
           "type": "urbanizacja",
           "lat": 37.943,
           "lng": -0.719,
-          "pricePerM2": 2900,
+          "pricePerM2": 3130,
           "rentalYield": 5.8,
           "demandIndex": 8,
           "characteristics": [
@@ -241,7 +241,7 @@
           "type": "urbanizacja",
           "lat": 37.932,
           "lng": -0.735,
-          "pricePerM2": 2850,
+          "pricePerM2": 3070,
           "rentalYield": 5.9,
           "demandIndex": 8,
           "characteristics": [
@@ -262,7 +262,7 @@
           "type": "dzielnica",
           "lat": 37.972,
           "lng": -0.69,
-          "pricePerM2": 2300,
+          "pricePerM2": 2480,
           "rentalYield": 6.4,
           "demandIndex": 7,
           "characteristics": [
@@ -289,7 +289,7 @@
       "lng": -0.1225,
       "population": 70000,
       "tier": 1,
-      "pricePerM2": 3150,
+      "pricePerM2": 3370,
       "rentalYield": 5.9,
       "priceGrowth": 8.6,
       "avgDaysOnMarket": 100,
@@ -306,7 +306,7 @@
           "type": "plaza",
           "lat": 38.538,
           "lng": -0.109,
-          "pricePerM2": 3400,
+          "pricePerM2": 3640,
           "rentalYield": 6,
           "demandIndex": 9,
           "characteristics": [
@@ -327,7 +327,7 @@
           "type": "plaza",
           "lat": 38.535,
           "lng": -0.143,
-          "pricePerM2": 2950,
+          "pricePerM2": 3160,
           "rentalYield": 6.1,
           "demandIndex": 8,
           "characteristics": [
@@ -348,7 +348,7 @@
           "type": "dzielnica",
           "lat": 38.543,
           "lng": -0.104,
-          "pricePerM2": 3300,
+          "pricePerM2": 3530,
           "rentalYield": 6.2,
           "demandIndex": 9,
           "characteristics": [
@@ -369,7 +369,7 @@
           "type": "osiedle",
           "lat": 38.539,
           "lng": -0.128,
-          "pricePerM2": 2850,
+          "pricePerM2": 3050,
           "rentalYield": 5.8,
           "demandIndex": 7,
           "characteristics": [
@@ -390,7 +390,7 @@
           "type": "urbanizacja",
           "lat": 38.556,
           "lng": -0.108,
-          "pricePerM2": 3000,
+          "pricePerM2": 3210,
           "rentalYield": 5.7,
           "demandIndex": 7,
           "characteristics": [
@@ -417,7 +417,7 @@
       "lng": 0.0447,
       "population": 24000,
       "tier": 2,
-      "pricePerM2": 3050,
+      "pricePerM2": 3270,
       "rentalYield": 5.7,
       "priceGrowth": 8.9,
       "avgDaysOnMarket": 120,
@@ -436,7 +436,7 @@
           "type": "plaza",
           "lat": 38.647,
           "lng": 0.06,
-          "pricePerM2": 3300,
+          "pricePerM2": 3540,
           "rentalYield": 5.9,
           "demandIndex": 9,
           "characteristics": [
@@ -457,7 +457,7 @@
           "type": "dzielnica",
           "lat": 38.637,
           "lng": 0.046,
-          "pricePerM2": 3100,
+          "pricePerM2": 3330,
           "rentalYield": 5.6,
           "demandIndex": 8,
           "characteristics": [
@@ -478,7 +478,7 @@
           "type": "urbanizacja",
           "lat": 38.639,
           "lng": 0.038,
-          "pricePerM2": 2950,
+          "pricePerM2": 3170,
           "rentalYield": 5.5,
           "demandIndex": 7,
           "characteristics": [
@@ -499,7 +499,7 @@
           "type": "osiedle",
           "lat": 38.646,
           "lng": 0.03,
-          "pricePerM2": 2800,
+          "pricePerM2": 3010,
           "rentalYield": 5.4,
           "demandIndex": 7,
           "characteristics": [
@@ -520,7 +520,7 @@
           "type": "urbanizacja",
           "lat": 38.631,
           "lng": 0.042,
-          "pricePerM2": 3200,
+          "pricePerM2": 3440,
           "rentalYield": 5.8,
           "demandIndex": 8,
           "characteristics": [
@@ -547,7 +547,7 @@
       "lng": -0.0519,
       "population": 23000,
       "tier": 2,
-      "pricePerM2": 3400,
+      "pricePerM2": 3680,
       "rentalYield": 5.3,
       "priceGrowth": 9.8,
       "avgDaysOnMarket": 130,
@@ -564,7 +564,7 @@
           "type": "dzielnica",
           "lat": 38.599,
           "lng": -0.051,
-          "pricePerM2": 3600,
+          "pricePerM2": 3890,
           "rentalYield": 5.4,
           "demandIndex": 9,
           "characteristics": [
@@ -585,7 +585,7 @@
           "type": "plaza",
           "lat": 38.596,
           "lng": -0.055,
-          "pricePerM2": 3500,
+          "pricePerM2": 3780,
           "rentalYield": 5.3,
           "demandIndex": 8,
           "characteristics": [
@@ -606,7 +606,7 @@
           "type": "urbanizacja",
           "lat": 38.617,
           "lng": -0.037,
-          "pricePerM2": 3900,
+          "pricePerM2": 4220,
           "rentalYield": 5.1,
           "demandIndex": 8,
           "characteristics": [
@@ -627,7 +627,7 @@
           "type": "urbanizacja",
           "lat": 38.588,
           "lng": -0.032,
-          "pricePerM2": 4100,
+          "pricePerM2": 4430,
           "rentalYield": 5,
           "demandIndex": 9,
           "characteristics": [
@@ -648,7 +648,7 @@
           "type": "urbanizacja",
           "lat": 38.589,
           "lng": -0.06,
-          "pricePerM2": 3450,
+          "pricePerM2": 3730,
           "rentalYield": 5.2,
           "demandIndex": 7,
           "characteristics": [
@@ -675,7 +675,7 @@
       "lng": 0.1057,
       "population": 45000,
       "tier": 1,
-      "pricePerM2": 2900,
+      "pricePerM2": 3100,
       "rentalYield": 5.6,
       "priceGrowth": 8.2,
       "avgDaysOnMarket": 115,
@@ -694,7 +694,7 @@
           "type": "plaza",
           "lat": 38.856,
           "lng": 0.083,
-          "pricePerM2": 2950,
+          "pricePerM2": 3150,
           "rentalYield": 5.7,
           "demandIndex": 8,
           "characteristics": [
@@ -715,7 +715,7 @@
           "type": "plaza",
           "lat": 38.874,
           "lng": 0.045,
-          "pricePerM2": 3050,
+          "pricePerM2": 3260,
           "rentalYield": 5.8,
           "demandIndex": 8,
           "characteristics": [
@@ -736,7 +736,7 @@
           "type": "dzielnica",
           "lat": 38.842,
           "lng": 0.107,
-          "pricePerM2": 2850,
+          "pricePerM2": 3040,
           "rentalYield": 5.5,
           "demandIndex": 9,
           "characteristics": [
@@ -757,7 +757,7 @@
           "type": "osiedle",
           "lat": 38.817,
           "lng": 0.083,
-          "pricePerM2": 2600,
+          "pricePerM2": 2780,
           "rentalYield": 5.4,
           "demandIndex": 7,
           "characteristics": [
@@ -778,7 +778,7 @@
           "type": "urbanizacja",
           "lat": 38.825,
           "lng": 0.12,
-          "pricePerM2": 3100,
+          "pricePerM2": 3310,
           "rentalYield": 5.5,
           "demandIndex": 7,
           "characteristics": [
@@ -805,7 +805,7 @@
       "lng": 0.165,
       "population": 29000,
       "tier": 2,
-      "pricePerM2": 4050,
+      "pricePerM2": 4400,
       "rentalYield": 4.9,
       "priceGrowth": 10.4,
       "avgDaysOnMarket": 140,
@@ -824,7 +824,7 @@
           "type": "plaza",
           "lat": 38.774,
           "lng": 0.187,
-          "pricePerM2": 3950,
+          "pricePerM2": 4290,
           "rentalYield": 5.1,
           "demandIndex": 9,
           "characteristics": [
@@ -845,7 +845,7 @@
           "type": "dzielnica",
           "lat": 38.793,
           "lng": 0.183,
-          "pricePerM2": 4100,
+          "pricePerM2": 4450,
           "rentalYield": 4.8,
           "demandIndex": 9,
           "characteristics": [
@@ -866,7 +866,7 @@
           "type": "plaza",
           "lat": 38.786,
           "lng": 0.189,
-          "pricePerM2": 4300,
+          "pricePerM2": 4670,
           "rentalYield": 4.9,
           "demandIndex": 8,
           "characteristics": [
@@ -887,7 +887,7 @@
           "type": "urbanizacja",
           "lat": 38.771,
           "lng": 0.174,
-          "pricePerM2": 3700,
+          "pricePerM2": 4020,
           "rentalYield": 4.7,
           "demandIndex": 7,
           "characteristics": [
@@ -908,7 +908,7 @@
           "type": "urbanizacja",
           "lat": 38.749,
           "lng": 0.197,
-          "pricePerM2": 4500,
+          "pricePerM2": 4890,
           "rentalYield": 4.6,
           "demandIndex": 8,
           "characteristics": [
@@ -935,7 +935,7 @@
       "lng": -0.75,
       "population": 30000,
       "tier": 1,
-      "pricePerM2": 2700,
+      "pricePerM2": 2900,
       "rentalYield": 6.1,
       "priceGrowth": 9.1,
       "avgDaysOnMarket": 90,
@@ -954,7 +954,7 @@
           "type": "urbanizacja",
           "lat": 37.926,
           "lng": -0.733,
-          "pricePerM2": 3050,
+          "pricePerM2": 3280,
           "rentalYield": 5.9,
           "demandIndex": 9,
           "characteristics": [
@@ -975,7 +975,7 @@
           "type": "plaza",
           "lat": 37.914,
           "lng": -0.733,
-          "pricePerM2": 3150,
+          "pricePerM2": 3390,
           "rentalYield": 5.8,
           "demandIndex": 9,
           "characteristics": [
@@ -996,7 +996,7 @@
           "type": "plaza",
           "lat": 37.906,
           "lng": -0.748,
-          "pricePerM2": 2950,
+          "pricePerM2": 3170,
           "rentalYield": 5.9,
           "demandIndex": 8,
           "characteristics": [
@@ -1017,7 +1017,7 @@
           "type": "osiedle",
           "lat": 37.935,
           "lng": -0.762,
-          "pricePerM2": 2850,
+          "pricePerM2": 3060,
           "rentalYield": 6,
           "demandIndex": 8,
           "characteristics": [
@@ -1038,7 +1038,7 @@
           "type": "urbanizacja",
           "lat": 37.921,
           "lng": -0.752,
-          "pricePerM2": 2600,
+          "pricePerM2": 2800,
           "rentalYield": 6.2,
           "demandIndex": 7,
           "characteristics": [
@@ -1059,7 +1059,7 @@
           "type": "plaza",
           "lat": 37.94,
           "lng": -0.734,
-          "pricePerM2": 2800,
+          "pricePerM2": 3010,
           "rentalYield": 6.2,
           "demandIndex": 8.5,
           "characteristics": [
@@ -1087,7 +1087,7 @@
       "lng": -0.655,
       "population": 16000,
       "tier": 3,
-      "pricePerM2": 2300,
+      "pricePerM2": 2470,
       "rentalYield": 6.3,
       "priceGrowth": 8.7,
       "avgDaysOnMarket": 105,
@@ -1106,7 +1106,7 @@
           "type": "plaza",
           "lat": 38.096,
           "lng": -0.649,
-          "pricePerM2": 2450,
+          "pricePerM2": 2630,
           "rentalYield": 6.2,
           "demandIndex": 8,
           "characteristics": [
@@ -1127,7 +1127,7 @@
           "type": "dzielnica",
           "lat": 38.089,
           "lng": -0.655,
-          "pricePerM2": 2150,
+          "pricePerM2": 2300,
           "rentalYield": 6.4,
           "demandIndex": 7,
           "characteristics": [
@@ -1148,7 +1148,7 @@
           "type": "urbanizacja",
           "lat": 38.075,
           "lng": -0.671,
-          "pricePerM2": 2050,
+          "pricePerM2": 2200,
           "rentalYield": 6.3,
           "demandIndex": 6,
           "characteristics": [
@@ -1169,7 +1169,7 @@
           "type": "urbanizacja",
           "lat": 38.117,
           "lng": -0.646,
-          "pricePerM2": 2350,
+          "pricePerM2": 2520,
           "rentalYield": 6.5,
           "demandIndex": 7,
           "characteristics": [
@@ -1190,7 +1190,7 @@
           "type": "plaza",
           "lat": 38.103,
           "lng": -0.641,
-          "pricePerM2": 2400,
+          "pricePerM2": 2570,
           "rentalYield": 6,
           "demandIndex": 7,
           "characteristics": [
@@ -1217,7 +1217,7 @@
       "lng": -0.5569,
       "population": 35000,
       "tier": 2,
-      "pricePerM2": 2200,
+      "pricePerM2": 2350,
       "rentalYield": 6.4,
       "priceGrowth": 8.4,
       "avgDaysOnMarket": 100,
@@ -1234,7 +1234,7 @@
           "type": "plaza",
           "lat": 38.187,
           "lng": -0.548,
-          "pricePerM2": 2400,
+          "pricePerM2": 2570,
           "rentalYield": 6.5,
           "demandIndex": 8,
           "characteristics": [
@@ -1255,7 +1255,7 @@
           "type": "urbanizacja",
           "lat": 38.238,
           "lng": -0.519,
-          "pricePerM2": 2150,
+          "pricePerM2": 2300,
           "rentalYield": 6.6,
           "demandIndex": 8,
           "characteristics": [
@@ -1276,7 +1276,7 @@
           "type": "dzielnica",
           "lat": 38.191,
           "lng": -0.557,
-          "pricePerM2": 2050,
+          "pricePerM2": 2190,
           "rentalYield": 6.3,
           "demandIndex": 7,
           "characteristics": [
@@ -1297,7 +1297,7 @@
           "type": "dzielnica",
           "lat": 38.196,
           "lng": -0.562,
-          "pricePerM2": 2300,
+          "pricePerM2": 2460,
           "rentalYield": 6.2,
           "demandIndex": 7,
           "characteristics": [
@@ -1318,7 +1318,7 @@
           "type": "plaza",
           "lat": 38.202,
           "lng": -0.548,
-          "pricePerM2": 2250,
+          "pricePerM2": 2410,
           "rentalYield": 6.4,
           "demandIndex": 7,
           "characteristics": [
@@ -1345,7 +1345,7 @@
       "lng": -0.986,
       "population": 215000,
       "tier": 1,
-      "pricePerM2": 1850,
+      "pricePerM2": 1960,
       "rentalYield": 6.5,
       "priceGrowth": 7.2,
       "avgDaysOnMarket": 110,
@@ -1362,7 +1362,7 @@
           "type": "dzielnica",
           "lat": 37.6,
           "lng": -0.982,
-          "pricePerM2": 1750,
+          "pricePerM2": 1850,
           "rentalYield": 6.6,
           "demandIndex": 7,
           "characteristics": [
@@ -1383,7 +1383,7 @@
           "type": "dzielnica",
           "lat": 37.617,
           "lng": -0.99,
-          "pricePerM2": 1650,
+          "pricePerM2": 1750,
           "rentalYield": 6.8,
           "demandIndex": 6,
           "characteristics": [
@@ -1404,7 +1404,7 @@
           "type": "plaza",
           "lat": 37.573,
           "lng": -1.187,
-          "pricePerM2": 2100,
+          "pricePerM2": 2230,
           "rentalYield": 6.2,
           "demandIndex": 8,
           "characteristics": [
@@ -1425,7 +1425,7 @@
           "type": "plaza",
           "lat": 37.577,
           "lng": -1.196,
-          "pricePerM2": 2000,
+          "pricePerM2": 2120,
           "rentalYield": 6.3,
           "demandIndex": 7,
           "characteristics": [
@@ -1452,7 +1452,7 @@
       "lng": -0.79,
       "population": 26000,
       "tier": 2,
-      "pricePerM2": 2150,
+      "pricePerM2": 2290,
       "rentalYield": 6.6,
       "priceGrowth": 8.1,
       "avgDaysOnMarket": 100,
@@ -1471,7 +1471,7 @@
           "type": "plaza",
           "lat": 37.818,
           "lng": -0.787,
-          "pricePerM2": 2300,
+          "pricePerM2": 2450,
           "rentalYield": 6.5,
           "demandIndex": 8,
           "characteristics": [
@@ -1492,7 +1492,7 @@
           "type": "plaza",
           "lat": 37.822,
           "lng": -0.793,
-          "pricePerM2": 2200,
+          "pricePerM2": 2350,
           "rentalYield": 6.6,
           "demandIndex": 8,
           "characteristics": [
@@ -1513,7 +1513,7 @@
           "type": "dzielnica",
           "lat": 37.835,
           "lng": -0.79,
-          "pricePerM2": 2000,
+          "pricePerM2": 2130,
           "rentalYield": 6.7,
           "demandIndex": 7,
           "characteristics": [
@@ -1534,7 +1534,7 @@
           "type": "plaza",
           "lat": 37.799,
           "lng": -0.771,
-          "pricePerM2": 2250,
+          "pricePerM2": 2400,
           "rentalYield": 6.4,
           "demandIndex": 7,
           "characteristics": [
@@ -1561,7 +1561,7 @@
       "lng": -0.851,
       "population": 17000,
       "tier": 3,
-      "pricePerM2": 2050,
+      "pricePerM2": 2190,
       "rentalYield": 6.8,
       "priceGrowth": 8.4,
       "avgDaysOnMarket": 95,
@@ -1578,7 +1578,7 @@
           "type": "plaza",
           "lat": 37.741,
           "lng": -0.848,
-          "pricePerM2": 2200,
+          "pricePerM2": 2350,
           "rentalYield": 6.7,
           "demandIndex": 8,
           "characteristics": [
@@ -1599,7 +1599,7 @@
           "type": "urbanizacja",
           "lat": 37.756,
           "lng": -0.836,
-          "pricePerM2": 2100,
+          "pricePerM2": 2250,
           "rentalYield": 6.9,
           "demandIndex": 8,
           "characteristics": [
@@ -1620,7 +1620,7 @@
           "type": "dzielnica",
           "lat": 37.744,
           "lng": -0.851,
-          "pricePerM2": 1950,
+          "pricePerM2": 2090,
           "rentalYield": 6.8,
           "demandIndex": 7,
           "characteristics": [
@@ -1641,7 +1641,7 @@
           "type": "urbanizacja",
           "lat": 37.732,
           "lng": -0.837,
-          "pricePerM2": 1900,
+          "pricePerM2": 2030,
           "rentalYield": 6.9,
           "demandIndex": 7,
           "characteristics": [
@@ -1668,7 +1668,7 @@
       "lng": -1.314,
       "population": 33000,
       "tier": 2,
-      "pricePerM2": 1900,
+      "pricePerM2": 2020,
       "rentalYield": 6.4,
       "priceGrowth": 7.6,
       "avgDaysOnMarket": 115,
@@ -1685,7 +1685,7 @@
           "type": "plaza",
           "lat": 37.563,
           "lng": -1.263,
-          "pricePerM2": 2100,
+          "pricePerM2": 2230,
           "rentalYield": 6.3,
           "demandIndex": 8,
           "characteristics": [
@@ -1706,7 +1706,7 @@
           "type": "plaza",
           "lat": 37.556,
           "lng": -1.281,
-          "pricePerM2": 2000,
+          "pricePerM2": 2130,
           "rentalYield": 6.4,
           "demandIndex": 8,
           "characteristics": [
@@ -1727,7 +1727,7 @@
           "type": "urbanizacja",
           "lat": 37.571,
           "lng": -1.272,
-          "pricePerM2": 1950,
+          "pricePerM2": 2070,
           "rentalYield": 6.5,
           "demandIndex": 7,
           "characteristics": [
@@ -1748,7 +1748,7 @@
           "type": "dzielnica",
           "lat": 37.599,
           "lng": -1.314,
-          "pricePerM2": 1600,
+          "pricePerM2": 1700,
           "rentalYield": 6.6,
           "demandIndex": 6,
           "characteristics": [
@@ -1775,7 +1775,7 @@
       "lng": -1.582,
       "population": 35000,
       "tier": 2,
-      "pricePerM2": 1750,
+      "pricePerM2": 1850,
       "rentalYield": 6.7,
       "priceGrowth": 7,
       "avgDaysOnMarket": 120,
@@ -1792,7 +1792,7 @@
           "type": "plaza",
           "lat": 37.402,
           "lng": -1.576,
-          "pricePerM2": 1900,
+          "pricePerM2": 2010,
           "rentalYield": 6.6,
           "demandIndex": 8,
           "characteristics": [
@@ -1813,7 +1813,7 @@
           "type": "plaza",
           "lat": 37.418,
           "lng": -1.598,
-          "pricePerM2": 2000,
+          "pricePerM2": 2120,
           "rentalYield": 6.4,
           "demandIndex": 8,
           "characteristics": [
@@ -1834,7 +1834,7 @@
           "type": "dzielnica",
           "lat": 37.406,
           "lng": -1.582,
-          "pricePerM2": 1650,
+          "pricePerM2": 1750,
           "rentalYield": 6.8,
           "demandIndex": 7,
           "characteristics": [
@@ -1855,7 +1855,7 @@
           "type": "dzielnica",
           "lat": 37.399,
           "lng": -1.589,
-          "pricePerM2": 1700,
+          "pricePerM2": 1800,
           "rentalYield": 6.7,
           "demandIndex": 7,
           "characteristics": [
@@ -1882,7 +1882,7 @@
       "lng": -0.2333,
       "population": 34000,
       "tier": 2,
-      "pricePerM2": 2450,
+      "pricePerM2": 2620,
       "rentalYield": 6.1,
       "priceGrowth": 8.5,
       "avgDaysOnMarket": 115,
@@ -1901,7 +1901,7 @@
           "type": "dzielnica",
           "lat": 38.5075,
           "lng": -0.2333,
-          "pricePerM2": 2350,
+          "pricePerM2": 2520,
           "rentalYield": 6,
           "demandIndex": 7.5,
           "characteristics": [
@@ -1923,7 +1923,7 @@
           "type": "plaza",
           "lat": 38.503,
           "lng": -0.222,
-          "pricePerM2": 2650,
+          "pricePerM2": 2840,
           "rentalYield": 6.3,
           "demandIndex": 8.5,
           "characteristics": [
@@ -1945,7 +1945,7 @@
           "type": "osiedle",
           "lat": 38.515,
           "lng": -0.245,
-          "pricePerM2": 2200,
+          "pricePerM2": 2350,
           "rentalYield": 5.8,
           "demandIndex": 6.5,
           "characteristics": [
@@ -1973,7 +1973,7 @@
       "lng": -0.3978,
       "population": 29000,
       "tier": 2,
-      "pricePerM2": 2700,
+      "pricePerM2": 2880,
       "rentalYield": 5.9,
       "priceGrowth": 8.2,
       "avgDaysOnMarket": 110,
@@ -1992,7 +1992,7 @@
           "type": "dzielnica",
           "lat": 38.4289,
           "lng": -0.3978,
-          "pricePerM2": 2600,
+          "pricePerM2": 2780,
           "rentalYield": 5.8,
           "demandIndex": 7.5,
           "characteristics": [
@@ -2014,7 +2014,7 @@
           "type": "plaza",
           "lat": 38.418,
           "lng": -0.396,
-          "pricePerM2": 2900,
+          "pricePerM2": 3100,
           "rentalYield": 6,
           "demandIndex": 8.5,
           "characteristics": [
@@ -2036,7 +2036,7 @@
           "type": "urbanizacja",
           "lat": 38.44,
           "lng": -0.383,
-          "pricePerM2": 2550,
+          "pricePerM2": 2720,
           "rentalYield": 5.7,
           "demandIndex": 6.8,
           "characteristics": [
@@ -2064,7 +2064,7 @@
       "lng": -0.2125,
       "population": 7500,
       "tier": 3,
-      "pricePerM2": 2850,
+      "pricePerM2": 3070,
       "rentalYield": 5.6,
       "priceGrowth": 9.4,
       "avgDaysOnMarket": 125,
@@ -2081,7 +2081,7 @@
           "type": "dzielnica",
           "lat": 38.5683,
           "lng": -0.2125,
-          "pricePerM2": 2400,
+          "pricePerM2": 2590,
           "rentalYield": 5.4,
           "demandIndex": 6.5,
           "characteristics": [
@@ -2103,7 +2103,7 @@
           "type": "urbanizacja",
           "lat": 38.545,
           "lng": -0.196,
-          "pricePerM2": 3100,
+          "pricePerM2": 3340,
           "rentalYield": 5.7,
           "demandIndex": 8.5,
           "characteristics": [
@@ -2125,7 +2125,7 @@
           "type": "osiedle",
           "lat": 38.552,
           "lng": -0.205,
-          "pricePerM2": 2950,
+          "pricePerM2": 3180,
           "rentalYield": 5.5,
           "demandIndex": 7.5,
           "characteristics": [
@@ -2153,7 +2153,7 @@
       "lng": -0.0676,
       "population": 6500,
       "tier": 3,
-      "pricePerM2": 3100,
+      "pricePerM2": 3310,
       "rentalYield": 5.4,
       "priceGrowth": 8,
       "avgDaysOnMarket": 130,
@@ -2173,7 +2173,7 @@
           "type": "dzielnica",
           "lat": 38.5736,
           "lng": -0.0676,
-          "pricePerM2": 3000,
+          "pricePerM2": 3200,
           "rentalYield": 5.3,
           "demandIndex": 7.5,
           "characteristics": [
@@ -2195,7 +2195,7 @@
           "type": "plaza",
           "lat": 38.567,
           "lng": -0.062,
-          "pricePerM2": 3300,
+          "pricePerM2": 3520,
           "rentalYield": 5.6,
           "demandIndex": 8.5,
           "characteristics": [
@@ -2217,7 +2217,7 @@
           "type": "osiedle",
           "lat": 38.583,
           "lng": -0.075,
-          "pricePerM2": 2900,
+          "pricePerM2": 3090,
           "rentalYield": 5.2,
           "demandIndex": 6.5,
           "characteristics": [
@@ -2245,7 +2245,7 @@
       "lng": -0.7395,
       "population": 17000,
       "tier": 3,
-      "pricePerM2": 2600,
+      "pricePerM2": 2760,
       "rentalYield": 6.3,
       "priceGrowth": 7.5,
       "avgDaysOnMarket": 105,
@@ -2265,7 +2265,7 @@
           "type": "dzielnica",
           "lat": 38.0603,
           "lng": -0.7395,
-          "pricePerM2": 2550,
+          "pricePerM2": 2710,
           "rentalYield": 6.2,
           "demandIndex": 7.5,
           "characteristics": [
@@ -2287,7 +2287,7 @@
           "type": "osiedle",
           "lat": 38.052,
           "lng": -0.735,
-          "pricePerM2": 2750,
+          "pricePerM2": 2920,
           "rentalYield": 6.4,
           "demandIndex": 8,
           "characteristics": [
@@ -2309,7 +2309,7 @@
           "type": "urbanizacja",
           "lat": 38.05,
           "lng": -0.75,
-          "pricePerM2": 2450,
+          "pricePerM2": 2600,
           "rentalYield": 6.1,
           "demandIndex": 6.8,
           "characteristics": [
@@ -2337,7 +2337,7 @@
       "lng": -0.7881,
       "population": 8000,
       "tier": 3,
-      "pricePerM2": 1950,
+      "pricePerM2": 2060,
       "rentalYield": 6.5,
       "priceGrowth": 7,
       "avgDaysOnMarket": 120,
@@ -2356,7 +2356,7 @@
           "type": "dzielnica",
           "lat": 37.9861,
           "lng": -0.7881,
-          "pricePerM2": 1900,
+          "pricePerM2": 2010,
           "rentalYield": 6.4,
           "demandIndex": 6.5,
           "characteristics": [
@@ -2378,7 +2378,7 @@
           "type": "urbanizacja",
           "lat": 37.995,
           "lng": -0.776,
-          "pricePerM2": 1850,
+          "pricePerM2": 1960,
           "rentalYield": 6.6,
           "demandIndex": 6,
           "characteristics": [
@@ -2400,7 +2400,7 @@
           "type": "osiedle",
           "lat": 37.972,
           "lng": -0.8,
-          "pricePerM2": 1800,
+          "pricePerM2": 1900,
           "rentalYield": 6.3,
           "demandIndex": 5.8,
           "characteristics": [

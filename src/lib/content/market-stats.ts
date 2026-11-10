@@ -1,4 +1,5 @@
 import type { CitySeed, DistrictSeed, RegionSeed } from "../data/schema";
+import dataset from "../data/locations.json";
 import { createRngFromKey, roundToStep } from "./deterministic";
 
 /**
@@ -14,6 +15,12 @@ import { createRngFromKey, roundToStep } from "./deterministic";
  */
 
 export const MARKET_YEAR = 2026;
+/**
+ * Data snapshotu danych rynkowych w formacie RRRR-MM. Bierzemy ją z datasetu
+ * (`updatedAt`), żeby po każdej aktualizacji cen strony nie deklarowały
+ * starego miesiąca — wcześniej była tu zaszyta stała „2026-01”.
+ */
+export const DATA_AS_OF = dataset.updatedAt.slice(0, 7);
 /** Mediana regionu. Punkt odniesienia w tabelach (seed 2026). */
 export const REGION_MEDIAN_PRICE_PER_M2 = 2_950;
 /** Mediana ofertowa Hiszpanii (€/m²) dla kontekstu porównawczego. */
@@ -99,7 +106,7 @@ export function deriveDistrictStats(
     foreignBuyerShare: Math.round(clamp(city.foreignBuyerShare + (district.demandIndex - 7) * 1.5, 5, 80)),
     polishBuyerShare: city.polishBuyerShare,
     purchaseCostsRate: PURCHASE_COSTS_RATE,
-    dataAsOf: "2026-01",
+    dataAsOf: DATA_AS_OF,
     reliable: transactions12m >= 20 && district.characteristics.length >= 2,
   };
 }
@@ -126,7 +133,7 @@ export function deriveCityStats(city: CitySeed, region: RegionSeed): MarketStats
     foreignBuyerShare: city.foreignBuyerShare,
     polishBuyerShare: city.polishBuyerShare,
     purchaseCostsRate: PURCHASE_COSTS_RATE,
-    dataAsOf: "2026-01",
+    dataAsOf: DATA_AS_OF,
     reliable: city.transactions12m >= 50,
   };
 }

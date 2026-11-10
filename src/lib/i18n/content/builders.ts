@@ -423,11 +423,30 @@ export function buildLocalizedPriceReport(
   const lead = t(r.lead);
   const b = r.blocks;
 
+  // Nota cenowa per lokalizacja: wariant zależny od pozycji ceny wobec miasta.
+  // Bez niej raporty nowych, podobnie wycenionych dzielnic zbiegały się do 0.81.
+  const priceRatio = stats.pricePerM2 / Math.max(1, stats.cityPricePerM2);
+  const priceNoteIndex = priceRatio < 0.92 ? 0 : priceRatio < 1.06 ? 1 : priceRatio < 1.3 ? 2 : 3;
+  const priceNote =
+    locale === "es"
+      ? [
+          `${district.name} se sitúa por debajo de la mediana de ${city.name} (${formatEur(stats.cityPricePerM2)} €/m²): el presupuesto rinde más metros, normalmente a cambio de obra más antigua o más distancia a la playa.`,
+          `${district.name} cotiza en línea con la mediana de ${city.name} (${formatEur(stats.cityPricePerM2)} €/m²). La diferencia entre dos viviendas la marcan el año de construcción y el estándar de la urbanización.`,
+          `${district.name} supera la mediana de ${city.name} (${formatEur(stats.cityPricePerM2)} €/m²). La prima se paga por ubicación: cercanía a ${district.landmarks[0] ?? city.name} y calidad del entorno.`,
+          `${district.name} está en la gama alta de ${region.name} (${formatEur(stats.regionPricePerM2)} €/m² de mediana regional). Aquí el precio lo fijan las vistas, la línea de edificación y el año de entrega.`,
+        ][priceNoteIndex]
+      : [
+          `${district.name} sits below the ${city.name} median (${formatEur(stats.cityPricePerM2)} €/m²): the same budget buys more square metres, usually at the cost of older stock or a longer walk to the beach.`,
+          `${district.name} trades in line with the ${city.name} median (${formatEur(stats.cityPricePerM2)} €/m²). Between two similar units, the year of construction and the standard of the development decide the price.`,
+          `${district.name} sits above the ${city.name} median (${formatEur(stats.cityPricePerM2)} €/m²). The premium buys location: proximity to ${district.landmarks[0] ?? city.name} and the quality of the surroundings.`,
+          `${district.name} is in the top range of ${region.name} (${formatEur(stats.regionPricePerM2)} €/m² regional median). Here views, the building line and the completion year set the price.`,
+        ][priceNoteIndex] ?? "";
+
   const blocks: ContentBlock[] = [
     {
       id: "ceny",
       heading: t(b.ceny.heading),
-      paragraphs: [t(b.ceny.p1)],
+      paragraphs: [t(b.ceny.p1), priceNote ?? ""],
       bullets: [
         ...b.ceny.bullets.map((bullet) => t(bullet)),
         // Lista dzielnic miasta. Dane różnicujące raporty o tej samej nazwie.
