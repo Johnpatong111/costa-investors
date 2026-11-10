@@ -2,6 +2,14 @@ import type { CitySeed, DistrictSeed, RegionSeed } from "../../data/schema";
 import type { MarketStats } from "../../content/market-stats";
 import type { ContentBlock, FaqItem } from "../../content/content-utils";
 import { hashString, pick, rotate } from "../../content/deterministic";
+/** Rotacja deterministyczna: wybiera `count` elementów od pozycji zależnej od URL. */
+function pickSome<T>(items: readonly T[], key: string, salt: string, count: number): T[] {
+  if (items.length <= count) return [...items];
+  const start = hashString(`${key}::${salt}`) % items.length;
+  const rotated = [...items.slice(start), ...items.slice(0, start)];
+  return rotated.slice(0, count);
+}
+
 import {
   demandTier,
   foreignTier,
@@ -398,10 +406,10 @@ export function buildLocalizedDistrictBlocks(input: LocalizedDistrictInput): Con
       // dzielnica, inna usługa” wypadały najwyżej w audycie podobieństwa.
       id: "usluga",
       heading: service.name,
-      paragraphs: service.benefits.map(
-        (benefit) => `${localT(benefit.title)}: ${localT(benefit.description)}`,
-      ),
-      bullets: service.checklist.map((item) => localT(item)),
+      paragraphs: service.benefits
+        .slice(0, 2)
+        .map((benefit) => `${localT(benefit.title)}: ${localT(benefit.description)}`),
+      bullets: service.checklist.slice(0, 3).map((item) => localT(item)),
     },
     {
       id: "dane",

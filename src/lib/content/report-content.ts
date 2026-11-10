@@ -143,20 +143,7 @@ export function buildPriceReport(entry: DistrictEntry): PriceReport {
       paragraphs: [
         t(
           "Zakup w {districtLoc} oznacza około {purchaseCosts} kosztów transakcyjnych: ITP 10% (rynek wtórny) lub IVA 10% i AJD (nowe), notariusz, wpis do rejestru i obsługa prawna. Dochodzą koszty roczne (IBI, comunidad, ubezpieczenie) oraz podatek od najmu rozliczany w IRPF.",
-        ),
-        t(
-          "Jako nierezydent rozliczasz najem w Hiszpanii, a w Polsce korzystasz z metody unikania podwójnego opodatkowania. Numer NIE jest obowiązkowy. Bez niego nie kupisz nieruchomości ani nie rozliczysz dochodów.",
-        ),
-      ],
-    },
-    {
-      id: "metodologia",
-      heading: "Metodologia raportu",
-      paragraphs: [
-        t(
-          "Dane pochodzą z median ofertowych i transakcji z ostatnich 12 miesięcy dla {districtLoc} ({volume} transakcji w modelu) i są aktualizowane miesięcznie. Nie stanowią wyceny w rozumieniu hiszpańskich przepisów. Do celów kredytowych wymagana jest tasación bankowa.",
-        ),
-      ],
+        ),      ],
     },
     {
       // Blok lokalny raportu: cechy, punkty orientacyjne i porównanie z resztą

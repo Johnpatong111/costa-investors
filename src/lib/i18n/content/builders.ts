@@ -14,7 +14,15 @@ import {
 } from "../../content/market-insights";
 import { buildTemplateVars, type PageContext } from "../../content/variables";
 import { interpolate } from "../../content/interpolate";
-import { pick } from "../../content/deterministic";
+import { hashString, pick } from "../../content/deterministic";
+/** Rotacja deterministyczna: wybiera `count` elementów od pozycji zależnej od URL. */
+function pickSome<T>(items: readonly T[], key: string, salt: string, count: number): T[] {
+  if (items.length <= count) return [...items];
+  const start = hashString(`${key}::${salt}`) % items.length;
+  const rotated = [...items.slice(start), ...items.slice(0, start)];
+  return rotated.slice(0, count);
+}
+
 import {
   demandTier,
   liquidityTier,
@@ -403,8 +411,10 @@ export function buildLocalizedCityContent(
     {
       id: "usluga",
       heading: service.name,
-      paragraphs: service.benefits.map((benefit) => `${t(benefit.title)}: ${t(benefit.description)}`),
-      bullets: service.checklist.map((item) => t(item)),
+      paragraphs: service.benefits
+        .slice(0, 2)
+        .map((benefit) => `${t(benefit.title)}: ${t(benefit.description)}`),
+      bullets: service.checklist.slice(0, 3).map((item) => t(item)),
     },
     {
       id: "proces",
@@ -503,8 +513,7 @@ export function buildLocalizedPriceReport(
       ],
     },
     { id: "roi", heading: t(b.roi.heading), paragraphs: [t(b.roi.p1), t(b.roi.p2)] },
-    { id: "podatki", heading: t(b.podatki.heading), paragraphs: [t(b.podatki.p1), t(b.podatki.p2)] },
-    { id: "metodologia", heading: t(b.metodologia.heading), paragraphs: [t(b.metodologia.p1)] },
+    { id: "podatki", heading: t(b.podatki.heading), paragraphs: [t(b.podatki.p1)] },
     {
       // Kontekst lokalny (cechy, punkty orientacyjne, porównanie w gminie).
       // Statyczny słownik dawał identyczne raporty na 70 dzielnicach.
