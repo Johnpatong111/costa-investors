@@ -1,4 +1,4 @@
-﻿import { LOCATIONS } from "../data/load";
+import { LOCATIONS } from "../data/load";
 import { getAllDistrictEntries, getCities } from "../data/repository";
 import { PRICE_REPORT, SERVICES } from "../data/services";
 import { deriveCityStats, deriveDistrictStats } from "../content/market-stats";
@@ -173,5 +173,5 @@ export function getSitemapChunk(id: number): SitemapEntry[] {
 }
 
 export function getSitemapUrls(): string[] {
-  return [`${SITE.url}/sitemap.xml`];
+  return [`${SITE.url}/sitemap.xml`, `${SITE.url}/sitemap-index.xml`];
 }
