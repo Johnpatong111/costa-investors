@@ -15,6 +15,12 @@ import {
 import { buildTemplateVars, type PageContext } from "../../content/variables";
 import { interpolate } from "../../content/interpolate";
 import { pick } from "../../content/deterministic";
+import {
+  demandTier,
+  liquidityTier,
+  pickByTier,
+  yieldTier,
+} from "../../content/content-tiers";
 import { cityAccessBlock } from "../../content/access";
 import { formatEur, formatRate } from "../../utils/format";
 import {
@@ -317,6 +323,39 @@ export function buildLocalizedCityContent(
           "lead-magnet": `For valuations: start with the municipal median (${formatEur(stats.pricePerM2)}/m²), entry costs (${formatRate(stats.purchaseCostsRate * 100)}) and the area breakdown before ordering an analysis.`,
         } as Record<string, string>)[service.kind] ?? "";
 
+  // Konkret dzielnicowy: nazwy i ceny skrajnych osiedli. Huby miast tej samej
+  // usługi (np. /es/buy/villajoyosa vs /es/buy/l-albir) zbiegały się do 0.80,
+  // bo dzieliły cały szkielet i różniły się tylko liczbami.
+  const byPrice = city.districts.slice().sort((a, b) => b.pricePerM2 - a.pricePerM2);
+  const byYield = city.districts.slice().sort((a, b) => b.rentalYield - a.rentalYield);
+  const priciest = byPrice[0];
+  const cheapest = byPrice[byPrice.length - 1];
+  const bestYield = byYield[0];
+  const cityHighlights =
+    locale === "es"
+      ? [
+          priciest
+            ? `La zona más cara es ${priciest.name} (${formatEur(priciest.pricePerM2)} €/m²) y la más asequible ${cheapest?.name ?? city.name} (${formatEur(cheapest?.pricePerM2 ?? city.pricePerM2)} €/m²).`
+            : "",
+          bestYield
+            ? `La mejor rentabilidad bruta está en ${bestYield.name}: ${formatRate(bestYield.rentalYield)} sobre una mediana de ${formatEur(bestYield.pricePerM2)} €/m².`
+            : "",
+          `Diferencia de precio dentro del municipio: ${formatEur(Math.max(...city.districts.map((item) => item.pricePerM2)) - Math.min(...city.districts.map((item) => item.pricePerM2)))} €/m²; eso explica por qué dos viviendas parecidas pueden costar muy distinto.`,
+        ]
+          .filter(Boolean)
+          .join(" ")
+      : [
+          priciest
+            ? `The priciest area is ${priciest.name} (${formatEur(priciest.pricePerM2)} €/m²) and the most affordable is ${cheapest?.name ?? city.name} (${formatEur(cheapest?.pricePerM2 ?? city.pricePerM2)} €/m²).`
+            : "",
+          bestYield
+            ? `The best gross yield sits in ${bestYield.name}: ${formatRate(bestYield.rentalYield)} on a median of ${formatEur(bestYield.pricePerM2)} €/m².`
+            : "",
+          `Price spread inside the municipality: ${formatEur(Math.max(...city.districts.map((item) => item.pricePerM2)) - Math.min(...city.districts.map((item) => item.pricePerM2)))} €/m² — which is why two similar homes can cost very differently.`,
+        ]
+          .filter(Boolean)
+          .join(" ");
+
   const blocks: ContentBlock[] = [
     {
       id: "rynek",
@@ -346,6 +385,14 @@ export function buildLocalizedCityContent(
         comparisonText,
       ],
       bullets: districtBullets,
+    },
+    {
+      id: "konkret",
+      heading:
+        locale === "es"
+          ? `Qué zona elegir en ${city.name}`
+          : `Which area to choose in ${city.name}`,
+      paragraphs: [cityHighlights],
     },
     {
       id: "koszty",
@@ -497,6 +544,82 @@ export function buildLocalizedPriceReport(
         ),
     },
   ];
+
+
+  // Profil dzielnicy w raporcie. Raporty nowych, podobnie wycenionych dzielnic
+  // ("centro" w Villajoyosa / El Campello / L'Albir) zbiegały się do 0.79-0.80,
+  // bo dzieliły cały szkielet. Ten blok wnosi słownictwo zależne od danych:
+  // ROI, popytu, płynności, typu zabudowy i punktów orientacyjnych.
+  const profileYield =
+    locale === "es"
+      ? pickByTier(
+          [
+            `La rentabilidad del ${formatRate(stats.rentalYield)} es moderada: en ${district.name} el retorno lo sostiene más la revalorización que la renta.`,
+            `Con ${formatRate(stats.rentalYield)} bruto el alquiler cubre gastos y deja margen; es un nivel típico de ${TYPE_LABELS.es[district.type] ?? "zona residencial"}.`,
+            `${formatRate(stats.rentalYield)} bruto y ${formatRate(stats.netYield)} neto: el alquiler de ${stats.monthlyRentPerM2} €/m² al mes pesa de verdad en el retorno total.`,
+            `Rentabilidad alta para la región: ${formatRate(stats.rentalYield)} bruto sobre una mediana de ${formatEur(stats.pricePerM2)} €/m².`,
+          ],
+          yieldTier(stats),
+        )
+      : pickByTier(
+          [
+            `A ${formatRate(stats.rentalYield)} gross yield is moderate: in ${district.name} capital growth does more work than rent.`,
+            `At ${formatRate(stats.rentalYield)} gross the rent covers costs and leaves a margin — a typical level for a ${TYPE_LABELS.en[district.type] ?? "residential area"}.`,
+            `${formatRate(stats.rentalYield)} gross and ${formatRate(stats.netYield)} net: rent of ${stats.monthlyRentPerM2} €/m² per month genuinely moves the total return.`,
+            `Strong for the region: ${formatRate(stats.rentalYield)} gross on a median of ${formatEur(stats.pricePerM2)} €/m².`,
+          ],
+          yieldTier(stats),
+        );
+
+  const profileMarket =
+    locale === "es"
+      ? pickByTier(
+          [
+            `La demanda es contenida (${stats.demandIndex}/10) y los anuncios permanecen ${stats.avgDaysOnMarket} días: hay margen para negociar.`,
+            `Demanda estable (${stats.demandIndex}/10) y ${stats.avgDaysOnMarket} días de exposición: mercado de segunda residencia que se mueve sin prisa.`,
+            `Demanda alta (${stats.demandIndex}/10) con ${stats.avgDaysOnMarket} días en mercado: las viviendas bien tasadas se venden rápido.`,
+            `Demanda muy alta (${stats.demandIndex}/10) y solo ${stats.avgDaysOnMarket} días de exposición: el comprador decide con poca antelación.`,
+          ],
+          demandTier(stats),
+        )
+      : pickByTier(
+          [
+            `Demand is contained (${stats.demandIndex}/10) and listings stay ${stats.avgDaysOnMarket} days — there is room to negotiate.`,
+            `Steady demand (${stats.demandIndex}/10) and ${stats.avgDaysOnMarket} days on market: a second-home market that moves without haste.`,
+            `High demand (${stats.demandIndex}/10) with ${stats.avgDaysOnMarket} days on market: correctly priced units sell quickly.`,
+            `Very high demand (${stats.demandIndex}/10) and only ${stats.avgDaysOnMarket} days on market: buyers decide at short notice.`,
+          ],
+          demandTier(stats),
+        );
+
+  const profilePlace =
+    locale === "es"
+      ? `Contexto urbano: ${TYPE_LABELS.es[district.type] ?? "zona residencial"} en la comarca de ${city.subregion}. Referencias del anuncio: ${district.landmarks.join(", ")}. ${liquidityTier(stats) >= 2 ? "La rotación es más lenta, así que conviene comparar varias unidades antes de ofertar." : "La rotación es rápida, por lo que el precio de salida debe ser realista desde el primer día."}`
+      : `Urban context: a ${TYPE_LABELS.en[district.type] ?? "residential area"} in the ${city.subregion} part of the coast. Listing references: ${district.landmarks.join(", ")}. ${liquidityTier(stats) >= 2 ? "Turnover is slower, so compare several units before making an offer." : "Turnover is fast, so the asking price must be realistic from day one."}`;
+
+  const siblingDistricts = entry.city.districts
+    .filter((item) => item.slug !== district.slug)
+    .slice()
+    .sort(
+      (a, b) => Math.abs(a.pricePerM2 - stats.pricePerM2) - Math.abs(b.pricePerM2 - stats.pricePerM2),
+    )
+    .slice(0, 3);
+
+  const profileNeighbours = siblingDistricts.length
+    ? locale === "es"
+      ? `Para comparar: ${siblingDistricts
+          .map((item) => `${item.name} (${formatEur(item.pricePerM2)} €/m², ${formatRate(item.rentalYield)})`)
+          .join("; ")}. Son las zonas más cercanas en precio dentro de ${entry.city.name}, así que marcan el rango realista de negociación en ${district.name}.`
+      : `For comparison: ${siblingDistricts
+          .map((item) => `${item.name} (${formatEur(item.pricePerM2)} €/m², ${formatRate(item.rentalYield)})`)
+          .join("; ")}. These are the closest price neighbours within ${entry.city.name}, so they set the realistic negotiating range in ${district.name}.`
+    : "";
+
+  blocks.push({
+    id: "profil",
+    heading: locale === "es" ? `Perfil de ${district.name}` : `Profile: ${district.name}`,
+    paragraphs: [profileYield, profileMarket, profilePlace, profileNeighbours],
+  });
 
   const faq = r.faq.map((item) => ({ question: t(item.q), answer: t(item.a) }));
 

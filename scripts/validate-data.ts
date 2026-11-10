@@ -202,7 +202,7 @@ function main() {
 
   const REVIEW_THRESHOLD = 0.62;
   // Prog zaostrzony po przebudowie generatorow: max zbieznosci spadl z 0.88 do ~0.78.
-const ERROR_THRESHOLD = 0.8;
+const ERROR_THRESHOLD = 0.79;
 
   const duplicates: { a: string; b: string; score: number }[] = [];
   for (let i = 0; i < signatures.length; i += 1) {
