@@ -77,10 +77,10 @@ export function RoiMap({
         {copy.mapLead(points.length)}
       </p>
 
-      <div className="mt-4 overflow-hidden rounded-2xl border border-brand-100 bg-gradient-to-b from-sky-50 to-brand-50/60">
+      <div className="mt-4 overflow-x-auto rounded-2xl border border-brand-100 bg-gradient-to-b from-sky-50 to-brand-50/60">
         <svg
           viewBox={`0 0 ${WIDTH} ${HEIGHT}`}
-          className="h-auto w-full"
+          className="h-auto w-full min-w-[620px]"
           role="img"
           aria-label={copy.mapTitle}
         >
@@ -106,11 +106,11 @@ export function RoiMap({
               <circle
                 cx={x(point.lng)}
                 cy={y(point.lat)}
-                r={5.5}
+                r={6.5}
                 fill={colorFor(point.netYield)}
                 fillOpacity={0.9}
                 stroke="#ffffff"
-                strokeWidth={1.2}
+                strokeWidth={1.4}
               />
               <title>
                 {`${point.name} (${point.city}) · ${formatEur(point.pricePerM2)}/m² · ${formatRate(point.netYield)}`}
@@ -118,21 +118,23 @@ export function RoiMap({
             </a>
           ))}
 
-          {strongest.map((point) => (
-            <text
-              key={`label-${point.href}`}
-              x={x(point.lng) + 8}
-              y={y(point.lat) + 3.5}
-              fontSize={11}
-              fontWeight={600}
-              fill="#0f172a"
-              stroke="#ffffff"
-              strokeWidth={3}
-              paintOrder="stroke"
-            >
-              {point.name}
-            </text>
-          ))}
+          <g className="hidden md:block">
+            {strongest.map((point) => (
+              <text
+                key={`label-${point.href}`}
+                x={x(point.lng) + 9}
+                y={y(point.lat) + 4}
+                fontSize={12}
+                fontWeight={600}
+                fill="#0f172a"
+                stroke="#ffffff"
+                strokeWidth={3}
+                paintOrder="stroke"
+              >
+                {point.name}
+              </text>
+            ))}
+          </g>
         </svg>
       </div>
 

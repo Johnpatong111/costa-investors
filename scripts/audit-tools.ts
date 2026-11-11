@@ -133,6 +133,7 @@ for (const lang of ["pl", "en", "es"]) {
   if (!content) continue;
   ok(`ranking ${lang}: 89 punktów mapy`, (content.match(/<circle/g) ?? []).length === 89);
   ok(`ranking ${lang}: 89 wierszy tabeli`, (content.match(/<tr class=/g) ?? []).length >= 89);
+  ok(`ranking ${lang}: mapa przewijana na wąskim ekranie`, content.includes("min-w-[620px]"));
 }
 
 /* -------------------------------------------------------------------------
