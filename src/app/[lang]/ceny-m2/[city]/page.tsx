@@ -5,6 +5,7 @@ import { LeadEngine } from "@/components/lead/lead-engine";
 import { PriceHistorySection } from "@/components/sections/price-history";
 import { Breadcrumbs, type Crumb } from "@/components/sections/breadcrumbs";
 import { InternalLinks } from "@/components/sections/internal-links";
+import { InvestorWorkbench } from "@/components/tools/investor-workbench";
 import { JsonLd } from "@/components/seo/json-ld";
 import { Section, SectionHeading } from "@/components/ui/primitives";
 import { deriveCityStats, deriveDistrictStats, MARKET_YEAR } from "@/lib/content/market-stats";
@@ -344,6 +345,33 @@ export default async function PriceCityPage({ params }: { params: Promise<RouteP
         })}
       />
 
+      <Section>
+        <InvestorWorkbench
+          locale={locale}
+          cityName={city.name}
+          rates={{
+            rentalYield: stats.rentalYield,
+            netYield: stats.netYield,
+            priceGrowth: stats.priceGrowth,
+            pricePerM2: stats.pricePerM2,
+          }}
+          districts={city.districts.map((district) => {
+            const districtStats = deriveDistrictStats(city, district, region);
+            return {
+              slug: district.slug,
+              name: district.name,
+              pricePerM2: districtStats.pricePerM2,
+              rentalYield: districtStats.rentalYield,
+              netYield: districtStats.netYield,
+              demandIndex: district.demandIndex,
+              days: districtStats.avgDaysOnMarket,
+            };
+          })}
+          districtBasePath={translatePath(`/${PRICE_REPORT.slug}/${city.slug}`, locale)}
+          ctaHref="#formularz"
+        />
+      </Section>
+
       <InternalLinks
         groups={[
           {
@@ -385,7 +413,7 @@ export default async function PriceCityPage({ params }: { params: Promise<RouteP
         ]}
       />
 
-      <Section className="bg-brand-50/60">
+      <Section className="bg-brand-50/60" id="formularz">
         <div className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
           <div>
             <SectionHeading eyebrow={copy.ctaEyebrow}>{copy.ctaTitle(city.name)}</SectionHeading>
