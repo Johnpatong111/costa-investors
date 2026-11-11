@@ -121,6 +121,8 @@ function staticPaths(): LogicalEntry[] {
     logical("/", { changeFrequency: "daily", priority: 1 }),
     // Hub raportów cenowych. Wejście do 70 raportów dzielnicowych.
     logical(`/${PRICE_REPORT.slug}`, { changeFrequency: "monthly", priority: 0.7 }),
+    // Ranking ROI 89 dzielnic: unikalny zasób danych, linkuje do raportów.
+    logical("/ranking-roi", { changeFrequency: "weekly", priority: 0.8 }),
   ];
 }
 

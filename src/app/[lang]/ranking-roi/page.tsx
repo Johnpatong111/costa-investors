@@ -1,0 +1,224 @@
+import type { Metadata } from "next";
+import Link from "next/link";
+import { Breadcrumbs, type Crumb } from "@/components/sections/breadcrumbs";
+import { Section } from "@/components/ui/primitives";
+import { deriveDistrictStats, MARKET_YEAR } from "@/lib/content/market-stats";
+import { getAllDistrictEntries } from "@/lib/data/repository";
+import { PRICE_REPORT } from "@/lib/data/services";
+import { assertLocale } from "@/lib/i18n/config";
+import { getUiCopy } from "@/lib/i18n/ui";
+import { translatePath } from "@/lib/i18n/paths";
+import { RANKING_COPY } from "@/lib/i18n/ranking-copy";
+import { buildMetadata } from "@/lib/seo/metadata";
+import { formatEur, formatRate } from "@/lib/utils/format";
+
+/**
+ * RANKING ROI: /ranking-roi. 89 dzielnic po zwrocie netto, z linkami do
+ * raportów dzielnic i hubów miast. Unikalny zasób danych, nie lista linków.
+ */
+
+export const revalidate = 86_400;
+
+const PATH = "/ranking-roi";
+const BUDGET = 250_000;
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ lang: string }>;
+}): Promise<Metadata> {
+  const locale = assertLocale((await params).lang);
+  const copy = RANKING_COPY[locale];
+  const count = getAllDistrictEntries().length;
+
+  return buildMetadata({
+    title: copy.metaTitle,
+    description: copy.metaDescription(count),
+    path: PATH,
+    keywords: copy.keywords,
+    locale,
+  });
+}
+
+function median(values: number[]): number {
+  if (values.length === 0) return 0;
+  const sorted = [...values].sort((a, b) => a - b);
+  const middle = Math.floor(sorted.length / 2);
+  return sorted.length % 2 === 0 ? (sorted[middle - 1]! + sorted[middle]!) / 2 : sorted[middle]!;
+}
+
+export default async function RankingPage({ params }: { params: Promise<{ lang: string }> }) {
+  const locale = assertLocale((await params).lang);
+  const ui = getUiCopy(locale);
+  const copy = RANKING_COPY[locale];
+
+  const rows = getAllDistrictEntries()
+    .map((entry) => {
+      const stats = deriveDistrictStats(entry.city, entry.district, entry.region);
+      return {
+        citySlug: entry.city.slug,
+        cityName: entry.city.name,
+        districtSlug: entry.district.slug,
+        districtName: entry.district.name,
+        pricePerM2: stats.pricePerM2,
+        rentalYield: stats.rentalYield,
+        netYield: stats.netYield,
+        growth: stats.priceGrowth,
+        days: stats.avgDaysOnMarket,
+        demand: entry.district.demandIndex,
+        area: stats.pricePerM2 > 0 ? Math.round(BUDGET / stats.pricePerM2) : 0,
+      };
+    })
+    .sort((a, b) => b.netYield - a.netYield);
+
+  const cities = new Set(rows.map((row) => row.citySlug)).size;
+  const middleYield = median(rows.map((row) => row.netYield));
+  const middleArea = median(rows.map((row) => row.area));
+  const best = rows[0];
+  const worst = rows[rows.length - 1];
+
+  const crumbs: Crumb[] = [
+    { name: ui.home, path: "/" },
+    { name: PRICE_REPORT.name, path: `/${PRICE_REPORT.slug}` },
+    { name: copy.h1, path: PATH },
+  ];
+
+  return (
+    <>
+      <Breadcrumbs items={crumbs} />
+      <section className="border-b border-brand-100 bg-brand-50/60">
+        <div className="container-page py-10 lg:py-14">
+          <p className="text-sm font-semibold uppercase tracking-wide text-brand-600">
+            {copy.eyebrow} · {MARKET_YEAR}
+          </p>
+          <h1 className="mt-2 max-w-4xl text-3xl font-bold text-brand-950 sm:text-4xl">{copy.h1}</h1>
+          <p className="mt-4 max-w-3xl text-base leading-relaxed text-brand-700">
+            {copy.lead(rows.length, cities)}
+          </p>
+          <dl className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-4">
+            {[
+              { label: copy.summary.median, value: formatRate(middleYield) },
+              {
+                label: copy.summary.best,
+                value: best ? `${formatRate(best.netYield)} · ${best.districtName}` : "-",
+              },
+              {
+                label: copy.summary.worst,
+                value: worst ? `${formatRate(worst.netYield)} · ${worst.districtName}` : "-",
+              },
+              { label: copy.summary.medianPrice, value: `${middleArea} m²` },
+            ].map((item) => (
+              <div key={item.label} className="rounded-xl border border-brand-100 bg-white px-4 py-3">
+                <dt className="text-[11px] uppercase tracking-wide text-brand-500">{item.label}</dt>
+                <dd className="mt-1 text-sm font-bold text-brand-950">{item.value}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </section>
+
+      <Section>
+        <div className="overflow-x-auto rounded-xl border border-brand-100">
+          <table className="w-full min-w-[860px] text-sm">
+            <thead className="bg-brand-50 text-left text-[11px] uppercase tracking-wide text-brand-600">
+              <tr>
+                <th scope="col" className="px-3 py-3 text-right">
+                  {copy.columns.rank}
+                </th>
+                <th scope="col" className="px-3 py-3">
+                  {copy.columns.district}
+                </th>
+                <th scope="col" className="px-3 py-3">
+                  {copy.columns.city}
+                </th>
+                <th scope="col" className="px-3 py-3 text-right">
+                  {copy.columns.price}
+                </th>
+                <th scope="col" className="px-3 py-3 text-right">
+                  {copy.columns.roiGross}
+                </th>
+                <th scope="col" className="px-3 py-3 text-right">
+                  {copy.columns.roiNet}
+                </th>
+                <th scope="col" className="px-3 py-3 text-right">
+                  {copy.columns.growth}
+                </th>
+                <th scope="col" className="px-3 py-3 text-right">
+                  {copy.columns.days}
+                </th>
+                <th scope="col" className="px-3 py-3 text-right">
+                  {copy.columns.demand}
+                </th>
+                <th scope="col" className="px-3 py-3 text-right">
+                  {copy.columns.area}
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {rows.map((row, index) => (
+                <tr
+                  key={`${row.citySlug}/${row.districtSlug}`}
+                  className="odd:bg-white even:bg-brand-50/40"
+                >
+                  <td className="px-3 py-2 text-right tabular-nums text-brand-500">{index + 1}</td>
+                  <th scope="row" className="px-3 py-2 text-left font-medium">
+                    <Link
+                      href={translatePath(
+                        `/${PRICE_REPORT.slug}/${row.citySlug}/${row.districtSlug}`,
+                        locale,
+                      )}
+                      className="text-brand-900 underline decoration-brand-200 underline-offset-2 hover:decoration-brand-600"
+                    >
+                      {row.districtName}
+                    </Link>
+                  </th>
+                  <td className="px-3 py-2">
+                    <Link
+                      href={translatePath(`/${PRICE_REPORT.slug}/${row.citySlug}`, locale)}
+                      className="text-brand-700 underline decoration-brand-200 underline-offset-2 hover:text-brand-900"
+                    >
+                      {row.cityName}
+                    </Link>
+                  </td>
+                  <td className="px-3 py-2 text-right tabular-nums">{formatEur(row.pricePerM2)}</td>
+                  <td className="px-3 py-2 text-right tabular-nums">{formatRate(row.rentalYield)}</td>
+                  <td className="px-3 py-2 text-right font-semibold tabular-nums text-emerald-700">
+                    {formatRate(row.netYield)}
+                  </td>
+                  <td className="px-3 py-2 text-right tabular-nums">{formatRate(row.growth)}</td>
+                  <td className="px-3 py-2 text-right tabular-nums">{row.days}</td>
+                  <td className="px-3 py-2 text-right tabular-nums">{row.demand}/10</td>
+                  <td className="px-3 py-2 text-right tabular-nums">{row.area} m²</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p className="mt-3 max-w-3xl text-[11px] leading-relaxed text-brand-500">{copy.note}</p>
+      </Section>
+
+      <Section className="bg-brand-50/60">
+        <div className="flex flex-wrap items-center justify-between gap-4 rounded-2xl bg-brand-950 px-5 py-5 text-white">
+          <div className="max-w-2xl">
+            <p className="text-base font-bold">{copy.ctaTitle}</p>
+            <p className="mt-1 text-sm leading-relaxed text-brand-100">{copy.ctaText}</p>
+          </div>
+          <div className="flex flex-wrap gap-2">
+            <Link
+              href={`${translatePath(`/${PRICE_REPORT.slug}/${best?.citySlug ?? ""}`, locale)}?budzet=${BUDGET}`}
+              className="inline-flex items-center gap-1.5 rounded-full bg-white px-4 py-2 text-sm font-bold text-brand-950 transition hover:bg-brand-50"
+            >
+              {copy.ctaButton}
+            </Link>
+            <Link
+              href={translatePath(`/${PRICE_REPORT.slug}`, locale)}
+              className="inline-flex items-center gap-1.5 rounded-full border border-white/40 px-4 py-2 text-sm font-semibold text-white transition hover:border-white"
+            >
+              {copy.backToReports}
+            </Link>
+          </div>
+        </div>
+      </Section>
+    </>
+  );
+}

@@ -11,6 +11,7 @@ import { translatePath } from "@/lib/i18n/paths";
 import { buildMetadata } from "@/lib/seo/metadata";
 import { formatEur, formatRate } from "@/lib/utils/format";
 import { PRICE_HUB_COPY, PRICE_HUB_META } from "@/lib/i18n/price-hub-copy";
+import { RANKING_COPY } from "@/lib/i18n/ranking-copy";
 
 /** Indeks raportów: /ceny-m2. Hub dla fraz „ceny m2 <miejscowość> Costa Blanca”. */
 export const revalidate = 86_400;
@@ -80,6 +81,25 @@ export default async function PriceReportIndexPage({
           </p>
         </div>
       </section>
+
+      <Section>
+        <Link
+          href={translatePath("/ranking-roi", locale)}
+          className="group flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-brand-200 bg-white px-5 py-4 transition hover:border-brand-400"
+        >
+          <span>
+            <span className="block text-sm font-bold text-brand-950">
+              {RANKING_COPY[locale].teaserTitle}
+            </span>
+            <span className="mt-1 block max-w-2xl text-xs leading-relaxed text-brand-600">
+              {RANKING_COPY[locale].teaserText}
+            </span>
+          </span>
+          <span className="text-sm font-bold text-brand-700 underline decoration-brand-300 underline-offset-4 group-hover:text-brand-950">
+            →
+          </span>
+        </Link>
+      </Section>
 
       <Section>
         <SectionHeading eyebrow={copy.citiesEyebrow}>{copy.chooseLocation}</SectionHeading>

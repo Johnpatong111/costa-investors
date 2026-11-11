@@ -8,6 +8,7 @@ import { InternalLinks } from "@/components/sections/internal-links";
 import { InvestorWorkbench } from "@/components/tools/investor-workbench";
 import { PurchaseCostsCalculator } from "@/components/tools/purchase-costs-calculator";
 import { regionTax } from "@/lib/content/region-facts";
+import { RANKING_COPY } from "@/lib/i18n/ranking-copy";
 import { JsonLd } from "@/components/seo/json-ld";
 import { Section, SectionHeading } from "@/components/ui/primitives";
 import { deriveCityStats, deriveDistrictStats, MARKET_YEAR } from "@/lib/content/market-stats";
@@ -383,6 +384,16 @@ export default async function PriceCityPage({ params }: { params: Promise<RouteP
           rentalYield={stats.rentalYield}
           ctaHref="#formularz"
         />
+      </Section>
+
+      <Section className="pt-0">
+        <Link
+          href={translatePath("/ranking-roi", locale)}
+          className="inline-flex items-center gap-2 rounded-full border border-brand-200 px-4 py-2 text-sm font-semibold text-brand-800 transition hover:border-brand-500 hover:text-brand-950"
+        >
+          {RANKING_COPY[locale].teaserTitle}
+          <span aria-hidden>→</span>
+        </Link>
       </Section>
 
       <InternalLinks

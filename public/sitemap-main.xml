@@ -61,6 +61,36 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://costainvestors.eu/pl/ceny-m2"/>
   </url>
   <url>
+    <loc>https://costainvestors.eu/pl/ranking-roi</loc>
+    <lastmod>2026-11-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://costainvestors.eu/pl/ranking-roi"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://costainvestors.eu/en/ranking-roi"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://costainvestors.eu/es/ranking-roi"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://costainvestors.eu/pl/ranking-roi"/>
+  </url>
+  <url>
+    <loc>https://costainvestors.eu/en/ranking-roi</loc>
+    <lastmod>2026-11-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://costainvestors.eu/pl/ranking-roi"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://costainvestors.eu/en/ranking-roi"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://costainvestors.eu/es/ranking-roi"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://costainvestors.eu/pl/ranking-roi"/>
+  </url>
+  <url>
+    <loc>https://costainvestors.eu/es/ranking-roi</loc>
+    <lastmod>2026-11-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://costainvestors.eu/pl/ranking-roi"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://costainvestors.eu/en/ranking-roi"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://costainvestors.eu/es/ranking-roi"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://costainvestors.eu/pl/ranking-roi"/>
+  </url>
+  <url>
     <loc>https://costainvestors.eu/pl/apartamenty-na-sprzedaz</loc>
     <lastmod>2026-11-10</lastmod>
     <changefreq>weekly</changefreq>
