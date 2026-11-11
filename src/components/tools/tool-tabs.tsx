@@ -1,6 +1,6 @@
 "use client";
 
-import { useId, useRef, useState, type KeyboardEvent, type ReactNode } from "react";
+import { useEffect, useId, useRef, useState, type KeyboardEvent, type ReactNode } from "react";
 import Link from "next/link";
 import { Calculator } from "lucide-react";
 import type { Locale } from "@/lib/i18n/config";
@@ -31,6 +31,24 @@ export function ToolTabs({ locale, placeName, tabs, ctaHref }: ToolTabsProps) {
   const [active, setActive] = useState(tabs[0]?.id ?? "");
   const buttonsRef = useRef<(HTMLButtonElement | null)[]>([]);
 
+  // Zakładka w URL: link można wysłać klientowi, a po odświeżeniu zostaje otwarta.
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const requested = new URLSearchParams(window.location.search).get("zakladka");
+    if (requested && tabs.some((tab) => tab.id === requested)) setActive(requested);
+  }, [tabs]);
+
+  const selectTab = (id: string, index: number) => {
+    setActive(id);
+    buttonsRef.current[index]?.scrollIntoView({ block: "nearest", inline: "nearest" });
+    if (typeof window !== "undefined") {
+      const url = new URL(window.location.href);
+      if (id === tabs[0]?.id) url.searchParams.delete("zakladka");
+      else url.searchParams.set("zakladka", id);
+      window.history.replaceState(null, "", url.toString());
+    }
+  };
+
   const onKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
     if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) return;
     event.preventDefault();
@@ -45,7 +63,7 @@ export function ToolTabs({ locale, placeName, tabs, ctaHref }: ToolTabsProps) {
             : tabs.length - 1;
     const target = tabs[next];
     if (!target) return;
-    setActive(target.id);
+    selectTab(target.id, next);
     buttonsRef.current[next]?.focus();
   };
 
@@ -80,7 +98,7 @@ export function ToolTabs({ locale, placeName, tabs, ctaHref }: ToolTabsProps) {
               aria-selected={selected}
               aria-controls={`${baseId}-panel-${tab.id}`}
               tabIndex={selected ? 0 : -1}
-              onClick={() => setActive(tab.id)}
+              onClick={() => selectTab(tab.id, index)}
               className={cn(
                 "min-h-[44px] shrink-0 rounded-full border px-4 py-2 text-sm font-semibold transition",
                 selected
