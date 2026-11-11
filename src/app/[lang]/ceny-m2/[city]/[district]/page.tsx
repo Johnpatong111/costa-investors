@@ -10,6 +10,8 @@ import { JsonLd } from "@/components/seo/json-ld";
 import { PriceHistorySection } from "@/components/sections/price-history";
 import { InternalLinks } from "@/components/sections/internal-links";
 import { InvestorWorkbench } from "@/components/tools/investor-workbench";
+import { PurchaseCostsCalculator } from "@/components/tools/purchase-costs-calculator";
+import { regionTax } from "@/lib/content/region-facts";
 import { getPriceHistory } from "@/lib/i18n/price-history";
 import { PRICE_HISTORY_KEYWORD } from "@/lib/i18n/seo-copy";
 import { PRICE_HUB_COPY } from "@/lib/i18n/price-hub-copy";
@@ -210,6 +212,17 @@ export default async function PriceReportPage({
             };
           })}
           districtBasePath={translatePath(`/${PRICE_REPORT.slug}/${entry.city.slug}`, locale)}
+          ctaHref="#formularz"
+        />
+      </Section>
+
+      <Section className="pt-0">
+        <PurchaseCostsCalculator
+          locale={locale}
+          cityName={entry.district.name}
+          itp={regionTax(entry.city.region).itp}
+          authority={regionTax(entry.city.region).authority}
+          rentalYield={report.stats.rentalYield}
           ctaHref="#formularz"
         />
       </Section>
