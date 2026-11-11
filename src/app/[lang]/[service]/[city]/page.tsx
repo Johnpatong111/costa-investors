@@ -8,6 +8,8 @@ import { Hero } from "@/components/sections/hero";
 import { HowItWorks } from "@/components/sections/how-it-works";
 import { InternalLinks } from "@/components/sections/internal-links";
 import { MarketStatsSection } from "@/components/sections/market-stats";
+import { InvestorWorkbench } from "@/components/tools/investor-workbench";
+import { deriveDistrictStats } from "@/lib/content/market-stats";
 import { StickyCta } from "@/components/sections/sticky-cta";
 import { JsonLd } from "@/components/seo/json-ld";
 import { buildCityContent } from "@/lib/content/city-content";
@@ -168,6 +170,35 @@ export default async function CityServicePage({
       />
 
       <ContentBlocks blocks={content.blocks} />
+
+      <section className="border-t border-brand-100 bg-brand-50/40">
+        <div className="container-page py-10 lg:py-14">
+          <InvestorWorkbench
+            locale={locale}
+            cityName={city.name}
+            rates={{
+              pricePerM2: content.stats.pricePerM2,
+              rentalYield: content.stats.rentalYield,
+              netYield: content.stats.netYield,
+              priceGrowth: content.stats.priceGrowth,
+            }}
+            districts={city.districts.map((district) => {
+              const districtStats = deriveDistrictStats(city, district, region);
+              return {
+                slug: district.slug,
+                name: district.name,
+                pricePerM2: districtStats.pricePerM2,
+                rentalYield: districtStats.rentalYield,
+                netYield: districtStats.netYield,
+                demandIndex: district.demandIndex,
+                days: districtStats.avgDaysOnMarket,
+              };
+            })}
+            districtBasePath={translatePath(`/${PRICE_REPORT.slug}/${city.slug}`, locale)}
+            ctaHref="#lead-form"
+          />
+        </div>
+      </section>
 
       <HowItWorks
         eyebrow={ui.howItWorks}
