@@ -29,6 +29,10 @@ export interface RankingCopy {
   note: string;
   teaserTitle: string;
   teaserText: string;
+  mapTitle: string;
+  mapLead: (count: number) => string;
+  mapLegend: string;
+  mapNote: string;
   ctaTitle: string;
   ctaText: string;
   ctaButton: string;
@@ -66,6 +70,12 @@ const PL: RankingCopy = {
   teaserTitle: "Ranking ROI: 89 dzielnic w jednej tabeli",
   teaserText:
     "Zwrot brutto i netto, dynamika, czas ekspozycji i metraż za 250 tys. €, uszeregowane od najlepszej dzielnicy.",
+  mapTitle: "Mapa zwrotu netto",
+  mapLead: (count) =>
+    `Każde z ${count} miejsc to jedna dzielnica. Kolor pokazuje zwrot netto, a położenie liczy się przy najmie sezonowym: bliżej plaży rośnie obłożenie, dalej rosną metry.`,
+  mapLegend: "Zwrot netto",
+  mapNote:
+    "Mapa poglądowa: punkty oznaczają współrzędne dzielnicy, nie granice administracyjne. Najedź na punkt, aby zobaczyć cenę i zwrot.",
   ctaTitle: "Chcesz zobaczyć te liczby dla swojego budżetu?",
   ctaText:
     "Na stronach miast działa kalkulator: wpisujesz budżet, wybierasz profil najmu i widzisz metraż, czynsz po kosztach i zwrot po pięciu latach.",
@@ -110,6 +120,12 @@ const EN: RankingCopy = {
   teaserTitle: "ROI ranking: 89 districts in one table",
   teaserText:
     "Gross and net yield, growth, time on market and floor area for 250,000, ordered from the strongest district down.",
+  mapTitle: "Net yield map",
+  mapLead: (count) =>
+    `Each of the ${count} dots is one district. Colour shows net yield, and location matters for seasonal letting: closer to the beach occupancy rises, further inland the floor area grows.`,
+  mapLegend: "Net yield",
+  mapNote:
+    "Illustrative map: dots are district coordinates, not administrative boundaries. Hover a dot to see price and yield.",
   ctaTitle: "Want these numbers for your own budget?",
   ctaText:
     "Every city page carries a calculator: enter a budget, pick a letting profile and see floor area, rent after costs and the five-year return.",
@@ -155,6 +171,12 @@ const ES: RankingCopy = {
   teaserTitle: "Ranking de rentabilidad: 89 zonas en una tabla",
   teaserText:
     "Rentabilidad bruta y neta, crecimiento, exposición y metros por 250.000, ordenadas desde la mejor zona.",
+  mapTitle: "Mapa de rentabilidad neta",
+  mapLead: (count) =>
+    `Cada uno de los ${count} puntos es una zona. El color indica la rentabilidad neta y la ubicación importa en el alquiler de temporada: cerca de la playa sube la ocupación, tierra adentro suben los metros.`,
+  mapLegend: "Rentabilidad neta",
+  mapNote:
+    "Mapa orientativo: los puntos son coordenadas de la zona, no límites administrativos. Pasa el cursor por un punto para ver precio y rentabilidad.",
   ctaTitle: "¿Quieres estas cifras con tu presupuesto?",
   ctaText:
     "Cada página de municipio incluye calculadora: introduces presupuesto, eliges perfil de alquiler y ves metros, renta tras gastos y retorno a cinco años.",

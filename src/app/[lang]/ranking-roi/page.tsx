@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Breadcrumbs, type Crumb } from "@/components/sections/breadcrumbs";
+import { RoiMap } from "@/components/sections/roi-map";
 import { Section } from "@/components/ui/primitives";
 import { deriveDistrictStats, MARKET_YEAR } from "@/lib/content/market-stats";
 import { getAllDistrictEntries } from "@/lib/data/repository";
@@ -67,6 +68,9 @@ export default async function RankingPage({ params }: { params: Promise<{ lang: 
         days: stats.avgDaysOnMarket,
         demand: entry.district.demandIndex,
         area: stats.pricePerM2 > 0 ? Math.round(BUDGET / stats.pricePerM2) : 0,
+        lat: entry.district.lat,
+        lng: entry.district.lng,
+        href: translatePath(`/${PRICE_REPORT.slug}/${entry.city.slug}/${entry.district.slug}`, locale),
       };
     })
     .sort((a, b) => b.netYield - a.netYield);
@@ -118,7 +122,22 @@ export default async function RankingPage({ params }: { params: Promise<{ lang: 
       </section>
 
       <Section>
-        <div className="overflow-x-auto rounded-xl border border-brand-100">
+        <RoiMap
+          locale={locale}
+          points={rows.map((row) => ({
+            name: row.districtName,
+            city: row.cityName,
+            href: row.href,
+            lat: row.lat,
+            lng: row.lng,
+            pricePerM2: row.pricePerM2,
+            netYield: row.netYield,
+          }))}
+        />
+      </Section>
+
+      <Section>
+        <div id="ranking" className="overflow-x-auto rounded-xl border border-brand-100">
           <table className="w-full min-w-[860px] text-sm">
             <thead className="bg-brand-50 text-left text-[11px] uppercase tracking-wide text-brand-600">
               <tr>
