@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Breadcrumbs, type Crumb } from "@/components/sections/breadcrumbs";
 import { FaqAccordion } from "@/components/sections/faq-accordion";
 import { RoiMap } from "@/components/sections/roi-map";
+import { RankingTable } from "@/components/sections/ranking-table";
 import { Section } from "@/components/ui/primitives";
 import { JsonLd } from "@/components/seo/json-ld";
 import { deriveDistrictStats, MARKET_YEAR } from "@/lib/content/market-stats";
@@ -78,6 +79,22 @@ export default async function RankingPage({ params }: { params: Promise<{ lang: 
   const best = rows[0];
   const worst = rows[rows.length - 1];
 
+  // Wiersze dla tabeli z filtrami: pozycja w rankingu i gotowe linki.
+  const rankingRows = rows.map((row, index) => ({
+    rank: index + 1,
+    districtName: row.districtName,
+    cityName: row.cityName,
+    href: row.href,
+    cityHref: translatePath(`/${PRICE_REPORT.slug}/${row.citySlug}`, locale),
+    pricePerM2: row.pricePerM2,
+    rentalYield: row.rentalYield,
+    netYield: row.netYield,
+    growth: row.growth,
+    days: row.days,
+    demand: row.demand,
+    area: row.area,
+  }));
+
   const crumbs: Crumb[] = [
     { name: ui.home, path: "/" },
     { name: PRICE_REPORT.name, path: `/${PRICE_REPORT.slug}` },
@@ -133,84 +150,11 @@ export default async function RankingPage({ params }: { params: Promise<{ lang: 
         />
       </Section>
 
-      <Section>
-        <div id="ranking" className="overflow-x-auto rounded-xl border border-brand-100">
-          <table className="w-full min-w-[860px] text-sm">
-            <thead className="bg-brand-50 text-left text-[11px] uppercase tracking-wide text-brand-600">
-              <tr>
-                <th scope="col" className="px-3 py-3 text-right">
-                  {copy.columns.rank}
-                </th>
-                <th scope="col" className="px-3 py-3">
-                  {copy.columns.district}
-                </th>
-                <th scope="col" className="px-3 py-3">
-                  {copy.columns.city}
-                </th>
-                <th scope="col" className="px-3 py-3 text-right">
-                  {copy.columns.price}
-                </th>
-                <th scope="col" className="px-3 py-3 text-right">
-                  {copy.columns.roiGross}
-                </th>
-                <th scope="col" className="px-3 py-3 text-right">
-                  {copy.columns.roiNet}
-                </th>
-                <th scope="col" className="px-3 py-3 text-right">
-                  {copy.columns.growth}
-                </th>
-                <th scope="col" className="px-3 py-3 text-right">
-                  {copy.columns.days}
-                </th>
-                <th scope="col" className="px-3 py-3 text-right">
-                  {copy.columns.demand}
-                </th>
-                <th scope="col" className="px-3 py-3 text-right">
-                  {copy.columns.area}
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {rows.map((row, index) => (
-                <tr
-                  key={`${row.citySlug}/${row.districtSlug}`}
-                  className="odd:bg-white even:bg-brand-50/40"
-                >
-                  <td className="px-3 py-2 text-right tabular-nums text-brand-500">{index + 1}</td>
-                  <th scope="row" className="px-3 py-2 text-left font-medium">
-                    <Link
-                      href={translatePath(
-                        `/${PRICE_REPORT.slug}/${row.citySlug}/${row.districtSlug}`,
-                        locale,
-                      )}
-                      className="text-brand-900 underline decoration-brand-200 underline-offset-2 hover:decoration-brand-600"
-                    >
-                      {row.districtName}
-                    </Link>
-                  </th>
-                  <td className="px-3 py-2">
-                    <Link
-                      href={translatePath(`/${PRICE_REPORT.slug}/${row.citySlug}`, locale)}
-                      className="text-brand-700 underline decoration-brand-200 underline-offset-2 hover:text-brand-900"
-                    >
-                      {row.cityName}
-                    </Link>
-                  </td>
-                  <td className="px-3 py-2 text-right tabular-nums">{formatEur(row.pricePerM2)}</td>
-                  <td className="px-3 py-2 text-right tabular-nums">{formatRate(row.rentalYield)}</td>
-                  <td className="px-3 py-2 text-right font-semibold tabular-nums text-emerald-700">
-                    {formatRate(row.netYield)}
-                  </td>
-                  <td className="px-3 py-2 text-right tabular-nums">{formatRate(row.growth)}</td>
-                  <td className="px-3 py-2 text-right tabular-nums">{row.days}</td>
-                  <td className="px-3 py-2 text-right tabular-nums">{row.demand}/10</td>
-                  <td className="px-3 py-2 text-right tabular-nums">{row.area} m²</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+            <Section>
+        <div id="ranking">
+          <RankingTable locale={locale} rows={rankingRows} />
+          <p className="mt-3 max-w-3xl text-[11px] leading-relaxed text-brand-500">{copy.note}</p>
         </div>
-        <p className="mt-3 max-w-3xl text-[11px] leading-relaxed text-brand-500">{copy.note}</p>
       </Section>
 
       <FaqAccordion items={copy.faq} title={copy.faqTitle} />

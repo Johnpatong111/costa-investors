@@ -160,9 +160,15 @@ for (const lang of ["pl", "en", "es"]) {
   const content = read(`${lang}/ranking-roi.html`);
   ok(`ranking ${lang} istnieje`, content !== null);
   if (!content) continue;
-  ok(`ranking ${lang}: 89 punktów mapy`, (content.match(/<circle/g) ?? []).length === 89);
+
+  // Punkty mapy liczymy tylko wewnątrz SVG mapy: inne ikony też rysują <circle>.
+  const svgStart = content.indexOf("0 0 900 460");
+  const svgEnd = content.indexOf("</svg>", svgStart);
+  const mapSlice = svgStart >= 0 && svgEnd > svgStart ? content.slice(svgStart, svgEnd) : "";
+  ok(`ranking ${lang}: 89 punktów mapy`, (mapSlice.match(/<circle/g) ?? []).length === 89);
   ok(`ranking ${lang}: 89 wierszy tabeli`, (content.match(/<tr class=/g) ?? []).length >= 89);
   ok(`ranking ${lang}: mapa przewijana na wąskim ekranie`, content.includes("min-w-[620px]"));
+  ok(`ranking ${lang}: filtry rankingu w HTML`, content.includes("data-ranking-filters"));
 }
 
 /* -------------------------------------------------------------------------

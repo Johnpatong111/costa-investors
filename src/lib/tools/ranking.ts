@@ -23,3 +23,55 @@ export function areaForBudget(budget: number, pricePerM2: number): number {
   if (!Number.isFinite(pricePerM2) || pricePerM2 <= 0) return 0;
   return Math.round(budget / pricePerM2);
 }
+
+/* ------------------------------- filtry --------------------------------- */
+
+export interface RankingRow {
+  districtName: string;
+  cityName: string;
+  pricePerM2: number;
+  netYield: number;
+  days: number;
+  area: number;
+}
+
+export interface RankingFilters {
+  /** Minimalny zwrot netto w procentach. */
+  minNetYield: number;
+  /** Maksymalny czas ekspozycji w dniach; 0 = bez limitu. */
+  maxDays: number;
+  /** Szukana fraza w nazwie dzielnicy lub gminy. */
+  query: string;
+}
+
+export const DEFAULT_RANKING_FILTERS: RankingFilters = {
+  minNetYield: 0,
+  maxDays: 0,
+  query: "",
+};
+
+/** Filtruje ranking bez zmiany kolejności. Puste filtry zwracają wszystkie wiersze. */
+export function filterRankingRows<T extends RankingRow>(rows: T[], filters: RankingFilters): T[] {
+  const query = filters.query.trim().toLowerCase();
+  const minYield = Number.isFinite(filters.minNetYield) ? filters.minNetYield : 0;
+  const maxDays = Number.isFinite(filters.maxDays) ? filters.maxDays : 0;
+
+  return rows.filter((row) => {
+    if (row.netYield < minYield) return false;
+    if (maxDays > 0 && row.days > maxDays) return false;
+    if (query.length > 0) {
+      const haystack = `${row.districtName} ${row.cityName}`.toLowerCase();
+      if (!haystack.includes(query)) return false;
+    }
+    return true;
+  });
+}
+
+/** Liczba aktywnych filtrów (do przycisku „wyczyść”). */
+export function activeFilterCount(filters: RankingFilters): number {
+  let count = 0;
+  if (filters.minNetYield > 0) count += 1;
+  if (filters.maxDays > 0) count += 1;
+  if (filters.query.trim().length > 0) count += 1;
+  return count;
+}

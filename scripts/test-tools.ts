@@ -20,7 +20,13 @@ import {
 } from "../src/lib/tools/purchase-costs";
 import { computeShortLet } from "../src/lib/tools/short-let";
 import { annuity, computeInvestment } from "../src/lib/tools/investment";
-import { areaForBudget, median } from "../src/lib/tools/ranking";
+import {
+  activeFilterCount,
+  areaForBudget,
+  DEFAULT_RANKING_FILTERS,
+  filterRankingRows,
+  median,
+} from "../src/lib/tools/ranking";
 import { isBudgetInRange } from "../src/lib/tools/budget-bus";
 import { bufferMonths, computeStress } from "../src/lib/tools/stress";
 
@@ -456,6 +462,57 @@ eq("budżet: 3 000 000 w zakresie", isBudgetInRange(3_000_000), true);
 eq("budżet: 49 999 poza zakresem", isBudgetInRange(49_999), false);
 eq("budżet: 3 000 001 poza zakresem", isBudgetInRange(3_000_001), false);
 eq("budżet: NaN poza zakresem", isBudgetInRange(Number.NaN), false);
+
+/* =========================================================================
+ * 4c. FILTRY RANKINGU
+ * ========================================================================= */
+
+const rankingSample = [
+  { districtName: "La Mata", cityName: "Torrevieja", pricePerM2: 2_400, netYield: 6.6, days: 90, area: 104, price: 250_000 },
+  { districtName: "Centro", cityName: "Torrevieja", pricePerM2: 2_100, netYield: 5.4, days: 140, area: 119, price: 250_000 },
+  { districtName: "El Hornillo", cityName: "Águilas", pricePerM2: 1_700, netYield: 4.8, days: 160, area: 147, price: 250_000 },
+];
+
+eq(
+  "filtry: brak filtrów zwraca wszystko",
+  filterRankingRows(rankingSample, DEFAULT_RANKING_FILTERS).length,
+  3,
+);
+eq(
+  "filtry: minimalny zwrot 5%",
+  filterRankingRows(rankingSample, { minNetYield: 5, maxDays: 0, query: "" }).length,
+  2,
+);
+eq(
+  "filtry: maksymalnie 120 dni ekspozycji",
+  filterRankingRows(rankingSample, { minNetYield: 0, maxDays: 120, query: "" }).length,
+  1,
+);
+eq(
+  "filtry: szukanie po dzielnicy",
+  filterRankingRows(rankingSample, { minNetYield: 0, maxDays: 0, query: "mata" }).length,
+  1,
+);
+eq(
+  "filtry: szukanie po gminie ignoruje wielkość liter",
+  filterRankingRows(rankingSample, { minNetYield: 0, maxDays: 0, query: "TORREVIEJA" }).length,
+  2,
+);
+eq(
+  "filtry: brak wyników",
+  filterRankingRows(rankingSample, { minNetYield: 0, maxDays: 0, query: "Marbella" }).length,
+  0,
+);
+eq(
+  "filtry: filtry łączą się",
+  filterRankingRows(rankingSample, { minNetYield: 5, maxDays: 120, query: "torrevieja" }).length,
+  1,
+);
+eq(
+  "filtry: liczba aktywnych filtrów",
+  activeFilterCount({ minNetYield: 5, maxDays: 120, query: "mata" }),
+  3,
+);
 
 /* =========================================================================
  * 5. SPÓJNOŚĆ Z DANYMI STRONY

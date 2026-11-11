@@ -39,6 +39,14 @@ export interface RankingCopy {
   backToReports: string;
   metaTitle: string;
   metaDescription: (count: number) => string;
+  filtersTitle: string;
+  filterYield: string;
+  filterDays: string;
+  filterSearch: string;
+  filterReset: string;
+  filterAny: string;
+  filterResults: (shown: number, total: number) => string;
+  filterEmpty: string;
   faqTitle: string;
   faq: { question: string; answer: string }[];
   keywords: string[];
@@ -93,6 +101,14 @@ const PL: RankingCopy = {
     "gdzie kupić mieszkanie pod wynajem",
   ],
   faqTitle: "Jak czytać ten ranking",
+  filtersTitle: "Filtruj ranking",
+  filterYield: "Minimalny zwrot netto",
+  filterDays: "Maksymalny czas ekspozycji (dni)",
+  filterSearch: "Szukaj dzielnicy lub gminy",
+  filterReset: "Wyczyść filtry",
+  filterAny: "Dowolnie",
+  filterResults: (shown, total) => `Pokazano ${shown} z ${total} dzielnic`,
+  filterEmpty: "Brak dzielnic dla tych kryteriów. Poluzuj filtry, żeby zobaczyć więcej.",
   faq: [
     {
       question: "Jak liczony jest zwrot netto w rankingu?",
@@ -166,6 +182,14 @@ const EN: RankingCopy = {
     "where to buy to let in Spain",
   ],
   faqTitle: "How to read this ranking",
+  filtersTitle: "Filter the ranking",
+  filterYield: "Minimum net yield",
+  filterDays: "Maximum time on market (days)",
+  filterSearch: "Search district or municipality",
+  filterReset: "Clear filters",
+  filterAny: "Any",
+  filterResults: (shown, total) => `Showing ${shown} of ${total} districts`,
+  filterEmpty: "No districts match these criteria. Loosen the filters to see more.",
   faq: [
     {
       question: "How is the net yield in the ranking calculated?",
@@ -240,6 +264,14 @@ const ES: RankingCopy = {
     "dónde comprar para alquilar",
   ],
   faqTitle: "Cómo leer este ranking",
+  filtersTitle: "Filtrar el ranking",
+  filterYield: "Rentabilidad neta mínima",
+  filterDays: "Exposición máxima (días)",
+  filterSearch: "Buscar zona o municipio",
+  filterReset: "Borrar filtros",
+  filterAny: "Cualquiera",
+  filterResults: (shown, total) => `Mostrando ${shown} de ${total} zonas`,
+  filterEmpty: "Ninguna zona cumple estos criterios. Suelta los filtros para ver más.",
   faq: [
     {
       question: "¿Cómo se calcula la rentabilidad neta del ranking?",
