@@ -117,14 +117,14 @@ export function RoiMap({ locale, points }: { locale: Locale; points: RoiMapPoint
             <path d={coastPath} fill="none" stroke="#64748b" strokeWidth={1.6} strokeLinejoin="round" />
           </g>
           <text
-            x={WIDTH * 0.6}
-            y={HEIGHT * 0.76}
+            x={WIDTH * 0.85}
+            y={HEIGHT * 0.63}
             fill="#0369a1"
             fillOpacity={0.7}
             fontSize={13}
             fontWeight={600}
             letterSpacing={1}
-            transform={`rotate(-12 ${WIDTH * 0.6} ${HEIGHT * 0.76})`}
+            transform={`rotate(-12 ${WIDTH * 0.85} ${HEIGHT * 0.63})`}
           >
             {copy.mapSea || SEA_NAME}
           </text>
