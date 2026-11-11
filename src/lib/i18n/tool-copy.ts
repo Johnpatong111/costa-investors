@@ -717,9 +717,173 @@ export const CHECKLIST_COPY: Record<Locale, ChecklistCopy> = {
   es: CHECKLIST_ES,
 };
 
+export interface StressCopy {
+  eyebrow: string;
+  title: (place: string) => string;
+  lead: string;
+  inputs: {
+    price: string;
+    ltv: string;
+    rate: string;
+    years: string;
+    rent: string;
+    costs: string;
+  };
+  columns: {
+    scenario: string;
+    payment: string;
+    cashFlow: string;
+    dscr: string;
+    equity: string;
+  };
+  scenarios: {
+    base: string;
+    rate: string;
+    rent: string;
+    vacancy: string;
+    price: string;
+    combo: string;
+  };
+  summary: {
+    loan: string;
+    payment: string;
+    cashFlow: string;
+    buffer: (months: number) => string;
+    bufferNone: string;
+    underwater: string;
+  };
+  note: string;
+  cta: string;
+}
+
+const STRESS_PL: StressCopy = {
+  eyebrow: "Test odporności",
+  title: (place) => `Co się stanie z inwestycją w ${place}, gdy rynek się cofnie`,
+  lead: "Cztery szoki liczone na twoich liczbach: stopa plus 2 pkt proc., czynsz minus 10%, dwa miesiące pustostanu i cena minus 10%. Widzisz, który element psuje cash flow.",
+  inputs: {
+    price: "Cena zakupu (EUR)",
+    ltv: "Udział kredytu (%)",
+    rate: "Oprocentowanie (%)",
+    years: "Okres kredytu (lata)",
+    rent: "Czynsz netto miesięcznie (EUR)",
+    costs: "Koszty stałe miesięcznie (EUR)",
+  },
+  columns: {
+    scenario: "Scenariusz",
+    payment: "Rata",
+    cashFlow: "Cash flow/mies.",
+    dscr: "Pokrycie raty",
+    equity: "Kapitał własny",
+  },
+  scenarios: {
+    base: "Sytuacja wyjściowa",
+    rate: "Stopa plus 2 pkt proc.",
+    rent: "Czynsz minus 10%",
+    vacancy: "Dwa miesiące pustostanu",
+    price: "Cena minus 10%",
+    combo: "Wszystkie szoki naraz",
+  },
+  summary: {
+    loan: "Kredyt",
+    payment: "Rata miesięczna",
+    cashFlow: "Cash flow miesięcznie",
+    buffer: (months) => `Rezerwa: ${months} miesięcy czynszu na pokrycie scenariusza łączonego.`,
+    bufferNone: "Scenariusz łączony nadal wychodzi na plus, bez rezerwy.",
+    underwater: "Uwaga: przy spadku ceny o 10% kapitał własny schodzi pod zero.",
+  },
+  note: "Scenariusze liczone niezależnie od siebie. Nie są prognozą: pokazują, przy jakim obciążeniu model przestaje się spinać.",
+  cta: "Sprawdź odporność konkretnego lokalu",
+};
+
+
+const STRESS_EN: StressCopy = {
+  eyebrow: "Resilience test",
+  title: (place) => `What happens to an investment in ${place} when the market turns`,
+  lead: "Four shocks on your own numbers: rates plus 2 points, rent minus 10%, two extra vacant months and a 10% price drop. You see which part breaks the cash flow.",
+  inputs: {
+    price: "Purchase price (EUR)",
+    ltv: "Loan to value (%)",
+    rate: "Interest rate (%)",
+    years: "Loan term (years)",
+    rent: "Net rent per month (EUR)",
+    costs: "Fixed costs per month (EUR)",
+  },
+  columns: {
+    scenario: "Scenario",
+    payment: "Payment",
+    cashFlow: "Cash flow/month",
+    dscr: "Debt cover",
+    equity: "Equity",
+  },
+  scenarios: {
+    base: "Base case",
+    rate: "Rates plus 2 points",
+    rent: "Rent minus 10%",
+    vacancy: "Two vacant months",
+    price: "Price minus 10%",
+    combo: "All shocks at once",
+  },
+  summary: {
+    loan: "Loan",
+    payment: "Monthly payment",
+    cashFlow: "Cash flow per month",
+    buffer: (months) => `Buffer: ${months} months of rent to survive the combined scenario.`,
+    bufferNone: "The combined scenario still runs positive, no buffer needed.",
+    underwater: "Warning: with a 10% price drop the equity falls below zero.",
+  },
+  note: "Each shock is applied on its own. This is not a forecast: it shows the load at which the model stops working.",
+  cta: "Test a specific property",
+};
+
+
+const STRESS_ES: StressCopy = {
+  eyebrow: "Prueba de resistencia",
+  title: (place) => `Qué pasa con una inversión en ${place} si el mercado gira`,
+  lead: "Cuatro golpes sobre tus números: tipos más 2 puntos, alquiler menos 10%, dos meses vacíos y precio menos 10%. Ves qué pieza rompe el flujo de caja.",
+  inputs: {
+    price: "Precio de compra (EUR)",
+    ltv: "Financiación (%)",
+    rate: "Tipo de interés (%)",
+    years: "Plazo (años)",
+    rent: "Alquiler neto mensual (EUR)",
+    costs: "Gastos fijos mensuales (EUR)",
+  },
+  columns: {
+    scenario: "Escenario",
+    payment: "Cuota",
+    cashFlow: "Flujo/mes",
+    dscr: "Cobertura",
+    equity: "Patrimonio",
+  },
+  scenarios: {
+    base: "Situación inicial",
+    rate: "Tipos más 2 puntos",
+    rent: "Alquiler menos 10%",
+    vacancy: "Dos meses vacíos",
+    price: "Precio menos 10%",
+    combo: "Todos los golpes a la vez",
+  },
+  summary: {
+    loan: "Préstamo",
+    payment: "Cuota mensual",
+    cashFlow: "Flujo mensual",
+    buffer: (months) => `Colchón: ${months} meses de alquiler para aguantar el escenario combinado.`,
+    bufferNone: "El escenario combinado sigue en positivo, sin colchón.",
+    underwater: "Aviso: con una caída del 10% el patrimonio baja de cero.",
+  },
+  note: "Cada golpe se aplica por separado. No es una previsión: muestra la carga a la que el modelo deja de cuadrar.",
+  cta: "Probar un inmueble concreto",
+};
+
 export const SHORTLET_COPY: Record<Locale, ShortLetCopy> = {
   pl: SHORTLET_PL,
   en: SHORTLET_EN,
   es: SHORTLET_ES,
+};
+
+export const STRESS_COPY: Record<Locale, StressCopy> = {
+  pl: STRESS_PL,
+  en: STRESS_EN,
+  es: STRESS_ES,
 };
 

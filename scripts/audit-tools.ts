@@ -15,6 +15,7 @@ import { readFileSync, existsSync } from "node:fs";
 import { deriveCityStats, deriveDistrictStats } from "../src/lib/content/market-stats";
 import { getCity, getAllDistrictEntries, getRegion } from "../src/lib/data/repository";
 import { computeShortLet } from "../src/lib/tools/short-let";
+import { computeStress } from "../src/lib/tools/stress";
 
 let passed = 0;
 const failures: string[] = [];
@@ -99,6 +100,7 @@ const markers: Array<[string, string, string]> = [
   ["temporada o año", "cityEs", "Temporada o año"],
   ["workbench na dzielnicy", "districtPl", "Policz inwestycję"],
   ["koszty na dzielnicy", "districtPl", "Koszty i podatki"],
+  ["stress test na dzielnicy", "districtPl", "Test odporności"],
   ["mapa rankingu", "rankingPl", "0 0 900 460"],
   ["workbench w usługach", "servicePl", "Policz inwestycję"],
 ];
@@ -198,6 +200,53 @@ if (city) {
 }
 
 /* -------------------------------------------------------------------------
+ * 3b. Stress test na stronie dzielnicy: rata i cash flow z modelu
+ * ------------------------------------------------------------------------- */
+
+const laMata = getAllDistrictEntries().find(
+  (entry) => entry.city.slug === "torrevieja" && entry.district.slug === "la-mata",
+);
+ok("dane: dzielnica La Mata w bazie", Boolean(laMata));
+
+if (laMata && html.districtPl) {
+  const stats = deriveDistrictStats(laMata.city, laMata.district, laMata.region);
+  const price = Math.round(stats.pricePerM2 * 70);
+  const stressModel = computeStress({
+    price,
+    ltv: 70,
+    rate: 3.5,
+    years: 25,
+    monthlyRent: Math.round((price * stats.netYield) / 100 / 12),
+    monthlyCosts: Math.round((price * 0.012) / 12),
+  });
+  const baseRow = rowValues(html.districtPl, "Sytuacja wyjściowa");
+  ok("liczby: wiersz „Sytuacja wyjściowa” w HTML", baseRow !== null);
+  if (baseRow) {
+    ok(
+      "liczby: rata w stress teście zgodna z modelem",
+      Math.abs(baseRow[0] - stressModel.payment) <= 1,
+      `HTML ${baseRow[0]}, model ${stressModel.payment}`,
+    );
+    ok(
+      "liczby: cash flow w stress teście zgodny z modelem",
+      Math.abs(baseRow[1] - stressModel.baseCashFlow) <= 1,
+      `HTML ${baseRow[1]}, model ${stressModel.baseCashFlow}`,
+    );
+  }
+
+  const comboRow = rowValues(html.districtPl, "Wszystkie szoki naraz");
+  const combo = stressModel.scenarios.find((scenario) => scenario.id === "combo");
+  ok("liczby: wiersz „Wszystkie szoki naraz” w HTML", comboRow !== null && Boolean(combo));
+  if (comboRow && combo) {
+    ok(
+      "liczby: cash flow w scenariuszu łączonym zgodny z modelem",
+      Math.abs(comboRow[1] - combo.cashFlow) <= 1,
+      `HTML ${comboRow[1]}, model ${combo.cashFlow}`,
+    );
+  }
+}
+
+/* -------------------------------------------------------------------------
  * 4. Próbka dzielnic: ITP zgodne z regionem
  * ------------------------------------------------------------------------- */
 
@@ -234,6 +283,7 @@ const toolFiles = [
   "src/components/tools/purchase-costs-calculator.tsx",
   "src/components/tools/short-let-comparison.tsx",
   "src/components/tools/purchase-checklist.tsx",
+  "src/components/tools/stress-test.tsx",
 ];
 
 for (const file of toolFiles) {

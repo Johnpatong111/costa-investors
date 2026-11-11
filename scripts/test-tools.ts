@@ -21,6 +21,7 @@ import {
 import { computeShortLet } from "../src/lib/tools/short-let";
 import { annuity, computeInvestment } from "../src/lib/tools/investment";
 import { areaForBudget, median } from "../src/lib/tools/ranking";
+import { bufferMonths, computeStress } from "../src/lib/tools/stress";
 
 let passed = 0;
 const failures: string[] = [];
@@ -356,7 +357,84 @@ eq("workbench/budżet 0: brak NaN w cash on cash", Number.isFinite(emptyBudget.c
 
 
 /* =========================================================================
- * 4. POMOCNICZE FUNKCJE RANKINGU
+ * 4. STRESS TEST
+ * ========================================================================= */
+
+const stress = computeStress({
+  price: 250_000,
+  ltv: 70,
+  rate: 3.5,
+  years: 25,
+  monthlyRent: 11_750 / 12,
+  monthlyCosts: 250,
+});
+const byId = (id: string) => stress.scenarios.find((scenario) => scenario.id === id)!;
+
+eq("stress: kwota kredytu 70%", stress.loan, 175_000);
+eq("stress: rata bazowa", stress.payment, 876);
+eq("stress: cash flow bazowy", stress.baseCashFlow, -147);
+near("stress: DSCR bazowy", byId("base").dscr, 979.1666667 / 876, 0.0001);
+eq("stress: rata po szoku stopy +2 pkt", byId("rate").payment, 1_075);
+eq("stress: cash flow po szoku stopy", byId("rate").cashFlow, -346);
+eq("stress: cash flow po spadku czynszu 10%", byId("rent").cashFlow, -245);
+eq("stress: cash flow przy dwóch miesiącach pustostanu", byId("vacancy").cashFlow, -310);
+eq("stress: czynsz po pustostanie", Math.round(979.1666667 * (10 / 12)), 816);
+eq("stress: wartość po spadku ceny 10%", byId("price").value, 225_000);
+eq("stress: kapitał własny po spadku ceny", byId("price").equity, 50_000);
+near("stress: LTV po spadku ceny", byId("price").ltvAfter, (175_000 / 225_000) * 100, 0.0001);
+eq("stress: brak ujemnego kapitału przy LTV 70%", byId("price").underwater, false);
+eq("stress: cash flow w scenariuszu łączonym", byId("combo").cashFlow, -591);
+eq("stress: rezerwa w miesiącach czynszu", bufferMonths(byId("combo"), 979.1666667), 8);
+
+// INWARIANT: wyższa stopa przy tym samym kredycie zawsze obniża cash flow.
+ok("stress: szok stopy obniża cash flow", byId("rate").cashFlow < byId("base").cashFlow);
+
+// INWARIANT: szok czynszu nie zmienia raty.
+eq("stress: szok czynszu nie rusza raty", byId("rent").payment, byId("base").payment);
+
+const underwater = computeStress({
+  price: 200_000,
+  ltv: 95,
+  rate: 3.5,
+  years: 30,
+  monthlyRent: 900,
+  monthlyCosts: 200,
+});
+ok(
+  "stress: LTV 95% plus spadek ceny daje ujemny kapitał",
+  underwater.scenarios.find((scenario) => scenario.id === "price")!.underwater,
+);
+
+const cashOnly = computeStress({
+  price: 250_000,
+  ltv: 0,
+  rate: 3.5,
+  years: 25,
+  monthlyRent: 1_000,
+  monthlyCosts: 200,
+});
+eq("stress: bez kredytu rata 0", cashOnly.payment, 0);
+eq("stress: bez kredytu cash flow", cashOnly.baseCashFlow, 800);
+ok(
+  "stress: bez kredytu DSCR nieokreślony",
+  !Number.isFinite(cashOnly.scenarios.find((scenario) => scenario.id === "base")!.dscr),
+);
+eq("stress: bez kredytu brak rezerwy", bufferMonths(cashOnly.scenarios[0]!, 1_000), 0);
+
+const zeroStress = computeStress({
+  price: 0,
+  ltv: 70,
+  rate: 3.5,
+  years: 25,
+  monthlyRent: 0,
+  monthlyCosts: 0,
+});
+eq("stress: cena 0 daje kredyt 0", zeroStress.loan, 0);
+eq("stress: cena 0 daje ratę 0", zeroStress.payment, 0);
+eq("stress: cena 0 bez NaN w LTV", Number.isFinite(zeroStress.scenarios[0]!.ltvAfter), true);
+
+/* =========================================================================
+ * 5. POMOCNICZE FUNKCJE RANKINGU
  * ========================================================================= */
 
 eq("mediana: pusta lista", median([]), 0);

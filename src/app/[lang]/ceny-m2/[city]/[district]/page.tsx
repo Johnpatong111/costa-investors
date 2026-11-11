@@ -11,6 +11,7 @@ import { PriceHistorySection } from "@/components/sections/price-history";
 import { InternalLinks } from "@/components/sections/internal-links";
 import { InvestorWorkbench } from "@/components/tools/investor-workbench";
 import { PurchaseCostsCalculator } from "@/components/tools/purchase-costs-calculator";
+import { StressTest } from "@/components/tools/stress-test";
 import { regionTax } from "@/lib/content/region-facts";
 import { getPriceHistory } from "@/lib/i18n/price-history";
 import { PRICE_HISTORY_KEYWORD } from "@/lib/i18n/seo-copy";
@@ -223,6 +224,17 @@ export default async function PriceReportPage({
           itp={regionTax(entry.city.region).itp}
           authority={regionTax(entry.city.region).authority}
           rentalYield={report.stats.rentalYield}
+          ctaHref="#formularz"
+        />
+      </Section>
+
+      <Section className="pt-0">
+        <StressTest
+          locale={locale}
+          placeName={entry.district.name}
+          price={Math.round(report.stats.pricePerM2 * 70)}
+          netRentMonthly={Math.round((report.stats.pricePerM2 * 70 * report.stats.netYield) / 100 / 12)}
+          monthlyCosts={Math.round((report.stats.pricePerM2 * 70 * 0.012) / 12)}
           ctaHref="#formularz"
         />
       </Section>
