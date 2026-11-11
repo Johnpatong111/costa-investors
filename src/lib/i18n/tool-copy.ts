@@ -559,9 +559,167 @@ const CHECKLIST_ES: ChecklistCopy = {
   note: "Solo orientativa. El orden y los documentos cambian en obra nueva y en compras con hipoteca.",
 };
 
+export interface ShortLetCopy {
+  eyebrow: string;
+  title: (city: string) => string;
+  lead: string;
+  inputs: {
+    nightly: string;
+    occupancy: string;
+    monthlyRent: string;
+  };
+  columns: { item: string; short: string; long: string };
+  rows: {
+    income: string;
+    costs: string;
+    net: string;
+    monthly: string;
+    yield: string;
+    nightCost: string;
+  };
+  result: {
+    winnerShort: (diff: string) => string;
+    winnerLong: (diff: string) => string;
+    tie: string;
+    breakEven: (occupancy: string) => string;
+    breakEvenHint: string;
+  };
+  assumptionsTitle: string;
+  assumptions: string[];
+  note: string;
+  cta: string;
+}
+
+const SHORTLET_PL: ShortLetCopy = {
+  eyebrow: "Sezon czy rok",
+  title: (city) => `Najem krótkoterminowy czy długoterminowy w ${city}`,
+  lead: "Ten sam lokal, dwa modele. Porównanie liczy koszty, których nie widać w ogłoszeniu: prowizję portalu, sprzątanie między gośćmi, zarządzanie i media.",
+  inputs: {
+    nightly: "Stawka za dobę (EUR)",
+    occupancy: "Obłożenie w roku (%)",
+    monthlyRent: "Czynsz najmu długoterminowego (EUR/mies.)",
+  },
+  columns: {
+    item: "Pozycja",
+    short: "Krótkoterminowy",
+    long: "Długoterminowy",
+  },
+  rows: {
+    income: "Przychód roczny",
+    costs: "Koszty roczne",
+    net: "Dochód netto",
+    monthly: "Średnio miesięcznie",
+    yield: "Zwrot z ceny zakupu",
+    nightCost: "Koszt na dobę",
+  },
+  result: {
+    winnerShort: (diff) => `Najem krótkoterminowy daje ${diff} więcej rocznie.`,
+    winnerLong: (diff) => `Najem długoterminowy daje ${diff} więcej rocznie.`,
+    tie: "Oba modele wychodzą praktycznie tak samo.",
+    breakEven: (occupancy) => `Próg rentowności: ${occupancy} obłożenia.`,
+    breakEvenHint:
+      "Poniżej tego obłożenia sezon przestaje wygrywać z najmem rocznym przy tych kosztach.",
+  },
+  assumptionsTitle: "Założenia modelu",
+  assumptions: [
+    "Prowizja portalu 15% przychodu",
+    "Zarządzanie 20% przychodu przy sezonie, 8% przy najmie rocznym",
+    "Sprzątanie 55 EUR za pobyt, średnio 6 nocy",
+    "Media 130 EUR miesięcznie przy sezonie, opłacane przez najemcę przy rocznym",
+    "IBI, comunidad i ubezpieczenie 1,2% ceny rocznie w obu modelach",
+    "Najem roczny: jeden miesiąc pustostanu w roku",
+  ],
+  note: "Model porównawczy, nie prognoza. Przy najmie krótkoterminowym dochodzi licencja turystyczna i limit nocy ustalany przez gminę.",
+  cta: "Sprawdź konkretny lokal pod ten model",
+};
+
+
+const SHORTLET_EN: ShortLetCopy = {
+  eyebrow: "Season or year",
+  title: (city) => `Short lets or long lets in ${city}`,
+  lead: "One property, two models. The comparison charges the costs that never appear in a listing: platform commission, cleaning between guests, management and utilities.",
+  inputs: {
+    nightly: "Nightly rate (EUR)",
+    occupancy: "Occupancy across the year (%)",
+    monthlyRent: "Long-term rent (EUR per month)",
+  },
+  columns: { item: "Item", short: "Short let", long: "Long let" },
+  rows: {
+    income: "Annual income",
+    costs: "Annual costs",
+    net: "Net income",
+    monthly: "Average per month",
+    yield: "Return on the purchase price",
+    nightCost: "Cost per night",
+  },
+  result: {
+    winnerShort: (diff) => `Short lets earn ${diff} more per year.`,
+    winnerLong: (diff) => `Long lets earn ${diff} more per year.`,
+    tie: "Both models come out practically the same.",
+    breakEven: (occupancy) => `Break-even occupancy: ${occupancy}.`,
+    breakEvenHint: "Below that occupancy the season stops beating a year-round let at these costs.",
+  },
+  assumptionsTitle: "Model assumptions",
+  assumptions: [
+    "Platform commission 15% of income",
+    "Management 20% of income on short lets, 8% on long lets",
+    "Cleaning at 55 EUR per stay, six nights on average",
+    "Utilities at 130 EUR per month on short lets, paid by the tenant on long lets",
+    "IBI, community and insurance at 1.2% of the price per year in both models",
+    "Long let: one vacant month per year",
+  ],
+  note: "A comparison, not a forecast. Short lets also need a tourist licence and respect the night cap set by the municipality.",
+  cta: "Check a specific property against this model",
+};
+
+const SHORTLET_ES: ShortLetCopy = {
+  eyebrow: "Temporada o año",
+  title: (city) => `Alquiler turístico o de larga duración en ${city}`,
+  lead: "El mismo inmueble, dos modelos. La comparación incluye los gastos que no aparecen en el anuncio: comisión del portal, limpieza entre huéspedes, gestión y suministros.",
+  inputs: {
+    nightly: "Precio por noche (EUR)",
+    occupancy: "Ocupación anual (%)",
+    monthlyRent: "Alquiler de larga duración (EUR/mes)",
+  },
+  columns: { item: "Concepto", short: "Temporada", long: "Larga duración" },
+  rows: {
+    income: "Ingresos anuales",
+    costs: "Gastos anuales",
+    net: "Ingreso neto",
+    monthly: "Media mensual",
+    yield: "Rentabilidad sobre el precio",
+    nightCost: "Coste por noche",
+  },
+  result: {
+    winnerShort: (diff) => `El alquiler turístico deja ${diff} más al año.`,
+    winnerLong: (diff) => `El alquiler de larga duración deja ${diff} más al año.`,
+    tie: "Los dos modelos salen prácticamente iguales.",
+    breakEven: (occupancy) => `Punto de equilibrio: ${occupancy} de ocupación.`,
+    breakEvenHint:
+      "Por debajo de esa ocupación la temporada deja de superar al alquiler anual con estos gastos.",
+  },
+  assumptionsTitle: "Supuestos del modelo",
+  assumptions: [
+    "Comisión del portal 15% de los ingresos",
+    "Gestión 20% en temporada y 8% en larga duración",
+    "Limpieza 55 EUR por estancia, seis noches de media",
+    "Suministros 130 EUR al mes en temporada; en larga duración los paga el inquilino",
+    "IBI, comunidad y seguro 1,2% del precio al año en ambos modelos",
+    "Larga duración: un mes vacío al año",
+  ],
+  note: "Comparativa, no previsión. El alquiler turístico exige licencia y respeta el límite de noches que fija el ayuntamiento.",
+  cta: "Revisar un inmueble concreto con este modelo",
+};
+
 export const CHECKLIST_COPY: Record<Locale, ChecklistCopy> = {
   pl: CHECKLIST_PL,
   en: CHECKLIST_EN,
   es: CHECKLIST_ES,
+};
+
+export const SHORTLET_COPY: Record<Locale, ShortLetCopy> = {
+  pl: SHORTLET_PL,
+  en: SHORTLET_EN,
+  es: SHORTLET_ES,
 };
 

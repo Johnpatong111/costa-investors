@@ -8,6 +8,7 @@ import { InternalLinks } from "@/components/sections/internal-links";
 import { InvestorWorkbench } from "@/components/tools/investor-workbench";
 import { PurchaseCostsCalculator } from "@/components/tools/purchase-costs-calculator";
 import { PurchaseChecklist } from "@/components/tools/purchase-checklist";
+import { ShortLetComparison } from "@/components/tools/short-let-comparison";
 import { regionTax } from "@/lib/content/region-facts";
 import { RANKING_COPY } from "@/lib/i18n/ranking-copy";
 import { JsonLd } from "@/components/seo/json-ld";
@@ -382,6 +383,16 @@ export default async function PriceCityPage({ params }: { params: Promise<RouteP
           cityName={city.name}
           itp={regionTax(city.region).itp}
           authority={regionTax(city.region).authority}
+          rentalYield={stats.rentalYield}
+          ctaHref="#formularz"
+        />
+      </Section>
+
+      <Section className="pt-0">
+        <ShortLetComparison
+          locale={locale}
+          cityName={city.name}
+          pricePerM2={stats.pricePerM2}
           rentalYield={stats.rentalYield}
           ctaHref="#formularz"
         />
