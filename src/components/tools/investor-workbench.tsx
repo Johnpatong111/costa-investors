@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { ArrowUpDown, Calculator, Check, Copy, Info } from "lucide-react";
+import { publishBudget } from "@/lib/tools/budget-bus";
 import type { MarketRates } from "@/lib/leads/investment";
 import { computeInvestment } from "@/lib/tools/investment";
 import type { Locale } from "@/lib/i18n/config";
@@ -56,6 +57,17 @@ export function InvestorWorkbench({
   const [sortKey, setSortKey] = useState<SortKey>("rent");
   const [sortDesc, setSortDesc] = useState(true);
   const [copied, setCopied] = useState(false);
+
+  // Po zmianie budżetu wysyłamy go do formularza leadowego. Pomijamy pierwsze
+  // renderowanie, żeby nie nadpisać kwoty podanej w linku (?budzet=...).
+  const budgetPublished = useRef(false);
+  useEffect(() => {
+    if (!budgetPublished.current) {
+      budgetPublished.current = true;
+      return;
+    }
+    publishBudget(budget);
+  }, [budget]);
 
   // Parametry w URL: wyliczenie można wysłać klientowi i do niego wrócić.
   useEffect(() => {

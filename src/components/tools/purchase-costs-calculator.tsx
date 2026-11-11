@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Info, Receipt } from "lucide-react";
+import { publishBudget } from "@/lib/tools/budget-bus";
 import type { Locale } from "@/lib/i18n/config";
 import { COSTS_COPY } from "@/lib/i18n/tool-copy";
 import { computePurchaseCosts, type Deal, type PropertyType, type Residency } from "@/lib/tools/purchase-costs";
@@ -41,6 +42,15 @@ export function PurchaseCostsCalculator({
   const [deal, setDeal] = useState<DealType>("resale");
   const [property, setProperty] = useState<Property>("flat");
   const [residency, setResidency] = useState<ResidencyType>("nonEu");
+
+  const pricePublished = useRef(false);
+  useEffect(() => {
+    if (!pricePublished.current) {
+      pricePublished.current = true;
+      return;
+    }
+    publishBudget(price);
+  }, [price]);
 
   const model = computePurchaseCosts({ price, itp, deal, property, residency, rentalYield });
   const {

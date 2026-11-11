@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useForm, useWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { AlertCircle, ArrowLeft, ArrowRight, Check, Loader2, ShieldCheck } from "lucide-react";
@@ -78,6 +78,16 @@ export function MultiStepLeadForm({
   const [serverError, setServerError] = useState<string | null>(null);
   const [budgetError, setBudgetError] = useState<string | undefined>(undefined);
   const [submitted, setSubmitted] = useState<{ fullName: string; phone: string } | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const previousStep = useRef(step);
+
+  // Po zmianie kroku wracamy na górę karty: na mobile użytkownik nie ląduje
+  // na dole długiego formularza i od razu widzi pierwsze pytanie.
+  useEffect(() => {
+    if (previousStep.current === step) return;
+    previousStep.current = step;
+    containerRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }, [step]);
 
   const form = useForm<LeadFormValues>({
     resolver: zodResolver(leadFormSchema),
@@ -90,7 +100,7 @@ export function MultiStepLeadForm({
     },
   });
 
-  const { register, control, handleSubmit, trigger, setValue, setError, reset, formState } = form;
+  const { register, control, handleSubmit, trigger, setValue, setError, setFocus, getFieldState, reset, formState } = form;
   const values = useWatch({ control });
 
   useEffect(() => {
@@ -130,7 +140,14 @@ export function MultiStepLeadForm({
     setValue("budget", budget);
 
     const valid = await trigger([...STEP_ONE_FIELDS]);
-    if (!valid || !budgetCheck.success) return;
+    if (!valid || !budgetCheck.success) {
+      // Prowadzimy kursor do pierwszego błędu, żeby użytkownik nie szukał,
+      // co blokuje przejście dalej.
+      const firstInvalid = STEP_ONE_FIELDS.find((field) => getFieldState(field).invalid);
+      if (firstInvalid) setFocus(firstInvalid);
+      else if (!budgetCheck.success) document.getElementById("budget")?.focus();
+      return;
+    }
     setStep(1);
   };
 
@@ -165,6 +182,10 @@ export function MultiStepLeadForm({
           if ((STEP_ONE_FIELDS as readonly string[]).includes(field)) backToFirstStep = true;
         }
         if (backToFirstStep) setStep(0);
+        const firstField = data?.details?.[0]?.field as keyof LeadFormValues | undefined;
+        if (firstField && firstField in defaultLeadValues) {
+          setFocus(firstField);
+        }
 
         setServerError(
           data?.error ?? formOptions.labels.errorGeneric,
@@ -218,11 +239,16 @@ export function MultiStepLeadForm({
 
   return (
     <div
+      ref={containerRef}
+      data-lead-form
       className={cn(
-        "rounded-2xl border border-brand-100 bg-white p-5 shadow-card sm:p-6",
+        "scroll-mt-24 rounded-2xl border border-brand-100 bg-white p-5 shadow-card sm:p-6",
         className,
       )}
     >
+      <p className="sr-only" aria-live="polite">
+        {formCopy.stepLabel(step + 1)}
+      </p>
       <div className="flex items-start justify-between gap-3">
         <div>
           <h2 className="text-lg font-bold text-brand-950">{heading ?? copy.defaultHeading}</h2>
@@ -283,6 +309,7 @@ export function MultiStepLeadForm({
             budget={budget}
             onBudgetChange={onBudgetChange}
             budgetError={budgetError}
+            hideRegions={Boolean(cityName)}
           />
         ) : (
           <StepContact

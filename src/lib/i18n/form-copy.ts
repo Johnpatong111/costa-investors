@@ -72,7 +72,7 @@ export const FORM_FIELD_COPY: Record<Locale, FormFieldCopy> = {
       "Bez prowizji od kupującego · weryfikacja prawna abogado i NIE · dane nie są odsprzedawane",
     defaultHeading: "Znajdź nieruchomości i odbierz analizę ROI",
     defaultSubheading:
-      "Wypełnij 4 krótkie pytania. W ciągu 15 minut prześlemy spersonalizowany zestaw ofert.",
+      "Dwa kroki, około 40 sekund. Weryfikacja zgłoszenia w 30 minut, agent odzywa się w 24 h.",
   },
   en: {
     edit: "Edit",
@@ -103,7 +103,7 @@ export const FORM_FIELD_COPY: Record<Locale, FormFieldCopy> = {
     trustLine: "No buyer commission · abogado legal check and NIE · data never resold",
     defaultHeading: "Find properties and get an ROI analysis",
     defaultSubheading:
-      "Four quick questions. Within 15 minutes we send a personalised shortlist.",
+      "Two steps, about 40 seconds. We verify your enquiry within 30 minutes and an agent replies within 24 h.",
   },
   es: {
     edit: "Cambiar",
@@ -135,7 +135,7 @@ export const FORM_FIELD_COPY: Record<Locale, FormFieldCopy> = {
       "Sin comisión al comprador · revisión legal con abogado y NIE · datos nunca revendidos",
     defaultHeading: "Encuentra viviendas y recibe un análisis de rentabilidad",
     defaultSubheading:
-      "Cuatro preguntas rápidas. En 15 minutos enviamos una selección personalizada.",
+      "Dos pasos, unos 40 segundos. Verificamos la solicitud en 30 minutos y el agente responde en 24 h.",
   },
 };
 

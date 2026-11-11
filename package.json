@@ -15,11 +15,13 @@
     "icons": "node scripts/generate-icons.mjs",
     "sitemap": "tsx scripts/generate-sitemap.ts",
     "prebuild": "npm run sitemap",
-    "check": "npm run audit:clean && npm run audit:dashes && npm run audit:links && npm run audit:locale && npm run audit:tools && npm run test:tools && npm run validate:data && npm run typecheck",
+    "check": "npm run audit:clean && npm run audit:dashes && npm run audit:links && npm run audit:locale && npm run audit:tools && npm run audit:leads && npm run test:tools && npm run test:leads && npm run validate:data && npm run typecheck",
     "audit:locale": "tsx scripts/audit-locale-leaks.ts",
     "audit:links": "tsx scripts/audit-footer-links.ts",
     "audit:tools": "tsx scripts/audit-tools.ts",
-    "test:tools": "tsx scripts/test-tools.ts"
+    "audit:leads": "tsx scripts/audit-leads.ts",
+    "test:tools": "tsx scripts/test-tools.ts",
+    "test:leads": "tsx scripts/test-leads.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.0.0",

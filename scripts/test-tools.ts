@@ -21,6 +21,7 @@ import {
 import { computeShortLet } from "../src/lib/tools/short-let";
 import { annuity, computeInvestment } from "../src/lib/tools/investment";
 import { areaForBudget, median } from "../src/lib/tools/ranking";
+import { isBudgetInRange } from "../src/lib/tools/budget-bus";
 import { bufferMonths, computeStress } from "../src/lib/tools/stress";
 
 let passed = 0;
@@ -445,6 +446,16 @@ eq("mediana: pomija NaN", median([1, Number.NaN, 3]), 2);
 eq("metraż: 250 000 przy 2 400 €/m²", areaForBudget(250_000, 2_400), 104);
 eq("metraż: cena 0 nie dzieli przez zero", areaForBudget(250_000, 0), 0);
 eq("metraż: budżet 0", areaForBudget(0, 2_400), 0);
+
+/* =========================================================================
+ * 4b. MOSTEK BUDŻETU (narzędzia → formularz)
+ * ========================================================================= */
+
+eq("budżet: 50 000 w zakresie", isBudgetInRange(50_000), true);
+eq("budżet: 3 000 000 w zakresie", isBudgetInRange(3_000_000), true);
+eq("budżet: 49 999 poza zakresem", isBudgetInRange(49_999), false);
+eq("budżet: 3 000 001 poza zakresem", isBudgetInRange(3_000_001), false);
+eq("budżet: NaN poza zakresem", isBudgetInRange(Number.NaN), false);
 
 /* =========================================================================
  * 5. SPÓJNOŚĆ Z DANYMI STRONY

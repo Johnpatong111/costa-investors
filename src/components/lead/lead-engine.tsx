@@ -1,6 +1,7 @@
 "use client";
 
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { BUDGET_EVENT, isBudgetInRange } from "@/lib/tools/budget-bus";
 import { estimateReturns, type MarketRates } from "@/lib/leads/investment";
 import { InvestmentCalculator } from "./investment-calculator";
 import { MultiStepLeadForm } from "./multi-step-lead-form";
@@ -46,6 +47,27 @@ export function LeadEngine({
 }: LeadEngineProps) {
   const [budget, setBudget] = useState(defaultBudget);
   const formRef = useRef<HTMLDivElement>(null);
+
+  // Budżet z linku (np. z rankingu: ?budzet=250000) wchodzi od razu do
+  // formularza i kalkulatora, więc użytkownik nie wpisuje go dwa razy.
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const raw = new URLSearchParams(window.location.search).get("budzet");
+    const value = Number(raw);
+    if (!isBudgetInRange(value)) return;
+    setBudget(String(Math.round(value)).replace(/\B(?=(\d{3})+(?!\d))/g, " "));
+  }, []);
+
+  // Budżet z narzędzi (workbench, koszty, stress) trafia do formularza na żywo.
+  useEffect(() => {
+    const handler = (event: Event) => {
+      const value = Number((event as CustomEvent<number>).detail);
+      if (!isBudgetInRange(value)) return;
+      setBudget(String(Math.round(value)).replace(/\B(?=(\d{3})+(?!\d))/g, " "));
+    };
+    window.addEventListener(BUDGET_EVENT, handler);
+    return () => window.removeEventListener(BUDGET_EVENT, handler);
+  }, []);
 
   const estimate = useMemo(() => {
     if (!rates) return null;

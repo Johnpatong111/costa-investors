@@ -55,6 +55,8 @@ export interface StepConfigProps {
   budget: string;
   onBudgetChange: (value: string) => void;
   budgetError?: string;
+  /** Strona zna lokalizację (miasto/dzielnica), więc pytanie o region jest zbędne. */
+  hideRegions?: boolean;
 }
 
 /**
@@ -70,6 +72,7 @@ export function StepConfig({
   budget,
   onBudgetChange,
   budgetError,
+  hideRegions = false,
 }: StepConfigProps) {
   const copy = FORM_FIELD_COPY[locale];
   const budgetValue = parseBudget(budget) || BUDGET_DEFAULT;
@@ -114,17 +117,19 @@ export function StepConfig({
         size="sm"
       />
 
-      <OptionChecklist
-        name="regions"
-        legend={formOptions.labels.regions}
-        hint={formOptions.labels.regionsHint}
-        options={formOptions.regions}
-        icons={REGION_ICONS}
-        register={register}
-        control={control}
-        columns={2}
-        size="sm"
-      />
+      {hideRegions ? null : (
+        <OptionChecklist
+          name="regions"
+          legend={formOptions.labels.regions}
+          hint={formOptions.labels.regionsHint}
+          options={formOptions.regions}
+          icons={REGION_ICONS}
+          register={register}
+          control={control}
+          columns={2}
+          size="sm"
+        />
+      )}
 
       {/* Wymogi są opcjonalne, więc domyślnie schowane - na mobile skracają
           formularz o całą sekcję. Stan pól pozostaje w react-hook-form. */}

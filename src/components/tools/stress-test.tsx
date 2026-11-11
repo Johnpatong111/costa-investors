@@ -1,7 +1,8 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { AlertTriangle, ShieldCheck } from "lucide-react";
+import { publishBudget } from "@/lib/tools/budget-bus";
 import type { Locale } from "@/lib/i18n/config";
 import { STRESS_COPY } from "@/lib/i18n/tool-copy";
 import { bufferMonths, computeStress } from "@/lib/tools/stress";
@@ -36,6 +37,15 @@ export function StressTest({
   const [years, setYears] = useState(25);
   const [rent, setRent] = useState(Math.round(netRentMonthly));
   const [costs, setCosts] = useState(Math.round(monthlyCosts));
+
+  const pricePublished = useRef(false);
+  useEffect(() => {
+    if (!pricePublished.current) {
+      pricePublished.current = true;
+      return;
+    }
+    publishBudget(purchasePrice);
+  }, [purchasePrice]);
 
   const model = useMemo(
     () =>

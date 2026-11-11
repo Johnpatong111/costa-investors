@@ -84,11 +84,15 @@ export function StepContact({
             placeholder={copy.fullNamePlaceholder}
             className={fieldClass(Boolean(errors.fullName))}
             aria-invalid={Boolean(errors.fullName)}
+            aria-required="true"
+            aria-describedby={errors.fullName ? "fullName-error" : undefined}
             {...register("fullName")}
           />
         </div>
         {errors.fullName ? (
-          <p className="mt-1 text-xs font-medium text-red-600">{translateFieldError(errors.fullName.message, locale)}</p>
+          <p id="fullName-error" role="alert" className="mt-1 text-xs font-medium text-red-600">
+            {translateFieldError(errors.fullName.message, locale)}
+          </p>
         ) : null}
       </div>
 
@@ -109,13 +113,17 @@ export function StepContact({
             placeholder={copy.phonePlaceholder}
             className={fieldClass(Boolean(errors.phone))}
             aria-invalid={Boolean(errors.phone)}
+            aria-required="true"
+            aria-describedby={errors.phone ? "phone-error" : "phone-hint"}
             {...register("phone")}
           />
         </div>
         {errors.phone ? (
-          <p className="mt-1 text-xs font-medium text-red-600">{translateFieldError(errors.phone.message, locale)}</p>
+          <p id="phone-error" role="alert" className="mt-1 text-xs font-medium text-red-600">
+            {translateFieldError(errors.phone.message, locale)}
+          </p>
         ) : (
-          <p className="mt-1 text-[11px] text-brand-500">
+          <p id="phone-hint" className="mt-1 text-[11px] text-brand-500">
             {copy.phoneHint}
           </p>
         )}
@@ -138,11 +146,14 @@ export function StepContact({
             placeholder={copy.emailPlaceholder}
             className={fieldClass(Boolean(errors.email))}
             aria-invalid={Boolean(errors.email)}
+            aria-describedby={errors.email ? "email-error" : undefined}
             {...register("email")}
           />
         </div>
         {errors.email ? (
-          <p className="mt-1 text-xs font-medium text-red-600">{translateFieldError(errors.email.message, locale)}</p>
+          <p id="email-error" role="alert" className="mt-1 text-xs font-medium text-red-600">
+            {translateFieldError(errors.email.message, locale)}
+          </p>
         ) : null}
       </div>
 
@@ -158,14 +169,19 @@ export function StepContact({
             />
             <input
               id="city"
+              autoComplete="address-level2"
               readOnly={cityLocked}
               className={cn(fieldClass(Boolean(errors.city)), cityLocked && "bg-brand-50/60")}
               aria-invalid={Boolean(errors.city)}
+              aria-required="true"
+              aria-describedby={errors.city ? "city-error" : undefined}
               {...register("city")}
             />
           </div>
           {errors.city ? (
-            <p className="mt-1 text-xs font-medium text-red-600">{translateFieldError(errors.city.message, locale)}</p>
+            <p id="city-error" role="alert" className="mt-1 text-xs font-medium text-red-600">
+              {translateFieldError(errors.city.message, locale)}
+            </p>
           ) : null}
         </div>
 
@@ -198,16 +214,20 @@ export function StepContact({
         />
       </details>
 
-      <label className="flex items-start gap-2 text-[11px] leading-relaxed text-brand-600">
+      <label className="flex min-h-[44px] items-start gap-2 py-1 text-[11px] leading-relaxed text-brand-600">
         <input
           type="checkbox"
           className="mt-0.5 h-4 w-4 shrink-0 rounded border-brand-300 accent-brand-700"
+          aria-required="true"
+          aria-describedby={errors.consent ? "consent-error" : undefined}
           {...register("consent")}
         />
         <span>{copy.consent} *</span>
       </label>
       {errors.consent ? (
-        <p className="text-xs font-medium text-red-600">{translateFieldError(errors.consent.message, locale)}</p>
+        <p id="consent-error" role="alert" className="text-xs font-medium text-red-600">
+          {translateFieldError(errors.consent.message, locale)}
+        </p>
       ) : null}
 
       <label className="flex items-start gap-2 text-[11px] leading-relaxed text-brand-500">
