@@ -1107,6 +1107,9 @@ function cityTable(city: CitySeed, region: RegionSeed, stats: MarketStats): Reco
     yieldRate: formatRate(stats.rentalYield),
     netRate: formatRate(stats.netYield),
     days: String(stats.avgDaysOnMarket),
+    // Warstwa „timing” (PL_TIMING/EN_TIMING/ES_TIMING) używa {growth}; bez tego
+    // wpisu na hubach miast zostawało dosłowne „{growth}” w treści.
+    growth: formatRate(stats.priceGrowth),
     volume: String(stats.transactions12m),
     foreign: formatRate(stats.foreignBuyerShare, 0),
     polish: formatRate(stats.polishBuyerShare, 0),

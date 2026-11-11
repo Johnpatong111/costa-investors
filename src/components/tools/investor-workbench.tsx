@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { ArrowUpDown, Calculator, Check, Copy, Info } from "lucide-react";
 import type { MarketRates } from "@/lib/leads/investment";
+import { computeInvestment } from "@/lib/tools/investment";
 import type { Locale } from "@/lib/i18n/config";
 import { WORKBENCH_COPY } from "@/lib/i18n/tool-copy";
 import { formatEur } from "@/lib/utils/format";
@@ -29,20 +30,11 @@ export interface InvestorWorkbenchProps {
   ctaHref: string;
 }
 
-const PURCHASE_COSTS = 0.135;
 const PRESETS = [150_000, 250_000, 350_000, 500_000];
 
 type Scenario = "year" | "season";
 type Financing = "cash" | "mortgage";
 type SortKey = "price" | "yield" | "demand" | "days" | "area" | "rent";
-
-/** Rata annuitetowa: kapitał, stopa roczna %, liczba miesięcy. */
-function annuity(paymentBase: number, annualRate: number, months: number): number {
-  if (paymentBase <= 0 || months <= 0) return 0;
-  const monthlyRate = annualRate / 100 / 12;
-  if (monthlyRate === 0) return paymentBase / months;
-  return (paymentBase * monthlyRate) / (1 - Math.pow(1 + monthlyRate, -months));
-}
 
 export function InvestorWorkbench({
   locale,
@@ -81,34 +73,22 @@ export function InvestorWorkbench({
 
   const months = scenario === "season" ? 8 : 12;
 
-  const result = useMemo(() => {
-    const areaM2 = rates.pricePerM2 > 0 ? Math.round(budget / rates.pricePerM2) : 0;
-    const purchaseCosts = Math.round(budget * PURCHASE_COSTS);
-    const rentGross = Math.round(((budget * rates.rentalYield) / 100) * (months / 12));
-    const netRatio = rates.rentalYield > 0 ? rates.netYield / rates.rentalYield : 0.7;
-    const rentNet = Math.round(rentGross * netRatio);
-    const netYieldPct = budget > 0 ? (rentNet / budget) * 100 : 0;
-    const value5 = Math.round(budget * Math.pow(1 + rates.priceGrowth / 100, 5));
-    const totalReturn = value5 - budget + rentNet * 5;
-    const loan = financing === "mortgage" ? Math.round((budget * ltv) / 100) : 0;
-    const payment = financing === "mortgage" ? Math.round(annuity(loan, rate, years * 12)) : 0;
-    const cashInvested = Math.max(1, budget - loan + purchaseCosts);
-    const cashOnCash = ((rentNet - payment * 12) / cashInvested) * 100;
-    const cashFlow = Math.round(rentNet / 12 - payment);
-    return {
-      areaM2,
-      purchaseCosts,
-      rentGross,
-      rentNet,
-      netYieldPct,
-      value5,
-      totalReturn,
-      payment,
-      cashInvested,
-      cashOnCash,
-      cashFlow,
-    };
-  }, [budget, months, financing, ltv, rate, years, rates]);
+  const result = useMemo(
+    () =>
+      computeInvestment({
+        budget,
+        pricePerM2: rates.pricePerM2,
+        rentalYield: rates.rentalYield,
+        netYield: rates.netYield,
+        priceGrowth: rates.priceGrowth,
+        scenario,
+        financing,
+        ltv,
+        rate,
+        years,
+      }),
+    [budget, financing, ltv, rate, scenario, years, rates],
+  );
 
   const rows = useMemo(() => {
     const netRatio = rates.rentalYield > 0 ? rates.netYield / rates.rentalYield : 0.7;
@@ -185,7 +165,7 @@ export function InvestorWorkbench({
         <button
           type="button"
           onClick={copyLink}
-          className="inline-flex items-center gap-1.5 rounded-full border border-brand-200 px-3 py-1.5 text-xs font-semibold text-brand-700 transition hover:border-brand-400 hover:text-brand-900"
+          className="inline-flex min-h-[44px] items-center gap-1.5 rounded-full border border-brand-200 px-3 py-2 text-xs font-semibold text-brand-700 transition hover:border-brand-400 hover:text-brand-900"
         >
           {copied ? (
             <Check aria-hidden className="h-3.5 w-3.5" />
@@ -210,7 +190,7 @@ export function InvestorWorkbench({
                   onClick={() => setBudget(preset)}
                   aria-pressed={budget === preset}
                   className={cn(
-                    "rounded-full border px-3 py-1.5 text-xs font-semibold tabular-nums transition",
+                    "min-h-[44px] rounded-full border px-3 py-2 text-xs font-semibold tabular-nums transition",
                     budget === preset
                       ? "border-brand-600 bg-brand-600 text-white"
                       : "border-brand-200 text-brand-700 hover:border-brand-400",
@@ -233,7 +213,7 @@ export function InvestorWorkbench({
                   const next = Number(event.target.value);
                   setBudget(Number.isFinite(next) ? Math.max(0, Math.min(next, 2_000_000)) : 0);
                 }}
-                className="mt-1 w-full rounded-xl border border-brand-200 px-3 py-2 text-base font-semibold tabular-nums text-brand-950 focus:border-brand-500 focus:outline-none"
+                className="mt-1 w-full rounded-xl border border-brand-200 px-3 py-2.5 text-base font-semibold tabular-nums text-brand-950 focus:border-brand-500 focus:outline-none"
               />
             </label>
             <input
@@ -259,7 +239,7 @@ export function InvestorWorkbench({
                   onClick={() => setScenario(item.id)}
                   aria-pressed={scenario === item.id}
                   className={cn(
-                    "rounded-xl border px-3 py-2 text-left transition",
+                    "min-h-[44px] rounded-xl border px-3 py-2 text-left transition",
                     scenario === item.id
                       ? "border-brand-600 bg-brand-50"
                       : "border-brand-200 hover:border-brand-400",
@@ -286,7 +266,7 @@ export function InvestorWorkbench({
                   onClick={() => setFinancing(item.id)}
                   aria-pressed={financing === item.id}
                   className={cn(
-                    "rounded-xl border px-3 py-2 text-left transition",
+                    "min-h-[44px] rounded-xl border px-3 py-2 text-left transition",
                     financing === item.id
                       ? "border-brand-600 bg-brand-50"
                       : "border-brand-200 hover:border-brand-400",
@@ -419,7 +399,7 @@ export function InvestorWorkbench({
                     <button
                       type="button"
                       onClick={() => toggleSort(key)}
-                      className="inline-flex items-center gap-1 font-semibold uppercase hover:text-brand-900"
+                      className="inline-flex min-h-[44px] items-center gap-1 font-semibold uppercase hover:text-brand-900"
                     >
                       {label}
                       <ArrowUpDown aria-hidden className="h-3 w-3 opacity-60" />

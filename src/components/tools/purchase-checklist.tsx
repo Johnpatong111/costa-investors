@@ -95,7 +95,7 @@ export function PurchaseChecklist({ locale, citySlug, cityName, ctaHref }: Purch
             <button
               type="button"
               onClick={reset}
-              className="mt-2 inline-flex items-center gap-1 text-[11px] font-semibold text-brand-500 hover:text-brand-800"
+              className="mt-2 inline-flex min-h-[44px] items-center gap-1 text-[11px] font-semibold text-brand-500 hover:text-brand-800"
             >
               <RotateCcw aria-hidden className="h-3 w-3" />
               {copy.reset}
@@ -122,7 +122,7 @@ export function PurchaseChecklist({ locale, citySlug, cityName, ctaHref }: Purch
                         onClick={() => toggle(item.id)}
                         aria-pressed={checked}
                         className={cn(
-                          "flex w-full items-start gap-2 rounded-lg px-2 py-1.5 text-left transition",
+                          "flex min-h-[44px] w-full items-start gap-2 rounded-lg px-2 py-2 text-left transition",
                           checked ? "bg-emerald-50" : "hover:bg-white",
                         )}
                       >

@@ -5,6 +5,7 @@ import Link from "next/link";
 import { BedDouble, Info, KeyRound } from "lucide-react";
 import type { Locale } from "@/lib/i18n/config";
 import { SHORTLET_COPY } from "@/lib/i18n/tool-copy";
+import { computeShortLet } from "@/lib/tools/short-let";
 import { formatEur, formatRate } from "@/lib/utils/format";
 
 export interface ShortLetProps {
@@ -16,14 +17,6 @@ export interface ShortLetProps {
 }
 
 const REFERENCE_M2 = 70;
-const PLATFORM_FEE = 0.15;
-const MGMT_SHORT = 0.2;
-const MGMT_LONG = 0.08;
-const CLEAN_COST = 55;
-const AVG_STAY = 6;
-const UTILITIES_MONTH = 130;
-const FIXED_RATE = 0.012;
-const LONG_VACANCY_MONTHS = 1;
 
 export function ShortLetComparison({ locale, cityName, pricePerM2, rentalYield, ctaHref }: ShortLetProps) {
   const copy = SHORTLET_COPY[locale];
@@ -35,43 +28,10 @@ export function ShortLetComparison({ locale, cityName, pricePerM2, rentalYield, 
   const [occupancy, setOccupancy] = useState(65);
   const [monthlyRent, setMonthlyRent] = useState(defaultRent);
 
-  const model = useMemo(() => {
-    const fixedAnnual = price * FIXED_RATE;
-    const nights = (365 * occupancy) / 100;
-    const shortGross = nights * nightly;
-    const shortPlatform = shortGross * PLATFORM_FEE;
-    const shortMgmt = shortGross * MGMT_SHORT;
-    const shortCleaning = (nights / AVG_STAY) * CLEAN_COST;
-    const shortUtilities = UTILITIES_MONTH * 12;
-    const shortCosts = shortPlatform + shortMgmt + shortCleaning + shortUtilities + fixedAnnual;
-    const shortNet = shortGross - shortCosts;
-
-    const longGross = monthlyRent * (12 - LONG_VACANCY_MONTHS);
-    const longCosts = longGross * MGMT_LONG + fixedAnnual;
-    const longNet = longGross - longCosts;
-
-    const perNightFactor = 365 * nightly * (1 - PLATFORM_FEE - MGMT_SHORT) -
-      (365 / AVG_STAY) * CLEAN_COST;
-    const breakEven =
-      perNightFactor > 0 ? ((longNet + shortUtilities + fixedAnnual) / perNightFactor) * 100 : NaN;
-
-    return {
-      shortGross,
-      shortCosts,
-      shortNet,
-      shortMonthly: shortNet / 12,
-      shortYield: (shortNet / price) * 100,
-      shortPerNight: shortCosts / 365,
-      longGross,
-      longCosts,
-      longNet,
-      longMonthly: longNet / 12,
-      longYield: (longNet / price) * 100,
-      longPerNight: longCosts / 365,
-      breakEven,
-      diff: shortNet - longNet,
-    };
-  }, [occupancy, nightly, monthlyRent, price]);
+  const model = useMemo(
+    () => computeShortLet({ price, nightly, occupancy, monthlyRent }),
+    [occupancy, nightly, monthlyRent, price],
+  );
 
   const money = (value: number) => formatEur(Math.round(value));
   const percent = (value: number) =>
@@ -114,7 +74,7 @@ export function ShortLetComparison({ locale, cityName, pricePerM2, rentalYield, 
               const next = Number(event.target.value);
               setNightly(Number.isFinite(next) ? Math.max(0, Math.min(next, 1200)) : 0);
             }}
-            className="mt-1 w-full rounded-xl border border-brand-200 px-3 py-2 text-base font-semibold tabular-nums text-brand-950 focus:border-brand-500 focus:outline-none"
+            className="mt-1 w-full rounded-xl border border-brand-200 px-3 py-2.5 text-base font-semibold tabular-nums text-brand-950 focus:border-brand-500 focus:outline-none"
           />
         </label>
 
@@ -150,7 +110,7 @@ export function ShortLetComparison({ locale, cityName, pricePerM2, rentalYield, 
               const next = Number(event.target.value);
               setMonthlyRent(Number.isFinite(next) ? Math.max(0, Math.min(next, 6000)) : 0);
             }}
-            className="mt-1 w-full rounded-xl border border-brand-200 px-3 py-2 text-base font-semibold tabular-nums text-brand-950 focus:border-brand-500 focus:outline-none"
+            className="mt-1 w-full rounded-xl border border-brand-200 px-3 py-2.5 text-base font-semibold tabular-nums text-brand-950 focus:border-brand-500 focus:outline-none"
           />
         </label>
       </div>

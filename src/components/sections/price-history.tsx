@@ -38,7 +38,7 @@ export function PriceHistorySection({ history }: { history: PriceHistory }) {
         </div>
       </div>
 
-      <div className="mt-6 overflow-hidden rounded-xl border border-brand-100">
+      <div className="mt-6 overflow-x-auto rounded-xl border border-brand-100">
         <table className="w-full text-sm">
           <thead className="bg-brand-50 text-left text-xs tracking-wide text-brand-600 uppercase">
             <tr>

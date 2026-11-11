@@ -92,7 +92,7 @@ export function MarketStatsSection({
       </div>
 
       <div className="mt-8 grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
-        <div className="overflow-hidden rounded-xl border border-brand-100">
+        <div className="overflow-x-auto rounded-xl border border-brand-100">
           <table className="w-full text-sm">
             <caption className="sr-only">{copy.caption(locationName)}</caption>
             <thead className="bg-brand-50 text-left text-xs tracking-wide text-brand-600 uppercase">

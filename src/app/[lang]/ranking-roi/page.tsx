@@ -14,6 +14,7 @@ import { translatePath } from "@/lib/i18n/paths";
 import { RANKING_COPY } from "@/lib/i18n/ranking-copy";
 import { buildMetadata } from "@/lib/seo/metadata";
 import { breadcrumbNode, datasetNode, faqNode } from "@/lib/seo/schema-org";
+import { areaForBudget, median } from "@/lib/tools/ranking";
 import { formatEur, formatRate } from "@/lib/utils/format";
 
 /**
@@ -44,13 +45,6 @@ export async function generateMetadata({
   });
 }
 
-function median(values: number[]): number {
-  if (values.length === 0) return 0;
-  const sorted = [...values].sort((a, b) => a - b);
-  const middle = Math.floor(sorted.length / 2);
-  return sorted.length % 2 === 0 ? (sorted[middle - 1]! + sorted[middle]!) / 2 : sorted[middle]!;
-}
-
 export default async function RankingPage({ params }: { params: Promise<{ lang: string }> }) {
   const locale = assertLocale((await params).lang);
   const ui = getUiCopy(locale);
@@ -70,7 +64,7 @@ export default async function RankingPage({ params }: { params: Promise<{ lang: 
         growth: stats.priceGrowth,
         days: stats.avgDaysOnMarket,
         demand: entry.district.demandIndex,
-        area: stats.pricePerM2 > 0 ? Math.round(BUDGET / stats.pricePerM2) : 0,
+        area: areaForBudget(BUDGET, stats.pricePerM2),
         lat: entry.district.lat,
         lng: entry.district.lng,
         href: translatePath(`/${PRICE_REPORT.slug}/${entry.city.slug}/${entry.district.slug}`, locale),

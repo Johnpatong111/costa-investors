@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Info, Receipt } from "lucide-react";
 import type { Locale } from "@/lib/i18n/config";
 import { COSTS_COPY } from "@/lib/i18n/tool-copy";
+import { computePurchaseCosts, type Deal, type PropertyType, type Residency } from "@/lib/tools/purchase-costs";
 import { formatEur } from "@/lib/utils/format";
 import { cn } from "@/lib/utils/cn";
 
@@ -21,19 +22,11 @@ export interface PurchaseCostsCalculatorProps {
   ctaHref: string;
 }
 
-type Deal = "resale" | "new";
-type Property = "flat" | "villa";
-type Residency = "nonEu" | "eu" | "resident";
+type DealType = Deal;
+type Property = PropertyType;
+type ResidencyType = Residency;
 
-const IVA_RATE = 0.1;
-const AJD_RATE = 0.015;
-const NOTARY_RATE = 0.01;
-const LEGAL_RATE = 0.005;
-
-const IBI_RATE: Record<Property, number> = { flat: 0.0035, villa: 0.0045 };
-const COMMUNITY_RATE: Record<Property, number> = { flat: 0.009, villa: 0.003 };
-const INSURANCE_RATE: Record<Property, number> = { flat: 0.0015, villa: 0.0025 };
-const RENT_TAX: Record<Residency, number> = { nonEu: 0.19, eu: 0.24, resident: 0.19 };
+const RENT_TAX_LABEL: Record<ResidencyType, number> = { nonEu: 19, eu: 24, resident: 19 };
 
 export function PurchaseCostsCalculator({
   locale,
@@ -45,27 +38,27 @@ export function PurchaseCostsCalculator({
 }: PurchaseCostsCalculatorProps) {
   const copy = COSTS_COPY[locale];
   const [price, setPrice] = useState(250_000);
-  const [deal, setDeal] = useState<Deal>("resale");
+  const [deal, setDeal] = useState<DealType>("resale");
   const [property, setProperty] = useState<Property>("flat");
-  const [residency, setResidency] = useState<Residency>("nonEu");
+  const [residency, setResidency] = useState<ResidencyType>("nonEu");
 
-  const transferTax = deal === "new" ? price * IVA_RATE : (price * itp) / 100;
-  const ajd = deal === "new" ? price * AJD_RATE : 0;
-  const notary = price * NOTARY_RATE;
-  const legal = price * LEGAL_RATE;
-  const transactionCosts = transferTax + ajd + notary + legal;
-  const total = price + transactionCosts;
-
-  const ibi = price * IBI_RATE[property];
-  const community = price * COMMUNITY_RATE[property];
-  const insurance = price * INSURANCE_RATE[property];
-  const annual = ibi + community + insurance;
-
-  const rentGross = (price * rentalYield) / 100;
-  const taxableBase = residency === "resident" ? Math.max(0, rentGross - annual) : rentGross;
-  const rentTax = taxableBase * RENT_TAX[residency];
-  const rentNet = rentGross - rentTax;
-  const netYield = price > 0 ? (rentNet / price) * 100 : 0;
+  const model = computePurchaseCosts({ price, itp, deal, property, residency, rentalYield });
+  const {
+    transferTax,
+    ajd,
+    notary,
+    legal,
+    transactionCosts,
+    total,
+    ibi,
+    community,
+    insurance,
+    annual,
+    rentGross,
+    rentTax,
+    rentNet,
+    netYield,
+  } = model;
 
   const money = (value: number) => formatEur(Math.round(value));
   const percent = (value: number) =>
@@ -96,7 +89,7 @@ export function PurchaseCostsCalculator({
               const next = Number(event.target.value);
               setPrice(Number.isFinite(next) ? Math.max(0, Math.min(next, 3_000_000)) : 0);
             }}
-            className="mt-1 w-full max-w-xs rounded-xl border border-brand-200 px-3 py-2 text-base font-semibold tabular-nums text-brand-950 focus:border-brand-500 focus:outline-none"
+            className="mt-1 w-full max-w-xs rounded-xl border border-brand-200 px-3 py-2.5 text-base font-semibold tabular-nums text-brand-950 focus:border-brand-500 focus:outline-none"
           />
         </label>
       </div>
@@ -114,7 +107,7 @@ export function PurchaseCostsCalculator({
                 onClick={() => setDeal(item.id)}
                 aria-pressed={deal === item.id}
                 className={cn(
-                  "rounded-xl border px-3 py-2 text-left transition",
+                  "min-h-[44px] rounded-xl border px-3 py-2 text-left transition",
                   deal === item.id
                     ? "border-brand-600 bg-brand-50"
                     : "border-brand-200 hover:border-brand-400",
@@ -139,7 +132,7 @@ export function PurchaseCostsCalculator({
                 onClick={() => setProperty(item.id)}
                 aria-pressed={property === item.id}
                 className={cn(
-                  "rounded-xl border px-3 py-2 text-left transition",
+                  "min-h-[44px] rounded-xl border px-3 py-2 text-left transition",
                   property === item.id
                     ? "border-brand-600 bg-brand-50"
                     : "border-brand-200 hover:border-brand-400",
@@ -164,7 +157,7 @@ export function PurchaseCostsCalculator({
                 onClick={() => setResidency(item.id)}
                 aria-pressed={residency === item.id}
                 className={cn(
-                  "rounded-xl border px-3 py-2 text-left transition",
+                  "min-h-[44px] rounded-xl border px-3 py-2 text-left transition",
                   residency === item.id
                     ? "border-brand-600 bg-brand-50"
                     : "border-brand-200 hover:border-brand-400",
@@ -220,9 +213,7 @@ export function PurchaseCostsCalculator({
             </div>
             <div className="flex justify-between gap-2">
               <dt className="text-brand-600">{copy.rows.totalPercent}</dt>
-              <dd className="tabular-nums text-brand-900">
-                {percent(price > 0 ? (transactionCosts / price) * 100 : 0)}
-              </dd>
+              <dd className="tabular-nums text-brand-900">{percent(model.costsPercent)}</dd>
             </div>
           </dl>
         </div>
@@ -266,7 +257,7 @@ export function PurchaseCostsCalculator({
             </div>
             <div className="flex justify-between gap-2">
               <dt className="text-brand-600">
-                {copy.rent.tax} {(RENT_TAX[residency] * 100).toFixed(0)}%
+                {copy.rent.tax} {RENT_TAX_LABEL[residency]}%
               </dt>
               <dd className="tabular-nums text-brand-900">{money(rentTax)}</dd>
             </div>
