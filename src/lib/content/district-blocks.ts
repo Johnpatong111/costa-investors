@@ -249,13 +249,18 @@ export function buildDistrictBlocks(ctx: DistrictBlockContext): ContentBlock[] {
         "roi",
         1,
       ),
-      bullets: [
-        t("Czynsz: {rent} €/m²/mies."),
-        t("ROI brutto: {yield}"),
-        t("ROI netto: {netYield}"),
-        t("Zwrot 5-letni z 250 000 €: {return5y} €"),
-        t("Wartość po 5 latach: {value5y} €"),
-      ],
+      bullets: rotateItems(
+        [
+          t("Czynsz: {rent} €/m²/mies."),
+          t("ROI brutto: {yield}"),
+          t("ROI netto: {netYield}"),
+          t("Zwrot 5-letni z 250 000 €: {return5y} €"),
+          t("Wartość po 5 latach: {value5y} €"),
+        ],
+        key,
+        "roi-bullets",
+        2,
+      ),
     },
     {
       id: "koszty",
@@ -271,7 +276,7 @@ export function buildDistrictBlocks(ctx: DistrictBlockContext): ContentBlock[] {
         "koszty",
         1,
       ),
-      bullets: service.checklist.map((item) => t(item)),
+      bullets: rotateItems(service.checklist.map((item) => t(item)), key, "cost-bullets", 2),
     },
     {
       id: "kupujacy",
@@ -300,7 +305,7 @@ export function buildDistrictBlocks(ctx: DistrictBlockContext): ContentBlock[] {
       // Paragraph usunięty: ta sama korzyść na wszystkich stronach usługi.
       // Zostają dwa punkty checklisty, które różnią się między usługami.
       paragraphs: [],
-      bullets: service.checklist.slice(0, 2).map((item) => t(item)),
+      bullets: rotateItems(service.checklist.slice(0, 2).map((item) => t(item)), key, "usluga-bullets", 1),
     },
     {
       id: "dane",

@@ -80,7 +80,7 @@ export function buildDistrictContent(
     // Dwa pierwsze akapity profilu były identyczne na wszystkich stronach tego
     // samego typu (wybrzeże/golf/głębia lądu) i napędzały Jaccard. Zostają
     // akapity zależne od gminy (dojazd) i od usługi.
-    paragraphs: rotateItems(profileParagraphs(city, district, stats, "pl", service.kind).slice(2), key, "profil", 2),
+    paragraphs: rotateItems(profileParagraphs(city, district, stats, "pl", service.kind).slice(2), key, "profil", 1),
   });
   // Nota per dzielnica: unikalny akapit, żeby "Centro" w różnych miastach nie
   // dzieliło tego samego szkieletu (Jaccard 0.73).
@@ -97,8 +97,7 @@ export function buildDistrictContent(
   const serviceFaq = buildDistrictFaq(service, vars, key, stats, entry);
   const faq = [
     ...districtDeepFaq(city, district, stats, "pl", key),
-    ...rotateItems(profileFaq(city, district, stats, "pl"), key, "profile", 1),
-    ...rotateItems(serviceFaq, key, "service", 2),
+    ...rotateItems(profileFaq(city, district, stats, "pl"), key, "profile", 2),
   ];
   const processSteps = service.process.map((step) => ({
     title: step.title,

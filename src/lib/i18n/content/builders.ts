@@ -210,7 +210,7 @@ export function buildLocalizedDistrictContent(
       profileParagraphs(city, district, stats, locale as "en" | "es", service.kind).slice(2),
       key,
       "profil",
-      2,
+      1,
     ),
   });
 
@@ -227,15 +227,6 @@ export function buildLocalizedDistrictContent(
   const faq = [
     ...districtDeepFaq(city, district, stats, locale, key),
     ...rotateItems(profileFaq(city, district, stats, locale as "en" | "es"), key, "profile", 1),
-    ...rotateItems(
-      buildLocalizedDistrictFaq(
-        { locale: locale as "en" | "es", service, stats, city, district, region, key, vars, t },
-        dict.district.faq,
-      ),
-      key,
-      "service",
-      2,
-    ),
   ];
 
   return finish(
@@ -549,7 +540,7 @@ export function buildLocalizedPriceReport(
       // cenowa zależna od dzielnicy plus lista dzielnic w bulletach.
       paragraphs: [priceNote ?? ""],
       bullets: [
-        ...rotateItems(b.ceny.bullets.map((bullet) => t(bullet)), key, "ceny-bullets", 2),
+        ...rotateItems(b.ceny.bullets.map((bullet) => t(bullet)), key, "ceny-bullets", 1),
         // Lista dzielnic rotowana: pełna lista była identyczna w obrębie gminy
         // i dominowała w parach „dwie dzielnice tego samego miasta”.
         ...rotateItems(
@@ -558,14 +549,15 @@ export function buildLocalizedPriceReport(
           ),
           key,
           "district-list",
-          2,
+          1,
         ),
       ],
     },
     {
       id: "roi",
       heading: t(b.roi.heading),
-      paragraphs: rotateItems([t(b.roi.p1), t(b.roi.p2)], key, "roi", 1),
+      // Proza ROI usunięta: liczby i interpretacja są w bloku „glebiej”.
+      paragraphs: [],
     },
     {
       id: "podatki",

@@ -388,7 +388,7 @@ export function buildLocalizedDistrictBlocks(input: LocalizedDistrictInput): Con
         "koszty",
         1,
       ),
-      bullets: service.checklist.map((item) => localT(item)),
+      bullets: rotateItems(service.checklist.map((item) => localT(item)), key, "cost-bullets", 2),
     },
     {
       id: "kupujacy",
@@ -408,7 +408,7 @@ export function buildLocalizedDistrictBlocks(input: LocalizedDistrictInput): Con
       id: "usluga",
       heading: service.name,
       paragraphs: [],
-      bullets: service.checklist.slice(0, 2).map((item) => localT(item)),
+      bullets: rotateItems(service.checklist.slice(0, 2).map((item) => localT(item)), key, "usluga-bullets", 1),
     },
     {
       id: "dane",

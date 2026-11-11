@@ -621,6 +621,391 @@ const NOTES: Record<string, Partial<Record<Locale, string[]>>> = {
       "Villamartín son urbanizaciones alrededor del campo de golf de Villamartín, con restaurantes y club a un paseo, donde los pisos los compran jugadores y residentes y no solo turistas de playa. El precio va 160 euros sobre la media municipal pero 220 por debajo de Cabo Roig, porque al mar hay que ir en coche. La demanda de 8 y un 6,0 por ciento salen de la vida anual de la urbanización: golf, restaurantes y La Fuente funcionan también fuera de temporada, algo que no es norma en esta costa. Revisa las cuotas de mantenimiento del campo y de las zonas verdes, porque en esta zona pesan mucho en el gasto mensual.",
     ],
   },
+  "alicante/cabo-de-las-huertas": {
+    pl: [
+      "Cabo de las Huertas to cypel na północ od centrum Alicante, gdzie apartamenty z widokiem na Cala de la Palmera sąsiadują z willami wśród sosen. Cena jest najwyższa w mieście, a towarzystwo mieszane: profesorowie z uniwersytetu, lekarze ze szpitala i rodziny, które kupiły tu mieszkanie dwadzieścia lat temu. Do plaży schodzi się po schodach, więc z wózkiem albo po zakupach trzeba się nagimnastykować. Sprawdź, czy wspólnota utrzymuje klatki i ogrody, bo starsze bloki na cyplu mają wspólnoty po 100-150 euro miesięcznie.",
+    ],
+    en: [
+      "Cabo de las Huertas is the headland north of Alicante centre, where sea-view flats above Cala de la Palmera sit next to villas among pines. Prices are the highest in the city, and the neighbours are mixed: university staff, hospital doctors and families who bought here twenty years ago. The beach is reached down steps, which is awkward with a pram or shopping. Check whether the community maintains stairwells and gardens, because older blocks on the point carry fees of 100 to 150 euros a month.",
+    ],
+    es: [
+      "Cabo de las Huertas es el cabo al norte del centro de Alicante, donde los pisos con vistas sobre la Cala de la Palmera conviven con chalets entre pinos. Es el precio más alto de la ciudad y el vecindario es mixto: personal de la universidad, médicos del hospital y familias que compraron aquí hace veinte años. A la playa se baja por escaleras, algo incómodo con carrito o con la compra. Comprueba si la comunidad mantiene portales y jardines, porque los bloques antiguos del cabo tienen cuotas de 100 a 150 euros al mes.",
+    ],
+  },
+  "alicante/pau-5": {
+    pl: [
+      "PAU 5 to nowe osiedla na północy Alicante, budowane od lat dwutysięcznych, z garażami podziemnymi, basenami i szerokimi chodnikami, których brakuje w starym śródmieściu. Kupują tu głównie młode rodziny i pracownicy biur, którzy chcą nowego budownictwa i miejsca parkingowego, a nie kamienicy z windą z lat sześćdziesiątych. Do plaży San Juan jest kilka przystanków tramwajem, więc samochód nie jest konieczny. Sprawdź wysokość wspólnoty w osiedlach z basenem oraz to, czy deweloper przekazał drogi i zieleń gminie, bo w niektórych etapach wciąż nim zarządza.",
+    ],
+    en: [
+      "PAU 5 is the newer housing north of Alicante, built from the 2000s with underground garages, pools and wide pavements the old centre lacks. Buyers are mostly young families and office workers who want new build and a parking space rather than a sixties block with a lift. Playa de San Juan is a few tram stops away, so a car is not essential. Check the community fee in estates with a pool, and whether the developer has handed roads and green areas to the council, since some phases are still managed by the builder.",
+    ],
+    es: [
+      "PAU 5 son las urbanizaciones nuevas del norte de Alicante, construidas desde los años dos mil con garajes subterráneos, piscinas y aceras amplias que el centro antiguo no tiene. Compran sobre todo familias jóvenes y empleados de oficina que quieren obra nueva y plaza de garaje en lugar de un edificio de los sesenta con ascensor. A Playa de San Juan hay unas paradas de tranvía, así que el coche no es imprescindible. Revisa la cuota en urbanizaciones con piscina y si el promotor ya entregó calles y zonas verdes al ayuntamiento.",
+    ],
+  },
+  "alicante/vistahermosa": {
+    pl: [
+      "Vistahermosa to spokojna dzielnica willowa na obrzeżach Alicante, przy polu golfowym Del Mar Golf, gdzie metr jest tańszy niż nad wodą, a działki pozwalają na basen i ogród. Kupują tu rodziny, które chcą domu w granicach miasta, oraz rezydenci, którzy pracują zdalnie i do centrum jadą samochodem. Minusem jest zależność od auta i mniejsza podaż mieszkań na wynajem, więc jeśli szukasz lokalu pod najem, wybierz raczej San Juan. Sprawdź plan miejscowy i klasę gruntu, bo część działek ma ograniczenia zabudowy.",
+    ],
+    en: [
+      "Vistahermosa is a quiet villa district on the edge of Alicante, next to Del Mar Golf, where the square metre is cheaper than by the water and plots allow a pool and a garden. Buyers are families wanting a house inside the city limits and remote workers who drive to the centre. The drawback is car dependence and a thinner rental market, so if you want a flat to let, San Juan is a better fit. Check the town plan and land classification, since some plots carry building restrictions.",
+    ],
+    es: [
+      "Vistahermosa es un barrio tranquilo de chalets en el borde de Alicante, junto a Del Mar Golf, donde el metro cuesta menos que junto al agua y las parcelas permiten piscina y jardín. Compran familias que quieren casa dentro del municipio y profesionales que trabajan en remoto y van al centro en coche. La pega es la dependencia del coche y un mercado de alquiler más estrecho, así que para un piso de renta encaja mejor San Juan. Revisa el planeamiento y la clasificación del suelo, porque algunas parcelas tienen limitaciones.",
+    ],
+  },
+  "torrevieja/la-mata": {
+    pl: [
+      "La Mata to północna część Torrevieja, oddzielona od miasta parkiem nad laguną, gdzie plaża jest szersza, a bloki niższe niż w centrum. Mieszkańcy to głównie obcokrajowcy z północy Europy, którzy cenią spokój i to, że nad wodę idzie się pięć minut. Cena jest wyższa niż w El Acequión, ale niższa niż w Punta Prima, a ROI 5,8 procent wynika z sezonowości. Sprawdź, czy budynek ma windę i czy wspólnota utrzymuje ogród, bo osiedla z lat dziewięćdziesiątych wymagają już nakładów.",
+    ],
+    en: [
+      "La Mata is the northern part of Torrevieja, separated from town by the lagoon park, where the beach is wider and the blocks lower than in the centre. Residents are mostly northern Europeans who value the quiet and the five-minute walk to the water. Prices run above El Acequión but below Punta Prima, and a 5.8 percent yield reflects the seasonal pattern. Check whether the building has a lift and whether the community maintains its garden, since nineties estates now need investment.",
+    ],
+    es: [
+      "La Mata es la parte norte de Torrevieja, separada del centro por el parque de la laguna, donde la playa es más ancha y los bloques más bajos. Viven sobre todo extranjeros del norte de Europa que valoran el silencio y los cinco minutos hasta el agua. El precio supera a El Acequión pero queda bajo Punta Prima, y un 5,8 por ciento refleja la estacionalidad. Comprueba si el edificio tiene ascensor y si la comunidad mantiene el jardín, porque las urbanizaciones de los noventa ya piden inversión.",
+    ],
+  },
+  "torrevieja/el-acequion": {
+    pl: [
+      "El Acequión to najstarsza część nadmorskiej Torrevieja, z portem rybackim, targiem i blokami z lat osiemdziesiątych, gdzie metr jest najtańszy w mieście. To adres dla kupujących z budżetem, którzy wolą remontować niż dopłacać za widok: mieszkania 60 m² kosztują tu mniej niż kawalerka w Punta Prima. Najem działa cały rok, bo w okolicy mieszkają pracownicy portu i sklepów, a nie tylko turyści. Sprawdź stan instalacji elektrycznej i wodnej, wysokość wspólnoty oraz to, czy budynek nie stoi w zasięgu zalewania po ulewach.",
+    ],
+    en: [
+      "El Acequión is the oldest part of coastal Torrevieja, with a fishing port, a market and eighties blocks where the square metre is the cheapest in town. It suits buyers on a budget who prefer renovating to paying for a view: a 60 square metre flat here costs less than a studio in Punta Prima. Letting works all year because port and shop staff live nearby, not only tourists. Check the electrical and water installations, the community fee, and whether the building sits in a flood-prone pocket after heavy rain.",
+    ],
+    es: [
+      "El Acequión es la parte más antigua de la Torrevieja costera, con puerto pesquero, mercado y bloques de los ochenta donde el metro es el más barato del pueblo. Encaja con compradores de presupuesto que prefieren reformar antes que pagar vistas: un piso de 60 metros cuesta aquí menos que un estudio en Punta Prima. El alquiler funciona todo el año porque cerca viven trabajadores del puerto y de las tiendas, no solo turistas. Revisa instalaciones eléctrica y de agua, la comunidad y si el edificio está en una zona que se inunda tras lluvias fuertes.",
+    ],
+  },
+  "benidorm/playa-de-poniente": {
+    pl: [
+      "Playa de Poniente to zachodnia plaża Benidormu, szersza i spokojniejsza od Levante, z apartamentami w wieżowcach, ale bez Aqualandii i klubów za plecami. Kupują tu rodziny z dziećmi oraz osoby, które chcą mieć plażę pod oknem, a nie nocne życie, dlatego najem jest tu bardziej przewidywalny. Cena jest niższa niż na Levante o około 480 euro za metr, a ROI 6,0 procent wyższe niż na wschodniej plaży. Sprawdź odległość od pasa drogowego i wysokość opłat w wieżowcu z basenem.",
+    ],
+    en: [
+      "Playa de Poniente is Benidorm's western beach, wider and calmer than Levante, with flats in towers but no water park and clubs behind them. Buyers are families with children and people who want the beach at the window rather than nightlife, which makes letting more predictable. Prices run about 480 euros per square metre below Levante, and a 6.0 percent yield beats the eastern beach. Check the distance to the coast road and the fees in a tower with a pool.",
+    ],
+    es: [
+      "Playa de Poniente es la playa oeste de Benidorm, más ancha y tranquila que Levante, con pisos en torres pero sin parque acuático ni clubes detrás. Compran familias con niños y quien busca playa en la ventana y no vida nocturna, lo que hace el alquiler más previsible. El precio está unos 480 euros por metro bajo Levante y un 6,0 por ciento supera a la playa este. Revisa la distancia a la carretera y las cuotas de una torre con piscina.",
+    ],
+  },
+  "benidorm/rincon-de-loix": {
+    pl: [
+      "Rincón de Loix to wschodni cypel Benidormu, gdzie Levante kończy się przy Serra Gelada, a apartamenty mają widok na zatokę i góry jednocześnie. To najbardziej rozrywkowa część miasta: kluby, bary i Aqualandia są w promieniu kilkuset metrów, więc najem turystyczny pracuje tu najmocniej w sezonie. Cena jest o 160 euro wyższa niż w średniej miasta, a ROI 6,0 procent, bo metraż lokali jest mniejszy. Sprawdź hałas w weekendy i licencję turystyczną budynku, a jeśli szukasz spokoju, wybierz Poniente.",
+    ],
+    en: [
+      "Rincón de Loix is Benidorm's eastern point, where Levante ends at Serra Gelada and flats look at the bay and the mountains at once. It is the most entertainment-heavy part of town: clubs, bars and Aqualandia within a few hundred metres, so tourist letting works hardest here in season. Prices run 160 euros above the town average with a 6.0 percent yield, because units are smaller. Check weekend noise and the building's tourist licence, and if you want quiet, choose Poniente.",
+    ],
+    es: [
+      "Rincón de Loix es el extremo este de Benidorm, donde Levante termina en Serra Gelada y los pisos miran a la bahía y a la montaña a la vez. Es la zona más de ocio del pueblo: clubes, bares y Aqualandia a pocos cientos de metros, así que el alquiler turístico funciona al máximo en temporada. El precio va 160 euros sobre la media con un 6,0 por ciento, porque las viviendas son más pequeñas. Revisa el ruido de fin de semana y la licencia turística del edificio; si buscas calma, elige Poniente.",
+    ],
+  },
+  "benidorm/foietes": {
+    pl: [
+      "Foietes to zaplecze Benidormu: park, stadion i bloki, w których mieszkają osoby pracujące w hotelach i sklepach, a nie turyści. Cena jest najniższa w mieście, a ROI wysokie, bo najem trwa cały rok i nie zależy od sezonu. To dobry adres dla inwestora, który chce dochodu, a nie widoku, oraz dla kogoś, kto pracuje w centrum i chce dojść pieszo. Sprawdź stan instalacji i wspólnotę, bo część budynków pamięta lata siedemdziesiąte.",
+    ],
+    en: [
+      "Foietes is Benidorm's back office: a park, a stadium and blocks where hotel and shop staff live rather than tourists. Prices are the lowest in town and yields high, because letting runs all year and does not depend on the season. It suits an investor after income rather than a view, and anyone working in the centre who wants to walk. Check installations and community fees, since some buildings date from the seventies.",
+    ],
+    es: [
+      "Foietes es la trastienda de Benidorm: parque, estadio y bloques donde vive el personal de hoteles y tiendas, no los turistas. El precio es el más bajo del pueblo y la rentabilidad alta, porque el alquiler funciona todo el año y no depende de la temporada. Encaja con el inversor que busca renta y no vistas, y con quien trabaja en el centro y quiere ir a pie. Revisa instalaciones y comunidad, porque algunos edificios son de los setenta.",
+    ],
+  },
+  "benidorm/sierra-helada": {
+    pl: [
+      "Sierra Helada to wille i apartamenty na zboczu nad Playa de Levante, na skraju parku naturalnego, gdzie kończy się zabudowa Benidormu. Kupują tu osoby, które chcą widoku na zatokę i ciszy, ale nie chcą rezygnować z dojścia do plaży w dziesięć minut. Cena jest o 160 euro niższa niż na Levante, a ROI 5,8 procent, bo najem jest krótki i zależny od sezonu. Sprawdź dojazd, bo część dróg jest stroma, oraz czy działka leży w strefie parku, gdzie rozbudowa wymaga zgody.",
+    ],
+    en: [
+      "Sierra Helada is villas and flats on the slope above Playa de Levante, at the edge of the natural park where Benidorm's built-up area ends. Buyers want the bay view and quiet without giving up a ten-minute walk to the beach. Prices run 160 euros below Levante, with a 5.8 percent yield, since letting is short and seasonal. Check the approach roads, some of which are steep, and whether the plot falls inside the park zone, where extensions need permission.",
+    ],
+    es: [
+      "Sierra Helada son chalets y pisos en la ladera sobre Playa de Levante, en el borde del parque natural donde acaba la trama de Benidorm. Compran quien busca vistas a la bahía y silencio sin renunciar a diez minutos a pie de la playa. El precio va 160 euros bajo Levante, con un 5,8 por ciento, porque el alquiler es corto y estacional. Revisa los accesos, algunos en cuesta, y si la parcela está en zona de parque, donde ampliar necesita permiso.",
+    ],
+  },
+  "calpe/playa-de-la-fossa": {
+    pl: [
+      "Playa de la Fossa to pierwsza linia Calpe pod Peñón de Ifach, z apartamentami w wieżowcach, restauracjami na promenadzie i największym najmem sezonowym w mieście. Cena jest najwyższa w gminie, bo widok na skałę i morze sprzedaje się sam, a ROI 5,6 procent, bo wspólnoty z basenem są drogie. To adres pod najem turystyczny i własne wakacje, nie pod dochód całoroczny. Sprawdź, czy budynek ma licencję turystyczną i czy okna nie wychodzą na promenadę z barami.",
+    ],
+    en: [
+      "Playa de la Fossa is Calpe's front line under Peñón de Ifach, with flats in towers, restaurants along the promenade and the town's largest seasonal letting market. Prices are the highest in the municipality because the rock and sea view sells itself, and the 5.6 percent yield reflects expensive pool communities. This is an address for tourist letting and your own holidays, not year-round income. Check the building's tourist licence and whether windows face the bar-lined promenade.",
+    ],
+    es: [
+      "Playa de la Fossa es la primera línea de Calpe bajo el Peñón de Ifach, con pisos en torres, restaurantes en el paseo y el mayor mercado de alquiler estacional del pueblo. El precio es el más alto del municipio porque la vista a la roca y al mar se vende sola, y el 5,6 por ciento refleja comunidades caras con piscina. Es una dirección para alquiler turístico y vacaciones propias, no para renta anual. Revisa la licencia turística del edificio y si las ventanas dan al paseo de bares.",
+    ],
+  },
+  "altea/casco-antiguo": {
+    pl: [
+      "Casco Antiguo to stare Altea na wzgórzu, z białymi murami, Iglesia del Consuelo i uliczkami, w których samochód zostawia się na dole. Mieszkania są tu małe, często po remoncie, z widokiem na zatokę z okna na poddaszu. Cena jest najwyższa w mieście, bo to adres z widokówki, ale remont wymaga zgody konserwatora na elewację i stolarkę. Sprawdź, czy budynek ma windę i jak wygląda dojście po schodach, bo dla najemcy to często warunek rezygnacji.",
+    ],
+    en: [
+      "Casco Antiguo is old Altea on the hill, with white walls, Iglesia del Consuelo and lanes where you leave the car at the bottom. Flats are small, often renovated, with bay views from an attic window. Prices are the highest in town because this is the postcard address, but renovation needs heritage approval for the facade and joinery. Check whether the building has a lift and what the stepped approach looks like, since for tenants that is often the deal-breaker.",
+    ],
+    es: [
+      "Casco Antiguo es la Altea antigua en lo alto, con muros blancos, la Iglesia del Consuelo y callejas donde el coche se deja abajo. Los pisos son pequeños, a menudo reformados, con vistas a la bahía desde una ventana de buhardilla. El precio es el más alto del pueblo porque es la dirección de postal, pero la reforma exige permiso de patrimonio para fachada y carpintería. Comprueba si el edificio tiene ascensor y cómo es el acceso por escaleras, porque para el inquilino suele ser decisivo.",
+    ],
+  },
+  "altea/cap-blanc": {
+    pl: [
+      "Cap Blanc to spokojna część wybrzeża Altei między Mascarat a centrum, z willem i apartamentami na skarpie, skąd widać zatokę bez tłumu z plaży. Kupują tu osoby, które chcą ciszy i ogrodu, a do restauracji jadą trzy minuty samochodem. Cena jest o 60 euro wyższa niż w średniej miasta, a ROI 5,4 procent, bo najem jest rzadszy niż nad samą wodą. Sprawdź nachylenie działki, stan murów oporowych i dostęp do drogi gminnej, bo część posesji dojeżdża prywatnymi odcinkami.",
+    ],
+    en: [
+      "Cap Blanc is the quiet stretch of Altea's coast between Mascarat and the centre, with villas and flats on the slope where you see the bay without the beach crowd. Buyers want quiet and a garden, and drive three minutes to restaurants. Prices run 60 euros above the town average with a 5.4 percent yield, since letting is thinner than at the water. Check the gradient, the state of retaining walls and access to a council road, because some properties arrive over private stretches.",
+    ],
+    es: [
+      "Cap Blanc es el tramo tranquilo de la costa de Altea entre Mascarat y el centro, con chalets y pisos en la ladera desde donde se ve la bahía sin la multitud de la playa. Compran quien busca silencio y jardín, y va en coche tres minutos a los restaurantes. El precio va 60 euros sobre la media con un 5,4 por ciento, porque el alquiler es más escaso que junto al agua. Revisa la pendiente, el estado de los muros y el acceso a camino municipal, ya que algunas fincas llegan por tramos privados.",
+    ],
+  },
+  "denia/puerto": {
+    pl: [
+      "Puerto w Dénia to mieszkania wokół mariny i nabrzeża, z promem na Ibizę za plecami i targiem rybnym po drugiej stronie ulicy. Cena jest o 60 euro niższa niż w średniej miasta, bo hałas silników i ruch ciężarówek są tu codziennością, a ROI 5,6 procent nie zachwyca. Zaletą jest możliwość życia bez samochodu: restauracje, sklepy i przystań są w zasięgu spaceru. Obejrzyj mieszkanie o świcie, kiedy pracuje port, i sprawdź, czy okna mają podwójne szyby.",
+    ],
+    en: [
+      "Puerto in Dénia means flats around the marina and the quay, with the Ibiza ferry behind you and the fish market across the road. Prices run 60 euros below the town average because engine noise and lorry traffic are daily facts, and a 5.6 percent yield is unremarkable. The advantage is living without a car: restaurants, shops and the marina are a walk away. View the flat at dawn when the port works, and check whether the windows are double glazed.",
+    ],
+    es: [
+      "Puerto en Dénia son pisos alrededor de la marina y el muelle, con el ferry a Ibiza detrás y la lonja al otro lado de la calle. El precio va 60 euros bajo la media porque el ruido de motores y el trasiego de camiones son rutina, y un 5,6 por ciento no entusiasma. La ventaja es vivir sin coche: restaurantes, tiendas y marina a un paseo. Visita el piso al amanecer, cuando trabaja el puerto, y comprueba si las ventanas tienen doble cristal.",
+    ],
+  },
+  "santa-pola/varadero": {
+    pl: [
+      "Varadero to zachodnia część portu w Santa Pola, gdzie cumują kutry i jachty, a apartamenty stoją o ulicę od nabrzeża. Cena jest wyższa niż w centrum, bo do wody jest kilka kroków, ale niższa niż przy Playa de Levante. Najem pracuje cały rok: port daje zatrudnienie, a nie tylko sezon. Sprawdź hałas silników o świcie i to, czy okna wychodzą na plac manewrowy, oraz wysokość wspólnoty w blokach z widokiem na marinę.",
+    ],
+    en: [
+      "Varadero is the western side of Santa Pola's port, where fishing boats and yachts moor and flats stand a street from the quay. Prices are above the centre because the water is a few steps away, yet below Playa de Levante. Letting runs all year: the port provides jobs, not only a season. Check engine noise at dawn and whether windows face the manoeuvring yard, plus the community fee in blocks overlooking the marina.",
+    ],
+    es: [
+      "Varadero es el lado oeste del puerto de Santa Pola, donde amarran barcas y yates y los pisos están a una calle del muelle. El precio supera al centro porque el agua queda a unos pasos, pero está bajo Playa de Levante. El alquiler funciona todo el año: el puerto da empleo y no solo temporada. Revisa el ruido de motores al amanecer y si las ventanas dan al patio de maniobras, además de la comunidad en bloques frente a la marina.",
+    ],
+  },
+  "finestrat/golf": {
+    pl: [
+      "Golf w Finestrat to osiedla wokół pola golfowego i Sierra Cortina, z apartamentami z basenami i spa, gdzie kupują osoby grające oraz rezydenci z północy Europy. Cena jest o 110 euro wyższa niż w średniej gminy, ale niższa niż w Balcón de Finestrat, bo widok na morze jest tylko z części tarasów. Najem jest tu dłuższy niż nad plażą, bo pole i restauracje działają cały rok. Sprawdź składki na utrzymanie terenów zielonych i czy osiedle ma licencję turystyczną.",
+    ],
+    en: [
+      "Golf in Finestrat means estates around the course and Sierra Cortina, with flats that have pools and spa access, bought by golfers and northern European residents. Prices run 110 euros above the municipal average but below Balcón de Finestrat, because only some terraces see the sea. Letting lasts longer than by the beach, since the course and restaurants work all year. Check the green area charges and whether the estate holds a tourist licence.",
+    ],
+    es: [
+      "Golf en Finestrat son urbanizaciones en torno al campo y Sierra Cortina, con pisos con piscina y spa, comprados por jugadores y residentes del norte de Europa. El precio va 110 euros sobre la media municipal pero bajo Balcón de Finestrat, porque solo algunas terrazas ven el mar. El alquiler dura más que junto a la playa, ya que campo y restaurantes funcionan todo el año. Revisa las cuotas de zonas verdes y si la urbanización tiene licencia turística.",
+    ],
+  },
+  "l-albir/playa-del-albir": {
+    pl: [
+      "Playa del Albir to szeroka żwirowa plaża pod Serra Gelada, z apartamentami w pierwszej linii i osiedlami z basenami, które powstały, zanim park ograniczył zabudowę. Cena jest najwyższa w gminie, bo widok na klif i morze jest tu najlepszy, a ROI 5,6 procent, bo najem trwa głównie od maja do października. To adres pod własne wakacje i najem sezonowy, nie pod dochód całoroczny. Sprawdź, czy budynek ma licencję turystyczną i czy plaża nie jest zamknięta po sztormach.",
+    ],
+    en: [
+      "Playa del Albir is the wide pebble beach under Serra Gelada, with front-line flats and pool estates built before the park capped development. Prices are the highest in the municipality because the cliff and sea view is the best here, and the 5.6 percent yield reflects letting that runs mainly from May to October. This is an address for your own holidays and seasonal letting, not year-round income. Check the tourist licence and whether the beach closes after storms.",
+    ],
+    es: [
+      "Playa del Albir es la playa amplia de grava bajo Serra Gelada, con pisos en primera línea y urbanizaciones con piscina construidas antes de que el parque limitara la edificación. El precio es el más alto del municipio porque las vistas al acantilado y al mar son las mejores, y el 5,6 por ciento refleja un alquiler de mayo a octubre. Es una dirección para vacaciones propias y alquiler de temporada, no para renta anual. Revisa la licencia turística y si la playa cierra tras los temporales.",
+    ],
+  },
+  "denia/la-xara": {
+    pl: [
+      "La Xara to wieś w gminie Dénia, trzy kilometry od morza, gdzie metr jest najtańszy w całej gminie, a domy mają ogrody i place na pomarańcze. Kupują tu osoby pracujące w Dénia oraz ci, którzy chcą domu z działką, a plażę traktują jako cel weekendowy. Najem jest dłuższy niż nad wodą, bo to zwykła miejscowość, a nie kurort, ale podaż mieszkań jest mała. Sprawdź plan miejscowy i czy działka ma dostęp do drogi gminnej, bo część gruntów to tereny rolne.",
+    ],
+    en: [
+      "La Xara is a village in the Dénia municipality, three kilometres from the sea, where the square metre is the cheapest in the whole municipality and houses have gardens and orange plots. Buyers work in Dénia or want a house with land and treat the beach as a weekend target. Letting lasts longer than by the water because this is an ordinary village and not a resort, though flat supply is small. Check the town plan and whether the plot reaches a council road, since some land is agricultural.",
+    ],
+    es: [
+      "La Xara es un pueblo del municipio de Dénia, a tres kilómetros del mar, donde el metro es el más barato de todo el municipio y las casas tienen jardín y huerto de naranjos. Compran quienes trabajan en Dénia o buscan casa con parcela y ven la playa como plan de fin de semana. El alquiler dura más que junto al agua porque es un pueblo normal y no un resort, aunque hay poca oferta de pisos. Revisa el planeamiento y si la parcela da a camino municipal, porque parte del suelo es agrícola.",
+    ],
+  },
+  "denia/montgo": {
+    pl: [
+      "Montgó to zbocze pod parkiem naturalnym nad Dénia, gdzie wille i apartamenty mają widok na zatokę, a hałas miasta zostaje na dole. To adres dla osób, które chcą ciszy, ogrodu i bliskości szlaków, a do plaży jadą pięć minut. Cena jest o 210 euro wyższa niż w średniej gminy, ale ROI 5,6 procent, bo najem jest rzadszy niż przy porcie. Sprawdź nachylenie drogi, stan murów oporowych i czy działka leży w strefie parku, gdzie rozbudowa wymaga zgody.",
+    ],
+    en: [
+      "Montgó is the slope under the natural park above Dénia, where villas and flats look over the bay and the town noise stays below. It suits people who want quiet, a garden and trails nearby, with the beach five minutes away by car. Prices run 210 euros above the municipal average, with a 5.6 percent yield, because letting is thinner than by the port. Check the road gradient, the state of retaining walls and whether the plot sits in the park zone, where extensions need permission.",
+    ],
+    es: [
+      "Montgó es la ladera bajo el parque natural sobre Dénia, donde chalets y pisos miran a la bahía y el ruido del pueblo queda abajo. Encaja con quien busca silencio, jardín y senderos cerca, con la playa a cinco minutos en coche. El precio va 210 euros sobre la media municipal, con un 5,6 por ciento, porque el alquiler es más escaso que junto al puerto. Revisa la pendiente del camino, el estado de los muros y si la parcela está en zona de parque, donde ampliar necesita permiso.",
+    ],
+  },
+  "javea/tosalet": {
+    pl: [
+      "Tosalet to najstarsza urbanizacja willowa w Jávea, z dużymi działkami, sosnami i domami, które budowano od lat siedemdziesiątych, gdy na wybrzeżu nie było jeszcze tłoku. Cena jest o 380 euro niższa niż w średniej gminy, bo toczy się tu drugi rynek: domy wymagają remontu, a nie każdy kupujący chce go prowadzić. Kupują tu osoby, które znają Jávea od lat, oraz rodziny szukające ogrodu blisko Arenal. Sprawdź stan instalacji, dachu i czy działka ma dostęp do drogi publicznej.",
+    ],
+    en: [
+      "Tosalet is the oldest villa urbanisation in Jávea, with large plots, pines and houses built from the seventies when the coast was still uncrowded. Prices run 380 euros below the municipal average because this is a second-hand market: houses need renovation and not every buyer wants that. Buyers know Jávea from years back, plus families after a garden near Arenal. Check installations, the roof and whether the plot reaches a public road.",
+    ],
+    es: [
+      "Tosalet es la urbanización de chalets más antigua de Jávea, con parcelas grandes, pinos y casas construidas desde los setenta, cuando la costa aún no estaba llena. El precio va 380 euros bajo la media municipal porque aquí se compra segunda mano: las casas piden reforma y no todo comprador quiere asumirla. Compran quienes conocen Jávea desde años atrás y familias que buscan jardín cerca del Arenal. Revisa instalaciones, tejado y si la parcela tiene acceso a camino público.",
+    ],
+  },
+  "guardamar-del-segura/guardamar-playa": {
+    pl: [
+      "Guardamar Playa to nadmorska część miasta, oddzielona od centrum parkiem Alfonso XIII i wydmami, gdzie apartamenty stoją o ulicę od szerokiej plaży. Cena jest najwyższa w gminie, bo do wody idzie się trzy minuty, a sosnowy park daje cień, którego brakuje w innych kurortach. Najem pracuje od maja do października, a poza sezonem część bloków stoi pusta. Sprawdź, czy budynek ma windę i wspólnotę z funduszem, bo osiedla z lat dziewięćdziesiątych wymagają już nakładów.",
+    ],
+    en: [
+      "Guardamar Playa is the seafront part of town, separated from the centre by the Alfonso XIII park and the dunes, where flats stand a street from the wide beach. Prices are the highest in the municipality because the water is three minutes away and the pine park gives shade other resorts lack. Letting runs from May to October, and off season part of the blocks stands empty. Check whether the building has a lift and a community with reserves, since nineties estates now need investment.",
+    ],
+    es: [
+      "Guardamar Playa es la parte marítima del pueblo, separada del centro por el parque Alfonso XIII y las dunas, donde los pisos están a una calle de la playa amplia. El precio es el más alto del municipio porque el agua queda a tres minutos y el pinar da la sombra que otros resorts no tienen. El alquiler va de mayo a octubre y fuera de temporada parte de los bloques queda vacía. Revisa si el edificio tiene ascensor y una comunidad con reservas, porque las urbanizaciones de los noventa ya piden inversión.",
+    ],
+  },
+  "guardamar-del-segura/el-raso": {
+    pl: [
+      "El Raso to duża urbanizacja willowa przy Carretera de Torrevieja, trzy kilometry od plaży, gdzie domy z basenami stoją na działkach wśród palm. Cena jest najniższa w gminie, bo nie ma tu morza za oknem, a samochód jest konieczny do wszystkiego. Kupują tu głównie obcokrajowcy z północy Europy, którzy chcą domu z ogrodem w cenie mieszkania nad wodą. Sprawdź, czy urbanizacja jest odebrana przez gminę i czy drogi wewnętrzne mają właściciela, bo część osiedli wciąż nim nie jest.",
+    ],
+    en: [
+      "El Raso is a large villa urbanisation on the Torrevieja road, three kilometres from the beach, where houses with pools sit on palm-lined plots. Prices are the lowest in the municipality because there is no sea at the window and a car is needed for everything. Buyers are mostly northern Europeans who want a house with a garden at the price of a flat by the water. Check whether the urbanisation has been handed to the council and who owns the internal roads.",
+    ],
+    es: [
+      "El Raso es una gran urbanización de chalets en la carretera de Torrevieja, a tres kilómetros de la playa, donde las casas con piscina ocupan parcelas entre palmeras. El precio es el más bajo del municipio porque no hay mar en la ventana y el coche es imprescindible para todo. Compran sobre todo extranjeros del norte de Europa que quieren casa con jardín al precio de un piso junto al agua. Comprueba si la urbanización está recepcionada y quién es titular de los caminos interiores.",
+    ],
+  },
+  "cartagena/santa-lucia": {
+    pl: [
+      "Santa Lucía to dzielnica na wzgórzu nad portem w Kartagenie, z kamienicami z początku XX wieku i widokiem na zatokę z górnych pięter. Cena jest najniższa w mieście, bo budynki wymagają remontu, a winda bywa luksusem; w zamian dostajesz metraż, którego nie ma w nowych osiedlach. Kupują tu inwestorzy liczący na wzrost wartości po remoncie starówki oraz najemcy pracujący w porcie i na uczelni. Sprawdź ITE i stan dachu, bo bez aktualnego przeglądu bank nie da kredytu.",
+    ],
+    en: [
+      "Santa Lucía is the hillside district above Cartagena's port, with early twentieth century buildings and bay views from the upper floors. Prices are the lowest in the city because buildings need work and a lift is a luxury; in return you get floor area new estates cannot offer. Buyers are investors betting on the old town's recovery and tenants working at the port or the university. Check the ITE inspection and the roof, since without a current report a bank will not lend.",
+    ],
+    es: [
+      "Santa Lucía es el barrio en la ladera sobre el puerto de Cartagena, con edificios de principios del siglo XX y vistas a la bahía desde las plantas altas. El precio es el más bajo de la ciudad porque los edificios piden obra y el ascensor es un lujo; a cambio se obtienen metros que las promociones nuevas no ofrecen. Compran inversores que apuestan por la recuperación del casco y inquilinos del puerto o la universidad. Revisa el ITE y el tejado, porque sin informe en vigor el banco no presta.",
+    ],
+  },
+  "los-alcazares/punta-brava": {
+    pl: [
+      "Punta Brava to spokojny skraj Los Alcázares przy granicy z San Javier, gdzie domy i apartamenty stoją przy wąskich ulicach, a do Mar Menor idzie się kilka minut. Cena jest najniższa w gminie, bo nie ma tu deptaku ani portu, tylko zwykłe sąsiedztwo. Kupują tu osoby, które chcą plaży bez turystycznego zgiełku, oraz rezydenci szukający taniego domu blisko lotniska. Sprawdź wysokość terenu, bo to nizina, oraz stan dróg po ulewach, które w tej strefie zbierają wodę.",
+    ],
+    en: [
+      "Punta Brava is the quiet edge of Los Alcázares on the San Javier border, where houses and flats line narrow streets and the Mar Menor is a few minutes away. Prices are the lowest in the municipality because there is no promenade or port here, only ordinary neighbourhood life. Buyers want a beach without tourist noise, and residents look for a cheap house near the airport. Check the height of the plot, since this is low ground, and the state of roads after rain.",
+    ],
+    es: [
+      "Punta Brava es el borde tranquilo de Los Alcázares, en el límite con San Javier, donde casas y pisos ocupan calles estrechas y el Mar Menor queda a unos minutos. El precio es el más bajo del municipio porque aquí no hay paseo ni puerto, solo vida de barrio. Compran quien busca playa sin ruido turístico y residentes que quieren casa barata cerca del aeropuerto. Revisa la altura de la parcela, porque es terreno bajo, y el estado de las calles tras la lluvia.",
+    ],
+  },
+  "mazarron/el-alamillo": {
+    pl: [
+      "El Alamillo to spokojna osada przy Playa del Alamillo, między Puerto de Mazarrón a Bolnuevo, gdzie domki i wille stoją wśród niskiej zabudowy, a plaża jest szeroka i rzadko zatłoczona. Cena jest wyższa niż w centrum Mazarrón, ale niższa niż w Puerto, bo brak tu restauracji i sklepów w zasięgu spaceru. Kupują tu rodziny, które chcą ciszy i morza, oraz rezydenci, którzy zostają na zimę. Sprawdź stan drogi dojazdowej i to, czy działka nie leży w strefie erozji.",
+    ],
+    en: [
+      "El Alamillo is a quiet settlement by Playa del Alamillo, between Puerto de Mazarrón and Bolnuevo, where cottages and villas sit among low housing and the beach is wide and rarely crowded. Prices are above Mazarrón centre but below Puerto, because restaurants and shops are not within walking distance. Buyers are families wanting quiet and sea, plus residents who stay for winter. Check the access road and whether the plot sits in an erosion zone.",
+    ],
+    es: [
+      "El Alamillo es un núcleo tranquilo junto a Playa del Alamillo, entre Puerto de Mazarrón y Bolnuevo, donde casas y chalets ocupan edificación baja y la playa es ancha y poco concurrida. El precio supera al centro de Mazarrón pero queda bajo Puerto, porque no hay restaurantes ni tiendas a pie. Compran familias que buscan silencio y mar, y residentes que se quedan el invierno. Revisa el camino de acceso y si la parcela está en zona de erosión.",
+    ],
+  },
+  "aguilas/el-hornillo": {
+    pl: [
+      "El Hornillo to dzielnica mieszkaniowa przy Playa del Hornillo, na zachód od centrum Águilas, gdzie apartamenty mają tarasy z widokiem na zatokę, a do portu idzie się spacerem dwadzieścia minut. Cena jest o 50 euro wyższa niż w centrum, a ROI 6,7 procent, bo najem trwa cały rok, choć stawki są niższe niż nad plażą Las Delicias. Kupują tu osoby, które chcą ciszy i widoku, ale bez płacenia za pierwsze linie. Sprawdź, czy budynek ma windę i czy okna nie wychodzą na trasę przybrzeżną.",
+    ],
+    en: [
+      "El Hornillo is a residential district by Playa del Hornillo, west of Águilas centre, where flats have terraces looking over the bay and the port is a twenty-minute walk. Prices run 50 euros above the centre with a 6.7 percent yield, because letting runs all year though rates stay below Las Delicias. Buyers want quiet and a view without paying front-line money. Check whether the building has a lift and whether windows face the coast road.",
+    ],
+    es: [
+      "El Hornillo es un barrio residencial junto a Playa del Hornillo, al oeste del centro de Águilas, donde los pisos tienen terraza con vistas a la bahía y el puerto queda a veinte minutos a pie. El precio va 50 euros sobre el centro con un 6,7 por ciento, porque el alquiler funciona todo el año aunque las rentas quedan bajo Las Delicias. Compran quien busca calma y vistas sin pagar primera línea. Revisa si hay ascensor y si las ventanas dan a la carretera de la costa.",
+    ],
+  },
+  "el-campello/coveta-fumada": {
+    pl: [
+      "Coveta Fumada to willowa część El Campello na klifie na północ od centrum, gdzie domy stoją na działkach wśród sosen, a do zatoczek schodzi się po schodach. Cena jest najniższa w gminie, bo brak tu plaży z prawdziwego zdarzenia i sklepów w zasięgu spaceru, a samochód jest konieczny. Kupują tu osoby, które chcą ciszy i ogrodu, a do tramwaju mają pięć minut jazdy. Sprawdź stan murów oporowych, dostęp do drogi publicznej i to, czy działka ma widok, którego nie zasłoni nowa inwestycja.",
+    ],
+    en: [
+      "Coveta Fumada is the villa part of El Campello on the cliff north of the centre, where houses sit on pine plots and the coves are reached down steps. Prices are the lowest in the municipality because there is no proper beach or shops within walking distance and a car is essential. Buyers want quiet and a garden, with the tram five minutes away by car. Check the retaining walls, access to a public road and whether the view can be blocked by a new development.",
+    ],
+    es: [
+      "Coveta Fumada es la parte de chalets de El Campello en el acantilado al norte del centro, donde las casas ocupan parcelas entre pinos y a las calas se baja por escaleras. El precio es el más bajo del municipio porque no hay playa como tal ni tiendas a pie y el coche es imprescindible. Compran quien busca silencio y jardín, con el tranvía a cinco minutos en coche. Revisa los muros de contención, el acceso a camino público y si las vistas pueden quedar tapadas por una promoción nueva.",
+    ],
+  },
+  "l-albir/sierra-albir": {
+    pl: [
+      "Sierra Albir to willowa część L'Albir na zboczu pod parkiem Serra Gelada, gdzie domy mają baseny, duże tarasy i widok na zatokę z góry. Cena jest o 220 euro niższa niż przy plaży, bo do wody trzeba zejść albo zjechać, a okolica jest cicha i bez ruchu turystycznego. Kupują tu osoby, które chcą prywatności i ogrodu, a plażę traktują jako cel spaceru. Sprawdź nachylenie działki, stan drogi wewnętrznej i czy posesja nie leży w strefie ochronnej parku.",
+    ],
+    en: [
+      "Sierra Albir is the villa part of L'Albir on the slope under the Serra Gelada park, where houses have pools, large terraces and a bay view from above. Prices run 220 euros below the beachfront because the water means a walk down or a drive, and the area is quiet with no tourist traffic. Buyers want privacy and a garden and treat the beach as a walk. Check the gradient, the state of the internal road and whether the property sits in the park protection zone.",
+    ],
+    es: [
+      "Sierra Albir es la parte de chalets de L'Albir en la ladera bajo el parque de Serra Gelada, donde las casas tienen piscina, terrazas amplias y vistas a la bahía desde arriba. El precio va 220 euros bajo la primera línea porque al agua hay que bajar andando o en coche, y la zona es tranquila sin tráfico turístico. Compran quien busca privacidad y jardín y ve la playa como paseo. Revisa la pendiente, el estado del camino interior y si la finca está en zona de protección del parque.",
+    ],
+  },
+  "quesada/dona-pepa": {
+    pl: [
+      "Doña Pepa to spokojne osiedle willowe w Ciudad Quesada, na łagodnym zboczu przy Sierra de Callosa, gdzie domy mają ogrody i baseny, a do sklepów idzie się dziesięć minut. Cena jest najniższa w Quesadzie, bo to najdalsza część urbanizacji od centrum handlowego, a popyt 6,8 w naszej skali. Kupują tu osoby, które chcą ciszy i ogrodu, a nie basenu wspólnoty, oraz rezydenci, którzy zostają na zimę. Sprawdź, czy działka ma odbiór urbanizacji i czy basen jest wpisany do licencji.",
+    ],
+    en: [
+      "Doña Pepa is a quiet villa estate in Ciudad Quesada, on the gentle slope by Sierra de Callosa, where houses have gardens and pools and shops are ten minutes away. Prices are the lowest in Quesada because this is the part furthest from the shopping centre, with demand at 6.8 on our scale. Buyers want quiet and a garden rather than a communal pool, plus residents who stay for winter. Check the urbanisation sign-off and whether the pool is on the licence.",
+    ],
+    es: [
+      "Doña Pepa es una urbanización tranquila de chalets en Ciudad Quesada, en la ladera suave junto a Sierra de Callosa, donde las casas tienen jardín y piscina y las tiendas quedan a diez minutos. El precio es el más bajo de Quesada porque es la parte más lejana del centro comercial, con demanda de 6,8 en nuestra escala. Compran quien busca silencio y jardín en lugar de piscina comunitaria, y residentes que pasan el invierno. Revisa la recepción de la urbanización y si la piscina consta en licencia.",
+    ],
+  },
+  "villajoyosa/plans": {
+    pl: [
+      "Plans to najtańsza część Villajoyosa, na zboczu przy Sierra de Ponotx, gdzie domy i apartamenty stoją na większych działkach, a do plaży zjeżdża się kilka minut. Cena jest o 270 euro niższa niż w Playa Torre, bo nie ma tu widoku na morze z każdego okna, a okolica jest mieszkaniowa i cicha. Kupują tu osoby, które chcą metrażu i ogrodu w cenie mieszkania nad wodą, oraz rezydenci pracujący w Benidormie. Sprawdź stan drogi dojazdowej i czy działka ma dostęp do mediów.",
+    ],
+    en: [
+      "Plans is the cheapest part of Villajoyosa, on the slope by Sierra de Ponotx, where houses and flats sit on larger plots and the beach is a few minutes down the road. Prices run 270 euros below Playa Torre because not every window sees the sea, and the area is residential and quiet. Buyers want floor area and a garden at the price of a flat by the water, plus residents working in Benidorm. Check the access road and whether the plot is connected to utilities.",
+    ],
+    es: [
+      "Plans es la parte más barata de Villajoyosa, en la ladera junto a Sierra de Ponotx, donde casas y pisos ocupan parcelas mayores y a la playa se baja en unos minutos. El precio va 270 euros bajo Playa Torre porque no todas las ventanas ven el mar y la zona es residencial y tranquila. Compran quien busca metros y jardín al precio de un piso junto al agua, y residentes que trabajan en Benidorm. Revisa el camino de acceso y si la parcela tiene acometidas.",
+    ],
+  },
+  "finestrat/centro": {
+    pl: [
+      "Centro w Finestrat to stara wieś na zboczu pod Puig Campana, z wąskimi uliczkami, kościołem i widokiem na góry zamiast na morze. Cena jest najniższa w gminie, bo do plaży w Benidorm jest kwadrans jazdy, a w samej wsi są tylko podstawowe usługi. Kupują tu osoby, które chcą domu z duszą i nie potrzebują widoku na zatokę, oraz rezydenci, którzy pracują w Benidormie. Sprawdź stan konstrukcji w starych domach i czy remont elewacji wymaga zgody konserwatora.",
+    ],
+    en: [
+      "Centro in Finestrat is the old village on the slope under Puig Campana, with narrow lanes, a church and mountain views rather than sea ones. Prices are the lowest in the municipality because Benidorm beach is fifteen minutes away and the village has only basic services. Buyers want a house with character and no need for a bay view, plus residents working in Benidorm. Check the structure of older houses and whether facade work needs heritage approval.",
+    ],
+    es: [
+      "Centro en Finestrat es el pueblo viejo en la ladera bajo el Puig Campana, con calles estrechas, iglesia y vistas a la montaña y no al mar. El precio es el más bajo del municipio porque la playa de Benidorm queda a quince minutos y el pueblo solo tiene servicios básicos. Compran quien busca casa con carácter y no necesita vistas a la bahía, y residentes que trabajan en Benidorm. Revisa la estructura de las casas antiguas y si la fachada requiere permiso de patrimonio.",
+    ],
+  },
+  "finestrat/balcon-de-finestrat": {
+    pl: [
+      "Balcón de Finestrat to nowe osiedla na zboczu nad Benidormem, z apartamentami i willem z basenami, skąd widać całą zatokę i wieżowce miasta. Cena jest najwyższa w gminie, bo widok i bliskość plaży są tu najlepsze, a osiedla mają ochronę i baseny. Kupują tu obcokrajowcy z północy Europy, którzy chcą ciszy i widoku, ale nie chcą mieszkać w wieżowcu. Sprawdź składki na ochronę i utrzymanie terenów zielonych oraz dostęp do drogi gminnej.",
+    ],
+    en: [
+      "Balcón de Finestrat is the newer estates on the slope above Benidorm, with flats and villas with pools, looking over the whole bay and the town's towers. Prices are the highest in the municipality because the view and beach proximity are the best here, and estates have security and pools. Buyers are northern Europeans who want quiet and a view but not a tower block. Check security and green area charges and access to a council road.",
+    ],
+    es: [
+      "Balcón de Finestrat son las urbanizaciones nuevas en la ladera sobre Benidorm, con pisos y chalets con piscina, desde donde se ve toda la bahía y las torres del pueblo. El precio es el más alto del municipio porque las vistas y la cercanía a la playa son las mejores, y las urbanizaciones tienen seguridad y piscina. Compran extranjeros del norte de Europa que quieren calma y vistas sin vivir en una torre. Revisa las cuotas de seguridad y zonas verdes y el acceso a camino municipal.",
+    ],
+  },
+  "quesada/la-marquesa": {
+    pl: [
+      "La Marquesa to najbardziej zurbanizowana część Ciudad Quesada, zbudowana wokół pola golfowego La Marquesa, z apartamentami i willem z basenami, restauracjami i klubem. Cena jest najwyższa w Quesadzie, bo widok na pole i gotowa infrastruktura są tu najlepsze, a popyt 8 w naszej skali. Kupują tu osoby grające oraz rezydenci, którzy chcą mieć wszystko pod ręką. Sprawdź wysokość składek na utrzymanie pola i terenów zielonych oraz czy osiedle ma licencję turystyczną.",
+    ],
+    en: [
+      "La Marquesa is the most built-up part of Ciudad Quesada, laid out around the La Marquesa golf course with flats and villas with pools, restaurants and a clubhouse. Prices are the highest in Quesada because the course view and finished infrastructure are the best here, with demand at 8 on our scale. Buyers are golfers and residents who want everything at hand. Check the charges for the course and green areas and whether the estate holds a tourist licence.",
+    ],
+    es: [
+      "La Marquesa es la parte más urbanizada de Ciudad Quesada, trazada en torno al campo de golf La Marquesa con pisos y chalets con piscina, restaurantes y club. El precio es el más alto de Quesada porque las vistas al campo y la infraestructura terminada son las mejores, con demanda de 8 en nuestra escala. Compran jugadores y residentes que quieren todo a mano. Revisa las cuotas del campo y zonas verdes y si la urbanización tiene licencia turística.",
+    ],
+  },
+  "san-miguel-de-salinas/el-chaparral": {
+    pl: [
+      "El Chaparral to osiedle willowe w gminie San Miguel de Salinas, zbudowane wokół pola golfowego i restauracji, gdzie domy mają baseny, a ulice są szerokie i ciche. Cena jest o 50 euro niższa niż w centrum, bo nie ma tu kościoła ani targu, tylko spokój i zieleń. Kupują tu obcokrajowcy z północy Europy, którzy chcą domu z ogrodem blisko pola i lotniska. Sprawdź wysokość opłat na utrzymanie pola i czy działka ma dostęp do drogi gminnej.",
+    ],
+    en: [
+      "El Chaparral is a villa estate in San Miguel de Salinas, built around a golf course and restaurants, where houses have pools and the streets are wide and quiet. Prices run 50 euros below the centre because there is no church or market here, only calm and greenery. Buyers are northern Europeans who want a house with a garden near the course and the airport. Check the course maintenance charges and whether the plot reaches a council road.",
+    ],
+    es: [
+      "El Chaparral es una urbanización de chalets en San Miguel de Salinas, construida en torno a un campo de golf y restaurantes, donde las casas tienen piscina y las calles son anchas y tranquilas. El precio va 50 euros bajo el centro porque aquí no hay iglesia ni mercado, solo calma y vegetación. Compran extranjeros del norte de Europa que buscan casa con jardín cerca del campo y del aeropuerto. Revisa las cuotas de mantenimiento del campo y si la parcela da a camino municipal.",
+    ],
+  },
+  "san-miguel-de-salinas/la-pedrera": {
+    pl: [
+      "La Pedrera to najtańsza część gminy San Miguel de Salinas, przy zbiorniku i drodze w głąb lądu, gdzie domy stoją na dużych działkach, a do sklepów jedzie się kilka minut. Kupują tu osoby, które chcą domu z ogrodem za cenę mieszkania, oraz rezydenci, którzy nie potrzebują widoku na morze. Popyt jest najniższy w gminie, więc sprzedaż może potrwać. Sprawdź dostęp do wody i prądu oraz czy działka nie jest terenem rolnym bez prawa zabudowy.",
+    ],
+    en: [
+      "La Pedrera is the cheapest part of San Miguel de Salinas, by the reservoir and the road inland, where houses sit on large plots and shops are a few minutes away. Buyers want a house with a garden at the price of a flat, plus residents who do not need a sea view. Demand is the lowest in the municipality, so a sale can take time. Check water and power connections and whether the plot is agricultural land without building rights.",
+    ],
+    es: [
+      "La Pedrera es la parte más barata de San Miguel de Salinas, junto al embalse y la carretera hacia el interior, donde las casas ocupan parcelas grandes y las tiendas quedan a unos minutos. Compran quien busca casa con jardín al precio de un piso y residentes que no necesitan vistas al mar. La demanda es la más baja del municipio, así que una venta puede tardar. Revisa acometidas de agua y luz y si la parcela es suelo agrícola sin derecho a edificar.",
+    ],
+  },
+  "mazarron/mazarron-centro": {
+    pl: [
+      "Mazarrón Centro to miasto górnicze w głębi lądu, cztery kilometry od Puerto, z kamienicami, urzędami i targiem, gdzie metr jest najtańszy w gminie. Kupują tu osoby pracujące w okolicy oraz inwestorzy, którzy liczą na najem całoroczny, a nie sezonowy. Do plaży trzeba podjechać, więc to nie adres wakacyjny, ale ceny mieszkań są tu najniższe na całym wybrzeżu. Sprawdź stan budynku i czy mieszkanie ma okna na ulicę, bo centrum bywa głośne w dzień targowy.",
+    ],
+    en: [
+      "Mazarrón Centro is the mining town inland, four kilometres from Puerto, with townhouses, offices and a market, where the square metre is the cheapest in the municipality. Buyers are people working nearby and investors counting on year-round rather than seasonal letting. The beach needs a drive, so this is not a holiday address, but flat prices are the lowest on this coast. Check the building's condition and whether windows face the street, since the centre is loud on market day.",
+    ],
+    es: [
+      "Mazarrón Centro es el pueblo minero tierra adentro, a cuatro kilómetros de Puerto, con casas, oficinas y mercado, donde el metro es el más barato del municipio. Compran quienes trabajan cerca e inversores que cuentan con alquiler anual y no de temporada. A la playa hay que ir en coche, así que no es una dirección de vacaciones, pero los precios son los más bajos de esta costa. Revisa el estado del edificio y si las ventanas dan a la calle, porque el centro es ruidoso en día de mercado.",
+    ],
+  },
   // END
 };
 

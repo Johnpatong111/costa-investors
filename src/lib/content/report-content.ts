@@ -118,9 +118,9 @@ export function buildPriceReport(entry: DistrictEntry): PriceReport {
       paragraphs: rotateItems(
         [
           t(
-            "Cena zależy od odległości od plaży, roku budowy i standardu osiedla. Przy medianie {price} €/m² lokal 70 m² kosztuje około {budget70}, a po doliczeniu kosztów zakupu ({purchaseCosts}) budżet zamyka się bliżej {budget70plus}.",
+            "Przy medianie {price} €/m² lokal 70 m² kosztuje około {budget70}, a z kosztami zakupu ({purchaseCosts}) budżet rośnie do {budget70plus}.",
           ),
-          `Charakterystyka ${district.nameLocative}: ${district.characteristics[0]} oraz ${district.characteristics[1] ?? district.characteristics[0]}. W rankingu cen miasta ${city.nameGenitive} to ${position}. miejsce (${formatEur(stats.pricePerM2)}/m²). Najdrożej jest w ${priciest?.name ?? city.name} (${formatEur(priciest?.price ?? 0)}/m²), a najtaniej w ${cheapest?.name ?? city.name} (${formatEur(cheapest?.price ?? 0)}/m²).`,
+          `W rankingu cen ${city.nameGenitive} to ${position}. miejsce (${formatEur(stats.pricePerM2)}/m²). Najdrożej: ${priciest?.name ?? city.name} (${formatEur(priciest?.price ?? 0)}/m²), najtaniej: ${cheapest?.name ?? city.name} (${formatEur(cheapest?.price ?? 0)}/m²).`,
         ],
         key,
         "ceny",
@@ -131,24 +131,13 @@ export function buildPriceReport(entry: DistrictEntry): PriceReport {
         t("Dynamika r/r: {growth}"),
         t("Czas ekspozycji oferty: {days} dni"),
         t("Transakcje 12 mies.: {volume}"),
-      ],
+      ].slice(0, 2),
     },
     {
       id: "roi",
       heading: `ROI i dochód z najmu w ${district.nameLocative}`,
-      paragraphs: rotateItems(
-        [
-          t(
-            "Mediana czynszu to {rent} €/m²/mies., co daje {yield} brutto. Przy budżecie 250 000 € oznacza to około {rent250} € przychodu rocznie i {rentNet250} € po kosztach zarządzania, podatku i pustostanach.",
-          ),
-          t(
-            "Łącząc czynsz ze wzrostem wartości ({growth} r/r) inwestycja w {districtLoc} generuje w 5 lat około {return5y} € zwrotu, czyli {returnPercent}% budżetu. Prognozowana wartość po 5 latach: {value5y} €.",
-          ),
-        ],
-        key,
-        "roi",
-        1,
-      ),
+      // Proza ROI usunięta: interpretacja jest w bloku „glebiej”.
+      paragraphs: [],
     },
     {
       id: "podatki",
