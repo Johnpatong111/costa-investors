@@ -1009,12 +1009,124 @@ const NOTES: Record<string, Partial<Record<Locale, string[]>>> = {
   // END
 };
 
+/**
+ * Drugi (i kolejny) akapit autorski dla wybranych dzielnic. Trzymamy go osobno,
+ * żeby dopisywanie treści nie wymagało edycji istniejących wpisów.
+ * Cel: każda strona ma więcej własnej analizy, nie mniej.
+ */
+const NOTES_EXTRA: Record<string, Partial<Record<Locale, string[]>>> = {
+  "aguilas/las-delicias": {
+    pl: [
+      "Liczby, które warto zapamiętać przed rozmową o cenie: metr kosztuje tu 2 010 €, o 160 € więcej niż mediana Águilas, a najem daje 6,6 procent brutto przy 120 dniach ekspozycji. To najlepszy stosunek ceny do dochodu w gminie, bo deptak i port pracują dłużej niż plaża. Kupujący z Polski to około 4 procent nabywców, więc polskich usług szukaj w Murcji, nie na miejscu. Uwaga na dwie rzeczy: hałas pociągu towarowego w blokach przy torowisku i wspólnoty w budynkach z lat osiemdziesiątych, które nie mają funduszu na windy.",
+    ],
+    en: [
+      "Numbers worth keeping before you negotiate: the square metre costs 2,010, 160 above the Águilas median, and letting yields 6.6 percent gross with 120 days on market. That is the best price-to-income ratio in the municipality, because the promenade and port work longer than the beach. Polish buyers make up about 4 percent, so Polish services are in Murcia rather than locally. Watch two things: freight train noise in blocks by the tracks and eighties communities with no lift fund.",
+    ],
+    es: [
+      "Cifras que conviene retener antes de negociar: el metro cuesta 2.010, 160 más que la mediana de Águilas, y el alquiler rinde 6,6 por ciento bruto con 120 días de exposición. Es la mejor relación precio-ingreso del municipio, porque el paseo y el puerto trabajan más horas que la playa. Los compradores polacos son cerca del 4 por ciento, así que los servicios polacos están en Murcia y no aquí. Ojo a dos cosas: el ruido del tren de mercancías en bloques junto a las vías y comunidades de los ochenta sin fondo para ascensores.",
+    ],
+  },
+  "aguilas/el-hornillo": {
+    pl: [
+      "Porównanie, które porządkuje decyzję: 1 800 €/m² w El Hornillo wobec 2 010 €/m² na Las Delicias i 2 120 €/m² w Calarreona. Różnica 210 € za metr to cena spokoju i widoku z tarasu, ale też brak plaży pod domem i dwadzieścia minut do portu. Najem trwa tu dłużej niż na pierwszej linii, bo trafia do osób pracujących w mieście, a nie do turystów na dwa tygodnie. Sprawdź, czy blok ma windę i czy okna nie wychodzą na trasę przybrzeżną, po której latem jeżdżą autokary.",
+    ],
+    en: [
+      "The comparison that settles the decision: 1,800 per m² in El Hornillo against 2,010 on Las Delicias and 2,120 in Calarreona. The 210 gap buys quiet and a terrace view, but also means no beach at the door and twenty minutes to the port. Letting lasts longer than on the front line because it goes to people working in town rather than fortnight tourists. Check whether the block has a lift and whether windows face the coast road, where coaches run in summer.",
+    ],
+    es: [
+      "La comparación que ordena la decisión: 1.800 por m² en El Hornillo frente a 2.010 en Las Delicias y 2.120 en Calarreona. Los 210 de diferencia compran silencio y vistas desde la terraza, pero también significan no tener playa en la puerta y veinte minutos al puerto. El alquiler dura más que en primera línea porque va a gente que trabaja en el pueblo y no a turistas de dos semanas. Revisa si el bloque tiene ascensor y si las ventanas dan a la carretera de la costa, por donde en verano circulan autocares.",
+    ],
+  },
+  "san-pedro-del-pinatar/lo-pagan": {
+    pl: [
+      "Dane do kalkulacji: 2 450 €/m², o 160 € więcej niż mediana gminy, ROI 6,5 procent brutto przy 110 dniach ekspozycji i popycie 8/10. Sąsiad, El Mojón, kosztuje 2 400 €/m², ale ma o 0,1 punktu niższy zwrot i mniej usług w zasięgu spaceru. Przewaga Lo Pagán to kurort z bazą całoroczną: błoto lecznicze, port i restauracje dają ruch także poza lipcem. Sprawdź, czy wspólnota ma fundusz na malowanie elewacji od strony morza, bo sól i wilgoć skracają jej żywotność o połowę.",
+    ],
+    en: [
+      "Numbers for the calculation: 2,450 per m², 160 above the municipal median, a 6.5 percent gross yield with 110 days on market and demand at 8 of 10. The neighbour El Mojón costs 2,400 per m² but yields 0.1 points less and has fewer services within walking distance. The Lo Pagán advantage is a resort with a year-round base: the healing mud, the port and restaurants keep traffic beyond July. Check whether the community has funds to repaint the sea-facing facade, since salt and damp halve its life.",
+    ],
+    es: [
+      "Datos para el cálculo: 2.450 por m², 160 sobre la mediana municipal, un 6,5 por ciento bruto con 110 días de exposición y demanda de 8 sobre 10. El vecino El Mojón cuesta 2.400 por m² pero rinde 0,1 puntos menos y tiene menos servicios a pie. La ventaja de Lo Pagán es un resort con base anual: el barro, el puerto y los restaurantes mantienen movimiento más allá de julio. Revisa si la comunidad tiene fondos para pintar la fachada al mar, porque sal y humedad reducen a la mitad su vida útil.",
+    ],
+  },
+  "san-pedro-del-pinatar/el-mojon": {
+    pl: [
+      "Trzy liczby, które opisują ten adres: 2 400 €/m², czyli 110 € więcej niż mediana gminy, 6,4 procent brutto i popyt 7/10, najniższy w San Pedro. To cena spokoju: nie ma tu portu ani deptaku, więc najemca to raczej rezydent niż turysta. W porównaniu z Lo Pagán (2 450 €/m², 6,5 procent) dostajesz ciszę taniej, ale tracisz restauracje w zasięgu spaceru. Sprawdź, czy działka leży w strefie Parque Regional Salinas, bo tam basen i rozbudowa wymagają zgody, oraz czy droga dojazdowa jest gminna.",
+    ],
+    en: [
+      "Three numbers describe this address: 2,400 per m², 110 above the municipal median, a 6.4 percent gross yield and demand at 7 of 10, the lowest in San Pedro. That is the price of quiet: there is no port or promenade here, so the tenant is a resident rather than a tourist. Against Lo Pagán (2,450 per m², 6.5 percent) you buy silence cheaper but lose restaurants within walking distance. Check whether the plot falls inside the Parque Regional Salinas, where pools and extensions need permission, and whether the access road is a council one.",
+    ],
+    es: [
+      "Tres cifras describen esta dirección: 2.400 por m², 110 sobre la mediana municipal, un 6,4 por ciento bruto y demanda de 7 sobre 10, la más baja de San Pedro. Es el precio del silencio: aquí no hay puerto ni paseo, así que el inquilino es residente y no turista. Frente a Lo Pagán (2.450 por m², 6,5 por ciento) compras calma más barata pero pierdes restaurantes a pie. Comprueba si la parcela está en el Parque Regional Salinas, donde piscina y ampliaciones necesitan permiso, y si el camino de acceso es municipal.",
+    ],
+  },
+  "calpe/puerto": {
+    pl: [
+      "Liczby do decyzji: 3 330 €/m², o 60 € więcej niż mediana Calpe, ROI 5,6 procent brutto przy popycie 8/10. Dla porównania Playa de la Fossa kosztuje 3 540 €/m², a Canuta 3 170 €/m², więc port jest środkiem stawki: płacisz za dojście do mariny i starówki, nie za pierwsze linie. Najem krótki pracuje tu od maja do października, a zimą część lokali stoi pusta, więc kalkulację oprzyj na ośmiu miesiącach, nie na dwunastu. Sprawdź, czy wspólnota ma fundusz na windy i czy okna nie wychodzą na plac przy targu rybnym.",
+    ],
+    en: [
+      "Numbers for the decision: 3,330 per m², 60 above the Calpe median, a 5.6 percent gross yield with demand at 8 of 10. For comparison Playa de la Fossa costs 3,540 per m² and Canuta 3,170, so the port sits mid-range: you pay for the walk to the marina and old town, not for a front line. Short lets run from May to October and part of the stock stands empty in winter, so build the maths on eight months, not twelve. Check the community lift fund and whether windows face the fish market square.",
+    ],
+    es: [
+      "Cifras para decidir: 3.330 por m², 60 sobre la mediana de Calpe, un 5,6 por ciento bruto con demanda de 8 sobre 10. Para comparar, Playa de la Fossa cuesta 3.540 por m² y Canuta 3.170, así que el puerto queda en el medio: se paga el paseo a la marina y al casco, no la primera línea. El alquiler corto va de mayo a octubre y en invierno parte del parque queda vacío, así que calcula sobre ocho meses y no doce. Revisa el fondo de ascensores de la comunidad y si las ventanas dan a la plaza de la lonja.",
+    ],
+  },
+  "javea/puerto": {
+    pl: [
+      "Kontekst cenowy Jávea jest tu kluczowy: mediana miasta to 4 400 €/m², port 4 450 €/m², Arenal 4 290 €/m², a Cap Martí 4 890 €/m². Port jest więc najtańszym sposobem na życie w Jávea bez samochodu, ale ROI 4,8 procent brutto należy do najniższych w regionie, bo cena rośnie szybciej niż czynsze. Kupują tu osoby, które chcą mieć marinę, targ rybny i restauracje pod ręką, a widok traktują jako dodatek. Sprawdź hałas porannego wyładunku ryb i dostęp do miejsca parkingowego, bo w sezonie to warunek konieczny.",
+    ],
+    en: [
+      "The Jávea price context matters here: the town median is 4,400 per m², the port 4,450, Arenal 4,290 and Cap Martí 4,890. The port is therefore the cheapest way to live in Jávea without a car, but a 4.8 percent gross yield is among the lowest in the region, because prices rise faster than rents. Buyers want the marina, fish market and restaurants at hand and treat the view as a bonus. Check noise from the morning catch and whether a parking space comes with the flat, since in season that is a condition.",
+    ],
+    es: [
+      "El contexto de precios de Jávea es clave: la mediana del pueblo es 4.400 por m², el puerto 4.450, Arenal 4.290 y Cap Martí 4.890. El puerto es la forma más barata de vivir en Jávea sin coche, pero un 4,8 por ciento bruto está entre los más bajos de la región, porque los precios suben más rápido que las rentas. Compran quien quiere marina, lonja y restaurantes a mano y ve las vistas como un extra. Revisa el ruido de la descarga matinal y si la vivienda incluye plaza de garaje, porque en temporada es imprescindible.",
+    ],
+  },
+
+  "villajoyosa/centro": {
+    pl: [
+      "Twarde dane: 2 520 €/m² wobec 2 620 €/m² mediany gminy i 2 840 €/m² w Playa Torre, ROI 6,0 procent brutto, popyt 7,5/10. Centro jest więc o 320 € tańsze od plaży, ale też o 0,3 punktu mniej dochodowe, bo czynsze w starym mieście są niskie. Zaletą jest całoroczność: port, fabryki czekolady i urzędy dają najemców także w styczniu, czego nie ma w Plans. Sprawdź, czy budynek ma sprawdzoną instalację elektryczną i czy wspólnota uchwaliła fundusz na dach, bo w kamienicach z lat sześćdziesiątych to najczęstszy wydatek.",
+    ],
+    en: [
+      "Hard numbers: 2,520 per m² against a town median of 2,620 and 2,840 in Playa Torre, a 6.0 percent gross yield and demand at 7.5 of 10. Centro is therefore 320 cheaper than the beach but 0.3 points less profitable, because old town rents are low. The advantage is year-round life: the port, the chocolate factories and the offices supply tenants in January too, which Plans cannot. Check the building's electrical installation and whether the community has approved a roof fund, since in sixties townhouses that is the most common bill.",
+    ],
+    es: [
+      "Datos duros: 2.520 por m² frente a una mediana de 2.620 y 2.840 en Playa Torre, un 6,0 por ciento bruto y demanda de 7,5 sobre 10. Centro es 320 más barato que la playa pero 0,3 puntos menos rentable, porque las rentas del casco son bajas. La ventaja es la vida anual: puerto, fábricas de chocolate y oficinas dan inquilinos también en enero, algo que Plans no ofrece. Revisa la instalación eléctrica y si la comunidad aprobó un fondo para el tejado, porque en casas de los sesenta es el gasto más habitual.",
+    ],
+  },
+  "l-albir/centro": {
+    pl: [
+      "Liczby, które porządkują wybór: 3 200 €/m² w Centro, 3 520 €/m² przy Playa del Albir i 3 090 €/m² w Sierra Albir, przy medianie gminy 3 310 €/m². Centro jest więc o 110 € tańsze od średniej i o 320 € od pierwszej linii, a ROI 5,3 procent brutto należy do najniższych na tym odcinku wybrzeża. To adres pod własne mieszkanie i najem sezonowy, nie pod cash flow: licz się z tym, że zwrot przyjdzie ze wzrostu wartości, a nie z czynszu. Sprawdź, czy wspólnota ma windę i ile kosztuje utrzymanie ogrodu od strony promenady.",
+    ],
+    en: [
+      "Numbers that organise the choice: 3,200 per m² in Centro, 3,520 at Playa del Albir and 3,090 in Sierra Albir, against a town median of 3,310. Centro is 110 below the average and 320 below the front line, with a 5.3 percent gross yield that ranks among the lowest on this stretch of coast. This is an address for your own flat and seasonal letting, not for cash flow: expect the return to come from value growth rather than rent. Check the community lift and what it costs to maintain the garden facing the promenade.",
+    ],
+    es: [
+      "Cifras que ordenan la elección: 3.200 por m² en Centro, 3.520 en Playa del Albir y 3.090 en Sierra Albir, frente a una mediana municipal de 3.310. Centro está 110 bajo la media y 320 bajo la primera línea, con un 5,3 por ciento bruto entre los más bajos de este tramo. Es una dirección para piso propio y alquiler de temporada, no para flujo de caja: cuenta con que el retorno venga de la revalorización y no de la renta. Revisa el ascensor de la comunidad y cuánto cuesta mantener el jardín frente al paseo.",
+    ],
+  },
+  "el-campello/centro": {
+    pl: [
+      "Dane, które decydują o zwrocie: 2 780 €/m² wobec 2 880 €/m² mediany gminy i 3 100 €/m² w Muchavista. Centro jest więc o 320 € tańsze od plaży, a ROI 5,8 procent brutto jest najwyższe w mieście, bo cena wejścia jest niższa, a czynsz trzyma się dzięki tramwajowi i portowi. Tramwaj dowozi do Alicante w kilkanaście minut, więc najemca to często pracownik albo student, a umowa idzie na rok. Sprawdź hałas torowiska w blokach pierwszej linii i to, czy okna nie wychodzą na plac manewrowy portu.",
+    ],
+    en: [
+      "Data that decides the return: 2,780 per m² against a town median of 2,880 and 3,100 in Muchavista. Centro is therefore 320 cheaper than the beach, and a 5.8 percent gross yield is the best in town, because the entry price is lower and the tram plus the port keep rents steady. The tram reaches Alicante in about fifteen minutes, so the tenant is often a commuter or a student signing for a year. Check track noise in front-line blocks and whether windows face the port's manoeuvring yard.",
+    ],
+    es: [
+      "Datos que deciden el retorno: 2.780 por m² frente a una mediana de 2.880 y 3.100 en Muchavista. Centro es 320 más barato que la playa, y un 5,8 por ciento bruto es el mejor del pueblo, porque la entrada es menor y el tranvía y el puerto sostienen las rentas. El tranvía llega a Alicante en unos quince minutos, así que el inquilino suele ser trabajador o estudiante que firma por un año. Revisa el ruido de las vías en bloques de primera línea y si las ventanas dan al patio de maniobras del puerto.",
+    ],
+  },
+
+  // END
+};
+
 export function districtMarketNote(
   citySlug: string,
   districtSlug: string,
   locale: Locale,
 ): DistrictMarketNote | null {
-  const paragraphs = NOTES[`${citySlug}/${districtSlug}`]?.[locale];
+  const key = `${citySlug}/${districtSlug}`;
+  const paragraphs = NOTES[key]?.[locale];
   if (!paragraphs || paragraphs.length === 0) return null;
-  return { heading: HEADING[locale], paragraphs };
+  const extra = NOTES_EXTRA[key]?.[locale] ?? [];
+  return { heading: HEADING[locale], paragraphs: [...paragraphs, ...extra] };
 }

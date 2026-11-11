@@ -22,6 +22,83 @@ const HEADING: Record<Locale, string> = {
   es: "Nuestra lectura del mercado local",
 };
 
+/**
+ * Drugi akapit autorski dla stron miast: konkretne dane, porównania wewnątrz
+ * gminy i wnioski inwestycyjne. Trzymane osobno od bazowych not, żeby dopisywać
+ * treść bez edycji istniejących wpisów.
+ */
+const CITY_EXTRA: Record<string, Partial<Record<Locale, string[]>>> = {
+  altea: {
+    pl: [
+      "Twarde dane do decyzji: mediana 3 680 €/m², dynamika 9,8 procent r/r, 900 transakcji rocznie i 130 dni ekspozycji, przy ROI 5,3 procent brutto. Wewnątrz gminy rozstrzał sięga 700 €/m²: od Cap Blanc (3 730 €/m²) przez Playa de la Roda (3 780) i Casco Antiguo (3 890) do Mascarat (4 220) i Altea Hills (4 430). Kupujący z zagranicy to 44 procent, Polacy 6 procent. Wniosek: to rynek kapitału, nie dochodu, więc licz na wzrost wartości i sezonowy najem, a nie na cash flow.",
+    ],
+    en: [
+      "Hard numbers for the decision: a 3,680 median, 9.8 percent growth, 900 sales a year and 130 days on market, with a 5.3 percent gross yield. Inside the municipality the spread reaches 700 per m²: from Cap Blanc (3,730) through Playa de la Roda (3,780) and Casco Antiguo (3,890) to Mascarat (4,220) and Altea Hills (4,430). Foreign buyers make up 44 percent and Poles 6 percent. The conclusion: this is a capital market, not an income one, so count on value growth and seasonal lets rather than cash flow.",
+    ],
+    es: [
+      "Datos duros para decidir: mediana de 3.680, crecimiento del 9,8 por ciento, 900 operaciones al año y 130 días de exposición, con un 5,3 por ciento bruto. Dentro del municipio la horquilla llega a 700 por m²: de Cap Blanc (3.730) a Playa de la Roda (3.780), Casco Antiguo (3.890), Mascarat (4.220) y Altea Hills (4.430). Los compradores extranjeros son el 44 por ciento y los polacos el 6. Conclusión: es un mercado de capital y no de renta, así que cuenta con revalorización y alquiler de temporada.",
+    ],
+  },
+  "el-campello": {
+    pl: [
+      "Liczby, które warto mieć przed sobą: 2 880 €/m², 1 100 transakcji rocznie, 110 dni ekspozycji i ROI 5,9 procent brutto. Rozstrzał w gminie to 380 €/m²: Coveta Fumada 2 720, Centro 2 780, Muchavista 3 100. Centrum jest najtańsze w przeliczeniu na metr i najwyżej dochodowe, bo tramwaj i port dają najemców przez cały rok, a nie tylko w sierpniu. Kupujący z zagranicy to 42 procent, Polacy 5 procent. Wniosek: pod stabilny dochód bierz Centro, pod widok Muchavista, pod dom z ogrodem Coveta Fumada.",
+    ],
+    en: [
+      "Numbers worth having in front of you: 2,880 per m², 1,100 sales a year, 110 days on market and a 5.9 percent gross yield. The spread across the town is 380 per m²: Coveta Fumada 2,720, Centro 2,780, Muchavista 3,100. The centre is the cheapest per square metre and the highest yielding, because the tram and the port supply tenants all year rather than only in August. Foreign buyers are 42 percent, Poles 5 percent. The conclusion: Centro for steady income, Muchavista for the view, Coveta Fumada for a house with a garden.",
+    ],
+    es: [
+      "Cifras que conviene tener delante: 2.880 por m², 1.100 operaciones al año, 110 días de exposición y un 5,9 por ciento bruto. La horquilla del municipio es de 380 por m²: Coveta Fumada 2.720, Centro 2.780, Muchavista 3.100. El centro es lo más barato por metro y lo más rentable, porque tranvía y puerto dan inquilinos todo el año y no solo en agosto. Los extranjeros son el 42 por ciento y los polacos el 5. Conclusión: Centro para renta estable, Muchavista para vistas, Coveta Fumada para casa con jardín.",
+    ],
+  },
+  finestrat: {
+    pl: [
+      "Dane, które wyjaśniają ten rynek: 3 070 €/m², dynamika 9,4 procent r/r, ale tylko 700 transakcji rocznie i 125 dni ekspozycji. Rozstrzał wewnątrz gminy to 750 €/m², największy w regionie: Centro 2 590, Golf 3 180, Balcón de Finestrat 3 340. Połowa kupujących to obcokrajowcy, Polacy 6 procent. Wniosek: to rynek wąski i drogi w wejściu, więc licz się z tym, że sprzedaż potrwa, a cena zależy od konkretnej nieruchomości, nie od średniej gminy.",
+    ],
+    en: [
+      "Data that explains this market: 3,070 per m², 9.4 percent growth, but only 700 sales a year and 125 days on market. The internal spread is 750 per m², the widest in the region: Centro 2,590, Golf 3,180, Balcón de Finestrat 3,340. Half of all buyers are foreign, Poles 6 percent. The conclusion: a narrow market with a high entry price, so expect a sale to take time and the price to follow the specific property rather than the municipal average.",
+    ],
+    es: [
+      "Datos que explican este mercado: 3.070 por m², crecimiento del 9,4 por ciento, pero solo 700 operaciones al año y 125 días de exposición. La horquilla interna es de 750 por m², la mayor de la región: Centro 2.590, Golf 3.180, Balcón de Finestrat 3.340. La mitad de los compradores son extranjeros y los polacos el 6. Conclusión: mercado estrecho y caro de entrada, así que la venta tarda y el precio depende de la vivienda concreta y no de la media municipal.",
+    ],
+  },
+  calpe: {
+    pl: [
+      "Liczby, które trzeba znać: mediana 3 270 €/m², dynamika 8,9 procent r/r, 1 400 transakcji rocznie i 120 dni ekspozycji, przy ROI 5,7 procent brutto. Rozstrzał w gminie wynosi 530 €/m²: Oltamar 3 010, Canuta 3 170, Puerto 3 330, Maryvilla 3 440 i Playa de la Fossa 3 540. Kupujący z zagranicy to 52 procent, Polacy 7 procent. Wniosek: najwyższy zwrot daje Canuta i Oltamar, a pierwszą linię kupuje się pod własne wakacje i najem krótki, nie pod stały dochód.",
+    ],
+    en: [
+      "Numbers you need: a 3,270 median, 8.9 percent growth, 1,400 sales a year and 120 days on market, with a 5.7 percent gross yield. The internal spread is 530 per m²: Oltamar 3,010, Canuta 3,170, Puerto 3,330, Maryvilla 3,440 and Playa de la Fossa 3,540. Foreign buyers are 52 percent, Poles 7 percent. The conclusion: Canuta and Oltamar give the best return, while the front line is bought for your own holidays and short lets rather than steady income.",
+    ],
+    es: [
+      "Cifras que hay que conocer: mediana de 3.270, crecimiento del 8,9 por ciento, 1.400 operaciones al año y 120 días de exposición, con un 5,7 por ciento bruto. La horquilla interna es de 530 por m²: Oltamar 3.010, Canuta 3.170, Puerto 3.330, Maryvilla 3.440 y Playa de la Fossa 3.540. Los extranjeros son el 52 por ciento y los polacos el 7. Conclusión: Canuta y Oltamar dan el mejor retorno, y la primera línea se compra para vacaciones propias y alquiler corto.",
+    ],
+  },
+  javea: {
+    pl: [
+      "Twarde liczby: 4 400 €/m², czyli najwyższa mediana w całej bazie, dynamika 10,4 procent r/r, 1 100 transakcji i 140 dni ekspozycji, ale ROI tylko 4,9 procent brutto. Wewnątrz gminy rozstrzał to 870 €/m²: Tosalet 4 020, Arenal 4 290, Puerto 4 450, Montañar 4 670 i Cap Martí 4 890. Połowa kupujących to obcokrajowcy, Polacy 6 procent. Wniosek: to rynek kapitału i drugiego domu, więc licz na wzrost wartości i własne użytkowanie, nie na cash flow.",
+    ],
+    en: [
+      "Hard numbers: 4,400 per m², the highest median in our whole dataset, 10.4 percent growth, 1,100 sales and 140 days on market, yet a yield of only 4.9 percent gross. The internal spread is 870 per m²: Tosalet 4,020, Arenal 4,290, Puerto 4,450, Montañar 4,670 and Cap Martí 4,890. Half of all buyers are foreign, Poles 6 percent. The conclusion: this is a capital and second-home market, so count on value growth and personal use rather than cash flow.",
+    ],
+    es: [
+      "Datos duros: 4.400 por m², la mediana más alta de toda la base, crecimiento del 10,4 por ciento, 1.100 operaciones y 140 días de exposición, pero solo un 4,9 por ciento bruto. La horquilla interna es de 870 por m²: Tosalet 4.020, Arenal 4.290, Puerto 4.450, Montañar 4.670 y Cap Martí 4.890. La mitad de los compradores son extranjeros y los polacos el 6. Conclusión: mercado de capital y segunda residencia, así que cuenta con revalorización y uso propio antes que con flujo de caja.",
+    ],
+  },
+  torrevieja: {
+    pl: [
+      "Dane, które porządkują ten rynek: 2 570 €/m², 4 200 transakcji rocznie, 95 dni ekspozycji i ROI 6,2 procent brutto. Rozstrzał w gminie wynosi 650 €/m²: El Acequión 2 480, La Mata 2 690, Playa de los Locos 2 960, Playa Flamenca 3 070 i Punta Prima 3 130. Kupujący z zagranicy to 46 procent, Polacy 9 procent, czyli najwięcej po Quesadzie. Wniosek: najwyższą płynność ma środek cenowy, a El Acequión to adres pod remont i najem całoroczny, nie pod widok.",
+    ],
+    en: [
+      "Data that organises this market: 2,570 per m², 4,200 sales a year, 95 days on market and a 6.2 percent gross yield. The internal spread is 650 per m²: El Acequión 2,480, La Mata 2,690, Playa de los Locos 2,960, Playa Flamenca 3,070 and Punta Prima 3,130. Foreign buyers are 46 percent and Poles 9 percent, the second highest after Quesada. The conclusion: liquidity peaks in the middle of the price range, while El Acequión is a renovation and year-round letting address, not a view address.",
+    ],
+    es: [
+      "Datos que ordenan este mercado: 2.570 por m², 4.200 operaciones al año, 95 días de exposición y un 6,2 por ciento bruto. La horquilla interna es de 650 por m²: El Acequión 2.480, La Mata 2.690, Playa de los Locos 2.960, Playa Flamenca 3.070 y Punta Prima 3.130. Los extranjeros son el 46 por ciento y los polacos el 9, el segundo más alto tras Quesada. Conclusión: la liquidez está en el tramo medio y El Acequión es dirección de reforma y alquiler anual, no de vistas.",
+    ],
+  },
+
+  // END
+};
+
+
 const NOTES: Record<string, Partial<Record<Locale, string[]>>> = {
   alicante: {
     pl: [
@@ -259,5 +336,6 @@ const NOTES: Record<string, Partial<Record<Locale, string[]>>> = {
 export function cityMarketNote(slug: string, locale: Locale): CityMarketNote | null {
   const paragraphs = NOTES[slug]?.[locale];
   if (!paragraphs || paragraphs.length === 0) return null;
-  return { heading: HEADING[locale], paragraphs };
+  const extra = CITY_EXTRA[slug]?.[locale] ?? [];
+  return { heading: HEADING[locale], paragraphs: [...paragraphs, ...extra] };
 }
