@@ -1267,6 +1267,83 @@ NOTES_EXTRA["aguilas/el-hornillo"]!.es!.push(
   "La vida diaria en El Hornillo es tranquila y previsible: no hay bares con música ni paseo, pero sí terrazas con vistas a la bahía y un paseo al puerto que en invierno lleva un cuarto de hora. Para un inquilino que busca calma es una ventaja; para quien busca ambiente, una pega, y por eso la rotación aquí es menor que en Las Delicias y los contratos duran más.",
 );
 
+/**
+ * Akapity wyłącznie dla raportów cenowych (/ceny-m2/...). Dzięki nim ta sama
+ * dzielnica nie powtarza identycznej noty na stronie usługi i w raporcie:
+ * raport dostaje własną analizę opartą o dane transakcyjne.
+ */
+const REPORT_EXTRA: Record<string, Partial<Record<Locale, string[]>>> = {
+  "aguilas/las-delicias": {
+    pl: [
+      "W raporcie cenowym widać to, czego nie widać w ogłoszeniu: mediana 2 010 €/m² jest o 160 € wyższa od średniej gminy, a mimo to najem daje 6,6 procent brutto, czyli o 0,6 punktu więcej niż w centrum Águilas. Ekspozycja oferty wynosi tu 120 dni, a popyt 8/10, więc sprzedaż idzie szybciej niż w głębi miasta. Jeśli liczyć 250 000 € w tej strefie, pięcioletni zwrot z czynszu i wzrostu wartości przekracza 70 000 € przy założeniach modelu - to wynik, który stawia Las Delicias w czołówce gminy.",
+    ],
+    en: [
+      "The price report shows what a listing does not: the 2,010 median is 160 above the municipal average, yet letting still yields 6.6 percent gross, half a point more than central Águilas. Time on market is 120 days with demand at 8 of 10, so sales move faster than inland. Run 250,000 through this area and the five-year return from rent plus value growth clears 70,000 under the model's assumptions, which puts Las Delicias at the top of the municipality.",
+    ],
+    es: [
+      "El informe de precios muestra lo que el anuncio no dice: la mediana de 2.010 está 160 sobre la media municipal y aun así el alquiler rinde 6,6 por ciento bruto, medio punto más que el centro de Águilas. La exposición es de 120 días con demanda de 8 sobre 10, así que se vende más rápido que tierra adentro. Si pones 250.000 en esta zona, el retorno a cinco años entre renta y revalorización supera los 70.000 con los supuestos del modelo, lo que sitúa Las Delicias en cabeza del municipio.",
+    ],
+  },
+  "santa-pola/playa-de-levante": {
+    pl: [
+      "Dane raportu: 2 570 €/m² to o 220 € więcej niż mediana Santa Pola, ale ROI 6,5 procent brutto jest wyższe niż w Benidorm o pół punktu, mimo podobnej plaży. Ekspozycja 100 dni i popyt 8/10 oznaczają rynek, na którym nie trzeba czekać na kupca. Uwaga na koszty: wspólnota w blokach pierwszej linii i ubezpieczenie od zalania podnoszą wydatki roczne o kilkaset euro, a to bezpośrednio obniża zwrot netto z 6,5 do około 4,6 procent.",
+    ],
+    en: [
+      "Report data: 2,570 per m² is 220 above the Santa Pola median, yet a 6.5 percent gross yield beats Benidorm by half a point despite a comparable beach. Time on market of 100 days and demand at 8 of 10 mean a market where you do not wait for a buyer. Watch the costs: front-line community fees and flood insurance add several hundred euros a year, which takes the net return from 6.5 down to about 4.6 percent.",
+    ],
+    es: [
+      "Datos del informe: 2.570 por m² está 220 sobre la mediana de Santa Pola, pero un 6,5 por ciento bruto supera a Benidorm en medio punto con una playa comparable. Una exposición de 100 días y demanda de 8 sobre 10 indican un mercado donde no se espera comprador. Ojo a los gastos: la comunidad de primera línea y el seguro de inundación suman varios cientos de euros al año, lo que baja el retorno neto del 6,5 al 4,6 por ciento.",
+    ],
+  },
+  "torrevieja/la-mata": {
+    pl: [
+      "Liczby z raportu: 2 690 €/m² przy medianie miasta 2 570 € i ROI 6,1 procent brutto. Ekspozycja 95 dni i popyt 8/10 to jedne z najlepszych wskaźników płynności w gminie, bo Torrevieja ma 4 200 transakcji rocznie - najwięcej na Costa Blanca Sur. W praktyce oznacza to, że mieszkanie w La Mata sprzedasz szybciej niż w El Acequión, ale zarobisz na nim mniej na metrze, bo cena wejścia jest o 210 € wyższa.",
+    ],
+    en: [
+      "Report numbers: 2,690 per m² against a town median of 2,570 and a 6.1 percent gross yield. Time on market of 95 days and demand at 8 of 10 are among the best liquidity readings in the municipality, because Torrevieja logs 4,200 sales a year, the most on the Costa Blanca Sur. In practice a La Mata flat sells faster than one in El Acequión, but earns less per square metre, since the entry price is 210 higher.",
+    ],
+    es: [
+      "Cifras del informe: 2.690 por m² frente a una mediana municipal de 2.570 y un 6,1 por ciento bruto. Una exposición de 95 días y demanda de 8 sobre 10 están entre las mejores lecturas de liquidez del municipio, porque Torrevieja registra 4.200 operaciones al año, la mayor de Costa Blanca Sur. En la práctica un piso en La Mata se vende antes que uno en El Acequión, pero gana menos por metro, porque la entrada cuesta 210 más.",
+    ],
+  },
+  "aguilas/centro": {
+    pl: [
+      "Raport pokazuje paradoks tego adresu: 1 750 €/m² to najniższa mediana w Águilas, o 100 € poniżej średniej gminy, a ROI 6,8 procent brutto jest najwyższe w mieście. Powód jest prosty - cena wejścia jest niska, a czynsz trzyma się dzięki portowi, urzędom i dworcowi, więc najem działa przez dwanaście miesięcy, nie przez trzy. Ryzyko też jest policzalne: bez aktualnego ITE bank odmówi kredytu, a to zawęża grono kupujących i wydłuża sprzedaż.",
+    ],
+    en: [
+      "The report shows the paradox of this address: 1,750 per m² is the lowest median in Águilas, 100 below the municipal average, yet a 6.8 percent gross yield is the highest in town. The reason is simple: the entry price is low while rent holds thanks to the port, the offices and the station, so letting runs twelve months rather than three. The risk is countable too: without a current ITE inspection a bank refuses the mortgage, which narrows the buyer pool and stretches the sale.",
+    ],
+    es: [
+      "El informe muestra la paradoja de esta dirección: 1.750 por m² es la mediana más baja de Águilas, 100 bajo la media municipal, y aun así el 6,8 por ciento bruto es el más alto del pueblo. La razón es simple: la entrada es barata y la renta aguanta gracias al puerto, las oficinas y la estación, así que el alquiler funciona doce meses y no tres. El riesgo también se puede medir: sin ITE en vigor el banco niega la hipoteca, lo que reduce compradores y alarga la venta.",
+    ],
+  },
+
+  "guardamar-del-segura/centro": {
+    pl: [
+      "W raporcie najważniejsza jest relacja dwóch liczb: 2 300 €/m² to o 170 € mniej niż mediana Guardamar, a ROI 6,4 procent brutto jest wyższe niż w Guardamar Playa o 0,2 punktu. Do tego dochodzi ekspozycja 105 dni i popyt 7/10, czyli sprzedaż idzie normalnie, bez presji. To rzadka kombinacja: tańszy metr, wyższy zwrot i usługi pieszo. Jeśli planujesz najem długoterminowy, centrum bije tu plażę, a różnica 170 €/m² wystarcza na remont łazienki i kuchni.",
+    ],
+    en: [
+      "What matters in the report is the ratio between two figures: 2,300 per m² is 170 below the Guardamar median, while a 6.4 percent gross yield beats Guardamar Playa by 0.2 points. Add 105 days on market and demand at 7 of 10, so sales proceed normally without pressure. It is a rare combination: cheaper square metre, higher yield and services on foot. For long-term letting the centre beats the beach here, and the 170 per m² difference covers a bathroom and kitchen renovation.",
+    ],
+    es: [
+      "Lo importante del informe es la relación entre dos cifras: 2.300 por m² está 170 bajo la mediana de Guardamar y un 6,4 por ciento bruto supera a Guardamar Playa en 0,2 puntos. Súmale 105 días de exposición y demanda de 7 sobre 10, así que se vende con normalidad y sin presión. Es una combinación poco frecuente: metro más barato, más rentabilidad y servicios a pie. Para alquiler largo el centro gana a la playa, y los 170 por m² cubren reformar baño y cocina.",
+    ],
+  },
+  "san-pedro-del-pinatar/lo-pagan": {
+    pl: [
+      "Raport pokazuje, gdzie jest granica: 2 450 €/m² to 160 € powyżej mediany gminy, a ROI 6,5 procent brutto jest o 0,2 punktu niższe niż w centrum San Pedro (2 130 €/m², 6,7 procent). Płacisz więc za plażę i błoto, nie za zwrot. Ekspozycja 100 dni i popyt 8/10 utrzymują płynność, ale sezonowość oznacza, że kalkulację trzeba oprzeć na ośmiu miesiącach najmu. Jeśli szukasz dochodu całorocznego, centrum wygrywa; jeśli własnych wakacji i widoku - Lo Pagán.",
+    ],
+    en: [
+      "The report shows where the limit is: 2,450 per m² is 160 above the municipal median, while a 6.5 percent gross yield is 0.2 points below San Pedro centre (2,130 per m², 6.7 percent). You pay for the beach and the mud, not for the return. Time on market of 100 days and demand at 8 of 10 keep liquidity, but seasonality means the maths should rest on eight months of letting. For year-round income the centre wins; for your own holidays and a view, Lo Pagán.",
+    ],
+    es: [
+      "El informe muestra dónde está el límite: 2.450 por m² está 160 sobre la mediana municipal y un 6,5 por ciento bruto queda 0,2 puntos bajo el centro de San Pedro (2.130 por m², 6,7 por ciento). Pagas playa y barro, no retorno. Una exposición de 100 días y demanda de 8 sobre 10 mantienen la liquidez, pero la estacionalidad obliga a calcular sobre ocho meses de alquiler. Para renta anual gana el centro; para vacaciones propias y vistas, Lo Pagán.",
+    ],
+  },
+
+  // END
+};
+
 export function districtMarketNote(
   citySlug: string,
   districtSlug: string,
@@ -1281,7 +1358,8 @@ export function districtMarketNote(
   // pełną notę. Dzięki temu ta sama dzielnica nie powtarza tego samego tekstu
   // na dwóch różnych typach strony.
   if (variant === "report") {
-    return { heading: HEADING[locale], paragraphs: [paragraphs[0]!] };
+    const reportOnly = REPORT_EXTRA[key]?.[locale] ?? [];
+    return { heading: HEADING[locale], paragraphs: [paragraphs[0]!, ...(reportOnly.length ? reportOnly : extra)] };
   }
   return { heading: HEADING[locale], paragraphs: [...paragraphs, ...extra] };
 }

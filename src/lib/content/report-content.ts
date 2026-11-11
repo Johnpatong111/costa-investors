@@ -196,7 +196,7 @@ export function buildPriceReport(entry: DistrictEntry): PriceReport {
   // gminy. Zastępuje ją nota redakcyjna i deep dive z danych dzielnicy.
 
   // Nota per dzielnica: unikalny akapit zamiast szkieletu powtarzanego w miastach.
-  const addressNote = districtMarketNote(city.slug, district.slug, "pl");
+  const addressNote = districtMarketNote(city.slug, district.slug, "pl", "report");
   if (addressNote) {
     blocks.push({ id: "adres", heading: addressNote.heading, paragraphs: addressNote.paragraphs });
   }

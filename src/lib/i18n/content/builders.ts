@@ -688,7 +688,7 @@ export function buildLocalizedPriceReport(
   // Zastępuje je nota redakcyjna i deep dive generowany z danych dzielnicy.
 
   // Nota per dzielnica: unikalny akapit (patrz district-market-notes.ts).
-  const addressNote = districtMarketNote(entry.city.slug, district.slug, locale);
+  const addressNote = districtMarketNote(entry.city.slug, district.slug, locale, "report");
   if (addressNote) {
     blocks.push({ id: "adres", heading: addressNote.heading, paragraphs: addressNote.paragraphs });
   }
