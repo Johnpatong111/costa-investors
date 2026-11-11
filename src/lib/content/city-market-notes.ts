@@ -233,6 +233,29 @@ const CITY_EXTRA: Record<string, Partial<Record<Locale, string[]>>> = {
     ],
   },
 
+  cartagena: {
+    pl: [
+      "Twarde dane: 1 960 €/m², 3 400 transakcji rocznie, 110 dni ekspozycji i ROI 6,5 procent brutto, przy dynamice 7,2 procent. To największy rynek w Regionie Murcji w naszej bazie i jeden z najtańszych - rozstrzał wynosi 480 €/m²: Santa Lucía 1 750, Centro 1 850, Isla Plana 2 120 i La Azohía 2 230. Obcokrajowcy to tylko 18 procent, Polacy 3 procent, więc to rynek hiszpański, z małą konkurencją i dużą podażą. Wniosek: pod zwrot centrum i Santa Lucía, pod plażę La Azohía.",
+    ],
+    en: [
+      "Hard data: 1,960 per m², 3,400 sales a year, 110 days on market and a 6.5 percent gross yield, with 7.2 percent growth. It is the largest market in the Murcia Region in our data and one of the cheapest, with a spread of 480 per m²: Santa Lucía 1,750, Centro 1,850, Isla Plana 2,120 and La Azohía 2,230. Foreigners are only 18 percent and Poles 3 percent, so this is a Spanish market with little competition and plenty of supply. The conclusion: Centro and Santa Lucía for yield, La Azohía for the beach.",
+    ],
+    es: [
+      "Datos duros: 1.960 por m², 3.400 operaciones al año, 110 días de exposición y un 6,5 por ciento bruto, con un crecimiento del 7,2 por ciento. Es el mayor mercado de la Región de Murcia en nuestra base y uno de los más baratos, con una horquilla de 480 por m²: Santa Lucía 1.750, Centro 1.850, Isla Plana 2.120 y La Azohía 2.230. Los extranjeros son solo el 18 por ciento y los polacos el 3, así que es un mercado español con poca competencia y mucha oferta. Conclusión: Centro y Santa Lucía para retorno, La Azohía para playa.",
+    ],
+  },
+  aguilas: {
+    pl: [
+      "Liczby, które porządkują gminę: 1 850 €/m², 800 transakcji rocznie, 120 dni ekspozycji i ROI 6,7 procent brutto. Rozstrzał wynosi 370 €/m²: Centro 1 750, El Hornillo 1 800, Las Delicias 2 010 i Calarreona 2 120. Polacy to 4 procent kupujących, obcokrajowcy 28 procent - to najniższy odsetek klientów zagranicznych na naszym wybrzeżu, więc negocjuje się tu z Hiszpanami i bez pośredników z północy. Wniosek: Centro daje 6,8 procent, czyli najwięcej, a Calarreona płaci się za zatoczki i spokój, nie za zwrot.",
+    ],
+    en: [
+      "Numbers that organise the municipality: 1,850 per m², 800 sales a year, 120 days on market and a 6.7 percent gross yield. The spread is 370 per m²: Centro 1,750, El Hornillo 1,800, Las Delicias 2,010 and Calarreona 2,120. Poles are 4 percent of buyers and foreigners 28, the lowest international share on our coast, so you negotiate with Spanish owners rather than northern intermediaries. The conclusion: Centro yields 6.8 percent, the best, while Calarreona charges for coves and quiet rather than for return.",
+    ],
+    es: [
+      "Cifras que ordenan el municipio: 1.850 por m², 800 operaciones al año, 120 días de exposición y un 6,7 por ciento bruto. La horquilla es de 370 por m²: Centro 1.750, El Hornillo 1.800, Las Delicias 2.010 y Calarreona 2.120. Los polacos son el 4 por ciento de los compradores y los extranjeros el 28, la cuota internacional más baja de nuestra costa, así que se negocia con propietarios españoles y sin intermediarios del norte. Conclusión: Centro rinde 6,8 por ciento y Calarreona cobra por calas y calma, no por retorno.",
+    ],
+  },
+
   // END
 };
 

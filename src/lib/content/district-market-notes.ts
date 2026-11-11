@@ -1255,6 +1255,31 @@ const NOTES_EXTRA: Record<string, Partial<Record<Locale, string[]>>> = {
   // END
 };
 
+// Klucze, dla których dopisujemy kolejne warstwy, mogą nie mieć wpisu w obiekcie
+// NOTES_EXTRA. Inicjalizujemy je, żeby push() nie wywracał modułu.
+for (const key of [
+  "villajoyosa/centro",
+  "l-albir/centro",
+  "alicante/playa-de-san-juan",
+  "torrevieja/playa-de-los-locos",
+  "calpe/puerto",
+  "javea/puerto",
+  "el-campello/centro",
+  "el-campello/muchavista",
+  "mazarron/el-alamillo",
+  "aguilas/centro",
+  "calpe/canuta",
+  "denia/montgo",
+  "cartagena/centro",
+  "cartagena/santa-lucia",
+  "cartagena/isla-plana",
+  "san-pedro-del-pinatar/villananitos",
+  "guardamar-del-segura/centro",
+]) {
+  NOTES_EXTRA[key] ??= { pl: [], en: [], es: [] };
+}
+
+
 // Trzecia warstwa dla par, które mimo dwóch akapitów zostają najbliżej siebie.
 // Temat celowo inny niż w dwóch pierwszych: wydarzenia, codzienna logistyka.
 NOTES_EXTRA["aguilas/el-hornillo"]!.pl!.push(
@@ -1272,29 +1297,172 @@ NOTES_EXTRA["aguilas/el-hornillo"]!.es!.push(
  * dzielnica nie powtarza identycznej noty na stronie usługi i w raporcie:
  * raport dostaje własną analizę opartą o dane transakcyjne.
  */
+NOTES_EXTRA["villajoyosa/centro"]!.pl!.push(
+  "Kto tu wynajmuje i na jak długo: pracownicy portu rybackiego, fabryk czekolady i urzędów gminnych podpisują umowy na dwanaście miesięcy, rzadko na sezon. Kaucja to standardowo dwa czynsze, a mieszkania w centrum wynajmują się bez umeblowania, czego nie spotkasz w Playa Torre. Sprzedaż blokuje się najczęściej na dwóch rzeczach: wilgoci w kamienicach od strony portu i braku windy na trzecim piętrze - dlatego oglądaj lokal po deszczu, nie w słońcu.",
+);
+NOTES_EXTRA["villajoyosa/centro"]!.en!.push(
+  "Who rents here and for how long: port and chocolate factory staff and municipal office workers sign twelve-month contracts, rarely seasonal ones. The deposit is normally two months, and centre flats let unfurnished, which you will not find in Playa Torre. Sales stall on two things most often: damp in the townhouses facing the port and no lift above the second floor, so view the flat after rain rather than in sunshine.",
+);
+NOTES_EXTRA["villajoyosa/centro"]!.es!.push(
+  "Quién alquila aquí y por cuánto tiempo: personal del puerto, de las fábricas de chocolate y de las oficinas municipales firma contratos de doce meses, rara vez de temporada. La fianza habitual son dos mensualidades y los pisos del centro se alquilan sin amueblar, algo que no ocurre en Playa Torre. La venta se atasca sobre todo por dos motivos: humedad en las casas frente al puerto y falta de ascensor por encima del segundo, así que visita el piso tras la lluvia y no con sol.",
+);
+NOTES_EXTRA["l-albir/centro"]!.pl!.push(
+  "Kto tu kupuje: głównie klienci z północy Europy, którzy płacą gotówką i nie zależą od kredytu, dlatego sprzedaż ma sezon - wiosna i wczesna jesień są najlepsze, a w sierpniu rynek stoi. To zmienia taktykę: ofertę wystawiaj w marcu, nie w lipcu. Praktyczne ograniczenia są dwa - parking przy promenadzie znika przed jedenastą i prawie nie ma nowych pozwoleń na zabudowę, bo park Serra Gelada zamyka teren od góry.",
+);
+NOTES_EXTRA["l-albir/centro"]!.en!.push(
+  "Who buys here: mostly northern European clients paying cash and not depending on a mortgage, which gives the market a season, with spring and early autumn the best windows and August dead. That changes tactics: list in March, not July. Two practical limits remain: parking by the promenade disappears before eleven and new permits are almost unavailable, because the Serra Gelada park closes the land above.",
+);
+NOTES_EXTRA["l-albir/centro"]!.es!.push(
+  "Quién compra aquí: sobre todo clientes del norte de Europa que pagan al contado y no dependen de la hipoteca, lo que da al mercado una estación, con primavera y principios de otoño como mejores ventanas y agosto muerto. Eso cambia la táctica: publica en marzo y no en julio. Quedan dos límites prácticos: el aparcamiento junto al paseo desaparece antes de las once y los permisos nuevos son casi inexistentes, porque el parque de Serra Gelada cierra el suelo por arriba.",
+);
+NOTES_EXTRA["alicante/playa-de-san-juan"]!.pl!.push(
+  "Struktura najmu jest tu inna niż w kurortach: uczelnia, szpital i biura dają umowy na dziewięć-dwanaście miesięcy, a sezon letni jest dodatkiem, nie podstawą. Tramwaj linii 4 i 5 jedzie do centrum kwadrans, więc najemca często nie ma samochodu - i to jest argument, którego nie znajdziesz w ogłoszeniu. Sprawdź hałas od torowiska w blokach pierwszej linii oraz wysokość wspólnoty w osiedlach z basenem, bo potrafi zjeść pół punktu ROI.",
+);
+NOTES_EXTRA["alicante/playa-de-san-juan"]!.en!.push(
+  "The letting structure differs from resorts: the university, the hospital and offices provide nine to twelve month contracts, and summer is a bonus rather than the base. Trams on lines 4 and 5 reach the centre in fifteen minutes, so the tenant often has no car, an argument no listing mentions. Check track noise in front-line blocks and the community fee in estates with a pool, which can eat half a point of yield.",
+);
+NOTES_EXTRA["alicante/playa-de-san-juan"]!.es!.push(
+  "La estructura del alquiler no es la de un resort: universidad, hospital y oficinas aportan contratos de nueve a doce meses, y el verano es un extra y no la base. Los tranvías de las líneas 4 y 5 llegan al centro en quince minutos, así que el inquilino suele no tener coche, un argumento que ningún anuncio menciona. Revisa el ruido de las vías en bloques de primera línea y la comunidad en urbanizaciones con piscina, que puede comerse medio punto de rentabilidad.",
+);
+
+
+NOTES_EXTRA["torrevieja/playa-de-los-locos"]!.pl!.push(
+  "Praktyka najmu w tej strefie wygląda inaczej, niż podpowiada ogłoszenie: od maja do października lokale idą na tygodnie, a od listopada przechodzą na umowy miesięczne dla pracowników sezonu i emerytów z północy. Dlatego umeblowanie i licencja turystyczna są tu ważniejsze niż metraż. Sprawdź też, ile wynosi wspólnota w bloku z windą przy promenadzie - w starszych budynkach dochodzi do 120 € miesięcznie i zjada część zwrotu z 6,0 procent.",
+);
+NOTES_EXTRA["torrevieja/playa-de-los-locos"]!.en!.push(
+  "Letting practice here differs from what the listing suggests: from May to October flats go by the week, and from November they switch to monthly contracts for seasonal staff and northern retirees. Furnishing and a tourist licence therefore matter more than floor area. Check the community fee in a block with a lift by the promenade too, since older buildings reach 120 euros a month and eat into the 6.0 percent yield.",
+);
+NOTES_EXTRA["torrevieja/playa-de-los-locos"]!.es!.push(
+  "La práctica del alquiler aquí no es la del anuncio: de mayo a octubre los pisos van por semanas y desde noviembre pasan a contratos mensuales para personal de temporada y jubilados del norte. Por eso amueblado y licencia turística pesan más que los metros. Revisa también la comunidad en un bloque con ascensor junto al paseo: en edificios antiguos llega a 120 euros al mes y se come parte del 6,0 por ciento.",
+);
+NOTES_EXTRA["calpe/puerto"]!.pl!.push(
+  "Trzy rzeczy decydują tu o jakości najmu, a nie metraż: miejsce parkingowe, podwójne szyby od strony portu i winda. Bez parkingu najemca z rodziną odpada od razu, bo w sierpniu nie ma gdzie zostawić auta. Drugi temat to hałas - kutry wychodzą przed świtem, a chłodnie pracują przez całą dobę, więc mieszkanie od strony nabrzeża wymaga sprawdzenia osobiście o szóstej rano, nie o dwunastej.",
+);
+NOTES_EXTRA["calpe/puerto"]!.en!.push(
+  "Three things decide letting quality here, not floor area: a parking space, double glazing on the port side and a lift. Without parking a family tenant falls away immediately, because in August there is nowhere to leave the car. The second issue is noise: boats leave before dawn and cold stores run around the clock, so a flat facing the quay needs a personal check at six in the morning, not at noon.",
+);
+NOTES_EXTRA["calpe/puerto"]!.es!.push(
+  "Tres cosas deciden aquí la calidad del alquiler y no los metros: plaza de garaje, doble cristal en el lado del puerto y ascensor. Sin garaje el inquilino con familia se cae de inmediato, porque en agosto no hay dónde dejar el coche. El segundo tema es el ruido: las barcas salen antes del amanecer y las cámaras frigoríficas trabajan a todas horas, así que un piso frente al muelle hay que comprobarlo a las seis de la mañana y no a mediodía.",
+);
+NOTES_EXTRA["javea/puerto"]!.pl!.push(
+  "Ten adres kupuje się dla trybu życia, nie dla stopy zwrotu, i widać to w umowach: najem podpisuje się tu na tygodnie w lipcu i sierpniu oraz na miesiące zimą, gdy przyjeżdżają rezydenci z północy. Dlatego licencja turystyczna i umeblowanie są ważniejsze niż metraż, a brak miejsca parkingowego obniża stawkę o kilkanaście procent. Sprawdź też, czy wspólnota ma fundusz na elewację od strony morza, bo sól skraca jej życie o połowę.",
+);
+NOTES_EXTRA["javea/puerto"]!.en!.push(
+  "People buy this address for a way of life, not for yield, and the contracts show it: lets run by the week in July and August and by the month in winter, when northern residents arrive. A tourist licence and furniture therefore matter more than floor area, and no parking space cuts the rate by a tenth or more. Check whether the community funds the sea-facing facade, since salt halves its life.",
+);
+NOTES_EXTRA["javea/puerto"]!.es!.push(
+  "Esta dirección se compra por estilo de vida y no por rentabilidad, y los contratos lo demuestran: alquiler por semanas en julio y agosto y por meses en invierno, cuando llegan los residentes del norte. Por eso licencia turística y amueblado pesan más que los metros, y no tener plaza de garaje rebaja la tarifa más de un diez por ciento. Comprueba también si la comunidad tiene fondos para la fachada al mar, porque la sal reduce su vida a la mitad.",
+);
+
+
+NOTES_EXTRA["el-campello/centro"]!.pl!.push(
+  "Dla najemcy liczą się tu trzy odległości: do przystanku tramwaju, do portu i do targu - wszystkie poniżej pięciu minut pieszo. Dlatego mieszkanie w centrum wynajmuje się przez cały rok, także w styczniu, gdy Muchavista świeci pustkami. Cena tej wygody jest znana: hałas torowiska w blokach pierwszej linii i starsze instalacje. Sprawdź, czy wspólnota wymieniła pion wodny, bo w budynkach z lat osiemdziesiątych to najczęstsza niespodzianka po zakupie.",
+);
+NOTES_EXTRA["el-campello/centro"]!.en!.push(
+  "For a tenant three distances matter here: to the tram stop, to the port and to the market, all under five minutes on foot. That is why a centre flat lets all year, including January when Muchavista stands empty. The price of the convenience is known: track noise in front-line blocks and older installations. Check whether the community has replaced the water riser, since in eighties buildings that is the most common surprise after purchase.",
+);
+NOTES_EXTRA["el-campello/centro"]!.es!.push(
+  "Para el inquilino importan tres distancias: a la parada del tranvía, al puerto y al mercado, todas por debajo de cinco minutos a pie. Por eso un piso del centro se alquila todo el año, también en enero cuando Muchavista queda vacía. El precio de la comodidad es conocido: ruido de vías en bloques de primera línea e instalaciones antiguas. Comprueba si la comunidad cambió la bajante de agua, porque en edificios de los ochenta es la sorpresa más habitual tras comprar.",
+);
+NOTES_EXTRA["el-campello/muchavista"]!.pl!.push(
+  "Ten adres pracuje inaczej zimą i latem: od czerwca do września wynajmuje się tygodniowo, a od października wraca najem miesięczny dla osób pracujących w Alicante. Dlatego umeblowanie i licencja turystyczna są tu ważniejsze niż metraż, a blok z garażem wart jest więcej niż ten sam bez miejsca. Sprawdź odległość od torowiska w pierwszych szeregach zabudowy oraz to, czy wspólnota utrzymuje basen przez cały rok - za bramą koszt rośnie o kilkaset euro.",
+);
+NOTES_EXTRA["el-campello/muchavista"]!.en!.push(
+  "This address works differently in winter and summer: from June to September it lets by the week, and from October it returns to monthly lets for people working in Alicante. Furnishing and a tourist licence therefore matter more than floor area, and a block with a garage is worth more than the same one without a space. Check the distance to the tracks in the first rows of buildings and whether the community keeps the pool open all year, which adds several hundred euros outside the gate.",
+);
+NOTES_EXTRA["el-campello/muchavista"]!.es!.push(
+  "Esta dirección funciona distinto en invierno y verano: de junio a septiembre se alquila por semanas y desde octubre vuelve el alquiler mensual para quienes trabajan en Alicante. Por eso amueblado y licencia turística pesan más que los metros, y un bloque con garaje vale más que el mismo sin plaza. Revisa la distancia a las vías en las primeras filas y si la comunidad mantiene la piscina todo el año, porque fuera de temporada el coste sube varios cientos de euros.",
+);
+NOTES_EXTRA["mazarron/el-alamillo"]!.pl!.push(
+  "Codzienność: piekarnia i mały sklep są w osiedlu, ale po większe zakupy jedzie się do Puerto de Mazarrón, pięć minut autem. Latem liczba mieszkańców rośnie kilkukrotnie, zimą zostają rezydenci i wtedy łatwiej o najemcę długoterminowego niż w lipcu. Sprawdź stan drogi dojazdowej po deszczach i to, czy działka nie jest w strefie erozji - w tej części wybrzeża morze zabiera pas plaży od kilku lat.",
+);
+NOTES_EXTRA["mazarron/el-alamillo"]!.en!.push(
+  "Daily life: a bakery and a small shop sit in the estate, but bigger shopping means Puerto de Mazarrón, five minutes by car. In summer the population multiplies several times over; in winter residents stay, and long-term tenants are easier to find then than in July. Check the access road after rain and whether the plot sits in an erosion zone, since on this stretch the sea has been taking the beach strip for years.",
+);
+NOTES_EXTRA["mazarron/el-alamillo"]!.es!.push(
+  "Día a día: panadería y una tienda pequeña están en la urbanización, pero la compra grande exige ir a Puerto de Mazarrón, cinco minutos en coche. En verano la población se multiplica varias veces; en invierno quedan residentes y entonces es más fácil encontrar inquilino de larga estancia que en julio. Revisa el camino de acceso tras la lluvia y si la parcela está en zona de erosión, porque en este tramo el mar lleva años comiéndose la playa.",
+);
+
+
+NOTES_EXTRA["aguilas/centro"]!.pl!.push(
+  "Logistyka tego adresu jest wyjątkowa w skali wybrzeża: dworzec kolejowy z połączeniem do Murcji, port rybacki, targ i urząd gminy w promieniu kilometra. Najemca bez samochodu załatwia tu wszystko pieszo, co w miastach tej wielkości nie jest normą. Cena jest równie wyjątkowa - 1 750 €/m² i 6,8 procent brutto - ale trzeba sprawdzić ITE i stan instalacji, bo budynki z lat siedemdziesiątych nie mają funduszu remontowego.",
+);
+NOTES_EXTRA["aguilas/centro"]!.en!.push(
+  "The logistics here are unusual for this coast: a railway station with services to Murcia, the fishing port, the market and the town hall all within a kilometre. A tenant without a car settles everything on foot, which is not the norm in towns this size. The price is just as unusual, at 1,750 per m² and 6.8 percent gross, but check the ITE inspection and installations, because seventies buildings carry no repair fund.",
+);
+NOTES_EXTRA["aguilas/centro"]!.es!.push(
+  "La logística de esta dirección es poco habitual en la costa: estación de tren con servicios a Murcia, puerto pesquero, mercado y ayuntamiento en un kilómetro. Un inquilino sin coche lo resuelve todo a pie, algo que no es norma en pueblos de este tamaño. El precio también es singular, 1.750 por m² y 6,8 por ciento bruto, pero revisa el ITE y las instalaciones, porque los edificios de los setenta no tienen fondo de reparación.",
+);
+NOTES_EXTRA["calpe/canuta"]!.pl!.push(
+  "Codzienność w Canuta to samochód: do plaży jest kilka minut jazdy, do supermarketu podobnie, a chodników między osiedlami praktycznie nie ma. W zamian dostajesz działkę z ogrodem i ciszę, której nie ma przy Fossie. Sprawdź stan murów oporowych i odwodnienia działki, bo osiedle leży na zboczu, oraz czy droga dojazdowa jest gminna - część ulic w Canuta to nadal odcinki prywatne, bez utrzymania.",
+);
+NOTES_EXTRA["calpe/canuta"]!.en!.push(
+  "Daily life in Canuta means a car: a few minutes to the beach, the same to the supermarket, and practically no pavements between estates. In return you get a plot with a garden and the quiet the Fossa cannot offer. Check the retaining walls and plot drainage, since the estate sits on a slope, and whether the access road is a council one, because some Canuta streets are still private stretches with no maintenance.",
+);
+NOTES_EXTRA["calpe/canuta"]!.es!.push(
+  "El día a día en Canuta exige coche: unos minutos a la playa, lo mismo al supermercado y prácticamente sin aceras entre urbanizaciones. A cambio obtienes parcela con jardín y el silencio que la Fossa no tiene. Revisa los muros de contención y el drenaje de la parcela, porque la urbanización está en ladera, y si el camino de acceso es municipal, ya que algunas calles de Canuta siguen siendo tramos privados sin mantenimiento.",
+);
+NOTES_EXTRA["denia/montgo"]!.pl!.push(
+  "Mieszkanie na zboczu Montgó ma dwie strony: ciszę, szlaki i widok na zatokę, ale też podjazd, który zimą bywa śliski, i brak sklepu w zasięgu spaceru. Dla najemcy długoterminowego to adres pod samochód, dlatego rotacja jest tu niższa niż w porcie, a umowy dłuższe. Sprawdź nachylenie drogi dojazdowej i to, czy działka leży w strefie parku naturalnego, bo tam rozbudowa i basen wymagają dodatkowych zgód.",
+);
+NOTES_EXTRA["denia/montgo"]!.en!.push(
+  "A flat on the Montgó slope has two sides: quiet, trails and a bay view, but also a driveway that turns slippery in winter and no shop within walking distance. For a long-term tenant this is a car address, which is why turnover is lower than at the port and contracts run longer. Check the gradient of the access road and whether the plot sits in the natural park zone, where extensions and pools need extra permits.",
+);
+NOTES_EXTRA["denia/montgo"]!.es!.push(
+  "Un piso en la ladera del Montgó tiene dos caras: silencio, senderos y vistas a la bahía, pero también una cuesta que en invierno resbala y ninguna tienda a pie. Para el inquilino de larga estancia es una dirección de coche, y por eso la rotación es menor que en el puerto y los contratos duran más. Revisa la pendiente del camino y si la parcela está en zona del parque natural, donde ampliaciones y piscina exigen permisos extra.",
+);
+
+
+NOTES_EXTRA["cartagena/santa-lucia"]!.pl!.push(
+  "Tu decyduje stan budynku, nie lokalizacja: 1 750 €/m² jest najniższą ceną w Kartagenie, ale różnica wobec centrum (1 850 €/m²) nie pokryje remontu dachu ani windy. Popyt jest najniższy w mieście, 6/10, bo to dzielnica na wzgórzu bez plaży i z wąskimi ulicami. Kupuj tylko z aktualnym ITE i wyceną remontu od wykonawcy, a nie od agenta - w przeciwnym razie 20 tysięcy euro potrafi zamienić się w 60.",
+);
+NOTES_EXTRA["cartagena/santa-lucia"]!.en!.push(
+  "Building condition decides here, not location: 1,750 per m² is the lowest price in Cartagena, but the gap to the centre at 1,850 will not cover a new roof or a lift. Demand is the weakest in town at 6 of 10, because this is a hillside district with no beach and narrow streets. Buy only with a current ITE report and a builder's renovation quote rather than an agent's, or 20 thousand euros can turn into 60.",
+);
+NOTES_EXTRA["cartagena/santa-lucia"]!.es!.push(
+  "Aquí decide el estado del edificio y no la ubicación: 1.750 por m² es el precio más bajo de Cartagena, pero la diferencia con el centro (1.850) no cubre tejado nuevo ni ascensor. La demanda es la más débil del pueblo, 6 sobre 10, porque es un barrio en cuesta, sin playa y con calles estrechas. Compra solo con ITE en vigor y presupuesto de reforma de un constructor, no de un agente: de lo contrario 20 mil euros se convierten en 60.",
+);
+NOTES_EXTRA["cartagena/isla-plana"]!.pl!.push(
+  "To inny rynek niż centro: 2 120 €/m², o 160 € więcej niż mediana miasta, i 6,3 procent brutto, bo płacisz za plażę, której centrum nie ma. Popyt 7/10 i niska podaż nowych inwestycji oznaczają, że sprzedaż trwa, ale ceny się trzymają. Sprawdź, czy budynek ma windę i parking, oraz jak daleko jest przychodnia i szkoła - w zimie mieszka tu niewiele osób, więc usługi są skromne.",
+);
+NOTES_EXTRA["cartagena/isla-plana"]!.en!.push(
+  "A different market from the centre: 2,120 per m², 160 above the city median, and a 6.3 percent yield, because you pay for a beach the centre does not have. Demand at 7 of 10 and thin new supply mean sales take time but prices hold. Check whether the building has a lift and parking, and how far the clinic and school are, since few people live here in winter and services are modest.",
+);
+NOTES_EXTRA["cartagena/isla-plana"]!.es!.push(
+  "Es otro mercado que el centro: 2.120 por m², 160 sobre la mediana de la ciudad, y un 6,3 por ciento, porque pagas una playa que el centro no tiene. Una demanda de 7 sobre 10 y poca oferta nueva implican que la venta tarda pero los precios aguantan. Revisa si el edificio tiene ascensor y aparcamiento y a qué distancia quedan ambulatorio y colegio, porque en invierno vive aquí poca gente y los servicios son modestos.",
+);
+NOTES_EXTRA["cartagena/centro"]!.pl!.push(
+  "Kto tu mieszka i dlaczego: pracownicy portu, stoczni i uczelni, którzy chcą dojść do pracy pieszo, oraz studenci wynajmujący pokoje i kawalerki. Dlatego umowy są roczne, a popyt nie zależy od sezonu - to jedna z niewielu takich stref na wybrzeżu. Sprawdź hałas od nabrzeża i jakość powietrza w dni z wiatrem od Escombreras, a także czy wspólnota ma fundusz na wymianę wind w kamienicach z windą z lat siedemdziesiątych.",
+);
+NOTES_EXTRA["cartagena/centro"]!.en!.push(
+  "Who lives here and why: port, shipyard and university staff who want to walk to work, plus students renting rooms and studios. Contracts therefore run for a year and demand ignores the season, which is rare on this coast. Check noise from the quay and air quality on days when the wind comes from Escombreras, and whether the community has funds to replace the seventies lifts in buildings that have one.",
+);
+NOTES_EXTRA["cartagena/centro"]!.es!.push(
+  "Quién vive aquí y por qué: personal del puerto, del astillero y de la universidad que quiere ir andando al trabajo, y estudiantes que alquilan habitaciones y estudios. Por eso los contratos son anuales y la demanda no depende de la temporada, algo poco frecuente en esta costa. Revisa el ruido del muelle y la calidad del aire los días de viento desde Escombreras, y si la comunidad tiene fondos para cambiar ascensores de los setenta.",
+);
+
+
+NOTES_EXTRA["san-pedro-del-pinatar/villananitos"]!.pl!.push(
+  "Praktyka: szeroka plaża z deptakiem i port rybacki w Lo Pagán są w zasięgu spaceru, więc najemca nie potrzebuje auta do plaży, ale do większych zakupów już tak. Nowe apartamenty z basenem budowano tu pod najem, więc w lipcu konkurencja jest duża i o obłożeniu decyduje standard wykończenia, nie metraż. Sprawdź wysokość wspólnoty z basenem (to często 80-110 € miesięcznie) oraz czy okna nie wychodzą na deptak z barami.",
+);
+NOTES_EXTRA["san-pedro-del-pinatar/villananitos"]!.en!.push(
+  "In practice: the wide beach with its promenade and the fishing port at Lo Pagán are a walk away, so a tenant does not need a car for the beach, though one is needed for bigger shopping. New flats with pools were built here for letting, so July competition is fierce and the finish decides occupancy rather than floor area. Check the community fee with a pool, often 80 to 110 euros a month, and whether windows face the bar-lined promenade.",
+);
+NOTES_EXTRA["san-pedro-del-pinatar/villananitos"]!.es!.push(
+  "En la práctica: la playa amplia con paseo y el puerto pesquero de Lo Pagán quedan a un paseo, así que el inquilino no necesita coche para la playa, aunque sí para la compra grande. Los pisos nuevos con piscina se construyeron aquí para alquilar, así que en julio la competencia es fuerte y el acabado decide la ocupación más que los metros. Revisa la comunidad con piscina, a menudo 80 o 110 euros al mes, y si las ventanas dan al paseo de bares.",
+);
+NOTES_EXTRA["guardamar-del-segura/centro"]!.pl!.push(
+  "Codzienność: Mercado Municipal, urząd, szkoła i przychodnia są w promieniu pięciuset metrów, a do wydm i morza idzie się kilometr - dlatego mieszkańcy to w dużej mierze osoby pracujące w mieście, nie turyści. To przekłada się na umowy roczne i mniejszą rotację. Sprawdź stan instalacji w budynkach z lat siedemdziesiątych i to, czy wspólnota ma fundusz na dach, bo w tej strefie najczęściej brakuje właśnie jego.",
+);
+NOTES_EXTRA["guardamar-del-segura/centro"]!.en!.push(
+  "In practice: Mercado Municipal, the town hall, a school and a clinic all sit within five hundred metres, and the dunes and sea are a kilometre away, so residents are largely people working in town rather than tourists. That means annual contracts and lower turnover. Check installations in seventies buildings and whether the community funds the roof, since in this area that is usually what is missing.",
+);
+NOTES_EXTRA["guardamar-del-segura/centro"]!.es!.push(
+  "En la práctica: Mercado Municipal, ayuntamiento, colegio y ambulatorio quedan a menos de quinientos metros y las dunas y el mar a un kilómetro, así que los vecinos son sobre todo gente que trabaja en el pueblo y no turistas. Eso implica contratos anuales y menos rotación. Revisa las instalaciones en edificios de los setenta y si la comunidad tiene fondo para el tejado, porque en esta zona suele faltar.",
+);
+
+
 const REPORT_EXTRA: Record<string, Partial<Record<Locale, string[]>>> = {
-  "aguilas/las-delicias": {
-    pl: [
-      "W raporcie cenowym widać to, czego nie widać w ogłoszeniu: mediana 2 010 €/m² jest o 160 € wyższa od średniej gminy, a mimo to najem daje 6,6 procent brutto, czyli o 0,6 punktu więcej niż w centrum Águilas. Ekspozycja oferty wynosi tu 120 dni, a popyt 8/10, więc sprzedaż idzie szybciej niż w głębi miasta. Jeśli liczyć 250 000 € w tej strefie, pięcioletni zwrot z czynszu i wzrostu wartości przekracza 70 000 € przy założeniach modelu - to wynik, który stawia Las Delicias w czołówce gminy.",
-    ],
-    en: [
-      "The price report shows what a listing does not: the 2,010 median is 160 above the municipal average, yet letting still yields 6.6 percent gross, half a point more than central Águilas. Time on market is 120 days with demand at 8 of 10, so sales move faster than inland. Run 250,000 through this area and the five-year return from rent plus value growth clears 70,000 under the model's assumptions, which puts Las Delicias at the top of the municipality.",
-    ],
-    es: [
-      "El informe de precios muestra lo que el anuncio no dice: la mediana de 2.010 está 160 sobre la media municipal y aun así el alquiler rinde 6,6 por ciento bruto, medio punto más que el centro de Águilas. La exposición es de 120 días con demanda de 8 sobre 10, así que se vende más rápido que tierra adentro. Si pones 250.000 en esta zona, el retorno a cinco años entre renta y revalorización supera los 70.000 con los supuestos del modelo, lo que sitúa Las Delicias en cabeza del municipio.",
-    ],
-  },
-  "santa-pola/playa-de-levante": {
-    pl: [
-      "Dane raportu: 2 570 €/m² to o 220 € więcej niż mediana Santa Pola, ale ROI 6,5 procent brutto jest wyższe niż w Benidorm o pół punktu, mimo podobnej plaży. Ekspozycja 100 dni i popyt 8/10 oznaczają rynek, na którym nie trzeba czekać na kupca. Uwaga na koszty: wspólnota w blokach pierwszej linii i ubezpieczenie od zalania podnoszą wydatki roczne o kilkaset euro, a to bezpośrednio obniża zwrot netto z 6,5 do około 4,6 procent.",
-    ],
-    en: [
-      "Report data: 2,570 per m² is 220 above the Santa Pola median, yet a 6.5 percent gross yield beats Benidorm by half a point despite a comparable beach. Time on market of 100 days and demand at 8 of 10 mean a market where you do not wait for a buyer. Watch the costs: front-line community fees and flood insurance add several hundred euros a year, which takes the net return from 6.5 down to about 4.6 percent.",
-    ],
-    es: [
-      "Datos del informe: 2.570 por m² está 220 sobre la mediana de Santa Pola, pero un 6,5 por ciento bruto supera a Benidorm en medio punto con una playa comparable. Una exposición de 100 días y demanda de 8 sobre 10 indican un mercado donde no se espera comprador. Ojo a los gastos: la comunidad de primera línea y el seguro de inundación suman varios cientos de euros al año, lo que baja el retorno neto del 6,5 al 4,6 por ciento.",
-    ],
-  },
   "torrevieja/la-mata": {
     pl: [
       "Liczby z raportu: 2 690 €/m² przy medianie miasta 2 570 € i ROI 6,1 procent brutto. Ekspozycja 95 dni i popyt 8/10 to jedne z najlepszych wskaźników płynności w gminie, bo Torrevieja ma 4 200 transakcji rocznie - najwięcej na Costa Blanca Sur. W praktyce oznacza to, że mieszkanie w La Mata sprzedasz szybciej niż w El Acequión, ale zarobisz na nim mniej na metrze, bo cena wejścia jest o 210 € wyższa.",
@@ -1398,8 +1566,159 @@ const REPORT_EXTRA: Record<string, Partial<Record<Locale, string[]>>> = {
     ],
   },
 
+  "san-pedro-del-pinatar/centro": {
+    pl: [
+      "Raport pokazuje, dlaczego centrum wygrywa w tej gminie: 2 130 €/m² to 160 € mniej niż mediana, a 6,7 procent brutto to najlepszy wynik w San Pedro. Sąsiad Villananitos kosztuje 2 350 €/m² przy 6,6 procent, a Lo Pagán 2 450 €/m² przy 6,5 procent - widać więc, że premia za plażę odbiera zwrot. Ekspozycja 100 dni i popyt 7/10 oznaczają sprzedaż bez pośpiechu. Za 250 000 € kupujesz tu 117 m², o 15 m² więcej niż w Lo Pagán i o 20 więcej niż na plaży.",
+    ],
+    en: [
+      "The report shows why the centre wins in this municipality: 2,130 per m² is 160 below the median, and 6.7 percent gross is the best result in San Pedro. The neighbouring Villananitos costs 2,350 per m² at 6.6 percent and Lo Pagán 2,450 at 6.5, so the beach premium takes yield away. Time on market of 100 days and demand at 7 of 10 mean sales without haste. For 250,000 you buy 117 square metres here, 15 more than in Lo Pagán and 20 more than at the beach.",
+    ],
+    es: [
+      "El informe muestra por qué el centro gana en este municipio: 2.130 por m² está 160 bajo la mediana y el 6,7 por ciento bruto es el mejor resultado de San Pedro. El vecino Villananitos cuesta 2.350 al 6,6 y Lo Pagán 2.450 al 6,5, así que la prima de playa resta rentabilidad. Una exposición de 100 días y demanda de 7 sobre 10 implican venta sin prisa. Con 250.000 compras aquí 117 metros, 15 más que en Lo Pagán y 20 más que en la playa.",
+    ],
+  },
+  "los-alcazares/centro": {
+    pl: [
+      "Dane z raportu: 2 090 €/m², o 100 € mniej niż mediana Los Alcázares, i 6,8 procent brutto - najlepszy wynik w gminie razem z Punta Brava. Sąsiedzi: Punta Brava 2 030 €/m² (6,9 procent), Los Narejos 2 250 €/m² (6,9 procent) i Playa 2 350 €/m² (6,7 procent). Widać więc, że im dalej od wody, tym wyższy zwrot i niższa cena. Ekspozycja 95 dni to druga najkrótsza w regionie, więc płynność nie jest problemem nawet w centrum.",
+    ],
+    en: [
+      "Report data: 2,090 per m², 100 below the Los Alcázares median, and 6.8 percent gross, the best in the municipality alongside Punta Brava. Neighbours: Punta Brava 2,030 per m² at 6.9 percent, Los Narejos 2,250 at 6.9 and Playa 2,350 at 6.7. The pattern is clear: the further from the water, the higher the yield and the lower the price. Time on market of 95 days is the second shortest in the region, so liquidity is not a problem even in the centre.",
+    ],
+    es: [
+      "Datos del informe: 2.090 por m², 100 bajo la mediana de Los Alcázares, y 6,8 por ciento bruto, el mejor del municipio junto a Punta Brava. Vecinos: Punta Brava 2.030 al 6,9, Los Narejos 2.250 al 6,9 y Playa 2.350 al 6,7. El patrón es claro: cuanto más lejos del agua, más rentabilidad y menos precio. Una exposición de 95 días es la segunda más corta de la región, así que la liquidez no es problema ni en el centro.",
+    ],
+  },
+
+  "villajoyosa/centro": {
+    pl: [
+      "Analiza liczbowa: 2 520 €/m² to o 100 € mniej niż mediana Villajoyosa, a 6,0 procent brutto jest najniższe w mieście - Playa Torre daje 6,3 procent, Plans 6,2 procent. Ekspozycja 115 dni i popyt 7,5/10 mówią, że sprzedaż idzie normalnie, bez presji. Za 250 000 € kupujesz tu 99 m², czyli o 11 m² więcej niż w Playa Torre. Różnica jest więc taka: więcej metrów i gorszy zwrot, ale najem całoroczny, a nie sezonowy - i to wyrównuje rachunek.",
+    ],
+    en: [
+      "The numbers: 2,520 per m² is 100 below the Villajoyosa median, and 6.0 percent gross is the lowest in town, against 6.3 in Playa Torre and 6.2 in Plans. Time on market of 115 days and demand at 7.5 of 10 say sales proceed normally without pressure. For 250,000 you buy 99 square metres here, 11 more than in Playa Torre. The trade is therefore more space and a weaker yield, but year-round letting rather than seasonal, and that evens the account.",
+    ],
+    es: [
+      "El análisis: 2.520 por m² está 100 bajo la mediana de Villajoyosa y el 6,0 por ciento bruto es el más bajo del pueblo, frente al 6,3 de Playa Torre y el 6,2 de Plans. Una exposición de 115 días y demanda de 7,5 sobre 10 indican venta normal y sin presión. Con 250.000 compras aquí 99 metros, 11 más que en Playa Torre. El intercambio es más metros y menos rentabilidad, pero alquiler anual en lugar de estacional, y eso equilibra la cuenta.",
+    ],
+  },
+  "l-albir/centro": {
+    pl: [
+      "Raport w liczbach: 3 200 €/m² to 110 € mniej niż mediana L'Albir i 320 € mniej niż Playa del Albir, przy ROI 5,3 procent brutto - najniższym w gminie. Ekspozycja 130 dni jest najdłuższa w okolicy, a popyt 7,5/10 utrzymuje ceny. Za 250 000 € kupujesz tu 78 m², za 350 000 € - 109 m². Wniosek: to adres pod własne mieszkanie i najem sezonowy, a nie pod cash flow - zwrot przyjdzie ze wzrostu wartości, nie z czynszu.",
+    ],
+    en: [
+      "The report in numbers: 3,200 per m² is 110 below the L'Albir median and 320 below Playa del Albir, with a 5.3 percent gross yield, the lowest in the municipality. Time on market of 130 days is the longest nearby, while demand at 7.5 of 10 holds prices. For 250,000 you buy 78 square metres here and 109 for 350,000. The conclusion: an address for your own flat and seasonal letting rather than cash flow, with the return coming from value growth.",
+    ],
+    es: [
+      "El informe en cifras: 3.200 por m² está 110 bajo la mediana de L'Albir y 320 bajo Playa del Albir, con un 5,3 por ciento bruto, el más bajo del municipio. Una exposición de 130 días es la más larga del entorno y la demanda de 7,5 sobre 10 sostiene los precios. Con 250.000 compras aquí 78 metros y 109 por 350.000. Conclusión: dirección para piso propio y alquiler de temporada más que para flujo de caja, con retorno vía revalorización.",
+    ],
+  },
+  "el-campello/muchavista": {
+    pl: [
+      "Dane z raportu: 3 100 €/m² to 220 € więcej niż mediana El Campello i 320 € więcej niż w Centro, przy ROI 6,0 procent brutto. Ekspozycja 110 dni i popyt 8,5/10 - najwyższy w mieście - oznaczają szybką sprzedaż i wysoką płynność najmu. Za 250 000 € kupisz tu 80 m², w Centro 90 m². Różnica 220 €/m² to koszt widoku i plaży; pytanie brzmi, czy najem sezonowy to odda - przy ośmiu miesiącach obłożenia zwrot netto spada do około 4,2 procent.",
+    ],
+    en: [
+      "Report data: 3,100 per m² is 220 above the El Campello median and 320 above Centro, with a 6.0 percent gross yield. Time on market of 110 days and demand at 8.5 of 10, the highest in town, mean fast sales and strong letting liquidity. For 250,000 you buy 80 square metres here and 90 in Centro. The 220 gap is the price of the view and the beach; the question is whether seasonal letting repays it, since at eight months of occupancy the net return falls to about 4.2 percent.",
+    ],
+    es: [
+      "Datos del informe: 3.100 por m² está 220 sobre la mediana de El Campello y 320 sobre Centro, con un 6,0 por ciento bruto. Una exposición de 110 días y demanda de 8,5 sobre 10, la más alta del pueblo, implican venta rápida y buena liquidez de alquiler. Con 250.000 compras aquí 80 metros y 90 en Centro. Los 220 de diferencia son el precio de vistas y playa; la duda es si el alquiler estacional lo devuelve, porque con ocho meses de ocupación el retorno neto baja al 4,2 por ciento.",
+    ],
+  },
+  "el-campello/centro": {
+    pl: [
+      "Liczby, które bronią tego adresu: 2 780 €/m² to 100 € mniej niż mediana gminy i 320 € mniej niż Muchavista, a ROI 5,8 procent brutto jest najwyższe w mieście. Ekspozycja 110 dni i popyt 7,5/10 dają normalną sprzedaż, a najem trwa dwanaście miesięcy, nie osiem. Za 250 000 € kupujesz tu 90 m² wobec 80 m² na Muchavista. Wniosek dla inwestora: mniejszy metr, wyższy zwrot i całoroczny najem - i to jest różnica, którą widać dopiero po odjęciu kosztów sezonu.",
+    ],
+    en: [
+      "The numbers defending this address: 2,780 per m² is 100 below the municipal median and 320 below Muchavista, and a 5.8 percent gross yield is the best in town. Time on market of 110 days and demand at 7.5 of 10 give normal sales, while letting runs twelve months rather than eight. For 250,000 you buy 90 square metres here against 80 in Muchavista. The investor's conclusion: lower price per metre, higher yield and year-round letting, a difference visible only after subtracting season costs.",
+    ],
+    es: [
+      "Las cifras que defienden esta dirección: 2.780 por m² está 100 bajo la mediana municipal y 320 bajo Muchavista, y un 5,8 por ciento bruto es el mejor del pueblo. Una exposición de 110 días y demanda de 7,5 sobre 10 dan venta normal, mientras el alquiler dura doce meses y no ocho. Con 250.000 compras aquí 90 metros frente a 80 en Muchavista. Conclusión para el inversor: metro más barato, más rentabilidad y alquiler anual, una diferencia que solo se ve al restar los costes de temporada.",
+    ],
+  },
+
+  "altea/mascarat": {
+    pl: [
+      "Raport pokazuje, ile kosztuje widok na skały: 4 220 €/m² to 540 € więcej niż mediana Altei i 1 240 € więcej niż Cap Blanc, przy ROI 5,1 procent brutto - najniższym w gminie razem z Altea Hills. Ekspozycja 130 dni i popyt 8/10 mówią, że klient jest, ale szuka konkretnego produktu: willi z tarasem i widokiem, nie metrażu. Za 250 000 € kupujesz tu 59 m², czyli mniej niż mieszkanie dwupokojowe. To rynek kapitału, w którym zwrot liczy się w latach, nie w sezonach.",
+    ],
+    en: [
+      "The report shows what the rock view costs: 4,220 per m² is 540 above the Altea median and 1,240 above Cap Blanc, with a 5.1 percent gross yield, the lowest in the municipality alongside Altea Hills. Time on market of 130 days and demand at 8 of 10 say the buyer exists but wants a specific product, a villa with a terrace and a view rather than floor area. For 250,000 you buy 59 square metres here, less than a two-room flat. This is a capital market where returns count in years, not seasons.",
+    ],
+    es: [
+      "El informe muestra cuánto cuesta la vista a la roca: 4.220 por m² está 540 sobre la mediana de Altea y 1.240 sobre Cap Blanc, con un 5,1 por ciento bruto, el más bajo del municipio junto a Altea Hills. Una exposición de 130 días y demanda de 8 sobre 10 indican que hay comprador, pero busca un producto concreto: chalet con terraza y vistas más que metros. Con 250.000 compras aquí 59 metros, menos que un piso de dos ambientes. Es mercado de capital donde el retorno se cuenta en años y no en temporadas.",
+    ],
+  },
+  "altea/altea-hills": {
+    pl: [
+      "Dane z raportu: 4 430 €/m² to najwyższa mediana w Altei, o 750 € powyżej średniej gminy, przy ROI 5,0 procent brutto - najniższym w całej naszej bazie. Ekspozycja 130 dni i popyt 9/10 to kombinacja typowa dla rynku luksusowego: dużo chętnych, mało transakcji, bo każda wymaga czasu. Za 250 000 € kupujesz tu 56 m², a za 750 000 € - 169 m². Wniosek: to nie jest adres pod najem, tylko pod kapitał i własne użytkowanie, z ochroną i basenem w cenie wspólnoty.",
+    ],
+    en: [
+      "Report data: 4,430 per m² is the highest median in Altea, 750 above the municipal average, with a 5.0 percent gross yield, the lowest in our whole dataset. Time on market of 130 days and demand at 9 of 10 is the classic luxury combination: many interested buyers, few transactions, because each takes time. For 250,000 you buy 56 square metres here and 169 for 750,000. The conclusion: this is not a letting address but a capital and own-use one, with security and a pool inside the community fee.",
+    ],
+    es: [
+      "Datos del informe: 4.430 por m² es la mediana más alta de Altea, 750 sobre la media municipal, con un 5,0 por ciento bruto, el más bajo de toda la base. Una exposición de 130 días y demanda de 9 sobre 10 es la combinación clásica de lujo: muchos interesados, pocas operaciones, porque cada una lleva tiempo. Con 250.000 compras aquí 56 metros y 169 por 750.000. Conclusión: no es dirección de alquiler sino de capital y uso propio, con seguridad y piscina dentro de la cuota.",
+    ],
+  },
+  "santa-pola/centro": {
+    pl: [
+      "Liczby z raportu: 2 190 €/m² to 160 € mniej niż mediana Santa Pola i 380 € mniej niż Playa de Levante, przy ROI 6,3 procent brutto i popycie 7/10. Ekspozycja 100 dni oznacza normalną sprzedaż, bez presji. Za 250 000 € kupujesz tu 114 m², na plaży 97 m². Wniosek: centrum jest najtańszym wejściem do gminy i daje najem całoroczny, bo port i zakłady w Elche dają pracę poza sezonem - ale trzeba sprawdzić ITE i hałas od nabrzeża, gdzie ruch zaczyna się przed szóstą.",
+    ],
+    en: [
+      "Report figures: 2,190 per m² is 160 below the Santa Pola median and 380 below Playa de Levante, with a 6.3 percent gross yield and demand at 7 of 10. Time on market of 100 days means normal sales without pressure. For 250,000 you buy 114 square metres here and 97 at the beach. The conclusion: the centre is the cheapest entry to the municipality and gives year-round letting, since the port and the Elche factories work outside the season, but check the ITE and quay noise, which starts before six.",
+    ],
+    es: [
+      "Cifras del informe: 2.190 por m² está 160 bajo la mediana de Santa Pola y 380 bajo Playa de Levante, con un 6,3 por ciento bruto y demanda de 7 sobre 10. Una exposición de 100 días implica venta normal sin presión. Con 250.000 compras aquí 114 metros y 97 en la playa. Conclusión: el centro es la entrada más barata al municipio y ofrece alquiler anual, porque el puerto y las fábricas de Elche trabajan fuera de temporada, pero revisa el ITE y el ruido del muelle, que empieza antes de las seis.",
+    ],
+  },
+
+  "san-miguel-de-salinas/centro": {
+    pl: [
+      "Dane do decyzji: 2 010 €/m² to 50 € mniej niż mediana gminy, a ROI 6,4 procent brutto jest o 0,1 punktu niższe niż w El Chaparral (1 960 €/m²) i La Pedrera (1 900 €/m²). Centrum jest więc najdroższe w gminie, ale ma coś, czego osiedla nie mają: urząd, szkołę i sklepy pieszo. Popyt 6,5/10 jest najniższy w San Miguel, więc sprzedaż trwa. Za 250 000 € kupujesz tu 124 m² - dużo metrów za małe pieniądze, ale z remontem w perspektywie.",
+    ],
+    en: [
+      "Data for the decision: 2,010 per m² is 50 below the municipal median, and a 6.4 percent gross yield is 0.1 points under El Chaparral (1,960) and La Pedrera (1,900). The centre is therefore the dearest part of the municipality, but it has what estates lack: the town hall, a school and shops on foot. Demand at 6.5 of 10 is the lowest in San Miguel, so sales take time. For 250,000 you buy 124 square metres, plenty of space for little money, with a renovation in prospect.",
+    ],
+    es: [
+      "Datos para decidir: 2.010 por m² está 50 bajo la mediana municipal y un 6,4 por ciento bruto queda 0,1 puntos bajo El Chaparral (1.960) y La Pedrera (1.900). El centro es lo más caro del municipio, pero tiene lo que las urbanizaciones no: ayuntamiento, colegio y tiendas a pie. La demanda de 6,5 sobre 10 es la más baja de San Miguel, así que la venta tarda. Con 250.000 compras 124 metros, mucho espacio por poco dinero, con reforma a la vista.",
+    ],
+  },
+  "santa-pola/playa-de-levante": {
+    pl: [
+      "Analiza liczbowa: 2 570 €/m² to 220 € więcej niż mediana Santa Pola, a ROI 6,5 procent brutto jest o 0,1 punktu wyższe niż w Gran Alacant i o 0,2 niższe niż w Varadero (2 460 €/m², 6,2 procent - ale z gorszą plażą). Ekspozycja 100 dni i popyt 8/10 utrzymują płynność. Za 250 000 € kupujesz tu 97 m², w centrum 114 m². Wniosek: płacisz 220 €/m² za promenadę i port, a odzyskujesz to najmem od maja do października - poza sezonem liczy się port, nie plaża.",
+    ],
+    en: [
+      "The analysis: 2,570 per m² is 220 above the Santa Pola median, and a 6.5 percent gross yield is 0.1 points above Gran Alacant while 0.2 below Varadero (2,460 per m² at 6.2 percent, but with a worse beach). Time on market of 100 days and demand at 8 of 10 keep liquidity. For 250,000 you buy 97 square metres here and 114 in the centre. The conclusion: you pay 220 per m² for the promenade and port, and recover it through letting from May to October, while off season the port matters rather than the beach.",
+    ],
+    es: [
+      "El análisis: 2.570 por m² está 220 sobre la mediana de Santa Pola, y un 6,5 por ciento bruto queda 0,1 puntos sobre Gran Alacant y 0,2 bajo Varadero (2.460 por m² al 6,2 por ciento, pero con peor playa). Una exposición de 100 días y demanda de 8 sobre 10 mantienen la liquidez. Con 250.000 compras aquí 97 metros y 114 en el centro. Conclusión: pagas 220 por m² por el paseo y el puerto, y lo recuperas alquilando de mayo a octubre, mientras fuera de temporada manda el puerto y no la playa.",
+    ],
+  },
+
+  "aguilas/las-delicias": {
+    pl: [
+      "Raport w liczbach: 2 010 €/m² to 160 € powyżej mediany Águilas, a jednak 6,6 procent brutto bije centrum o 0,6 punktu - bo tam metr kosztuje 1 750 €, ale czynsz jest niższy proporcjonalnie. Ekspozycja 120 dni i popyt 8/10 oznaczają płynność wyższą niż w El Hornillo (7/10). Za 250 000 € kupujesz tu 124 m², w El Hornillo 138 m². Wniosek: dopłata 210 €/m² do Las Delicias zwraca się szybciej najmem, ale nie daje widoku z tarasu ani ciszy.",
+    ],
+    en: [
+      "The report in numbers: 2,010 per m² is 160 above the Águilas median, yet a 6.6 percent gross yield beats the centre by 0.6 points, because there a square metre costs 1,750 while rents are proportionally lower. Time on market of 120 days and demand at 8 of 10 mean better liquidity than El Hornillo at 7 of 10. For 250,000 you buy 124 square metres here and 138 in El Hornillo. The conclusion: the 210 premium for Las Delicias pays back faster through rent, but buys neither a terrace view nor quiet.",
+    ],
+    es: [
+      "El informe en cifras: 2.010 por m² está 160 sobre la mediana de Águilas, y aun así el 6,6 por ciento bruto supera al centro en 0,6 puntos, porque allí el metro cuesta 1.750 y las rentas son proporcionalmente más bajas. Una exposición de 120 días y demanda de 8 sobre 10 indican más liquidez que El Hornillo (7 sobre 10). Con 250.000 compras aquí 124 metros y 138 en El Hornillo. Conclusión: la prima de 210 por Las Delicias se recupera antes vía alquiler, pero no compra vistas ni silencio.",
+    ],
+  },
+
   // END
 };
+
+// Trzecia warstwa dla Águilas/Las Delicias: profil kupującego i mechanika umowy.
+NOTES_EXTRA["aguilas/las-delicias"]!.pl ??= [];
+NOTES_EXTRA["aguilas/las-delicias"]!.pl!.push(
+  "Praktyka: najemcy to w dużej mierze Hiszpanie z Murcji i pracownicy portu, dlatego umowy podpisuje się na rok, a nie na sezon, a umeblowanie nie jest warunkiem. To rzadkość na tym wybrzeżu. Sprawdź dwie rzeczy: hałas pociągu towarowego w blokach przy torowisku oraz stan instalacji w budynkach z lat osiemdziesiątych, które nie mają funduszu na wymianę wind. Bez tego drugiego bank może odmówić kredytu.",
+);
+NOTES_EXTRA["aguilas/las-delicias"]!.en ??= [];
+NOTES_EXTRA["aguilas/las-delicias"]!.en!.push(
+  "In practice tenants are largely Spaniards from Murcia and port workers, so contracts run for a year rather than a season and furniture is not a condition. That is rare on this coast. Check two things: freight train noise in blocks by the tracks and installations in eighties buildings with no lift fund. Without the second, a bank may refuse the mortgage.",
+);
+NOTES_EXTRA["aguilas/las-delicias"]!.es ??= [];
+NOTES_EXTRA["aguilas/las-delicias"]!.es!.push(
+  "En la práctica los inquilinos son en buena parte españoles de Murcia y personal del puerto, así que los contratos van por años y no por temporada, y el amueblado no es condición. Es poco habitual en esta costa. Revisa dos cosas: el ruido del tren de mercancías en bloques junto a las vías y las instalaciones de los edificios de los ochenta sin fondo para ascensores. Sin lo segundo, el banco puede negar la hipoteca.",
+);
 
 export function districtMarketNote(
   citySlug: string,
