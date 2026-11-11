@@ -241,3 +241,215 @@ const ES: WorkbenchCopy = {
 
 export const WORKBENCH_COPY: Record<Locale, WorkbenchCopy> = { pl: PL, en: EN, es: ES };
 
+
+export interface CostsCopy {
+  eyebrow: string;
+  title: (city: string) => string;
+  lead: (authority: string, itp: number) => string;
+  priceLabel: string;
+  dealLegend: string;
+  deals: { id: "resale" | "new"; label: string; hint: string }[];
+  propertyLegend: string;
+  properties: { id: "flat" | "villa"; label: string; hint: string }[];
+  residencyLegend: string;
+  residency: { id: "nonEu" | "eu" | "resident"; label: string; hint: string }[];
+  breakdownTitle: string;
+  rows: {
+    price: string;
+    itp: string;
+    iva: string;
+    ajd: string;
+    notary: string;
+    legal: string;
+    total: string;
+    totalPercent: string;
+  };
+  annualTitle: string;
+  annual: {
+    ibi: string;
+    community: string;
+    insurance: string;
+    total: string;
+  };
+  rentTitle: string;
+  rent: {
+    gross: string;
+    tax: string;
+    net: string;
+    yield: string;
+  };
+  note: string;
+  noteItp: (authority: string, rate: number) => string;
+  perMonth: string;
+  cta: string;
+}
+
+const COSTS_PL: CostsCopy = {
+  eyebrow: "Koszty i podatki",
+    title: (city) => `Ile naprawdę kosztuje zakup w ${city}`,
+    lead: (authority, itp) =>
+      `Cena z ogłoszenia to nie cały koszt. Poniżej rozbicie na podatki (ITP ${itp}% w ${authority}), opłaty notarialne i prawne, koszty roczne oraz podatek od najmu.`,
+    priceLabel: "Cena nieruchomości (EUR)",
+    dealLegend: "Rynek",
+    deals: [
+      { id: "resale", label: "Rynek wtórny", hint: "podatek ITP" },
+      { id: "new", label: "Nowe budownictwo", hint: "IVA + AJD" },
+    ],
+    propertyLegend: "Typ nieruchomości",
+    properties: [
+      { id: "flat", label: "Mieszkanie", hint: "wspólnota z windą i basenem" },
+      { id: "villa", label: "Willa lub dom", hint: "działka, mniejsza wspólnota" },
+    ],
+    residencyLegend: "Status podatkowy najemcy",
+    residency: [
+      { id: "nonEu", label: "Nierezydent UE", hint: "19% od czynszu brutto" },
+      { id: "eu", label: "Nierezydent poza UE", hint: "24% od czynszu brutto" },
+      { id: "resident", label: "Rezydent Hiszpanii", hint: "19% od dochodu netto" },
+    ],
+    breakdownTitle: "Koszty transakcyjne",
+    rows: {
+      price: "Cena",
+      itp: "ITP",
+      iva: "IVA",
+      ajd: "AJD",
+      notary: "Notariusz i rejestr",
+      legal: "Obsługa prawna",
+      total: "Razem do zapłaty",
+      totalPercent: "Koszty jako % ceny",
+    },
+    annualTitle: "Koszty roczne",
+    annual: {
+      ibi: "IBI (podatek gminny, szacunek)",
+      community: "Comunidad (wspólnota)",
+      insurance: "Ubezpieczenie",
+      total: "Razem rocznie",
+    },
+    rentTitle: "Podatek od najmu",
+    rent: {
+      gross: "Czynsz brutto rocznie",
+      tax: "Podatek",
+      net: "Czynsz po podatku",
+      yield: "Zwrot netto po podatku",
+    },
+    note:
+      "Wartości szacunkowe na 2026: notariusz, rejestr i obsługa prawna łącznie około 1,5% ceny. Nie uwzględniają ulg regionalnych ani podatku od wzrostu wartości gruntu przy sprzedaży.",
+    noteItp: (authority, rate) => `Stawka ITP w ${authority}: ${rate}% dla rynku wtórnego.`,
+  perMonth: "mies.",
+    cta: "Sprawdź koszty dla konkretnej nieruchomości",
+};
+
+const COSTS_EN: CostsCopy = {
+  eyebrow: "Costs and taxes",
+  title: (city) => `What buying in ${city} really costs`,
+  lead: (authority, itp) =>
+    `The asking price is not the whole bill. Below: taxes (ITP ${itp}% in ${authority}), notary and legal fees, annual running costs and tax on the rent.`,
+  priceLabel: "Property price (EUR)",
+  dealLegend: "Market",
+  deals: [
+    { id: "resale", label: "Resale", hint: "transfer tax" },
+    { id: "new", label: "New build", hint: "VAT plus AJD" },
+  ],
+  propertyLegend: "Property type",
+  properties: [
+    { id: "flat", label: "Flat", hint: "community with lift and pool" },
+    { id: "villa", label: "Villa or house", hint: "plot, smaller community" },
+  ],
+  residencyLegend: "Landlord tax status",
+  residency: [
+    { id: "nonEu", label: "EU non-resident", hint: "19% of gross rent" },
+    { id: "eu", label: "Non-EU non-resident", hint: "24% of gross rent" },
+    { id: "resident", label: "Spanish resident", hint: "19% of net income" },
+  ],
+  breakdownTitle: "Transaction costs",
+  rows: {
+    price: "Price",
+    itp: "Transfer tax",
+    iva: "VAT",
+    ajd: "AJD duty",
+    notary: "Notary and registry",
+    legal: "Legal support",
+    total: "Total to pay",
+    totalPercent: "Costs as % of price",
+  },
+  annualTitle: "Annual running costs",
+  annual: {
+    ibi: "IBI (council tax, estimate)",
+    community: "Community fees",
+    insurance: "Insurance",
+    total: "Total per year",
+  },
+  rentTitle: "Tax on the rent",
+  rent: {
+    gross: "Gross rent per year",
+    tax: "Tax",
+    net: "Rent after tax",
+    yield: "Net yield after tax",
+  },
+  note:
+    "2026 estimates: notary, registry and legal support together about 1.5% of the price. Regional reliefs and the municipal capital gains tax on sale are not included.",
+  noteItp: (authority, rate) => `ITP in ${authority}: ${rate}% on resale.`,
+  perMonth: "mo.",
+  cta: "Check the costs for a specific property",
+};
+
+const COSTS_ES: CostsCopy = {
+  eyebrow: "Gastos e impuestos",
+  title: (city) => `Cuánto cuesta de verdad comprar en ${city}`,
+  lead: (authority, itp) =>
+    `El precio del anuncio no es la factura completa. Abajo: impuestos (ITP ${itp}% en ${authority}), notaría y abogado, gastos anuales e impuesto sobre el alquiler.`,
+  priceLabel: "Precio de la vivienda (EUR)",
+  dealLegend: "Mercado",
+  deals: [
+    { id: "resale", label: "Segunda mano", hint: "impuesto de transmisiones" },
+    { id: "new", label: "Obra nueva", hint: "IVA más AJD" },
+  ],
+  propertyLegend: "Tipo de vivienda",
+  properties: [
+    { id: "flat", label: "Piso", hint: "comunidad con ascensor y piscina" },
+    { id: "villa", label: "Chalet o casa", hint: "parcela, comunidad menor" },
+  ],
+  residencyLegend: "Fiscalidad del propietario",
+  residency: [
+    { id: "nonEu", label: "No residente UE", hint: "19% del alquiler bruto" },
+    { id: "eu", label: "No residente fuera de la UE", hint: "24% del alquiler bruto" },
+    { id: "resident", label: "Residente en España", hint: "19% del ingreso neto" },
+  ],
+  breakdownTitle: "Gastos de la compra",
+  rows: {
+    price: "Precio",
+    itp: "ITP",
+    iva: "IVA",
+    ajd: "AJD",
+    notary: "Notaría y registro",
+    legal: "Asesoría legal",
+    total: "Total a pagar",
+    totalPercent: "Gastos sobre el precio",
+  },
+  annualTitle: "Gastos anuales",
+  annual: {
+    ibi: "IBI (impuesto municipal, estimación)",
+    community: "Comunidad",
+    insurance: "Seguro",
+    total: "Total anual",
+  },
+  rentTitle: "Impuesto sobre el alquiler",
+  rent: {
+    gross: "Alquiler bruto anual",
+    tax: "Impuesto",
+    net: "Alquiler tras impuesto",
+    yield: "Rentabilidad neta tras impuesto",
+  },
+  note:
+    "Estimaciones 2026: notaría, registro y asesoría suman alrededor del 1,5% del precio. No incluyen bonificaciones autonómicas ni la plusvalía municipal en la venta.",
+  noteItp: (authority, rate) => `ITP en ${authority}: ${rate}% en segunda mano.`,
+  perMonth: "mes",
+  cta: "Consultar gastos de una vivienda concreta",
+};
+
+export const COSTS_COPY: Record<Locale, CostsCopy> = {
+  pl: COSTS_PL,
+  en: COSTS_EN,
+  es: COSTS_ES,
+};
+
+

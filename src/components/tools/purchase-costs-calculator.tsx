@@ -1,0 +1,301 @@
+"use client";
+
+import { useState } from "react";
+import Link from "next/link";
+import { Info, Receipt } from "lucide-react";
+import type { Locale } from "@/lib/i18n/config";
+import { COSTS_COPY } from "@/lib/i18n/tool-copy";
+import { formatEur } from "@/lib/utils/format";
+import { cn } from "@/lib/utils/cn";
+
+export interface PurchaseCostsCalculatorProps {
+  locale: Locale;
+  cityName: string;
+  /** Stawka ITP dla wspólnoty autonomicznej (%). */
+  itp: number;
+  /** Nazwa wspólnoty, np. "Comunidad Valenciana". */
+  authority: string;
+  /** Rentowność brutto z tego rynku (%). */
+  rentalYield: number;
+  /** Ścieżka CTA do formularza. */
+  ctaHref: string;
+}
+
+type Deal = "resale" | "new";
+type Property = "flat" | "villa";
+type Residency = "nonEu" | "eu" | "resident";
+
+const IVA_RATE = 0.1;
+const AJD_RATE = 0.015;
+const NOTARY_RATE = 0.01;
+const LEGAL_RATE = 0.005;
+
+const IBI_RATE: Record<Property, number> = { flat: 0.0035, villa: 0.0045 };
+const COMMUNITY_RATE: Record<Property, number> = { flat: 0.009, villa: 0.003 };
+const INSURANCE_RATE: Record<Property, number> = { flat: 0.0015, villa: 0.0025 };
+const RENT_TAX: Record<Residency, number> = { nonEu: 0.19, eu: 0.24, resident: 0.19 };
+
+export function PurchaseCostsCalculator({
+  locale,
+  cityName,
+  itp,
+  authority,
+  rentalYield,
+  ctaHref,
+}: PurchaseCostsCalculatorProps) {
+  const copy = COSTS_COPY[locale];
+  const [price, setPrice] = useState(250_000);
+  const [deal, setDeal] = useState<Deal>("resale");
+  const [property, setProperty] = useState<Property>("flat");
+  const [residency, setResidency] = useState<Residency>("nonEu");
+
+  const transferTax = deal === "new" ? price * IVA_RATE : (price * itp) / 100;
+  const ajd = deal === "new" ? price * AJD_RATE : 0;
+  const notary = price * NOTARY_RATE;
+  const legal = price * LEGAL_RATE;
+  const transactionCosts = transferTax + ajd + notary + legal;
+  const total = price + transactionCosts;
+
+  const ibi = price * IBI_RATE[property];
+  const community = price * COMMUNITY_RATE[property];
+  const insurance = price * INSURANCE_RATE[property];
+  const annual = ibi + community + insurance;
+
+  const rentGross = (price * rentalYield) / 100;
+  const taxableBase = residency === "resident" ? Math.max(0, rentGross - annual) : rentGross;
+  const rentTax = taxableBase * RENT_TAX[residency];
+  const rentNet = rentGross - rentTax;
+  const netYield = price > 0 ? (rentNet / price) * 100 : 0;
+
+  const money = (value: number) => formatEur(Math.round(value));
+  const percent = (value: number) =>
+    `${value.toFixed(1).replace(".", locale === "en" ? "." : ",")}%`;
+
+  return (
+    <div className="rounded-2xl border border-brand-100 bg-white p-4 shadow-card sm:p-6">
+      <div className="max-w-2xl">
+        <p className="inline-flex items-center gap-1.5 text-[11px] font-bold tracking-wide text-accent-600 uppercase">
+          <Receipt aria-hidden className="h-3.5 w-3.5" />
+          {copy.eyebrow}
+        </p>
+        <h2 className="mt-1 text-xl font-bold text-brand-950 sm:text-2xl">{copy.title(cityName)}</h2>
+        <p className="mt-2 text-sm leading-relaxed text-brand-700">{copy.lead(authority, itp)}</p>
+      </div>
+
+      <div className="mt-4">
+        <label className="block text-[11px] font-semibold tracking-wide text-brand-600 uppercase">
+          {copy.priceLabel}
+          <input
+            type="number"
+            inputMode="numeric"
+            min={50_000}
+            max={3_000_000}
+            step={10_000}
+            value={price}
+            onChange={(event) => {
+              const next = Number(event.target.value);
+              setPrice(Number.isFinite(next) ? Math.max(0, Math.min(next, 3_000_000)) : 0);
+            }}
+            className="mt-1 w-full max-w-xs rounded-xl border border-brand-200 px-3 py-2 text-base font-semibold tabular-nums text-brand-950 focus:border-brand-500 focus:outline-none"
+          />
+        </label>
+      </div>
+
+      <div className="mt-4 grid gap-4 md:grid-cols-2">
+        <fieldset>
+          <legend className="text-xs font-semibold tracking-wide text-brand-700 uppercase">
+            {copy.dealLegend}
+          </legend>
+          <div className="mt-2 grid gap-2 sm:grid-cols-2">
+            {copy.deals.map((item) => (
+              <button
+                key={item.id}
+                type="button"
+                onClick={() => setDeal(item.id)}
+                aria-pressed={deal === item.id}
+                className={cn(
+                  "rounded-xl border px-3 py-2 text-left transition",
+                  deal === item.id
+                    ? "border-brand-600 bg-brand-50"
+                    : "border-brand-200 hover:border-brand-400",
+                )}
+              >
+                <span className="block text-sm font-bold text-brand-900">{item.label}</span>
+                <span className="mt-0.5 block text-[11px] text-brand-600">{item.hint}</span>
+              </button>
+            ))}
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend className="text-xs font-semibold tracking-wide text-brand-700 uppercase">
+            {copy.propertyLegend}
+          </legend>
+          <div className="mt-2 grid gap-2 sm:grid-cols-2">
+            {copy.properties.map((item) => (
+              <button
+                key={item.id}
+                type="button"
+                onClick={() => setProperty(item.id)}
+                aria-pressed={property === item.id}
+                className={cn(
+                  "rounded-xl border px-3 py-2 text-left transition",
+                  property === item.id
+                    ? "border-brand-600 bg-brand-50"
+                    : "border-brand-200 hover:border-brand-400",
+                )}
+              >
+                <span className="block text-sm font-bold text-brand-900">{item.label}</span>
+                <span className="mt-0.5 block text-[11px] text-brand-600">{item.hint}</span>
+              </button>
+            ))}
+          </div>
+        </fieldset>
+
+        <fieldset className="md:col-span-2">
+          <legend className="text-xs font-semibold tracking-wide text-brand-700 uppercase">
+            {copy.residencyLegend}
+          </legend>
+          <div className="mt-2 grid gap-2 sm:grid-cols-3">
+            {copy.residency.map((item) => (
+              <button
+                key={item.id}
+                type="button"
+                onClick={() => setResidency(item.id)}
+                aria-pressed={residency === item.id}
+                className={cn(
+                  "rounded-xl border px-3 py-2 text-left transition",
+                  residency === item.id
+                    ? "border-brand-600 bg-brand-50"
+                    : "border-brand-200 hover:border-brand-400",
+                )}
+              >
+                <span className="block text-sm font-bold text-brand-900">{item.label}</span>
+                <span className="mt-0.5 block text-[11px] text-brand-600">{item.hint}</span>
+              </button>
+            ))}
+          </div>
+        </fieldset>
+      </div>
+      <div className="mt-5 grid gap-4 lg:grid-cols-3">
+        <div className="rounded-xl border border-brand-100 bg-brand-50/50 p-4">
+          <p className="text-xs font-semibold tracking-wide text-brand-700 uppercase">
+            {copy.breakdownTitle}
+          </p>
+          <dl className="mt-3 space-y-1.5 text-sm">
+            <div className="flex justify-between gap-2">
+              <dt className="text-brand-600">{copy.rows.price}</dt>
+              <dd className="font-semibold tabular-nums text-brand-950">{money(price)}</dd>
+            </div>
+            {deal === "new" ? (
+              <>
+                <div className="flex justify-between gap-2">
+                  <dt className="text-brand-600">{copy.rows.iva} 10%</dt>
+                  <dd className="tabular-nums text-brand-900">{money(transferTax)}</dd>
+                </div>
+                <div className="flex justify-between gap-2">
+                  <dt className="text-brand-600">{copy.rows.ajd} 1,5%</dt>
+                  <dd className="tabular-nums text-brand-900">{money(ajd)}</dd>
+                </div>
+              </>
+            ) : (
+              <div className="flex justify-between gap-2">
+                <dt className="text-brand-600">
+                  {copy.rows.itp} {itp}%
+                </dt>
+                <dd className="tabular-nums text-brand-900">{money(transferTax)}</dd>
+              </div>
+            )}
+            <div className="flex justify-between gap-2">
+              <dt className="text-brand-600">{copy.rows.notary} 1%</dt>
+              <dd className="tabular-nums text-brand-900">{money(notary)}</dd>
+            </div>
+            <div className="flex justify-between gap-2">
+              <dt className="text-brand-600">{copy.rows.legal} 0,5%</dt>
+              <dd className="tabular-nums text-brand-900">{money(legal)}</dd>
+            </div>
+            <div className="mt-2 flex justify-between gap-2 border-t border-brand-200 pt-2">
+              <dt className="font-semibold text-brand-900">{copy.rows.total}</dt>
+              <dd className="font-bold tabular-nums text-brand-950">{money(total)}</dd>
+            </div>
+            <div className="flex justify-between gap-2">
+              <dt className="text-brand-600">{copy.rows.totalPercent}</dt>
+              <dd className="tabular-nums text-brand-900">
+                {percent(price > 0 ? (transactionCosts / price) * 100 : 0)}
+              </dd>
+            </div>
+          </dl>
+        </div>
+
+        <div className="rounded-xl border border-brand-100 bg-brand-50/50 p-4">
+          <p className="text-xs font-semibold tracking-wide text-brand-700 uppercase">
+            {copy.annualTitle}
+          </p>
+          <dl className="mt-3 space-y-1.5 text-sm">
+            <div className="flex justify-between gap-2">
+              <dt className="text-brand-600">{copy.annual.ibi}</dt>
+              <dd className="tabular-nums text-brand-900">{money(ibi)}</dd>
+            </div>
+            <div className="flex justify-between gap-2">
+              <dt className="text-brand-600">{copy.annual.community}</dt>
+              <dd className="tabular-nums text-brand-900">{money(community)}</dd>
+            </div>
+            <div className="flex justify-between gap-2">
+              <dt className="text-brand-600">{copy.annual.insurance}</dt>
+              <dd className="tabular-nums text-brand-900">{money(insurance)}</dd>
+            </div>
+            <div className="mt-2 flex justify-between gap-2 border-t border-brand-200 pt-2">
+              <dt className="font-semibold text-brand-900">{copy.annual.total}</dt>
+              <dd className="font-bold tabular-nums text-brand-950">{money(annual)}</dd>
+            </div>
+            <div className="flex justify-between gap-2">
+              <dt className="text-brand-600">{copy.perMonth}</dt>
+              <dd className="tabular-nums text-brand-900">{money(annual / 12)}</dd>
+            </div>
+          </dl>
+        </div>
+
+        <div className="rounded-xl border border-brand-100 bg-brand-50/50 p-4">
+          <p className="text-xs font-semibold tracking-wide text-brand-700 uppercase">
+            {copy.rentTitle}
+          </p>
+          <dl className="mt-3 space-y-1.5 text-sm">
+            <div className="flex justify-between gap-2">
+              <dt className="text-brand-600">{copy.rent.gross}</dt>
+              <dd className="tabular-nums text-brand-900">{money(rentGross)}</dd>
+            </div>
+            <div className="flex justify-between gap-2">
+              <dt className="text-brand-600">
+                {copy.rent.tax} {(RENT_TAX[residency] * 100).toFixed(0)}%
+              </dt>
+              <dd className="tabular-nums text-brand-900">{money(rentTax)}</dd>
+            </div>
+            <div className="mt-2 flex justify-between gap-2 border-t border-brand-200 pt-2">
+              <dt className="font-semibold text-brand-900">{copy.rent.net}</dt>
+              <dd className="font-bold tabular-nums text-brand-950">{money(rentNet)}</dd>
+            </div>
+            <div className="flex justify-between gap-2">
+              <dt className="text-brand-600">{copy.rent.yield}</dt>
+              <dd className="font-semibold tabular-nums text-emerald-700">{percent(netYield)}</dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+
+      <p className="mt-3 flex items-start gap-1.5 text-[11px] leading-snug text-brand-500">
+        <Info aria-hidden className="mt-0.5 h-3 w-3 shrink-0" />
+        {copy.note}
+      </p>
+
+      <div className="mt-4 flex flex-wrap items-center justify-between gap-3 rounded-xl bg-brand-950 px-4 py-3 text-white">
+        <p className="text-xs leading-relaxed text-brand-100">{copy.noteItp(authority, itp)}</p>
+        <Link
+          href={ctaHref}
+          className="inline-flex items-center gap-1.5 rounded-full bg-white px-4 py-2 text-sm font-bold text-brand-950 transition hover:bg-brand-50"
+        >
+          {copy.cta}
+        </Link>
+      </div>
+    </div>
+  );
+}
