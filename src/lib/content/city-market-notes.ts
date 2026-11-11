@@ -221,6 +221,18 @@ const CITY_EXTRA: Record<string, Partial<Record<Locale, string[]>>> = {
     ],
   },
 
+  "los-alcazares": {
+    pl: [
+      "Dane do kalkulacji: 2 190 €/m², 800 transakcji rocznie, 95 dni ekspozycji i ROI 6,8 procent brutto - najwyższe w całej bazie. Rozstrzał jest niewielki, 320 €/m²: Punta Brava 2 030, Centro 2 090, Los Narejos 2 250 i Playa 2 350. Za 250 000 € kupisz tu 114 m², czyli więcej niż w San Pedro czy Torrevieja. Ale wysoki zwrot ma drugą stronę: Mar Menor to akwen, którego jakość wody wraca w debatach, więc przed zakupem sprawdź ubezpieczenie od zalania i wysokość terenu.",
+    ],
+    en: [
+      "Data for the calculation: 2,190 per m², 800 sales a year, 95 days on market and a 6.8 percent gross yield, the highest in our whole dataset. The spread is narrow at 320 per m²: Punta Brava 2,030, Centro 2,090, Los Narejos 2,250 and Playa 2,350. For 250,000 you buy 114 square metres, more than in San Pedro or Torrevieja. But the high yield has another side: the Mar Menor is a lagoon whose water quality keeps returning in public debate, so check flood insurance and the height of the plot before buying.",
+    ],
+    es: [
+      "Datos para el cálculo: 2.190 por m², 800 operaciones al año, 95 días de exposición y un 6,8 por ciento bruto, el más alto de toda la base. La horquilla es estrecha, 320 por m²: Punta Brava 2.030, Centro 2.090, Los Narejos 2.250 y Playa 2.350. Con 250.000 compras 114 metros, más que en San Pedro o Torrevieja. Pero la alta rentabilidad tiene otra cara: el Mar Menor es una laguna cuya calidad del agua vuelve al debate público, así que revisa seguro de inundación y altura de la parcela antes de comprar.",
+    ],
+  },
+
   // END
 };
 
@@ -458,6 +470,26 @@ const NOTES: Record<string, Partial<Record<Locale, string[]>>> = {
     ],
   },
 };
+
+// Trzecie warstwy dopisywane po fakcie, żeby nie duplikować kluczy w obiekcie.
+CITY_EXTRA.villajoyosa!.pl!.push(
+  "Co kupisz za konkretne pieniądze: przy medianie 2 620 €/m² budżet 200 000 € daje 76 m², 250 000 € - 95 m², a 300 000 € - 114 m². Za 250 000 € w Plans dostaniesz 106 m² z ogrodem, w Centro 99 m² w kamienicy po remoncie, a w Playa Torre 88 m² w nowym osiedlu z basenem. Ta sama kwota, trzy różne produkty i trzy profile najemcy, więc przed wyborem policz koszty roczne: w Playa Torre wspólnota z basenem zjada część zwrotu, a w Plans dochodzi auto.",
+);
+CITY_EXTRA.villajoyosa!.en!.push(
+  "What your money buys: at a 2,620 median, 200,000 buys 76 square metres, 250,000 buys 95 and 300,000 buys 114. For 250,000 you get 106 with a garden in Plans, 99 in a renovated townhouse in Centro, or 88 in a new estate with a pool in Playa Torre. The same sum, three different products and three tenant profiles, so count annual costs first: in Playa Torre the pool community eats part of the return, while Plans adds a car.",
+);
+CITY_EXTRA.villajoyosa!.es!.push(
+  "Qué compras con cada presupuesto: con una mediana de 2.620, 200.000 dan 76 metros, 250.000 dan 95 y 300.000 dan 114. Por 250.000 obtienes 106 con jardín en Plans, 99 en una casa reformada del Centro u 88 en una urbanización nueva con piscina en Playa Torre. La misma cifra, tres productos y tres perfiles de inquilino, así que cuenta antes los gastos anuales: en Playa Torre la comunidad con piscina se come parte del retorno y en Plans suma coche.",
+);
+CITY_EXTRA["l-albir"]!.pl!.push(
+  "Trzy budżety, trzy odpowiedzi: 250 000 € przy medianie 3 310 €/m² to 75 m², 350 000 € - 106 m², a 450 000 € - 136 m². W Centro za 350 000 € kupisz 109 m² blisko promenady, w Sierra Albir 113 m² z ogrodem i widokiem z góry, a przy Playa del Albir 99 m² w pierwszej linii. Różnica w metrażu jest niewielka, ale różnica w produkcie ogromna. Pamiętaj, że przy 55 procentach kupujących z zagranicy negocjujesz z rynkiem, który zna te ceny lepiej niż polski klient.",
+);
+CITY_EXTRA["l-albir"]!.en!.push(
+  "Three budgets, three answers: 250,000 at a 3,310 median buys 75 square metres, 350,000 buys 106 and 450,000 buys 136. In Centro, 350,000 buys 109 square metres near the promenade; in Sierra Albir, 113 with a garden and a view from above; at Playa del Albir, 99 on the front line. The difference in floor area is small, the difference in product is huge. Remember that with 55 percent foreign buyers you negotiate in a market that knows these prices better than a Polish client.",
+);
+CITY_EXTRA["l-albir"]!.es!.push(
+  "Tres presupuestos, tres respuestas: 250.000 con una mediana de 3.310 dan 75 metros, 350.000 dan 106 y 450.000 dan 136. En Centro, 350.000 compran 109 metros cerca del paseo; en Sierra Albir, 113 con jardín y vistas desde arriba; en Playa del Albir, 99 en primera línea. La diferencia de metros es pequeña, la de producto es enorme. Recuerda que con un 55 por ciento de compradores extranjeros negocias en un mercado que conoce estos precios mejor que un cliente polaco.",
+);
 
 export function cityMarketNote(slug: string, locale: Locale): CityMarketNote | null {
   const paragraphs = NOTES[slug]?.[locale];

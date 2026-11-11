@@ -1329,15 +1329,72 @@ const REPORT_EXTRA: Record<string, Partial<Record<Locale, string[]>>> = {
       "Lo importante del informe es la relación entre dos cifras: 2.300 por m² está 170 bajo la mediana de Guardamar y un 6,4 por ciento bruto supera a Guardamar Playa en 0,2 puntos. Súmale 105 días de exposición y demanda de 7 sobre 10, así que se vende con normalidad y sin presión. Es una combinación poco frecuente: metro más barato, más rentabilidad y servicios a pie. Para alquiler largo el centro gana a la playa, y los 170 por m² cubren reformar baño y cocina.",
     ],
   },
-  "san-pedro-del-pinatar/lo-pagan": {
+  "san-pedro-del-pinatar/el-mojon": {
     pl: [
-      "Raport pokazuje, gdzie jest granica: 2 450 €/m² to 160 € powyżej mediany gminy, a ROI 6,5 procent brutto jest o 0,2 punktu niższe niż w centrum San Pedro (2 130 €/m², 6,7 procent). Płacisz więc za plażę i błoto, nie za zwrot. Ekspozycja 100 dni i popyt 8/10 utrzymują płynność, ale sezonowość oznacza, że kalkulację trzeba oprzeć na ośmiu miesiącach najmu. Jeśli szukasz dochodu całorocznego, centrum wygrywa; jeśli własnych wakacji i widoku - Lo Pagán.",
+      "Raport pokazuje różnicę, której nie widać w opisie: 2 400 €/m² to 110 € powyżej mediany gminy, ale ROI 6,4 procent brutto jest o 0,3 punktu niższe niż w centrum San Pedro (2 130 €/m², 6,7 procent). Płacisz więc za bliskość plaży i parku, a nie za zwrot. Ekspozycja 100 dni i popyt 7/10 - najniższy w gminie - oznaczają, że sprzedaż może potrwać dłużej niż w Lo Pagán. Dla inwestora liczy się jedno: przy najmie ośmiomiesięcznym zamiast dwunastomiesięcznego zwrot netto spada poniżej 4,5 procent.",
     ],
     en: [
-      "The report shows where the limit is: 2,450 per m² is 160 above the municipal median, while a 6.5 percent gross yield is 0.2 points below San Pedro centre (2,130 per m², 6.7 percent). You pay for the beach and the mud, not for the return. Time on market of 100 days and demand at 8 of 10 keep liquidity, but seasonality means the maths should rest on eight months of letting. For year-round income the centre wins; for your own holidays and a view, Lo Pagán.",
+      "The report shows a gap the description hides: 2,400 per m² is 110 above the municipal median, but a 6.4 percent gross yield sits 0.3 points below San Pedro centre (2,130 per m², 6.7 percent). You pay for proximity to the beach and the park, not for the return. Time on market of 100 days and demand at 7 of 10, the lowest in the municipality, mean a sale can take longer than in Lo Pagán. For an investor one number matters: on eight months of letting instead of twelve, the net return drops below 4.5 percent.",
     ],
     es: [
-      "El informe muestra dónde está el límite: 2.450 por m² está 160 sobre la mediana municipal y un 6,5 por ciento bruto queda 0,2 puntos bajo el centro de San Pedro (2.130 por m², 6,7 por ciento). Pagas playa y barro, no retorno. Una exposición de 100 días y demanda de 8 sobre 10 mantienen la liquidez, pero la estacionalidad obliga a calcular sobre ocho meses de alquiler. Para renta anual gana el centro; para vacaciones propias y vistas, Lo Pagán.",
+      "El informe muestra una brecha que el anuncio oculta: 2.400 por m² está 110 sobre la mediana municipal, pero un 6,4 por ciento bruto queda 0,3 puntos bajo el centro de San Pedro (2.130 por m², 6,7 por ciento). Pagas cercanía a playa y parque, no retorno. Una exposición de 100 días y demanda de 7 sobre 10, la más baja del municipio, implican que vender puede tardar más que en Lo Pagán. Para el inversor importa una cifra: con ocho meses de alquiler en lugar de doce, el retorno neto baja del 4,5 por ciento.",
+    ],
+  },
+  "torrevieja/playa-de-los-locos": {
+    pl: [
+      "Dane z raportu: 2 960 €/m² to 390 € powyżej mediany Torrevieja, a ROI 6,0 procent brutto jest o 0,4 punktu niższe niż w El Acequión (2 480 €/m², 6,4 procent). Płacisz za pierwszą linię i deptak, nie za dochód. Ekspozycja 95 dni i popyt 9/10 to najlepsze wskaźniki w mieście, więc płynność jest wysoka, ale w sezonie konkurujesz z setkami podobnych mieszkań. Jeśli liczysz zwrot, sprawdź, ile realnie zostaje po wspólnocie, sprzątaniu i prowizji za zarządzanie - przy krótkim najmie to często 40 procent przychodu.",
+    ],
+    en: [
+      "Report data: 2,960 per m² is 390 above the Torrevieja median, while a 6.0 percent gross yield sits 0.4 points below El Acequión (2,480 per m², 6.4 percent). You pay for the front line and the promenade, not for income. Time on market of 95 days and demand at 9 of 10 are the best readings in town, so liquidity is high, but in season you compete with hundreds of similar flats. If you count the return, check what survives community fees, cleaning and management commission: on short lets that is often 40 percent of revenue.",
+    ],
+    es: [
+      "Datos del informe: 2.960 por m² está 390 sobre la mediana de Torrevieja, mientras un 6,0 por ciento bruto queda 0,4 puntos bajo El Acequión (2.480 por m², 6,4 por ciento). Pagas primera línea y paseo, no renta. Una exposición de 95 días y demanda de 9 sobre 10 son las mejores lecturas del pueblo, así que hay liquidez, pero en temporada compites con cientos de pisos parecidos. Si calculas el retorno, mira qué queda tras comunidad, limpieza y comisión de gestión: en alquiler corto suele ser el 40 por ciento del ingreso.",
+    ],
+  },
+  "calpe/puerto": {
+    pl: [
+      "W raporcie widać, ile kosztuje lokalizacja: 3 330 €/m² to 60 € powyżej mediany Calpe, ale ROI 5,6 procent brutto jest o 0,1 punktu niższe niż w Canuta (3 170 €/m², 5,5 procent) i o 0,3 niższe niż na Fossie (3 540 €/m², 5,9 procent). Ekspozycja 120 dni i popyt 8/10 mówią, że rynek jest stabilny, ale nie szybki. Przy 250 000 € kupujesz tu około 75 m², a nie 82 m² jak w Oltamar - i to jest realna różnica, którą trzeba policzyć przed ofertą.",
+    ],
+    en: [
+      "The report shows what location costs: 3,330 per m² is 60 above the Calpe median, yet a 5.6 percent gross yield sits 0.1 points below Canuta (3,170 per m², 5.5 percent) and 0.3 below the Fossa (3,540 per m², 5.9 percent). Time on market of 120 days and demand at 8 of 10 say the market is stable rather than fast. For 250,000 you buy about 75 square metres here instead of 82 in Oltamar, and that difference is worth calculating before you offer.",
+    ],
+    es: [
+      "El informe muestra cuánto cuesta la ubicación: 3.330 por m² está 60 sobre la mediana de Calpe, pero un 5,6 por ciento bruto queda 0,1 puntos bajo Canuta (3.170 por m², 5,5 por ciento) y 0,3 bajo la Fossa (3.540 por m², 5,9 por ciento). Una exposición de 120 días y demanda de 8 sobre 10 indican un mercado estable y no rápido. Con 250.000 compras aquí unos 75 metros en lugar de 82 en Oltamar, y esa diferencia conviene calcularla antes de ofertar.",
+    ],
+  },
+
+  "javea/puerto": {
+    pl: [
+      "Liczby z raportu: 4 450 €/m² to zaledwie 50 € powyżej mediany Jávea, ale ROI 4,8 procent brutto jest o 0,3 punktu niższe niż w Arenal (4 290 €/m², 5,1 procent) i o 0,1 niższe niż w Montañar. Ekspozycja 140 dni i popyt 9/10 to typowy obraz Jávea: popyt jest, ale sprzedaż trwa, bo ceny są wysokie. Przy takiej medianie 250 000 € kupuje tu 56 m², czyli mniej niż kawalerka z osobną sypialnią - dlatego port wybierają osoby z większym budżetem, nie inwestorzy liczący na zwrot.",
+    ],
+    en: [
+      "Report figures: 4,450 per m² is only 50 above the Jávea median, but a 4.8 percent gross yield trails Arenal (4,290 per m², 5.1 percent) by 0.3 points and Montañar by 0.1. Time on market of 140 days with demand at 9 of 10 is the typical Jávea picture: demand exists, yet sales take time because prices are high. At this median, 250,000 buys 56 square metres, less than a one-bedroom flat, which is why the port attracts larger budgets rather than investors hunting yield.",
+    ],
+    es: [
+      "Cifras del informe: 4.450 por m² está solo 50 sobre la mediana de Jávea, pero un 4,8 por ciento bruto queda 0,3 puntos bajo Arenal (4.290 por m², 5,1 por ciento) y 0,1 bajo Montañar. Una exposición de 140 días con demanda de 9 sobre 10 es el retrato típico de Jávea: hay demanda, pero la venta tarda porque los precios son altos. Con esa mediana, 250.000 compran 56 metros, menos que un piso de un dormitorio, y por eso el puerto atrae presupuestos altos y no inversores que busquen rentabilidad.",
+    ],
+  },
+  "orihuela-costa/dehesa-de-campoamor": {
+    pl: [
+      "Raport pokazuje, za co płacisz: 3 170 €/m² to 270 € powyżej mediany Orihuela Costa, a ROI 5,9 procent brutto jest o 0,3 punktu niższe niż w Lomas de Cabo Roig (2 800 €/m², 6,2 procent). Ekspozycja 90 dni - najkrótsza w regionie obok Quesady - i popyt 8/10 mówią, że płynność jest wysoka mimo wysokiej ceny. To rynek drugiego domu: kupują tu rodziny, które chcą plaży bez hoteli, a nie inwestorzy szukający cash flow. Jeśli liczy się zwrot, Lomas i Mil Palmeras wygrywają o pół punktu.",
+    ],
+    en: [
+      "The report shows what you pay for: 3,170 per m² is 270 above the Orihuela Costa median, while a 5.9 percent gross yield trails Lomas de Cabo Roig (2,800 per m², 6.2 percent) by 0.3 points. Time on market of 90 days, the shortest in the region alongside Quesada, and demand at 8 of 10 say liquidity is high despite the price. This is a second-home market: families buy here for a beach without hotels, not investors hunting cash flow. If yield matters, Lomas and Mil Palmeras win by half a point.",
+    ],
+    es: [
+      "El informe muestra por qué pagas: 3.170 por m² está 270 sobre la mediana de Orihuela Costa, mientras un 5,9 por ciento bruto queda 0,3 puntos bajo Lomas de Cabo Roig (2.800 por m², 6,2 por ciento). Una exposición de 90 días, la más corta de la región junto a Quesada, y demanda de 8 sobre 10 indican liquidez alta pese al precio. Es mercado de segunda residencia: compran familias que quieren playa sin hoteles, no inversores que busquen flujo de caja. Si importa el retorno, Lomas y Mil Palmeras ganan por medio punto.",
+    ],
+  },
+
+  "san-pedro-del-pinatar/lo-pagan": {
+    pl: [
+      "Raport pokazuje trzy liczby obok siebie: 2 450 €/m² (o 160 € nad medianą gminy), 6,5 procent brutto i 100 dni ekspozycji. Sąsiad Villananitos kosztuje 2 350 €/m² przy 6,6 procent, a Centro 2 130 €/m² przy 6,7 procent - widać więc, że każde 100 €/m² dopłaty obniża zwrot o około 0,1 punktu. Przy 250 000 € kupujesz tu 102 m², a w centrum 117 m². Jeśli celem jest najem długoterminowy, centrum daje więcej metrów i wyższy zwrot; Lo Pagán wygrywa tylko wtedy, gdy liczy się plaża pod oknem i błoto lecznicze.",
+    ],
+    en: [
+      "The report lines up three figures: 2,450 per m² (160 above the municipal median), a 6.5 percent gross yield and 100 days on market. The neighbouring Villananitos costs 2,350 per m² at 6.6 percent, while Centro costs 2,130 at 6.7 percent, so every 100 per square metre of premium costs about 0.1 points of yield. For 250,000 you buy 102 square metres here and 117 in the centre. If long-term letting is the goal, the centre gives more space and a higher return; Lo Pagán only wins when the beach at the window and the healing mud matter.",
+    ],
+    es: [
+      "El informe pone tres cifras en fila: 2.450 por m² (160 sobre la mediana municipal), un 6,5 por ciento bruto y 100 días de exposición. El vecino Villananitos cuesta 2.350 por m² al 6,6 por ciento y Centro 2.130 al 6,7 por ciento, así que cada 100 por metro de prima cuesta unos 0,1 puntos de rentabilidad. Con 250.000 compras aquí 102 metros y 117 en el centro. Si el objetivo es alquiler largo, el centro da más metros y más retorno; Lo Pagán gana solo cuando importan la playa en la ventana y el barro curativo.",
     ],
   },
 
@@ -1354,12 +1411,11 @@ export function districtMarketNote(
   const paragraphs = NOTES[key]?.[locale];
   if (!paragraphs || paragraphs.length === 0) return null;
   const extra = NOTES_EXTRA[key]?.[locale] ?? [];
-  // Raporty cenowe dostają akapit analityczny (dane, porównania), strony usług
-  // pełną notę. Dzięki temu ta sama dzielnica nie powtarza tego samego tekstu
-  // na dwóch różnych typach strony.
-  if (variant === "report") {
-    const reportOnly = REPORT_EXTRA[key]?.[locale] ?? [];
-    return { heading: HEADING[locale], paragraphs: [paragraphs[0]!, ...(reportOnly.length ? reportOnly : extra)] };
+  const reportExtra = REPORT_EXTRA[key]?.[locale] ?? [];
+  // Raport cenowy startuje od akapitu o mikro-lokalizacji, a resztę stanowi
+  // własna analiza liczbowa - dzięki temu nie powtarza noty ze strony usługi.
+  if (variant === "report" && reportExtra.length > 0) {
+    return { heading: HEADING[locale], paragraphs: [paragraphs[0]!, ...reportExtra] };
   }
   return { heading: HEADING[locale], paragraphs: [...paragraphs, ...extra] };
 }
