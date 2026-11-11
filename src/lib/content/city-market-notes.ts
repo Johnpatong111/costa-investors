@@ -95,6 +95,52 @@ const CITY_EXTRA: Record<string, Partial<Record<Locale, string[]>>> = {
     ],
   },
 
+  mazarron: {
+    pl: [
+      "Dane, które warto mieć przed sobą: 2 020 €/m², dynamika 7,6 procent r/r, 900 transakcji i 115 dni ekspozycji, przy ROI 6,4 procent brutto. Rozstrzał w gminie wynosi 530 €/m²: Mazarrón Centro 1 700, El Alamillo 2 070, Bolnuevo 2 130 i Puerto de Mazarrón 2 230. Kupujący z zagranicy to 35 procent, Polacy 5 procent, czyli mniej niż w kurortach na północy. Wniosek: najwyższy zwrot daje centrum i El Alamillo, a Puerto jest adresem pod najem letni i własne wakacje.",
+    ],
+    en: [
+      "Data worth having in front of you: 2,020 per m², 7.6 percent growth, 900 sales and 115 days on market, with a 6.4 percent gross yield. The internal spread is 530 per m²: Mazarrón Centro 1,700, El Alamillo 2,070, Bolnuevo 2,130 and Puerto de Mazarrón 2,230. Foreign buyers are 35 percent and Poles 5 percent, lower than in northern resorts. The conclusion: the centre and El Alamillo give the best return, while Puerto is for summer letting and your own holidays.",
+    ],
+    es: [
+      "Datos que conviene tener delante: 2.020 por m², crecimiento del 7,6 por ciento, 900 operaciones y 115 días de exposición, con un 6,4 por ciento bruto. La horquilla interna es de 530 por m²: Mazarrón Centro 1.700, El Alamillo 2.070, Bolnuevo 2.130 y Puerto de Mazarrón 2.230. Los extranjeros son el 35 por ciento y los polacos el 5, menos que en los resorts del norte. Conclusión: el centro y El Alamillo dan el mejor retorno, y Puerto es para alquiler de verano y vacaciones propias.",
+    ],
+  },
+  quesada: {
+    pl: [
+      "Twarde liczby: 2 760 €/m², 800 transakcji rocznie, 105 dni ekspozycji i ROI 6,3 procent brutto. Rozstrzał jest niewielki, 320 €/m²: Doña Pepa 2 600, Centro 2 710 i La Marquesa 2 920, bo cała urbanizacja powstała według jednego planu. Polacy to 7 procent kupujących, najwięcej w całej bazie, a obcokrajowcy 48 procent. Wniosek: to najbardziej polski rynek na Costa Blanca, z najkrótszą ekspozycją w regionie, więc decyzję podejmuje się szybko, a cena zależy od konkretnego osiedla.",
+    ],
+    en: [
+      "Hard numbers: 2,760 per m², 800 sales a year, 105 days on market and a 6.3 percent gross yield. The spread is narrow at 320 per m²: Doña Pepa 2,600, Centro 2,710 and La Marquesa 2,920, because the whole urbanisation was laid out to one plan. Poles make up 7 percent of buyers, the highest in our dataset, and foreigners 48 percent. The conclusion: the most Polish market on the Costa Blanca, with the shortest time on market in the region, so decisions are quick and price follows the specific estate.",
+    ],
+    es: [
+      "Datos duros: 2.760 por m², 800 operaciones al año, 105 días de exposición y un 6,3 por ciento bruto. La horquilla es estrecha, 320 por m²: Doña Pepa 2.600, Centro 2.710 y La Marquesa 2.920, porque toda la urbanización se trazó con un mismo plan. Los polacos son el 7 por ciento de los compradores, el mayor de la base, y los extranjeros el 48. Conclusión: el mercado más polaco de Costa Blanca, con la menor exposición de la región, así que se decide rápido y el precio depende de la urbanización.",
+    ],
+  },
+
+  villajoyosa: {
+    pl: [
+      "Liczby do decyzji: 2 620 €/m², dynamika 8,5 procent r/r, 900 transakcji i 115 dni ekspozycji, przy ROI 6,1 procent brutto. Rozstrzał wynosi 490 €/m²: Plans 2 350, Centro 2 520 i Playa Torre 2 840. Kupujący z zagranicy to 45 procent, Polacy 6 procent. Wniosek: cena za metr jest o 80 € niższa niż średnia Costa Blanca, a zwrot wyższy niż w Altea czy Jávea, bo miasto żyje z portu i fabryk czekolady, a nie tylko z sezonu.",
+    ],
+    en: [
+      "Numbers for the decision: 2,620 per m², 8.5 percent growth, 900 sales and 115 days on market, with a 6.1 percent gross yield. The spread is 490 per m²: Plans 2,350, Centro 2,520 and Playa Torre 2,840. Foreign buyers are 45 percent and Poles 6 percent. The conclusion: the square metre is 80 below the Costa Blanca average while the yield beats Altea or Jávea, because the town lives off its port and chocolate factories rather than the season alone.",
+    ],
+    es: [
+      "Cifras para decidir: 2.620 por m², crecimiento del 8,5 por ciento, 900 operaciones y 115 días de exposición, con un 6,1 por ciento bruto. La horquilla es de 490 por m²: Plans 2.350, Centro 2.520 y Playa Torre 2.840. Los extranjeros son el 45 por ciento y los polacos el 6. Conclusión: el metro está 80 por debajo de la media de Costa Blanca y la rentabilidad supera a Altea o Jávea, porque el pueblo vive del puerto y de las fábricas de chocolate y no solo de la temporada.",
+    ],
+  },
+  "l-albir": {
+    pl: [
+      "Dane, które wyjaśniają ten rynek: 3 310 €/m², dynamika 8 procent r/r, ale tylko 600 transakcji rocznie i 130 dni ekspozycji, przy ROI 5,4 procent brutto. Rozstrzał w gminie to 430 €/m²: Sierra Albir 3 090, Centro 3 200 i Playa del Albir 3 520. Obcokrajowcy to 55 procent kupujących, najwięcej w bazie, Polacy 5 procent. Wniosek: podaż jest zamknięta przez park Serra Gelada, więc to rynek kapitału - licz na wzrost wartości i widok, nie na szybki zwrot z czynszu.",
+    ],
+    en: [
+      "Data that explains this market: 3,310 per m², 8 percent growth, but only 600 sales a year and 130 days on market, with a 5.4 percent gross yield. The internal spread is 430 per m²: Sierra Albir 3,090, Centro 3,200 and Playa del Albir 3,520. Foreigners are 55 percent of buyers, the highest in our dataset, and Poles 5 percent. The conclusion: supply is capped by the Serra Gelada park, so this is a capital market: count on value growth and the view, not a quick rental return.",
+    ],
+    es: [
+      "Datos que explican este mercado: 3.310 por m², crecimiento del 8 por ciento, pero solo 600 operaciones al año y 130 días de exposición, con un 5,4 por ciento bruto. La horquilla interna es de 430 por m²: Sierra Albir 3.090, Centro 3.200 y Playa del Albir 3.520. Los extranjeros son el 55 por ciento de los compradores, el mayor de la base, y los polacos el 5. Conclusión: la oferta está cerrada por el parque de Serra Gelada, así que es mercado de capital: cuenta con revalorización y vistas, no con retorno rápido.",
+    ],
+  },
+
   // END
 };
 

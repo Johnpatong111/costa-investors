@@ -1116,6 +1116,108 @@ const NOTES_EXTRA: Record<string, Partial<Record<Locale, string[]>>> = {
     ],
   },
 
+  "santa-pola/gran-alacant": {
+    pl: [
+      "Liczby, które warto znać: 2 300 €/m², czyli 50 € mniej niż mediana Santa Pola, ROI 6,6 procent brutto i popyt 8/10 przy 1 200 transakcjach rocznie w całej gminie. Sąsiedzi w tej samej gminie: Centro 2 190 €/m², Playa Lisa 2 410 €/m², Playa de Levante 2 570 €/m². Gran Alacant wygrywa zwrotem, bo metraż lokali jest mniejszy, a najem trwa dłużej niż na promenadzie. Sprawdź odległość od jedynej drogi wyjazdowej i czy osiedle jest odebrane przez gminę, bo część dróg i zieleńców wciąż należy do dewelopera.",
+    ],
+    en: [
+      "Numbers worth knowing: 2,300 per m², which is 50 below the Santa Pola median, a 6.6 percent gross yield and demand at 8 of 10, with 1,200 sales a year across the municipality. Neighbours in the same town: Centro 2,190, Playa Lisa 2,410 and Playa de Levante 2,570. Gran Alacant wins on return because units are smaller and letting lasts longer than on the promenade. Check the distance to the single exit road and whether the estate has been handed to the council, since some roads and green areas still belong to the developer.",
+    ],
+    es: [
+      "Cifras que conviene conocer: 2.300 por m², 50 por debajo de la mediana de Santa Pola, un 6,6 por ciento bruto y demanda de 8 sobre 10, con 1.200 operaciones al año en el municipio. Vecinos del mismo pueblo: Centro 2.190, Playa Lisa 2.410 y Playa de Levante 2.570. Gran Alacant gana en retorno porque las viviendas son más pequeñas y el alquiler dura más que en el paseo. Revisa la distancia a la única salida y si la urbanización está recepcionada, porque algunos caminos y zonas verdes siguen siendo del promotor.",
+    ],
+  },
+  "santa-pola/centro": {
+    pl: [
+      "Dane do kalkulacji: 2 190 €/m², o 160 € mniej niż mediana gminy i o 380 € mniej niż Playa de Levante, ROI 6,3 procent brutto, popyt 7/10. To najtańszy metr w Santa Pola, a mimo to najem trwa tu cały rok, bo port rybacki i zakłady w Elche dają stałe zatrudnienie. W porównaniu z Gran Alacant (2 300 €/m², 6,6 procent) tracisz 0,3 punktu zwrotu, ale zyskujesz usługi i szkoły pieszo. Sprawdź, czy budynek ma ITE i czy okna nie wychodzą na plac manewrowy portu, gdzie hałas zaczyna się przed szóstą.",
+    ],
+    en: [
+      "Numbers for the calculation: 2,190 per m², 160 below the town median and 380 below Playa de Levante, a 6.3 percent gross yield and demand at 7 of 10. It is the cheapest square metre in Santa Pola, yet letting runs all year because the fishing port and the Elche factories provide permanent jobs. Against Gran Alacant (2,300 per m², 6.6 percent) you give up 0.3 points of yield but gain services and schools on foot. Check the building's ITE inspection and whether windows face the port yard, where noise starts before six.",
+    ],
+    es: [
+      "Datos para el cálculo: 2.190 por m², 160 bajo la mediana del pueblo y 380 bajo Playa de Levante, un 6,3 por ciento bruto y demanda de 7 sobre 10. Es el metro más barato de Santa Pola y aun así el alquiler funciona todo el año, porque el puerto pesquero y las fábricas de Elche dan empleo estable. Frente a Gran Alacant (2.300 por m², 6,6 por ciento) pierdes 0,3 puntos de rentabilidad pero ganas servicios y colegios a pie. Revisa el ITE del edificio y si las ventanas dan al patio del puerto, donde el ruido empieza antes de las seis.",
+    ],
+  },
+  "santa-pola/playa-de-levante": {
+    pl: [
+      "Twarde dane: 2 570 €/m², o 220 € więcej niż mediana gminy, ROI 6,5 procent brutto, popyt 8/10. To najdroższy adres w Santa Pola, ale wciąż o 690 €/m² tańszy niż Playa de Levante w Benidorm, a zwrot jest o 0,5 punktu wyższy. Przewagą jest całoroczność: port i zakłady w Elche dają najemców także poza sezonem, czego nie ma w kurortach na północy. Sprawdź, czy wspólnota ma fundusz na elewację od strony morza oraz czy okna mają moskitiery, bo komary znad salin są tu realnym problemem od czerwca.",
+    ],
+    en: [
+      "Hard data: 2,570 per m², 220 above the town median, a 6.5 percent gross yield and demand at 8 of 10. It is the dearest address in Santa Pola, yet still 690 per m² cheaper than Playa de Levante in Benidorm, with a yield 0.5 points higher. The advantage is all-year demand: the port and the Elche factories supply tenants outside the season, which northern resorts cannot. Check whether the community has funds for the sea-facing facade and whether windows have screens, since mosquitoes from the salt pans are a real issue from June.",
+    ],
+    es: [
+      "Datos duros: 2.570 por m², 220 sobre la mediana del pueblo, un 6,5 por ciento bruto y demanda de 8 sobre 10. Es la dirección más cara de Santa Pola, pero sigue 690 por m² por debajo de Playa de Levante en Benidorm, con 0,5 puntos más de rentabilidad. La ventaja es la demanda anual: el puerto y las fábricas de Elche dan inquilinos fuera de temporada, algo que los resorts del norte no tienen. Revisa si la comunidad tiene fondos para la fachada al mar y si las ventanas llevan mosquiteras, porque los mosquitos de las salinas son un problema real desde junio.",
+    ],
+  },
+
+  "el-campello/muchavista": {
+    pl: [
+      "Porównanie, które porządkuje decyzję: 3 100 €/m² w Muchavista wobec 2 780 €/m² w Centro i 2 720 €/m² w Coveta Fumada. Za 320 €/m² kupujesz szeroki pas piasku i tramwaj bez przesiadki, ale płacisz też wyższą wspólnotę i tracisz ciszę. ROI 6,0 procent brutto jest o 0,2 punktu niższe niż w centrum, bo cena rosła szybciej niż czynsze. Sprawdź odległość od torowiska w pierwszych szeregach zabudowy oraz czy blok ma garaż, bo w lipcu miejsca na ulicy nie ma po dziewiątej.",
+    ],
+    en: [
+      "The comparison that settles it: 3,100 per m² in Muchavista against 2,780 in Centro and 2,720 in Coveta Fumada. The 320 per m² buys a wide strip of sand and a direct tram, but also higher community fees and less quiet. A 6.0 percent gross yield is 0.2 points below the centre, because prices rose faster than rents. Check the distance to the tracks in the first rows of buildings and whether the block has a garage, since street parking is gone by nine in July.",
+    ],
+    es: [
+      "La comparación que lo ordena: 3.100 por m² en Muchavista frente a 2.780 en Centro y 2.720 en Coveta Fumada. Los 320 por m² compran una franja ancha de arena y tranvía directo, pero también comunidad más alta y menos silencio. Un 6,0 por ciento bruto está 0,2 puntos por debajo del centro, porque los precios subieron más que las rentas. Revisa la distancia a las vías en las primeras filas de edificios y si el bloque tiene garaje, porque en julio no hay aparcamiento en la calle después de las nueve.",
+    ],
+  },
+  "altea/cap-blanc": {
+    pl: [
+      "Dane do decyzji: 3 730 €/m², czyli 50 € więcej niż mediana Altei, ale 700 € mniej niż w Altea Hills. ROI 5,2 procent brutto przy popycie 7/10 oznacza, że to adres pod własne mieszkanie, nie pod najem. Cap Blanc jest kompromisem: bliżej miasta niż Mascarat, ciszej niż Playa de la Roda, ale bez widoku z pierwszego rzędu. Sprawdź, czy posesja ma dostęp do drogi gminnej i czy nachylenie działki pozwala na basen, bo część parceli na skarpie tego nie udźwignie.",
+    ],
+    en: [
+      "Data for the decision: 3,730 per m², 50 above the Altea median but 700 below Altea Hills. A 5.2 percent gross yield with demand at 7 of 10 means this is an address for your own flat rather than letting. Cap Blanc is the compromise: closer to town than Mascarat and quieter than Playa de la Roda, but without a front-row view. Check whether the property has council road access and whether the slope allows a pool, since some plots on the escarpment cannot carry one.",
+    ],
+    es: [
+      "Datos para decidir: 3.730 por m², 50 sobre la mediana de Altea pero 700 bajo Altea Hills. Un 5,2 por ciento bruto con demanda de 7 sobre 10 indica que es una dirección para piso propio y no para alquilar. Cap Blanc es el término medio: más cerca del pueblo que Mascarat y más tranquilo que Playa de la Roda, pero sin vistas en primera fila. Comprueba si la finca tiene acceso a camino municipal y si la pendiente permite piscina, porque algunas parcelas en la ladera no la admiten.",
+    ],
+  },
+  "calpe/maryvilla": {
+    pl: [
+      "Liczby, które warto zestawić: 3 440 €/m² w Maryvilla, 3 540 €/m² na Playa de la Fossa, 3 330 €/m² przy Puerto i 3 170 €/m² w Canuta. Maryvilla jest więc drugim najdroższym adresem w Calpe, a ROI 5,8 procent brutto wychodzi lepiej niż na Fossie, bo wille wynajmują się na dłużej i w wyższym standardzie. Popyt 8/10 utrzymuje się dzięki temu, że to okolica willowa, a nie hotelowa. Sprawdź stan drogi wewnętrznej, nachylenie działki i czy widok na Peñón de Ifach nie zostanie zasłonięty przez kolejną inwestycję.",
+    ],
+    en: [
+      "Numbers worth setting side by side: 3,440 per m² in Maryvilla, 3,540 on Playa de la Fossa, 3,330 at Puerto and 3,170 in Canuta. Maryvilla is therefore the second dearest address in Calpe, and a 5.8 percent gross yield beats the Fossa, because villas let for longer and at a higher standard. Demand of 8 of 10 holds because this is villa country rather than hotel country. Check the internal road, the gradient and whether the Peñón de Ifach view can be blocked by the next development.",
+    ],
+    es: [
+      "Cifras para comparar: 3.440 por m² en Maryvilla, 3.540 en Playa de la Fossa, 3.330 en Puerto y 3.170 en Canuta. Maryvilla es la segunda dirección más cara de Calpe, y un 5,8 por ciento bruto supera a la Fossa, porque los chalets se alquilan más tiempo y con más nivel. La demanda de 8 sobre 10 se sostiene porque es zona de chalets y no de hoteles. Revisa el camino interior, la pendiente y si las vistas al Peñón de Ifach pueden quedar tapadas por la siguiente promoción.",
+    ],
+  },
+
+  "villajoyosa/playa-torre": {
+    pl: [
+      "Liczby, które porządkują wybór: 2 840 €/m², o 220 € więcej niż mediana Villajoyosa i o 320 € więcej niż Centro. ROI 6,3 procent brutto jest najlepsze w mieście, a popyt 8,5/10 najwyższy, bo to nowe osiedla z basenami przy szerokiej plaży. Sezon trwa tu od maja do października, więc kalkulację oprzyj na pięciu miesiącach najmu i własnych pobytach, nie na dwunastu. Sprawdź, czy osiedle ma licencję turystyczną i czy do przystanku tramwaju nie trzeba iść dalej niż z centrum, bo to wpływa na najemców bez auta.",
+    ],
+    en: [
+      "Numbers that organise the choice: 2,840 per m², 220 above the Villajoyosa median and 320 above Centro. A 6.3 percent gross yield is the best in town and demand of 8.5 of 10 the highest, because these are new estates with pools by a wide beach. The season runs from May to October, so build the maths on five months of letting plus your own stays, not twelve. Check the estate's tourist licence and whether the tram stop is further than from the centre, since that matters to tenants without a car.",
+    ],
+    es: [
+      "Cifras que ordenan la elección: 2.840 por m², 220 sobre la mediana de Villajoyosa y 320 sobre Centro. Un 6,3 por ciento bruto es el mejor del pueblo y la demanda de 8,5 sobre 10 la más alta, porque son urbanizaciones nuevas con piscina junto a una playa amplia. La temporada va de mayo a octubre, así que calcula sobre cinco meses de alquiler y tus propias estancias, no doce. Comprueba la licencia turística de la urbanización y si la parada del tranvía queda más lejos que desde el centro, porque eso pesa en el inquilino sin coche.",
+    ],
+  },
+  "l-albir/playa-del-albir": {
+    pl: [
+      "Twarde dane: 3 520 €/m², o 210 € więcej niż mediana L'Albir i o 320 € więcej niż Centro, przy ROI 5,6 procent brutto i popycie 8,5/10. To najdroższy metr w gminie, bo pierwsza linia pod Serra Gelada jest towarem, którego nie da się wyprodukować więcej. Najem pracuje od maja do października, a poza sezonem część lokali stoi pusta, więc licz na osiem miesięcy. Sprawdź, czy wspólnota ma fundusz na elewację od strony morza i czy budynek jest wpisany do rejestru turystycznego, bo bez tego najem krótki jest nielegalny.",
+    ],
+    en: [
+      "Hard data: 3,520 per m², 210 above the L'Albir median and 320 above Centro, with a 5.6 percent gross yield and demand at 8.5 of 10. It is the dearest square metre in the municipality because front-line land under Serra Gelada is stock nobody can create more of. Letting runs from May to October and part of the stock stands empty off season, so count on eight months. Check the community fund for the sea-facing facade and whether the building is registered for tourist use, since short letting without it is illegal.",
+    ],
+    es: [
+      "Datos duros: 3.520 por m², 210 sobre la mediana de L'Albir y 320 sobre Centro, con un 5,6 por ciento bruto y demanda de 8,5 sobre 10. Es el metro más caro del municipio porque el suelo de primera línea bajo Serra Gelada es un bien que no se puede fabricar. El alquiler va de mayo a octubre y fuera de temporada parte del parque queda vacío, así que cuenta ocho meses. Revisa el fondo de la comunidad para la fachada al mar y si el edificio está registrado para uso turístico, porque sin eso el alquiler corto es ilegal.",
+    ],
+  },
+  "javea/tosalet": {
+    pl: [
+      "Dane, które wyjaśniają wycenę: 4 020 €/m² w Tosalet wobec 4 400 €/m² mediany Jávea, 4 290 €/m² w Arenal i 4 890 €/m² w Cap Martí. To najtańszy adres willowy w gminie, bo domy pochodzą z lat siedemdziesiątych i wymagają remontu, a ROI 4,7 procent brutto jest niskie nawet jak na Jávea. Kupują tu osoby, które znają miasto od lat i wolą działkę z sosnami niż nowy apartament. Sprawdź stan dachu, instalacji i czy działka ma dostęp do drogi publicznej, bo część ulic w Tosalet jest prywatna.",
+    ],
+    en: [
+      "Data that explains the valuation: 4,020 per m² in Tosalet against a Jávea median of 4,400, 4,290 in Arenal and 4,890 in Cap Martí. It is the cheapest villa address in the municipality because the houses date from the seventies and need work, and a 4.7 percent gross yield is low even for Jávea. Buyers know the town from years back and prefer a plot with pines to a new flat. Check the roof, the installations and whether the plot reaches a public road, since some Tosalet streets are private.",
+    ],
+    es: [
+      "Datos que explican la valoración: 4.020 por m² en Tosalet frente a una mediana de Jávea de 4.400, 4.290 en Arenal y 4.890 en Cap Martí. Es la dirección de chalets más barata del municipio porque las casas son de los setenta y piden obra, y un 4,7 por ciento bruto es bajo incluso para Jávea. Compran quienes conocen el pueblo desde años atrás y prefieren parcela con pinos a piso nuevo. Revisa tejado, instalaciones y si la parcela da a camino público, porque algunas calles de Tosalet son privadas.",
+    ],
+  },
+
   // END
 };
 
