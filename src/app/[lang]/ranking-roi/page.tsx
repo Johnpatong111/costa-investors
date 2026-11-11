@@ -146,6 +146,8 @@ export default async function RankingPage({ params }: { params: Promise<{ lang: 
             lng: row.lng,
             pricePerM2: row.pricePerM2,
             netYield: row.netYield,
+            days: row.days,
+            area: row.area,
           }))}
         />
       </Section>

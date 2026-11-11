@@ -28,6 +28,12 @@ import {
   median,
 } from "../src/lib/tools/ranking";
 import { isBudgetInRange } from "../src/lib/tools/budget-bus";
+import {
+  buildLandPolygon,
+  distanceToCoast,
+  pointInPolygon,
+  SEA_OFFSET_LNG,
+} from "../src/lib/tools/coastline";
 import { bufferMonths, computeStress } from "../src/lib/tools/stress";
 
 let passed = 0;
@@ -439,6 +445,43 @@ const zeroStress = computeStress({
 eq("stress: cena 0 daje kredyt 0", zeroStress.loan, 0);
 eq("stress: cena 0 daje ratę 0", zeroStress.payment, 0);
 eq("stress: cena 0 bez NaN w LTV", Number.isFinite(zeroStress.scenarios[0]!.ltvAfter), true);
+
+/* =========================================================================
+ * 4d. MAPA: DZIELNICE MUSZĄ LEŻEĆ NA LĄDZIE
+ * ========================================================================= */
+
+{
+  const entries = getAllDistrictEntries();
+  const lats = entries.map((entry) => entry.district.lat);
+  const lngs = entries.map((entry) => entry.district.lng);
+  const bounds = {
+    minLat: Math.min(...lats),
+    maxLat: Math.max(...lats),
+    minLng: Math.min(...lngs),
+    maxLng: Math.max(...lngs),
+  };
+  const polygon = buildLandPolygon(bounds);
+
+  const atSea = entries.filter(
+    (entry) => !pointInPolygon([entry.district.lng, entry.district.lat], polygon),
+  );
+  const deepWater = atSea.filter(
+    (entry) => distanceToCoast([entry.district.lng, entry.district.lat]) > 0.03,
+  );
+
+  eq("mapa: żadna dzielnica nie leży głęboko w morzu", deepWater.length, 0);
+  ok(
+    "mapa: punkty przy plaży mieszczą się w tolerancji 3 km",
+    atSea.length <= 8,
+    `${atSea.length} punktów po stronie morza: ${atSea.map((entry) => entry.district.name).join(", ")}`,
+  );
+  ok(
+    "mapa: linia brzegowa obejmuje wszystkie dzielnice",
+    bounds.minLat >= 37.3 && bounds.maxLat <= 39 && bounds.minLng >= -1.7 && bounds.maxLng <= 0.3,
+    `${bounds.minLat}-${bounds.maxLat} / ${bounds.minLng}-${bounds.maxLng}`,
+  );
+}
+
 
 /* =========================================================================
  * 5. POMOCNICZE FUNKCJE RANKINGU

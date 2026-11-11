@@ -33,6 +33,11 @@ export interface RankingCopy {
   mapLead: (count: number) => string;
   mapLegend: string;
   mapNote: string;
+  mapSea: string;
+  mapScale: (km: number) => string;
+  mapSelectHint: string;
+  mapOpenReport: string;
+  mapMetrics: { price: string; net: string; days: string; area: string };
   ctaTitle: string;
   ctaText: string;
   ctaButton: string;
@@ -86,6 +91,11 @@ const PL: RankingCopy = {
   mapLegend: "Zwrot netto",
   mapNote:
     "Mapa poglądowa: punkty oznaczają współrzędne dzielnicy, nie granice administracyjne. Najedź na punkt, aby zobaczyć cenę i zwrot.",
+  mapSea: "Morze Śródziemne",
+  mapScale: (km) => `${km} km`,
+  mapSelectHint: "Kliknij punkt, aby zobaczyć cenę, zwrot i czas ekspozycji tej dzielnicy.",
+  mapOpenReport: "Otwórz raport dzielnicy",
+  mapMetrics: { price: "Cena", net: "Zwrot netto", days: "Ekspozycja", area: "m² za 250 tys. €" },
   ctaTitle: "Chcesz zobaczyć te liczby dla swojego budżetu?",
   ctaText:
     "Na stronach miast działa kalkulator: wpisujesz budżet, wybierasz profil najmu i widzisz metraż, czynsz po kosztach i zwrot po pięciu latach.",
@@ -167,6 +177,11 @@ const EN: RankingCopy = {
   mapLegend: "Net yield",
   mapNote:
     "Illustrative map: dots are district coordinates, not administrative boundaries. Hover a dot to see price and yield.",
+  mapSea: "Mediterranean Sea",
+  mapScale: (km) => `${km} km`,
+  mapSelectHint: "Tap a dot to see the price, yield and time on market for that district.",
+  mapOpenReport: "Open the district report",
+  mapMetrics: { price: "Price", net: "Net yield", days: "Time on market", area: "m² for 250,000" },
   ctaTitle: "Want these numbers for your own budget?",
   ctaText:
     "Every city page carries a calculator: enter a budget, pick a letting profile and see floor area, rent after costs and the five-year return.",
@@ -249,6 +264,11 @@ const ES: RankingCopy = {
   mapLegend: "Rentabilidad neta",
   mapNote:
     "Mapa orientativo: los puntos son coordenadas de la zona, no límites administrativos. Pasa el cursor por un punto para ver precio y rentabilidad.",
+  mapSea: "Mar Mediterráneo",
+  mapScale: (km) => `${km} km`,
+  mapSelectHint: "Toca un punto para ver el precio, la rentabilidad y la exposición de esa zona.",
+  mapOpenReport: "Abrir el informe de la zona",
+  mapMetrics: { price: "Precio", net: "Rent. neta", days: "Exposición", area: "m² por 250.000" },
   ctaTitle: "¿Quieres estas cifras con tu presupuesto?",
   ctaText:
     "Cada página de municipio incluye calculadora: introduces presupuesto, eliges perfil de alquiler y ves metros, renta tras gastos y retorno a cinco años.",

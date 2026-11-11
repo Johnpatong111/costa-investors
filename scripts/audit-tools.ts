@@ -166,6 +166,9 @@ for (const lang of ["pl", "en", "es"]) {
   const svgEnd = content.indexOf("</svg>", svgStart);
   const mapSlice = svgStart >= 0 && svgEnd > svgStart ? content.slice(svgStart, svgEnd) : "";
   ok(`ranking ${lang}: 89 punktów mapy`, (mapSlice.match(/<circle/g) ?? []).length === 89);
+  ok(`ranking ${lang}: linia brzegowa na mapie`, mapSlice.includes('stroke="#64748b"'));
+  ok(`ranking ${lang}: etykiety mapy widoczne także na mobile`, !mapSlice.includes("hidden md:block"));
+  ok(`ranking ${lang}: panel szczegółów po kliknięciu punktu`, content.includes("data-map-detail"));
   ok(`ranking ${lang}: 89 wierszy tabeli`, (content.match(/<tr class=/g) ?? []).length >= 89);
   ok(`ranking ${lang}: mapa przewijana na wąskim ekranie`, content.includes("min-w-[620px]"));
   ok(`ranking ${lang}: filtry rankingu w HTML`, content.includes("data-ranking-filters"));
