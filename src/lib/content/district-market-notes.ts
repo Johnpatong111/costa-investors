@@ -1218,17 +1218,70 @@ const NOTES_EXTRA: Record<string, Partial<Record<Locale, string[]>>> = {
     ],
   },
 
+  "denia/les-marines": {
+    pl: [
+      "Dane, które porządkują wybór w Dénia: 3 150 €/m² w Les Marines wobec 3 100 € mediany gminy, 3 260 € w Las Marinas, 3 040 € przy Puerto i 2 780 € w La Xara. ROI 5,7 procent brutto przy popycie 8/10 znaczy, że najem idzie, ale nie jest to rynek inwestycyjny pierwszej kategorii. Les Marines wygrywa dostępem do szerokiej plaży i nowymi osiedlami z basenem, a traci jedną drogą dojazdową, która w sierpniu stoi. Sprawdź, czy osiedle ma licencję turystyczną dla całego budynku i czy wspólnota utrzymuje basen również poza sezonem.",
+    ],
+    en: [
+      "Data that organises the Dénia choice: 3,150 per m² in Les Marines against the 3,100 municipal median, 3,260 in Las Marinas, 3,040 at Puerto and 2,780 in La Xara. A 5.7 percent gross yield with demand at 8 of 10 means letting works but this is not a top-tier investment market. Les Marines wins on access to the wide beach and new estates with pools, and loses on a single access road that jams in August. Check whether the estate holds a tourist licence for the whole building and whether the community keeps the pool running off season.",
+    ],
+    es: [
+      "Datos que ordenan la elección en Dénia: 3.150 por m² en Les Marines frente a una mediana de 3.100, 3.260 en Las Marinas, 3.040 en Puerto y 2.780 en La Xara. Un 5,7 por ciento bruto con demanda de 8 sobre 10 indica que el alquiler funciona pero no es un mercado de primera categoría. Les Marines gana en acceso a playa amplia y urbanizaciones nuevas con piscina, y pierde en una sola carretera que se atasca en agosto. Comprueba si la urbanización tiene licencia turística para todo el edificio y si la comunidad mantiene la piscina fuera de temporada.",
+    ],
+  },
+  "denia/las-marinas": {
+    pl: [
+      "Liczby do decyzji: 3 260 €/m², o 160 € więcej niż mediana Dénia i o 110 € więcej niż Les Marines, przy ROI 5,8 procent brutto. Za tę różnicę kupujesz działkę, ogród i drugą linię zamiast pierwszego rzędu, a najem jest tu dłuższy, bo przyjeżdżają rodziny na cały sezon, nie na weekend. Popyt 8/10 utrzymuje się dzięki temu, że to okolica willowa, a nie hotelowa. Sprawdź plan miejscowy i klasę gruntu, bo część terenów w tej strefie ma ograniczenia związane z ochroną wybrzeża, oraz stan drogi dojazdowej po deszczach.",
+    ],
+    en: [
+      "Numbers for the decision: 3,260 per m², 160 above the Dénia median and 110 above Les Marines, with a 5.8 percent gross yield. For that difference you buy a plot, a garden and a second row instead of a front row, and letting lasts longer because families come for the whole season rather than a weekend. Demand of 8 of 10 holds because this is villa country rather than hotel country. Check the town plan and land classification, since parts of this strip carry coastal protection limits, and the state of the access road after rain.",
+    ],
+    es: [
+      "Cifras para decidir: 3.260 por m², 160 sobre la mediana de Dénia y 110 sobre Les Marines, con un 5,8 por ciento bruto. Por esa diferencia compras parcela, jardín y segunda línea en lugar de primera, y el alquiler dura más porque vienen familias toda la temporada y no un fin de semana. La demanda de 8 sobre 10 se sostiene porque es zona de chalets y no de hoteles. Revisa el planeamiento y la clasificación del suelo, porque parte de esta franja tiene limitaciones de protección del litoral, y el estado del camino tras la lluvia.",
+    ],
+  },
+  "torrevieja/la-mata": {
+    pl: [
+      "Twarde dane: 2 690 €/m², o 120 € więcej niż mediana Torrevieja, ale o 380 € mniej niż w Punta Prima, przy ROI 6,1 procent brutto i popycie 8/10. La Mata wygrywa parkiem nad laguną i szerszą plażą, a traci brakiem deptaku z restauracjami w zasięgu spaceru. W porównaniu z El Acequión (2 480 €/m², 6,4 procent) płacisz 210 € za metr więcej, ale dostajesz nowsze budynki i ciszę. Sprawdź, czy wspólnota ma fundusz na elewację od strony morza i czy osiedle jest odebrane przez gminę, bo część dróg i zieleńców pozostaje w gestii dewelopera.",
+    ],
+    en: [
+      "Hard data: 2,690 per m², 120 above the Torrevieja median but 380 below Punta Prima, with a 6.1 percent gross yield and demand at 8 of 10. La Mata wins on the lagoon park and a wider beach, and loses on the lack of a restaurant promenade within walking distance. Against El Acequión (2,480 per m², 6.4 percent) you pay 210 more per square metre but get newer buildings and quiet. Check the community fund for the sea-facing facade and whether the estate has been handed to the council, since some roads and green areas remain the developer's.",
+    ],
+    es: [
+      "Datos duros: 2.690 por m², 120 sobre la mediana de Torrevieja pero 380 bajo Punta Prima, con un 6,1 por ciento bruto y demanda de 8 sobre 10. La Mata gana por el parque de la laguna y una playa más ancha, y pierde por la falta de paseo de restaurantes a pie. Frente a El Acequión (2.480 por m², 6,4 por ciento) pagas 210 más por metro pero obtienes edificios más nuevos y silencio. Revisa el fondo de la comunidad para la fachada al mar y si la urbanización está recepcionada, porque algunos caminos y zonas verdes siguen en manos del promotor.",
+    ],
+  },
+
   // END
 };
+
+// Trzecia warstwa dla par, które mimo dwóch akapitów zostają najbliżej siebie.
+// Temat celowo inny niż w dwóch pierwszych: wydarzenia, codzienna logistyka.
+NOTES_EXTRA["aguilas/el-hornillo"]!.pl!.push(
+  "Codzienność w El Hornillo jest cicha i przewidywalna: nie ma tu barów z muzyką ani deptaku, są za to tarasy z widokiem na zatokę i spacer do portu, który zimą zajmuje kwadrans. Dla najemcy szukającego spokoju to przewaga, dla szukającego rozrywki wada - i dlatego rotacja lokali jest tu niższa niż na Las Delicias, a umowy dłuższe.",
+);
+NOTES_EXTRA["aguilas/el-hornillo"]!.en!.push(
+  "Daily life in El Hornillo is quiet and predictable: no music bars and no promenade, but terraces looking over the bay and a walk to the port that takes a quarter of an hour in winter. For a tenant seeking calm that is an advantage, for one seeking nightlife a drawback, which is why turnover here is lower than on Las Delicias and contracts run longer.",
+);
+NOTES_EXTRA["aguilas/el-hornillo"]!.es!.push(
+  "La vida diaria en El Hornillo es tranquila y previsible: no hay bares con música ni paseo, pero sí terrazas con vistas a la bahía y un paseo al puerto que en invierno lleva un cuarto de hora. Para un inquilino que busca calma es una ventaja; para quien busca ambiente, una pega, y por eso la rotación aquí es menor que en Las Delicias y los contratos duran más.",
+);
 
 export function districtMarketNote(
   citySlug: string,
   districtSlug: string,
   locale: Locale,
+  variant: "service" | "report" = "service",
 ): DistrictMarketNote | null {
   const key = `${citySlug}/${districtSlug}`;
   const paragraphs = NOTES[key]?.[locale];
   if (!paragraphs || paragraphs.length === 0) return null;
   const extra = NOTES_EXTRA[key]?.[locale] ?? [];
+  // Raporty cenowe dostają akapit analityczny (dane, porównania), strony usług
+  // pełną notę. Dzięki temu ta sama dzielnica nie powtarza tego samego tekstu
+  // na dwóch różnych typach strony.
+  if (variant === "report") {
+    return { heading: HEADING[locale], paragraphs: [paragraphs[0]!] };
+  }
   return { heading: HEADING[locale], paragraphs: [...paragraphs, ...extra] };
 }

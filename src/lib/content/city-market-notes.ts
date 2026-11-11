@@ -141,6 +141,86 @@ const CITY_EXTRA: Record<string, Partial<Record<Locale, string[]>>> = {
     ],
   },
 
+  "guardamar-del-segura": {
+    pl: [
+      "Liczby, które trzeba znać: 2 470 €/m², dynamika 8,7 procent r/r, 700 transakcji i 105 dni ekspozycji, przy ROI 6,3 procent brutto. Rozstrzał wynosi 370 €/m²: El Raso 2 200, Centro 2 300, La Marina 2 520, Moncayo 2 570 i Guardamar Playa 2 630. Kupujący z zagranicy to 42 procent, Polacy 8 procent. Wniosek: to jeden z niewielu rynków na Costa Blanca, gdzie najem działa cały rok dzięki urzędom i szkołom, a nie tylko plaży - dlatego centrum daje 6,4 procent, więcej niż pierwsza linia.",
+    ],
+    en: [
+      "Numbers you need: 2,470 per m², 8.7 percent growth, 700 sales and 105 days on market, with a 6.3 percent gross yield. The spread is 370 per m²: El Raso 2,200, Centro 2,300, La Marina 2,520, Moncayo 2,570 and Guardamar Playa 2,630. Foreign buyers are 42 percent and Poles 8 percent. The conclusion: one of the few Costa Blanca markets where letting works all year thanks to offices and schools rather than the beach alone, which is why the centre yields 6.4 percent, more than the front line.",
+    ],
+    es: [
+      "Cifras que hay que conocer: 2.470 por m², crecimiento del 8,7 por ciento, 700 operaciones y 105 días de exposición, con un 6,3 por ciento bruto. La horquilla es de 370 por m²: El Raso 2.200, Centro 2.300, La Marina 2.520, Moncayo 2.570 y Guardamar Playa 2.630. Los extranjeros son el 42 por ciento y los polacos el 8. Conclusión: uno de los pocos mercados de Costa Blanca donde el alquiler funciona todo el año por oficinas y colegios y no solo por la playa, y por eso el centro rinde 6,4 por ciento, más que la primera línea.",
+    ],
+  },
+  "santa-pola": {
+    pl: [
+      "Dane do kalkulacji: 2 350 €/m², 1 200 transakcji rocznie, 100 dni ekspozycji i ROI 6,4 procent brutto. Rozstrzał w gminie wynosi 380 €/m²: Centro 2 190, Gran Alacant 2 300, Playa Lisa 2 410, Varadero 2 460 i Playa de Levante 2 570. Obcokrajowcy to 34 procent, Polacy 6 procent, czyli mniej niż w Torrevieja, co oznacza mniejszą konkurencję przy zakupie. Wniosek: najwyższy zwrot daje Gran Alacant (6,6 procent), a Playa de Levante płaci się za promenadę i port, nie za cash flow.",
+    ],
+    en: [
+      "Data for the calculation: 2,350 per m², 1,200 sales a year, 100 days on market and a 6.4 percent gross yield. The internal spread is 380 per m²: Centro 2,190, Gran Alacant 2,300, Playa Lisa 2,410, Varadero 2,460 and Playa de Levante 2,570. Foreigners are 34 percent and Poles 6 percent, lower than Torrevieja, which means less competition when buying. The conclusion: Gran Alacant gives the best return at 6.6 percent, while Playa de Levante charges for the promenade and the port rather than for cash flow.",
+    ],
+    es: [
+      "Datos para el cálculo: 2.350 por m², 1.200 operaciones al año, 100 días de exposición y un 6,4 por ciento bruto. La horquilla interna es de 380 por m²: Centro 2.190, Gran Alacant 2.300, Playa Lisa 2.410, Varadero 2.460 y Playa de Levante 2.570. Los extranjeros son el 34 por ciento y los polacos el 6, menos que en Torrevieja, lo que significa menos competencia al comprar. Conclusión: Gran Alacant da el mejor retorno con 6,6 por ciento, y Playa de Levante cobra por el paseo y el puerto, no por el flujo de caja.",
+    ],
+  },
+  alicante: {
+    pl: [
+      "Twarde liczby: 2 820 €/m², 5 200 transakcji rocznie, 110 dni ekspozycji i ROI 5,4 procent brutto, przy dynamice 7,8 procent. Rozstrzał w mieście jest ogromny, 1 220 €/m²: Vistahermosa 2 450, PAU 5 3 030, Playa de San Juan 3 300, Albufereta 3 410 i Cabo de las Huertas 3 670. Obcokrajowcy to tylko 28 procent, Polacy 4 procent, więc to rynek hiszpański, z mniejszą konkurencją i lepszą dostępnością ofert. Wniosek: pod najem całoroczny PAU 5 i San Juan, pod widok i prestiż Cabo de las Huertas.",
+    ],
+    en: [
+      "Hard numbers: 2,820 per m², 5,200 sales a year, 110 days on market and a 5.4 percent gross yield, with 7.8 percent growth. The spread inside the city is huge at 1,220 per m²: Vistahermosa 2,450, PAU 5 3,030, Playa de San Juan 3,300, Albufereta 3,410 and Cabo de las Huertas 3,670. Foreigners are only 28 percent and Poles 4 percent, so this is a Spanish market with less competition and better availability. The conclusion: PAU 5 and San Juan for year-round letting, Cabo de las Huertas for the view and prestige.",
+    ],
+    es: [
+      "Datos duros: 2.820 por m², 5.200 operaciones al año, 110 días de exposición y un 5,4 por ciento bruto, con un crecimiento del 7,8 por ciento. La horquilla en la ciudad es enorme, 1.220 por m²: Vistahermosa 2.450, PAU 5 3.030, Playa de San Juan 3.300, Albufereta 3.410 y Cabo de las Huertas 3.670. Los extranjeros son solo el 28 por ciento y los polacos el 4, así que es un mercado español con menos competencia y mejor disponibilidad. Conclusión: PAU 5 y San Juan para alquiler anual, Cabo de las Huertas para vistas y prestigio.",
+    ],
+  },
+
+  benidorm: {
+    pl: [
+      "Liczby do decyzji: 3 370 €/m², 3 100 transakcji rocznie, 100 dni ekspozycji i ROI 5,9 procent brutto, przy dynamice 8,6 procent. Rozstrzał w mieście wynosi 590 €/m²: Foietes 3 050, Playa de Poniente 3 160, Sierra Helada 3 210, Rincón de Loix 3 530 i Playa de Levante 3 640. Obcokrajowcy to 38 procent, Polacy 5 procent. Wniosek: najwyższy zwrot daje Rincón de Loix (6,2 procent), a Foietes jest najtańszym wejściem pod najem całoroczny - bo tam mieszkają pracownicy hoteli, nie turyści.",
+    ],
+    en: [
+      "Numbers for the decision: 3,370 per m², 3,100 sales a year, 100 days on market and a 5.9 percent gross yield, with 8.6 percent growth. The internal spread is 590 per m²: Foietes 3,050, Playa de Poniente 3,160, Sierra Helada 3,210, Rincón de Loix 3,530 and Playa de Levante 3,640. Foreigners are 38 percent and Poles 5 percent. The conclusion: Rincón de Loix gives the best return at 6.2 percent, while Foietes is the cheapest entry for year-round letting, because hotel staff live there rather than tourists.",
+    ],
+    es: [
+      "Cifras para decidir: 3.370 por m², 3.100 operaciones al año, 100 días de exposición y un 5,9 por ciento bruto, con un crecimiento del 8,6 por ciento. La horquilla interna es de 590 por m²: Foietes 3.050, Playa de Poniente 3.160, Sierra Helada 3.210, Rincón de Loix 3.530 y Playa de Levante 3.640. Los extranjeros son el 38 por ciento y los polacos el 5. Conclusión: Rincón de Loix da el mejor retorno con 6,2 por ciento, y Foietes es la entrada más barata para alquiler anual, porque allí vive el personal de hoteles y no los turistas.",
+    ],
+  },
+  "san-pedro-del-pinatar": {
+    pl: [
+      "Twarde dane: 2 290 €/m², 1 100 transakcji rocznie, 100 dni ekspozycji i ROI 6,6 procent brutto, przy dynamice 8,1 procent. Rozstrzał w gminie to 320 €/m²: Centro 2 130, Villananitos 2 350, El Mojón 2 400 i Lo Pagán 2 450. Obcokrajowcy to 38 procent, Polacy 6 procent, więc rynek jest lokalny z domieszką klientów z północy. Wniosek: centrum daje 6,7 procent, najwięcej w gminie, bo najem trwa cały rok, a Lo Pagán płaci się za plażę i sezon - nie za cash flow.",
+    ],
+    en: [
+      "Hard data: 2,290 per m², 1,100 sales a year, 100 days on market and a 6.6 percent gross yield, with 8.1 percent growth. The internal spread is 320 per m²: Centro 2,130, Villananitos 2,350, El Mojón 2,400 and Lo Pagán 2,450. Foreigners are 38 percent and Poles 6 percent, so the market is local with a northern European minority. The conclusion: the centre yields 6.7 percent, the highest in the municipality, because letting runs all year, while Lo Pagán charges for the beach and the season rather than cash flow.",
+    ],
+    es: [
+      "Datos duros: 2.290 por m², 1.100 operaciones al año, 100 días de exposición y un 6,6 por ciento bruto, con un crecimiento del 8,1 por ciento. La horquilla interna es de 320 por m²: Centro 2.130, Villananitos 2.350, El Mojón 2.400 y Lo Pagán 2.450. Los extranjeros son el 38 por ciento y los polacos el 6, así que el mercado es local con una minoría del norte de Europa. Conclusión: el centro rinde 6,7 por ciento, lo más alto del municipio, porque el alquiler funciona todo el año, mientras Lo Pagán cobra por playa y temporada.",
+    ],
+  },
+
+  denia: {
+    pl: [
+      "Dane, które wyjaśniają gminę: 3 100 €/m², 2 200 transakcji rocznie, 115 dni ekspozycji i ROI 5,6 procent brutto, przy dynamice 8,2 procent. Rozstrzał wynosi 530 €/m²: La Xara 2 780, Puerto 3 040, Les Marines 3 150, Las Marinas 3 260 i Montgó 3 310. Kupujący z zagranicy to 36 procent, Polacy 5 procent. Wniosek: najwyższy zwrot daje La Xara (5,4 procent przy najniższej cenie), a widok i marina kosztują - Montgó i Puerto mają najniższe ROI w gminie.",
+    ],
+    en: [
+      "Data that explains the municipality: 3,100 per m², 2,200 sales a year, 115 days on market and a 5.6 percent gross yield, with 8.2 percent growth. The spread is 530 per m²: La Xara 2,780, Puerto 3,040, Les Marines 3,150, Las Marinas 3,260 and Montgó 3,310. Foreign buyers are 36 percent and Poles 5 percent. The conclusion: La Xara gives the best value at the lowest price, while views and the marina cost money, which is why Montgó and Puerto carry the lowest yields in the municipality.",
+    ],
+    es: [
+      "Datos que explican el municipio: 3.100 por m², 2.200 operaciones al año, 115 días de exposición y un 5,6 por ciento bruto, con un crecimiento del 8,2 por ciento. La horquilla es de 530 por m²: La Xara 2.780, Puerto 3.040, Les Marines 3.150, Las Marinas 3.260 y Montgó 3.310. Los extranjeros son el 36 por ciento y los polacos el 5. Conclusión: La Xara ofrece la mejor relación precio-retorno, mientras vistas y marina cuestan, por eso Montgó y Puerto tienen las rentabilidades más bajas.",
+    ],
+  },
+  "orihuela-costa": {
+    pl: [
+      "Twarde liczby: 2 900 €/m², 2 800 transakcji rocznie, 90 dni ekspozycji i ROI 6,1 procent brutto, przy dynamice 9,1 procent. To najkrótsza ekspozycja w regionie po Quesadzie, a rozstrzał wynosi 590 €/m²: Lomas de Cabo Roig 2 800, Mil Palmeras 3 010, Villamartín 3 060, Dehesa de Campoamor 3 170, La Zenia 3 280 i Cabo Roig 3 390. Obcokrajowcy to 55 procent, Polacy 11 procent, czyli druga największa grupa po Brytyjczykach. Wniosek: pod zwrot Lomas i Mil Palmeras, pod prestiż Cabo Roig.",
+    ],
+    en: [
+      "Hard numbers: 2,900 per m², 2,800 sales a year, 90 days on market and a 6.1 percent gross yield, with 9.1 percent growth. That is the shortest time on market in the region after Quesada, and the spread is 590 per m²: Lomas de Cabo Roig 2,800, Mil Palmeras 3,010, Villamartín 3,060, Dehesa de Campoamor 3,170, La Zenia 3,280 and Cabo Roig 3,390. Foreigners are 55 percent and Poles 11 percent, the second largest group after the British. The conclusion: Lomas and Mil Palmeras for yield, Cabo Roig for prestige.",
+    ],
+    es: [
+      "Datos duros: 2.900 por m², 2.800 operaciones al año, 90 días de exposición y un 6,1 por ciento bruto, con un crecimiento del 9,1 por ciento. Es la exposición más corta de la región tras Quesada, y la horquilla es de 590 por m²: Lomas de Cabo Roig 2.800, Mil Palmeras 3.010, Villamartín 3.060, Dehesa de Campoamor 3.170, La Zenia 3.280 y Cabo Roig 3.390. Los extranjeros son el 55 por ciento y los polacos el 11, el segundo grupo tras los británicos. Conclusión: Lomas y Mil Palmeras para retorno, Cabo Roig para prestigio.",
+    ],
+  },
+
   // END
 };
 
