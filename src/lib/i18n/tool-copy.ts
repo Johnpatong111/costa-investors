@@ -453,3 +453,115 @@ export const COSTS_COPY: Record<Locale, CostsCopy> = {
 };
 
 
+
+export interface ChecklistCopy {
+  eyebrow: string;
+  title: (city: string) => string;
+  lead: string;
+  progress: (done: number, total: number) => string;
+  groups: { id: "before" | "checks" | "closing"; label: string }[];
+  items: { id: string; label: string; hint: string; group: "before" | "checks" | "closing" }[];
+  reset: string;
+  saved: string;
+  cta: string;
+  note: string;
+}
+
+const CHECKLIST_PL: ChecklistCopy = {
+  eyebrow: "Lista kontrolna",
+  title: (city) => `Zakup w ${city} krok po kroku: 12 punktów`,
+  lead: "Odhaczaj to, co już masz. Postęp zapisuje się w tej przeglądarce, więc możesz wrócić do listy po rozmowie z prawnikiem albo bankiem.",
+  progress: (done, total) => `${done} z ${total} gotowe`,
+  groups: [
+    { id: "before", label: "Przed szukaniem ofert" },
+    { id: "checks", label: "Sprawdzenie nieruchomości" },
+    { id: "closing", label: "Zamknięcie transakcji" },
+  ],
+  items: [
+    { id: "budget", group: "before", label: "Budżet z kosztami zakupu", hint: "dolicz 10-13,5% na podatek i opłaty" },
+    { id: "nie", group: "before", label: "Numer NIE", hint: "potrzebny w banku, u notariusza i w rejestrze" },
+    { id: "bank", group: "before", label: "Konto w hiszpańskim banku", hint: "przelew na akt i opłaty cykliczne" },
+    { id: "area", group: "before", label: "Wybór dzielnicy i metrażu", hint: "cena za metr, zwrot, czas ekspozycji" },
+    { id: "registry", group: "checks", label: "Nota simple z rejestru", hint: "właściciel, powierzchnia, obciążenia" },
+    { id: "charges", group: "checks", label: "Obciążenia i zadłużenia", hint: "hipoteka, embargo, zaległości w comunidad" },
+    { id: "energy", group: "checks", label: "Certyfikat energetyczny", hint: "obowiązkowy przy sprzedaży" },
+    { id: "habitability", group: "checks", label: "Cédula de habitabilidad", hint: "wymagana w regionie Valenciana" },
+    { id: "arras", group: "closing", label: "Umowa arras i zadatek", hint: "zwykle 10% ceny, terminy w umowie" },
+    { id: "notary", group: "closing", label: "Notariusz i akt własności", hint: "sprawdź treść aktu przed podpisaniem" },
+    { id: "tax", group: "closing", label: "Podatek ITP lub IVA+AJD", hint: "30 dni na zapłatę, potem rejestr" },
+    { id: "running", group: "closing", label: "IBI, comunidad, ubezpieczenie", hint: "zmiana danych i przeniesienie opłat" },
+  ],
+  reset: "Wyczyść listę",
+  saved: "Zapisano w tej przeglądarce",
+  cta: "Poproś o pomoc w zakupie",
+  note: "Lista jest pomocnicza. Kolejność i dokumenty różnią się przy nowym budownictwie oraz przy zakupie na kredyt.",
+};
+
+
+const CHECKLIST_EN: ChecklistCopy = {
+  eyebrow: "Checklist",
+  title: (city) => `Buying in ${city}, step by step: 12 checkpoints`,
+  lead: "Tick off what you already have. Progress is stored in this browser, so you can come back after talking to a lawyer or a bank.",
+  progress: (done, total) => `${done} of ${total} done`,
+  groups: [
+    { id: "before", label: "Before you shortlist" },
+    { id: "checks", label: "Property checks" },
+    { id: "closing", label: "Closing the deal" },
+  ],
+  items: [
+    { id: "budget", group: "before", label: "Budget including purchase costs", hint: "add 10 to 13.5% for tax and fees" },
+    { id: "nie", group: "before", label: "NIE number", hint: "needed at the bank, the notary and the registry" },
+    { id: "bank", group: "before", label: "Spanish bank account", hint: "for the deed transfer and direct debits" },
+    { id: "area", group: "before", label: "District and floor area chosen", hint: "price per m², yield, time on market" },
+    { id: "registry", group: "checks", label: "Nota simple from the registry", hint: "owner, size, charges" },
+    { id: "charges", group: "checks", label: "Charges and debts", hint: "mortgage, embargo, unpaid community fees" },
+    { id: "energy", group: "checks", label: "Energy certificate", hint: "mandatory on sale" },
+    { id: "habitability", group: "checks", label: "Cédula de habitabilidad", hint: "required in the Valencia region" },
+    { id: "arras", group: "closing", label: "Arras contract and deposit", hint: "usually 10% of the price, dates in writing" },
+    { id: "notary", group: "closing", label: "Notary and title deed", hint: "read the deed before you sign" },
+    { id: "tax", group: "closing", label: "Transfer tax or VAT plus AJD", hint: "30 days to pay, then the registry" },
+    { id: "running", group: "closing", label: "IBI, community, insurance", hint: "transfer the accounts and direct debits" },
+  ],
+  reset: "Clear the list",
+  saved: "Saved in this browser",
+  cta: "Ask for help with the purchase",
+  note: "For guidance only. Order and documents differ for new builds and for financed purchases.",
+};
+
+
+const CHECKLIST_ES: ChecklistCopy = {
+  eyebrow: "Lista de control",
+  title: (city) => `Comprar en ${city}, paso a paso: 12 puntos`,
+  lead: "Marca lo que ya tienes. El progreso se guarda en este navegador, así puedes volver a la lista después de hablar con un abogado o un banco.",
+  progress: (done, total) => `${done} de ${total} hechos`,
+  groups: [
+    { id: "before", label: "Antes de buscar ofertas" },
+    { id: "checks", label: "Comprobaciones de la vivienda" },
+    { id: "closing", label: "Cierre de la compra" },
+  ],
+  items: [
+    { id: "budget", group: "before", label: "Presupuesto con gastos de compra", hint: "suma entre 10 y 13,5% de impuestos y gastos" },
+    { id: "nie", group: "before", label: "Número NIE", hint: "lo piden el banco, la notaría y el registro" },
+    { id: "bank", group: "before", label: "Cuenta bancaria española", hint: "para la transferencia de la escritura y los recibos" },
+    { id: "area", group: "before", label: "Zona y metros decididos", hint: "precio por m², rentabilidad, exposición" },
+    { id: "registry", group: "checks", label: "Nota simple del registro", hint: "titular, superficie y cargas" },
+    { id: "charges", group: "checks", label: "Cargas y deudas", hint: "hipoteca, embargo, recibos de comunidad pendientes" },
+    { id: "energy", group: "checks", label: "Certificado energético", hint: "obligatorio para vender" },
+    { id: "habitability", group: "checks", label: "Cédula de habitabilidad", hint: "exigida en la Comunitat Valenciana" },
+    { id: "arras", group: "closing", label: "Contrato de arras y señal", hint: "habitualmente 10% del precio, fechas por escrito" },
+    { id: "notary", group: "closing", label: "Notaría y escritura", hint: "lee la escritura antes de firmar" },
+    { id: "tax", group: "closing", label: "ITP o IVA más AJD", hint: "30 días para pagar y luego el registro" },
+    { id: "running", group: "closing", label: "IBI, comunidad, seguro", hint: "cambia los titulares y los recibos" },
+  ],
+  reset: "Borrar la lista",
+  saved: "Guardado en este navegador",
+  cta: "Pedir ayuda con la compra",
+  note: "Solo orientativa. El orden y los documentos cambian en obra nueva y en compras con hipoteca.",
+};
+
+export const CHECKLIST_COPY: Record<Locale, ChecklistCopy> = {
+  pl: CHECKLIST_PL,
+  en: CHECKLIST_EN,
+  es: CHECKLIST_ES,
+};
+

@@ -7,6 +7,7 @@ import { Breadcrumbs, type Crumb } from "@/components/sections/breadcrumbs";
 import { InternalLinks } from "@/components/sections/internal-links";
 import { InvestorWorkbench } from "@/components/tools/investor-workbench";
 import { PurchaseCostsCalculator } from "@/components/tools/purchase-costs-calculator";
+import { PurchaseChecklist } from "@/components/tools/purchase-checklist";
 import { regionTax } from "@/lib/content/region-facts";
 import { RANKING_COPY } from "@/lib/i18n/ranking-copy";
 import { JsonLd } from "@/components/seo/json-ld";
@@ -394,6 +395,15 @@ export default async function PriceCityPage({ params }: { params: Promise<RouteP
           {RANKING_COPY[locale].teaserTitle}
           <span aria-hidden>→</span>
         </Link>
+      </Section>
+
+      <Section className="pt-0">
+        <PurchaseChecklist
+          locale={locale}
+          citySlug={city.slug}
+          cityName={city.name}
+          ctaHref="#formularz"
+        />
       </Section>
 
       <InternalLinks
