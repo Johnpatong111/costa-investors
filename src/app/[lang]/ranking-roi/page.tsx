@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Breadcrumbs, type Crumb } from "@/components/sections/breadcrumbs";
+import { FaqAccordion } from "@/components/sections/faq-accordion";
 import { RoiMap } from "@/components/sections/roi-map";
 import { Section } from "@/components/ui/primitives";
+import { JsonLd } from "@/components/seo/json-ld";
 import { deriveDistrictStats, MARKET_YEAR } from "@/lib/content/market-stats";
 import { getAllDistrictEntries } from "@/lib/data/repository";
 import { PRICE_REPORT } from "@/lib/data/services";
@@ -11,6 +13,7 @@ import { getUiCopy } from "@/lib/i18n/ui";
 import { translatePath } from "@/lib/i18n/paths";
 import { RANKING_COPY } from "@/lib/i18n/ranking-copy";
 import { buildMetadata } from "@/lib/seo/metadata";
+import { breadcrumbNode, datasetNode, faqNode } from "@/lib/seo/schema-org";
 import { formatEur, formatRate } from "@/lib/utils/format";
 
 /**
@@ -216,6 +219,8 @@ export default async function RankingPage({ params }: { params: Promise<{ lang: 
         <p className="mt-3 max-w-3xl text-[11px] leading-relaxed text-brand-500">{copy.note}</p>
       </Section>
 
+      <FaqAccordion items={copy.faq} title={copy.faqTitle} />
+
       <Section className="bg-brand-50/60">
         <div className="flex flex-wrap items-center justify-between gap-4 rounded-2xl bg-brand-950 px-5 py-5 text-white">
           <div className="max-w-2xl">
@@ -238,6 +243,21 @@ export default async function RankingPage({ params }: { params: Promise<{ lang: 
           </div>
         </div>
       </Section>
+
+      <JsonLd
+        nodes={[
+          breadcrumbNode(crumbs),
+          datasetNode({
+            locale,
+            name: copy.h1,
+            description: copy.metaDescription(rows.length),
+            path: PATH,
+            spatialName: "Costa Blanca, Costa Cálida",
+            temporalCoverage: `${MARKET_YEAR}/2026`,
+          }),
+          faqNode(copy.faq, PATH, locale),
+        ]}
+      />
     </>
   );
 }

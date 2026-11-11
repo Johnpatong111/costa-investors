@@ -39,6 +39,8 @@ export interface RankingCopy {
   backToReports: string;
   metaTitle: string;
   metaDescription: (count: number) => string;
+  faqTitle: string;
+  faq: { question: string; answer: string }[];
   keywords: string[];
 }
 
@@ -90,6 +92,29 @@ const PL: RankingCopy = {
     "ROI netto dzielnice Costa Blanca",
     "gdzie kupić mieszkanie pod wynajem",
   ],
+  faqTitle: "Jak czytać ten ranking",
+  faq: [
+    {
+      question: "Jak liczony jest zwrot netto w rankingu?",
+      answer:
+        "Bierzemy rentowność brutto z bazy i odejmujemy 1,9 pkt proc. na zarządzanie, podatek i pustostany. Dzielnica z 6,6% brutto trafia więc do tabeli z 4,7% netto. To model, nie wynik konkretnej nieruchomości.",
+    },
+    {
+      question: "Dlaczego dzielnice przy plaży mają czasem niższy zwrot?",
+      answer:
+        "Cena za metr rośnie szybciej niż czynsz. W pierwszej linii płacisz za lokalizację, a najemca nie płaci za widok proporcjonalnie do ceny zakupu, więc zwrot procentowy spada mimo wyższych stawek za dobę.",
+    },
+    {
+      question: "Czy ranking uwzględnia podatki od zakupu?",
+      answer:
+        "Nie, podatki są poza zwrotem. ITP wynosi 10% w Comunitat Valenciana i 8% w Región de Murcia, a przy nowym budownictwie dochodzi IVA 10% i AJD. Pełne rozbicie pokazuje kalkulator kosztów na stronie każdego miasta.",
+    },
+    {
+      question: "Skąd pochodzą dane i jak często się zmieniają?",
+      answer:
+        "Ceny, czynsze, dynamika i czas ekspozycji pochodzą z naszej bazy rynkowej dla 21 gmin i 89 dzielnic. Strona odświeża się raz na dobę, a wartości są szacunkowe i nie stanowią oferty inwestycyjnej.",
+    },
+  ],
 };
 
 const EN: RankingCopy = {
@@ -139,6 +164,29 @@ const EN: RankingCopy = {
     "highest rental yield Spain",
     "net yield by district Costa Blanca",
     "where to buy to let in Spain",
+  ],
+  faqTitle: "How to read this ranking",
+  faq: [
+    {
+      question: "How is the net yield in the ranking calculated?",
+      answer:
+        "We take the gross yield from the database and subtract 1.9 percentage points for management, tax and vacancy. A district at 6.6% gross therefore appears at 4.7% net. It is a model, not the result of any single property.",
+    },
+    {
+      question: "Why do beachfront districts sometimes show a lower return?",
+      answer:
+        "The price per square metre rises faster than the rent. On the front line you pay for the location, while a tenant does not pay for the view in proportion to the purchase price, so the percentage return falls even with higher nightly rates.",
+    },
+    {
+      question: "Does the ranking include purchase taxes?",
+      answer:
+        "No, taxes sit outside the yield. Transfer tax is 10% in the Valencia region and 8% in Murcia, and new builds add 10% VAT plus AJD duty. The full breakdown is in the costs calculator on every city page.",
+    },
+    {
+      question: "Where does the data come from and how often does it change?",
+      answer:
+        "Prices, rents, growth and time on market come from our market database covering 21 municipalities and 89 districts. The page refreshes once a day; values are estimates and not an investment offer.",
+    },
   ],
 };
 
@@ -190,6 +238,29 @@ const ES: RankingCopy = {
     "mayor rentabilidad alquiler España",
     "rentabilidad neta por zona Costa Blanca",
     "dónde comprar para alquilar",
+  ],
+  faqTitle: "Cómo leer este ranking",
+  faq: [
+    {
+      question: "¿Cómo se calcula la rentabilidad neta del ranking?",
+      answer:
+        "Tomamos la rentabilidad bruta de la base y restamos 1,9 puntos por gestión, impuestos y vacancia. Una zona con 6,6% bruto aparece con 4,7% neto. Es un modelo, no el resultado de un inmueble concreto.",
+    },
+    {
+      question: "¿Por qué algunas zonas de playa rinden menos?",
+      answer:
+        "El precio por metro sube más rápido que el alquiler. En primera línea pagas la ubicación y el inquilino no paga las vistas en proporción al precio de compra, así que el porcentaje baja aunque la noche se cobre más cara.",
+    },
+    {
+      question: "¿Incluye los impuestos de la compra?",
+      answer:
+        "No, los impuestos quedan fuera de la rentabilidad. El ITP es del 10% en la Comunitat Valenciana y del 8% en Murcia, y en obra nueva se suma IVA del 10% más AJD. El desglose completo está en la calculadora de cada municipio.",
+    },
+    {
+      question: "¿De dónde salen los datos y cada cuánto cambian?",
+      answer:
+        "Precios, alquileres, crecimiento y días de exposición vienen de nuestra base de mercado con 21 municipios y 89 zonas. La página se actualiza una vez al día y los valores son estimaciones, no una oferta de inversión.",
+    },
   ],
 };
 
