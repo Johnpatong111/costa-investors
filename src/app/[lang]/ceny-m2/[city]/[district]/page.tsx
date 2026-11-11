@@ -9,6 +9,7 @@ import { Section, SectionHeading } from "@/components/ui/primitives";
 import { JsonLd } from "@/components/seo/json-ld";
 import { PriceHistorySection } from "@/components/sections/price-history";
 import { InternalLinks } from "@/components/sections/internal-links";
+import { InvestorWorkbench } from "@/components/tools/investor-workbench";
 import { getPriceHistory } from "@/lib/i18n/price-history";
 import { PRICE_HISTORY_KEYWORD } from "@/lib/i18n/seo-copy";
 import { PRICE_HUB_COPY } from "@/lib/i18n/price-hub-copy";
@@ -186,6 +187,33 @@ export default async function PriceReportPage({
 
       <ContentBlocks blocks={report.blocks} />
 
+      <Section className="bg-brand-50/40">
+        <InvestorWorkbench
+          locale={locale}
+          cityName={entry.district.name}
+          rates={{
+            pricePerM2: report.stats.pricePerM2,
+            rentalYield: report.stats.rentalYield,
+            netYield: report.stats.netYield,
+            priceGrowth: report.stats.priceGrowth,
+          }}
+          districts={entry.city.districts.map((item) => {
+            const itemStats = deriveDistrictStats(entry.city, item, entry.region);
+            return {
+              slug: item.slug,
+              name: item.name,
+              pricePerM2: itemStats.pricePerM2,
+              rentalYield: itemStats.rentalYield,
+              netYield: itemStats.netYield,
+              demandIndex: item.demandIndex,
+              days: itemStats.avgDaysOnMarket,
+            };
+          })}
+          districtBasePath={translatePath(`/${PRICE_REPORT.slug}/${entry.city.slug}`, locale)}
+          ctaHref="#formularz"
+        />
+      </Section>
+
       <Section className="bg-white pt-0">
         <SectionHeading eyebrow={tableUi.eyebrow}>{tableUi.title}</SectionHeading>
         <div className="overflow-x-auto rounded-xl border border-brand-100">
@@ -292,7 +320,7 @@ export default async function PriceReportPage({
               ))}
             </ul>
           </div>
-          <div className="scroll-mt-24">
+          <div id="formularz" className="scroll-mt-24">
             <LeadEngine
               language={locale}
               cityName={entry.city.name}
