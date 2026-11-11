@@ -42,7 +42,8 @@ function bucketLabel(index: number, locale: Locale): string {
   const upper = SCALE[index]!.max;
   if (index === 0) return `<${fmt(upper)}`;
   if (!Number.isFinite(upper)) return `${fmt(lower)}+`;
-  return `${fmt(lower)}–${fmt(upper)}`;
+  const joiner = locale === "en" ? " to " : locale === "es" ? " a " : " do ";
+  return `${fmt(lower)}${joiner}${fmt(upper)}`;
 }
 
 export function RoiMap({
