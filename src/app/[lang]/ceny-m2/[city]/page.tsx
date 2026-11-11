@@ -9,6 +9,8 @@ import { InvestorWorkbench } from "@/components/tools/investor-workbench";
 import { PurchaseCostsCalculator } from "@/components/tools/purchase-costs-calculator";
 import { PurchaseChecklist } from "@/components/tools/purchase-checklist";
 import { ShortLetComparison } from "@/components/tools/short-let-comparison";
+import { ToolTabs } from "@/components/tools/tool-tabs";
+import { TOOLS_COPY } from "@/lib/i18n/tool-copy";
 import { regionTax } from "@/lib/content/region-facts";
 import { RANKING_COPY } from "@/lib/i18n/ranking-copy";
 import { JsonLd } from "@/components/seo/json-ld";
@@ -350,51 +352,70 @@ export default async function PriceCityPage({ params }: { params: Promise<RouteP
         })}
       />
 
-      <Section>
-        <InvestorWorkbench
-          locale={locale}
-          cityName={city.name}
-          rates={{
-            rentalYield: stats.rentalYield,
-            netYield: stats.netYield,
-            priceGrowth: stats.priceGrowth,
-            pricePerM2: stats.pricePerM2,
-          }}
-          districts={city.districts.map((district) => {
-            const districtStats = deriveDistrictStats(city, district, region);
-            return {
-              slug: district.slug,
-              name: district.name,
-              pricePerM2: districtStats.pricePerM2,
-              rentalYield: districtStats.rentalYield,
-              netYield: districtStats.netYield,
-              demandIndex: district.demandIndex,
-              days: districtStats.avgDaysOnMarket,
-            };
-          })}
-          districtBasePath={translatePath(`/${PRICE_REPORT.slug}/${city.slug}`, locale)}
-          ctaHref="#formularz"
-        />
-      </Section>
-
       <Section className="bg-brand-50/40">
-        <PurchaseCostsCalculator
+        <ToolTabs
           locale={locale}
-          cityName={city.name}
-          itp={regionTax(city.region).itp}
-          authority={regionTax(city.region).authority}
-          rentalYield={stats.rentalYield}
+          placeName={city.name}
           ctaHref="#formularz"
-        />
-      </Section>
-
-      <Section className="pt-0">
-        <ShortLetComparison
-          locale={locale}
-          cityName={city.name}
-          pricePerM2={stats.pricePerM2}
-          rentalYield={stats.rentalYield}
-          ctaHref="#formularz"
+          tabs={[
+            {
+              id: "investment",
+              label: TOOLS_COPY[locale].tabs.investment,
+              content: (
+                <InvestorWorkbench
+                  locale={locale}
+                  cityName={city.name}
+                  rates={{
+                    rentalYield: stats.rentalYield,
+                    netYield: stats.netYield,
+                    priceGrowth: stats.priceGrowth,
+                    pricePerM2: stats.pricePerM2,
+                  }}
+                  districts={city.districts.map((district) => {
+                    const districtStats = deriveDistrictStats(city, district, region);
+                    return {
+                      slug: district.slug,
+                      name: district.name,
+                      pricePerM2: districtStats.pricePerM2,
+                      rentalYield: districtStats.rentalYield,
+                      netYield: districtStats.netYield,
+                      demandIndex: district.demandIndex,
+                      days: districtStats.avgDaysOnMarket,
+                    };
+                  })}
+                  districtBasePath={translatePath(`/${PRICE_REPORT.slug}/${city.slug}`, locale)}
+                  headingLevel="h3"
+                />
+              ),
+            },
+            {
+              id: "costs",
+              label: TOOLS_COPY[locale].tabs.costs,
+              content: (
+                <PurchaseCostsCalculator
+                  locale={locale}
+                  cityName={city.name}
+                  itp={regionTax(city.region).itp}
+                  authority={regionTax(city.region).authority}
+                  rentalYield={stats.rentalYield}
+                  headingLevel="h3"
+                />
+              ),
+            },
+            {
+              id: "season",
+              label: TOOLS_COPY[locale].tabs.season,
+              content: (
+                <ShortLetComparison
+                  locale={locale}
+                  cityName={city.name}
+                  pricePerM2={stats.pricePerM2}
+                  rentalYield={stats.rentalYield}
+                  headingLevel="h3"
+                />
+              ),
+            },
+          ]}
         />
       </Section>
 

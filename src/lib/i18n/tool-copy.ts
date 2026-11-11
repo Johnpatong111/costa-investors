@@ -887,3 +887,49 @@ export const STRESS_COPY: Record<Locale, StressCopy> = {
   es: STRESS_ES,
 };
 
+export interface ToolsCopy {
+  eyebrow: string;
+  title: (place: string) => string;
+  lead: string;
+  tabs: { investment: string; costs: string; season: string; stress: string };
+  tabListLabel: string;
+  ctaTitle: string;
+  ctaButton: string;
+}
+
+const TOOLS_PL: ToolsCopy = {
+  eyebrow: "Policz to sam",
+  title: (place) => `Liczby dla ${place} bez Excela`,
+  lead: "Trzy narzędzia w jednym miejscu. Wybierz pytanie, które teraz interesuje: zwrot, koszty czy model najmu. Pozostałe zakładki zostają pod ręką.",
+  tabs: { investment: "Inwestycja", costs: "Koszty zakupu", season: "Sezon czy rok", stress: "Test odporności" },
+  tabListLabel: "Narzędzia inwestora",
+  ctaTitle: "Masz komplet liczb? Wyślij budżet i odbierz 3-5 ofert z wyliczonym zwrotem.",
+  ctaButton: "Przejdź do formularza",
+};
+
+const TOOLS_EN: ToolsCopy = {
+  eyebrow: "Run the numbers",
+  title: (place) => `The numbers for ${place}, without a spreadsheet`,
+  lead: "Three tools in one place. Pick the question you have right now: yield, purchase costs or letting model. The other tabs stay within reach.",
+  tabs: { investment: "Investment", costs: "Purchase costs", season: "Season or year", stress: "Resilience test" },
+  tabListLabel: "Investor tools",
+  ctaTitle: "Got the full picture? Send your budget and receive 3-5 shortlisted deals with the return modelled.",
+  ctaButton: "Go to the form",
+};
+
+const TOOLS_ES: ToolsCopy = {
+  eyebrow: "Haz los números",
+  title: (place) => `Los números de ${place}, sin hoja de cálculo`,
+  lead: "Tres herramientas en un sitio. Elige la pregunta que tienes ahora: rentabilidad, gastos de compra o modelo de alquiler. Las demás pestañas quedan a mano.",
+  tabs: { investment: "Inversión", costs: "Gastos de compra", season: "Temporada o año", stress: "Prueba de resistencia" },
+  tabListLabel: "Herramientas del inversor",
+  ctaTitle: "¿Ya tienes los números? Envía tu presupuesto y recibe 3-5 ofertas con la rentabilidad calculada.",
+  ctaButton: "Ir al formulario",
+};
+
+export const TOOLS_COPY: Record<Locale, ToolsCopy> = {
+  pl: TOOLS_PL,
+  en: TOOLS_EN,
+  es: TOOLS_ES,
+};
+

@@ -195,7 +195,6 @@ export default async function CityServicePage({
               };
             })}
             districtBasePath={translatePath(`/${PRICE_REPORT.slug}/${city.slug}`, locale)}
-            ctaHref="#lead-form"
           />
         </div>
       </section>

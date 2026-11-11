@@ -111,6 +111,35 @@ for (const [name, key, needle] of markers) {
 }
 
 /* -------------------------------------------------------------------------
+ * 2b. Jeden obszar narzędzi, jeden CTA: kontrola nadmiaru
+ * ------------------------------------------------------------------------- */
+
+for (const key of ["cityPl", "cityEn", "cityEs", "districtPl"] as const) {
+  const content = html[key];
+  if (!content) continue;
+
+  const tablists = (content.match(/role="tablist"/g) ?? []).length;
+  const panels = (content.match(/role="tabpanel"/g) ?? []).length;
+  const hiddenPanels = (content.match(/role="tabpanel"[^>]*hidden/g) ?? []).length;
+  const h3Tools = (
+    content.match(
+      /<h3[^>]*>[\s\S]{0,120}?(Policz inwestycję|Ile naprawdę kosztuje|Najem krótkoterminowy|Co się stanie|Model an investment|What buying|Short lets|What happens|Calcula una inversión|Cuánto cuesta de verdad|Alquiler turístico)/g,
+    ) ?? []
+  ).length;
+  const ctas = (content.match(/href="#formularz"/g) ?? []).length;
+
+  ok(`zakładki: jeden tablist (${key})`, tablists === 1, `${tablists}`);
+  ok(`zakładki: trzy panele (${key})`, panels === 3, `${panels}`);
+  ok(`zakładki: dwa panele ukryte (${key})`, hiddenPanels === 2, `${hiddenPanels}`);
+  ok(`zakładki: narzędzia na h3 (${key})`, h3Tools === 3, `${h3Tools}`);
+  ok(
+    `CTA: maksymalnie dwa na stronie (${key})`,
+    ctas <= 2,
+    `${ctas} linków do formularza`,
+  );
+}
+
+/* -------------------------------------------------------------------------
  * 2. Mobilność: viewport, tabele w kontenerach przewijanych
  * ------------------------------------------------------------------------- */
 
@@ -320,6 +349,17 @@ for (const file of toolFiles) {
 
 const total = passed + failures.length;
 console.log(`\nAudyt narzędzi: ${passed}/${total} przeszło`);
+
+// Metryki składu strony: krótki raport, żeby widzieć, czy strona nie puchnie.
+console.log("\nSkład stron:");
+for (const [key, content] of Object.entries(html)) {
+  const count = (pattern: RegExp) => (content.match(pattern) ?? []).length;
+  console.log(
+    `  ${key}: sekcje ${count(/<section/g)}, h2 ${count(/<h2/g)}, h3 ${count(/<h3/g)}, ` +
+      `zakładki ${count(/role="tabpanel"/g)} (ukryte ${count(/role="tabpanel"[^>]*hidden/g)}), ` +
+      `CTA do formularza ${count(/href="#formularz"/g)}`,
+  );
+}
 
 if (failures.length > 0) {
   console.log("\nNiepowodzenia:");

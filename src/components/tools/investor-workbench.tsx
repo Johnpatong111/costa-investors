@@ -27,7 +27,8 @@ export interface InvestorWorkbenchProps {
   districts: WorkbenchDistrict[];
   /** Ścieżka bazowa raportów dzielnic, np. "/ceny-m2/alicante". */
   districtBasePath: string;
-  ctaHref: string;
+  /** Poziom nagłówka: h2 samodzielnie, h3 w zakładkach. */
+  headingLevel?: "h2" | "h3";
 }
 
 const PRESETS = [150_000, 250_000, 350_000, 500_000];
@@ -42,9 +43,10 @@ export function InvestorWorkbench({
   rates,
   districts,
   districtBasePath,
-  ctaHref,
+  headingLevel = "h2",
 }: InvestorWorkbenchProps) {
   const copy = WORKBENCH_COPY[locale];
+  const Heading = headingLevel;
   const [budget, setBudget] = useState(250_000);
   const [scenario, setScenario] = useState<Scenario>("year");
   const [financing, setFinancing] = useState<Financing>("cash");
@@ -159,7 +161,7 @@ export function InvestorWorkbench({
             <Calculator aria-hidden className="h-3.5 w-3.5" />
             {copy.eyebrow}
           </p>
-          <h2 className="mt-1 text-xl font-bold text-brand-950 sm:text-2xl">{copy.title(cityName)}</h2>
+          <Heading className="mt-1 text-xl font-bold text-brand-950 sm:text-2xl">{copy.title(cityName)}</Heading>
           <p className="mt-2 text-sm leading-relaxed text-brand-700">{copy.lead(cityName)}</p>
         </div>
         <button
@@ -446,19 +448,6 @@ export function InvestorWorkbench({
             </tbody>
           </table>
         </div>
-      </div>
-
-      <div className="mt-6 flex flex-wrap items-center justify-between gap-3 rounded-xl bg-brand-950 px-4 py-4 text-white sm:px-5">
-        <div>
-          <p className="text-sm font-bold">{copy.ctaTitle}</p>
-          <p className="mt-1 max-w-2xl text-xs leading-relaxed text-brand-100">{copy.ctaText}</p>
-        </div>
-        <Link
-          href={ctaHref}
-          className="inline-flex items-center gap-1.5 rounded-full bg-white px-4 py-2 text-sm font-bold text-brand-950 transition hover:bg-brand-50"
-        >
-          {copy.ctaButton}
-        </Link>
       </div>
     </div>
   );

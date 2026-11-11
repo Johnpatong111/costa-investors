@@ -12,6 +12,8 @@ import { InternalLinks } from "@/components/sections/internal-links";
 import { InvestorWorkbench } from "@/components/tools/investor-workbench";
 import { PurchaseCostsCalculator } from "@/components/tools/purchase-costs-calculator";
 import { StressTest } from "@/components/tools/stress-test";
+import { ToolTabs } from "@/components/tools/tool-tabs";
+import { TOOLS_COPY } from "@/lib/i18n/tool-copy";
 import { regionTax } from "@/lib/content/region-facts";
 import { getPriceHistory } from "@/lib/i18n/price-history";
 import { PRICE_HISTORY_KEYWORD } from "@/lib/i18n/seo-copy";
@@ -191,51 +193,72 @@ export default async function PriceReportPage({
       <ContentBlocks blocks={report.blocks} />
 
       <Section className="bg-brand-50/40">
-        <InvestorWorkbench
-          locale={locale}
-          cityName={entry.district.name}
-          rates={{
-            pricePerM2: report.stats.pricePerM2,
-            rentalYield: report.stats.rentalYield,
-            netYield: report.stats.netYield,
-            priceGrowth: report.stats.priceGrowth,
-          }}
-          districts={entry.city.districts.map((item) => {
-            const itemStats = deriveDistrictStats(entry.city, item, entry.region);
-            return {
-              slug: item.slug,
-              name: item.name,
-              pricePerM2: itemStats.pricePerM2,
-              rentalYield: itemStats.rentalYield,
-              netYield: itemStats.netYield,
-              demandIndex: item.demandIndex,
-              days: itemStats.avgDaysOnMarket,
-            };
-          })}
-          districtBasePath={translatePath(`/${PRICE_REPORT.slug}/${entry.city.slug}`, locale)}
-          ctaHref="#formularz"
-        />
-      </Section>
-
-      <Section className="pt-0">
-        <PurchaseCostsCalculator
-          locale={locale}
-          cityName={entry.district.name}
-          itp={regionTax(entry.city.region).itp}
-          authority={regionTax(entry.city.region).authority}
-          rentalYield={report.stats.rentalYield}
-          ctaHref="#formularz"
-        />
-      </Section>
-
-      <Section className="pt-0">
-        <StressTest
+        <ToolTabs
           locale={locale}
           placeName={entry.district.name}
-          price={Math.round(report.stats.pricePerM2 * 70)}
-          netRentMonthly={Math.round((report.stats.pricePerM2 * 70 * report.stats.netYield) / 100 / 12)}
-          monthlyCosts={Math.round((report.stats.pricePerM2 * 70 * 0.012) / 12)}
           ctaHref="#formularz"
+          tabs={[
+            {
+              id: "investment",
+              label: TOOLS_COPY[locale].tabs.investment,
+              content: (
+                <InvestorWorkbench
+                  locale={locale}
+                  cityName={entry.district.name}
+                  rates={{
+                    pricePerM2: report.stats.pricePerM2,
+                    rentalYield: report.stats.rentalYield,
+                    netYield: report.stats.netYield,
+                    priceGrowth: report.stats.priceGrowth,
+                  }}
+                  districts={entry.city.districts.map((item) => {
+                    const itemStats = deriveDistrictStats(entry.city, item, entry.region);
+                    return {
+                      slug: item.slug,
+                      name: item.name,
+                      pricePerM2: itemStats.pricePerM2,
+                      rentalYield: itemStats.rentalYield,
+                      netYield: itemStats.netYield,
+                      demandIndex: item.demandIndex,
+                      days: itemStats.avgDaysOnMarket,
+                    };
+                  })}
+                  districtBasePath={translatePath(`/${PRICE_REPORT.slug}/${entry.city.slug}`, locale)}
+                  headingLevel="h3"
+                />
+              ),
+            },
+            {
+              id: "costs",
+              label: TOOLS_COPY[locale].tabs.costs,
+              content: (
+                <PurchaseCostsCalculator
+                  locale={locale}
+                  cityName={entry.district.name}
+                  itp={regionTax(entry.city.region).itp}
+                  authority={regionTax(entry.city.region).authority}
+                  rentalYield={report.stats.rentalYield}
+                  headingLevel="h3"
+                />
+              ),
+            },
+            {
+              id: "stress",
+              label: TOOLS_COPY[locale].tabs.stress,
+              content: (
+                <StressTest
+                  locale={locale}
+                  placeName={entry.district.name}
+                  price={Math.round(report.stats.pricePerM2 * 70)}
+                  netRentMonthly={Math.round(
+                    (report.stats.pricePerM2 * 70 * report.stats.netYield) / 100 / 12,
+                  )}
+                  monthlyCosts={Math.round((report.stats.pricePerM2 * 70 * 0.012) / 12)}
+                  headingLevel="h3"
+                />
+              ),
+            },
+          ]}
         />
       </Section>
 

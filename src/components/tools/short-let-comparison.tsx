@@ -1,7 +1,6 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import Link from "next/link";
 import { BedDouble, Info, KeyRound } from "lucide-react";
 import type { Locale } from "@/lib/i18n/config";
 import { SHORTLET_COPY } from "@/lib/i18n/tool-copy";
@@ -13,13 +12,21 @@ export interface ShortLetProps {
   cityName: string;
   pricePerM2: number;
   rentalYield: number;
-  ctaHref: string;
+  /** Poziom nagłówka: h2 samodzielnie, h3 w zakładkach. */
+  headingLevel?: "h2" | "h3";
 }
 
 const REFERENCE_M2 = 70;
 
-export function ShortLetComparison({ locale, cityName, pricePerM2, rentalYield, ctaHref }: ShortLetProps) {
+export function ShortLetComparison({
+  locale,
+  cityName,
+  pricePerM2,
+  rentalYield,
+  headingLevel = "h2",
+}: ShortLetProps) {
   const copy = SHORTLET_COPY[locale];
+  const Heading = headingLevel;
   const price = Math.round(pricePerM2 * REFERENCE_M2);
   const defaultRent = Math.max(400, Math.round(((price * rentalYield) / 100) / 12));
   const defaultNightly = Math.max(40, Math.round((defaultRent / 30) * 2.4));
@@ -56,7 +63,7 @@ export function ShortLetComparison({ locale, cityName, pricePerM2, rentalYield, 
           <BedDouble aria-hidden className="h-3.5 w-3.5" />
           {copy.eyebrow}
         </p>
-        <h2 className="mt-1 text-xl font-bold text-brand-950 sm:text-2xl">{copy.title(cityName)}</h2>
+        <Heading className="mt-1 text-xl font-bold text-brand-950 sm:text-2xl">{copy.title(cityName)}</Heading>
         <p className="mt-2 text-sm leading-relaxed text-brand-700">{copy.lead}</p>
       </div>
 
@@ -191,13 +198,6 @@ export function ShortLetComparison({ locale, cityName, pricePerM2, rentalYield, 
         <Info aria-hidden className="mt-0.5 h-3 w-3 shrink-0" />
         {copy.note}
       </p>
-
-      <Link
-        href={ctaHref}
-        className="mt-3 inline-flex items-center gap-1.5 rounded-full bg-brand-950 px-4 py-2 text-sm font-bold text-white transition hover:bg-brand-800"
-      >
-        {copy.cta}
-      </Link>
     </div>
   );
 }

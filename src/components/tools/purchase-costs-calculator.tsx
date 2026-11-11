@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
 import { Info, Receipt } from "lucide-react";
 import type { Locale } from "@/lib/i18n/config";
 import { COSTS_COPY } from "@/lib/i18n/tool-copy";
@@ -18,8 +17,8 @@ export interface PurchaseCostsCalculatorProps {
   authority: string;
   /** Rentowność brutto z tego rynku (%). */
   rentalYield: number;
-  /** Ścieżka CTA do formularza. */
-  ctaHref: string;
+  /** Poziom nagłówka: h2 samodzielnie, h3 w zakładkach. */
+  headingLevel?: "h2" | "h3";
 }
 
 type DealType = Deal;
@@ -34,9 +33,10 @@ export function PurchaseCostsCalculator({
   itp,
   authority,
   rentalYield,
-  ctaHref,
+  headingLevel = "h2",
 }: PurchaseCostsCalculatorProps) {
   const copy = COSTS_COPY[locale];
+  const Heading = headingLevel;
   const [price, setPrice] = useState(250_000);
   const [deal, setDeal] = useState<DealType>("resale");
   const [property, setProperty] = useState<Property>("flat");
@@ -71,7 +71,7 @@ export function PurchaseCostsCalculator({
           <Receipt aria-hidden className="h-3.5 w-3.5" />
           {copy.eyebrow}
         </p>
-        <h2 className="mt-1 text-xl font-bold text-brand-950 sm:text-2xl">{copy.title(cityName)}</h2>
+        <Heading className="mt-1 text-xl font-bold text-brand-950 sm:text-2xl">{copy.title(cityName)}</Heading>
         <p className="mt-2 text-sm leading-relaxed text-brand-700">{copy.lead(authority, itp)}</p>
       </div>
 
@@ -278,15 +278,9 @@ export function PurchaseCostsCalculator({
         {copy.note}
       </p>
 
-      <div className="mt-4 flex flex-wrap items-center justify-between gap-3 rounded-xl bg-brand-950 px-4 py-3 text-white">
-        <p className="text-xs leading-relaxed text-brand-100">{copy.noteItp(authority, itp)}</p>
-        <Link
-          href={ctaHref}
-          className="inline-flex items-center gap-1.5 rounded-full bg-white px-4 py-2 text-sm font-bold text-brand-950 transition hover:bg-brand-50"
-        >
-          {copy.cta}
-        </Link>
-      </div>
+      <p className="mt-4 rounded-xl border border-brand-100 bg-brand-50/60 px-4 py-3 text-xs leading-relaxed text-brand-700">
+        {copy.noteItp(authority, itp)}
+      </p>
     </div>
   );
 }

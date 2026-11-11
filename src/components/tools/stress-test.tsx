@@ -1,7 +1,6 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import Link from "next/link";
 import { AlertTriangle, ShieldCheck } from "lucide-react";
 import type { Locale } from "@/lib/i18n/config";
 import { STRESS_COPY } from "@/lib/i18n/tool-copy";
@@ -17,7 +16,8 @@ export interface StressTestProps {
   netRentMonthly: number;
   /** Koszty stałe miesięcznie: IBI, comunidad, ubezpieczenie. */
   monthlyCosts: number;
-  ctaHref: string;
+  /** Poziom nagłówka: h2 samodzielnie, h3 w zakładkach. */
+  headingLevel?: "h2" | "h3";
 }
 
 export function StressTest({
@@ -26,9 +26,10 @@ export function StressTest({
   price,
   netRentMonthly,
   monthlyCosts,
-  ctaHref,
+  headingLevel = "h2",
 }: StressTestProps) {
   const copy = STRESS_COPY[locale];
+  const Heading = headingLevel;
   const [purchasePrice, setPurchasePrice] = useState(Math.round(price));
   const [ltv, setLtv] = useState(70);
   const [rate, setRate] = useState(3.5);
@@ -70,7 +71,7 @@ export function StressTest({
           <ShieldCheck aria-hidden className="h-3.5 w-3.5" />
           {copy.eyebrow}
         </p>
-        <h2 className="mt-1 text-xl font-bold text-brand-950 sm:text-2xl">{copy.title(placeName)}</h2>
+        <Heading className="mt-1 text-xl font-bold text-brand-950 sm:text-2xl">{copy.title(placeName)}</Heading>
         <p className="mt-2 text-sm leading-relaxed text-brand-700">{copy.lead}</p>
       </div>
 
@@ -212,12 +213,6 @@ export function StressTest({
       </div>
 
       <p className="mt-3 text-[11px] leading-relaxed text-brand-500">{copy.note}</p>
-      <Link
-        href={ctaHref}
-        className="mt-3 inline-flex min-h-[44px] items-center gap-1.5 rounded-full bg-brand-950 px-4 py-2 text-sm font-bold text-white transition hover:bg-brand-800"
-      >
-        {copy.cta}
-      </Link>
     </div>
   );
 }
