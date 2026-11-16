@@ -151,12 +151,38 @@ export function fitTitle(title: string, locale: Locale = DEFAULT_LOCALE): string
 
   // Greedy: budujemy kandydatów (power suffix, marka, suffix+suffix) i wybieramy
   // ten, który trafia w 55-60 znaków; jeśli żaden. Najdłuższy mieszczący się.
-  const withBrand = `${value} | ${copy.brand}`;
-  const candidates: string[] = [value, withBrand];
+  const normalizedValue = value.toLowerCase();
+  const cleanSuffix = (suffix: string): string =>
+    suffix.replace(/^[\s|.:-]+/, "").trim().toLowerCase();
 
-  for (const suffix of copy.suffixes) {
-    candidates.push(`${value} ${suffix}`, `${withBrand} ${suffix}`);
-    for (const second of copy.suffixes) {
+  // Nie doklejaj sufiksów, których słowa już są w tytule (np. „| ROI” przy tytule
+  // „... | ROI i ceny 2026” dawało podwójne ROI).
+  const suffixAlreadyPresent = (suffix: string): boolean => {
+    const clean = cleanSuffix(suffix);
+    if (!clean) return true;
+    if (normalizedValue.includes(clean)) return true;
+
+    const words = clean
+      .split(/\s+/)
+      .map((word) => word.replace(/[^\p{L}\p{N}€/²]/gu, ""))
+      .filter((word) => word.length >= 3 && !["ceny", "dane", "bez", "oraz", "sich", "2026"].includes(word));
+
+    return words.length > 0 && words.every((word) => normalizedValue.includes(word));
+  };
+
+  const candidates: string[] = [value];
+  if (!normalizedValue.includes(copy.brand.toLowerCase())) {
+    candidates.push(`${value} | ${copy.brand}`);
+  }
+
+  const usableSuffixes = copy.suffixes.filter((suffix) => !suffixAlreadyPresent(suffix));
+
+  for (const suffix of usableSuffixes) {
+    candidates.push(`${value} ${suffix}`);
+    if (!normalizedValue.includes(copy.brand.toLowerCase())) {
+      candidates.push(`${value} | ${copy.brand} ${suffix}`);
+    }
+    for (const second of usableSuffixes) {
       if (second !== suffix) candidates.push(`${value} ${suffix} ${second}`);
     }
   }
