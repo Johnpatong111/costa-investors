@@ -142,7 +142,7 @@ export function websiteNode(locale: "pl" | "en" | "es" = "pl"): JsonLdNode {
     "@id": NODE_IDS.website,
     url: SITE.url,
     name: SITE.brand,
-    inLanguage: SITE.locale,
+    inLanguage: languageTag(locale),
     publisher: { "@id": NODE_IDS.organization },
   };
 }
@@ -309,7 +309,7 @@ export function datasetNode(input: {
     url: absoluteUrl(input.path),
     creator: { "@id": NODE_IDS.organization },
     publisher: { "@id": NODE_IDS.organization },
-    inLanguage: SITE.locale,
+    inLanguage: languageTag(input.locale),
     temporalCoverage: input.temporalCoverage,
     spatialCoverage: {
       "@type": "Place",
