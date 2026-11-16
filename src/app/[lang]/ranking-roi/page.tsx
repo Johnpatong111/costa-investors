@@ -103,7 +103,7 @@ export default async function RankingPage({ params }: { params: Promise<{ lang: 
 
   return (
     <>
-      <Breadcrumbs items={crumbs} />
+      <Breadcrumbs items={crumbs} locale={locale} />
       <section className="border-b border-brand-100 bg-brand-50/60">
         <div className="container-page py-10 lg:py-14">
           <p className="text-sm font-semibold uppercase tracking-wide text-brand-600">

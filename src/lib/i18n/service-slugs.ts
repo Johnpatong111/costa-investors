@@ -54,3 +54,24 @@ export function serviceKindFromSlug(slug: string, locale?: Locale): ServiceKind 
 export function allServiceSlugs(kind: ServiceKind): string[] {
   return Object.values(SERVICE_SLUGS[kind]);
 }
+
+/**
+ * Hub raportów cenowych (`/ceny-m2`, `/property-prices`, `/precios-m2`).
+ * To nie jest usługa, więc ma własną mapę slugów per język. Dzięki temu
+ * angielskie i hiszpańskie strony nie mają polskiego segmentu w URL-u.
+ */
+export const PRICE_REPORT_SLUGS: Record<Locale, string> = {
+  pl: "ceny-m2",
+  en: "property-prices",
+  es: "precios-m2",
+};
+
+/** Slug hubu cen dla języka (PL jest historycznym, kanonicznym wariantem). */
+export function priceReportSlug(locale: Locale): string {
+  return PRICE_REPORT_SLUGS[locale];
+}
+
+/** Czy segment URL-a należy do hubu cen (w dowolnym języku). */
+export function isPriceReportSlug(slug: string): boolean {
+  return Object.values(PRICE_REPORT_SLUGS).includes(slug);
+}

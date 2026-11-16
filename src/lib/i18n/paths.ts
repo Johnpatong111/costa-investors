@@ -1,5 +1,10 @@
 import { DEFAULT_LOCALE, LOCALES, stripLocale, type Locale } from "./config";
-import { serviceKindFromSlug, serviceSlug } from "./service-slugs";
+import {
+  isPriceReportSlug,
+  priceReportSlug,
+  serviceKindFromSlug,
+  serviceSlug,
+} from "./service-slugs";
 
 /**
  * ===========================================================================
@@ -21,8 +26,12 @@ export function translatePath(path: string, locale: Locale): string {
 
   const first = segments[0];
   if (first) {
-    const kind = serviceKindFromSlug(first);
-    if (kind) segments[0] = serviceSlug(kind, locale);
+    if (isPriceReportSlug(first)) {
+      segments[0] = priceReportSlug(locale);
+    } else {
+      const kind = serviceKindFromSlug(first);
+      if (kind) segments[0] = serviceSlug(kind, locale);
+    }
   }
 
   return segments.length === 0 ? `/${locale}` : `/${locale}/${segments.join("/")}`;

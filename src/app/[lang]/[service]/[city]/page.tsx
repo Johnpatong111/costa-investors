@@ -132,7 +132,7 @@ export default async function CityServicePage({
 
   return (
     <>
-      <Breadcrumbs items={crumbs} />
+      <Breadcrumbs items={crumbs} locale={locale} />
 
       <Hero
         locale={locale}

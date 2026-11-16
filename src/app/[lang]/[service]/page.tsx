@@ -130,7 +130,7 @@ export default async function ServiceHubPage({
 
   return (
     <>
-      <Breadcrumbs items={crumbs} />
+      <Breadcrumbs items={crumbs} locale={locale} />
 
       <Hero
         locale={locale}
