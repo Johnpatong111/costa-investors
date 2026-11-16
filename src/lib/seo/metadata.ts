@@ -151,6 +151,12 @@ export function fitTitle(title: string, locale: Locale = DEFAULT_LOCALE): string
 
   // Greedy: budujemy kandydatów (power suffix, marka, suffix+suffix) i wybieramy
   // ten, który trafia w 55-60 znaków; jeśli żaden. Najdłuższy mieszczący się.
+  // Tytuły bliskie limitowi (>=47 znaków) zostawiamy bez doklejek: sztuczne
+  // „| NIE” / „| ROI” obniżało CTR i wyglądało spamowo.
+  if (value.length >= SERP_LIMITS.titleMin - 8) {
+    return truncateAtWord(value, SERP_LIMITS.titleMax);
+  }
+
   const normalizedValue = value.toLowerCase();
   const cleanSuffix = (suffix: string): string =>
     suffix.replace(/^[\s|.:-]+/, "").trim().toLowerCase();
