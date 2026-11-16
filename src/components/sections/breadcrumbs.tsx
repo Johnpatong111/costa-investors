@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { Container } from "@/components/ui/primitives";
+import type { Locale } from "@/lib/i18n/config";
+import { translatePath } from "@/lib/i18n/paths";
 
 export interface Crumb {
   name: string;
@@ -9,8 +11,11 @@ export interface Crumb {
 /**
  * Widoczny breadcrumb (niezbędny dla zgodności z JSON-LD BreadcrumbList).
  * Ostatni element nie jest linkiem. To bieżąca strona.
+ *
+ * Ścieżki w `items` są logiczne (np. `/ceny-m2/alicante`), a `translatePath`
+ * zamienia je na wariant językowy - bez tego link z /en prowadziłby do PL.
  */
-export function Breadcrumbs({ items }: { items: Crumb[] }) {
+export function Breadcrumbs({ items, locale }: { items: Crumb[]; locale: Locale }) {
   return (
     <nav aria-label="Breadcrumb" className="border-b border-brand-100 bg-brand-50/60">
       <Container>
@@ -25,7 +30,7 @@ export function Breadcrumbs({ items }: { items: Crumb[] }) {
                   </span>
                 ) : (
                   <>
-                    <Link href={item.path} className="hover:text-brand-900 hover:underline">
+                    <Link href={translatePath(item.path, locale)} className="hover:text-brand-900 hover:underline">
                       {item.name}
                     </Link>
                     <span aria-hidden className="text-brand-300">

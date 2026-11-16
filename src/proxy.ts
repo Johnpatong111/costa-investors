@@ -1,7 +1,7 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { DEFAULT_LOCALE, isLocale, type Locale } from "@/lib/i18n/config";
 import { translatePath } from "@/lib/i18n/paths";
-import { allServiceSlugs, serviceKindFromSlug, serviceSlug } from "@/lib/i18n/service-slugs";
+import { allServiceSlugs, isPriceReportSlug, PRICE_REPORT_SLUGS, priceReportSlug, serviceKindFromSlug, serviceSlug } from "@/lib/i18n/service-slugs";
 
 /**
  * Bezpiecznik: middleware można wyłączyć `I18N_ROUTING_ENABLED=false`
@@ -66,6 +66,32 @@ export function proxy(request: NextRequest) {
   if (firstSegment && isLocale(firstSegment)) {
     const locale: Locale = firstSegment;
     const serviceSegment = segments[1];
+
+    // Hub cen ma własny slug per język. Stary polski slug pod /en lub /es
+    // dostaje 308 na wersję językową, a nowy slug jest przepisywany
+    // wewnętrznie na trasę /{lang}/ceny-m2/... (bez zmiany URL-a w pasku).
+    if (serviceSegment && isPriceReportSlug(serviceSegment)) {
+      const canonicalPriceSlug = priceReportSlug(locale);
+
+      if (serviceSegment !== canonicalPriceSlug) {
+        const redirectUrl = request.nextUrl.clone();
+        redirectUrl.pathname = translatePath(pathname, locale);
+        const redirect = NextResponse.redirect(redirectUrl, 308);
+        redirect.cookies.set("NEXT_LOCALE", locale, {
+          path: "/",
+          maxAge: 60 * 60 * 24 * 365,
+          sameSite: "lax",
+        });
+        return redirect;
+      }
+
+      if (canonicalPriceSlug !== PRICE_REPORT_SLUGS.pl) {
+        const rewriteUrl = request.nextUrl.clone();
+        const rest = segments.slice(2).map((segment) => `/${segment}`).join("");
+        rewriteUrl.pathname = `/${locale}/${PRICE_REPORT_SLUGS.pl}${rest}`;
+        return NextResponse.rewrite(rewriteUrl);
+      }
+    }
 
     // Alias sluga: polski slug pod /en/ lub /es/ (i odwrotnie). Zamiast
     // serwować 200 z treścią pod złym adresem, robimy trwałe 308 na wersję

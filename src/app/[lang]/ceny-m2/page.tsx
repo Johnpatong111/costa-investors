@@ -66,7 +66,7 @@ export default async function PriceReportIndexPage({
 
   return (
     <>
-      <Breadcrumbs items={crumbs} />
+      <Breadcrumbs items={crumbs} locale={locale} />
 
       <section className="border-b border-brand-100 bg-brand-50/60">
         <div className="container-page py-10 lg:py-14">
