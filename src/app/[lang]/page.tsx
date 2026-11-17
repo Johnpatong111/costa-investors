@@ -2,6 +2,10 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { LeadEngine } from "@/components/lead/lead-engine";
 import { Hero } from "@/components/sections/hero";
+import { BuyingCosts } from "@/components/sections/buying-costs";
+import { CityRoiTable } from "@/components/sections/city-roi-table";
+import { FaqAccordion } from "@/components/sections/faq-accordion";
+import { JsonLd } from "@/components/seo/json-ld";
 import { SocialProof } from "@/components/sections/social-proof";
 import { Section, SectionHeading } from "@/components/ui/primitives";
 import { getCities } from "@/lib/data/repository";
@@ -11,10 +15,12 @@ import { assertLocale } from "@/lib/i18n/config";
 import { localePath } from "@/lib/i18n/config";
 import { translatePath } from "@/lib/i18n/paths";
 import { getHomeCopy } from "@/lib/i18n/ui";
+import { getHomeDeepDiveCopy } from "@/lib/i18n/home-deep-dive";
 import { getServiceCopy } from "@/lib/i18n/content/builders";
 import { HOME_SEO } from "@/lib/i18n/seo-copy";
 import { buildMetadata } from "@/lib/seo/metadata";
-import { formatEur, formatRate } from "@/lib/utils/format";
+import { faqNode } from "@/lib/seo/schema-org";
+import { formatEur, formatPrice, formatRate } from "@/lib/utils/format";
 
 /** Strona główna. Hub dla 4 usług i 15 miejscowości (Costa Blanca + Cálida). */
 export const revalidate = 86_400;
@@ -51,6 +57,28 @@ export default async function HomePage({
     allCities.reduce((sum, city) => sum + city.rentalYield, 0) / Math.max(allCities.length, 1);
   const avgGrowth =
     allCities.reduce((sum, city) => sum + city.priceGrowth, 0) / Math.max(allCities.length, 1);
+  const maxYield = Math.max(...allCities.map((city) => city.rentalYield));
+  const minPrice = Math.min(...allCities.map((city) => city.pricePerM2));
+
+  const deepDive = getHomeDeepDiveCopy(locale);
+  const faq = deepDive.faq({
+    cities: allCities.length,
+    median: formatPrice(avgMedian),
+    avgYield: formatRate(avgYield),
+    maxYield: formatRate(maxYield),
+    growth: formatRate(avgGrowth),
+    minPrice: formatPrice(minPrice),
+  });
+  const roiRows = [...allCities]
+    .sort((a, b) => b.rentalYield - a.rentalYield)
+    .slice(0, 8)
+    .map((city) => ({
+      slug: city.slug,
+      name: city.name,
+      pricePerM2: city.pricePerM2,
+      rentalYield: city.rentalYield,
+      priceGrowth: city.priceGrowth,
+    }));
 
   const copyVars = buildServiceFallbackVars({
     areaName: "Hiszpania",
@@ -66,6 +94,7 @@ export default async function HomePage({
 
   return (
     <>
+      <JsonLd nodes={[faqNode(faq, "/", locale)]} />
       <Hero
         locale={locale}
         eyebrow={home.heroEyebrow}
@@ -84,6 +113,7 @@ export default async function HomePage({
           />
         </div>
       </Hero>
+      <BuyingCosts copy={deepDive} />
       <Section className="bg-brand-50/60">
         <SectionHeading eyebrow={home.marketsEyebrow}>
           {locale === "es"
@@ -105,6 +135,8 @@ export default async function HomePage({
           ))}
         </ul>
       </Section>
+
+      <CityRoiTable copy={deepDive} rows={roiRows} locale={locale} />
 
       <Section>
         <SectionHeading eyebrow={home.servicesEyebrow}>{home.servicesTitle}</SectionHeading>
@@ -160,6 +192,8 @@ export default async function HomePage({
           </Link>
         </p>
       </Section>
+
+      <FaqAccordion items={faq} title={deepDive.faqTitle} subtitle={deepDive.faqSubtitle} />
 
       <SocialProof
         coverage={{ districts: getCities().reduce((sum, city) => sum + city.districts.length, 0), cities: getCities().length, transactions: 21_400 }}
