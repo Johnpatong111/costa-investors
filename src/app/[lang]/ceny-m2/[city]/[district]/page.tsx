@@ -72,6 +72,7 @@ export async function generateMetadata({
     keywords: [...report.keywords, PRICE_HISTORY_KEYWORD[locale]],
     noindex: !report.isIndexable,
     locale,
+    rawSerp: true,
   });
 }
 

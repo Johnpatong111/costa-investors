@@ -277,6 +277,7 @@ export async function generateMetadata({
     path: `/${PRICE_REPORT.slug}/${city.slug}`,
     keywords,
     locale,
+    rawSerp: true,
   });
 }
 

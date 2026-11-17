@@ -86,7 +86,7 @@ export const PRICE_HUB_META: Record<
   { title: string; description: string; keywords: string[] }
 > = {
   pl: {
-    title: "Ceny m² i ROI w Hiszpanii. Raporty 2026",
+    title: "Ceny m² i ROI w Hiszpanii 2026 | 15 miast, 89 dzielnic",
     description:
       "Mediany cen, rentowność najmu i dynamika r/r w 15 miejscowościach Costa Blanca i Costa Cálida. Historia cen 2016-2026 w każdej dzielnicy.",
     keywords: [
@@ -97,7 +97,7 @@ export const PRICE_HUB_META: Record<
     ],
   },
   en: {
-    title: "Spanish property prices & yields 2026 | Reports",
+    title: "Spanish property prices & yields 2026 | 15 cities",
     description:
       "Median €/m², rental yields and annual growth across 15 locations on Costa Blanca and Costa Cálida. Price history 2016-2026 for every district.",
     keywords: [
@@ -108,7 +108,7 @@ export const PRICE_HUB_META: Record<
     ],
   },
   es: {
-    title: "Precios y rentabilidad inmobiliaria 2026 | Informes",
+    title: "Precios y rentabilidad inmobiliaria 2026 | 15 ciudades",
     description:
       "Mediana €/m², rentabilidad de alquiler y crecimiento anual en 15 localidades de Costa Blanca y Costa Cálida. Evolución de precios 2016-2026 por zona.",
     keywords: [

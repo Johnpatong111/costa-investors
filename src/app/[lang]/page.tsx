@@ -38,6 +38,7 @@ export async function generateMetadata({
     path: "/",
     keywords: seo.keywords,
     locale,
+    rawSerp: true,
   });
 }
 
