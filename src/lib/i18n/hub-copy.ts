@@ -56,7 +56,7 @@ export const HUB_COPY: Record<Locale, HubCopy> = {
     notFound: "Nie znaleziono usługi",
     metaTitle: (name) => `${name} Costa Blanca | ceny, ROI i koszty`,
     metaDescription: (name, anchor) =>
-      `${name} na Costa Blanca i Costa Cálida: ${anchor}. Ceny €/m², ROI, koszty zakupu i polskojęzyczny agent kupującego.`,
+      `${name} na Costa Blanca i Costa Cálida: ${anchor}. Ceny €/m², ROI, koszty zakupu i utrzymania oraz polskojęzyczny agent kupującego.`,
   },
   en: {
     home: "Home",
@@ -82,9 +82,9 @@ export const HUB_COPY: Record<Locale, HubCopy> = {
     reportsGroup: "Investment reports",
     reportLabel: "€/m² prices and ROI in Spain",
     notFound: "Service not found",
-    metaTitle: (name) => `${name} Costa Blanca & Cálida | prices and ROI`,
+    metaTitle: (name) => `${name} Costa Blanca | prices, ROI & costs`,
     metaDescription: (name, anchor) =>
-      `${name} on Costa Blanca and Costa Cálida: ${anchor}. €/m² prices, yields, purchase costs and an independent English-speaking buyer's agent.`,
+      `${name} on Costa Blanca and Costa Cálida: ${anchor}. €/m² prices, yields, purchase and running costs, and an independent English-speaking buyer's agent.`,
   },
   es: {
     home: "Inicio",
@@ -110,8 +110,8 @@ export const HUB_COPY: Record<Locale, HubCopy> = {
     reportsGroup: "Informes de inversión",
     reportLabel: "Precios €/m² y ROI en España",
     notFound: "Servicio no encontrado",
-    metaTitle: (name) => `${name} Costa Blanca y Cálida | precios y ROI`,
+    metaTitle: (name) => `${name} Costa Blanca | precios, ROI y gastos`,
     metaDescription: (name, anchor) =>
-      `${name} en Costa Blanca y Costa Cálida: ${anchor}. Precios €/m², ROI, gastos de compra y agente comprador independiente.`,
+      `${name} en Costa Blanca y Costa Cálida: ${anchor}. Precios €/m², rentabilidad, gastos de compra y mantenimiento, y agente comprador independiente.`,
   },
 };

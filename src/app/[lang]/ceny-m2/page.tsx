@@ -6,7 +6,7 @@ import { JsonLd } from "@/components/seo/json-ld";
 import { Section, SectionHeading } from "@/components/ui/primitives";
 import { deriveCityStats, MARKET_YEAR } from "@/lib/content/market-stats";
 import { getCities, getRegion, getSubregions } from "@/lib/data/repository";
-import { PRICE_REPORT } from "@/lib/data/services";
+import { PRICE_REPORT, PRIMARY_SERVICE } from "@/lib/data/services";
 import { assertLocale } from "@/lib/i18n/config";
 import { getUiCopy } from "@/lib/i18n/ui";
 import { translatePath } from "@/lib/i18n/paths";
@@ -183,6 +183,14 @@ export default async function PriceReportIndexPage({
             ))}
           </ul>
         </div>
+        <p className="mt-5 text-sm">
+          <Link
+            href={translatePath(`/${PRIMARY_SERVICE.slug}`, locale)}
+            className="font-semibold text-brand-900 underline underline-offset-2 hover:text-brand-950"
+          >
+            {copy.costsCta} →
+          </Link>
+        </p>
       </Section>
 
       <Section className="bg-brand-50/60">

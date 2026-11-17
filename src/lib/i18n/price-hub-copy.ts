@@ -30,6 +30,7 @@ export interface PriceHubCopy {
   runningCostsHeading: string;
   runningCostsIntro: string;
   runningCostsBullets: string[];
+  costsCta: string;
   methodologyHeading: string;
   methodologyText: string;
   faqTitle: string;
@@ -61,6 +62,7 @@ export const PRICE_HUB_COPY: Record<Locale, PriceHubCopy> = {
       "Wywóz śmieci (basura) i ubezpieczenie: około 200-500 € rocznie",
       "Utrzymanie i rezerwa remontowa: około 1% wartości nieruchomości rocznie",
     ],
+    costsCta: "Zobacz pełne koszty zakupu i utrzymania mieszkania",
     methodologyHeading: "Jak liczymy ceny i ROI",
     methodologyText:
       "Podajemy medianę cen ofertowych, nie cen transakcyjnych, więc realna cena może być niższa o kilka procent. ROI brutto to roczny czynsz podzielony przez cenę zakupu; ROI netto odejmuje koszty utrzymania, podatki i założone pustostany. Dane aktualizujemy razem z bazą rynku i traktujemy jako punkt wyjścia do analizy konkretnej nieruchomości, a nie wycenę.",
@@ -122,6 +124,7 @@ export const PRICE_HUB_COPY: Record<Locale, PriceHubCopy> = {
       "Refuse collection and insurance: around €200-500 a year",
       "Maintenance and sinking fund: around 1% of property value a year",
     ],
+    costsCta: "See the full purchase and running costs",
     methodologyHeading: "How we calculate prices and yields",
     methodologyText:
       "We publish the median asking price, not transaction prices, so the final price can be several percent lower. Gross yield is annual rent divided by purchase price; net yield deducts running costs, taxes and assumed voids. Data is refreshed with the market dataset and is a starting point for analysing a specific property, not a valuation.",
@@ -183,6 +186,7 @@ export const PRICE_HUB_COPY: Record<Locale, PriceHubCopy> = {
       "Basura y seguro: unos 200-500 € al año",
       "Mantenimiento y reserva: alrededor del 1% del valor al año",
     ],
+    costsCta: "Ver todos los gastos de compra y mantenimiento",
     methodologyHeading: "Cómo calculamos precios y rentabilidad",
     methodologyText:
       "Publicamos la mediana de precios de oferta, no de transacción, así que el precio final puede ser varios puntos menor. La rentabilidad bruta es el alquiler anual dividido por el precio; la neta descuenta gastos, impuestos y vacíos. Los datos se actualizan con la base de mercado y son un punto de partida para analizar una vivienda concreta, no una tasación.",
