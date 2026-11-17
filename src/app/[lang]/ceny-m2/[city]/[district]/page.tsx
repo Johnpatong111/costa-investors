@@ -176,6 +176,23 @@ export default async function PriceReportPage({
           </h1>
           <p className="mt-4 max-w-3xl text-base leading-relaxed text-brand-700">{report.lead}</p>
 
+          {SERVICES[0] ? (
+            <Link
+              href={translatePath(
+                `/${SERVICES[0].slug}/${entry.city.slug}/${entry.district.slug}`,
+                locale,
+              )}
+              className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-brand-800 underline decoration-brand-300 underline-offset-4 hover:decoration-brand-700"
+            >
+              {locale === "es"
+                ? `Ver apartamentos en venta en ${entry.district.name}`
+                : locale === "en"
+                  ? `See apartments for sale in ${entry.district.name}`
+                  : `Zobacz apartamenty na sprzedaż w ${entry.district.name}`}
+              <span aria-hidden>→</span>
+            </Link>
+          ) : null}
+
           <dl className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-4">
             {[
               { label: copy.colMedian, value: `${formatPrice(report.stats.pricePerM2)} €/m²` },
