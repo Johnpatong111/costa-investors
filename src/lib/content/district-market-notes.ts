@@ -1720,6 +1720,119 @@ NOTES_EXTRA["aguilas/las-delicias"]!.es!.push(
   "En la práctica los inquilinos son en buena parte españoles de Murcia y personal del puerto, así que los contratos van por años y no por temporada, y el amueblado no es condición. Es poco habitual en esta costa. Revisa dos cosas: el ruido del tren de mercancías en bloques junto a las vías y las instalaciones de los edificios de los ochenta sin fondo para ascensores. Sin lo segundo, el banco puede negar la hipoteca.",
 );
 
+const DISTRICT_GUIDES: Record<string, Partial<Record<Locale, string[]>>> = {
+  "alicante/playa-de-san-juan": {
+    pl: [
+      "Przy 3 300 €/m² budżet 200 000 € daje około 60 m², 250 000 € około 76 m², a 300 000 € około 91 m². To dzielnica plaży i tramwaju: linia 4/5 dowozi do centrum, a szeroka plaża i nowe bloki z basenem przyciągają stałych rezydentów. Pod najem całoroczny sprawdź wysokość wspólnoty (basen plus winda) i odległość od przystanku; pod krótki najem licencję turystyczną i hałas w sezonie.",
+    ],
+    en: [
+      "At 3,300 per m², 200,000 buys around 60 square metres, 250,000 around 76 and 300,000 around 91. This is the beach-and-tram district: lines 4 and 5 reach the centre, while the wide beach and new pool blocks attract year-round residents. For annual letting check the community fee (pool plus lift) and the walk to the stop; for short lets check the tourist licence and summer noise.",
+    ],
+    es: [
+      "Con 3.300 por m², 200.000 euros compran unos 60 metros, 250.000 unos 76 y 300.000 unos 91. Es el barrio de playa y tranvía: las líneas 4 y 5 llegan al centro, y la playa amplia y los bloques nuevos con piscina atraen residentes todo el año. Para alquiler anual revisa la comunidad (piscina y ascensor) y la distancia a la parada; para alquiler corto, la licencia turística y el ruido en temporada.",
+    ],
+  },
+  "alicante/cabo-de-las-huertas": {
+    pl: [
+      "Przy 3 670 €/m² budżet 200 000 € daje około 54 m², 250 000 € około 68 m², a 300 000 € około 82 m². To willowa zabudowa nad klifem wokół Cala de la Palmera i Del Mar Golf, z niską podażą nowych inwestycji. Rynek kapitału, nie cash flow: ROI 5,0% oznacza, że płacisz za widok, prywatność i lokalizację. Sprawdź stan klifu, wspólnotę w osiedlach z basenem i realny dostęp do plaży.",
+    ],
+    en: [
+      "At 3,670 per m², 200,000 buys around 54 square metres, 250,000 around 68 and 300,000 around 82. This is clifftop villa country around Cala de la Palmera and Del Mar Golf, with very little new supply. A capital market rather than cash flow: a 5.0 percent yield means you pay for the view, privacy and address. Check the cliff condition, community fees in pool estates and the real walk to the beach.",
+    ],
+    es: [
+      "Con 3.670 por m², 200.000 euros compran unos 54 metros, 250.000 unos 68 y 300.000 unos 82. Es zona de chalets sobre el acantilado junto a Cala de la Palmera y Del Mar Golf, con muy poca obra nueva. Mercado de capital más que de renta: un 5,0 por ciento significa que pagas vistas, privacidad y dirección. Revisa el estado del acantilado, la comunidad en urbanizaciones con piscina y el acceso real a la playa.",
+    ],
+  },
+  "alicante/pau-5": {
+    pl: [
+      "Przy 3 030 €/m² budżet 200 000 € daje około 66 m², 250 000 € około 82 m², a 300 000 € około 99 m². PAU 5 to nowe osiedla z basenem i garażem obok uniwersytetu, więc najem całoroczny trafia do studentów i personelu uczelni. Sprawdź wspólnotę, hałas od obwodnicy i czy lokal ma miejsce parkingowe - bez niego wynajem w tej strefie jest wyraźnie trudniejszy.",
+    ],
+    en: [
+      "At 3,030 per m², 200,000 buys around 66 square metres, 250,000 around 82 and 300,000 around 99. PAU 5 means new estates with a pool and garage next to the university, so annual lets go to students and university staff. Check the community fee, road noise and whether the unit includes parking - without it, letting in this area is noticeably harder.",
+    ],
+    es: [
+      "Con 3.030 por m², 200.000 euros compran unos 66 metros, 250.000 unos 82 y 300.000 unos 99. PAU 5 son urbanizaciones nuevas con piscina y garaje junto a la universidad, así que el alquiler anual va a estudiantes y personal universitario. Revisa la comunidad, el ruido de la ronda y si la vivienda incluye plaza de garaje: sin ella, alquilar en esta zona es bastante más difícil.",
+    ],
+  },
+  "alicante/vistahermosa": {
+    pl: [
+      "Przy 2 450 €/m² budżet 200 000 € daje około 82 m², 250 000 € około 102 m², a 300 000 € około 122 m². Vistahermosa to wille i duże metraże przy Golf Vistahermosa, blisko lotniska i obwodnicy - najniższa cena wejścia w mieście. Pod najem rodzinny sprawdź ogrzewanie, stan dachu i dojazd do szkoły; pod inwestycję licz dłuższą ekspozycję niż w Playa de San Juan.",
+    ],
+    en: [
+      "At 2,450 per m², 200,000 buys around 82 square metres, 250,000 around 102 and 300,000 around 122. Vistahermosa means villas and large floor plans by Golf Vistahermosa, close to the airport and ring road - the lowest entry price in the city. For family lets check heating, roof condition and the school run; for investment expect a longer time on market than in Playa de San Juan.",
+    ],
+    es: [
+      "Con 2.450 por m², 200.000 euros compran unos 82 metros, 250.000 unos 102 y 300.000 unos 122. Vistahermosa son chalets y grandes superficies junto a Golf Vistahermosa, cerca del aeropuerto y la ronda: la entrada más barata de la ciudad. Para alquiler familiar revisa calefacción, estado del tejado y acceso al colegio; para inversión, cuenta con más días de exposición que en Playa de San Juan.",
+    ],
+  },
+  "torrevieja/la-mata": {
+    pl: [
+      "Przy 2 690 €/m² budżet 200 000 € daje około 74 m², 250 000 € około 93 m², a 300 000 € około 112 m². La Mata to plaża, park Lagunas i spokojniejszy rytm niż centrum Torrevieji. Sprawdź, czy budynek nie stoi w strefie ochronnej parku (rozbudowa może być niemożliwa), wysokość wspólnoty i wilgotność w starszych blokach; pod najem sezonowy licencja turystyczna i realna odległość od plaży.",
+    ],
+    en: [
+      "At 2,690 per m², 200,000 buys around 74 square metres, 250,000 around 93 and 300,000 around 112. La Mata means the beach, the Lagunas park and a slower rhythm than central Torrevieja. Check whether the building sits inside the park protection zone (extension may be impossible), the community fee and damp in older blocks; for seasonal lets check the tourist licence and the real walk to the beach.",
+    ],
+    es: [
+      "Con 2.690 por m², 200.000 euros compran unos 74 metros, 250.000 unos 93 y 300.000 unos 112. La Mata es playa, parque de las Lagunas y un ritmo más tranquilo que el centro de Torrevieja. Comprueba si el edificio está en la zona protegida del parque (ampliar puede ser imposible), la comunidad y la humedad en bloques antiguos; para alquiler estacional, licencia turística y distancia real a la playa.",
+    ],
+  },
+  "torrevieja/punta-prima": {
+    pl: [
+      "Przy 3 130 €/m² budżet 200 000 € daje około 64 m², 250 000 € około 80 m², a 300 000 € około 96 m². Punta Prima to nowe osiedla z basenem i ochroną, blisko Zenia Boulevard, popularne wśród kupujących z Polski. Sprawdź wysokość wspólnoty (ochrona plus basen), czy basen jest w licencji i czy do plaży idzie się pieszo, czy trzeba jechać autem.",
+    ],
+    en: [
+      "At 3,130 per m², 200,000 buys around 64 square metres, 250,000 around 80 and 300,000 around 96. Punta Prima means new gated estates with a pool, close to Zenia Boulevard and popular with Polish buyers. Check the community fee (security plus pool), whether the pool is licensed and whether the beach is a walk or a drive.",
+    ],
+    es: [
+      "Con 3.130 por m², 200.000 euros compran unos 64 metros, 250.000 unos 80 y 300.000 unos 96. Punta Prima son urbanizaciones nuevas con piscina y seguridad, cerca de Zenia Boulevard y populares entre compradores polacos. Revisa la comunidad (seguridad y piscina), si la piscina está en licencia y si la playa se alcanza andando o hace falta coche.",
+    ],
+  },
+  "torrevieja/playa-de-los-locos": {
+    pl: [
+      "Przy 2 960 €/m² budżet 200 000 € daje około 68 m², 250 000 € około 84 m², a 300 000 € około 101 m². Pierwsza linia, restauracje i chiringuitos dają wysoką rotację w sezonie, ale poza sezonem jest spokojniej. Pod krótki najem sprawdź licencję i hałas promenady, pod całoroczny - wspólnotę i stan instalacji w blokach z lat 90-2000.",
+    ],
+    en: [
+      "At 2,960 per m², 200,000 buys around 68 square metres, 250,000 around 84 and 300,000 around 101. The front line, restaurants and chiringuitos drive high seasonal turnover, while the rest of the year is quieter. For short lets check the licence and promenade noise; for annual lets check the community fee and the state of installations in 1990s-2000s blocks.",
+    ],
+    es: [
+      "Con 2.960 por m², 200.000 euros compran unos 68 metros, 250.000 unos 84 y 300.000 unos 101. Primera línea, restaurantes y chiringuitos dan alta rotación en temporada, mientras el resto del año es más tranquilo. Para alquiler corto revisa licencia y ruido del paseo; para anual, comunidad y estado de las instalaciones en bloques de los 90-2000.",
+    ],
+  },
+  "benidorm/playa-de-levante": {
+    pl: [
+      "Przy 3 640 €/m² budżet 200 000 € daje około 55 m², 250 000 € około 69 m², a 300 000 € około 82 m². Pierwsza linia, Aqualandia i całoroczna strefa rozrywki dają najwyższą rotację turystyczną w mieście. Pod krótki najem sprawdź licencję turystyczną, wspólnotę w wieżowcu i hałas; pod własne użycie wybierz wyższe piętro od strony morza, z dala od ciągów barów.",
+    ],
+    en: [
+      "At 3,640 per m², 200,000 buys around 55 square metres, 250,000 around 69 and 300,000 around 82. The front line, Aqualandia and year-round entertainment give the highest tourist turnover in town. For short lets check the tourist licence, high-rise community fee and noise; for personal use choose a higher floor facing the sea, away from the bar strips.",
+    ],
+    es: [
+      "Con 3.640 por m², 200.000 euros compran unos 55 metros, 250.000 unos 69 y 300.000 unos 82. Primera línea, Aqualandia y ocio todo el año dan la mayor rotación turística de la ciudad. Para alquiler corto revisa licencia, comunidad del rascacielos y ruido; para uso propio elige una planta alta frente al mar, lejos de las calles de bares.",
+    ],
+  },
+  "benidorm/playa-de-poniente": {
+    pl: [
+      "Przy 3 160 €/m² budżet 200 000 € daje około 63 m², 250 000 € około 79 m², a 300 000 € około 95 m². Poniente to spokojniejsza plaża z szerokim deptakiem, bloki z lat 2000-2015 i dobry dostęp do N-332. To kompromis między Levante a Foietes: sprawdź wspólnotę, nasłonecznienie balkonu i czy budynek ma parking.",
+    ],
+    en: [
+      "At 3,160 per m², 200,000 buys around 63 square metres, 250,000 around 79 and 300,000 around 95. Poniente is the quieter beach with a wide promenade, 2000-2015 blocks and good access to the N-332. It sits between Levante and Foietes: check the community fee, balcony sun and whether the building has parking.",
+    ],
+    es: [
+      "Con 3.160 por m², 200.000 euros compran unos 63 metros, 250.000 unos 79 y 300.000 unos 95. Poniente es la playa más tranquila, con paseo amplio, bloques de 2000-2015 y buen acceso a la N-332. Es el punto medio entre Levante y Foietes: revisa comunidad, sol del balcón y si el edificio tiene garaje.",
+    ],
+  },
+  "benidorm/rincon-de-loix": {
+    pl: [
+      "Przy 3 530 €/m² budżet 200 000 € daje około 57 m², 250 000 € około 71 m², a 300 000 € około 85 m². Zwarta zabudowa wysokościowa, plaża i Cala Tío Ximo, usługi w zasięgu spaceru. To najwyższe ROI w mieście (6,2%), ale też największa rotacja najemców: sprawdź licencję turystyczną, zużycie lokalu i wspólnotę w starszych wieżowcach.",
+    ],
+    en: [
+      "At 3,530 per m², 200,000 buys around 57 square metres, 250,000 around 71 and 300,000 around 85. Dense high-rise, the beach and Cala Tío Ximo, with services within walking distance. It has the town's highest yield at 6.2 percent but also the fastest tenant turnover: check the tourist licence, wear and tear and the community fee in older towers.",
+    ],
+    es: [
+      "Con 3.530 por m², 200.000 euros compran unos 57 metros, 250.000 unos 71 y 300.000 unos 85. Edificación alta y compacta, playa y Cala Tío Ximo, con servicios a pie. Tiene la mayor rentabilidad de la ciudad (6,2 por ciento) pero también la mayor rotación: revisa licencia turística, desgaste de la vivienda y comunidad en torres antiguas.",
+    ],
+  },
+};
+
 export function districtMarketNote(
   citySlug: string,
   districtSlug: string,
@@ -1727,14 +1840,15 @@ export function districtMarketNote(
   variant: "service" | "report" = "service",
 ): DistrictMarketNote | null {
   const key = `${citySlug}/${districtSlug}`;
-  const paragraphs = NOTES[key]?.[locale];
-  if (!paragraphs || paragraphs.length === 0) return null;
+  const paragraphs = NOTES[key]?.[locale] ?? [];
   const extra = NOTES_EXTRA[key]?.[locale] ?? [];
   const reportExtra = REPORT_EXTRA[key]?.[locale] ?? [];
+  const guide = DISTRICT_GUIDES[key]?.[locale] ?? [];
+  if (paragraphs.length === 0 && extra.length === 0 && guide.length === 0) return null;
   // Raport cenowy startuje od akapitu o mikro-lokalizacji, a resztę stanowi
   // własna analiza liczbowa - dzięki temu nie powtarza noty ze strony usługi.
   if (variant === "report" && reportExtra.length > 0) {
-    return { heading: HEADING[locale], paragraphs: [paragraphs[0]!, ...reportExtra] };
+    return { heading: HEADING[locale], paragraphs: [paragraphs[0]!, ...reportExtra, ...guide] };
   }
-  return { heading: HEADING[locale], paragraphs: [...paragraphs, ...extra] };
+  return { heading: HEADING[locale], paragraphs: [...paragraphs, ...extra, ...guide] };
 }
