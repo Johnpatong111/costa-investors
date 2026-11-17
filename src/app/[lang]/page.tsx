@@ -3,6 +3,7 @@ import Link from "next/link";
 import { LeadEngine } from "@/components/lead/lead-engine";
 import { Hero } from "@/components/sections/hero";
 import { BuyingCosts } from "@/components/sections/buying-costs";
+import { OwnershipCosts } from "@/components/sections/ownership-costs";
 import { CityRoiTable } from "@/components/sections/city-roi-table";
 import { FaqAccordion } from "@/components/sections/faq-accordion";
 import { JsonLd } from "@/components/seo/json-ld";
@@ -115,6 +116,9 @@ export default async function HomePage({
         </div>
       </Hero>
       <BuyingCosts copy={deepDive} />
+
+      <OwnershipCosts locale={locale} />
+
       <Section className="bg-brand-50/60">
         <SectionHeading eyebrow={home.marketsEyebrow}>
           {locale === "es"

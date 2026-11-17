@@ -2,8 +2,10 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { LeadEngine } from "@/components/lead/lead-engine";
 import { Breadcrumbs, type Crumb } from "@/components/sections/breadcrumbs";
+import { BuyingCosts } from "@/components/sections/buying-costs";
 import { Hero } from "@/components/sections/hero";
 import { HowItWorks } from "@/components/sections/how-it-works";
+import { OwnershipCosts } from "@/components/sections/ownership-costs";
 import { FaqAccordion } from "@/components/sections/faq-accordion";
 import { InternalLinks } from "@/components/sections/internal-links";
 import { Section, SectionHeading } from "@/components/ui/primitives";
@@ -15,6 +17,8 @@ import { interpolate } from "@/lib/content/interpolate";
 import { assertLocale, isLocale, ROUTABLE_LOCALES, type Locale } from "@/lib/i18n/config";
 import { getServiceCopy, getLocalizedContent } from "@/lib/i18n/content/builders";
 import { HUB_COPY } from "@/lib/i18n/hub-copy";
+import { getHomeDeepDiveCopy } from "@/lib/i18n/home-deep-dive";
+import { OWNERSHIP_FAQ } from "@/lib/i18n/ownership-costs";
 import { getUiCopy } from "@/lib/i18n/ui";
 import { ADVISORY_KEYWORDS } from "@/lib/i18n/seo-copy";
 import { translatePath } from "@/lib/i18n/paths";
@@ -94,6 +98,7 @@ export default async function ServiceHubPage({
   const { service, kind } = resolved;
   const copy = getServiceCopy(kind, locale);
   const ui = HUB_COPY[locale];
+  const deepDive = getHomeDeepDiveCopy(locale);
 
   const crumbs: Crumb[] = [
     { name: ui.home, path: "/" },
@@ -161,6 +166,8 @@ export default async function ServiceHubPage({
           answer: interpolate(item.a, copyVars),
         }));
 
+  const allFaq = [...hubFaq, ...OWNERSHIP_FAQ[locale]];
+
   const JOINERS: Record<Locale, string> = { pl: " i ", en: " and ", es: " y " };
   const regionLabel = regions.map((region) => region.name).join(JOINERS[locale]);
 
@@ -198,6 +205,10 @@ export default async function ServiceHubPage({
         title={uiCopy.howItWorksTitle(copy.name, regionLabel)}
         subtitle={uiCopy.howItWorksSubtitle}
       />
+
+      <BuyingCosts copy={deepDive} />
+
+      <OwnershipCosts locale={locale} />
 
       <Section>
         <SectionHeading eyebrow={ui.coverageEyebrow}>{ui.coverageTitle}</SectionHeading>
@@ -241,7 +252,7 @@ export default async function ServiceHubPage({
         </div>
       </Section>
 
-      <FaqAccordion items={hubFaq} title={uiCopy.faqTitle(copy.name, regionLabel)} />
+      <FaqAccordion items={allFaq} title={uiCopy.faqTitle(copy.name, regionLabel)} />
 
       <InternalLinks
         title={ui.otherServices}
@@ -281,7 +292,7 @@ export default async function ServiceHubPage({
             priceRangeLabel: copy.priceAnchor,
             locale,
           }),
-          faqNode(hubFaq, path, locale),
+          faqNode(allFaq, path, locale),
         ]}
       />
     </>
