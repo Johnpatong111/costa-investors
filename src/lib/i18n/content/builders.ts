@@ -41,6 +41,7 @@ import {
 } from "../../content/district-deep-dive";
 import { formatEur, formatRate } from "../../utils/format";
 import { buildCityBuyerBrief, buildDistrictBuyerBrief } from "../../content/buyer-brief";
+import { serviceCityMeta, serviceDistrictMeta } from "../../content/service-meta";
 import {
   MAX_DESCRIPTION_LENGTH,
   MAX_TITLE_LENGTH,
@@ -186,8 +187,9 @@ export function buildLocalizedDistrictContent(
   const t = (template: string) => interpolate(template, vars);
 
   const h1 = t(pick(service.h1, key, "h1"));
-  const metaTitle = clip(t(pick(service.metaTitle, key, "title")), MAX_TITLE_LENGTH);
-  const metaDescription = clip(t(pick(service.metaDescription, key, "desc")), MAX_DESCRIPTION_LENGTH);
+  const meta = serviceDistrictMeta(city.name, district.name, stats, locale);
+  const metaTitle = meta.title;
+  const metaDescription = meta.description;
   const lead = t(pick(dict.district.leads, key, "lead"));
 
   const blocks: ContentBlock[] = buildLocalizedDistrictBlocks({
@@ -274,14 +276,9 @@ export function buildLocalizedCityContent(
   );
   // Kontekst miasta nie ma dzielnicy: `{district}` = nazwa miasta dublowałaby
   // `{city}` w tagu title, dlatego w szablonach SERP zostawiamy je puste.
-  const serpVars: Vars = { ...vars, district: "", districtLoc: "", districtGen: "", districtType: "" };
-  const serp = (template: string) => dedupeWords(interpolate(template, serpVars));
-  const metaTitle = clip(serp(pick(service.metaTitle, key, "title")), MAX_TITLE_LENGTH);
-  // Opis używa PEŁNYCH zmiennych: {districtLoc} musi wskazywać miasto.
-  const metaDescription = clip(
-    dedupeWords(interpolate(pick(service.metaDescription, key, "desc"), vars)),
-    MAX_DESCRIPTION_LENGTH,
-  );
+  const meta = serviceCityMeta(city.name, stats, locale);
+  const metaTitle = meta.title;
+  const metaDescription = meta.description;
   const lead = dedupeWords(t(pick(dict.city.leads, key, "lead")));
 
   const districtBullets = city.districts

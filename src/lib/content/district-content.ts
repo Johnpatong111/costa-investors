@@ -23,6 +23,7 @@ import {
 import { buildDistrictBlocks } from "./district-blocks";
 import { buildDistrictFaq, buildKeywords } from "./district-faq";
 import { buildDistrictBuyerBrief } from "./buyer-brief";
+import { serviceDistrictMeta } from "./service-meta";
 import { profileFaq, profileParagraphs } from "./content-engine";
 import { districtMarketNote } from "./district-market-notes";
 import { districtDeepDive, districtDeepFaq, rotateItems } from "./district-deep-dive";
@@ -56,11 +57,9 @@ export function buildDistrictContent(
   const t = (template: string) => interpolate(template, vars);
 
   const h1 = t(pick(service.h1, key, "h1"));
-  const metaTitle = clip(t(pick(service.metaTitle, key, "title")), MAX_TITLE_LENGTH);
-  const metaDescription = clip(
-    t(pick(service.metaDescription, key, "desc")),
-    MAX_DESCRIPTION_LENGTH,
-  );
+  const meta = serviceDistrictMeta(city.name, district.name, stats, "pl");
+  const metaTitle = meta.title;
+  const metaDescription = meta.description;
 
   const lead = t(
     pick(

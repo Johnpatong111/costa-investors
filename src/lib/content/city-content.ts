@@ -23,6 +23,7 @@ import { cityAccessBlock } from "./access";
 import { cityMarketNote } from "./city-market-notes";
 import { cityDeepDive, cityDeepFaq, rotateItems } from "./district-deep-dive";
 import { buildCityBuyerBrief } from "./buyer-brief";
+import { serviceCityMeta } from "./service-meta";
 
 /**
  * Hub miasta: /{service}/{city}. Intencja: porównanie lokalizacji na Costa Blanca,
@@ -58,35 +59,9 @@ export function buildCityContent(
     ),
   );
 
-  const metaTitle = clip(
-    t(
-      pick(
-        [
-          `${service.name} ${city.name} (${region.name}) | od 120k €`,
-          `${service.name} ${city.nameLocative}. Ceny i ROI`,
-          `Inwestycja w ${city.nameLocative}: ${service.name}`,
-        ],
-        key,
-        "title",
-      ),
-    ),
-    MAX_TITLE_LENGTH,
-  );
-
-  const metaDescription = clip(
-    t(
-      pick(
-        [
-          `${service.name} w ${city.nameLocative}: mediana {cityPrice} €/m², ROI {yield}, wzrost {growth} r/r. Zobacz oferty i policz zwrot w 2026!`,
-          `Szukasz ${service.nameGenitive} w ${city.nameLocative}? Średnia cena: {cityPrice} €/m². Sprawdź dzielnice, koszty zakupu i uzyskaj konsultację.`,
-          `Nieruchomości w ${city.nameLocative} dla Polaków: {cityPrice} €/m², czynsz {rent} €/m², ROI {yield}. Bezpłatna analiza zakupu.`,
-        ],
-        key,
-        "desc",
-      ),
-    ),
-    MAX_DESCRIPTION_LENGTH,
-  );
+  const meta = serviceCityMeta(city.name, stats, "pl");
+  const metaTitle = meta.title;
+  const metaDescription = meta.description;
 
   const lead = t(
     pick(
