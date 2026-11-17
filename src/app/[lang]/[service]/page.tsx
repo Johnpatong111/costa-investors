@@ -72,11 +72,12 @@ export async function generateMetadata({
   const regions = getRegions().map((region) => region.name).join(", ");
 
   return buildMetadata({
-    title: ui.h1(copy.name, regions),
+    title: ui.metaTitle(copy.name),
     description: ui.metaDescription(copy.name, copy.priceAnchor),
     path: `/${service.slug}`,
     keywords: [copy.name, `${copy.name} Costa Blanca`, `${copy.name} Costa Cálida`, ...ADVISORY_KEYWORDS[locale]],
     locale,
+    rawSerp: true,
   });
 }
 

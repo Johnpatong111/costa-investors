@@ -29,6 +29,7 @@ export async function generateMetadata({
     path: `/${PRICE_REPORT.slug}`,
     keywords: PRICE_HUB_META[locale].keywords,
     locale,
+    rawSerp: true,
   });
 }
 

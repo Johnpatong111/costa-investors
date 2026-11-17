@@ -25,6 +25,7 @@ export interface HubCopy {
   reportsGroup: string;
   reportLabel: string;
   notFound: string;
+  metaTitle: (name: string) => string;
   metaDescription: (name: string, anchor: string) => string;
 }
 
@@ -53,8 +54,9 @@ export const HUB_COPY: Record<Locale, HubCopy> = {
     reportsGroup: "Raporty inwestycyjne",
     reportLabel: "Ceny m² i ROI w Hiszpanii",
     notFound: "Nie znaleziono usługi",
+    metaTitle: (name) => `${name} Costa Blanca | ceny, ROI i koszty`,
     metaDescription: (name, anchor) =>
-      `${name} na Costa Blanca i Costa Cálida: ${anchor}. Ceny €/m², ROI, koszty zakupu i kontakt z agencją kupującego (buyer's agent) mówiącą po polsku.`,
+      `${name} na Costa Blanca i Costa Cálida: ${anchor}. Ceny €/m², ROI, koszty zakupu i polskojęzyczny agent kupującego.`,
   },
   en: {
     home: "Home",
@@ -80,8 +82,9 @@ export const HUB_COPY: Record<Locale, HubCopy> = {
     reportsGroup: "Investment reports",
     reportLabel: "€/m² prices and ROI in Spain",
     notFound: "Service not found",
+    metaTitle: (name) => `${name} Costa Blanca & Cálida | prices and ROI`,
     metaDescription: (name, anchor) =>
-      `${name} on Costa Blanca and Costa Cálida: ${anchor}. €/m² prices, ROI, purchase costs and an independent buyer's agent who speaks English.`,
+      `${name} on Costa Blanca and Costa Cálida: ${anchor}. €/m² prices, yields, purchase costs and an independent English-speaking buyer's agent.`,
   },
   es: {
     home: "Inicio",
@@ -107,7 +110,8 @@ export const HUB_COPY: Record<Locale, HubCopy> = {
     reportsGroup: "Informes de inversión",
     reportLabel: "Precios €/m² y ROI en España",
     notFound: "Servicio no encontrado",
+    metaTitle: (name) => `${name} Costa Blanca y Cálida | precios y ROI`,
     metaDescription: (name, anchor) =>
-      `${name} en Costa Blanca y Costa Cálida: ${anchor}. Precios €/m², ROI, gastos de compra y agente comprador (buyer's agent) independiente.`,
+      `${name} en Costa Blanca y Costa Cálida: ${anchor}. Precios €/m², ROI, gastos de compra y agente comprador independiente.`,
   },
 };

@@ -24,7 +24,7 @@ export const HOME_SEO: Record<Locale, SeoCopy> = {
   pl: {
     title: "Nieruchomości Costa Blanca i Cálida | ROI i ceny 2026",
     description:
-      "Apartamenty, wille i domy inwestycyjne w 15 miejscowościach Hiszpanii. Ceny od 120 000 €, ROI z najmu do 6,9%, historia cen 2016-2026. Agencja kupującego po polsku.",
+      "Apartamenty, wille i domy inwestycyjne w 15 miejscowościach Hiszpanii. Ceny od 120 000 €, ROI z najmu do 6,9%, historia cen 2016-2026.",
     keywords: [
       "nieruchomości Costa Blanca",
       "inwestycja w nieruchomości Hiszpania",
