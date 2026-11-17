@@ -166,7 +166,7 @@ export default async function ServiceHubPage({
           answer: interpolate(item.a, copyVars),
         }));
 
-  const allFaq = [...hubFaq, ...OWNERSHIP_FAQ[locale]];
+  const allFaq = kind === "buy" ? [...hubFaq, ...OWNERSHIP_FAQ[locale]] : hubFaq;
 
   const JOINERS: Record<Locale, string> = { pl: " i ", en: " and ", es: " y " };
   const regionLabel = regions.map((region) => region.name).join(JOINERS[locale]);
@@ -206,9 +206,13 @@ export default async function ServiceHubPage({
         subtitle={uiCopy.howItWorksSubtitle}
       />
 
-      <BuyingCosts copy={deepDive} />
+      {kind === "buy" ? (
+        <>
+          <BuyingCosts copy={deepDive} />
 
-      <OwnershipCosts locale={locale} />
+          <OwnershipCosts locale={locale} />
+        </>
+      ) : null}
 
       <Section>
         <SectionHeading eyebrow={ui.coverageEyebrow}>{ui.coverageTitle}</SectionHeading>
