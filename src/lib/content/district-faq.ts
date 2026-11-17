@@ -42,15 +42,6 @@ export function buildDistrictFaq(
     `Dla kupującego z Polski istotne jest to, że ${district.nameLocative} obsługuje ${city.name} - polskojęzyczny notariusz i zarządca najmu są dostępni lokalnie.`,
   ];
 
-  const serviceFaq: FaqItem[] = service.faq.map((item, index) => {
-    const answer = t(item.a);
-    const note = localNotes[hashString(`${key}::note${index}`) % localNotes.length] ?? "";
-    return {
-      question: t(item.q),
-      answer: index % 2 === 0 ? `${answer} ${note}` : answer,
-    };
-  });
-
   const priceAnswers = [
     `Mediana ofertowa w ${district.nameLocative} to ${formatEur(stats.pricePerM2)} (dane: ${stats.dataAsOf}). To ${describePricePosition(stats)}; dla całego miasta ${city.nameGenitive} mediana wynosi ${formatEur(stats.cityPricePerM2)}, a dla regionu ${region.name} ${formatEur(stats.regionPricePerM2)}. Niższa stawka zwykle oznacza starsze budownictwo albo większą odległość od plaży.`,
     `Za metr w ${district.nameLocative} płaci się około ${formatEur(stats.pricePerM2)} (dane: ${stats.dataAsOf}), czyli ${describePricePosition(stats)}. Mediana ${city.nameGenitive} to ${formatEur(stats.cityPricePerM2)}, więc różnica jest czytelna w budżecie: lokal 70 m² kosztuje tu około ${formatEur(stats.pricePerM2 * 70)}.`,
@@ -122,12 +113,8 @@ export function buildDistrictFaq(
     },
   ];
 
-  // Rotacja układu FAQ: kolejny czynnik różnicujący układ strony.
-  const merged = pick([true, false], key, "faqorder")
-    ? [...localFaq, ...serviceFaq]
-    : [...serviceFaq, ...localFaq];
-
-  return rotate(merged, hashString(`${key}::faq`) % merged.length);
+  // Rotacja lokalnego FAQ: kolejny czynnik różnicujący układ strony.
+  return rotate(localFaq, hashString(`${key}::faq`) % localFaq.length);
 }
 
 export function buildKeywords(

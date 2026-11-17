@@ -5,7 +5,6 @@ import { Breadcrumbs, type Crumb } from "@/components/sections/breadcrumbs";
 import { ContentBlocks } from "@/components/sections/content-blocks";
 import { FaqAccordion } from "@/components/sections/faq-accordion";
 import { Hero } from "@/components/sections/hero";
-import { HowItWorks } from "@/components/sections/how-it-works";
 import { InternalLinks } from "@/components/sections/internal-links";
 import { MarketStatsSection } from "@/components/sections/market-stats";
 import { InvestorWorkbench } from "@/components/tools/investor-workbench";
@@ -202,12 +201,6 @@ export default async function CityServicePage({
           />
         </div>
       </section>
-
-      <HowItWorks
-        eyebrow={ui.howItWorks}
-        steps={content.processSteps}
-        title={ui.howItWorksTitle(serviceName, city.name)}
-      />
 
       <FaqAccordion items={content.faq} title={ui.faqTitle(serviceName, city.name)} />
 

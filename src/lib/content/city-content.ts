@@ -22,6 +22,7 @@ import { buildCityBlocks, buildCityFaq } from "./city-blocks";
 import { cityAccessBlock } from "./access";
 import { cityMarketNote } from "./city-market-notes";
 import { cityDeepDive, cityDeepFaq, rotateItems } from "./district-deep-dive";
+import { buildCityBuyerBrief } from "./buyer-brief";
 
 /**
  * Hub miasta: /{service}/{city}. Intencja: porównanie lokalizacji na Costa Blanca,
@@ -99,6 +100,7 @@ export function buildCityContent(
   );
 
   const blocks = buildCityBlocks(city, service, t, vars, key, stats);
+  blocks.push(...buildCityBuyerBrief(city, region, stats, "pl"));
 
 // Nota rynkowa: autorski akapit per miasto, żeby strony tej samej usługi
 // w różnych miastach nie dzieliły identycznego szkieletu (Jaccard 0.76).

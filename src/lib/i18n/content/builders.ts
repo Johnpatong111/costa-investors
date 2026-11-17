@@ -40,6 +40,7 @@ import {
   rotateItems,
 } from "../../content/district-deep-dive";
 import { formatEur, formatRate } from "../../utils/format";
+import { buildCityBuyerBrief, buildDistrictBuyerBrief } from "../../content/buyer-brief";
 import {
   MAX_DESCRIPTION_LENGTH,
   MAX_TITLE_LENGTH,
@@ -200,6 +201,7 @@ export function buildLocalizedDistrictContent(
     vars,
     t,
   });
+  blocks.push(...buildDistrictBuyerBrief(entry, stats, locale));
   blocks.push({
     id: "profil",
     heading:
@@ -433,22 +435,9 @@ export function buildLocalizedCityContent(
           : `Which area to choose in ${city.name}`,
       paragraphs: [cityHighlights],
     },
-    {
-      id: "koszty",
-      heading: locale === "es" ? "Gastos de compra e impuestos" : "Purchase costs and taxes",
-      // Akapit o stawkach krajowych był identyczny wszędzie; zostaje checklista.
-      paragraphs: [],
-      bullets: service.checklist.map((item) => t(item)),
-    },
-    {
-      id: "usluga",
-      heading: service.name,
-      paragraphs: service.benefits
-        .slice(0, 1)
-        .map((benefit) => `${t(benefit.title)}: ${t(benefit.description)}`),
-      bullets: service.checklist.slice(0, 2).map((item) => t(item)),
-    },
   ];
+
+  blocks.push(...buildCityBuyerBrief(city, region, stats, locale));
 
   // Nota rynkowa: autorski akapit per miasto (patrz city-market-notes.ts).
   const marketNote = cityMarketNote(city.slug, locale);

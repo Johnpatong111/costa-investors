@@ -22,6 +22,7 @@ import {
 } from "./content-utils";
 import { buildDistrictBlocks } from "./district-blocks";
 import { buildDistrictFaq, buildKeywords } from "./district-faq";
+import { buildDistrictBuyerBrief } from "./buyer-brief";
 import { profileFaq, profileParagraphs } from "./content-engine";
 import { districtMarketNote } from "./district-market-notes";
 import { districtDeepDive, districtDeepFaq, rotateItems } from "./district-deep-dive";
@@ -74,6 +75,7 @@ export function buildDistrictContent(
   );
 
   const blocks = buildDistrictBlocks({ service, stats, city, district, region, key, vars, t });
+  blocks.push(...buildDistrictBuyerBrief(entry, stats, "pl"));
   blocks.push({
     id: "profil",
     heading: `Profil lokalny: ${district.name}`,
