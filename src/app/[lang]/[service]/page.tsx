@@ -95,6 +95,11 @@ export default async function ServiceHubPage({
     { name: ui.home, path: "/" },
     { name: copy.name, path: `/${service.slug}` },
   ];
+  const path = translatePath(`/${service.slug}`, locale);
+  const jsonLdCrumbs = crumbs.map((item) => ({
+    ...item,
+    path: translatePath(item.path, locale),
+  }));
 
   const cities = getCities();
   const regions = getRegions();
@@ -224,10 +229,10 @@ export default async function ServiceHubPage({
 
       <JsonLd
         nodes={[
-          breadcrumbNode(crumbs),
+          breadcrumbNode(jsonLdCrumbs),
           serviceNode({
             service: { ...service, name: copy.name },
-            path: `/${service.slug}`,
+            path,
             description: ui.metaDescription(copy.name, copy.priceAnchor),
             areaServed: [
               { name: "Costa Blanca", type: "AdministrativeArea" },

@@ -130,7 +130,10 @@ export default async function DistrictServicePage({
     locale === "pl"
       ? buildDistrictContent(entry, service)
       : buildLocalizedDistrictContent(entry, kind, locale)!;
-  const path = `/${service.slug}/${entry.city.slug}/${entry.district.slug}`;
+  const path = translatePath(
+    `/${service.slug}/${entry.city.slug}/${entry.district.slug}`,
+    locale,
+  );
   const districtName = entry.district.name;
   const cityName = entry.city.name;
 
@@ -140,6 +143,10 @@ export default async function DistrictServicePage({
     { name: cityName, path: `/${service.slug}/${entry.city.slug}` },
     { name: districtName, path },
   ];
+  const jsonLdCrumbs = crumbs.map((item) => ({
+    ...item,
+    path: translatePath(item.path, locale),
+  }));
 
   const nearby = getNearbyDistricts(entry, 4);
   const otherServices = SERVICES.filter((item) => item.slug !== service.slug);
@@ -237,7 +244,7 @@ export default async function DistrictServicePage({
 
       <JsonLd
         nodes={[
-          breadcrumbNode(crumbs),
+          breadcrumbNode(jsonLdCrumbs),
           placeNode({
             path,
             name: districtName,

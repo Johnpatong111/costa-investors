@@ -89,7 +89,10 @@ export default async function PriceReportPage({
 
   const report =
     locale === "pl" ? buildPriceReport(entry) : buildLocalizedPriceReport(entry, locale)!;
-  const path = `/${PRICE_REPORT.slug}/${entry.city.slug}/${entry.district.slug}`;
+  const path = translatePath(
+    `/${PRICE_REPORT.slug}/${entry.city.slug}/${entry.district.slug}`,
+    locale,
+  );
 
   // Tabela porównawcza: PL dostaje gotowe wiersze z buildera, EN/ES liczymy
   // z tych samych seedów, więc liczby są identyczne w każdym języku.
@@ -150,9 +153,13 @@ export default async function PriceReportPage({
   const crumbs: Crumb[] = [
     { name: ui.home, path: "/" },
     { name: PRICE_REPORT.name, path: `/${PRICE_REPORT.slug}` },
-    { name: entry.city.name, path: `/${PRICE_REPORT.slug}` },
+    { name: entry.city.name, path: `/${PRICE_REPORT.slug}/${entry.city.slug}` },
     { name: entry.district.name, path },
   ];
+  const jsonLdCrumbs = crumbs.map((item) => ({
+    ...item,
+    path: translatePath(item.path, locale),
+  }));
 
   return (
     <>
@@ -442,7 +449,7 @@ export default async function PriceReportPage({
 
       <JsonLd
         nodes={[
-          breadcrumbNode(crumbs),
+          breadcrumbNode(jsonLdCrumbs),
           datasetNode({
             locale,
             name: report.h1,

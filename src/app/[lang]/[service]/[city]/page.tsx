@@ -122,13 +122,17 @@ export default async function CityServicePage({
     locale === "pl"
       ? buildCityContent(city, region, service)
       : buildLocalizedCityContent(city, region, kind, locale)!;
-  const path = `/${service.slug}/${city.slug}`;
+  const path = translatePath(`/${service.slug}/${city.slug}`, locale);
 
   const crumbs: Crumb[] = [
     { name: ui.home, path: "/" },
     { name: serviceName, path: `/${service.slug}` },
     { name: city.name, path },
   ];
+  const jsonLdCrumbs = crumbs.map((item) => ({
+    ...item,
+    path: translatePath(item.path, locale),
+  }));
 
   return (
     <>
@@ -242,7 +246,7 @@ export default async function CityServicePage({
 
       <JsonLd
         nodes={[
-          breadcrumbNode(crumbs),
+          breadcrumbNode(jsonLdCrumbs),
           serviceNode({
             service: { ...service, name: getServiceCopy(service.kind, locale).name },
             path,
@@ -252,6 +256,7 @@ export default async function CityServicePage({
               { name: region.name, type: "AdministrativeArea" },
             ],
             priceRangeLabel: getServiceCopy(service.kind, locale).priceAnchor,
+            locale,
           }),
           faqNode(content.faq, path, locale),
         ]}
