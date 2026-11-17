@@ -2,8 +2,9 @@ import Link from "next/link";
 import { Container } from "@/components/ui/primitives";
 import { Logo } from "@/components/ui/logo";
 import { LanguageSwitcher } from "@/components/layout/language-switcher";
-import { SERVICES } from "@/lib/data/services";
+import { PRICE_REPORT, SERVICES } from "@/lib/data/services";
 import { getServiceCopy } from "@/lib/i18n/content/builders";
+import { RANKING_COPY } from "@/lib/i18n/ranking-copy";
 import { localePath, type Locale } from "@/lib/i18n/config";
 import { translatePath } from "@/lib/i18n/paths";
 import { getUiCopy } from "@/lib/i18n/ui";
@@ -28,6 +29,22 @@ export function SiteHeader({ lang }: { lang: Locale }) {
                 </Link>
               </li>
             ))}
+            <li>
+              <Link
+                href={translatePath(`/${PRICE_REPORT.slug}`, lang)}
+                className="transition-colors hover:text-brand-950"
+              >
+                {ui.reportsNav}
+              </Link>
+            </li>
+            <li>
+              <Link
+                href={translatePath("/ranking-roi", lang)}
+                className="transition-colors hover:text-brand-950"
+              >
+                {RANKING_COPY[lang].navLabel}
+              </Link>
+            </li>
           </ul>
         </nav>
 
