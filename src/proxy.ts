@@ -1,5 +1,5 @@
 import { NextResponse, type NextRequest } from "next/server";
-import { DEFAULT_LOCALE, isLocale, type Locale } from "@/lib/i18n/config";
+import { DEFAULT_LOCALE, isLocale, stripLocale, type Locale } from "@/lib/i18n/config";
 import { translatePath } from "@/lib/i18n/paths";
 import { allServiceSlugs, isPriceReportSlug, PRICE_REPORT_SLUGS, priceReportSlug, serviceKindFromSlug, serviceSlug } from "@/lib/i18n/service-slugs";
 
@@ -23,6 +23,31 @@ const LEGACY_PREFIXES = new Set([
   "polityka-prywatnosci",
   "regulamin",
 ]);
+
+/**
+ * Usługi wycofane z oferty. Ich stare slugi (PL/EN/ES) nie mogą zwracać 404,
+ * bo Google i linki zewnętrzne nadal je znają. Mapujemy je 301 na najbliższą
+ * istniejącą stronę: wille → apartamenty, inwestycje → raporty ROI,
+ * lead magnet → apartamenty.
+ */
+const REMOVED_SERVICE_TARGET: Record<string, "buy" | "price"> = {
+  villa: "buy",
+  investment: "price",
+  "lead-magnet": "buy",
+};
+
+function removedServiceRedirect(pathname: string, locale: Locale): string | null {
+  const { path } = stripLocale(pathname);
+  const segments = path.split("/").filter(Boolean);
+  const kind = segments[0] ? serviceKindFromSlug(segments[0]) : undefined;
+  if (!kind) return null;
+
+  const target = REMOVED_SERVICE_TARGET[kind];
+  if (!target) return null;
+
+  const first = target === "price" ? priceReportSlug(locale) : serviceSlug("buy", locale);
+  return `/${locale}/${[first, ...segments.slice(1)].join("/")}`;
+}
 
 function detectLocale(request: NextRequest): Locale {
   const cookie = request.cookies.get("NEXT_LOCALE")?.value;
@@ -61,6 +86,22 @@ export function proxy(request: NextRequest) {
 
   if (firstSegment === "og" || firstSegment === "sitemap-index.xml") {
     return NextResponse.next();
+  }
+
+  // Stare slugi wycofanych usług → 301 na istniejącą stronę (bez 404).
+  const requestLocale: Locale =
+    firstSegment && isLocale(firstSegment) ? firstSegment : detectLocale(request);
+  const removedRedirect = removedServiceRedirect(pathname, requestLocale);
+  if (removedRedirect) {
+    const redirectUrl = request.nextUrl.clone();
+    redirectUrl.pathname = removedRedirect;
+    const redirect = NextResponse.redirect(redirectUrl, 301);
+    redirect.cookies.set("NEXT_LOCALE", requestLocale, {
+      path: "/",
+      maxAge: 60 * 60 * 24 * 365,
+      sameSite: "lax",
+    });
+    return redirect;
   }
 
   if (firstSegment && isLocale(firstSegment)) {
