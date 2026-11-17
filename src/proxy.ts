@@ -109,7 +109,7 @@ export function proxy(request: NextRequest) {
     const serviceSegment = segments[1];
 
     // Hub cen ma własny slug per język. Stary polski slug pod /en lub /es
-    // dostaje 308 na wersję językową, a nowy slug jest przepisywany
+    // dostaje 301 na wersję językową, a nowy slug jest przepisywany
     // wewnętrznie na trasę /{lang}/ceny-m2/... (bez zmiany URL-a w pasku).
     if (serviceSegment && isPriceReportSlug(serviceSegment)) {
       const canonicalPriceSlug = priceReportSlug(locale);
@@ -117,7 +117,7 @@ export function proxy(request: NextRequest) {
       if (serviceSegment !== canonicalPriceSlug) {
         const redirectUrl = request.nextUrl.clone();
         redirectUrl.pathname = translatePath(pathname, locale);
-        const redirect = NextResponse.redirect(redirectUrl, 308);
+        const redirect = NextResponse.redirect(redirectUrl, 301);
         redirect.cookies.set("NEXT_LOCALE", locale, {
           path: "/",
           maxAge: 60 * 60 * 24 * 365,
@@ -135,7 +135,7 @@ export function proxy(request: NextRequest) {
     }
 
     // Alias sluga: polski slug pod /en/ lub /es/ (i odwrotnie). Zamiast
-    // serwować 200 z treścią pod złym adresem, robimy trwałe 308 na wersję
+    // serwować 200 z treścią pod złym adresem, robimy trwałe 301 na wersję
     // kanoniczną - Google konsoliduje sygnały na jednym URL-u.
     if (serviceSegment) {
       const kind = serviceKindFromSlug(serviceSegment);
@@ -148,7 +148,7 @@ export function proxy(request: NextRequest) {
       if (isAlias) {
         const redirectUrl = request.nextUrl.clone();
         redirectUrl.pathname = translatePath(pathname, locale);
-        const redirect = NextResponse.redirect(redirectUrl, 308);
+        const redirect = NextResponse.redirect(redirectUrl, 301);
         redirect.cookies.set("NEXT_LOCALE", locale, {
           path: "/",
           maxAge: 60 * 60 * 24 * 365,
