@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Breadcrumbs, type Crumb } from "@/components/sections/breadcrumbs";
+import { FaqAccordion } from "@/components/sections/faq-accordion";
+import { JsonLd } from "@/components/seo/json-ld";
 import { Section, SectionHeading } from "@/components/ui/primitives";
 import { deriveCityStats, MARKET_YEAR } from "@/lib/content/market-stats";
 import { getCities, getRegion, getSubregions } from "@/lib/data/repository";
@@ -9,6 +11,7 @@ import { assertLocale } from "@/lib/i18n/config";
 import { getUiCopy } from "@/lib/i18n/ui";
 import { translatePath } from "@/lib/i18n/paths";
 import { buildMetadata } from "@/lib/seo/metadata";
+import { breadcrumbNode, faqNode } from "@/lib/seo/schema-org";
 import { formatEur, formatRate } from "@/lib/utils/format";
 import { PRICE_HUB_COPY, PRICE_HUB_META } from "@/lib/i18n/price-hub-copy";
 import { RANKING_COPY } from "@/lib/i18n/ranking-copy";
@@ -41,11 +44,16 @@ export default async function PriceReportIndexPage({
   const locale = assertLocale((await params).lang);
   const ui = getUiCopy(locale);
   const copy = PRICE_HUB_COPY[locale];
+  const path = `/${PRICE_REPORT.slug}`;
 
   const crumbs: Crumb[] = [
     { name: ui.home, path: "/" },
-    { name: PRICE_REPORT.name, path: `/${PRICE_REPORT.slug}` },
+    { name: PRICE_REPORT.name, path },
   ];
+  const jsonLdCrumbs = crumbs.map((item) => ({
+    ...item,
+    path: translatePath(item.path, locale),
+  }));
 
   const cities = getCities().map((city) => {
     const region = getRegion(city.region);
@@ -68,6 +76,13 @@ export default async function PriceReportIndexPage({
   return (
     <>
       <Breadcrumbs items={crumbs} locale={locale} />
+
+      <JsonLd
+        nodes={[
+          breadcrumbNode(jsonLdCrumbs),
+          faqNode(copy.faq, path, locale),
+        ]}
+      />
 
       <section className="border-b border-brand-100 bg-brand-50/60">
         <div className="container-page py-10 lg:py-14">
@@ -158,6 +173,23 @@ export default async function PriceReportIndexPage({
         </div>
       </Section>
 
+      <Section>
+        <SectionHeading eyebrow={copy.eyebrow}>{copy.runningCostsHeading}</SectionHeading>
+        <div className="grid gap-6 lg:grid-cols-2">
+          <p className="text-sm leading-relaxed text-brand-700">{copy.runningCostsIntro}</p>
+          <ul className="list-disc space-y-2 pl-5 text-sm leading-relaxed text-brand-700">
+            {copy.runningCostsBullets.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
+        </div>
+      </Section>
+
+      <Section className="bg-brand-50/60">
+        <SectionHeading eyebrow={copy.eyebrow}>{copy.methodologyHeading}</SectionHeading>
+        <p className="max-w-3xl text-sm leading-relaxed text-brand-700">{copy.methodologyText}</p>
+      </Section>
+
       <Section className="bg-brand-50/60">
         <SectionHeading eyebrow={copy.regionsEyebrow}>{copy.browseRegion}</SectionHeading>
         <div className="grid gap-6 sm:grid-cols-3">
@@ -182,6 +214,8 @@ export default async function PriceReportIndexPage({
           ))}
         </div>
       </Section>
+
+      <FaqAccordion items={copy.faq} title={copy.faqTitle} />
     </>
   );
 }
