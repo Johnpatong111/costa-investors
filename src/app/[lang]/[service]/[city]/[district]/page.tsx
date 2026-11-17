@@ -5,7 +5,6 @@ import { Breadcrumbs, type Crumb } from "@/components/sections/breadcrumbs";
 import { ContentBlocks } from "@/components/sections/content-blocks";
 import { FaqAccordion } from "@/components/sections/faq-accordion";
 import { Hero } from "@/components/sections/hero";
-import { HowItWorks } from "@/components/sections/how-it-works";
 import { InternalLinks } from "@/components/sections/internal-links";
 import { MarketStatsSection } from "@/components/sections/market-stats";
 import { SocialProof } from "@/components/sections/social-proof";
@@ -192,13 +191,6 @@ export default async function DistrictServicePage({
       />
 
       <ContentBlocks blocks={content.blocks} />
-
-      <HowItWorks
-        eyebrow={ui.howItWorks}
-        steps={content.processSteps}
-        title={`${ui.howItWorksTitle(serviceName, districtName)}`}
-        subtitle={ui.howItWorksSubtitle}
-      />
 
       <SocialProof
         coverage={{ districts: 50, cities: 10, transactions: content.stats.transactions12m }}

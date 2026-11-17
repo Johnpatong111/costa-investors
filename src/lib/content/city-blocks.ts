@@ -99,13 +99,6 @@ export function buildCityBlocks(
           ? districtBullets
           : ["Miasto nie jest podzielone na dzielnice w naszym modelu danych."],
     },
-    {
-      // Blok „proces” usunięty: identyczne kroki na wszystkich 21 stronach.
-      id: "koszty",
-      heading: "Koszty zakupu i podatki",
-      paragraphs: [],
-      bullets: service.checklist.map((item) => t(item)),
-    },
   ];
 }
 
@@ -128,7 +121,6 @@ export function buildCityFaq(
   const bestRoi = city.districts.slice().sort((a, b) => b.rentalYield - a.rentalYield)[0];
 
   return [
-    ...service.faq.map((item) => ({ question: t(item.q), answer: t(item.a) })),
     {
       question: `Ile kosztuje metr kwadratowy w ${city.nameLocative} w ${vars.year} roku?`,
       answer: `Mediana ofertowa w ${city.nameLocative} to ${formatEur(stats.pricePerM2)} (dane: ${stats.dataAsOf}), przy medianie regionu ${vars.region} ${formatEur(stats.regionPricePerM2)}.`,

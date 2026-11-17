@@ -427,6 +427,7 @@ export function buildLocalizedDistrictFaq(
   serviceFaq: { q: string; a: string }[],
 ): FaqItem[] {
   const { locale, stats, city, district, region, key, vars } = input;
+  void serviceFaq;
   const copy = COPY[locale];
 
   const localT = (template: string) => interpolate(template, vars);
@@ -512,33 +513,8 @@ export function buildLocalizedDistrictFaq(
     },
   ];
 
-  const notes =
-    locale === "es"
-      ? [
-          `En ${district.nameLocative} el producto dominante es ${TYPE_LABELS.es[district.type] ?? "vivienda residencial"}, lo que define el perfil del inquilino y la renta mensual.`,
-          `La cercanía de ${district.landmarks[0] ?? city.name} sostiene la demanda de alquiler en temporada, pero también eleva la comunidad de propietarios.`,
-          `El tipo de ubicación limita la oferta de obra nueva, de modo que la rotación de anuncios es más lenta que en el centro de ${city.name}.`,
-        ]
-      : [
-          `In ${district.nameLocative} the dominant product is a ${TYPE_LABELS.en[district.type] ?? "residential property"}, which shapes the tenant profile and the monthly rent.`,
-          `Closeness to ${district.landmarks[0] ?? city.name} supports seasonal rental demand but also pushes up community fees.`,
-          `The location type limits new-build supply, so listings turn over more slowly than in central ${city.name}.`,
-        ];
-
-  const localizedServiceFaq: FaqItem[] = serviceFaq.map((item, index) => {
-    const answer = localT(item.a);
-    const note = notes[hashString(`${key}::note${index}`) % notes.length] ?? "";
-    return {
-      question: localT(item.q),
-      answer: index % 2 === 0 ? `${answer} ${note}` : answer,
-    };
-  });
-
-  const merged = pick([true, false], key, "faqorder")
-    ? [...localFaq, ...localizedServiceFaq]
-    : [...localizedServiceFaq, ...localFaq];
-
-  return rotate(merged, hashString(`${key}::faq`) % merged.length);
+  // Rotacja lokalnego FAQ: kolejny czynnik różnicujący układ strony.
+  return rotate(localFaq, hashString(`${key}::faq`) % localFaq.length);
 }
 
 
