@@ -504,6 +504,121 @@ CITY_EXTRA.villajoyosa!.en!.push(
 CITY_EXTRA.villajoyosa!.es!.push(
   "Qué compras con cada presupuesto: con una mediana de 2.620, 200.000 dan 76 metros, 250.000 dan 95 y 300.000 dan 114. Por 250.000 obtienes 106 con jardín en Plans, 99 en una casa reformada del Centro u 88 en una urbanización nueva con piscina en Playa Torre. La misma cifra, tres productos y tres perfiles de inquilino, así que cuenta antes los gastos anuales: en Playa Torre la comunidad con piscina se come parte del retorno y en Plans suma coche.",
 );
+
+CITY_EXTRA.alicante!.pl!.push(
+  "Za 200 000 € kupisz w Alicante około 70 m², za 250 000 € około 88 m², a za 300 000 € około 106 m² przy medianie 2 820 €/m². W PAU 5 (3 030 €/m²) to nowe osiedla z basenem i garażem, w Vistahermosa (2 450 €/m²) dom z ogrodem, a w Playa de San Juan (3 300 €/m²) apartament z widokiem na morze. Ta sama kwota daje trzy różne produkty, więc najpierw wybierz model najmu, a potem dzielnicę.",
+  "Alicante to rynek pracy, nie wakacji: 28% kupujących to obcokrajowcy, a najemca w PAU 5 czy San Juan często pracuje na uniwersytecie albo w szpitalu, więc umowa idzie na rok. Sprawdź wysokość wspólnoty w blokach z basenem, hałas samolotów nad Albufereta i licencję turystyczną, jeśli liczysz na krótki najem. Tramwaj do centrum i lotniska jest mocnym atutem, ale nie każda bliskość plaży oznacza tę samą linię zabudowy.",
+);
+CITY_EXTRA.alicante!.en!.push(
+  "At 200,000 you buy around 70 square metres in Alicante, at 250,000 around 88 and at 300,000 around 106, against a 2,820 median. In PAU 5 (3,030 per m²) that means new estates with a pool and garage, in Vistahermosa (2,450) a house with a garden, and in Playa de San Juan (3,300) an apartment with sea views. The same budget buys three different products, so choose the rental model first and the neighbourhood second.",
+  "Alicante is a working city, not a holiday one: 28 percent of buyers are foreign, and tenants in PAU 5 or San Juan often work at the university or hospital, so contracts run for a year. Check community fees in pool blocks, aircraft noise over Albufereta and the tourist licence if you plan short lets. The tram to the centre and airport is a real advantage, but proximity to the beach does not always mean the same building line.",
+);
+CITY_EXTRA.alicante!.es!.push(
+  "Con 200.000 euros compras unos 70 metros en Alicante, con 250.000 unos 88 y con 300.000 unos 106, frente a una mediana de 2.820. En PAU 5 (3.030 por m²) son urbanizaciones nuevas con piscina y garaje, en Vistahermosa (2.450) una casa con jardín y en Playa de San Juan (3.300) un piso con vistas al mar. El mismo presupuesto compra tres productos distintos, así que elige primero el modelo de alquiler y después el barrio.",
+  "Alicante es una ciudad de trabajo, no de vacaciones: el 28 por ciento de los compradores es extranjero y el inquilino de PAU 5 o San Juan suele trabajar en la universidad o el hospital, así que el contrato va por años. Revisa la comunidad en los bloques con piscina, el ruido de aviones sobre Albufereta y la licencia turística si buscas alquiler corto. El tranvía al centro y al aeropuerto es una ventaja real, pero estar cerca de la playa no siempre significa la misma línea de edificación.",
+);
+
+CITY_EXTRA.torrevieja!.pl!.push(
+  "Przy medianie 2 570 €/m² budżet 200 000 € daje około 78 m², 250 000 € około 97 m², a 300 000 € około 117 m². W El Acequión (2 480 €/m²) kupisz lokal blisko portu z lat 2000-2010, w La Mata (2 690 €/m²) mieszkanie przy plaży i parku Lagunas, a w Punta Prima (3 130 €/m²) nowe osiedle z basenem i ochroną. To trzy różne strategie: najem całoroczny, sezonowy i kapitałowy.",
+  "Torrevieja ma 46% kupujących z zagranicy, w tym 9% z Polski, i najkrótszą ekspozycję w regionie - 95 dni. W starszych blokach w El Acequión sprawdź instalacje, windy i uchwały wspólnoty, bo remont potrafi zjeść kilka lat czynszu. W La Mata i Punta Prima hotele i krótki najem są normą, więc bez licencji turystycznej licz raczej na najem długoterminowy. Lotnisko w Alicante to około 40 minut autostradą, ale w szczycie sezonu dojazd do plaży bywa dłuższy niż sam przelot.",
+);
+CITY_EXTRA.torrevieja!.en!.push(
+  "At a 2,570 median, 200,000 buys around 78 square metres, 250,000 around 97 and 300,000 around 117. In El Acequión (2,480 per m²) you get a flat near the port from the 2000-2010 era, in La Mata (2,690) a home by the beach and the Lagunas park, and in Punta Prima (3,130) a new gated estate with a pool. Those are three different strategies: year-round letting, seasonal letting and capital growth.",
+  "Torrevieja has 46 percent foreign buyers, 9 percent of them Polish, and the shortest time on market in the region at 95 days. In older El Acequión blocks check wiring, lifts and community minutes, because a refurbishment can swallow several years of rent. In La Mata and Punta Prima hotels and short lets are the norm, so without a tourist licence plan for long-term rental instead. Alicante airport is about 40 minutes by motorway, but in high season the drive to the beach can take longer than the flight.",
+);
+CITY_EXTRA.torrevieja!.es!.push(
+  "Con una mediana de 2.570, 200.000 euros compran unos 78 metros, 250.000 unos 97 y 300.000 unos 117. En El Acequión (2.480 por m²) encuentras un piso junto al puerto de los años 2000-2010, en La Mata (2.690) una vivienda junto a la playa y el parque de las Lagunas, y en Punta Prima (3.130) una urbanización nueva con piscina y seguridad. Son tres estrategias distintas: alquiler anual, estacional y revalorización.",
+  "Torrevieja tiene un 46 por ciento de compradores extranjeros, de los que un 9 por ciento son polacos, y la exposición más corta de la región: 95 días. En los bloques antiguos de El Acequión revisa instalaciones, ascensores y actas de comunidad, porque una reforma puede comerse varios años de alquiler. En La Mata y Punta Prima los hoteles y el alquiler corto son la norma, así que sin licencia turística cuenta con alquiler de larga duración. El aeropuerto de Alicante está a unos 40 minutos por autopista, pero en temporada alta el trayecto a la playa puede durar más que el vuelo.",
+);
+
+CITY_EXTRA.benidorm!.pl!.push(
+  "Benidorm jest drogi w przeliczeniu na metr: przy medianie 3 370 €/m² budżet 200 000 € daje około 59 m², 250 000 € około 74 m², a 300 000 € około 89 m². W Foietes (3 050 €/m²) kupisz mieszkanie poza strefą hotelową, na Poniente (3 160 €/m²) lokal przy spokojniejszej plaży, a w Rincón de Loix (3 530 €/m²) apartament pod najem turystyczny. Za tę samą kwotę dostajesz zupełnie inny produkt i inny czynsz.",
+  "Benidorm ma 38% kupujących z zagranicy i 5% z Polski; to rynek krótkiego najmu, który działa także poza sierpniem, ale wymaga licencji turystycznej i dobrego zarządcy. W wieżowcach sprawdź wysokość wspólnoty, stan wind i hałas od strony Levante, a w Rincón de Loix również rotację najemców i zużycie lokalu. Jeśli szukasz spokoju, Sierra Helada (3 210 €/m²) daje ciszę i park przyrody, ale bez widoku na plażę z każdego balkonu.",
+);
+CITY_EXTRA.benidorm!.en!.push(
+  "Benidorm is expensive per square metre: at a 3,370 median, 200,000 buys around 59 square metres, 250,000 around 74 and 300,000 around 89. In Foietes (3,050 per m²) you buy outside the hotel zone, on Poniente (3,160) by the quieter beach, and in Rincón de Loix (3,530) a flat aimed at short lets. The same budget buys a very different product and a very different rent.",
+  "Benidorm has 38 percent foreign buyers and 5 percent Polish; it is a short-let market that works beyond August, but it needs a tourist licence and a good manager. In high-rises check community fees, lift condition and noise on the Levante side, and in Rincón de Loix also tenant turnover and wear. If you want quiet, Sierra Helada (3,210 per m²) offers the natural park and privacy, but not a sea view from every balcony.",
+);
+CITY_EXTRA.benidorm!.es!.push(
+  "Benidorm es caro por metro: con una mediana de 3.370, 200.000 euros compran unos 59 metros, 250.000 unos 74 y 300.000 unos 89. En Foietes (3.050 por m²) compras fuera de la zona hotelera, en Poniente (3.160) junto a la playa más tranquila y en Rincón de Loix (3.530) un piso para alquiler turístico. El mismo presupuesto compra un producto y una renta muy distintos.",
+  "Benidorm tiene un 38 por ciento de compradores extranjeros y un 5 por ciento polacos; es un mercado de alquiler corto que funciona más allá de agosto, pero exige licencia turística y un buen gestor. En los rascacielos revisa comunidad, estado de ascensores y ruido en el lado de Levante, y en Rincón de Loix también rotación de inquilinos y desgaste. Si buscas tranquilidad, Sierra Helada (3.210 por m²) ofrece parque natural y privacidad, pero no vistas al mar desde cada balcón.",
+);
+
+CITY_EXTRA.calpe!.pl!.push(
+  "W Calpe mediana 3 270 €/m² oznacza, że 200 000 € kupuje około 61 m², 250 000 € około 76 m², a 300 000 € około 92 m². W Oltamar (3 010 €/m²) dostaniesz nowe osiedle z basenem, w Puerto (3 330 €/m²) mieszkanie blisko mariny i targu rybnego, a na Playa de la Fossa (3 540 €/m²) lokal z widokiem na Peñón de Ifach. Maryvilla (3 440 €/m²) to z kolei wille z basenem i tarasem, częściej kupowane pod drugi dom niż pod najem.",
+  "Calpe ma 52% kupujących z zagranicy, w tym 7% z Polski, i 120 dni ekspozycji - rynek jest międzynarodowy, ale nie tak szybki jak Torrevieja. Przy pierwszej linii sprawdź licencję turystyczną, hałas promenady i koszty wspólnoty, a na wzgórzach Oltamar i Maryvilla także dojazd, odwodnienie działki i stan dróg wewnętrznych. Widok na Ifach podnosi cenę, ale nie zawsze przekłada się na czynsz; pod najem całoroczny lepiej działa Puerto i zaplecze plaży.",
+);
+CITY_EXTRA.calpe!.en!.push(
+  "In Calpe a 3,270 median means 200,000 buys around 61 square metres, 250,000 around 76 and 300,000 around 92. In Oltamar (3,010 per m²) you get a new estate with a pool, in Puerto (3,330) a flat near the marina and fish market, and on Playa de la Fossa (3,540) a home looking at the Peñón de Ifach. Maryvilla (3,440) is villas with pools and terraces, more often bought as a second home than for rent.",
+  "Calpe has 52 percent foreign buyers, 7 percent of them Polish, and 120 days on market: international, but slower than Torrevieja. On the front line check the tourist licence, promenade noise and community fees; on the Oltamar and Maryvilla hills also access, plot drainage and the condition of private roads. The Ifach view lifts the price but not always the rent; for year-round letting, Puerto and the beach hinterland work better.",
+);
+CITY_EXTRA.calpe!.es!.push(
+  "En Calpe una mediana de 3.270 significa que 200.000 euros compran unos 61 metros, 250.000 unos 76 y 300.000 unos 92. En Oltamar (3.010 por m²) encuentras una urbanización nueva con piscina, en Puerto (3.330) un piso junto a la marina y la lonja, y en Playa de la Fossa (3.540) una vivienda con vistas al Peñón de Ifach. Maryvilla (3.440) son chalets con piscina y terraza, más comprados como segunda vivienda que para alquilar.",
+  "Calpe tiene un 52 por ciento de compradores extranjeros, un 7 por ciento polacos, y 120 días de exposición: mercado internacional, pero más lento que Torrevieja. En primera línea revisa licencia turística, ruido del paseo y comunidad; en las colinas de Oltamar y Maryvilla también accesos, drenaje de la parcela y estado de los caminos privados. La vista al Ifach sube el precio pero no siempre la renta; para alquiler anual funcionan mejor Puerto y la zona tras la playa.",
+);
+
+CITY_EXTRA.denia!.pl!.push(
+  "Przy medianie 3 100 €/m² budżet 200 000 € daje około 65 m², 250 000 € około 81 m², a 300 000 € około 97 m². W La Xara (2 780 €/m²) kupisz dom z basenem i większą działką, w Puerto (3 040 €/m²) mieszkanie blisko mariny i terminalu promowego, a na Les Marines (3 150 €/m²) nowe osiedle przy plaży. Montgó (3 310 €/m²) to wille na zboczu z widokiem na zatokę, ale bez samochodu codzienne funkcjonowanie będzie trudne.",
+  "Denia ma 115 dni ekspozycji i 5,6% ROI brutto, więc nie jest to rynek pośpiechu. Port i terminal promowy do Ibizy dają stały popyt na najem, ale jednocześnie hałas i ruch w sezonie - mieszkanie przy marinie sprawdzaj w dzień roboczy, nie w niedzielę. W La Xara i na Montgó kluczowe są dojazd, dostęp do wody i stan dróg, a przy plażach Les Marines licencja turystyczna i koszty wspólnoty w nowych osiedlach.",
+);
+CITY_EXTRA.denia!.en!.push(
+  "At a 3,100 median, 200,000 buys around 65 square metres, 250,000 around 81 and 300,000 around 97. In La Xara (2,780 per m²) you get a house with a pool and a larger plot, in Puerto (3,040) a flat near the marina and ferry terminal, and on Les Marines (3,150) a new estate by the beach. Montgó (3,310) means hillside villas with bay views, but daily life without a car is difficult.",
+  "Denia has 115 days on market and a 5.6 percent gross yield, so this is not a market for haste. The port and the Ibiza ferry create steady rental demand but also noise and traffic in season; inspect a marina flat on a weekday, not a Sunday. In La Xara and Montgó access, water supply and road condition are critical, while on Les Marines check the tourist licence and community fees in new estates.",
+);
+CITY_EXTRA.denia!.es!.push(
+  "Con una mediana de 3.100, 200.000 euros compran unos 65 metros, 250.000 unos 81 y 300.000 unos 97. En La Xara (2.780 por m²) compras una casa con piscina y parcela mayor, en Puerto (3.040) un piso junto a la marina y la terminal de ferris, y en Les Marines (3.150) una urbanización nueva junto a la playa. Montgó (3.310) son chalets en ladera con vistas a la bahía, pero sin coche el día a día es difícil.",
+  "Denia tiene 115 días de exposición y un 5,6 por ciento bruto, así que no es un mercado de prisas. El puerto y el ferry a Ibiza sostienen la demanda de alquiler, pero también generan ruido y tráfico en temporada; visita un piso de la marina en día laborable, no un domingo. En La Xara y Montgó son clave los accesos, el suministro de agua y el estado de los caminos, y en Les Marines la licencia turística y la comunidad de las urbanizaciones nuevas.",
+);
+
+CITY_EXTRA.cartagena!.pl!.push(
+  "Cartagena jest najtańsza z tej ósemki: przy medianie 1 960 €/m² budżet 200 000 € daje około 102 m², 250 000 € około 128 m², a 300 000 € około 153 m². W Santa Lucía (1 750 €/m²) kupisz mieszkanie z lat 80-2000, w Centro (1 850 €/m²) kamienicę blisko portu i teatru rzymskiego, a w Isla Plana (2 120 €/m²) lokal przy plaży. To trzy różne światy: miasto, port i wybrzeże.",
+  "Cartagena ma tylko 18% kupujących z zagranicy i 3% z Polski, więc negocjujesz głównie z hiszpańskimi właścicielami. Najem całoroczny działa tu lepiej niż sezonowy, bo port, uczelnie i przemysł dają stałych lokatorów; sprawdź jednak hałas od strony portu i stan instalacji w starszych kamienicach. La Azohía i Isla Plana to spokojniejsze wybrzeże, ale bez samochodu i poza sezonem usługi są ograniczone - pod krótki najem licz się z dłuższym dojazdem i mniejszą rotacją.",
+);
+CITY_EXTRA.cartagena!.en!.push(
+  "Cartagena is the cheapest of these eight: at a 1,960 median, 200,000 buys around 102 square metres, 250,000 around 128 and 300,000 around 153. In Santa Lucía (1,750 per m²) you get a flat from the 1980s-2000s, in Centro (1,850) a townhouse near the port and Roman theatre, and in Isla Plana (2,120) a home by the beach. Those are three different worlds: city, port and coast.",
+  "Cartagena has only 18 percent foreign buyers and 3 percent Polish, so you negotiate mostly with Spanish owners. Year-round letting works better than seasonal here because the port, universities and industry provide stable tenants; check noise from the port and the state of installations in older townhouses. La Azohía and Isla Plana are quieter coast, but without a car and out of season services are limited, and short lets mean a longer drive and slower turnover.",
+);
+CITY_EXTRA.cartagena!.es!.push(
+  "Cartagena es la más barata de estas ocho: con una mediana de 1.960, 200.000 euros compran unos 102 metros, 250.000 unos 128 y 300.000 unos 153. En Santa Lucía (1.750 por m²) compras un piso de los años 80-2000, en Centro (1.850) una casa junto al puerto y el teatro romano, y en Isla Plana (2.120) una vivienda junto a la playa. Son tres mundos distintos: ciudad, puerto y costa.",
+  "Cartagena tiene solo un 18 por ciento de compradores extranjeros y un 3 por ciento polacos, así que negocias sobre todo con propietarios españoles. El alquiler anual funciona mejor que el estacional porque el puerto, las universidades y la industria aportan inquilinos estables; revisa el ruido del puerto y el estado de las instalaciones en casas antiguas. La Azohía e Isla Plana son costa más tranquila, pero sin coche y fuera de temporada los servicios son limitados, y el alquiler corto exige más desplazamiento y menor rotación.",
+);
+
+CITY_EXTRA.javea!.pl!.push(
+  "Jávea to najdroższa mediana w bazie: 4 400 €/m², więc 200 000 € daje tylko około 45 m², 250 000 € około 57 m², a 300 000 € około 68 m². W Tosalet (4 020 €/m²) kupisz willę w grodzonym osiedlu, w Arenal (4 290 €/m²) apartament przy plaży z pełną infrastrukturą, a w Montañar (4 670 €/m²) lokal na skalistym wybrzeżu z prywatnym basenem. Cap Martí (4 890 €/m²) to już segment ekskluzywny, gdzie liczy się prywatność i widok, nie metraż.",
+  "Jávea ma 50% kupujących z zagranicy i tylko 4,9% ROI brutto - to rynek kapitału i drugiego domu, nie cash flow. Ekspozycja 140 dni oznacza, że sprzedaż może potrwać, więc nie kupuj pod szybki exit. Sprawdź licencję turystyczną, koszty wspólnoty w osiedlach z basenem, stan dostępu do działki na zboczu i to, czy widok na morze nie jest zasłonięty przez planowaną zabudowę. Pod najem całoroczny lepiej działa Arenal i Puerto niż klifowe wille.",
+);
+CITY_EXTRA.javea!.en!.push(
+  "Jávea has the highest median in our dataset at 4,400 per m², so 200,000 buys only around 45 square metres, 250,000 around 57 and 300,000 around 68. In Tosalet (4,020 per m²) you buy a villa in a gated estate, in Arenal (4,290) a flat by the beach with full services, and in Montañar (4,670) a home on the rocky coast with a private pool. Cap Martí (4,890) is the exclusive end, where privacy and the view matter more than floor area.",
+  "Jávea has 50 percent foreign buyers and only a 4.9 percent gross yield: this is a capital and second-home market, not cash flow. At 140 days on market a sale can take time, so do not buy for a quick exit. Check the tourist licence, community fees in pool estates, access to a hillside plot and whether the sea view can be blocked by future building. For year-round letting, Arenal and Puerto work better than clifftop villas.",
+);
+CITY_EXTRA.javea!.es!.push(
+  "Jávea tiene la mediana más alta de la base: 4.400 por m², así que 200.000 euros compran solo unos 45 metros, 250.000 unos 57 y 300.000 unos 68. En Tosalet (4.020 por m²) compras un chalet en urbanización cerrada, en Arenal (4.290) un piso junto a la playa con todos los servicios y en Montañar (4.670) una vivienda en costa rocosa con piscina privada. Cap Martí (4.890) es el extremo exclusivo, donde importan más la privacidad y las vistas que los metros.",
+  "Jávea tiene un 50 por ciento de compradores extranjeros y solo un 4,9 por ciento bruto: es un mercado de capital y segunda vivienda, no de cash flow. Con 140 días de exposición una venta puede tardar, así que no compres para salir rápido. Revisa licencia turística, comunidad en urbanizaciones con piscina, acceso a la parcela en ladera y si las vistas al mar pueden quedar tapadas por obra futura. Para alquiler anual funcionan mejor Arenal y Puerto que los chalets en el acantilado.",
+);
+
+CITY_EXTRA.altea!.pl!.push(
+  "W Altei mediana 3 680 €/m² daje za 200 000 € około 54 m², za 250 000 € około 68 m², a za 300 000 € około 82 m². W Casco Antiguo (3 890 €/m²) kupisz kamienicę w wąskich uliczkach z widokiem na zatokę, na Playa de la Roda (3 780 €/m²) apartament przy deptaku i porcie jachtowym, a w Mascarat (4 220 €/m²) willę na klifie. Altea Hills (4 430 €/m²) to grodzone osiedla z ochroną i panoramicznym widokiem, ale też najwyższe koszty wspólnoty.",
+  "Altea ma 44% kupujących z zagranicy, w tym 6% z Polski, i 130 dni ekspozycji - to rynek drugiego domu i kapitału, nie szybkiego najmu. W starówce sprawdź pozwolenie na remont i kolor elewacji, bo część kamienic objęta jest ochroną konserwatorską; na wzgórzach Mascarat i Altea Hills kluczowy jest dojazd, odwodnienie i koszty wspólnoty. Przy plaży Roda licencja turystyczna i hałas deptaku w sezonie zdecydują o tym, czy najem krótki ma sens.",
+);
+CITY_EXTRA.altea!.en!.push(
+  "In Altea a 3,680 median means 200,000 buys around 54 square metres, 250,000 around 68 and 300,000 around 82. In Casco Antiguo (3,890 per m²) you buy a townhouse in narrow lanes with bay views, on Playa de la Roda (3,780) a flat by the promenade and marina, and in Mascarat (4,220) a clifftop villa. Altea Hills (4,430) offers gated estates with security and panoramic views, but also the highest community fees.",
+  "Altea has 44 percent foreign buyers, 6 percent of them Polish, and 130 days on market: a second-home and capital market, not a fast rental one. In the old town check renovation permits and facade colour, because some townhouses are protected; on the Mascarat and Altea Hills slopes access, drainage and community fees are critical. On Playa de la Roda the tourist licence and promenade noise in season decide whether short lets make sense.",
+);
+CITY_EXTRA.altea!.es!.push(
+  "En Altea una mediana de 3.680 significa que 200.000 euros compran unos 54 metros, 250.000 unos 68 y 300.000 unos 82. En Casco Antiguo (3.890 por m²) compras una casa en calles estrechas con vistas a la bahía, en Playa de la Roda (3.780) un piso junto al paseo y la marina, y en Mascarat (4.220) un chalet en el acantilado. Altea Hills (4.430) son urbanizaciones cerradas con seguridad y vistas panorámicas, pero también las comunidades más caras.",
+  "Altea tiene un 44 por ciento de compradores extranjeros, un 6 por ciento polacos, y 130 días de exposición: mercado de segunda vivienda y capital, no de alquiler rápido. En el casco antiguo revisa permisos de reforma y color de fachada, porque algunas casas están protegidas; en las laderas de Mascarat y Altea Hills son clave los accesos, el drenaje y la comunidad. En Playa de la Roda, la licencia turística y el ruido del paseo en temporada deciden si el alquiler corto tiene sentido.",
+);
+
+
+
+
+
+
+
+
+
+
+
 CITY_EXTRA["l-albir"]!.pl!.push(
   "Trzy budżety, trzy odpowiedzi: 250 000 € przy medianie 3 310 €/m² to 75 m², 350 000 € - 106 m², a 450 000 € - 136 m². W Centro za 350 000 € kupisz 109 m² blisko promenady, w Sierra Albir 113 m² z ogrodem i widokiem z góry, a przy Playa del Albir 99 m² w pierwszej linii. Różnica w metrażu jest niewielka, ale różnica w produkcie ogromna. Pamiętaj, że przy 55 procentach kupujących z zagranicy negocjujesz z rynkiem, który zna te ceny lepiej niż polski klient.",
 );
