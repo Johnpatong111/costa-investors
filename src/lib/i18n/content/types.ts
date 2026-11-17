@@ -32,6 +32,8 @@ export interface LocalizedServiceCopy {
   metaDescription: string[];
   benefits: { title: string; description: string }[];
   checklist: string[];
+  /** FAQ huba usługi (opcjonalne; używane na /{service}). */
+  faq?: LocalizedFaq[];
 }
 
 export interface LocalizedContent {

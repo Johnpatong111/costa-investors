@@ -4,6 +4,7 @@ import { LeadEngine } from "@/components/lead/lead-engine";
 import { Breadcrumbs, type Crumb } from "@/components/sections/breadcrumbs";
 import { Hero } from "@/components/sections/hero";
 import { HowItWorks } from "@/components/sections/how-it-works";
+import { FaqAccordion } from "@/components/sections/faq-accordion";
 import { InternalLinks } from "@/components/sections/internal-links";
 import { Section, SectionHeading } from "@/components/ui/primitives";
 import { JsonLd } from "@/components/seo/json-ld";
@@ -20,7 +21,7 @@ import { translatePath } from "@/lib/i18n/paths";
 import { resolveService } from "@/lib/i18n/resolve";
 import { serviceSlug } from "@/lib/i18n/service-slugs";
 import { buildMetadata } from "@/lib/seo/metadata";
-import { breadcrumbNode, serviceNode } from "@/lib/seo/schema-org";
+import { breadcrumbNode, serviceNode, faqNode } from "@/lib/seo/schema-org";
 import { SITE } from "@/lib/seo/site";
 import { formatEur, formatRate } from "@/lib/utils/format";
 
@@ -118,7 +119,7 @@ export default async function ServiceHubPage({
     cities.reduce((sum, city) => sum + city.priceGrowth, 0) / Math.max(cities.length, 1);
 
   const copyVars = buildServiceFallbackVars({
-    areaName: locale === "pl" ? "Hiszpania" : locale === "es" ? "España" : "Spain",
+    areaName: locale === "pl" ? "Hiszpanii" : locale === "es" ? "España" : "Spain",
     medianPricePerM2: avgMedian,
     rentalYield: avgYield,
     priceGrowth: avgGrowth,
@@ -145,6 +146,18 @@ export default async function ServiceHubPage({
       : copy.benefits.map((benefit) => ({
           title: interpolate(benefit.title, copyVars),
           description: interpolate(benefit.description, copyVars),
+        }));
+
+  const localizedService = locale === "pl" ? null : getLocalizedContent(locale)?.service[kind];
+  const hubFaq =
+    locale === "pl"
+      ? service.faq.map((item) => ({
+          question: interpolate(item.q, copyVars),
+          answer: interpolate(item.a, copyVars),
+        }))
+      : (localizedService?.faq ?? []).map((item) => ({
+          question: interpolate(item.q, copyVars),
+          answer: interpolate(item.a, copyVars),
         }));
 
   const JOINERS: Record<Locale, string> = { pl: " i ", en: " and ", es: " y " };
@@ -227,6 +240,8 @@ export default async function ServiceHubPage({
         </div>
       </Section>
 
+      <FaqAccordion items={hubFaq} title={uiCopy.faqTitle(copy.name, regionLabel)} />
+
       <InternalLinks
         title={ui.otherServices}
         groups={[
@@ -265,6 +280,7 @@ export default async function ServiceHubPage({
             priceRangeLabel: copy.priceAnchor,
             locale,
           }),
+          faqNode(hubFaq, path, locale),
         ]}
       />
     </>
