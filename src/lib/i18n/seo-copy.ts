@@ -36,7 +36,7 @@ export const HOME_SEO: Record<Locale, SeoCopy> = {
     ],
   },
   en: {
-    title: "Property investment Costa Blanca & Cálida | Buyer's agent",
+    title: "Costa Blanca & Cálida property investment | Buyer's agent",
     description:
       "Apartments, villas and investment homes in 15 Spanish locations. Prices from €120,000, gross yields to 6.9%, full 2016-2026 price history. Independent buyer's agent.",
     keywords: [
