@@ -104,7 +104,7 @@ const ORG_COPY: Record<"pl" | "en" | "es", {
 export function organizationNode(locale: "pl" | "en" | "es" = "pl"): JsonLdNode {
   const org = ORG_COPY[locale];
   return {
-    "@type": "RealEstateAgent",
+    "@type": ["Organization", "RealEstateAgent"],
     "@id": NODE_IDS.organization,
     name: SITE.brand,
     legalName: SITE.legalName,
@@ -307,8 +307,19 @@ export function datasetNode(input: {
     name: input.name,
     description: input.description,
     url: absoluteUrl(input.path),
-    creator: { "@id": NODE_IDS.organization },
-    publisher: { "@id": NODE_IDS.organization },
+    creator: {
+      "@type": "Organization",
+      "@id": NODE_IDS.organization,
+      name: SITE.brand,
+      url: SITE.url,
+    },
+    publisher: {
+      "@type": "Organization",
+      "@id": NODE_IDS.organization,
+      name: SITE.brand,
+      url: SITE.url,
+    },
+    license: absoluteUrl("/pl/regulamin"),
     inLanguage: languageTag(input.locale),
     temporalCoverage: input.temporalCoverage,
     spatialCoverage: {
