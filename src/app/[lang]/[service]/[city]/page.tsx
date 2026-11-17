@@ -80,24 +80,13 @@ export async function generateMetadata({
       : buildLocalizedCityContent(city, region, kind, locale)!;
 
   return buildMetadata({
-    title:
-      locale === "es"
-        ? `Inversión y compra: ${getServiceCopy(kind, locale).name} en ${city.name} | Precios y rentabilidad`
-        : locale === "en"
-          ? `Buy ${getServiceCopy(kind, locale).name} in ${city.name} | Investment & ROI ${SITE.year} | Costa Investors`
-          : `Inwestycje i zakup: ${getServiceCopy(kind, locale).name} w ${city.name} | Ceny i ROI ${SITE.year}`,
-    // Opis łączy nazwę USŁUGI i dane miasta - inaczej wszystkie usługi
-    // w tym samym mieście miały identyczny meta description.
-    description:
-      locale === "es"
-        ? `${getServiceCopy(kind, locale).name} en ${city.name}: mediana ${formatEur(content.stats.pricePerM2)}/m², ROI ${formatRate(content.stats.rentalYield)}, ${formatRate(content.stats.priceGrowth)} interanual. Selección de ofertas y gastos de compra.`
-        : locale === "en"
-          ? `${getServiceCopy(kind, locale).name} in ${city.name}: median ${formatEur(content.stats.pricePerM2)}/m², ${formatRate(content.stats.rentalYield)} yield, ${formatRate(content.stats.priceGrowth)} YoY. Shortlist and purchase costs.`
-          : `${getServiceCopy(kind, locale).name} w ${city.name}: mediana ${formatEur(content.stats.pricePerM2)}/m², ROI ${formatRate(content.stats.rentalYield)}, wzrost ${formatRate(content.stats.priceGrowth)} r/r. Selekcja ofert i koszty zakupu.`,
+    title: content.metaTitle,
+    description: content.metaDescription,
     path: `/${service.slug}/${city.slug}`,
     keywords: content.keywords,
     noindex: !content.isIndexable,
     locale,
+    rawSerp: true,
   });
 }
 
