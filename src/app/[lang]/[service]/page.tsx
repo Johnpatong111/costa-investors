@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { LeadEngine } from "@/components/lead/lead-engine";
 import { Breadcrumbs, type Crumb } from "@/components/sections/breadcrumbs";
 import { Hero } from "@/components/sections/hero";
+import { HowItWorks } from "@/components/sections/how-it-works";
 import { InternalLinks } from "@/components/sections/internal-links";
 import { Section, SectionHeading } from "@/components/ui/primitives";
 import { JsonLd } from "@/components/seo/json-ld";
@@ -11,8 +12,9 @@ import { PRICE_REPORT, SERVICES } from "@/lib/data/services";
 import { buildServiceFallbackVars, interpolateBenefits } from "@/lib/content/service-copy";
 import { interpolate } from "@/lib/content/interpolate";
 import { assertLocale, isLocale, ROUTABLE_LOCALES, type Locale } from "@/lib/i18n/config";
-import { getServiceCopy } from "@/lib/i18n/content/builders";
+import { getServiceCopy, getLocalizedContent } from "@/lib/i18n/content/builders";
 import { HUB_COPY } from "@/lib/i18n/hub-copy";
+import { getUiCopy } from "@/lib/i18n/ui";
 import { ADVISORY_KEYWORDS } from "@/lib/i18n/seo-copy";
 import { translatePath } from "@/lib/i18n/paths";
 import { resolveService } from "@/lib/i18n/resolve";
@@ -122,6 +124,21 @@ export default async function ServiceHubPage({
     priceGrowth: avgGrowth,
   });
 
+  const uiCopy = getUiCopy(locale);
+  const localized = locale === "pl" ? null : getLocalizedContent(locale);
+  const processSteps =
+    locale === "pl"
+      ? service.process.map((step) => ({
+          title: step.title,
+          description: interpolate(step.description, copyVars),
+          duration: step.duration,
+        }))
+      : (localized?.process ?? []).map((step) => ({
+          title: step.title,
+          description: interpolate(step.description, copyVars),
+          duration: step.duration,
+        }));
+
   const benefits =
     locale === "pl"
       ? interpolateBenefits(service, copyVars)
@@ -160,6 +177,13 @@ export default async function ServiceHubPage({
           />
         </div>
       </Hero>
+
+      <HowItWorks
+        eyebrow={uiCopy.howItWorks}
+        steps={processSteps}
+        title={uiCopy.howItWorksTitle(copy.name, regionLabel)}
+        subtitle={uiCopy.howItWorksSubtitle}
+      />
 
       <Section>
         <SectionHeading eyebrow={ui.coverageEyebrow}>{ui.coverageTitle}</SectionHeading>
