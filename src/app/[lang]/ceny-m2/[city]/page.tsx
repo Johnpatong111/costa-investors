@@ -362,6 +362,20 @@ export default async function PriceCityPage({ params }: { params: Promise<RouteP
             )}
           </p>
 
+          {SERVICES[0] ? (
+            <Link
+              href={translatePath(`/${SERVICES[0].slug}/${city.slug}`, locale)}
+              className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-brand-800 underline decoration-brand-300 underline-offset-4 hover:decoration-brand-700"
+            >
+              {locale === "es"
+                ? `Ver apartamentos en venta en ${city.name}`
+                : locale === "en"
+                  ? `See apartments for sale in ${city.name}`
+                  : `Zobacz apartamenty na sprzedaż w ${city.name}`}
+              <span aria-hidden>→</span>
+            </Link>
+          ) : null}
+
           <dl className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-4">
             {[
               { label: copy.colMedian, value: formatEur(stats.pricePerM2) },
