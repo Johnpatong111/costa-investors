@@ -7,6 +7,7 @@ import { getServiceCopy } from "@/lib/i18n/content/builders";
 import { localePath, type Locale } from "@/lib/i18n/config";
 import { translatePath } from "@/lib/i18n/paths";
 import { FOOTER_NAV } from "@/lib/i18n/footer-nav";
+import { RANKING_COPY } from "@/lib/i18n/ranking-copy";
 import { FOOTER_COPY, getUiCopy } from "@/lib/i18n/ui";
 import { SITE } from "@/lib/seo/site";
 import { LOCATIONS } from "@/lib/data/load";
@@ -83,6 +84,11 @@ export function SiteFooter({ lang }: { lang: Locale }) {
                 </Link>
               </li>
             ))}
+            <li>
+              <Link href={translatePath("/ranking-roi", lang)} className="hover:text-white hover:underline">
+                {RANKING_COPY[lang].navLabel}
+              </Link>
+            </li>
           </ul>
         </nav>
 

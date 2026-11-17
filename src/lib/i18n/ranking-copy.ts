@@ -27,6 +27,7 @@ export interface RankingCopy {
     area: string;
   };
   note: string;
+  navLabel: string;
   teaserTitle: string;
   teaserText: string;
   mapTitle: string;
@@ -82,6 +83,7 @@ const PL: RankingCopy = {
   },
   note:
     "Zwrot netto to model: rentowność brutto minus koszty zarządzania, podatku i pustostanów (1,9 pkt proc.). Ranking nie jest rekomendacją konkretnej nieruchomości.",
+  navLabel: "Ranking ROI",
   teaserTitle: "Ranking ROI: 89 dzielnic w jednej tabeli",
   teaserText:
     "Zwrot brutto i netto, dynamika, czas ekspozycji i metraż za 250 tys. €, uszeregowane od najlepszej dzielnicy.",
@@ -168,6 +170,7 @@ const EN: RankingCopy = {
   },
   note:
     "Net yield is a model: gross yield minus management, tax and vacancy costs (1.9 percentage points). The ranking is not a recommendation of any specific property.",
+  navLabel: "ROI ranking",
   teaserTitle: "ROI ranking: 89 districts in one table",
   teaserText:
     "Gross and net yield, growth, time on market and floor area for 250,000, ordered from the strongest district down.",
@@ -255,6 +258,7 @@ const ES: RankingCopy = {
   },
   note:
     "La rentabilidad neta es un modelo: bruta menos gestión, impuestos y vacancia (1,9 puntos). El ranking no es recomendación de una vivienda concreta.",
+  navLabel: "Ranking ROI",
   teaserTitle: "Ranking de rentabilidad: 89 zonas en una tabla",
   teaserText:
     "Rentabilidad bruta y neta, crecimiento, exposición y metros por 250.000, ordenadas desde la mejor zona.",

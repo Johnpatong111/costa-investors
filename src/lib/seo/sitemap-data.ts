@@ -42,7 +42,15 @@ const logical = (
   options: { changeFrequency: SitemapEntry["changeFrequency"]; priority: number },
 ): LogicalEntry => ({ path, lastModified: LAST_MODIFIED, ...options });
 
-const LAST_MODIFIED = LOCATIONS.updatedAt;
+const LAST_MODIFIED = (() => {
+  /**
+   * `LOCATIONS.updatedAt` dotyczy tylko danych rynkowych. Zmiany treści,
+   * JSON-LD i FAQ nie podbijają tej daty, więc Google dostawał stary `lastmod`
+   * i odkładał recrawl. Podbijaj tę stałą przy każdej istotnej zmianie treści.
+   */
+  const CONTENT_UPDATED_AT = "2026-11-17";
+  return LOCATIONS.updatedAt > CONTENT_UPDATED_AT ? LOCATIONS.updatedAt : CONTENT_UPDATED_AT;
+})();
 
 function servicePaths(): LogicalEntry[] {
   return SERVICES.map((service) =>
@@ -175,5 +183,7 @@ export function getSitemapChunk(id: number): SitemapEntry[] {
 }
 
 export function getSitemapUrls(): string[] {
-  return [`${SITE.url}/sitemap.xml`, `${SITE.url}/sitemap-index.xml`];
+  // Jeden kanoniczny sitemap. /sitemap-index.xml i /sitemap-main.xml mają tę
+  // samą treść; zgłaszanie trzech kopii w GSC rozprasza crawling i statusy.
+  return [`${SITE.url}/sitemap.xml`];
 }
