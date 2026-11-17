@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { LeadEngine } from "@/components/lead/lead-engine";
 import { PriceHistorySection } from "@/components/sections/price-history";
 import { Breadcrumbs, type Crumb } from "@/components/sections/breadcrumbs";
+import { FaqAccordion } from "@/components/sections/faq-accordion";
 import { InternalLinks } from "@/components/sections/internal-links";
 import { InvestorWorkbench } from "@/components/tools/investor-workbench";
 import { PurchaseCostsCalculator } from "@/components/tools/purchase-costs-calculator";
@@ -16,6 +17,7 @@ import { RANKING_COPY } from "@/lib/i18n/ranking-copy";
 import { JsonLd } from "@/components/seo/json-ld";
 import { Section, SectionHeading } from "@/components/ui/primitives";
 import { deriveCityStats, deriveDistrictStats, MARKET_YEAR } from "@/lib/content/market-stats";
+import type { FaqItem } from "@/lib/content/content-utils";
 import { getCities, getCitiesBySubregion, getCity, getRegion } from "@/lib/data/repository";
 import { PRICE_REPORT, SERVICES } from "@/lib/data/services";
 import { assertLocale, type Locale } from "@/lib/i18n/config";
@@ -26,7 +28,7 @@ import { getCityEditorial } from "@/lib/content/city-editorial";
 import { getServiceCopy } from "@/lib/i18n/content/builders";
 import { getUiCopy } from "@/lib/i18n/ui";
 import { buildMetadata } from "@/lib/seo/metadata";
-import { breadcrumbNode, datasetNode } from "@/lib/seo/schema-org";
+import { breadcrumbNode, datasetNode, faqNode } from "@/lib/seo/schema-org";
 import { formatEur, formatEurLocale, formatRate, formatRateLocale } from "@/lib/utils/format";
 
 /**
@@ -66,6 +68,7 @@ const COPY: Record<
     ctaText: string;
     metaTitle: (city: string, median: string, yieldValue: string) => string;
     metaDescription: (city: string, median: string, yieldValue: string) => string;
+    faqTitle: (city: string) => string;
     keywords: (city: string) => string[];
   }
 > = {
@@ -90,6 +93,7 @@ const COPY: Record<
       `Ceny nieruchomości ${city} ${MARKET_YEAR}: ${median}/m², ROI ${yieldValue}`,
     metaDescription: (city, median, yieldValue) =>
       `Ceny w ${city}: mediana ${median}/m², ROI najmu ${yieldValue} brutto. Sprawdź ceny, zwrot i czas ekspozycji w każdej dzielnicy oraz historię cen 2016-2026.`,
+    faqTitle: (city) => `Pytania i odpowiedzi - ${city}`,
     keywords: (city) => [
       `ceny m2 ${city}`,
       `ceny nieruchomości ${city} ${MARKET_YEAR}`,
@@ -118,6 +122,7 @@ const COPY: Record<
       `Property prices ${city} ${MARKET_YEAR}: ${median}/m², ${yieldValue} yield`,
     metaDescription: (city, median, yieldValue) =>
       `Prices in ${city}: median ${median}/m² and ${yieldValue} gross yield. Check prices, returns and time on market in every area, plus the 2016-2026 history.`,
+    faqTitle: (city) => `${city}: questions and answers`,
     keywords: (city) => [
       `property prices ${city}`,
       `price per m2 ${city} ${MARKET_YEAR}`,
@@ -146,6 +151,7 @@ const COPY: Record<
       `Precio m² ${city} ${MARKET_YEAR}: ${median}/m² y ${yieldValue} rentabilidad`,
     metaDescription: (city, median, yieldValue) =>
       `Precios en ${city}: mediana ${median}/m² y rentabilidad bruta ${yieldValue}. Consulta precios, retorno y tiempo de venta por zona y la evolución 2016-2026.`,
+    faqTitle: (city) => `${city}: preguntas y respuestas`,
     keywords: (city) => [
       `precio m2 ${city}`,
       `precios vivienda ${city} ${MARKET_YEAR}`,
@@ -154,6 +160,94 @@ const COPY: Record<
     ],
   },
 };
+
+/**
+ * FAQ dla hubu miasta. Pytania są wspólne dla języka, ale odpowiedzi niosą
+ * liczby tego miasta (mediana, czynsz, ROI, rozstrzał dzielnic, ITP), więc
+ * każda strona dostaje unikalny blok pod long-tail i FAQPage.
+ */
+function buildCityFaq(
+  locale: Locale,
+  cityName: string,
+  stats: ReturnType<typeof deriveCityStats>,
+  rows: { name: string; pricePerM2: number }[],
+  tax: ReturnType<typeof regionTax>,
+): FaqItem[] {
+  const median = formatEur(stats.pricePerM2);
+  const rent = `${stats.monthlyRentPerM2} €/m²`;
+  const roi = formatRate(stats.rentalYield);
+  const net = formatRate(stats.netYield);
+  const growth = formatRate(stats.priceGrowth);
+  const priciest = rows[0];
+  const cheapest = rows[rows.length - 1];
+  const priciestName = priciest?.name ?? cityName;
+  const cheapestName = cheapest?.name ?? cityName;
+  const priciestPrice = priciest ? formatEur(priciest.pricePerM2) : median;
+  const cheapestPrice = cheapest ? formatEur(cheapest.pricePerM2) : median;
+  const spread = priciest && cheapest ? formatEur(priciest.pricePerM2 - cheapest.pricePerM2) : "0";
+  const itp = `${tax.itp}%`;
+
+  if (locale === "es") {
+    return [
+      {
+        question: `¿Cuánto cuesta el metro cuadrado en ${cityName} en ${MARKET_YEAR}?`,
+        answer: `La mediana de oferta es ${median} €/m² (datos: ${stats.dataAsOf}); la rentabilidad bruta es ${roi} y el crecimiento ${growth} interanual.`,
+      },
+      {
+        question: `¿Merece la pena comprar en ${cityName} para alquilar?`,
+        answer: `Con una mediana de ${median} €/m² y un alquiler de ${rent} al mes, la rentabilidad bruta es ${roi} y la neta ronda ${net}. En la tabla superior ves las zonas con mejor retorno.`,
+      },
+      {
+        question: `¿Qué zonas de ${cityName} son las más caras y las más baratas?`,
+        answer: `La más cara es ${priciestName} (${priciestPrice} €/m²) y la más barata ${cheapestName} (${cheapestPrice} €/m²). La diferencia de ${spread} €/m² muestra cuánto cambia el presupuesto según la zona.`,
+      },
+      {
+        question: `¿Qué gastos de compra se suman al precio en ${cityName}?`,
+        answer: `En ${tax.authority} el ITP es del ${itp}. Añade notaría, registro, abogado y traducción: en total suele ser un 7-13% del precio. La calculadora de gastos está en esta misma página.`,
+      },
+    ];
+  }
+
+  if (locale === "en") {
+    return [
+      {
+        question: `How much does a square metre cost in ${cityName} in ${MARKET_YEAR}?`,
+        answer: `The asking median is ${median} €/m² (data: ${stats.dataAsOf}); gross yield is ${roi} and growth ${growth} year on year.`,
+      },
+      {
+        question: `Is buying in ${cityName} worth it for rental income?`,
+        answer: `At a median of ${median} €/m² and rent of ${rent} per month, gross yield is ${roi} and net yield around ${net}. The table above shows the areas with the best return.`,
+      },
+      {
+        question: `Which areas of ${cityName} are the most and least expensive?`,
+        answer: `${priciestName} is the priciest (${priciestPrice} €/m²) and ${cheapestName} the cheapest (${cheapestPrice} €/m²). The ${spread} €/m² spread shows how much the area changes the budget.`,
+      },
+      {
+        question: `What purchase costs apply in ${cityName}?`,
+        answer: `In ${tax.authority} transfer tax (ITP) is ${itp}. Add notary, land registry, legal advice and translation - typically 7-13% of the price. The cost calculator is on this page.`,
+      },
+    ];
+  }
+
+  return [
+    {
+      question: `Ile kosztuje metr kwadratowy w ${cityName} w ${MARKET_YEAR}?`,
+      answer: `Mediana ofertowa to ${median} €/m² (dane: ${stats.dataAsOf}); rentowność brutto ${roi}, wzrost ${growth} r/r.`,
+    },
+    {
+      question: `Czy zakup mieszkania w ${cityName} pod wynajem się opłaca?`,
+      answer: `Przy medianie ${median} €/m² i czynszu ${rent} miesięcznie ROI brutto wynosi ${roi}, a netto około ${net}. W tabeli powyżej widać dzielnice z najlepszym zwrotem.`,
+    },
+    {
+      question: `Które dzielnice w ${cityName} są najdroższe, a które najtańsze?`,
+      answer: `Najdroższa jest ${priciestName} (${priciestPrice} €/m²), najtańsza ${cheapestName} (${cheapestPrice} €/m²). Rozstrzał ${spread} €/m² pokazuje, jak mocno lokalizacja zmienia budżet.`,
+    },
+    {
+      question: `Jakie koszty zakupu dochodzą do ceny mieszkania w ${cityName}?`,
+      answer: `W regionie ${tax.authority} ITP wynosi ${itp}. Do tego notariusz, rejestr, prawnik i tłumacz - łącznie zwykle 7-13% ceny. Kalkulator kosztów jest na tej stronie.`,
+    },
+  ];
+}
 
 export function generateStaticParams(): Omit<RouteParams, "lang">[] {
   return getCities().map((city) => ({ city: city.slug }));
@@ -212,6 +306,10 @@ export default async function PriceCityPage({ params }: { params: Promise<RouteP
     })
     .sort((a, b) => b.pricePerM2 - a.pricePerM2);
 
+  const tax = regionTax(city.region);
+  const faq = buildCityFaq(locale, city.name, stats, rows, tax);
+  const path = translatePath(`/${PRICE_REPORT.slug}/${city.slug}`, locale);
+
   const neighbours = getCitiesBySubregion(city.subregion).filter((item) => item.slug !== city.slug);
 
   const crumbs: Crumb[] = [
@@ -219,10 +317,33 @@ export default async function PriceCityPage({ params }: { params: Promise<RouteP
     { name: ui.reportsNav, path: `/${PRICE_REPORT.slug}` },
     { name: city.name, path: `/${PRICE_REPORT.slug}/${city.slug}` },
   ];
+  const jsonLdCrumbs = crumbs.map((item) => ({
+    ...item,
+    path: translatePath(item.path, locale),
+  }));
 
   return (
     <>
       <Breadcrumbs items={crumbs} locale={locale} />
+
+      <JsonLd
+        nodes={[
+          breadcrumbNode(jsonLdCrumbs),
+          datasetNode({
+            locale,
+            name: copy.h1(city.name),
+            description: copy.metaDescription(
+              city.name,
+              formatEur(stats.pricePerM2),
+              formatRate(stats.rentalYield),
+            ),
+            path,
+            spatialName: city.name,
+            temporalCoverage: `${stats.dataAsOf}/2026`,
+          }),
+          faqNode(faq, path, locale),
+        ]}
+      />
 
       <section className="border-b border-brand-100 bg-brand-50/60">
         <div className="container-page py-10 lg:py-14">
@@ -479,6 +600,8 @@ export default async function PriceCityPage({ params }: { params: Promise<RouteP
           },
         ]}
       />
+
+      <FaqAccordion items={faq} title={copy.faqTitle(city.name)} />
 
       <Section className="bg-brand-50/60" id="formularz">
         <div className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
