@@ -3,6 +3,7 @@ import { SKIP_TO_CONTENT } from "@/lib/i18n/micro-copy";
 import "../globals.css";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
+import { GoogleAnalytics } from "@/components/analytics/google-analytics";
 import { JsonLd } from "@/components/seo/json-ld";
 import { organizationNode, websiteNode } from "@/lib/seo/schema-org";
 import { SITE } from "@/lib/seo/site";
@@ -92,6 +93,7 @@ export default async function RootLayout({
           {children}
         </main>
         <SiteFooter lang={locale} />
+        <GoogleAnalytics />
       </body>
     </html>
   );

@@ -213,6 +213,24 @@ export const en = {
         "NIE number for the notary",
         "Proof of funds for the Spanish bank",
       ],
+      faq: [
+        {
+          q: "What does a buyer's agent do in Spain?",
+          a: "We represent the buyer, not the seller: we shortlist properties against your budget, verify the Nota Simple and charges, negotiate price and terms, and coordinate the lawyer and notary. You get one point of contact instead of calling ten estate agents.",
+        },
+        {
+          q: "Do buyers pay your fee?",
+          a: "No. Our fee is settled with the partner agency after completion, so the buyer pays no commission. We state this in writing before you start viewing properties.",
+        },
+        {
+          q: "Can foreigners buy property in Spain?",
+          a: "Yes. EU citizens have the same rights as Spaniards; non-EU buyers also purchase freely. You need an NIE number and a Spanish bank account, and you can sign by power of attorney if you cannot attend the notary.",
+        },
+        {
+          q: "What purchase costs apply on top of the price?",
+          a: "Budget 10-13% extra: ITP transfer tax or 10% VAT plus AJD on new-build, notary, land registry, legal fees and translation. Annual costs such as IBI, community fees and insurance come on top.",
+        },
+      ],
     },
     villa: {
       name: "Villas with pool",

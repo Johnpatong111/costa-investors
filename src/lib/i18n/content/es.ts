@@ -213,6 +213,24 @@ export const es = {
         "NIE para la notaría",
         "Justificación de fondos para el banco",
       ],
+      faq: [
+        {
+          q: "¿Qué hace un agente comprador en España?",
+          a: "Representamos al comprador, no al vendedor: seleccionamos viviendas según tu presupuesto, revisamos la Nota Simple y las cargas, negociamos precio y condiciones y coordinamos al abogado y la notaría. Tienes un solo interlocutor en lugar de llamar a diez agencias.",
+        },
+        {
+          q: "¿Paga el comprador tus honorarios?",
+          a: "No. Nuestros honorarios se liquidan con la agencia asociada tras cerrar la operación, así que el comprador no paga comisión. Lo dejamos por escrito antes de empezar las visitas.",
+        },
+        {
+          q: "¿Pueden comprar extranjeros en España?",
+          a: "Sí. Los ciudadanos de la UE tienen los mismos derechos que los españoles; los compradores de fuera de la UE también compran libremente. Necesitas NIE y cuenta bancaria española, y puedes firmar por poder notarial si no puedes acudir a la notaría.",
+        },
+        {
+          q: "¿Qué gastos se suman al precio?",
+          a: "Reserva un 10-13% adicional: ITP o IVA del 10% más AJD en obra nueva, notaría, registro, abogado y traducción. Aparte quedan los gastos anuales: IBI, comunidad y seguro.",
+        },
+      ],
     },
     villa: {
       name: "Villas con piscina",

@@ -7,7 +7,7 @@ import { SITE } from "@/lib/seo/site";
 /** Treść „O nas" w trzech językach. */
 const COPY: Record<
   Locale,
-  { title: string; intro: string; sections: { heading: string; paragraphs: string[] }[] }
+  { title: string; intro: string; sections: { heading: string; paragraphs: string[] }[]; sourcesHeading: string; sources: { label: string; url: string }[] }
 > = {
   pl: {
     title: "O Costa Investors",
@@ -32,6 +32,12 @@ const COPY: Record<
         heading: "Kontakt",
         paragraphs: ["Pytania i zgłoszenia: contact@costainvestors.eu. Odpowiadamy w dni robocze."],
       },
+    ],
+    sourcesHeading: "Źródła i weryfikacja",
+    sources: [
+      { label: "INE - statystyki cen i ludności Hiszpanii", url: "https://www.ine.es/" },
+      { label: "Catastro - rejestr nieruchomości", url: "https://www.sedecatastro.gob.es/" },
+      { label: "Registradores de España - rejestry ksiąg wieczystych", url: "https://www.registradores.org/" },
     ],
   },
   en: {
@@ -58,6 +64,12 @@ const COPY: Record<
         paragraphs: ["Questions and enquiries: contact@costainvestors.eu. We reply on business days."],
       },
     ],
+    sourcesHeading: "Sources and verification",
+    sources: [
+      { label: "INE - Spanish price and population statistics", url: "https://www.ine.es/" },
+      { label: "Catastro - Spanish property register", url: "https://www.sedecatastro.gob.es/" },
+      { label: "Registradores de España - land registry", url: "https://www.registradores.org/" },
+    ],
   },
   es: {
     title: "Sobre Costa Investors",
@@ -83,6 +95,12 @@ const COPY: Record<
         paragraphs: ["Preguntas y solicitudes: contact@costainvestors.eu. Respondemos en días laborables."],
       },
     ],
+    sourcesHeading: "Fuentes y verificación",
+    sources: [
+      { label: "INE - estadísticas de precios y población", url: "https://www.ine.es/" },
+      { label: "Catastro - registro de inmuebles", url: "https://www.sedecatastro.gob.es/" },
+      { label: "Registradores de España - registro de la propiedad", url: "https://www.registradores.org/" },
+    ],
   },
 };
 
@@ -98,7 +116,7 @@ export async function generateMetadata({
     description: copy.intro,
     path: "/o-nas",
     locale,
-    noindex: true,
+    noindex: false,
   });
 }
 
@@ -119,6 +137,23 @@ export default async function AboutPage({ params }: { params: Promise<{ lang: st
             ))}
           </section>
         ))}
+        <section className="space-y-2">
+          <h2 className="pt-4 text-xl font-bold text-brand-950">{copy.sourcesHeading}</h2>
+          <ul className="list-disc space-y-1 pl-5">
+            {copy.sources.map((source) => (
+              <li key={source.url}>
+                <a
+                  href={source.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-brand-900 underline decoration-brand-300 underline-offset-2 hover:decoration-brand-700"
+                >
+                  {source.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </section>
       </article>
     </Section>
   );
