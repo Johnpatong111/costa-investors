@@ -83,3 +83,33 @@ export function truncate(text: string, maxLength: number): string {
   const lastSpace = cut.lastIndexOf(" ");
   return `${(lastSpace > maxLength * 0.6 ? cut.slice(0, lastSpace) : cut).trimEnd()}…`;
 }
+
+/**
+ * Waluta w konwencji języka strony. Do meta title/description, gdzie
+ * „2 820 €” (PL) vs „€2,820” (EN) vs „2.820 €” (ES) wpływa na CTR.
+ */
+const LOCALE_TAG = { pl: "pl-PL", en: "en-GB", es: "es-ES" } as const;
+
+export function formatEurLocale(value: number, locale: keyof typeof LOCALE_TAG): string {
+  return new Intl.NumberFormat(LOCALE_TAG[locale], {
+    style: "currency",
+    currency: "EUR",
+    maximumFractionDigits: 0,
+    useGrouping: true,
+  }).format(value);
+}
+
+/** 5.4 + "en" -> "5.4%", "pl"/"es" -> "5,4%". */
+export function formatRateLocale(
+  percent: number,
+  locale: keyof typeof LOCALE_TAG,
+  digits = 1,
+): string {
+  return new Intl.NumberFormat(LOCALE_TAG[locale], {
+    style: "percent",
+    minimumFractionDigits: digits,
+    maximumFractionDigits: digits,
+  })
+    .format(percent / 100)
+    .replace(/\s+%/g, "%");
+}

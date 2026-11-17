@@ -27,7 +27,7 @@ import { getServiceCopy } from "@/lib/i18n/content/builders";
 import { getUiCopy } from "@/lib/i18n/ui";
 import { buildMetadata } from "@/lib/seo/metadata";
 import { breadcrumbNode, datasetNode } from "@/lib/seo/schema-org";
-import { formatEur, formatRate } from "@/lib/utils/format";
+import { formatEur, formatEurLocale, formatRate, formatRateLocale } from "@/lib/utils/format";
 
 /**
  * ===========================================================================
@@ -64,7 +64,7 @@ const COPY: Record<
     ctaEyebrow: string;
     ctaTitle: (city: string) => string;
     ctaText: string;
-    metaTitle: (city: string) => string;
+    metaTitle: (city: string, median: string, yieldValue: string) => string;
     metaDescription: (city: string, median: string, yieldValue: string) => string;
     keywords: (city: string) => string[];
   }
@@ -86,9 +86,10 @@ const COPY: Record<
     ctaTitle: (city) => `Chcesz kupić w ${city}?`,
     ctaText:
       "Wyślij budżet i preferencje. Przygotujemy 3-5 ofert z wyliczonym zwrotem i pełnymi kosztami zakupu.",
-    metaTitle: (city) => `Ceny m² ${city} ${MARKET_YEAR} | ROI i dzielnice`,
+    metaTitle: (city, median, yieldValue) =>
+      `Ceny nieruchomości ${city} ${MARKET_YEAR}: ${median}/m², ROI ${yieldValue}`,
     metaDescription: (city, median, yieldValue) =>
-      `Ceny w ${city}: mediana ${median} €/m², ROI najmu ${yieldValue} brutto. Zobacz ceny i zwrot w każdej dzielnicy oraz historię cen 2016-2026.`,
+      `Ceny w ${city}: mediana ${median}/m², ROI najmu ${yieldValue} brutto. Sprawdź ceny, zwrot i czas ekspozycji w każdej dzielnicy oraz historię cen 2016-2026.`,
     keywords: (city) => [
       `ceny m2 ${city}`,
       `ceny nieruchomości ${city} ${MARKET_YEAR}`,
@@ -113,9 +114,10 @@ const COPY: Record<
     ctaTitle: (city) => `Want to buy in ${city}?`,
     ctaText:
       "Send your budget and preferences. We shortlist 3-5 properties with the return modelled and the full cost of buying.",
-    metaTitle: (city) => `Property prices ${city} ${MARKET_YEAR} | Yields by area`,
+    metaTitle: (city, median, yieldValue) =>
+      `Property prices ${city} ${MARKET_YEAR}: ${median}/m², ${yieldValue} yield`,
     metaDescription: (city, median, yieldValue) =>
-      `Prices in ${city}: median ${median} €/m² and ${yieldValue} gross yield. See every area, its return and the 2016-2026 price history.`,
+      `Prices in ${city}: median ${median}/m² and ${yieldValue} gross yield. Check prices, returns and time on market in every area, plus the 2016-2026 history.`,
     keywords: (city) => [
       `property prices ${city}`,
       `price per m2 ${city} ${MARKET_YEAR}`,
@@ -140,9 +142,10 @@ const COPY: Record<
     ctaTitle: (city) => `¿Quieres comprar en ${city}?`,
     ctaText:
       "Envíanos tu presupuesto y preferencias. Preparamos de 3 a 5 ofertas con retorno calculado y todos los gastos de compra.",
-    metaTitle: (city) => `Precio m² ${city} ${MARKET_YEAR} | Rentabilidad por zona`,
+    metaTitle: (city, median, yieldValue) =>
+      `Precio m² ${city} ${MARKET_YEAR}: ${median}/m² y ${yieldValue} rentabilidad`,
     metaDescription: (city, median, yieldValue) =>
-      `Precios en ${city}: mediana ${median} €/m² y rentabilidad bruta ${yieldValue}. Consulta cada zona, su retorno y la evolución de precios 2016-2026.`,
+      `Precios en ${city}: mediana ${median}/m² y rentabilidad bruta ${yieldValue}. Consulta precios, retorno y tiempo de venta por zona y la evolución 2016-2026.`,
     keywords: (city) => [
       `precio m2 ${city}`,
       `precios vivienda ${city} ${MARKET_YEAR}`,
@@ -169,16 +172,14 @@ export async function generateMetadata({
 
   const stats = deriveCityStats(city, region);
   const copy = COPY[locale];
+  const price = formatEurLocale(stats.pricePerM2, locale);
+  const yieldValue = formatRateLocale(stats.rentalYield, locale);
 
   const keywords = copy.keywords(city.name);
 
   return buildMetadata({
-    title: copy.metaTitle(city.name),
-    description: copy.metaDescription(
-      city.name,
-      formatEur(stats.pricePerM2),
-      formatRate(stats.rentalYield),
-    ),
+    title: copy.metaTitle(city.name, price, yieldValue),
+    description: copy.metaDescription(city.name, price, yieldValue),
     path: `/${PRICE_REPORT.slug}/${city.slug}`,
     keywords,
     locale,
