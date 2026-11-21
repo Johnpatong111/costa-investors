@@ -10,9 +10,10 @@ import { FaqAccordion } from "@/components/sections/faq-accordion";
 import { InternalLinks } from "@/components/sections/internal-links";
 import { Section, SectionHeading } from "@/components/ui/primitives";
 import { JsonLd } from "@/components/seo/json-ld";
-import { getCities, getCitiesBySubregion, getRegions } from "@/lib/data/repository";
+import { getCities, getCitiesBySubregion, getAllDistrictEntries, getRegions } from "@/lib/data/repository";
 import { PRICE_REPORT, SERVICES } from "@/lib/data/services";
 import { buildServiceFallbackVars, interpolateBenefits } from "@/lib/content/service-copy";
+import { deriveDistrictStats } from "@/lib/content/market-stats";
 import { interpolate } from "@/lib/content/interpolate";
 import { assertLocale, isLocale, ROUTABLE_LOCALES, type Locale } from "@/lib/i18n/config";
 import { getServiceCopy, getLocalizedContent } from "@/lib/i18n/content/builders";
@@ -113,6 +114,22 @@ export default async function ServiceHubPage({
   const cities = getCities();
   const regions = getRegions();
   const subregions = [...new Set(cities.map((city) => city.subregion))];
+  const topDistricts = getAllDistrictEntries()
+    .map((entry) => {
+      const stats = deriveDistrictStats(entry.city, entry.district, entry.region);
+      return {
+        city: entry.city,
+        district: entry.district,
+        stats,
+        href: translatePath(
+          `/${service.slug}/${entry.city.slug}/${entry.district.slug}`,
+          locale,
+        ),
+      };
+    })
+    .filter((entry) => entry.stats.reliable)
+    .sort((a, b) => b.stats.netYield - a.stats.netYield)
+    .slice(0, 8);
 
   // Strony zbiorcze nie mają jednej dzielnicy. Podstawiamy medianę rynku,
   // żeby opisy korzyści nie zawierały surowych placeholderów.
@@ -241,6 +258,51 @@ export default async function ServiceHubPage({
               </div>
             );
           })}
+        </div>
+      </Section>
+
+      <Section>
+        <SectionHeading eyebrow={ui.bestAreasEyebrow}>{ui.bestAreasTitle}</SectionHeading>
+        <p className="-mt-4 mb-6 max-w-3xl text-sm leading-relaxed text-brand-700">{ui.bestAreasLead}</p>
+        <div className="overflow-x-auto rounded-2xl border border-brand-100">
+          <table className="w-full min-w-[640px] text-left text-sm">
+            <thead className="bg-brand-50 text-xs uppercase tracking-wide text-brand-600">
+              <tr>
+                <th scope="col" className="px-4 py-3 font-semibold">
+                  {ui.bestAreasDistrict}
+                </th>
+                <th scope="col" className="px-4 py-3 text-right font-semibold">
+                  {ui.bestAreasPrice}
+                </th>
+                <th scope="col" className="px-4 py-3 text-right font-semibold">
+                  {ui.bestAreasYield}
+                </th>
+                <th scope="col" className="px-4 py-3 text-right font-semibold">
+                  {ui.bestAreasDays}
+                </th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-brand-100">
+              {topDistricts.map(({ city, district, stats, href }) => (
+                <tr key={`${city.slug}/${district.slug}`} className="bg-white">
+                  <th scope="row" className="px-4 py-3 text-left font-medium">
+                    <a
+                      href={href}
+                      className="text-brand-900 underline decoration-brand-200 underline-offset-2 hover:text-brand-950 hover:decoration-brand-600"
+                    >
+                      {district.name}
+                    </a>
+                    <span className="block text-xs text-brand-500">{city.name}</span>
+                  </th>
+                  <td className="px-4 py-3 text-right tabular-nums">{formatEur(stats.pricePerM2)}</td>
+                  <td className="px-4 py-3 text-right font-semibold tabular-nums text-accent-700">
+                    {formatRate(stats.netYield)}
+                  </td>
+                  <td className="px-4 py-3 text-right tabular-nums">{stats.avgDaysOnMarket}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       </Section>
 
