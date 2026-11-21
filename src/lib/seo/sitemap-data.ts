@@ -48,7 +48,7 @@ const LAST_MODIFIED = (() => {
    * JSON-LD i FAQ nie podbijają tej daty, więc Google dostawał stary `lastmod`
    * i odkładał recrawl. Podbijaj tę stałą przy każdej istotnej zmianie treści.
    */
-  const CONTENT_UPDATED_AT = "2026-11-17";
+  const CONTENT_UPDATED_AT = "2026-11-21";
   return LOCATIONS.updatedAt > CONTENT_UPDATED_AT ? LOCATIONS.updatedAt : CONTENT_UPDATED_AT;
 })();
 
