@@ -73,6 +73,30 @@ export default async function PriceReportIndexPage({
     };
   });
 
+  const leaderGroups = [
+    {
+      title: copy.leadersYield,
+      rows: [...cities]
+        .sort((a, b) => b.stats.rentalYield - a.stats.rentalYield)
+        .slice(0, 3)
+        .map(({ city, stats }) => ({ city, value: formatRate(stats.rentalYield) })),
+    },
+    {
+      title: copy.leadersCheap,
+      rows: [...cities]
+        .sort((a, b) => a.city.pricePerM2 - b.city.pricePerM2)
+        .slice(0, 3)
+        .map(({ city }) => ({ city, value: `${formatEur(city.pricePerM2)}/m²` })),
+    },
+    {
+      title: copy.leadersGrowth,
+      rows: [...cities]
+        .sort((a, b) => b.stats.priceGrowth - a.stats.priceGrowth)
+        .slice(0, 3)
+        .map(({ city, stats }) => ({ city, value: formatRate(stats.priceGrowth) })),
+    },
+  ];
+
   return (
     <>
       <Breadcrumbs items={crumbs} locale={locale} />
@@ -170,6 +194,31 @@ export default async function PriceReportIndexPage({
               ))}
             </tbody>
           </table>
+        </div>
+      </Section>
+
+      <Section>
+        <SectionHeading eyebrow={copy.leadersEyebrow}>{copy.leadersTitle}</SectionHeading>
+        <p className="-mt-4 mb-6 max-w-3xl text-sm leading-relaxed text-brand-700">{copy.leadersLead}</p>
+        <div className="grid gap-4 md:grid-cols-3">
+          {leaderGroups.map((group) => (
+            <div key={group.title} className="rounded-2xl border border-brand-100 bg-white p-5">
+              <h3 className="text-sm font-bold text-brand-950">{group.title}</h3>
+              <ol className="mt-3 space-y-2">
+                {group.rows.map(({ city, value }) => (
+                  <li key={city.slug} className="flex items-baseline justify-between gap-3 text-sm">
+                    <Link
+                      href={translatePath(`/${PRICE_REPORT.slug}/${city.slug}`, locale)}
+                      className="font-medium text-brand-800 underline decoration-brand-200 underline-offset-2 hover:text-brand-950 hover:decoration-brand-600"
+                    >
+                      {city.name}
+                    </Link>
+                    <span className="shrink-0 font-semibold tabular-nums text-accent-700">{value}</span>
+                  </li>
+                ))}
+              </ol>
+            </div>
+          ))}
         </div>
       </Section>
 

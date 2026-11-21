@@ -31,6 +31,12 @@ export interface PriceHubCopy {
   runningCostsIntro: string;
   runningCostsBullets: string[];
   costsCta: string;
+  leadersEyebrow: string;
+  leadersTitle: string;
+  leadersLead: string;
+  leadersYield: string;
+  leadersCheap: string;
+  leadersGrowth: string;
   methodologyHeading: string;
   methodologyText: string;
   faqTitle: string;
@@ -63,6 +69,13 @@ export const PRICE_HUB_COPY: Record<Locale, PriceHubCopy> = {
       "Utrzymanie i rezerwa remontowa: około 1% wartości nieruchomości rocznie",
     ],
     costsCta: "Zobacz pełne koszty zakupu i utrzymania mieszkania",
+    leadersEyebrow: "Liderzy rynku",
+    leadersTitle: "Gdzie kupić: najwyższy ROI, najniższa cena, największy wzrost",
+    leadersLead:
+      "Trzy spojrzenia na te same miejscowości. Kliknij nazwę, aby zobaczyć ceny, ROI i czas sprzedaży w każdej dzielnicy.",
+    leadersYield: "Najwyższy ROI brutto",
+    leadersCheap: "Najniższa cena za m²",
+    leadersGrowth: "Największy wzrost r/r",
     methodologyHeading: "Jak liczymy ceny i ROI",
     methodologyText:
       "Podajemy medianę cen ofertowych, nie cen transakcyjnych, więc realna cena może być niższa o kilka procent. ROI brutto to roczny czynsz podzielony przez cenę zakupu; ROI netto odejmuje koszty utrzymania, podatki i założone pustostany. Dane aktualizujemy razem z bazą rynku i traktujemy jako punkt wyjścia do analizy konkretnej nieruchomości, a nie wycenę.",
@@ -140,6 +153,13 @@ export const PRICE_HUB_COPY: Record<Locale, PriceHubCopy> = {
       "Maintenance and sinking fund: around 1% of property value a year",
     ],
     costsCta: "See the full purchase and running costs",
+    leadersEyebrow: "Market leaders",
+    leadersTitle: "Where to buy: highest yield, lowest price, strongest growth",
+    leadersLead:
+      "Three views of the same markets. Open a town to see prices, yields and time on market for every district.",
+    leadersYield: "Highest gross yield",
+    leadersCheap: "Lowest price per m²",
+    leadersGrowth: "Strongest growth YoY",
     methodologyHeading: "How we calculate prices and yields",
     methodologyText:
       "We publish the median asking price, not transaction prices, so the final price can be several percent lower. Gross yield is annual rent divided by purchase price; net yield deducts running costs, taxes and assumed voids. Data is refreshed with the market dataset and is a starting point for analysing a specific property, not a valuation.",
@@ -217,6 +237,13 @@ export const PRICE_HUB_COPY: Record<Locale, PriceHubCopy> = {
       "Mantenimiento y reserva: alrededor del 1% del valor al año",
     ],
     costsCta: "Ver todos los gastos de compra y mantenimiento",
+    leadersEyebrow: "Líderes del mercado",
+    leadersTitle: "Dónde comprar: mayor rentabilidad, menor precio, mayor crecimiento",
+    leadersLead:
+      "Tres visiones de las mismas localidades. Abre una para ver precios, rentabilidad y tiempo de venta por zona.",
+    leadersYield: "Mayor rentabilidad bruta",
+    leadersCheap: "Menor precio por m²",
+    leadersGrowth: "Mayor crecimiento interanual",
     methodologyHeading: "Cómo calculamos precios y rentabilidad",
     methodologyText:
       "Publicamos la mediana de precios de oferta, no de transacción, así que el precio final puede ser varios puntos menor. La rentabilidad bruta es el alquiler anual dividido por el precio; la neta descuenta gastos, impuestos y vacíos. Los datos se actualizan con la base de mercado y son un punto de partida para analizar una vivienda concreta, no una tasación.",
