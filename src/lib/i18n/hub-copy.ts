@@ -18,6 +18,13 @@ export interface HubCopy {
   leadSubheading: string;
   coverageEyebrow: string;
   coverageTitle: string;
+  bestAreasEyebrow: string;
+  bestAreasTitle: string;
+  bestAreasLead: string;
+  bestAreasDistrict: string;
+  bestAreasPrice: string;
+  bestAreasYield: string;
+  bestAreasDays: string;
   conditionsEyebrow: string;
   conditionsTitle: string;
   otherServices: string;
@@ -47,6 +54,14 @@ export const HUB_COPY: Record<Locale, HubCopy> = {
       "Wypełnij preferencje. Certyfikowany polskojęzyczny agent skontaktuje się z gotowymi ofertami.",
     coverageEyebrow: "Zasięg",
     coverageTitle: "Miejscowości na Costa Blanca i Costa Cálida",
+    bestAreasEyebrow: "Najlepsze dzielnice",
+    bestAreasTitle: "Dzielnice z najwyższym zwrotem netto z najmu",
+    bestAreasLead:
+      "Ranking oparty na medianach cen, czynszu i kosztach utrzymania. Kliknij dzielnicę, aby zobaczyć pełny raport: ceny, ROI, czas ekspozycji i plan zakupu.",
+    bestAreasDistrict: "Dzielnica / gmina",
+    bestAreasPrice: "Cena €/m²",
+    bestAreasYield: "ROI netto",
+    bestAreasDays: "Ekspozycja",
     conditionsEyebrow: "Warunki",
     conditionsTitle: "Co dostajesz w ramach usługi",
     otherServices: "Pozostałe usługi",
@@ -75,6 +90,14 @@ export const HUB_COPY: Record<Locale, HubCopy> = {
       "Share your preferences. A certified agent will come back with matched listings.",
     coverageEyebrow: "Coverage",
     coverageTitle: "Locations on Costa Blanca and Costa Cálida",
+    bestAreasEyebrow: "Best districts",
+    bestAreasTitle: "Districts with the highest net rental yield",
+    bestAreasLead:
+      "Ranked on median prices, rent and running costs. Open a district for the full report: prices, yields, time on market and the buying plan.",
+    bestAreasDistrict: "District / town",
+    bestAreasPrice: "Price €/m²",
+    bestAreasYield: "Net yield",
+    bestAreasDays: "Time on market",
     conditionsEyebrow: "What you get",
     conditionsTitle: "Included in the service",
     otherServices: "Other services",
@@ -103,6 +126,14 @@ export const HUB_COPY: Record<Locale, HubCopy> = {
       "Comparte tus preferencias. Un agente certificado te enviará ofertas ajustadas.",
     coverageEyebrow: "Cobertura",
     coverageTitle: "Localidades en Costa Blanca y Costa Cálida",
+    bestAreasEyebrow: "Mejores zonas",
+    bestAreasTitle: "Zonas con mayor rentabilidad neta del alquiler",
+    bestAreasLead:
+      "Ranking basado en medianas de precio, alquiler y gastos de mantenimiento. Abre una zona para ver el informe completo: precios, rentabilidad, tiempo de venta y plan de compra.",
+    bestAreasDistrict: "Zona / municipio",
+    bestAreasPrice: "Precio €/m²",
+    bestAreasYield: "Rentabilidad neta",
+    bestAreasDays: "Exposición",
     conditionsEyebrow: "Qué incluye",
     conditionsTitle: "Qué obtienes con el servicio",
     otherServices: "Otros servicios",
