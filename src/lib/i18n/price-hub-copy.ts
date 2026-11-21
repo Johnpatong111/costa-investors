@@ -98,6 +98,21 @@ export const PRICE_HUB_COPY: Record<Locale, PriceHubCopy> = {
         answer:
           "Bazę odświeżamy razem z nowymi danymi rynkowymi; rok publikacji i data danych są podane przy każdym raporcie. Historia cen obejmuje lata 2016-2026.",
       },
+      {
+        question: "Ile średnio kosztuje mieszkanie w Hiszpanii?",
+        answer:
+          "W tabeli powyżej znajdziesz medianę €/m² dla każdej z 15 miejscowości. Pomnóż ją przez metraż, a do wyniku dodaj 7-13% kosztów zakupu (ITP/IVA, notariusz, rejestr, prawnik). Mieszkanie 70 m² w mieście z medianą 2 000 €/m² to około 140 000 € plus koszty.",
+      },
+      {
+        question: "Co zawiera raport rynku nieruchomości?",
+        answer:
+          "Raport zawiera medianę cen ofertowych, ROI brutto i netto, dynamikę roczną, czas sprzedaży oraz porównanie dzielnic. Na tej stronie znajdziesz zestawienie 15 miejscowości, a w raportach miast dane dla 89 dzielnic.",
+      },
+      {
+        question: "Czy ceny nieruchomości w Hiszpanii rosną w 2026 roku?",
+        answer:
+          "W większości naszych rynków dynamika roczna jest dodatnia; dokładne wartości znajdziesz w kolumnie r/r. Najszybciej rosną nadmorskie lokalizacje z ograniczoną podażą i wysokim popytem na najem, wolniej mniejsze miejscowości w głębi kraju.",
+      },
     ],
   },
   en: {
@@ -141,7 +156,7 @@ export const PRICE_HUB_COPY: Record<Locale, PriceHubCopy> = {
           "No. We publish median asking prices. The transaction price can be lower, especially in older blocks and when a listing has been on the market for a long time.",
       },
       {
-        question: "What running costs should I budget for in Spain?",
+        question: "What are the running costs of an apartment in Spain?",
         answer:
           "IBI, community fees, refuse collection, insurance and maintenance. In estates with a pool and lift the community is often €60-120 per month; in holiday high-rises it can be higher.",
       },
@@ -159,6 +174,21 @@ export const PRICE_HUB_COPY: Record<Locale, PriceHubCopy> = {
         question: "How often is the data updated?",
         answer:
           "The dataset is refreshed with new market data; the publication year and data date appear in every report. Price history covers 2016-2026.",
+      },
+      {
+        question: "What is the average cost of a house in Spain?",
+        answer:
+          "The table above shows the median €/m² for each of 15 markets. Multiply it by the built area and add 7-13% buying costs (ITP/IVA, notary, registry, lawyer). A 70 m² apartment in a town with a €2,000/m² median is about €140,000 before costs.",
+      },
+      {
+        question: "What is included in a Spanish property report?",
+        answer:
+          "A property report combines median asking prices, gross and net rental yields, annual growth, time on market and a district comparison. This page covers 15 towns; the city reports break the data down across 89 districts.",
+      },
+      {
+        question: "Is the Spanish property market rising in 2026?",
+        answer:
+          "Year-on-year growth is positive in most of our markets; the exact figures are in the growth column. Coastal locations with limited supply and strong rental demand lead, while smaller inland towns tend to lag.",
       },
     ],
   },
@@ -222,6 +252,21 @@ export const PRICE_HUB_COPY: Record<Locale, PriceHubCopy> = {
         answer:
           "La base se actualiza con nuevos datos de mercado; el año y la fecha aparecen en cada informe. La evolución cubre 2016-2026.",
       },
+      {
+        question: "¿Cuánto cuesta de media una vivienda en España?",
+        answer:
+          "En la tabla superior tienes la mediana €/m² de cada una de las 15 localidades. Multiplícala por los metros construidos y añade un 7-13% de gastos de compra (ITP/IVA, notaría, registro, abogado). Un piso de 70 m² en una localidad con mediana de 2.000 €/m² cuesta unos 140.000 € antes de gastos.",
+      },
+      {
+        question: "¿Qué incluye un informe del mercado inmobiliario?",
+        answer:
+          "Un informe combina medianas de precio de oferta, rentabilidad bruta y neta, crecimiento anual, tiempo de venta y comparativa por zonas. Esta página cubre 15 localidades; los informes de ciudad desglosan los datos en 89 zonas.",
+      },
+      {
+        question: "¿Está subiendo el mercado inmobiliario en 2026?",
+        answer:
+          "El crecimiento interanual es positivo en la mayoría de nuestros mercados; las cifras exactas están en la columna de crecimiento. Lideran las zonas costeras con oferta limitada y fuerte demanda de alquiler; las localidades pequeñas del interior suelen quedarse atrás.",
+      },
     ],
   },
 };
@@ -243,9 +288,9 @@ export const PRICE_HUB_META: Record<
     ],
   },
   en: {
-    title: "Spanish property prices & yields 2026 | 15 cities",
+    title: "Spanish property market report 2026 | prices & yields",
     description:
-      "Median €/m², rental yields and annual growth across 15 locations on Costa Blanca and Costa Cálida. Price history 2016-2026 for every district.",
+      "Spanish property market report: median €/m², rental yields and annual growth across 15 locations on Costa Blanca and Costa Cálida. Price history 2016-2026 for every district.",
     keywords: [
       "property prices Costa Blanca",
       "price per m2 Costa Cálida",
@@ -254,9 +299,9 @@ export const PRICE_HUB_META: Record<
     ],
   },
   es: {
-    title: "Precios y rentabilidad inmobiliaria 2026 | 15 ciudades",
+    title: "Informe del mercado inmobiliario 2026 | precios y ROI",
     description:
-      "Mediana €/m², rentabilidad de alquiler y crecimiento anual en 15 localidades de Costa Blanca y Costa Cálida. Evolución de precios 2016-2026 por zona.",
+      "Informe del mercado inmobiliario: mediana €/m², rentabilidad de alquiler y crecimiento anual en 15 localidades de Costa Blanca y Costa Cálida. Evolución de precios 2016-2026 por zona.",
     keywords: [
       "precio m2 Costa Blanca",
       "precio m2 Costa Cálida",
