@@ -309,13 +309,11 @@ export function datasetNode(input: {
     url: absoluteUrl(input.path),
     creator: {
       "@type": "Organization",
-      "@id": NODE_IDS.organization,
       name: SITE.brand,
       url: SITE.url,
     },
     publisher: {
       "@type": "Organization",
-      "@id": NODE_IDS.organization,
       name: SITE.brand,
       url: SITE.url,
     },
