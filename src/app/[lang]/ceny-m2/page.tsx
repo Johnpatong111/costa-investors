@@ -73,9 +73,14 @@ export default async function PriceReportIndexPage({
     };
   });
 
-  const medianPrice = Math.round(
-    cities.reduce((sum, item) => sum + item.city.pricePerM2, 0) / Math.max(cities.length, 1),
-  );
+  const cityPrices = cities
+    .map((item) => item.city.pricePerM2)
+    .sort((a, b) => a - b);
+  const middle = Math.floor(cityPrices.length / 2);
+  const medianPrice =
+    cityPrices.length % 2 === 1
+      ? cityPrices[middle] ?? 0
+      : Math.round(((cityPrices[middle - 1] ?? 0) + (cityPrices[middle] ?? 0)) / 2);
 
   const leaderGroups = [
     {
