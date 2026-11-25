@@ -339,6 +339,11 @@ export default async function ServiceHubPage({
                 label: ui.reportLabel,
                 meta: `ROI do ${formatRate(6.9)}`,
               },
+              ...getCities().map((city) => ({
+                href: translatePath(`/${PRICE_REPORT.slug}/${city.slug}`, locale),
+                label: `${ui.reportLabel} ${city.name}`,
+                meta: `${formatEur(city.pricePerM2)}/m² · ROI ${formatRate(city.rentalYield)}`,
+              })),
             ],
           },
         ]}
