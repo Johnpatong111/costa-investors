@@ -52,7 +52,7 @@ export const PRICE_HUB_COPY: Record<Locale, PriceHubCopy> = {
     lead: "Zestawienie median cen ofertowych, rentowności najmu, dynamiki rocznej i czasu sprzedaży. Każdy raport zawiera porównanie dzielnic i wyliczenie zwrotu dla budżetu inwestora.",
     answerHeading: "Ile średnio kosztuje mieszkanie w Hiszpanii?",
     answerText: (median, budget70) =>
-      `Mediana cen ofertowych w 15 miejscowościach z naszej bazy to ${median} €/m². Mieszkanie 70 m² kosztuje więc około ${budget70} przed kosztami zakupu. To mediana ofertowa, nie cena transakcyjna.`,
+      `Mediana cen ofertowych w 21 miejscowościach z naszej bazy to ${median} €/m². Mieszkanie 70 m² kosztuje więc około ${budget70} przed kosztami zakupu. To mediana ofertowa, nie cena transakcyjna.`,
     citiesEyebrow: "Miejscowości",
     chooseLocation: "Wybierz lokalizację",
     caption: (year) => `Mediany cen, ROI i dynamika w miejscowościach Costa Blanca i Costa Cálida - ${year}`,
@@ -119,12 +119,12 @@ export const PRICE_HUB_COPY: Record<Locale, PriceHubCopy> = {
       {
         question: "Ile średnio kosztuje mieszkanie w Hiszpanii?",
         answer:
-          "W tabeli powyżej znajdziesz medianę €/m² dla każdej z 15 miejscowości. Pomnóż ją przez metraż, a do wyniku dodaj 7-13% kosztów zakupu (ITP/IVA, notariusz, rejestr, prawnik). Mieszkanie 70 m² w mieście z medianą 2 000 €/m² to około 140 000 € plus koszty.",
+          "W tabeli powyżej znajdziesz medianę €/m² dla każdej z 21 miejscowości. Pomnóż ją przez metraż, a do wyniku dodaj 7-13% kosztów zakupu (ITP/IVA, notariusz, rejestr, prawnik). Mieszkanie 70 m² w mieście z medianą 2 000 €/m² to około 140 000 € plus koszty.",
       },
       {
         question: "Co zawiera raport rynku nieruchomości?",
         answer:
-          "Raport zawiera medianę cen ofertowych, ROI brutto i netto, dynamikę roczną, czas sprzedaży oraz porównanie dzielnic. Na tej stronie znajdziesz zestawienie 15 miejscowości, a w raportach miast dane dla 89 dzielnic.",
+          "Raport zawiera medianę cen ofertowych, ROI brutto i netto, dynamikę roczną, czas sprzedaży oraz porównanie dzielnic. Na tej stronie znajdziesz zestawienie 21 miejscowości, a w raportach miast dane dla 89 dzielnic.",
       },
       {
         question: "Czy ceny nieruchomości w Hiszpanii rosną w 2026 roku?",
@@ -139,7 +139,7 @@ export const PRICE_HUB_COPY: Record<Locale, PriceHubCopy> = {
     lead: "Median asking prices, rental yields, annual growth and time on market. Every report includes a district comparison and a return calculation for your budget.",
     answerHeading: "What is the average house price in Spain?",
     answerText: (median, budget70) =>
-      `The median asking price across the 15 towns in our dataset is ${median}/m². A 70 m² apartment therefore costs about ${budget70} before purchase costs. This is an asking-price median, not a transaction price.`,
+      `The median asking price across the 21 towns in our dataset is ${median}/m². A 70 m² apartment therefore costs about ${budget70} before purchase costs. This is an asking-price median, not a transaction price.`,
     citiesEyebrow: "Locations",
     chooseLocation: "Choose a location",
     caption: (year) => `Median prices, yields and growth across Costa Blanca and Costa Cálida - ${year}`,
@@ -206,12 +206,12 @@ export const PRICE_HUB_COPY: Record<Locale, PriceHubCopy> = {
       {
         question: "What is the average cost of a house in Spain?",
         answer:
-          "The table above shows the median €/m² for each of 15 markets. Multiply it by the built area and add 7-13% buying costs (ITP/IVA, notary, registry, lawyer). A 70 m² apartment in a town with a €2,000/m² median is about €140,000 before costs.",
+          "The table above shows the median €/m² for each of 21 markets. Multiply it by the built area and add 7-13% buying costs (ITP/IVA, notary, registry, lawyer). A 70 m² apartment in a town with a €2,000/m² median is about €140,000 before costs.",
       },
       {
         question: "What is included in a Spanish property report?",
         answer:
-          "A property report combines median asking prices, gross and net rental yields, annual growth, time on market and a district comparison. This page covers 15 towns; the city reports break the data down across 89 districts.",
+          "A property report combines median asking prices, gross and net rental yields, annual growth, time on market and a district comparison. This page covers 21 towns; the city reports break the data down across 89 districts.",
       },
       {
         question: "Is the Spanish property market rising in 2026?",
@@ -226,7 +226,7 @@ export const PRICE_HUB_COPY: Record<Locale, PriceHubCopy> = {
     lead: "Medianas de precio de oferta, rentabilidad del alquiler, crecimiento anual y tiempo de venta. Cada informe incluye comparativa por zonas y cálculo del retorno para tu presupuesto.",
     answerHeading: "¿Cuánto cuesta de media una vivienda en España?",
     answerText: (median, budget70) =>
-      `La mediana de precios de oferta en las 15 localidades de nuestra base es ${median}/m². Un piso de 70 m² cuesta por tanto unos ${budget70} antes de gastos de compra. Es una mediana de oferta, no un precio de transacción.`,
+      `La mediana de precios de oferta en las 21 localidades de nuestra base es ${median}/m². Un piso de 70 m² cuesta por tanto unos ${budget70} antes de gastos de compra. Es una mediana de oferta, no un precio de transacción.`,
     citiesEyebrow: "Localidades",
     chooseLocation: "Elige una localidad",
     caption: (year) => `Medianas de precio, rentabilidad y crecimiento en Costa Blanca y Costa Cálida - ${year}`,
@@ -293,12 +293,12 @@ export const PRICE_HUB_COPY: Record<Locale, PriceHubCopy> = {
       {
         question: "¿Cuánto cuesta de media una vivienda en España?",
         answer:
-          "En la tabla superior tienes la mediana €/m² de cada una de las 15 localidades. Multiplícala por los metros construidos y añade un 7-13% de gastos de compra (ITP/IVA, notaría, registro, abogado). Un piso de 70 m² en una localidad con mediana de 2.000 €/m² cuesta unos 140.000 € antes de gastos.",
+          "En la tabla superior tienes la mediana €/m² de cada una de las 21 localidades. Multiplícala por los metros construidos y añade un 7-13% de gastos de compra (ITP/IVA, notaría, registro, abogado). Un piso de 70 m² en una localidad con mediana de 2.000 €/m² cuesta unos 140.000 € antes de gastos.",
       },
       {
         question: "¿Qué incluye un informe del mercado inmobiliario?",
         answer:
-          "Un informe combina medianas de precio de oferta, rentabilidad bruta y neta, crecimiento anual, tiempo de venta y comparativa por zonas. Esta página cubre 15 localidades; los informes de ciudad desglosan los datos en 89 zonas.",
+          "Un informe combina medianas de precio de oferta, rentabilidad bruta y neta, crecimiento anual, tiempo de venta y comparativa por zonas. Esta página cubre 21 localidades; los informes de ciudad desglosan los datos en 89 zonas.",
       },
       {
         question: "¿Está subiendo el mercado inmobiliario en 2026?",
@@ -315,9 +315,9 @@ export const PRICE_HUB_META: Record<
   { title: string; description: string; keywords: string[] }
 > = {
   pl: {
-    title: "Ceny m² i ROI w Hiszpanii 2026 | 15 miast, 89 dzielnic",
+    title: "Ceny m² i ROI w Hiszpanii 2026 | 21 miast, 89 dzielnic",
     description:
-      "Mediany cen, rentowność najmu i dynamika r/r w 15 miejscowościach Costa Blanca i Costa Cálida. Historia cen 2016-2026 w każdej dzielnicy.",
+      "Mediany cen, rentowność najmu i dynamika r/r w 21 miejscowościach Costa Blanca i Costa Cálida. Historia cen 2016-2026 w każdej dzielnicy.",
     keywords: [
       "ceny m2 Costa Blanca",
       "ceny m2 Costa Cálida",
@@ -328,7 +328,7 @@ export const PRICE_HUB_META: Record<
   en: {
     title: "Spanish property market report 2026 | prices & yields",
     description:
-      "Spanish property market report: median €/m², rental yields and annual growth across 15 locations on Costa Blanca and Costa Cálida. Price history 2016-2026 for every district.",
+      "Spanish property market report: median €/m², rental yields and annual growth across 21 locations on Costa Blanca and Costa Cálida. Price history 2016-2026 for every district.",
     keywords: [
       "property prices Costa Blanca",
       "price per m2 Costa Cálida",
@@ -339,7 +339,7 @@ export const PRICE_HUB_META: Record<
   es: {
     title: "Informe del mercado inmobiliario 2026 | precios y ROI",
     description:
-      "Informe del mercado inmobiliario: mediana €/m², rentabilidad de alquiler y crecimiento anual en 15 localidades de Costa Blanca y Costa Cálida. Evolución de precios 2016-2026 por zona.",
+      "Informe del mercado inmobiliario: mediana €/m², rentabilidad de alquiler y crecimiento anual en 21 localidades de Costa Blanca y Costa Cálida. Evolución de precios 2016-2026 por zona.",
     keywords: [
       "precio m2 Costa Blanca",
       "precio m2 Costa Cálida",
