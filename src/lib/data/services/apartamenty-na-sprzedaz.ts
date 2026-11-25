@@ -98,6 +98,18 @@ export const apartamentyNaSprzedaz: ServiceDefinition = {
       q: "Czy apartament z basenem generuje wyższy czynsz?",
       a: "Tak, w {cityLoc} basen i bliskość plaży podnoszą stawkę najmu o 10-20% w sezonie, ale zwiększają koszty wspólnoty (comunidad). W analizie liczymy oba efekty.",
     },
+    {
+      q: "Ile kosztuje apartament na Costa Blanca?",
+      a: "Mediana cen w naszej bazie miejscowości Costa Blanca i Costa Cálida to około 2 760 €/m², więc mieszkanie 70 m² kosztuje około 193 000 € przed kosztami zakupu. Przedziały budżetowe na stronie pokazują, które miejscowości mieszczą się do 150 tys. €, w widełkach 150-250 tys. € i 250-400 tys. €. Do ceny dolicz 13-14% na ITP/IVA, notariusza, rejestr i prawnika.",
+    },
+    {
+      q: "Gdzie kupić tani apartament na Costa Blanca?",
+      a: "Najniższe mediany są zwykle w Cartagenie, Mazarrón, Águilas i San Miguel de Salinas, gdzie mieszkanie 70 m² może zaczynać się poniżej 150 000 €. Mniejsze lokale, starsze budynki oraz miejscowości w głębi lub na południu dają najniższy próg wejścia. Przed zakupem sprawdź wspólnotę, stan techniczny i zasady najmu.",
+    },
+    {
+      q: "Co obejmuje usługa Costa Investors?",
+      a: "Otrzymujesz shortlistę 3-5 nieruchomości dopasowanych do budżetu, porównanie €/m² z medianą lokalną, pełne koszty zakupu, weryfikację Nota Simple i obciążeń przez niezależnego prawnika oraz wsparcie przy NIE i notariuszu. Kupujący nie płaci prowizji; wynagrodzenie rozliczamy z agencją partnerską po transakcji.",
+    },
   ],
   checklist: [
     "budżet własny i ewentualne finansowanie w EUR",

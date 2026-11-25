@@ -230,6 +230,22 @@ export const en = {
           q: "What purchase costs apply on top of the price?",
           a: "Budget 10-13% extra: ITP transfer tax or 10% VAT plus AJD on new-build, notary, land registry, legal fees and translation. Annual costs such as IBI, community fees and insurance come on top.",
         },
+        {
+          q: "How much does an apartment in Costa Blanca cost?",
+          a: "The median town price across our Costa Blanca and Costa Cálida dataset is around €2,760/m², so a 70 m² apartment is about €193,000 before purchase costs. The budget bands above show which towns fit under €150,000, €150,000-€250,000 and €250,000-€400,000. Add 13-14% for ITP/IVA, notary, registry and legal fees.",
+        },
+        {
+          q: "Where can I find cheap apartments for sale in Costa Blanca?",
+          a: "The lowest median budgets are usually in Cartagena, Mazarrón, Águilas and San Miguel de Salinas, where a 70 m² apartment can start below €150,000. Smaller units, older buildings and inland or southern locations offer the lowest entry prices. Check community fees, condition and rental rules before treating a low price as a bargain.",
+        },
+        {
+          q: "Which parts of Costa Blanca are best for rental yield?",
+          a: "Higher gross yields tend to sit in the south, around Torrevieja and Orihuela Costa, where purchase prices are lower and rental demand is steady. The north, including Jávea, Altea and Calpe, has higher prices but stronger capital growth and a more premium buyer profile. Tourist rental rules differ by municipality, so verify the licence before buying for short lets.",
+        },
+        {
+          q: "What is included when I buy an apartment through Costa Investors?",
+          a: "You get a shortlist of 3-5 properties matched to your budget, a €/m² comparison against the local median, a purchase cost breakdown, Nota Simple and charges checked by an independent lawyer, and support with the NIE and notary. The buyer pays no commission; our fee is settled with the partner agency after completion.",
+        },
       ],
     },
     villa: {

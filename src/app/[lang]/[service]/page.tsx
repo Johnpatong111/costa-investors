@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { LeadEngine } from "@/components/lead/lead-engine";
 import { Breadcrumbs, type Crumb } from "@/components/sections/breadcrumbs";
 import { BuyingCosts } from "@/components/sections/buying-costs";
+import { BudgetBands } from "@/components/sections/budget-bands";
 import { Hero } from "@/components/sections/hero";
 import { HowItWorks } from "@/components/sections/how-it-works";
 import { OwnershipCosts } from "@/components/sections/ownership-costs";
@@ -226,6 +227,8 @@ export default async function ServiceHubPage({
         title={uiCopy.howItWorksTitle(copy.name, regionLabel)}
         subtitle={uiCopy.howItWorksSubtitle}
       />
+
+      {kind === "buy" ? <BudgetBands locale={locale} serviceSlug={service.slug} /> : null}
 
       {kind === "buy" ? (
         <>

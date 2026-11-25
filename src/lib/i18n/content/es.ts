@@ -230,6 +230,22 @@ export const es = {
           q: "¿Qué gastos se suman al precio?",
           a: "Reserva un 10-13% adicional: ITP o IVA del 10% más AJD en obra nueva, notaría, registro, abogado y traducción. Aparte quedan los gastos anuales: IBI, comunidad y seguro.",
         },
+        {
+          q: "¿Cuánto cuesta un apartamento en la Costa Blanca?",
+          a: "La mediana de precios por localidad en nuestra base de Costa Blanca y Costa Cálida ronda los 2.760 €/m², así que un piso de 70 m² cuesta unos 193.000 € antes de gastos. Las franjas de presupuesto de arriba muestran qué localidades encajan por debajo de 150.000 €, entre 150.000 y 250.000 € y entre 250.000 y 400.000 €. Añade un 13-14% de ITP/IVA, notaría, registro y abogado.",
+        },
+        {
+          q: "¿Dónde encontrar apartamentos baratos en la Costa Blanca?",
+          a: "Las medianas más bajas suelen estar en Cartagena, Mazarrón, Águilas y San Miguel de Salinas, donde un piso de 70 m² puede empezar por debajo de 150.000 €. Los pisos pequeños, edificios antiguos y zonas de interior o del sur ofrecen la entrada más baja. Revisa comunidad, estado y normas de alquiler antes de considerar que un precio bajo es una ganga.",
+        },
+        {
+          q: "¿Qué zonas de la Costa Blanca tienen mejor rentabilidad?",
+          a: "La rentabilidad bruta más alta suele estar en el sur, en Torrevieja y Orihuela Costa, donde los precios son más bajos y la demanda de alquiler es estable. El norte, con Jávea, Altea y Calpe, tiene precios más altos pero también mayor revalorización y un comprador más premium. Las normas de alquiler turístico cambian por municipio: comprueba la licencia antes de comprar para temporada.",
+        },
+        {
+          q: "¿Qué incluye comprar un apartamento con Costa Investors?",
+          a: "Recibes una selección de 3-5 viviendas ajustadas a tu presupuesto, comparación de €/m² con la mediana local, desglose de gastos de compra, revisión de Nota Simple y cargas por un abogado independiente y apoyo con el NIE y la notaría. El comprador no paga comisión; nuestros honorarios se liquidan con la agencia asociada al cerrar la operación.",
+        },
       ],
     },
     villa: {
