@@ -170,7 +170,7 @@ function buildCityFaq(
   locale: Locale,
   cityName: string,
   stats: ReturnType<typeof deriveCityStats>,
-  rows: { name: string; pricePerM2: number }[],
+  rows: { name: string; pricePerM2: number; rentalYield: number }[],
   tax: ReturnType<typeof regionTax>,
 ): FaqItem[] {
   const median = formatEur(stats.pricePerM2);
@@ -180,11 +180,15 @@ function buildCityFaq(
   const growth = formatRate(stats.priceGrowth);
   const priciest = rows[0];
   const cheapest = rows[rows.length - 1];
+  const bestYield = [...rows].sort((a, b) => b.rentalYield - a.rentalYield)[0];
   const priciestName = priciest?.name ?? cityName;
   const cheapestName = cheapest?.name ?? cityName;
+  const bestYieldName = bestYield?.name ?? cityName;
   const priciestPrice = priciest ? formatEur(priciest.pricePerM2) : median;
   const cheapestPrice = cheapest ? formatEur(cheapest.pricePerM2) : median;
+  const bestYieldValue = bestYield ? formatRate(bestYield.rentalYield) : roi;
   const spread = priciest && cheapest ? formatEur(priciest.pricePerM2 - cheapest.pricePerM2) : "0";
+  const apartment70 = formatEur(stats.pricePerM2 * 70);
   const itp = `${tax.itp}%`;
 
   if (locale === "es") {
@@ -204,6 +208,14 @@ function buildCityFaq(
       {
         question: `¿Qué gastos de compra se suman al precio en ${cityName}?`,
         answer: `En ${tax.authority} el ITP es del ${itp}. Añade notaría, registro, abogado y traducción: en total suele ser un 7-13% del precio. La calculadora de gastos está en esta misma página.`,
+      },
+      {
+        question: `¿Cuánto cuesta una vivienda en ${cityName}?`,
+        answer: `La mediana de oferta es ${median} €/m², así que un piso de 70 m² parte de unos ${apartment70} € antes de gastos. Añade el 7-13% de compra y revisa la tabla de zonas para ajustar el presupuesto.`,
+      },
+      {
+        question: `¿Cómo está el mercado inmobiliario en ${cityName}?`,
+        answer: `La mediana actual es ${median} €/m² y el crecimiento interanual ${growth}. La rentabilidad bruta es ${roi}; la zona con mejor retorno ahora es ${bestYieldName} con ${bestYieldValue}.`,
       },
     ];
   }
@@ -226,6 +238,14 @@ function buildCityFaq(
         question: `What purchase costs apply in ${cityName}?`,
         answer: `In ${tax.authority} transfer tax (ITP) is ${itp}. Add notary, land registry, legal advice and translation - typically 7-13% of the price. The cost calculator is on this page.`,
       },
+      {
+        question: `How much does a property cost in ${cityName}?`,
+        answer: `The asking median is ${median} €/m², so a 70 m² apartment starts around ${apartment70} € before purchase costs. Add 7-13% for buying costs and use the area table to adjust the budget.`,
+      },
+      {
+        question: `What is the property market in ${cityName} like?`,
+        answer: `The current median is ${median} €/m² with ${growth} year-on-year growth. Gross yield is ${roi}; the strongest area for rental yield is ${bestYieldName} at ${bestYieldValue}.`,
+      },
     ];
   }
 
@@ -245,6 +265,14 @@ function buildCityFaq(
     {
       question: `Jakie koszty zakupu dochodzą do ceny mieszkania w ${cityName}?`,
       answer: `W regionie ${tax.authority} ITP wynosi ${itp}. Do tego notariusz, rejestr, prawnik i tłumacz - łącznie zwykle 7-13% ceny. Kalkulator kosztów jest na tej stronie.`,
+    },
+    {
+      question: `Ile kosztuje mieszkanie w ${cityName}?`,
+      answer: `Mediana ofertowa to ${median} €/m², więc mieszkanie 70 m² zaczyna się od około ${apartment70} € przed kosztami zakupu. Dolicz 7-13% i sprawdź tabelę dzielnic, żeby dopasować budżet.`,
+    },
+    {
+      question: `Jak wygląda rynek nieruchomości w ${cityName}?`,
+      answer: `Obecna mediana to ${median} €/m², a wzrost roczny ${growth}. Rentowność brutto wynosi ${roi}; najlepszą dzielnicą pod wynajem jest teraz ${bestYieldName} z wynikiem ${bestYieldValue}.`,
     },
   ];
 }
