@@ -108,6 +108,16 @@ const FAQ: FaqItem[] = [
     answer:
       "Verplicht is het niet, maar een lokale buyer's agent controleert de Nota Simple, eigendomssituatie, schulden aan de comunidad en bouwkundige risico's. Wij koppelen je aan een erkende partner en rekenen geen commissie aan de koper.",
   },
+  {
+    question: "Wat is een goed verhuurrendement in Spanje?",
+    answer:
+      "Een bruto huurrendement van 4% tot 7% is op de Costa Blanca realistisch, afhankelijk van stad, ligging en type woning. Na aftrek van comunidad, IBI, onderhoud, beheer, belastingen en leegstand blijft vaak ongeveer 3,5% tot 4,5% netto over. Gebruik het bruto cijfer alleen om locaties te vergelijken.",
+  },
+  {
+    question: "Wat kost verhuur op de Costa Blanca?",
+    answer:
+      "Naast de hypotheek betaal je comunidad, IBI, verzekering, onderhoud en eventueel beheer. Bij toeristische verhuur komen schoonmaak, marketing en lokale toeristenbelasting bij. Vraag vóór de aankoop na welke regels in de gemeente en het gebouw gelden.",
+  },
 ];
 
 export default function DutchCostaBlancaPage() {
@@ -348,6 +358,47 @@ export default function DutchCostaBlancaPage() {
         </div>
       </Section>
 
+
+      <Section className="bg-brand-50/60">
+        <SectionHeading eyebrow="Verhuurrendement">Wat is een realistisch huurrendement op de Costa Blanca?</SectionHeading>
+        <p className="-mt-4 mb-6 max-w-3xl text-sm leading-relaxed text-brand-700">
+          Het bruto huurrendement is de jaarhuur gedeeld door de koopprijs. Bij een
+          appartement van €250.000 met €1.100 huur per maand is dat €13.200 per jaar,
+          ofwel 5,3% bruto. Het nettoresultaat ligt lager: comunidad, IBI, onderhoud,
+          verzekering, beheer en leegstand gaan er nog vanaf. Reken in de praktijk op
+          ongeveer 3,5% tot 4,5% netto in goede kustlocaties, afhankelijk van het pand
+          en de verhuurvorm.
+        </p>
+        <div className="grid gap-4 md:grid-cols-3">
+          {[
+            {
+              title: "Bruto rendement",
+              body: "Jaarhuur gedeeld door de aankoopprijs. Nuttig om steden te vergelijken, maar het zegt niets over wat je overhoudt.",
+            },
+            {
+              title: "Netto rendement",
+              body: "Na aftrek van comunidad, IBI, onderhoud, verzekering, beheer, belastingen en leegstand. Dit is het getal dat voor je bankrekening telt.",
+            },
+            {
+              title: "Verhuurregels",
+              body: "Toeristische verhuur vraagt vaak een licencia turística; sommige gemeenten en comunidades beperken het aantal nachten of verhuren.",
+            },
+          ].map((item) => (
+            <Card key={item.title}>
+              <h3 className="text-base font-bold text-brand-950">{item.title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-brand-700">{item.body}</p>
+            </Card>
+          ))}
+        </div>
+        <p className="mt-5 text-sm leading-relaxed text-brand-700">
+          Wil je het rendement van een specifieke stad of wijk zien? Bekijk de{" "}
+          <Link href="/en/property-prices" className="font-semibold text-brand-900 underline underline-offset-2">
+            prijzen en ROI per regio
+          </Link>
+          . De cijfers zijn een vertrekpunt; wij rekenen met jouw budget en kosten door in
+          de leadanalyse.
+        </p>
+      </Section>
 
       <Section className="bg-brand-50/60">
         <SectionHeading eyebrow="Werkwijze">Van oriëntatie tot sleutel</SectionHeading>
