@@ -84,7 +84,9 @@ export function proxy(request: NextRequest) {
   })();
 
 
-  if (firstSegment === "og" || firstSegment === "sitemap-index.xml") {
+  // `/nl/...` is een losse Nederlandstalige landingsroute (geen `[lang]`).
+  // Zonder deze uitzondering zou proxy hem naar /en/nl/... of /pl/nl/... sturen.
+  if (firstSegment === "og" || firstSegment === "sitemap-index.xml" || firstSegment === "nl") {
     return NextResponse.next();
   }
 

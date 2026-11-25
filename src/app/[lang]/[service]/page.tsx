@@ -83,6 +83,10 @@ export async function generateMetadata({
     keywords: [copy.name, `${copy.name} Costa Blanca`, `${copy.name} Costa Cálida`, ...ADVISORY_KEYWORDS[locale]],
     locale,
     rawSerp: true,
+    // Dedykowany holenderski landing dla kupujących. Hreflang musi być
+    // dwustronny, więc huby kupna linkują do NL, a NL do hubów.
+    extraLanguages:
+      kind === "buy" ? { nl: "/nl/appartement-kopen-costa-blanca" } : undefined,
   });
 }
 

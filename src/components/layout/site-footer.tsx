@@ -119,6 +119,11 @@ export function SiteFooter({ lang }: { lang: Locale }) {
               </Link>
             </li>
             <li>
+              <Link href="/nl/appartement-kopen-costa-blanca" className="hover:text-white hover:underline">
+                Appartement kopen Costa Blanca (NL)
+              </Link>
+            </li>
+            <li>
               <Link href={localePath(lang, "/o-nas")} className="hover:text-white hover:underline">
                 {footer.about}
               </Link>

@@ -285,6 +285,11 @@ export interface PageMetadataInput {
   noindexReason?: string;
   /** Strona w wersji językowej. Steruje canonical i hreflang. */
   locale?: Locale;
+  /**
+   * Dodatkowe wersje językowe spoza `LOCALES` (np. dedykowany landing NL).
+   * Wartość to ścieżka lub absolutny URL; normalizujemy do absolutnego.
+   */
+  extraLanguages?: Record<string, string>;
   /** Data ostatniej modyfikacji treści (ISR / sitemap). */
   modifiedAt?: string;
   /** Wyłącza optymalizator SERP (np. Strony prawne o ustalonym brzmieniu). */
@@ -324,15 +329,24 @@ export function buildMetadata(input: PageMetadataInput): Metadata {
   // tłumaczymy), a hreflang obejmuje wszystkie przetłumaczone języki.
   const canonical = absoluteUrl(translatePath(path, activeLocale));
 
+  const extraLanguages = Object.fromEntries(
+    Object.entries(input.extraLanguages ?? {}).map(([code, value]) => [code, absoluteUrl(value)]),
+  );
+
   const languages =
     LOCALIZED_LOCALES.length > 1
-      ? Object.fromEntries(
-          LOCALES.filter((item) => LOCALIZED_LOCALES.includes(item)).map((item) => [
-            item,
-            absoluteUrl(translatePath(path, item)),
-          ]),
-        )
-      : undefined;
+      ? {
+          ...Object.fromEntries(
+            LOCALES.filter((item) => LOCALIZED_LOCALES.includes(item)).map((item) => [
+              item,
+              absoluteUrl(translatePath(path, item)),
+            ]),
+          ),
+          ...extraLanguages,
+        }
+      : Object.keys(extraLanguages).length > 0
+        ? extraLanguages
+        : undefined;
 
   const openGraph: NonNullable<Metadata["openGraph"]> = {
     type: "website",

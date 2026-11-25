@@ -48,7 +48,7 @@ const LAST_MODIFIED = (() => {
    * JSON-LD i FAQ nie podbijają tej daty, więc Google dostawał stary `lastmod`
    * i odkładał recrawl. Podbijaj tę stałą przy każdej istotnej zmianie treści.
    */
-  const CONTENT_UPDATED_AT = "2026-11-21";
+  const CONTENT_UPDATED_AT = "2026-11-25";
   return LOCATIONS.updatedAt > CONTENT_UPDATED_AT ? LOCATIONS.updatedAt : CONTENT_UPDATED_AT;
 })();
 
@@ -135,6 +135,28 @@ function staticPaths(): LogicalEntry[] {
 }
 
 /**
+ * Dedykowany holenderski landing dla zapytania "appartement kopen costa blanca".
+ * Nie jest częścią `LOCALES` (PL/EN/ES), więc dodajemy go jako osobny wpis z
+ * pełnym, dwustronnym hreflangiem do hubów kupna.
+ */
+function dutchLandingEntry(): SitemapEntry {
+  const url = absoluteUrl("/nl/appartement-kopen-costa-blanca");
+  return {
+    url,
+    lastModified: LAST_MODIFIED,
+    changeFrequency: "weekly",
+    priority: 0.9,
+    alternates: {
+      nl: url,
+      en: absoluteUrl("/en/apartments-for-sale"),
+      es: absoluteUrl("/es/apartamentos-en-venta"),
+      pl: absoluteUrl("/pl/apartamenty-na-sprzedaz"),
+      "x-default": absoluteUrl("/pl/apartamenty-na-sprzedaz"),
+    },
+  };
+}
+
+/**
  * Rozwija wpisy logiczne na wszystkie wdrożone języki.
  * Każdy URL dostaje komplet `alternates` (hreflang) + `x-default` → PL,
  * dzięki czemu Google widzi spójną klastrę językową bez 404.
@@ -160,13 +182,16 @@ function expandAndLocalize(entries: LogicalEntry[]): SitemapEntry[] {
 
 /** Pełna lista URL. Używana przez QA i robots.ts do policzenia chunków. */
 export function getAllSitemapEntries(): SitemapEntry[] {
-  return expandAndLocalize([
-    ...staticPaths(),
-    ...servicePaths(),
-    ...cityPaths(),
-    ...reportCityPaths(),
-    ...districtPaths(),
-  ]);
+  return [
+    ...expandAndLocalize([
+      ...staticPaths(),
+      ...servicePaths(),
+      ...cityPaths(),
+      ...reportCityPaths(),
+      ...districtPaths(),
+    ]),
+    dutchLandingEntry(),
+  ];
 }
 
 export function getSitemapIds(): number[] {
