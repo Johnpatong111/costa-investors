@@ -5,6 +5,7 @@ import { Hero } from "@/components/sections/hero";
 import { BuyingCosts } from "@/components/sections/buying-costs";
 import { OwnershipCosts } from "@/components/sections/ownership-costs";
 import { CityRoiTable } from "@/components/sections/city-roi-table";
+import { PopularSearches } from "@/components/sections/popular-searches";
 import { FaqAccordion } from "@/components/sections/faq-accordion";
 import { JsonLd } from "@/components/seo/json-ld";
 import { SocialProof } from "@/components/sections/social-proof";
@@ -165,6 +166,8 @@ export default async function HomePage({
           ))}
         </div>
       </Section>
+
+      <PopularSearches locale={locale} />
 
       <Section className="bg-brand-50/60">
         <SectionHeading eyebrow={home.marketsEyebrow}>{home.marketsTitle}</SectionHeading>

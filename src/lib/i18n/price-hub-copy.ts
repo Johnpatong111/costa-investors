@@ -16,6 +16,8 @@ export interface PriceHubCopy {
   eyebrow: string;
   h1: string;
   lead: string;
+  answerHeading: string;
+  answerText: (median: string, budget70: string) => string;
   citiesEyebrow: string;
   chooseLocation: string;
   caption: (year: number) => string;
@@ -48,6 +50,9 @@ export const PRICE_HUB_COPY: Record<Locale, PriceHubCopy> = {
     eyebrow: "Dane rynkowe",
     h1: "Ceny m² i ROI w Hiszpanii",
     lead: "Zestawienie median cen ofertowych, rentowności najmu, dynamiki rocznej i czasu sprzedaży. Każdy raport zawiera porównanie dzielnic i wyliczenie zwrotu dla budżetu inwestora.",
+    answerHeading: "Ile średnio kosztuje mieszkanie w Hiszpanii?",
+    answerText: (median, budget70) =>
+      `Mediana cen ofertowych w 15 miejscowościach z naszej bazy to ${median} €/m². Mieszkanie 70 m² kosztuje więc około ${budget70} przed kosztami zakupu. To mediana ofertowa, nie cena transakcyjna.`,
     citiesEyebrow: "Miejscowości",
     chooseLocation: "Wybierz lokalizację",
     caption: (year) => `Mediany cen, ROI i dynamika w miejscowościach Costa Blanca i Costa Cálida - ${year}`,
@@ -132,6 +137,9 @@ export const PRICE_HUB_COPY: Record<Locale, PriceHubCopy> = {
     eyebrow: "Market data",
     h1: "Spanish property prices and rental yields",
     lead: "Median asking prices, rental yields, annual growth and time on market. Every report includes a district comparison and a return calculation for your budget.",
+    answerHeading: "What is the average house price in Spain?",
+    answerText: (median, budget70) =>
+      `The median asking price across the 15 towns in our dataset is ${median}/m². A 70 m² apartment therefore costs about ${budget70} before purchase costs. This is an asking-price median, not a transaction price.`,
     citiesEyebrow: "Locations",
     chooseLocation: "Choose a location",
     caption: (year) => `Median prices, yields and growth across Costa Blanca and Costa Cálida - ${year}`,
@@ -216,6 +224,9 @@ export const PRICE_HUB_COPY: Record<Locale, PriceHubCopy> = {
     eyebrow: "Datos de mercado",
     h1: "Precios de la vivienda y rentabilidad en España",
     lead: "Medianas de precio de oferta, rentabilidad del alquiler, crecimiento anual y tiempo de venta. Cada informe incluye comparativa por zonas y cálculo del retorno para tu presupuesto.",
+    answerHeading: "¿Cuánto cuesta de media una vivienda en España?",
+    answerText: (median, budget70) =>
+      `La mediana de precios de oferta en las 15 localidades de nuestra base es ${median}/m². Un piso de 70 m² cuesta por tanto unos ${budget70} antes de gastos de compra. Es una mediana de oferta, no un precio de transacción.`,
     citiesEyebrow: "Localidades",
     chooseLocation: "Elige una localidad",
     caption: (year) => `Medianas de precio, rentabilidad y crecimiento en Costa Blanca y Costa Cálida - ${year}`,

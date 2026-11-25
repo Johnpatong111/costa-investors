@@ -73,6 +73,10 @@ export default async function PriceReportIndexPage({
     };
   });
 
+  const medianPrice = Math.round(
+    cities.reduce((sum, item) => sum + item.city.pricePerM2, 0) / Math.max(cities.length, 1),
+  );
+
   const leaderGroups = [
     {
       title: copy.leadersYield,
@@ -119,6 +123,12 @@ export default async function PriceReportIndexPage({
           <p className="mt-4 max-w-3xl text-base leading-relaxed text-brand-700">
             {copy.lead}
           </p>
+          <div className="mt-5 max-w-3xl rounded-2xl border border-brand-200 bg-white p-5">
+            <h2 className="text-base font-bold text-brand-950">{copy.answerHeading}</h2>
+            <p className="mt-2 text-sm leading-relaxed text-brand-700">
+              {copy.answerText(formatEur(medianPrice), formatEur(Math.round(medianPrice * 70)))}
+            </p>
+          </div>
         </div>
       </section>
 
